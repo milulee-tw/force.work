@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTP 動態設定系統｜後台功能規格書 v1.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0D1B2A;
+  --navy-mid: #1A2F45;
+  --navy-light: #243B55;
+  --blue: #1A6FA8;
+  --blue-mid: #2589CC;
+  --blue-light: #C9E4F7;
+  --blue-pale: #EBF5FD;
+  --teal: #0A8F7F;
+  --teal-light: #D0F0EC;
+  --amber: #C5820A;
+  --amber-light: #FDF3DC;
+  --red: #C0392B;
+  --red-light: #FDECEA;
+  --green: #1B7A4A;
+  --green-light: #E0F5EB;
+  --gray-0: #F7F8FA;
+  --gray-1: #ECEEF2;
+  --gray-2: #D8DCE3;
+  --gray-3: #B0B7C3;
+  --gray-4: #7A8494;
+  --gray-5: #4B5263;
+  --gray-6: #2D3344;
+  --text: #1C2333;
+  --text-mid: #4B5263;
+  --text-muted: #7A8494;
+  --border: #E0E4EC;
+  --border-mid: #C8CDD8;
+  --surface: #FFFFFF;
+  --surface-alt: #F7F8FA;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Noto Sans TC', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--gray-0);
+  line-height: 1.7;
+}
+
+/* ── Layout ── */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  background: var(--navy);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-brand .doc-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .03em;
+  line-height: 1.4;
+}
+
+.sidebar-brand .doc-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  margin-top: 4px;
+  font-family: var(--mono);
+}
+
+.sidebar-nav { padding: 16px 0; flex: 1; }
+
+.nav-section-label {
+  padding: 8px 20px 4px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 20px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  transition: all .15s;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+
+.nav-item:hover { color: rgba(255,255,255,.85); background: rgba(255,255,255,.05); }
+.nav-item.active { color: #fff; border-left-color: var(--blue-mid); background: rgba(37,137,204,.12); }
+
+.nav-item .num {
+  font-size: 10px;
+  font-family: var(--mono);
+  color: rgba(255,255,255,.25);
+  min-width: 18px;
+}
+
+/* ── Main ── */
+.main {
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ── Cover ── */
+.cover {
+  background: var(--navy);
+  padding: 64px 56px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  right: -60px; top: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,137,204,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cover-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  margin-bottom: 16px;
+  font-family: var(--mono);
+}
+
+.cover-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.cover-subtitle {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 36px;
+}
+
+.cover-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cover-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cover-meta-label {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  font-family: var(--mono);
+}
+
+.cover-meta-val {
+  font-size: 13px;
+  color: rgba(255,255,255,.75);
+  font-family: var(--mono);
+}
+
+/* ── Content ── */
+.content { padding: 48px 56px; }
+
+/* ── Section ── */
+.spec-section {
+  margin-bottom: 56px;
+  scroll-margin-top: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.section-num {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--blue-mid);
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.subsection { margin-bottom: 32px; }
+
+.subsection-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy-mid);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subsection-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--blue-mid);
+  border-radius: 2px;
+}
+
+.h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-5);
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+p { font-size: 14px; color: var(--text-mid); line-height: 1.8; margin-bottom: 12px; }
+
+/* ── Tables ── */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.spec-table th {
+  background: var(--navy);
+  color: rgba(255,255,255,.85);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+.spec-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.spec-table tr:last-child td { border-bottom: none; }
+.spec-table tr:nth-child(even) td { background: var(--surface-alt); }
+
+.field-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.type-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  background: var(--blue-pale);
+  color: var(--blue);
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.req-y { color: var(--red); font-weight: 700; font-size: 12px; }
+.req-n { color: var(--gray-3); font-size: 12px; }
+
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; height: 20px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+
+.p1 { background: #ede9fe; color: #4c1d95; }
+.p2 { background: #fce7f3; color: #831843; }
+.p3 { background: #fee2e2; color: #7f1d1d; }
+.p4 { background: var(--blue-pale); color: var(--blue); }
+.p5 { background: #e0f2fe; color: #075985; }
+.p6 { background: var(--teal-light); color: var(--teal); }
+.p7 { background: var(--amber-light); color: var(--amber); }
+.p8 { background: var(--gray-1); color: var(--gray-5); }
+
+/* ── Callout ── */
+.callout {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.callout-warn { background: var(--amber-light); border-left: 3px solid var(--amber); color: #7a4f00; }
+.callout-info { background: var(--blue-pale); border-left: 3px solid var(--blue-mid); color: #0a3d62; }
+.callout-danger { background: var(--red-light); border-left: 3px solid var(--red); color: #7b1a14; }
+.callout-success { background: var(--green-light); border-left: 3px solid var(--green); color: #0d4a2a; }
+
+.callout-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── Code ── */
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--blue);
+}
+
+/* ── Bullet list ── */
+ul.spec-list { padding-left: 0; list-style: none; margin-bottom: 14px; }
+ul.spec-list li {
+  padding: 4px 0 4px 18px;
+  position: relative;
+  font-size: 13.5px;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+ul.spec-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--blue-mid);
+  font-weight: 700;
+}
+
+/* ── Priority flow ── */
+.priority-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.pf-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background .1s;
+}
+
+.pf-item:hover { background: var(--surface-alt); }
+.pf-arrow { color: var(--gray-3); font-size: 10px; }
+
+/* ── API chips ── */
+.method { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-family: var(--mono); font-weight: 700; }
+.get { background: #d1fae5; color: #065f46; }
+.post { background: #dbeafe; color: #1e40af; }
+.put { background: #fef3c7; color: #92400e; }
+.patch { background: #ede9fe; color: #4c1d95; }
+
+/* ── Divider ── */
+.divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+/* ────────────────────────────────
+   INTERACTIVE MOCKUP SECTION
+──────────────────────────────── */
+.mockup-wrap {
+  background: var(--gray-0);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.mockup-chrome {
+  background: var(--gray-1);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chrome-dots { display: flex; gap: 5px; }
+.chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-red { background: #fc5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+
+.chrome-bar {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 12px;
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+}
+
+/* ── App shell ── */
+.app-shell {
+  display: flex;
+  background: var(--surface);
+  min-height: 580px;
+}
+
+.app-sidebar {
+  width: 200px;
+  background: #1E293B;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-sidebar-logo {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-sidebar-logo .logo-mark {
+  width: 24px; height: 24px;
+  background: var(--blue-mid);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900; color: #fff;
+}
+
+.app-nav-group { padding: 12px 0; }
+.app-nav-label { padding: 4px 14px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.25); }
+.app-nav-item {
+  padding: 7px 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  cursor: pointer;
+  display: flex; align-items: center; gap: 7px;
+  transition: all .12s;
+}
+.app-nav-item:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.8); }
+.app-nav-item.active { background: rgba(37,137,204,.18); color: #fff; }
+.app-nav-item .nav-icon { font-size: 13px; width: 16px; text-align: center; }
+
+.app-body { flex: 1; overflow: auto; }
+
+.app-topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.breadcrumb { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+.breadcrumb .current { color: var(--text); font-weight: 500; }
+.breadcrumb .sep { color: var(--gray-3); }
+
+.topbar-actions { display: flex; align-items: center; gap: 8px; }
+
+.app-content { padding: 20px; }
+
+/* Stats */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.stat-card { background: var(--surface-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stat-label { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
+.stat-value { font-size: 22px; font-weight: 700; line-height: 1; }
+.sv-blue { color: var(--blue); }
+.sv-green { color: var(--green); }
+.sv-gray { color: var(--gray-4); }
+.sv-amber { color: var(--amber); }
+
+/* Tabs */
+.ui-tabs { display: flex; border-bottom: 1.5px solid var(--border); margin-bottom: 16px; }
+.ui-tab {
+  padding: 8px 18px;
+  font-size: 12.5px;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1.5px;
+  white-space: nowrap;
+  transition: all .12s;
+}
+.ui-tab:hover { color: var(--text); }
+.ui-tab.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 500; }
+
+/* Toolbar */
+.ui-toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.ui-input {
+  height: 30px; padding: 0 9px;
+  border: 1px solid var(--border-mid); border-radius: 5px;
+  font-size: 12px; font-family: var(--sans); color: var(--text);
+  background: var(--surface);
+}
+.ui-input:focus { outline: none; border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(37,137,204,.12); }
+.ui-select { height: 30px; padding: 0 8px; border: 1px solid var(--border-mid); border-radius: 5px; font-size: 12px; font-family: var(--sans); background: var(--surface); color: var(--text); }
+
+.ui-btn {
+  height: 30px; padding: 0 12px;
+  border: 1px solid var(--border-mid); border-radius: 5px;
+  font-size: 12px; font-family: var(--sans); color: var(--text);
+  background: var(--surface); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+  transition: all .12s; white-space: nowrap;
+}
+.ui-btn:hover { background: var(--surface-alt); border-color: var(--gray-3); }
+.ui-btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.ui-btn.primary:hover { background: #1560A0; }
+
+/* Data table */
+.data-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+.data-tbl th {
+  padding: 8px 10px; text-align: left;
+  font-size: 11px; font-weight: 500; color: var(--text-muted);
+  border-bottom: 1.5px solid var(--border); white-space: nowrap;
+}
+.data-tbl td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.data-tbl tr:last-child td { border-bottom: none; }
+.data-tbl tr:hover td { background: var(--blue-pale); }
+.data-tbl tr.ended td { opacity: .65; }
+
+/* Tags */
+.tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 500; margin: 1px; }
+.tag-blue { background: var(--blue-pale); color: var(--blue); }
+.tag-gray { background: var(--gray-1); color: var(--gray-5); }
+
+/* Status badges */
+.status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+.status-active { background: var(--green-light); color: var(--green); }
+.status-ended { background: var(--gray-1); color: var(--gray-4); }
+.status-manual { background: var(--amber-light); color: var(--amber); }
+
+/* RTP value */
+.rtp-display { font-family: var(--mono); font-size: 13px; font-weight: 700; }
+.rtp-high { color: var(--green); }
+.rtp-mid { color: var(--blue); }
+.rtp-boost { color: var(--amber); }
+.rtp-ended { color: var(--gray-4); }
+
+/* Action btns */
+.link-btn { font-size: 11.5px; color: var(--blue); cursor: pointer; background: none; border: none; font-family: var(--sans); padding: 0 3px; }
+.link-btn:hover { text-decoration: underline; }
+.link-btn.danger { color: var(--red); }
+
+/* ── Modal ── */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(15,25,40,.5);
+  z-index: 1000;
+  align-items: flex-start; justify-content: center;
+  padding-top: 60px;
+  backdrop-filter: blur(2px);
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  width: 580px;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: modal-in .18s ease;
+}
+.modal-box.narrow { width: 460px; }
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-head {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: var(--surface); z-index: 2;
+}
+.modal-head h3 { font-size: 16px; font-weight: 700; color: var(--navy); }
+.modal-x { width: 28px; height: 28px; border-radius: 6px; border: none; background: none; font-size: 18px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; }
+.modal-x:hover { background: var(--surface-alt); }
+
+.modal-body { padding: 20px 22px; }
+.modal-foot { padding: 14px 22px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; background: var(--surface); position: sticky; bottom: 0; }
+
+/* Form */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fg { display: flex; flex-direction: column; gap: 5px; }
+.fg.full { grid-column: 1 / -1; }
+.fg-label { font-size: 12px; font-weight: 500; color: var(--text-mid); }
+.fg-req { color: var(--red); margin-left: 2px; }
+.fg-input { height: 34px; padding: 0 10px; border: 1px solid var(--border-mid); border-radius: 6px; font-size: 13px; font-family: var(--sans); color: var(--text); background: var(--surface); transition: border-color .12s; }
+.fg-input:focus { outline: none; border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(37,137,204,.12); }
+.fg-select { height: 34px; padding: 0 9px; border: 1px solid var(--border-mid); border-radius: 6px; font-size: 13px; font-family: var(--sans); color: var(--text); background: var(--surface); }
+.fg-textarea { padding: 8px 10px; border: 1px solid var(--border-mid); border-radius: 6px; font-size: 13px; font-family: var(--sans); color: var(--text); background: var(--surface); resize: vertical; }
+.fg-hint { font-size: 11px; color: var(--text-muted); }
+
+.form-divider { grid-column: 1/-1; display: flex; align-items: center; gap: 10px; padding-top: 6px; }
+.form-divider span { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); white-space: nowrap; }
+.form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.priority-display { display: flex; align-items: center; gap: 8px; height: 34px; }
+
+/* Conflict warn */
+.conflict-alert {
+  grid-column: 1/-1;
+  background: var(--amber-light);
+  border: 1px solid #e5b345;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: #6b3d00;
+  display: flex; gap: 8px; align-items: flex-start;
+  line-height: 1.6;
+}
+
+/* Confirm input */
+.confirm-field {
+  grid-column: 1/-1;
+  background: var(--red-light);
+  border: 1px solid #e8a09a;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.confirm-field p { font-size: 12.5px; color: var(--red); margin-bottom: 8px; }
+
+/* Sim results */
+.sim-result-box {
+  margin-top: 16px;
+  background: var(--surface-alt);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.sim-result-header {
+  padding: 10px 16px;
+  background: var(--navy);
+  color: rgba(255,255,255,.75);
+  font-size: 11px;
+  font-family: var(--mono);
+  letter-spacing: .06em;
+}
+.sim-result-body { padding: 16px; }
+.sim-rtp-main { font-size: 36px; font-weight: 700; font-family: var(--mono); color: var(--green); line-height: 1; margin-bottom: 4px; }
+.sim-meta { font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+.sim-meta .hl { color: var(--text); font-weight: 500; }
+.sim-meta code { font-size: 11px; }
+.sim-trace { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.sim-trace-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 12px; }
+.sim-trace-item .check { font-size: 13px; }
+.hit { color: var(--green); }
+.miss { color: var(--gray-3); }
+
+/* ── Open questions ── */
+.open-q {
+  background: var(--blue-pale);
+  border: 1px solid #b8d9f1;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.open-q-num { font-family: var(--mono); font-size: 10px; color: var(--blue-mid); font-weight: 700; margin-bottom: 4px; letter-spacing: .08em; }
+.open-q-q { color: var(--text); font-weight: 500; margin-bottom: 4px; }
+.open-q-opt { color: var(--text-muted); font-size: 12px; }
+.open-q-owner { display: inline-block; margin-top: 6px; font-size: 11px; background: var(--blue-pale); border: 1px solid #b8d9f1; color: var(--blue); padding: 1px 8px; border-radius: 10px; }
+
+/* ── Changelog ── */
+.changelog-row { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.changelog-row:last-child { border-bottom: none; }
+.cl-ver { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--blue); width: 40px; flex-shrink: 0; }
+.cl-date { font-size: 12px; color: var(--text-muted); font-family: var(--mono); width: 80px; flex-shrink: 0; }
+.cl-desc { font-size: 13px; color: var(--text-mid); }
+
+/* Print */
+@media print {
+  .sidebar { display: none; }
+  .layout { grid-template-columns: 1fr; }
+  .content { padding: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- ── Sidebar ── -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="doc-title">RTP 動態設定系統</div>
+    <div class="doc-title" style="font-weight:300;color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">後台功能規格書</div>
+    <div class="doc-meta" style="margin-top:8px">v1.2 · 2025-06 · 草稿</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">概述</div>
+    <a class="nav-item active" href="#s1" onclick="setActive(this)">
+      <span class="num">01</span> 功能概述
+    </a>
+    <a class="nav-item" href="#s2" onclick="setActive(this)">
+      <span class="num">02</span> 優先序模型
+    </a>
+    <div class="nav-section-label">規格</div>
+    <a class="nav-item" href="#s3" onclick="setActive(this)">
+      <span class="num">03</span> 資料結構
+    </a>
+    <a class="nav-item" href="#s4" onclick="setActive(this)">
+      <span class="num">04</span> 後台介面規格
+    </a>
+    <a class="nav-item" href="#s5" onclick="setActive(this)">
+      <span class="num">05</span> 互動模擬
+    </a>
+    <a class="nav-item" href="#s5b" onclick="setActive(this)">
+      <span class="num">05b</span> 群組管理規格
+    </a>
+    <div class="nav-section-label">系統</div>
+    <a class="nav-item" href="#s6" onclick="setActive(this)">
+      <span class="num">06</span> 審計日誌
+    </a>
+    <a class="nav-item" href="#s7" onclick="setActive(this)">
+      <span class="num">07</span> API 規格
+    </a>
+    <a class="nav-item" href="#s8" onclick="setActive(this)">
+      <span class="num">08</span> 限制與合規
+    </a>
+    <a class="nav-item" href="#s9" onclick="setActive(this)">
+      <span class="num">09</span> 待決事項
+    </a>
+    <a class="nav-item" href="#s10" onclick="setActive(this)">
+      <span class="num">10</span> 版本紀錄
+    </a>
+  </nav>
+</aside>
+
+<!-- ── Main ── -->
+<main class="main">
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-eyebrow">Game Management Backend · Spec Document</div>
+  <div class="cover-title">RTP 動態設定系統</div>
+  <div class="cover-subtitle">後台功能規格書</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">版本</span>
+      <span class="cover-meta-val">v1.2</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">狀態</span>
+      <span class="cover-meta-val">草稿</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">日期</span>
+      <span class="cover-meta-val">2025-06</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">作者</span>
+      <span class="cover-meta-val">iGaming CRM PM</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">機密等級</span>
+      <span class="cover-meta-val">Internal Only</span>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ── S1 ── -->
+<section class="spec-section" id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">功能概述</h2>
+  </div>
+
+  <p>本文件描述遊戲管理後台中「RTP 動態設定」功能模組的完整設計規格，供產品、前端、後端及 QA 人員使用。所有設定異動均受版本控制與審計日誌保護。</p>
+
+  <div class="subsection">
+    <div class="subsection-title">功能目標</div>
+    <ul class="spec-list">
+      <li>允許具備 Admin 權限且在 RTP 白名單中的特定帳號，針對線路、幣值、遊戲、帳號群組等維度設定差異化 RTP 值</li>
+      <li>採用 Priority 模型：條件越具體優先級越高，未命中時自動 fallback 至父層或全局預設值</li>
+      <li>每條規則具備明確的生效起始與生效截止時間，截止後自動移入「已結束」列表</li>
+      <li>帳號群組（Group）為獨立管理實體，可掛載多個特殊 Event（如強制進入 FG），Event 類型支援後續擴充</li>
+      <li>支援條件維度後續擴充，不破壞現有規則</li>
+      <li>提供規則衝突偵測、RTP 模擬器及完整操作審計日誌</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">適用範圍</div>
+    <table class="spec-table">
+      <thead><tr><th>項目</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>功能模組</td><td>遊戲管理後台 → RTP 設定分頁</td></tr>
+        <tr><td>使用者</td><td>Admin 角色，且被加入 RTP 設定白名單的帳號</td></tr>
+        <tr><td>影響範圍</td><td>線上遊戲 RTP 機率，涉及合規、財務與玩家體驗</td></tr>
+        <tr><td>優先級</td><td>High — RTP 設定直接影響出獎率與財務報表</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S2 ── -->
+<section class="spec-section" id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">RTP 優先序模型</h2>
+  </div>
+
+  <p>Priority 為全局唯一整數排名（從 1 開始，數字越小優先序越高）。玩家發起遊戲請求時，系統從進行中的規則中，找出所有條件命中的規則，取 priority 值最小的那條執行。</p>
+  <p>Priority 由 Admin 在建立規則時手動指定插入位置，系統維護唯一性：若新規則插入的位置已被占用，該位置及之後的所有進行中規則的 priority 值自動 +1（shift），並在儲存前顯示受影響清單，由 Admin 確認後才執行。</p>
+
+  <div class="subsection">
+    <div class="subsection-title">條件組合的建議優先序參考</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">以下為建議的插入位置參考，非強制規則。最終排名由 Admin 決定，系統只負責維護唯一性。</p>
+    <table class="spec-table">
+      <thead>
+        <tr><th>建議區間</th><th>條件組合</th><th>範例</th><th>說明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="priority-badge p1">最高</span></td><td><code>group_id + game + line + currency</code></td><td>grp_vip + GemBonanza + pb10 + PHP</td><td>最精確，含群組且鎖定遊戲/線路/幣值</td></tr>
+        <tr><td><span class="priority-badge p2">↓</span></td><td><code>group_id + game</code></td><td>grp_vip + GemBonanza</td><td>針對特定群組在特定遊戲</td></tr>
+        <tr><td><span class="priority-badge p3">↓</span></td><td><code>group_id</code></td><td>grp_vip</td><td>針對特定群組全部遊戲</td></tr>
+        <tr><td><span class="priority-badge p4">↓</span></td><td><code>line + currency + game</code></td><td>pb10 + PHP + GemBonanza</td><td>針對特定線路/幣值/遊戲，不限群組</td></tr>
+        <tr><td><span class="priority-badge p5">↓</span></td><td><code>line + currency</code></td><td>pb10 + PHP</td><td>針對特定線路/幣值</td></tr>
+        <tr><td><span class="priority-badge p6">↓</span></td><td><code>line</code></td><td>pb10</td><td>針對特定線路全部遊戲</td></tr>
+        <tr><td><span class="priority-badge p7">↓</span></td><td><code>game</code></td><td>GemBonanza</td><td>針對特定遊戲全線路</td></tr>
+        <tr><td><span class="priority-badge p8">最低</span></td><td>（各線路預設值）</td><td>—</td><td>線路預設值，最終 fallback 前的倒數第二層</td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout-info">
+      <span class="callout-icon">ℹ</span>
+      <div>同一個群組的帳號可能同時出現在多個群組中。Priority 唯一值機制確保在任何情況下，命中的規則都只有一條「最優先的」，不會有兩條規則優先序相同而產生歧義。</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Priority Shift 機制</div>
+    <ul class="spec-list">
+      <li>新增規則時，Admin 在 Dialog 中選擇要插入的排名位置（例如：插入為第 3 名）</li>
+      <li>系統檢查目前進行中規則清單，列出「第 3 名及之後」所有會被往後推的規則</li>
+      <li>顯示 Shift 確認 Dialog：列出受影響規則的 rule_id、條件摘要、原排名 → 新排名</li>
+      <li>Admin 確認後，系統批次執行 shift（所有受影響規則的 priority +1），並為每條記錄一筆 <code>PRIORITY_SHIFT</code> 審計日誌</li>
+      <li>若插入位置排在所有現有規則之後（例如目前最大為 5，新規則插入為第 6），則無 shift，直接儲存</li>
+    </ul>
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠</span>
+      <div>Shift 操作為批次異動，建議 Admin 在低流量時段執行，避免短暫的排名空窗期影響線上 RTP 命中結果。</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Fallback 查找流程（含線路預設值）</div>
+    <div class="priority-flow">
+      <div class="pf-item"><span class="priority-badge p1" style="width:auto;padding:0 8px">Priority 1</span> <span style="font-size:12px;color:var(--text-mid)">優先序最高的命中規則 → 採用此 RTP</span></div>
+      <div style="padding-left:14px;color:var(--gray-3);font-size:11px">↓ 無任何活動規則命中</div>
+      <div class="pf-item"><span class="priority-badge p6" style="width:auto;padding:0 8px">線路預設值</span> <span style="font-size:12px;color:var(--text-mid)">各線路設定的預設 RTP（如 pb10 → 96.7%）</span></div>
+      <div style="padding-left:14px;color:var(--gray-3);font-size:11px">↓ 線路無設定</div>
+      <div class="pf-item"><span class="priority-badge p8" style="width:auto;padding:0 8px">全局預設</span> <span style="font-size:12px;color:var(--text-muted)">系統全局預設值（最終 fallback）</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S3 ── -->
+<section class="spec-section" id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">資料結構規格</h2>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">RTP Rule 欄位定義</div>
+    <table class="spec-table">
+      <thead>
+        <tr><th>欄位名稱</th><th>型別</th><th>必填</th><th>說明</th><th>範例值</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="field-name">rule_id</td><td><span class="type-badge">UUID</span></td><td class="req-y">Y</td><td>規則唯一識別碼，系統自動產生</td><td><code>rtp_a1b2c3d4</code></td></tr>
+        <tr><td class="field-name">line_id</td><td><span class="type-badge">String</span></td><td class="req-n">N</td><td>線路代碼；<code>null</code> 表示不限線路</td><td><code>pb10</code></td></tr>
+        <tr><td class="field-name">currency</td><td><span class="type-badge">String</span></td><td class="req-n">N</td><td>幣值代碼（ISO 4217）；<code>null</code> 表示不限</td><td><code>PHP</code></td></tr>
+        <tr><td class="field-name">game_id</td><td><span class="type-badge">String</span></td><td class="req-n">N</td><td>遊戲代碼；<code>null</code> 表示不限遊戲</td><td><code>GemBonanza</code></td></tr>
+        <tr><td class="field-name">group_id</td><td><span class="type-badge">String</span></td><td class="req-n">N</td><td>帳號群組 ID（對應 Group 實體）；<code>null</code> 表示不指定群組</td><td><code>grp_vip</code></td></tr>
+        <tr><td class="field-name">rtp_value</td><td><span class="type-badge">Decimal</span></td><td class="req-y">Y</td><td>RTP 值，範圍 0.80 ～ 0.99</td><td><code>0.96</code></td></tr>
+        <tr><td class="field-name">priority</td><td><span class="type-badge">Integer</span></td><td class="req-y">Y</td><td>全局唯一整數排名，Admin 建立時指定，系統維護唯一性</td><td><code>3</code></td></tr>
+        <tr><td class="field-name">effective_from</td><td><span class="type-badge">DateTime</span></td><td class="req-y">Y</td><td>規則生效起始時間（UTC+8）</td><td><code>2025-06-01 00:00</code></td></tr>
+        <tr><td class="field-name">effective_until</td><td><span class="type-badge">DateTime</span></td><td class="req-n">N</td><td>規則失效時間；<code>null</code> 表示永久有效</td><td><code>2025-06-30 23:59</code></td></tr>
+        <tr><td class="field-name">is_active</td><td><span class="type-badge">Boolean</span></td><td class="req-y">Y</td><td>規則是否啟用；停用不刪除</td><td><code>true</code></td></tr>
+        <tr><td class="field-name">created_by</td><td><span class="type-badge">String</span></td><td class="req-y">Y</td><td>建立者帳號</td><td><code>admin_tony</code></td></tr>
+        <tr><td class="field-name">updated_by</td><td><span class="type-badge">String</span></td><td class="req-y">Y</td><td>最後修改者帳號</td><td><code>admin_sarah</code></td></tr>
+        <tr><td class="field-name">note</td><td><span class="type-badge">String</span></td><td class="req-n">N</td><td>備註說明，上限 200 字</td><td><code>Q2 菲律賓新玩家促銷</code></td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠</span>
+      <div><code>rtp_value</code> 嚴格限制在 0.80 ～ 0.99 之間，後端需在 API 層進行二次驗證，前端輸入框僅做第一道防線。</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">線路預設 RTP（Line Default）資料結構</div>
+    <p>各線路的預設 RTP 為獨立設定，不屬於活動規則（無 priority 排名）。當無活動規則命中時，使用線路預設值；線路無設定時再 fallback 至全局預設。</p>
+    <table class="spec-table">
+      <thead><tr><th>欄位名稱</th><th>型別</th><th>必填</th><th>說明</th><th>範例值</th></tr></thead>
+      <tbody>
+        <tr><td class="field-name">line_id</td><td><span class="type-badge">String</span></td><td class="req-y">Y</td><td>線路代碼，唯一鍵</td><td><code>pb10</code></td></tr>
+        <tr><td class="field-name">line_series</td><td><span class="type-badge">Enum</span></td><td class="req-y">Y</td><td>線路系列：<code>SEA</code>（東南亞）/ <code>GLOBAL</code>（歐美）</td><td><code>SEA</code></td></tr>
+        <tr><td class="field-name">default_rtp</td><td><span class="type-badge">Decimal</span></td><td class="req-y">Y</td><td>線路預設 RTP，SEA 系列預設 96.7%，GLOBAL 系列預設 95.5%</td><td><code>0.967</code></td></tr>
+        <tr><td class="field-name">updated_by</td><td><span class="type-badge">String</span></td><td class="req-y">Y</td><td>最後修改者</td><td><code>admin_tony</code></td></tr>
+        <tr><td class="field-name">updated_at</td><td><span class="type-badge">DateTime</span></td><td class="req-y">Y</td><td>最後修改時間</td><td><code>2025-06-01 10:00</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S4 ── -->
+<section class="spec-section" id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">後台介面規格</h2>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">頁面入口與導覽結構</div>
+    <ul class="spec-list">
+      <li>路徑：後台主選單 → 遊戲管理 → RTP 設定（展開後有兩個子頁）</li>
+      <li>子頁 1：<strong>RTP 活動設定</strong>（原有的進行中 / 已結束 / 審計日誌）</li>
+      <li>子頁 2：<strong>線路預設值設定</strong>（各線路的 fallback RTP）</li>
+      <li>可見條件：登入帳號具備 Admin 角色 AND 在 RTP 白名單中</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">RTP 活動設定 — 分頁說明</div>
+    <table class="spec-table">
+      <thead><tr><th>分頁</th><th>顯示內容</th><th>可執行操作</th><th>篩選維度</th></tr></thead>
+      <tbody>
+        <tr><td><strong>進行中</strong></td><td>is_active = true 且在有效期間內的規則，按 priority 升序排列</td><td>編輯、停用</td><td>線路、幣值、遊戲、群組 ID</td></tr>
+        <tr><td><strong>已結束</strong></td><td>時間到期或手動停用的規則</td><td>僅查閱，不可修改或重啟</td><td>遊戲名稱、結束日期區間</td></tr>
+        <tr><td><strong>審計日誌</strong></td><td>所有操作紀錄，含 PRIORITY_SHIFT 批次記錄</td><td>僅查閱</td><td>操作者、動作類型、rule_id、時間</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">列表顯示欄位</div>
+    <table class="spec-table">
+      <thead><tr><th>欄位</th><th>說明</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td>排名</td><td>顯示 priority 整數值，列表按此欄升序排列</td><td>可視為「第幾優先」</td></tr>
+        <tr><td>條件摘要</td><td>顯示已填寫的條件維度（線路 / 幣值 / 遊戲 / 群組 ID）</td><td>null 值不顯示</td></tr>
+        <tr><td>RTP 值</td><td>百分比格式，顏色依值高低區分</td><td>≥98% 顯示橙色警示</td></tr>
+        <tr><td>生效起始 / 截止</td><td>YYYY-MM-DD 格式；無截止顯示「永久有效」</td><td></td></tr>
+        <tr><td>操作</td><td>進行中：編輯 + 停用；已結束：隱藏</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">新增 / 編輯 Dialog 欄位</div>
+    <table class="spec-table">
+      <thead><tr><th>欄位</th><th>必填</th><th>元件</th><th>驗證規則</th><th>預設值</th></tr></thead>
+      <tbody>
+        <tr><td>插入排名位置</td><td class="req-y">是</td><td>數字輸入 + 說明文字</td><td>正整數，≥ 1；若與現有規則衝突則觸發 shift 確認</td><td>目前最大排名 + 1</td></tr>
+        <tr><td>線路</td><td class="req-n">否</td><td>下拉選單</td><td>從系統線路清單選擇</td><td>（空）不限</td></tr>
+        <tr><td>幣值</td><td class="req-n">否</td><td>下拉選單</td><td>ISO 4217 代碼</td><td>（空）不限</td></tr>
+        <tr><td>遊戲</td><td class="req-n">否</td><td>下拉搜尋</td><td>從遊戲清單選擇</td><td>（空）不限</td></tr>
+        <tr><td>群組 ID</td><td class="req-n">否</td><td>下拉選單</td><td>從已存在的 Group 中選擇</td><td>（空）不限</td></tr>
+        <tr><td>RTP 值（%）</td><td class="req-y">是</td><td>數字輸入</td><td>80.00 ≤ 值 ≤ 99.00，小數後 2 位</td><td>96.00</td></tr>
+        <tr><td>生效起始</td><td class="req-y">是</td><td>日期時間選擇器</td><td>不可早於當前時間</td><td>今日 00:00</td></tr>
+        <tr><td>生效截止</td><td class="req-n">否</td><td>日期時間選擇器</td><td>若填寫需晚於生效起始</td><td>（空）永久有效</td></tr>
+        <tr><td>備註</td><td class="req-n">否</td><td>文字區域</td><td>上限 200 字</td><td>（空）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Priority Shift 確認 Dialog</div>
+    <ul class="spec-list">
+      <li>當 Admin 填入的排名位置已被占用，儲存前彈出 Shift 確認 Dialog</li>
+      <li>Dialog 顯示：「以下 N 條規則的排名將往後移動一位」，並列出每條規則的 rule_id、條件摘要、原排名 → 新排名</li>
+      <li>Admin 可選擇「確認執行」或「取消並修改排名」</li>
+      <li>確認後，系統批次更新所有受影響規則的 priority，並記錄 <code>PRIORITY_SHIFT</code> 審計日誌</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">線路預設值設定頁面</div>
+    <ul class="spec-list">
+      <li>以表格列出所有線路，顯示線路代碼、系列（SEA / GLOBAL）、目前預設 RTP 值、最後修改人與時間</li>
+      <li>點擊任一行可展開行內編輯，修改 RTP 值後點「儲存」確認</li>
+      <li>SEA 系列線路預設值目前為 96.7%，GLOBAL 系列為 95.5%</li>
+      <li>修改操作同樣記錄審計日誌（action = <code>LINE_DEFAULT_UPDATE</code>）</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S5 INTERACTIVE MOCKUP ── -->
+<section class="spec-section" id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">互動介面模擬</h2>
+  </div>
+
+  <p>以下為可操作的後台介面模擬。所有按鈕和表單均可點擊互動，包含新增規則、衝突警告、RTP ≥ 98% 二次確認及模擬器功能。</p>
+
+  <div class="mockup-wrap">
+    <div class="mockup-chrome">
+      <div class="chrome-dots">
+        <div class="chrome-dot dot-red"></div>
+        <div class="chrome-dot dot-yellow"></div>
+        <div class="chrome-dot dot-green"></div>
+      </div>
+      <div class="chrome-bar">admin.igaming.internal / game-management / rtp-settings</div>
+    </div>
+
+    <!-- App shell -->
+    <div class="app-shell">
+      <!-- Left nav -->
+      <div class="app-sidebar">
+        <div class="app-sidebar-logo">
+          <div class="logo-mark">G</div>
+          GameAdmin
+        </div>
+        <div class="app-nav-group">
+          <div class="app-nav-label">遊戲管理</div>
+          <div class="app-nav-item"><span class="nav-icon">◫</span> 遊戲列表</div>
+          <div class="app-nav-item active" id="nav-rtp-activity" onclick="switchAppPage('rtp')" style="padding-left:14px"><span class="nav-icon" style="font-size:10px">▸</span> RTP 活動設定</div>
+          <div class="app-nav-item" id="nav-rtp-defaults" onclick="switchAppPage('linedefaults')" style="padding-left:14px"><span class="nav-icon" style="font-size:10px">▸</span> 線路預設值設定</div>
+          <div class="app-nav-item" id="nav-group" onclick="switchAppPage('group')"><span class="nav-icon">⊞</span> 群組管理</div>
+          <div class="app-nav-item"><span class="nav-icon">◉</span> 獎項設定</div>
+        </div>
+        <div class="app-nav-group">
+          <div class="app-nav-label">玩家</div>
+          <div class="app-nav-item"><span class="nav-icon">◎</span> 玩家管理</div>
+          <div class="app-nav-item"><span class="nav-icon">◈</span> 分群標籤</div>
+        </div>
+        <div class="app-nav-group">
+          <div class="app-nav-label">系統</div>
+          <div class="app-nav-item"><span class="nav-icon">◷</span> 審計日誌</div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="app-body">
+        <div class="app-topbar">
+          <div class="breadcrumb">
+            <span>遊戲管理</span>
+            <span class="sep">›</span>
+            <span class="current" id="app-breadcrumb">RTP 設定</span>
+          </div>
+          <div class="topbar-actions">
+            <span style="font-size:11px;background:#f0f2f5;padding:3px 9px;border-radius:4px;color:#4B5263">admin_tony</span>
+            <button class="ui-btn primary" onclick="openCreate()">＋ 新增規則</button>
+            <button class="ui-btn" onclick="openSimModal()">⊙ 模擬器</button>
+          </div>
+        </div>
+
+        <div id="app-page-rtp">
+        <div class="app-content">
+          <!-- Stats -->
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-label">進行中規則</div>
+              <div class="stat-value sv-blue" id="mock-cnt-active">4</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">已結束規則</div>
+              <div class="stat-value sv-gray">7</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">全局預設 RTP</div>
+              <div class="stat-value sv-green">96.00%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">今日操作次數</div>
+              <div class="stat-value sv-amber" id="mock-op-cnt">3</div>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="ui-tabs">
+            <div class="ui-tab active" id="tab0" onclick="switchMockTab(0)">進行中（4）</div>
+            <div class="ui-tab" id="tab1" onclick="switchMockTab(1)">已結束（7）</div>
+            <div class="ui-tab" id="tab2" onclick="switchMockTab(2)">審計日誌</div>
+          </div>
+
+          <!-- Pane 0: Active -->
+          <div id="mock-pane-0">
+            <div class="ui-toolbar">
+              <input class="ui-input" placeholder="線路" style="width:90px">
+              <input class="ui-input" placeholder="幣值" style="width:76px">
+              <input class="ui-input" placeholder="遊戲名稱" style="width:120px">
+              <input class="ui-input" placeholder="群組 ID" style="width:110px">
+              <button class="ui-btn">篩選</button>
+              <span style="margin-left:auto;font-size:11px;color:var(--text-muted)" id="mock-count">共 4 筆</span>
+            </div>
+            <table class="data-tbl" id="active-tbl">
+              <thead>
+                <tr>
+                  <th style="width:50px">排名</th><th>線路</th><th>幣值</th><th>遊戲</th><th>群組 ID</th>
+                  <th>RTP 值</th><th>生效起始</th><th>生效截止</th><th>備註</th><th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="active-tbody">
+                <tr>
+                  <td style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);text-align:center">1</td>
+                  <td><span class="tag tag-blue">vn05</span></td>
+                  <td><span class="tag tag-blue">VND</span></td>
+                  <td><span class="tag tag-blue">LuckyDragon</span></td>
+                  <td style="font-size:11px;font-family:var(--mono);color:var(--blue)">grp_vip</td>
+                  <td><span class="rtp-display rtp-boost">98.00%</span></td>
+                  <td style="font-size:11px">2025-06-10</td>
+                  <td style="font-size:11px">2025-06-15</td>
+                  <td style="font-size:11px;color:var(--text-muted)">VIP 體驗包</td>
+                  <td><button class="link-btn" onclick="openEdit(1,'vn05','VND','LuckyDragon','grp_vip','98','2025-06-10T00:00','2025-06-15T23:59','VIP 體驗包')">編輯</button> <button class="link-btn danger" onclick="confirmDeact(this)">停用</button></td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);text-align:center">2</td>
+                  <td><span class="tag tag-blue">pb10</span></td>
+                  <td><span class="tag tag-blue">PHP</span></td>
+                  <td><span class="tag tag-blue">GemBonanza</span></td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td><span class="rtp-display rtp-high">97.00%</span></td>
+                  <td style="font-size:11px">2025-06-01</td>
+                  <td style="font-size:11px">2025-06-30</td>
+                  <td style="font-size:11px;color:var(--text-muted)">Q2 菲律賓促銷</td>
+                  <td><button class="link-btn" onclick="openEdit(2,'pb10','PHP','GemBonanza','','97','2025-06-01T00:00','2025-06-30T23:59','Q2 菲律賓促銷')">編輯</button> <button class="link-btn danger" onclick="confirmDeact(this)">停用</button></td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);text-align:center">3</td>
+                  <td><span class="tag tag-blue">pb10</span></td>
+                  <td><span class="tag tag-blue">THB</span></td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td><span class="rtp-display rtp-mid">95.50%</span></td>
+                  <td style="font-size:11px">2025-05-15</td>
+                  <td style="font-size:11px;color:var(--text-muted)">永久有效</td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td><button class="link-btn" onclick="openEdit(3,'pb10','THB','','','95.5','2025-05-15T00:00','','')">編輯</button> <button class="link-btn danger" onclick="confirmDeact(this)">停用</button></td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);text-align:center">4</td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td><span class="tag tag-blue">SlotFever</span></td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td><span class="rtp-display rtp-mid">96.00%</span></td>
+                  <td style="font-size:11px">2025-04-01</td>
+                  <td style="font-size:11px;color:var(--text-muted)">永久有效</td>
+                  <td style="color:var(--gray-3)">—</td>
+                  <td><button class="link-btn" onclick="openEdit(4,'','','SlotFever','','96','2025-04-01T00:00','','')">編輯</button> <button class="link-btn danger" onclick="confirmDeact(this)">停用</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pane 1: Ended -->
+          <div id="mock-pane-1" style="display:none">
+            <div class="ui-toolbar">
+              <input class="ui-input" placeholder="遊戲名稱" style="width:130px">
+              <input class="ui-input" type="date" style="width:130px">
+              <span style="font-size:11px;color:var(--text-muted)">～</span>
+              <input class="ui-input" type="date" style="width:130px">
+              <button class="ui-btn">篩選</button>
+              <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">共 7 筆</span>
+            </div>
+            <table class="data-tbl">
+              <thead>
+                <tr><th style="width:50px">排名（原）</th><th>線路</th><th>幣值</th><th>遊戲</th><th>群組 ID</th><th>RTP 值</th><th>生效起始</th><th>生效截止</th><th>結束原因</th></tr>
+              </thead>
+              <tbody>
+                <tr class="ended"><td style="font-family:var(--mono);font-size:12px;color:var(--gray-4);text-align:center">5</td><td><span class="tag tag-gray">pb10</span></td><td><span class="tag tag-gray">PHP</span></td><td><span class="tag tag-gray">GemBonanza</span></td><td style="color:var(--gray-3)">—</td><td><span class="rtp-display rtp-ended">96.50%</span></td><td style="font-size:11px;color:var(--text-muted)">2025-03-01</td><td style="font-size:11px;color:var(--text-muted)">2025-03-31</td><td><span class="status-badge status-ended">時間到期</span></td></tr>
+                <tr class="ended"><td style="font-family:var(--mono);font-size:12px;color:var(--gray-4);text-align:center">2</td><td><span class="tag tag-gray">pb10</span></td><td><span class="tag tag-gray">PHP</span></td><td><span class="tag tag-gray">GemBonanza</span></td><td style="font-size:11px;font-family:var(--mono);color:var(--gray-4)">grp_promo</td><td><span class="rtp-display rtp-ended">98.50%</span></td><td style="font-size:11px;color:var(--text-muted)">2025-02-14</td><td style="font-size:11px;color:var(--text-muted)">2025-02-14</td><td><span class="status-badge status-manual">手動停用</span></td></tr>
+                <tr class="ended"><td><span class="priority-badge p5">P5</span></td><td><span class="tag tag-gray">vn05</span></td><td><span class="tag tag-gray">VND</span></td><td style="color:var(--gray-4)">—</td><td style="color:var(--gray-3)">—</td><td><span class="rtp-display rtp-ended">95.00%</span></td><td style="font-size:11px;color:var(--text-muted)">2025-01-01</td><td style="font-size:11px;color:var(--text-muted)">2025-01-31</td><td><span class="status-badge status-ended">時間到期</span></td></tr>
+              </tbody>
+            </table>
+            <div style="text-align:center;padding:10px 0;font-size:11px;color:var(--text-muted)">已結束規則僅供查閱，不可編輯或重新啟用</div>
+          </div>
+
+          <!-- Pane 2: Audit -->
+          <div id="mock-pane-2" style="display:none">
+            <div class="ui-toolbar">
+              <input class="ui-input" placeholder="操作者帳號" style="width:140px">
+              <select class="ui-select" style="width:120px"><option>所有操作</option><option>CREATE</option><option>UPDATE</option><option>DEACTIVATE</option></select>
+              <input class="ui-input" type="date" style="width:130px">
+              <button class="ui-btn">篩選</button>
+            </div>
+            <table class="data-tbl">
+              <thead><tr><th>時間</th><th>操作者</th><th>動作</th><th>Rule ID</th><th>IP</th><th>變更摘要</th></tr></thead>
+              <tbody>
+                <tr><td style="font-size:11px;white-space:nowrap">2025-06-12 14:22</td><td style="font-size:11px">admin_tony</td><td><span class="tag" style="background:#d1fae5;color:#065f46">CREATE</span></td><td style="font-size:10px;font-family:var(--mono);color:var(--text-muted)">rtp_a1b2c3d4</td><td style="font-size:10px;color:var(--text-muted)">192.168.1.10</td><td style="font-size:11px">新增 pb10 + PHP + GemBonanza → 97.00%</td></tr>
+                <tr><td style="font-size:11px;white-space:nowrap">2025-06-10 09:05</td><td style="font-size:11px">admin_sarah</td><td><span class="tag" style="background:#dbeafe;color:#1e40af">UPDATE</span></td><td style="font-size:10px;font-family:var(--mono);color:var(--text-muted)">rtp_e5f6g7h8</td><td style="font-size:10px;color:var(--text-muted)">192.168.1.22</td><td style="font-size:11px">rtp_value 97.00% → 98.00%，截止時間延至 06-15</td></tr>
+                <tr><td style="font-size:11px;white-space:nowrap">2025-06-08 17:48</td><td style="font-size:11px">admin_tony</td><td><span class="tag" style="background:#fee2e2;color:#991b1b">DEACTIVATE</span></td><td style="font-size:10px;font-family:var(--mono);color:var(--text-muted)">rtp_m3n4o5p6</td><td style="font-size:10px;color:var(--text-muted)">192.168.1.10</td><td style="font-size:11px">手動停用 grp_promo 專屬規則</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div><!-- /app-content -->
+        </div><!-- /app-page-rtp -->
+
+        <!-- ── Group Management Page ── -->
+        <div id="app-page-group" style="display:none">
+        <div class="app-content">
+          <div class="stats-row" style="grid-template-columns:repeat(3,1fr)">
+            <div class="stat-card">
+              <div class="stat-label">群組總數</div>
+              <div class="stat-value sv-blue">3</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">含 Event 群組</div>
+              <div class="stat-value sv-amber">2</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">帳號總數（跨群組）</div>
+              <div class="stat-value sv-gray">6</div>
+            </div>
+          </div>
+
+          <div class="ui-toolbar">
+            <input class="ui-input" placeholder="群組 ID" style="width:140px">
+            <button class="ui-btn">篩選</button>
+            <span style="margin-left:auto"></span>
+            <button class="ui-btn primary" onclick="openGroupCreate()">＋ 新增群組</button>
+          </div>
+
+          <table class="data-tbl">
+            <thead>
+              <tr><th>群組 ID</th><th>備註</th><th>帳號數</th><th>掛載 Event</th><th>操作</th></tr>
+            </thead>
+            <tbody id="group-tbody"></tbody>
+          </table>
+
+          <div style="margin-top:16px;padding:12px 16px;background:var(--blue-pale);border-radius:8px;font-size:12px;color:var(--blue);line-height:1.7">
+            <strong>帳號歸屬說明：</strong>每位帳號可同時屬於多個群組。當多個群組對同一玩家有 RTP 規則命中時，依優先序模型取最高優先級的規則。
+          </div>
+        </div>
+        </div><!-- /app-page-group -->
+
+        <!-- ── Line Defaults Page ── -->
+        <div id="app-page-linedefaults" style="display:none">
+        <div class="app-content">
+          <div style="margin-bottom:16px">
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.7">各線路的預設 RTP 值，當無活動規則命中時採用此值。東南亞系列（SEA）預設 96.7%，歐美系列（GLOBAL）預設 95.5%。修改後立即生效並記錄審計日誌。</p>
+          </div>
+          <div class="stats-row" style="grid-template-columns:repeat(3,1fr);margin-bottom:18px">
+            <div class="stat-card">
+              <div class="stat-label">線路總數</div>
+              <div class="stat-value sv-blue">6</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">SEA 系列線路</div>
+              <div class="stat-value sv-green">4　<span style="font-size:14px;font-weight:400">預設 96.7%</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">GLOBAL 系列線路</div>
+              <div class="stat-value sv-amber">2　<span style="font-size:14px;font-weight:400">預設 95.5%</span></div>
+            </div>
+          </div>
+          <table class="data-tbl" id="linedefault-tbl">
+            <thead>
+              <tr><th>線路代碼</th><th>系列</th><th>目前預設 RTP</th><th>最後修改</th><th>操作</th></tr>
+            </thead>
+            <tbody id="linedefault-tbody"></tbody>
+          </table>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:10px">點擊「編輯」可行內修改 RTP 值，儲存前需確認。</div>
+        </div>
+        </div><!-- /app-page-linedefaults -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Modals (inside section, absolute-free) ── -->
+
+  <!-- Create / Edit Modal -->
+  <div class="modal-overlay" id="modal-create">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modal-create-title">新增 RTP 規則</h3>
+        <button class="modal-x" onclick="closeCreate()">×</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:16px;line-height:1.7">
+          條件欄位可選填，留空表示不限制。Priority 為全局唯一整數，若指定位置已被占用將提示 shift 確認。
+        </p>
+        <div class="form-grid">
+
+          <div class="fg full" style="background:var(--blue-pale);border:1px solid #b8d9f1;border-radius:8px;padding:12px 14px">
+            <label class="fg-label" style="color:var(--blue)">插入排名位置<span class="fg-req">*</span></label>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+              <input class="fg-input" type="number" min="1" id="f-priority" value="5" style="width:80px" oninput="checkShift()">
+              <span style="font-size:12px;color:var(--text-muted)" id="priority-hint">目前共 4 條進行中規則，插入後為第 5（不需 shift）</span>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fg-label">線路</label>
+            <select class="fg-select" id="f-line">
+              <option value="">不限（留空）</option>
+              <option value="pb10">pb10</option>
+              <option value="vn05">vn05</option>
+              <option value="th08">th08</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fg-label">幣值</label>
+            <select class="fg-select" id="f-currency">
+              <option value="">不限（留空）</option>
+              <option value="PHP">PHP</option>
+              <option value="THB">THB</option>
+              <option value="VND">VND</option>
+              <option value="IDR">IDR</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fg-label">遊戲</label>
+            <select class="fg-select" id="f-game">
+              <option value="">不限（留空）</option>
+              <option value="GemBonanza">GemBonanza</option>
+              <option value="LuckyDragon">LuckyDragon</option>
+              <option value="SlotFever">SlotFever</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fg-label">群組 ID</label>
+            <select class="fg-select" id="f-groupid">
+              <option value="">不限（留空）</option>
+              <option value="grp_vip">grp_vip</option>
+              <option value="grp_promo">grp_promo</option>
+              <option value="grp_newbie">grp_newbie</option>
+            </select>
+            <span class="fg-hint">從已建立的群組中選擇，或<button type="button" class="link-btn" onclick="closeCreate();switchAppPage('group')" style="font-size:11px">前往群組管理</button>建立新群組</span>
+          </div>
+
+          <div class="form-divider"><span>RTP 設定</span></div>
+
+          <div class="fg">
+            <label class="fg-label">RTP 值（%）<span class="fg-req">*</span></label>
+            <input class="fg-input" type="number" min="80" max="99" step="0.01" value="96.00" id="f-rtp" oninput="onRtpChange()">
+            <span class="fg-hint">範圍：80.00% ～ 99.00%，小數後 2 位</span>
+          </div>
+          <div class="fg" style="opacity:0"><!-- spacer --></div>
+
+          <div class="form-divider"><span>有效期間</span></div>
+
+          <div class="fg">
+            <label class="fg-label">生效起始<span class="fg-req">*</span></label>
+            <input class="fg-input" type="datetime-local" id="f-from" value="2025-06-15T00:00">
+          </div>
+          <div class="fg">
+            <label class="fg-label">生效截止</label>
+            <input class="fg-input" type="datetime-local" id="f-until">
+            <span class="fg-hint">留空表示永久有效</span>
+          </div>
+
+          <div class="fg full">
+            <label class="fg-label">備註</label>
+            <textarea class="fg-textarea" id="f-note" rows="2" placeholder="說明此規則用途（選填，上限 200 字）"></textarea>
+          </div>
+
+          <div id="rtp-high-warn" class="conflict-alert" style="display:none">
+            <span style="font-size:15px;flex-shrink:0">⚠</span>
+            <div>RTP 值 ≥ 98% 需二次確認，請在下方輸入確認碼 <strong>CONFIRM</strong> 才可儲存。</div>
+          </div>
+          <div id="confirm-section" class="confirm-field" style="display:none">
+            <p>請輸入確認碼以儲存高 RTP 規則：</p>
+            <input class="fg-input" id="f-confirm" placeholder="輸入 CONFIRM" style="background:#fff">
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="ui-btn" onclick="closeCreate()">取消</button>
+        <button class="ui-btn" onclick="openSimModal()">模擬預覽</button>
+        <button class="ui-btn primary" onclick="saveRule()">儲存規則</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simulator Modal -->
+  <div class="modal-overlay" id="modal-sim">
+    <div class="modal-box narrow">
+      <div class="modal-head">
+        <h3>RTP 模擬器</h3>
+        <button class="modal-x" onclick="closeSim()">×</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:16px;line-height:1.7">
+          輸入條件後查詢目前會命中哪條規則及最終 RTP 值，不寫入資料庫。
+        </p>
+        <div class="form-grid">
+          <div class="fg">
+            <label class="fg-label">線路<span class="fg-req">*</span></label>
+            <select class="fg-select" id="s-line">
+              <option value="pb10">pb10</option><option value="vn05">vn05</option><option value="th08">th08</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fg-label">幣值<span class="fg-req">*</span></label>
+            <select class="fg-select" id="s-currency">
+              <option>PHP</option><option>THB</option><option>VND</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fg-label">遊戲<span class="fg-req">*</span></label>
+            <select class="fg-select" id="s-game">
+              <option>GemBonanza</option><option>LuckyDragon</option><option>SlotFever</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fg-label">群組 ID（選填）</label>
+            <select class="fg-select" id="s-gid">
+              <option value="">不指定群組</option>
+              <option value="grp_vip">grp_vip</option>
+              <option value="grp_promo">grp_promo</option>
+              <option value="grp_newbie">grp_newbie</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <button class="ui-btn primary" style="width:100%;justify-content:center" onclick="runSim()">查詢命中規則</button>
+        </div>
+        <div id="sim-result-area"></div>
+      </div>
+      <div class="modal-foot">
+        <button class="ui-btn" onclick="closeSim()">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group Create / Edit Modal -->
+  <div class="modal-overlay" id="modal-group">
+    <div class="modal-box" style="width:620px">
+      <div class="modal-head">
+        <h3 id="modal-group-title">新增群組</h3>
+        <button class="modal-x" onclick="closeGroupModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+
+          <div class="fg">
+            <label class="fg-label">群組 ID<span class="fg-req">*</span></label>
+            <input class="fg-input" id="fg-id" placeholder="e.g. grp_vip">
+            <span class="fg-hint">建立後不可修改，建議使用小寫 + 底線命名</span>
+          </div>
+          <div class="fg">
+            <label class="fg-label">備註說明</label>
+            <input class="fg-input" id="fg-note" placeholder="說明此群組用途">
+          </div>
+
+          <div class="fg full">
+            <label class="fg-label">帳號成員</label>
+            <textarea class="fg-textarea" id="fg-members" rows="3" placeholder="每行或逗號分隔輸入 user_id&#10;e.g.&#10;user_8899&#10;user_7700, user_6611"></textarea>
+            <span class="fg-hint">支援換行或逗號分隔批次貼入；每位帳號可同時屬於多個群組</span>
+          </div>
+
+          <div class="form-divider full"><span>特殊 Event 設定</span></div>
+
+          <div class="fg full">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+              <span style="font-size:12px;color:var(--text-muted)">可新增多個 Event，各別開關不互相影響。Event 類型支援後續擴充。</span>
+              <button class="ui-btn" onclick="addEvent()" style="height:28px;font-size:12px">＋ 新增 Event</button>
+            </div>
+            <div id="event-list"></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="ui-btn" onclick="closeGroupModal()">取消</button>
+        <button class="ui-btn primary" onclick="saveGroup()">儲存群組</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deactivate confirm -->
+  <div class="modal-overlay" id="modal-deact">
+    <div class="modal-box" style="width:380px">
+      <div class="modal-head">
+        <h3>確認停用規則</h3>
+        <button class="modal-x" onclick="closeDeact()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="callout callout-danger">
+          <span class="callout-icon">⚠</span>
+          <div>停用後此規則將立即失效，且無法重新啟用。如需恢復，請建立新規則。</div>
+        </div>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-mid)">確定要停用此 RTP 規則？</p>
+      </div>
+      <div class="modal-foot">
+        <button class="ui-btn" onclick="closeDeact()">取消</button>
+        <button class="ui-btn" style="background:var(--red);color:#fff;border-color:var(--red)" onclick="doDeact()">確認停用</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Priority Shift Confirm Dialog -->
+  <div class="modal-overlay" id="modal-shift">
+    <div class="modal-box" style="width:500px">
+      <div class="modal-head">
+        <h3>確認 Priority Shift</h3>
+        <button class="modal-x" onclick="closeShift()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="callout callout-warn" style="margin-bottom:16px">
+          <span class="callout-icon">⚠</span>
+          <div>排名位置 <strong id="shift-target-rank">—</strong> 已被占用，以下規則的排名將自動往後移動一位。確認後才會執行。</div>
+        </div>
+        <div id="shift-list"></div>
+      </div>
+      <div class="modal-foot">
+        <button class="ui-btn" onclick="closeShift()">取消並修改排名</button>
+        <button class="ui-btn primary" onclick="confirmShift()">確認執行 Shift 並儲存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save success toast -->
+  <div id="toast" style="display:none;position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.25)"></div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S5b Group Management ── -->
+<section class="spec-section" id="s5b">
+  <div class="section-header">
+    <span class="section-num">05b</span>
+    <h2 class="section-title">群組管理規格</h2>
+  </div>
+
+  <p>群組（Group）是獨立管理的實體，與 RTP 設定同層。Admin 先在群組管理頁建立群組與成員，再於 RTP 設定中以 group_id 為條件建立規則。</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Group 資料結構</div>
+    <table class="spec-table">
+      <thead><tr><th>欄位名稱</th><th>對應 Go struct</th><th>型別</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td class="field-name">group_id</td><td><code>Group.groupID</code></td><td><span class="type-badge">String</span></td><td>群組唯一識別碼，建立後不可修改</td></tr>
+        <tr><td class="field-name">rtp / rtpRate</td><td><code>Group.rtp / Group.rtpRate</code></td><td><span class="type-badge">int / uint</span></td><td>此群組的預設 RTP 值與比率</td></tr>
+        <tr><td class="field-name">events</td><td><code>Group.eventList</code></td><td><span class="type-badge">[]Event</span></td><td>掛載於此群組的特殊 Event 清單，可為空</td></tr>
+        <tr><td class="field-name">account_map</td><td><code>AccountGroup.accountMap</code></td><td><span class="type-badge">map[string]bool</span></td><td>群組成員帳號清單；key = user_id，value = 是否有效</td></tr>
+        <tr><td class="field-name">note</td><td>—</td><td><span class="type-badge">String</span></td><td>群組備註說明（後台管理用途）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Event 資料結構</div>
+    <table class="spec-table">
+      <thead><tr><th>欄位名稱</th><th>對應 Go struct</th><th>型別</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td class="field-name">event_type</td><td>—</td><td><span class="type-badge">Enum</span></td><td>Event 類型，目前支援 <code>force_fg</code>；預留擴充</td></tr>
+        <tr><td class="field-name">enabled</td><td>—</td><td><span class="type-badge">Boolean</span></td><td>是否啟用此 Event，停用不刪除</td></tr>
+        <tr><td class="field-name">spinCount</td><td><code>Event.spinCount</code></td><td><span class="type-badge">int</span></td><td>幾手內觸發；達到此手數若未自然進 FG 則強制觸發</td></tr>
+        <tr><td class="field-name">triggerRate</td><td><code>Event.triggerRate</code></td><td><span class="type-badge">uint</span></td><td>觸發機率（0～100）</td></tr>
+        <tr><td class="field-name">buyType</td><td><code>Event.buyType</code></td><td><span class="type-badge">int</span></td><td>進入 FG 的購買類型代碼</td></tr>
+        <tr><td class="field-name">betRatio</td><td><code>Event.betRatio</code></td><td><span class="type-badge">float64</span></td><td>下注倍率</td></tr>
+        <tr><td class="field-name">insteadBuyType / insteadBetRatio</td><td><code>Event.insteadBuyType / insteadBetRatio</code></td><td><span class="type-badge">int / float64</span></td><td>替代買入類型與倍率（備用方案）</td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout-info">
+      <span class="callout-icon">ℹ</span>
+      <div>一個 Group 可掛載多個 Event，每個 Event 獨立開關。目前 Event 類型僅 <code>force_fg</code>（強制進入 FreeGame），後續可擴充新類型（如加速 RTP、限制最高單注等），擴充時只需新增 event_type enum 值，不影響現有 Event 資料。</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">群組管理介面規格</div>
+    <table class="spec-table">
+      <thead><tr><th>功能</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>群組列表</td><td>顯示 group_id、備註、帳號數、掛載 Event 摘要</td></tr>
+        <tr><td>新增群組</td><td>填入 group_id（唯一，不可重複）、備註、帳號成員、Event 清單</td></tr>
+        <tr><td>編輯群組</td><td>可修改備註、成員、Event；group_id 建立後不可修改</td></tr>
+        <tr><td>帳號成員輸入</td><td>支援換行 / 逗號分隔批次貼入，儲存時驗證帳號存在</td></tr>
+        <tr><td>Event 並列管理</td><td>可新增多個 Event；每個 Event 可個別啟用/停用；移除 Event 為不可逆操作（需確認）</td></tr>
+        <tr><td>刪除群組</td><td>不開放刪除，僅可將所有 Event 停用；若群組已被 RTP 規則引用，需先停用相關規則</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+<section class="spec-section" id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">審計日誌規格</h2>
+  </div>
+
+  <p>所有對 RTP 規則的新增、修改、停用操作均需記錄審計日誌，日誌不可刪除，僅限 Admin 白名單帳號查閱。</p>
+
+  <div class="subsection">
+    <div class="subsection-title">日誌欄位定義</div>
+    <table class="spec-table">
+      <thead><tr><th>欄位名稱</th><th>型別</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td class="field-name">log_id</td><td><span class="type-badge">UUID</span></td><td>日誌唯一識別碼</td></tr>
+        <tr><td class="field-name">rule_id</td><td><span class="type-badge">String</span></td><td>操作對象的規則 ID</td></tr>
+        <tr><td class="field-name">action</td><td><span class="type-badge">Enum</span></td><td>CREATE / UPDATE / DEACTIVATE / ACTIVATE</td></tr>
+        <tr><td class="field-name">operator</td><td><span class="type-badge">String</span></td><td>執行操作的帳號</td></tr>
+        <tr><td class="field-name">before_value</td><td><span class="type-badge">JSON</span></td><td>操作前的規則快照（CREATE 時為 null）</td></tr>
+        <tr><td class="field-name">after_value</td><td><span class="type-badge">JSON</span></td><td>操作後的規則快照</td></tr>
+        <tr><td class="field-name">ip_address</td><td><span class="type-badge">String</span></td><td>操作者 IP</td></tr>
+        <tr><td class="field-name">timestamp</td><td><span class="type-badge">DateTime</span></td><td>操作時間（UTC+8）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">查詢介面規格</div>
+    <ul class="spec-list">
+      <li>篩選欄位：操作者帳號、操作類型、rule_id、時間區間</li>
+      <li>顯示欄位：timestamp、operator、action、rule_id；點擊可展開 before/after JSON diff</li>
+      <li>不開放匯出功能，避免 RTP 策略洩漏</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S7 ── -->
+<section class="spec-section" id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">API 規格</h2>
+  </div>
+
+  <table class="spec-table">
+    <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td><span class="method get">GET</span></td><td><code>/api/v1/rtp-rules</code></td><td>Admin+WL</td><td>查詢規則列表，支援篩選參數（line_id, currency, game_id, group_id, status）</td></tr>
+      <tr><td><span class="method post">POST</span></td><td><code>/api/v1/rtp-rules</code></td><td>Admin+WL</td><td>新增規則，含衝突偵測，回傳衝突資訊或建立成功</td></tr>
+      <tr><td><span class="method put">PUT</span></td><td><code>/api/v1/rtp-rules/:id</code></td><td>Admin+WL</td><td>修改規則，更新前觸發衝突偵測</td></tr>
+      <tr><td><span class="method patch">PATCH</span></td><td><code>/api/v1/rtp-rules/:id/status</code></td><td>Admin+WL</td><td>切換 is_active 狀態（停用 / 啟用）</td></tr>
+      <tr><td><span class="method post">POST</span></td><td><code>/api/v1/rtp-rules/simulate</code></td><td>Admin+WL</td><td>RTP 模擬預覽，不寫入資料庫，回傳命中規則及 RTP 值</td></tr>
+      <tr><td><span class="method get">GET</span></td><td><code>/api/v1/rtp-rules/audit-logs</code></td><td>Admin+WL</td><td>查詢審計日誌，支援篩選</td></tr>
+      <tr><td><span class="method get">GET</span></td><td><code>/api/v1/groups</code></td><td>Admin+WL</td><td>查詢群組列表</td></tr>
+      <tr><td><span class="method post">POST</span></td><td><code>/api/v1/groups</code></td><td>Admin+WL</td><td>建立新群組（含帳號成員與 Event 清單）</td></tr>
+      <tr><td><span class="method put">PUT</span></td><td><code>/api/v1/groups/:id</code></td><td>Admin+WL</td><td>更新群組成員與 Event；group_id 不可修改</td></tr>
+      <tr><td><span class="method patch">PATCH</span></td><td><code>/api/v1/groups/:id/events/:idx/status</code></td><td>Admin+WL</td><td>切換單一 Event 的啟用狀態</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subsection">
+    <div class="subsection-title">錯誤碼定義</div>
+    <table class="spec-table">
+      <thead><tr><th>HTTP</th><th>Error Code</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>400</td><td><code>RTP_OUT_OF_RANGE</code></td><td>rtp_value 不在 0.80 ～ 0.99 範圍內</td></tr>
+        <tr><td>400</td><td><code>INVALID_DATE_RANGE</code></td><td>effective_until 早於 effective_from</td></tr>
+        <tr><td>400</td><td><code>GROUP_NOT_FOUND</code></td><td>指定的 group_id 不存在</td></tr>
+        <tr><td>409</td><td><code>RULE_CONFLICT_BLOCK</code></td><td>優先級與條件完全相同的規則已存在，阻擋儲存</td></tr>
+        <tr><td>409</td><td><code>RULE_CONFLICT_WARN</code></td><td>存在歧義衝突，回傳衝突規則清單，前端顯示警告</td></tr>
+        <tr><td>403</td><td><code>NOT_IN_WHITELIST</code></td><td>帳號不在 RTP 白名單中</td></tr>
+        <tr><td>403</td><td><code>INSUFFICIENT_ROLE</code></td><td>非 Admin 角色</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S8 ── -->
+<section class="spec-section" id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">限制條件與合規要求</h2>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">RTP 值邊界</div>
+    <ul class="spec-list">
+      <li>最小值：80.00%（0.80）</li>
+      <li>最大值：99.00%（0.99）</li>
+      <li>精度：小數點後 2 位</li>
+      <li>超出範圍時，前後端均需阻擋並回傳錯誤</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">操作安全規則</div>
+    <ul class="spec-list">
+      <li>不開放批次操作，每次僅可編輯單條，降低誤操作風險</li>
+      <li>不開放刪除，僅允許「停用」（<code>is_active = false</code>），保留歷史可追溯性</li>
+      <li>RTP 值 ≥ 98% 需額外輸入確認碼（<code>CONFIRM</code>）才可儲存</li>
+      <li>同一帳號連續操作超過 10 條規則，需觸發系統通知（通知 Super Admin）</li>
+    </ul>
+    <div class="callout callout-danger">
+      <span class="callout-icon">⚠</span>
+      <div>停用操作不可逆，已停用的規則移入「已結束」列表後不可重新啟用，需建立新規則才能恢復設定。</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S9 ── -->
+<section class="spec-section" id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">待決事項</h2>
+  </div>
+
+  <div class="open-q">
+    <div class="open-q-num">OPEN · 01</div>
+    <div class="open-q-q">全局預設 RTP 值由誰設定？是否也在此模組管理？</div>
+    <div class="open-q-opt">建議：在此模組中以 P8 的特殊規則形式管理，統一入口降低設定分散風險。</div>
+    <span class="open-q-owner">PM + Tech Lead</span>
+  </div>
+
+  <div class="open-q">
+    <div class="open-q-num">OPEN · 02</div>
+    <div class="open-q-q">Group Event 類型後續擴充的審批流程？新增 Event 類型是否需要工程部署，或可由後台動態新增？</div>
+    <div class="open-q-opt">若可動態新增，需定義 Event 的 schema 驗證機制，避免非法欄位組合進入系統。</div>
+    <span class="open-q-owner">PM + Backend</span>
+  </div>
+
+  <div class="open-q">
+    <div class="open-q-num">OPEN · 03</div>
+    <div class="open-q-q">RTP 變更是否需要 Maker-Checker 雙人審核流程？</div>
+    <div class="open-q-opt">若合規要求高建議導入，但會增加操作複雜度，需評估實際監管要求。</div>
+    <span class="open-q-owner">PM + Compliance</span>
+  </div>
+
+  <div class="open-q">
+    <div class="open-q-num">OPEN · 04</div>
+    <div class="open-q-q">模擬器是否需要模擬「歷史時間點」的命中結果？</div>
+    <div class="open-q-opt">對審計有價值，但需要 snapshot 機制，增加後端儲存成本，需評估優先級。</div>
+    <span class="open-q-owner">PM + Backend</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── S10 ── -->
+<section class="spec-section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">版本紀錄</h2>
+  </div>
+
+  <div class="changelog-row">
+    <span class="cl-ver">v1.2</span>
+    <span class="cl-date">2025-06</span>
+    <span class="cl-desc">Priority 改為全局唯一整數排名，Admin 手動指定插入位置，加入 Shift 確認 Dialog（預覽受影響規則清單後才執行批次 shift）。新增「線路預設值設定」子頁面（SEA 96.7% / GLOBAL 95.5%，行內編輯）。S2 優先序模型全面重寫，S3 新增 Line Default 資料結構，S4 加入插入排名欄位與 Shift 規格。互動 Mockup 同步更新。</span>
+  </div>
+  <div class="changelog-row">
+    <span class="cl-ver">v1.1</span>
+    <span class="cl-date">2025-06</span>
+    <span class="cl-desc">將 user_id 條件維度改為 group_id；新增群組管理獨立頁面（S05b）；Group 建立支援多 Event 並列設定（force_fg 類型，預留擴充）；API 規格新增群組相關 4 支 Endpoint；互動模擬更新 group_id 欄位與群組管理 mockup。</span>
+  </div>
+  <div class="changelog-row">
+    <span class="cl-ver">v1.0</span>
+    <span class="cl-date">2025-06</span>
+    <span class="cl-desc">初版。完成核心架構設計：Priority 模型、資料結構欄位定義、三分頁 UI 規格（進行中 / 已結束 / 審計日誌）、新增/編輯 Dialog、衝突偵測邏輯、RTP 模擬器、API 規格及操作安全規則。</span>
+  </div>
+</section>
+
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+// Nav active
+function setActive(el) {
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Switch app page (RTP vs Group)
+function switchAppPage(page) {
+  const pages = ['rtp','group','linedefaults'];
+  pages.forEach(p => {
+    const el = document.getElementById('app-page-'+p);
+    if (el) el.style.display = p===page ? '' : 'none';
+  });
+  const navMap = {
+    'rtp':          ['nav-rtp-activity'],
+    'linedefaults': ['nav-rtp-defaults'],
+    'group':        ['nav-group'],
+  };
+  ['nav-rtp-activity','nav-rtp-defaults','nav-group'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+  });
+  (navMap[page]||[]).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+  });
+  const labels = { rtp:'RTP 活動設定', linedefaults:'線路預設值設定', group:'群組管理' };
+  document.getElementById('app-breadcrumb').textContent = labels[page] || '';
+}
+
+// Mock tabs
+function switchMockTab(idx) {
+  [0,1,2].forEach(i => {
+    document.getElementById('tab'+i).classList.toggle('active', i===idx);
+    document.getElementById('mock-pane-'+i).style.display = i===idx ? '' : 'none';
+  });
+}
+
+// ── Priority / Shift ──────────────────────────────────────
+const CURRENT_MAX_PRIORITY = 4; // mock: 4 active rules
+
+function checkShift() {
+  const val = parseInt(document.getElementById('f-priority').value);
+  const hint = document.getElementById('priority-hint');
+  if (!val || val < 1) { hint.textContent = '請輸入有效的正整數排名'; return; }
+  if (val > CURRENT_MAX_PRIORITY) {
+    hint.textContent = `目前共 ${CURRENT_MAX_PRIORITY} 條進行中規則，插入後為第 ${val}（不需 shift）`;
+    hint.style.color = 'var(--text-muted)';
+  } else {
+    hint.innerHTML = `<span style="color:var(--amber);font-weight:500">排名 ${val} 已被占用，儲存時將提示 shift 確認（${CURRENT_MAX_PRIORITY - val + 1} 條規則往後移）</span>`;
+  }
+}
+
+// Mock active rules for shift preview
+const MOCK_ACTIVE_RULES = [
+  { rank:1, id:'rtp_e5f6g7h8', summary:'vn05 + VND + LuckyDragon + grp_vip' },
+  { rank:2, id:'rtp_a1b2c3d4', summary:'pb10 + PHP + GemBonanza' },
+  { rank:3, id:'rtp_b2c3d4e5', summary:'pb10 + THB' },
+  { rank:4, id:'rtp_f6g7h8i9', summary:'SlotFever' },
+];
+
+function closeShift() { document.getElementById('modal-shift').classList.remove('open'); }
+
+function confirmShift() {
+  closeShift();
+  _doSaveRule();
+}
+
+function saveRule() {
+  const v = parseFloat(document.getElementById('f-rtp').value);
+  if (isNaN(v) || v < 80 || v > 99) {
+    showToast('RTP 值須介於 80.00% ～ 99.00%', true); return;
+  }
+  if (v >= 98) {
+    const conf = document.getElementById('f-confirm').value.trim();
+    if (conf !== 'CONFIRM') {
+      showToast('請輸入確認碼 CONFIRM 以儲存高 RTP 規則', true); return;
+    }
+  }
+  const rank = parseInt(document.getElementById('f-priority').value);
+  if (rank <= CURRENT_MAX_PRIORITY) {
+    // need shift confirm
+    const affected = MOCK_ACTIVE_RULES.filter(r => r.rank >= rank);
+    document.getElementById('shift-target-rank').textContent = rank;
+    document.getElementById('shift-list').innerHTML = `
+      <table class="data-tbl">
+        <thead><tr><th>Rule ID</th><th>條件摘要</th><th>原排名</th><th>新排名</th></tr></thead>
+        <tbody>${affected.map(r=>`
+          <tr>
+            <td style="font-family:var(--mono);font-size:11px;color:var(--blue)">${r.id}</td>
+            <td style="font-size:12px">${r.summary}</td>
+            <td style="font-family:var(--mono);text-align:center;color:var(--gray-4)">${r.rank}</td>
+            <td style="font-family:var(--mono);text-align:center;color:var(--amber);font-weight:700">${r.rank+1}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+    document.getElementById('modal-shift').classList.add('open');
+    return;
+  }
+  _doSaveRule();
+}
+
+function _doSaveRule() {
+  closeCreate();
+  showToast('規則已儲存，審計日誌已記錄');
+  const cnt = parseInt(document.getElementById('mock-op-cnt').textContent) + 1;
+  document.getElementById('mock-op-cnt').textContent = cnt;
+}
+
+function onRtpChange() {
+  const v = parseFloat(document.getElementById('f-rtp').value);
+  const isHigh = v >= 98;
+  document.getElementById('rtp-high-warn').style.display = isHigh ? '' : 'none';
+  document.getElementById('confirm-section').style.display = isHigh ? '' : 'none';
+}
+
+// Create modal
+function openCreate() {
+  document.getElementById('modal-create-title').textContent = '新增 RTP 規則';
+  document.getElementById('f-priority').value = String(CURRENT_MAX_PRIORITY + 1);
+  document.getElementById('f-line').value = '';
+  document.getElementById('f-currency').value = '';
+  document.getElementById('f-game').value = '';
+  document.getElementById('f-groupid').value = '';
+  document.getElementById('f-rtp').value = '96.00';
+  document.getElementById('f-from').value = '2025-06-15T00:00';
+  document.getElementById('f-until').value = '';
+  document.getElementById('f-note').value = '';
+  document.getElementById('rtp-high-warn').style.display = 'none';
+  document.getElementById('confirm-section').style.display = 'none';
+  checkShift();
+  document.getElementById('modal-create').classList.add('open');
+}
+
+function openEdit(rank, line, cur, game, gid, rtp, from, until, note) {
+  document.getElementById('modal-create-title').textContent = '編輯 RTP 規則（排名 ' + rank + '）';
+  document.getElementById('f-priority').value = String(rank);
+  document.getElementById('f-line').value = line;
+  document.getElementById('f-currency').value = cur;
+  document.getElementById('f-game').value = game;
+  document.getElementById('f-groupid').value = gid;
+  document.getElementById('f-rtp').value = rtp;
+  document.getElementById('f-from').value = from;
+  document.getElementById('f-until').value = until;
+  document.getElementById('f-note').value = note;
+  const v = parseFloat(rtp);
+  document.getElementById('rtp-high-warn').style.display = v >= 98 ? '' : 'none';
+  document.getElementById('confirm-section').style.display = v >= 98 ? '' : 'none';
+  checkShift();
+  document.getElementById('modal-create').classList.add('open');
+}
+
+function closeCreate() { document.getElementById('modal-create').classList.remove('open'); }
+
+// Sim modal
+function openSimModal() {
+  closeCreate();
+  document.getElementById('sim-result-area').innerHTML = '';
+  document.getElementById('modal-sim').classList.add('open');
+}
+function closeSim() { document.getElementById('modal-sim').classList.remove('open'); }
+
+// Mock sim rules
+const MOCK_RULES = [
+  { line:'pb10', currency:'PHP', game:'GemBonanza', gid:null,       rtp:'97.00%', id:'rtp_a1b2c3d4', p:'P4', from:'2025-06-01', until:'2025-06-30' },
+  { line:'pb10', currency:'THB', game:null,          gid:null,       rtp:'95.50%', id:'rtp_b2c3d4e5', p:'P5', from:'2025-05-15', until:'永久有效' },
+  { line:'vn05', currency:'VND', game:'LuckyDragon', gid:'grp_vip',  rtp:'98.00%', id:'rtp_e5f6g7h8', p:'P1', from:'2025-06-10', until:'2025-06-15' },
+  { line:null,   currency:null,  game:'SlotFever',   gid:null,       rtp:'96.00%', id:'rtp_f6g7h8i9', p:'P7', from:'2025-04-01', until:'永久有效' },
+];
+
+function runSim() {
+  const line = document.getElementById('s-line').value;
+  const cur  = document.getElementById('s-currency').value;
+  const game = document.getElementById('s-game').value;
+  const gid  = document.getElementById('s-gid').value;
+
+  let hit = null;
+  if (gid) hit = MOCK_RULES.find(r => r.gid === gid && r.line === line && r.currency === cur && r.game === game);
+  if (!hit && gid) hit = MOCK_RULES.find(r => r.gid === gid && r.game === game && !r.line);
+  if (!hit && gid) hit = MOCK_RULES.find(r => r.gid === gid && !r.game && !r.line);
+  if (!hit) hit = MOCK_RULES.find(r => r.line === line && r.currency === cur && r.game === game && !r.gid);
+  if (!hit) hit = MOCK_RULES.find(r => r.line === line && r.currency === cur && !r.game && !r.gid);
+  if (!hit) hit = MOCK_RULES.find(r => r.line === line && !r.currency && !r.game && !r.gid);
+  if (!hit) hit = MOCK_RULES.find(r => !r.line && !r.currency && r.game === game && !r.gid);
+
+  const checks = [
+    { label: `群組 ID (${gid || '未指定'})`, hit: gid ? !!MOCK_RULES.find(r=>r.gid===gid) : false },
+    { label: `線路 (${line})`,               hit: !!MOCK_RULES.find(r=>r.line===line) },
+    { label: `幣值 (${cur})`,                hit: !!MOCK_RULES.find(r=>r.currency===cur) },
+    { label: `遊戲 (${game})`,               hit: !!MOCK_RULES.find(r=>r.game===game) },
+  ];
+
+  const rtpVal   = hit ? hit.rtp : '96.00%（全局預設）';
+  const rtpColor = hit ? (parseFloat(hit.rtp) >= 98 ? '#C5820A' : (parseFloat(hit.rtp) >= 97 ? '#1B7A4A' : '#1A6FA8')) : '#7A8494';
+
+  document.getElementById('sim-result-area').innerHTML = `
+    <div class="sim-result-box">
+      <div class="sim-result-header">SIMULATION RESULT</div>
+      <div class="sim-result-body">
+        <div class="sim-rtp-main" style="color:${rtpColor}">${rtpVal}</div>
+        <div class="sim-meta" style="margin-top:8px">
+          ${hit ? `命中規則 <code>${hit.id}</code>　優先級 <span class="priority-badge ${hit.p.toLowerCase()}">${hit.p}</span>` : '<span style="color:#7A8494">查無有效規則，使用全局預設</span>'}
+          ${hit ? `<br>條件：${[hit.line,hit.currency,hit.game,hit.gid].filter(Boolean).join(' + ')}` : ''}
+          ${hit ? `<br>有效期間：${hit.from} ～ ${hit.until}` : ''}
+        </div>
+        <div class="sim-trace">
+          ${checks.map(c=>`
+            <div class="sim-trace-item">
+              <span class="check ${c.hit?'hit':'miss'}">${c.hit?'✓':'○'}</span>
+              <span style="font-size:12px;color:${c.hit?'var(--green)':'var(--gray-3)'}">${c.label}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+// Deactivate
+let _deactBtn = null;
+function confirmDeact(btn) {
+  _deactBtn = btn.closest('tr');
+  document.getElementById('modal-deact').classList.add('open');
+}
+function closeDeact() { document.getElementById('modal-deact').classList.remove('open'); }
+function doDeact() {
+  closeDeact();
+  if (_deactBtn) {
+    _deactBtn.style.opacity = '0.4';
+    _deactBtn.style.pointerEvents = 'none';
+    const ops = _deactBtn.querySelector('td:last-child');
+    if (ops) ops.innerHTML = '<span class="status-badge status-manual">已停用</span>';
+    const cnt = parseInt(document.getElementById('mock-cnt-active').textContent) - 1;
+    document.getElementById('mock-cnt-active').textContent = cnt;
+    const opCnt = parseInt(document.getElementById('mock-op-cnt').textContent) + 1;
+    document.getElementById('mock-op-cnt').textContent = opCnt;
+    document.getElementById('tab0').textContent = `進行中（${cnt}）`;
+  }
+  showToast('規則已停用，審計日誌已記錄');
+}
+
+// ── Group management ──────────────────────────────────────
+let mockGroups = [
+  { id:'grp_vip',     note:'VIP 玩家群組',   members:['user_8899','user_7700','user_6611'], events:[
+    { type:'force_fg', label:'強制進入 FG', enabled:true,  spinCount:50,  triggerRate:100, buyType:1, betRatio:1.0 }
+  ]},
+  { id:'grp_promo',   note:'Q2 促銷群組',    members:['user_4421','user_3310'], events:[] },
+  { id:'grp_newbie',  note:'新玩家引導群組', members:['user_1001'], events:[
+    { type:'force_fg', label:'強制進入 FG', enabled:false, spinCount:20,  triggerRate:100, buyType:1, betRatio:1.0 }
+  ]},
+];
+
+function renderGroupList() {
+  const tbody = document.getElementById('group-tbody');
+  tbody.innerHTML = mockGroups.map((g,i) => `
+    <tr>
+      <td style="font-family:var(--mono);font-size:12px;color:var(--blue);font-weight:500">${g.id}</td>
+      <td style="font-size:12px">${g.note || '—'}</td>
+      <td style="font-size:12px">${g.members.length} 位帳號</td>
+      <td>
+        ${g.events.length === 0
+          ? `<span style="font-size:11px;color:var(--gray-3)">無特殊 Event</span>`
+          : g.events.map(e=>`<span class="tag ${e.enabled?'tag-blue':'tag-gray'}" style="font-size:10px">${e.label}${e.enabled?'':'（停用）'}</span>`).join('')
+        }
+      </td>
+      <td>
+        <button class="link-btn" onclick="openGroupEdit(${i})">編輯</button>
+      </td>
+    </tr>`).join('');
+}
+
+let editingGroupIdx = null;
+let currentEvents = [];
+
+function openGroupCreate() {
+  editingGroupIdx = null;
+  currentEvents = [];
+  document.getElementById('fg-id').value = '';
+  document.getElementById('fg-id').disabled = false;
+  document.getElementById('fg-note').value = '';
+  document.getElementById('fg-members').value = '';
+  renderEventList();
+  document.getElementById('modal-group-title').textContent = '新增群組';
+  document.getElementById('modal-group').classList.add('open');
+}
+
+function openGroupEdit(idx) {
+  editingGroupIdx = idx;
+  const g = mockGroups[idx];
+  currentEvents = g.events.map(e => ({...e}));
+  document.getElementById('fg-id').value = g.id;
+  document.getElementById('fg-id').disabled = true;
+  document.getElementById('fg-note').value = g.note;
+  document.getElementById('fg-members').value = g.members.join('\n');
+  renderEventList();
+  document.getElementById('modal-group-title').textContent = '編輯群組：' + g.id;
+  document.getElementById('modal-group').classList.add('open');
+}
+
+function closeGroupModal() { document.getElementById('modal-group').classList.remove('open'); }
+
+function addEvent() {
+  currentEvents.push({ type:'force_fg', label:'強制進入 FG', enabled:true, spinCount:50, triggerRate:100, buyType:1, betRatio:1.0 });
+  renderEventList();
+}
+
+const EVENT_TYPE_LABELS = { force_fg:'強制進入 FG' };
+
+function renderEventList() {
+  const wrap = document.getElementById('event-list');
+  if (currentEvents.length === 0) {
+    wrap.innerHTML = `<div style="padding:12px 0;font-size:12px;color:var(--text-muted);text-align:center">尚無 Event，點擊「+ 新增 Event」加入</div>`;
+    return;
+  }
+  wrap.innerHTML = currentEvents.map((ev, i) => `
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;background:var(--surface-alt)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <select class="ui-select" style="height:28px;font-size:12px" onchange="currentEvents[${i}].type=this.value;currentEvents[${i}].label=EVENT_TYPE_LABELS[this.value]||this.value">
+            <option value="force_fg" ${ev.type==='force_fg'?'selected':''}>強制進入 FG</option>
+            <option value="boost_rtp" disabled>加速 RTP（即將支援）</option>
+          </select>
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer">
+            <input type="checkbox" ${ev.enabled?'checked':''} onchange="currentEvents[${i}].enabled=this.checked;renderEventList()">
+            啟用
+          </label>
+        </div>
+        <button class="link-btn danger" onclick="currentEvents.splice(${i},1);renderEventList()" style="font-size:11px">移除</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;opacity:${ev.enabled?1:0.4}">
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">spinCount（手數上限）</div>
+          <input class="ui-input" type="number" value="${ev.spinCount}" style="width:100%;height:28px;font-size:12px" oninput="currentEvents[${i}].spinCount=+this.value" ${ev.enabled?'':'disabled'}>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">triggerRate（%）</div>
+          <input class="ui-input" type="number" value="${ev.triggerRate}" style="width:100%;height:28px;font-size:12px" oninput="currentEvents[${i}].triggerRate=+this.value" ${ev.enabled?'':'disabled'}>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">buyType</div>
+          <select class="ui-select" style="width:100%;height:28px;font-size:12px" onchange="currentEvents[${i}].buyType=+this.value" ${ev.enabled?'':'disabled'}>
+            <option value="1" ${ev.buyType===1?'selected':''}>1 — 標準</option>
+            <option value="2" ${ev.buyType===2?'selected':''}>2 — 加倍</option>
+          </select>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">betRatio</div>
+          <input class="ui-input" type="number" step="0.1" value="${ev.betRatio}" style="width:100%;height:28px;font-size:12px" oninput="currentEvents[${i}].betRatio=+this.value" ${ev.enabled?'':'disabled'}>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function saveGroup() {
+  const id      = document.getElementById('fg-id').value.trim();
+  const note    = document.getElementById('fg-note').value.trim();
+  const raw     = document.getElementById('fg-members').value.trim();
+  const members = raw ? raw.split(/[\n,，\s]+/).map(s=>s.trim()).filter(Boolean) : [];
+
+  if (!id) { showToast('群組 ID 為必填', true); return; }
+
+  if (editingGroupIdx !== null) {
+    mockGroups[editingGroupIdx].note    = note;
+    mockGroups[editingGroupIdx].members = members;
+    mockGroups[editingGroupIdx].events  = currentEvents.map(e=>({...e}));
+    showToast(`群組 ${id} 已更新`);
+  } else {
+    if (mockGroups.find(g=>g.id===id)) { showToast('群組 ID 已存在', true); return; }
+    mockGroups.push({ id, note, members, events: currentEvents.map(e=>({...e})) });
+    showToast(`群組 ${id} 已建立`);
+    // also add to RTP form dropdown
+    ['f-groupid','s-gid'].forEach(sid => {
+      const sel = document.getElementById(sid);
+      if (sel && !Array.from(sel.options).find(o=>o.value===id)) {
+        const opt = document.createElement('option');
+        opt.value = id; opt.textContent = id;
+        sel.appendChild(opt);
+      }
+    });
+  }
+  closeGroupModal();
+  renderGroupList();
+}
+
+// ── Line Defaults ─────────────────────────────────────────
+const LINE_DEFAULTS = [
+  { id:'pb10', series:'SEA',    rtp:96.7, updatedBy:'admin_tony',  updatedAt:'2025-04-01' },
+  { id:'vn05', series:'SEA',    rtp:96.7, updatedBy:'admin_tony',  updatedAt:'2025-04-01' },
+  { id:'th08', series:'SEA',    rtp:96.7, updatedBy:'admin_sarah', updatedAt:'2025-05-10' },
+  { id:'ph12', series:'SEA',    rtp:96.7, updatedBy:'admin_tony',  updatedAt:'2025-04-01' },
+  { id:'eu01', series:'GLOBAL', rtp:95.5, updatedBy:'admin_tony',  updatedAt:'2025-03-15' },
+  { id:'us03', series:'GLOBAL', rtp:95.5, updatedBy:'admin_sarah', updatedAt:'2025-03-15' },
+];
+
+let editingLineIdx = null;
+
+function renderLineDefaults() {
+  const tbody = document.getElementById('linedefault-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = LINE_DEFAULTS.map((l, i) => `
+    <tr id="line-row-${i}">
+      <td style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--navy)">${l.id}</td>
+      <td>
+        <span class="tag ${l.series==='SEA'?'tag-blue':'tag-gray'}" style="font-size:11px">${l.series}</span>
+      </td>
+      <td id="line-rtp-display-${i}">
+        <span class="rtp-display ${l.rtp>=96.7?'rtp-high':'rtp-mid'}">${l.rtp.toFixed(1)}%</span>
+      </td>
+      <td style="font-size:12px;color:var(--text-muted)">${l.updatedBy} · ${l.updatedAt}</td>
+      <td id="line-action-${i}">
+        <button class="link-btn" onclick="startEditLine(${i})">編輯</button>
+      </td>
+    </tr>`).join('');
+}
+
+function startEditLine(idx) {
+  const l = LINE_DEFAULTS[idx];
+  document.getElementById('line-rtp-display-'+idx).innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px">
+      <input class="ui-input" type="number" min="80" max="99" step="0.1"
+        value="${l.rtp.toFixed(1)}" id="line-input-${idx}"
+        style="width:80px;height:28px;font-size:13px;font-family:var(--mono)">
+      <span style="font-size:12px;color:var(--text-muted)">%</span>
+    </div>`;
+  document.getElementById('line-action-'+idx).innerHTML = `
+    <button class="link-btn" onclick="saveLine(${idx})">儲存</button>
+    <button class="link-btn danger" onclick="cancelEditLine(${idx})">取消</button>`;
+}
+
+function cancelEditLine(idx) { renderLineDefaults(); }
+
+function saveLine(idx) {
+  const input = document.getElementById('line-input-'+idx);
+  const v = parseFloat(input.value);
+  if (isNaN(v) || v < 80 || v > 99) { showToast('RTP 值須介於 80.00% ～ 99.00%', true); return; }
+  LINE_DEFAULTS[idx].rtp = v;
+  LINE_DEFAULTS[idx].updatedBy = 'admin_tony';
+  LINE_DEFAULTS[idx].updatedAt = '2025-06-14';
+  renderLineDefaults();
+  showToast(`線路 ${LINE_DEFAULTS[idx].id} 預設 RTP 已更新為 ${v.toFixed(1)}%，審計日誌已記錄`);
+}
+
+// Toast
+function showToast(msg, isErr) {
+  const t = document.getElementById('toast');
+  t.textContent = (isErr ? '✕ ' : '✓ ') + msg;
+  t.style.background = isErr ? 'var(--red)' : 'var(--navy)';
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 3500);
+}
+
+// Keyboard ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeCreate(); closeSim(); closeDeact(); closeGroupModal(); closeShift();
+  }
+});
+
+// Init
+renderGroupList();
+renderLineDefaults();
+</script>
+
+</body>
+</html>
