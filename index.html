@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊戲專案規格書控制台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-width: 270px;
+            --panel-width: 320px;
+            --accent: #00d4aa;
+            --accent-2: #f59e0b;
+            --accent-warn: #ef4444;
+            --bg-deep: #0d1117;
+            --bg-panel: #161b22;
+            --bg-card: #1c2330;
+            --bg-hover: #21293a;
+            --border: rgba(255,255,255,0.07);
+            --border-accent: rgba(0,212,170,0.3);
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #484f58;
+            --radius: 8px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+        }
+
+        /* ─── SIDEBAR ─── */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-panel);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--accent), #0098a6);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.82em;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 0.72em;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .menu {
+            list-style: none;
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .menu::-webkit-scrollbar { width: 4px; }
+        .menu::-webkit-scrollbar-track { background: transparent; }
+        .menu::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
+
+        .menu-item { border-bottom: none; }
+
+        .category-title {
+            padding: 10px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.72em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 8px;
+            user-select: none;
+            transition: color 0.2s;
+        }
+
+        .category-title:hover { color: var(--text-primary); }
+
+        .chevron {
+            width: 14px; height: 14px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.25s;
+            flex-shrink: 0;
+        }
+
+        .menu-item.active .chevron { transform: rotate(-135deg); }
+
+        .submenu {
+            list-style: none;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .menu-item.active .submenu { max-height: 400px; }
+
+        .submenu li a {
+            padding: 9px 16px 9px 28px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88em;
+            transition: all 0.15s;
+            border-left: 2px solid transparent;
+            margin: 1px 8px;
+            border-radius: var(--radius);
+        }
+
+        .submenu li a:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+            border-left-color: var(--accent);
+        }
+
+        .submenu li a::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+
+        .submenu li a:hover::before { background: var(--accent); }
+
+        .sidebar-footer {
+            padding: 14px 16px;
+            border-top: 1px solid var(--border);
+            font-size: 0.72em;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* ─── MAIN ─── */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ─── RIGHT PANEL ─── */
+        .right-panel {
+            width: var(--panel-width);
+            background: var(--bg-panel);
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .right-panel::-webkit-scrollbar { width: 4px; }
+        .right-panel::-webkit-scrollbar-track { background: transparent; }
+        .right-panel::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
+
+        .panel-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72em;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-title::before {
+            content: '';
+            width: 3px; height: 12px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Update List */
+        .update-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .update-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            transition: border-color 0.2s;
+            cursor: default;
+        }
+
+        .update-item:hover { border-color: var(--border-accent); }
+
+        .update-item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .update-name {
+            font-size: 0.85em;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .update-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68em;
+            color: var(--text-muted);
+            white-space: nowrap;
+            margin-top: 2px;
+        }
+
+        .update-tag {
+            font-size: 0.65em;
+            padding: 2px 7px;
+            border-radius: 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tag-new { background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.25); }
+        .tag-update { background: rgba(245,158,11,0.12); color: var(--accent-2); border: 1px solid rgba(245,158,11,0.25); }
+        .tag-fix { background: rgba(239,68,68,0.12); color: var(--accent-warn); border: 1px solid rgba(239,68,68,0.25); }
+
+        /* CRM Items */
+        .crm-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .crm-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            transition: all 0.2s;
+        }
+
+        .crm-item:hover { background: var(--bg-hover); }
+        .crm-item.warn { border-left-color: var(--accent-warn); }
+        .crm-item.amber { border-left-color: var(--accent-2); }
+
+        .crm-item-label {
+            font-size: 0.68em;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .crm-item-text {
+            font-size: 0.84em;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .crm-placeholder {
+            background: var(--bg-card);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.82em;
+            line-height: 1.6;
+        }
+
+        .crm-placeholder a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ─── CONTENT AREA ─── */
+        .content {
+            flex: 1;
+            position: relative;
+            background: var(--bg-deep);
+        }
+
+        iframe {
+            width: 100%; height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .placeholder {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .placeholder h2 {
+            color: var(--text-muted);
+            font-size: 1em;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .placeholder p {
+            color: var(--text-muted);
+            font-size: 0.82em;
+            font-family: 'Space Mono', monospace;
+            opacity: 0.6;
+        }
+
+        /* ─── TOPBAR ─── */
+        .topbar {
+            height: 46px;
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .topbar-breadcrumb {
+            font-size: 0.78em;
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
+            flex: 1;
+        }
+
+        .topbar-breadcrumb span {
+            color: var(--text-muted);
+        }
+
+        .status-dot {
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,212,170,0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 4px rgba(0,212,170,0); }
+        }
+
+        .topbar-meta {
+            font-size: 0.72em;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* ─── LAYOUT ─── */
+        .center-wrapper {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<!-- LEFT SIDEBAR -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-row">
+            <div class="logo-icon">🎮</div>
+            <div>
+                <div class="logo-text">GAME SPEC CONSOLE</div>
+                <div class="logo-sub">遊戲設計規格庫</div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="menu">
+        <li class="menu-item">
+            <div class="category-title" onclick="toggleMenu(this)">
+                遊戲後台設定工具
+                <div class="chevron"></div>
+            </div>
+            <ul class="submenu">
+                <li><a href="RTP_設定系統_規格書_v1.1.html" target="content-frame" onclick="setTitle('活動 RTP 設定工具')">活動 RTP 設定工具</a></li>
+                <li><a href="Pool_Values.html" target="content-frame" onclick="setTitle('水池數值工具')">水池數值工具</a></li>
+            </ul>
+        </li>
+
+        <li class="menu-item">
+            <div class="category-title" onclick="toggleMenu(this)">
+                CRM 規格
+                <div class="chevron"></div>
+            </div>
+            <ul class="submenu">
+                <li><a href="CRM_Proposal.html" target="content-frame" onclick="setTitle('CRM 提案')">CRM 提案</a></li>
+                <li><a href="CRM_MVP.html" target="content-frame" onclick="setTitle('CRM MVP 版本提案')">CRM MVP 版本提案</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="sidebar-footer">
+        v1.0.0 · 2025 internal
+    </div>
+</div>
+
+<!-- CENTER + RIGHT -->
+<div class="center-wrapper">
+    <!-- MAIN CONTENT -->
+    <div class="main">
+        <div class="topbar">
+            <div class="status-dot"></div>
+            <div class="topbar-breadcrumb" id="breadcrumb">
+                <span>規格庫</span> / 選擇文件
+            </div>
+            <div class="topbar-meta" id="topbar-date"></div>
+        </div>
+        <div class="content">
+            <div id="placeholder" class="placeholder">
+                <div class="placeholder-icon">📋</div>
+                <h2>請從左側選擇要查看的規格書</h2>
+                <p>點擊選單後，文件將顯示在此區域</p>
+            </div>
+            <iframe name="content-frame" id="content-frame"></iframe>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <!-- 最近更新 -->
+        <div class="panel-section">
+            <div class="panel-title">最近更新</div>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="update-item-top">
+                        <div class="update-name">CRM MVP 版本提案</div>
+                        <span class="update-tag tag-new">NEW</span>
+                    </div>
+                    <div class="update-date">2025-04-12</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-item-top">
+                        <div class="update-name">活動 RTP 設定工具 v1.1</div>
+                        <span class="update-tag tag-update">UPDATE</span>
+                    </div>
+                    <div class="update-date">2025-04-08</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-item-top">
+                        <div class="update-name">水池數值工具</div>
+                        <span class="update-tag tag-update">UPDATE</span>
+                    </div>
+                    <div class="update-date">2025-04-05</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-item-top">
+                        <div class="update-name">CRM 提案</div>
+                        <span class="update-tag tag-fix">FIX</span>
+                    </div>
+                    <div class="update-date">2025-03-28</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CMB 專案重要事項 -->
+        <div class="panel-section">
+            <div class="panel-title">CMB 專案事務・本週動態</div>
+            <div class="crm-list" id="crm-items">
+
+                <div class="crm-item amber">
+                    <div class="crm-item-label">🛠 遊戲開發・4月第2週</div>
+                    <div class="crm-item-text">(4/14) 克克開始遊戲後台 RTP 設定工具規劃</div>
+                </div>
+
+                <div class="crm-item">
+                    <div class="crm-item-label">🚀 遊戲上線・4月第1週</div>
+                    <div class="crm-item-text">(4/8) [S009 星際動物] 於 AWC 開放遊玩<br>(4/10) [S023 海盜女王][S009 星際動物] 在 MPS 開放遊玩，新遊戲提升 DAU 約 +250 人，第3天趨緩 (-160 人)</div>
+                </div>
+
+                <div class="crm-item">
+                    <div class="crm-item-label">🚀 遊戲上線・4月第2週</div>
+                    <div class="crm-item-text">(4/14) 更新遊戲 List 和水池數值</div>
+                </div>
+
+                <div class="crm-item warn">
+                    <div class="crm-item-label">⚙️ 系統技術・3月第3週</div>
+                    <div class="crm-item-text">(3/18) Redis Cluster 架構存在讀取異常，直接導致「獎勵水池功能」失效</div>
+                </div>
+
+                <div class="crm-item warn">
+                    <div class="crm-item-label">⚙️ 系統技術・3月第4週</div>
+                    <div class="crm-item-text">(3/25) 發佈 Gateway 更新，修復 Redis 讀取錯誤並恢復水池功能</div>
+                </div>
+
+                <div class="crm-item amber">
+                    <div class="crm-item-label">📋 合規送審・持續進行中</div>
+                    <div class="crm-item-text">已提交 17 款遊戲計畫，分為 3 條線同時進行，目前 5 款已提交 Source Code，預計 LLG PP 環境要月底才能提供測試</div>
+                </div>
+
+                <div class="crm-item">
+                    <div class="crm-item-label">🎯 CRM・4月第2週</div>
+                    <div class="crm-item-text">(4/13) 和曉陽合庭進行第二次 CRM 提案，後續先不進行活動規劃，以數據觀察玩家旅程（漏斗）呈現狀況，了解玩家需求後，針對痛點進行重點優化規格</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function toggleMenu(element) {
+        const parent = element.parentElement;
+        parent.classList.toggle('active');
+    }
+
+    function setTitle(name) {
+        document.getElementById('breadcrumb').innerHTML = '<span>規格庫</span> / ' + name;
+        document.getElementById('placeholder').style.display = 'none';
+    }
+
+    // Date display
+    const now = new Date();
+    const dateStr = now.getFullYear() + '-' 
+        + String(now.getMonth()+1).padStart(2,'0') + '-' 
+        + String(now.getDate()).padStart(2,'0');
+    document.getElementById('topbar-date').textContent = dateStr;
+</script>
+
+</body>
+</html>
