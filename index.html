@@ -554,54 +554,91 @@
                 </svg>
             </button>
         </div>
-
+ 
         <div class="right-collapsed-label" onclick="toggleRightPanel()" title="展開面板">CMB 動態</div>
-
+ 
         <div class="right-panel-content">
             <div class="panel-section">
                 <div class="panel-title">本週動態</div>
                 <div class="crm-list" id="crm-items">
-
+ 
                     <div class="crm-item amber">
                         <div class="crm-item-label">🛠 遊戲開發・4月第2週</div>
                         <div class="crm-item-text">(4/14) 克克開始遊戲後台 RTP 設定工具規劃</div>
                     </div>
-
+ 
+                    <div class="crm-item amber">
+                        <div class="crm-item-label">🛠 遊戲開發・4月第2週・版更計劃</div>
+                        <div class="crm-item-text">
+                            (4/15) 伺服器功能更新<br>
+                            <b>Gateway：</b>水池設定（只需更新 MongoDB）、修復遊戲注單資源未釋放 bug<br>
+                            <b>Gateway + Gamelog：</b>toml 轉 mongo（需要設定 MongoDB）
+                        </div>
+                    </div>
+ 
+                    <div class="crm-item amber">
+                        <div class="crm-item-label">🛠 遊戲開發・3月第4週</div>
+                        <div class="crm-item-text">(4/1) [S011 火車] BETA 版本完成並結案，完成度 100%</div>
+                    </div>
+ 
+                    <div class="crm-item amber">
+                        <div class="crm-item-label">🛠 遊戲開發・4月第1週</div>
+                        <div class="crm-item-text">(4/10) [S011 火車] 進行全公司試玩會</div>
+                    </div>
+ 
                     <div class="crm-item">
                         <div class="crm-item-label">🚀 遊戲上線・4月第1週</div>
-                        <div class="crm-item-text">(4/8) [S009 星際動物] 於 AWC 開放遊玩<br>(4/10) [S023 海盜女王][S009 星際動物] 在 MPS 開放遊玩，新遊戲提升 DAU 約 +250 人，第3天趨緩 (-160 人)</div>
+                        <div class="crm-item-text">
+                            (4/8) [S009 星際動物] 於 AWC 開放遊玩<br>
+                            (4/10) [S023 海盜女王][S009 星際動物] 在 MPS 開放遊玩，新遊戲提升 DAU 約 +250 人，第3天趨緩 (-160 人)
+                        </div>
                     </div>
-
-                    <div class="crm-item">
-                        <div class="crm-item-label">🚀 遊戲上線・4月第2週</div>
-                        <div class="crm-item-text">(4/14) 更新遊戲 List 和水池數值</div>
-                    </div>
-
-                    <div class="crm-item warn">
-                        <div class="crm-item-label">⚙️ 系統技術・3月第3週</div>
-                        <div class="crm-item-text">(3/18) Redis Cluster 架構存在讀取異常，直接導致「獎勵水池功能」失效</div>
-                    </div>
-
+ 
                     <div class="crm-item warn">
                         <div class="crm-item-label">⚙️ 系統技術・3月第4週</div>
-                        <div class="crm-item-text">(3/25) 發佈 Gateway 更新，修復 Redis 讀取錯誤並恢復水池功能</div>
+                        <div class="crm-item-text">
+                            (3/25) 伺服器功能更新<br>
+                            <b>GameService：</b>新增遊戲 Slot009<br>
+                            <b>Gateway：</b>新增押注區段設定支援小數點、新增 UFA 廳館邏輯、水池功能 Redis 支援 Cluster 模式<br>
+                            <b>GameLog：</b>新增遊戲 Slot009 Log、修正 Slot015 Log betId 錯誤問題
+                        </div>
                     </div>
-
+ 
+                    <div class="crm-item warn">
+                        <div class="crm-item-label">⚙️ 系統技術・3月第4週</div>
+                        <div class="crm-item-text">
+                            (3/26) 伺服器功能更新<br>
+                            <b>Gateway：</b>新增 Bet 段及 TRY 幣值押注上限 &amp; 預設 Bet
+                        </div>
+                    </div>
+ 
+                    <div class="crm-item warn">
+                        <div class="crm-item-label">⚙️ 系統技術・3月第5週</div>
+                        <div class="crm-item-text">
+                            (4/1) 伺服器功能更新<br>
+                            <b>GameLog：</b>調整數據組 Log 串接（Odds 計算）、[bug 修正] Slot015 Log 計算錯誤
+                        </div>
+                    </div>
+ 
                     <div class="crm-item amber">
-                        <div class="crm-item-label">📋 合規送審・持續進行中</div>
-                        <div class="crm-item-text">已提交 17 款遊戲計畫，分為 3 條線同時進行，目前 5 款已提交 Source Code，預計 LLG PP 環境要月底才能提供測試</div>
+                        <div class="crm-item-label">📋 合規送審・3月第5週</div>
+                        <div class="crm-item-text">
+                            (4/2) 完成 LLG PP 環境並提供 bmm 測試帳號<br>
+                            提供原 GLI 過審 5 款遊戲給 bmm 測試<br>
+                            另提供全新 7 款遊戲給 bmm 進行測試
+                        </div>
                     </div>
-
+ 
                     <div class="crm-item">
                         <div class="crm-item-label">🎯 CRM・4月第2週</div>
                         <div class="crm-item-text">(4/13) 和曉陽合庭進行第二次 CRM 提案，後續先不進行活動規劃，以數據觀察玩家旅程（漏斗）呈現狀況，了解玩家需求後，針對痛點進行重點優化規格</div>
                     </div>
-
+ 
                 </div>
             </div>
         </div>
     </div>
-
+ 
 </div>
 
 <script>
