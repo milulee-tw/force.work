@@ -69,7 +69,12 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 14px;
             flex-shrink: 0;
+            cursor: pointer;
+            transition: opacity 0.15s, box-shadow 0.15s;
         }
+
+        .logo-icon:hover { opacity: 0.85; }
+        .sidebar.collapsed .logo-icon { box-shadow: 0 0 0 2px rgba(0,212,170,0.4); }
 
         .logo-text-wrap {
             flex: 1;
@@ -393,9 +398,11 @@
             text-transform: uppercase;
             padding: 16px 0;
             align-self: center;
-            user-select: none;
+            cursor: pointer;
+            transition: color 0.15s;
         }
 
+        .right-collapsed-label:hover { color: var(--accent); }
         .right-panel.collapsed .right-collapsed-label { display: block; }
 
         /* Panel content */
@@ -474,7 +481,7 @@
 <!-- LEFT SIDEBAR -->
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <div class="logo-icon">🎮</div>
+        <div class="logo-icon" onclick="toggleSidebar()" title="展開／收合側欄">🎮</div>
         <div class="logo-text-wrap">
             <div class="logo-text">GAME SPEC CONSOLE</div>
             <div class="logo-sub">遊戲設計規格庫</div>
@@ -548,7 +555,7 @@
             </button>
         </div>
 
-        <div class="right-collapsed-label">CMB 動態</div>
+        <div class="right-collapsed-label" onclick="toggleRightPanel()" title="展開面板">CMB 動態</div>
 
         <div class="right-panel-content">
             <div class="panel-section">
