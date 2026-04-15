@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLOT 遊戲 CRM 留存提升計畫書 v5</title>
+<style>
+:root {
+  --navy: #0f2645;
+  --blue: #1a56a0;
+  --blue-mid: #2e75b6;
+  --teal: #0e7c5a;
+  --teal-light: #e8f7f2;
+  --amber: #8b5e00;
+  --amber-light: #fdf5e0;
+  --purple: #3d3192;
+  --purple-light: #eeeeff;
+  --coral: #9b3a28;
+  --coral-light: #fdeae6;
+  --orange: #b85c00;
+  --orange-light: #fff3e8;
+  --gray-text: #2c2c2a;
+  --gray-mid: #6b6b68;
+  --gray-light: #f8f8f6;
+  --border: #e0ddd8;
+  --white: #ffffff;
+  --red: #c0392b;
+  --red-light: #fdf0ee;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,'Noto Sans TC',sans-serif;background:#f4f2ed;color:var(--gray-text);line-height:1.75;font-size:15px}
+nav{position:sticky;top:0;left:0;right:0;height:52px;background:var(--navy);display:flex;align-items:center;padding:0 40px;z-index:100;gap:32px}
+.nav-brand{font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.45);margin-right:auto;text-transform:uppercase}
+.nav-links{display:flex;gap:20px}
+.nav-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;letter-spacing:.05em;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.page-wrap{max-width:920px;margin:0 auto;padding:40px 40px 120px}
+.cover{padding:80px 0 100px}
+.cover-eyebrow{font-size:11px;letter-spacing:.18em;color:var(--blue-mid);text-transform:uppercase;margin-bottom:22px}
+.cover-title{font-size:clamp(42px,6vw,64px);color:var(--navy);line-height:1.06;margin-bottom:8px;font-weight:800}
+.cover-sub{font-size:clamp(20px,3vw,28px);color:var(--blue-mid);margin-bottom:16px;font-weight:400}
+.version-badge{display:inline-block;background:var(--teal);color:#fff;font-size:11px;letter-spacing:.1em;padding:4px 12px;border-radius:4px;margin-bottom:36px;text-transform:uppercase}
+.cover-rule{width:80px;height:3px;background:var(--blue-mid);margin-bottom:40px}
+.cover-meta{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;max-width:580px;background:white}
+.cover-meta-item{flex:1;padding:16px 20px;border-right:1px solid var(--border)}
+.cover-meta-item:last-child{border-right:none}
+.cover-meta-label{font-size:10px;letter-spacing:.1em;color:var(--gray-mid);text-transform:uppercase;margin-bottom:4px}
+.cover-meta-value{font-size:13px;font-weight:600;color:var(--navy)}
+.chapter-banner{background:var(--navy);color:white;padding:26px 36px;border-radius:12px;margin:60px 0 36px;position:relative;overflow:hidden}
+.chapter-banner::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04)}
+.chapter-num{font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,.4);margin-bottom:6px;text-transform:uppercase}
+.chapter-title{font-size:24px;color:white;font-weight:700;line-height:1.3}
+h2{font-size:19px;font-weight:700;color:var(--blue);margin:44px 0 14px;padding-bottom:10px;border-bottom:1.5px solid #dce8f5}
+h3{font-size:15px;font-weight:700;color:var(--gray-text);margin:26px 0 10px}
+p{margin-bottom:14px;color:#3a3a38}
+.lead{font-size:16px;line-height:1.85;color:#2a2a28;margin-bottom:18px}
+.highlight-box{border-left:4px solid var(--teal);background:var(--teal-light);padding:18px 22px;border-radius:0 10px 10px 0;margin:22px 0}
+.highlight-box p{font-size:16px;font-weight:600;color:var(--teal);margin:0;line-height:1.7}
+.alert-box{border-left:4px solid var(--coral);background:var(--coral-light);padding:18px 22px;border-radius:0 10px 10px 0;margin:22px 0}
+.alert-box .alert-title{font-size:12px;font-weight:700;color:var(--coral);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.alert-box p{color:var(--coral);margin:0;font-size:14px;line-height:1.7}
+.new-badge{display:inline-block;background:var(--teal);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.06em;vertical-align:middle;margin-left:8px}
+.fix-badge{display:inline-block;background:var(--coral);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.06em;vertical-align:middle;margin-left:8px}
+
+/* PILLARS */
+.pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:22px 0}
+.pillar{border-radius:10px;padding:20px 18px;border:1px solid var(--border)}
+.pillar-num{font-size:10px;letter-spacing:.12em;margin-bottom:8px;text-transform:uppercase;font-weight:700}
+.pillar-title{font-size:16px;font-weight:700;margin-bottom:8px}
+.pillar-body{font-size:13px;line-height:1.65}
+.pillar-teal{background:var(--teal-light);border-color:#b3dece}
+.pillar-teal .pillar-num,.pillar-teal .pillar-title{color:var(--teal)}
+.pillar-teal .pillar-body{color:#1a5c44}
+.pillar-purple{background:var(--purple-light);border-color:#c9c5f0}
+.pillar-purple .pillar-num,.pillar-purple .pillar-title{color:var(--purple)}
+.pillar-purple .pillar-body{color:#2e2880}
+.pillar-amber{background:var(--amber-light);border-color:#e5c97a}
+.pillar-amber .pillar-num,.pillar-amber .pillar-title{color:var(--amber)}
+.pillar-amber .pillar-body{color:#6b4800}
+
+/* CONCEPT CARDS */
+.concept-card{border-radius:12px;overflow:hidden;border:1px solid var(--border);margin:18px 0;background:white}
+.concept-header{padding:14px 20px;display:flex;align-items:center;gap:12px}
+.concept-tag{font-size:10px;letter-spacing:.14em;padding:3px 10px;border-radius:99px;text-transform:uppercase;font-weight:700}
+.concept-label{font-size:18px;font-weight:700}
+.concept-body{padding:16px 20px 20px;border-top:1px solid var(--border);font-size:13.5px;line-height:1.8}
+.card-teal .concept-header{background:var(--teal-light)}.card-teal .concept-tag{background:rgba(14,124,90,.12);color:var(--teal)}.card-teal .concept-label{color:var(--teal)}
+.card-purple .concept-header{background:var(--purple-light)}.card-purple .concept-tag{background:rgba(61,49,146,.12);color:var(--purple)}.card-purple .concept-label{color:var(--purple)}
+.card-amber .concept-header{background:var(--amber-light)}.card-amber .concept-tag{background:rgba(139,94,0,.12);color:var(--amber)}.card-amber .concept-label{color:var(--amber)}
+.card-blue .concept-header{background:#e8f0fa}.card-blue .concept-tag{background:rgba(26,86,160,.12);color:var(--blue)}.card-blue .concept-label{color:var(--blue)}
+.card-coral .concept-header{background:var(--coral-light)}.card-coral .concept-tag{background:rgba(155,58,40,.12);color:var(--coral)}.card-coral .concept-label{color:var(--coral)}
+.card-orange .concept-header{background:var(--orange-light)}.card-orange .concept-tag{background:rgba(184,92,0,.12);color:var(--orange)}.card-orange .concept-label{color:var(--orange)}
+
+/* ITEM EVOLUTION DIAGRAM */
+.item-evo{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;gap:0;margin:20px 0;align-items:start}
+.item-stage{border-radius:10px;border:1px solid var(--border);background:white;overflow:hidden}
+.item-stage-header{padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.item-stage-body{padding:14px;font-size:13px;line-height:1.65;color:#3a3a38}
+.item-stage-body ul{padding-left:16px;margin:0}
+.item-stage-body li{margin-bottom:6px}
+.stage-teal .item-stage-header{background:var(--teal-light);color:var(--teal)}
+.stage-blue .item-stage-header{background:#e8f0fa;color:var(--blue)}
+.stage-purple .item-stage-header{background:var(--purple-light);color:var(--purple)}
+.item-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gray-mid);padding-top:20px}
+
+/* PHASE BLOCKS */
+.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.phase-block{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:white}
+.phase-header{padding:14px 18px}
+.phase-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.phase-title{font-size:16px;font-weight:700}
+.phase-period{font-size:12px;opacity:.7;margin-top:2px}
+.phase-sprints{padding:14px 18px;border-top:1px solid var(--border)}
+.sprint-item{display:flex;gap:10px;padding:7px 0;border-bottom:1px dotted var(--border);font-size:13px}
+.sprint-item:last-child{border-bottom:none}
+.sprint-code{font-size:10px;font-weight:700;letter-spacing:.06em;min-width:28px;padding-top:2px}
+.sprint-name{flex:1;line-height:1.5}
+.phase-kpi{padding:12px 18px;border-top:1px solid var(--border);font-size:12px;line-height:1.6}
+.phase-kpi strong{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+
+.p1 .phase-header{background:#e8f0fa}.p1 .phase-tag{color:var(--blue)}.p1 .phase-title{color:var(--navy)}.p1 .sprint-code{color:var(--blue)}.p1 .phase-kpi{background:#f0f5fc}
+.p2 .phase-header{background:var(--teal-light)}.p2 .phase-tag{color:var(--teal)}.p2 .phase-title{color:#0a4a36}.p2 .sprint-code{color:var(--teal)}.p2 .phase-kpi{background:#f0fbf7}
+.p3 .phase-header{background:var(--amber-light)}.p3 .phase-tag{color:var(--amber)}.p3 .phase-title{color:#5a3c00}.p3 .sprint-code{color:var(--amber)}.p3 .phase-kpi{background:#fdf9ee}
+.p4 .phase-header{background:var(--purple-light)}.p4 .phase-tag{color:var(--purple)}.p4 .phase-title{color:#27205c}.p4 .sprint-code{color:var(--purple)}.p4 .phase-kpi{background:#f5f4ff}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+thead tr{background:var(--navy);color:white}
+thead th{padding:10px 14px;text-align:left;font-weight:600;font-size:12px;letter-spacing:.04em}
+tbody tr:nth-child(even){background:#f8f8f6}
+tbody tr:hover{background:#eef3fb}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55}
+.td-center{text-align:center}
+.td-em{font-weight:700;color:var(--navy)}
+.warn-row td{background:#fff8f0;color:#7a3c00}
+.warn-row td:first-child{border-left:3px solid var(--amber)}
+
+/* PRINCIPLES */
+.principles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:20px 0}
+.principle{border-radius:10px;border:1px solid var(--border);padding:18px;background:white}
+.principle-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;margin-bottom:12px}
+.principle h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.principle p{font-size:13px;color:var(--gray-mid);margin:0;line-height:1.6}
+.pr-teal .principle-num{background:var(--teal)}
+.pr-blue .principle-num{background:var(--blue)}
+.pr-amber .principle-num{background:var(--amber)}
+
+/* STAFFING */
+.staffing-intro{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.staff-card{border-radius:10px;border:1px solid var(--border);padding:16px;background:white}
+.staff-role{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:4px}
+.staff-total{font-size:28px;font-weight:800;color:var(--navy);line-height:1}
+.staff-unit{font-size:12px;color:var(--gray-mid)}
+.staff-note{font-size:12px;color:var(--gray-mid);margin-top:6px;line-height:1.5}
+
+footer{text-align:center;padding:40px;color:var(--gray-mid);font-size:12px;letter-spacing:.06em;border-top:1px solid var(--border);margin-top:60px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">SLOT CRM · Strategy v3</div>
+  <div class="nav-links">
+    <a href="#vision">宏觀視角</a>
+    <a href="#concepts">核心概念</a>
+    <a href="#economy">幣值設計</a>
+    <a href="#ux-fix">道具設計</a>
+    <a href="#phases">時程規劃</a>
+    <a href="#staffing">人力配置</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Product Strategy Document</div>
+  <div class="cover-title">SLOT 遊戲<br>CRM 計畫書</div>
+  <div class="cover-sub">留存提升年度框架</div>
+  <div class="version-badge">V4 · 含第二貨幣經濟循環 · 道具演進 · 人力配置</div>
+  <div class="cover-rule"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><div class="cover-meta-label">文件性質</div><div class="cover-meta-value">策略計畫書</div></div>
+    <div class="cover-meta-item"><div class="cover-meta-label">適用對象</div><div class="cover-meta-value">CEO · COO · 產品團隊</div></div>
+    <div class="cover-meta-item"><div class="cover-meta-label">計畫週期</div><div class="cover-meta-value">全年 · 16 Sprint · 32 週</div></div>
+    <div class="cover-meta-item"><div class="cover-meta-label">版本更新</div><div class="cover-meta-value">幣值經濟循環設計 · 數值初版</div></div>
+  </div>
+</div>
+
+<!-- CHAPTER 1 -->
+<div class="chapter-banner" id="vision">
+  <div class="chapter-num">Chapter 01</div>
+  <div class="chapter-title">宏觀視角：為什麼這個計畫值得做</div>
+</div>
+
+<h2>1.1 市場正在分化</h2>
+<p class="lead">SLOT 遊戲的競爭已從「誰的遊戲好玩」轉移到「誰能讓玩家每天回來」。八家競品的 CRM 功能盤點顯示，功能完整度高的廠商與低的廠商之間，玩家黏著度出現明顯分化。</p>
+<p>最具說服力的數據來自 VP 奕樂——上線後活躍人流與押注量是同期無 CRM 系統廠商的 <strong>10 倍</strong>。每晚一個月上線，就是一個月的留存損失。</p>
+
+<h2>1.2 核心命題</h2>
+<div class="highlight-box"><p>讓玩家從「偶爾來玩」變成「每天有事要做」——靠的不是更多廣告，而是在遊戲內建立一套讓玩家主動回訪的目標感系統。</p></div>
+
+<h2>1.3 整體架構：三個支柱</h2>
+<div class="pillars">
+  <div class="pillar pillar-teal">
+    <div class="pillar-num">支柱 1</div>
+    <div class="pillar-title">行為目標系統</div>
+    <div class="pillar-body">每日簽到、押注任務、排行榜、賽季競賽——讓玩家每天有具體目標可追求。</div>
+  </div>
+  <div class="pillar pillar-purple">
+    <div class="pillar-num">支柱 2</div>
+    <div class="pillar-title">獎勵生態系統</div>
+    <div class="pillar-body">第二貨幣、抽寶箱、道具卡、幸運輪——讓玩家對獎勵有累積感與期待感。</div>
+  </div>
+  <div class="pillar pillar-amber">
+    <div class="pillar-num">支柱 3</div>
+    <div class="pillar-title">精準投放系統</div>
+    <div class="pillar-body">Tag 標籤、動態 RTP 貢獻池、個人化通知——讓每個玩家收到針對他設計的體驗。</div>
+  </div>
+</div>
+
+<!-- CHAPTER 2 -->
+<div class="chapter-banner" id="concepts">
+  <div class="chapter-num">Chapter 02</div>
+  <div class="chapter-title">五個核心概念與對應做法</div>
+</div>
+
+<div class="concept-card card-teal">
+  <div class="concept-header">
+    <span class="concept-tag">概念一</span>
+    <span class="concept-label">第二貨幣：從被動領獎到主動管理資產</span>
+  </div>
+  <div class="concept-body">
+    <p><strong>核心思維：</strong>直接給現金或道具卡，玩家是被動接受獎勵。第二貨幣（幸運幣）把這件事反轉：玩家變成主動管理自己的資產，差別不在金額，而在玩家有沒有動力採取行動。</p>
+    <p><strong>統一出口：</strong>所有 CRM 場景（簽到、任務、排行榜、分享）都發同一種幣，玩家只管理一個餘額，認知負擔最低。</p>
+    <p><strong>累積機制：</strong>「今天開銅箱」或「再等三天開金箱」的選擇，在玩家腦中製造未來回訪的計畫。</p>
+    <p><strong>每日獲取上限控制：</strong>依玩家當日押注量或 VIP 階級設定每日可獲幸運幣上限，防止異常漏洞行為，同時確保幣的稀缺感。VIP 越高，上限越高，形成差異化激勵。</p>
+    <p><strong>幣水庫平衡：</strong>必須持續監控「發行量 vs 消耗量」的動態平衡。發行量持續大於消耗量，幣會快速通膨、激勵失效；消耗量過快，玩家感受不到累積感。建立水庫觀測看板，從 S2 上線起即開始追蹤。</p>
+  </div>
+</div>
+
+<div class="concept-card card-purple">
+  <div class="concept-header">
+    <span class="concept-tag">概念二</span>
+    <span class="concept-label">隨機消耗機制：驚喜感是留存的核心燃料</span>
+  </div>
+  <div class="concept-body">
+    <p><strong>核心思維：</strong>SLOT 玩家已習慣「平時小贏、偶爾大爆」的心理節奏。固定兌換的結果已知，沒有驚喜，本質上和直接給卡沒有差別。隨機性本身才是驅動玩家累積幣的動力。</p>
+    <p><strong>Phase 1 · 抽寶箱（輕量快速上線）：</strong>三個等級（銅／銀／金箱）對應不同幣成本，稀有率遞增。保底機制：連續 N 次未中稀有，第 N+1 次保證中。開發量小（3–5 天），心理機制與幸運輪幾乎相同。</p>
+    <p><strong>Phase 4 · 幸運輪（儀式感升級版）：</strong>玩家已習慣抽箱六個月後推出，此時推出效果最大。幸運輪不是第一個消耗場景，而是「終局升級體驗」。</p>
+  </div>
+</div>
+
+<div class="concept-card card-blue">
+  <div class="concept-header">
+    <span class="concept-tag">概念三</span>
+    <span class="concept-label">Tag 標籤系統：CRM 的精準基礎設施</span>
+  </div>
+  <div class="concept-body">
+    <p><strong>核心思維：</strong>沒有 Tag 的 CRM 是廣播。Tag 是瞄準鏡——讓對的玩家在對的時機收到對的內容。作為遊戲商，我們無法對離線玩家發送站外推播，Tag 觸發的動作必須設計為「玩家回來那一刻自動生效」。</p>
+    <p><strong>S1 最小可行版（3 個核心 Tag）：</strong>新玩家（≤7天）、斷簽風險（超過 2 天未簽到）、高押量（鯨魚）。三個 Tag 衍生的 CRM 動作已足夠驗證效果。</p>
+    <p><strong>斷簽風險 Tag 的正確觸發邏輯：</strong>玩家重新登入的當下，系統偵測斷簽天數，自動顯示幸運幣補簽提示（Phase 1），或優先消耗補簽卡補回（Phase 3）。斷簽 1 天補 50 幣，斷簽 2 天補 80 幣，斷簽 3 天以上觸發回歸禮包（幣 + 低門檻任務）。所有動作均在玩家主動登入後才觸發，無需站外推播能力。</p>
+    <p><strong>兩個層次分開設計：</strong>「運營行為標籤」（系統自動打標，玩家看不到）從 S1 開始建立；「玩家可見徽章」（成就感展示）Phase 3 再做，避免範圍爆炸。</p>
+
+    <table style="margin-top:16px">
+      <thead><tr><th>Tag</th><th>觸發時機</th><th>Phase 1 動作</th><th>Phase 3 升級動作</th></tr></thead>
+      <tbody>
+        <tr><td>斷簽風險<br><span style="font-size:11px;color:var(--gray-mid)">≥2天未登入</span></td><td>玩家重新登入時</td><td>顯示幣補簽提示<br>（50幣補1天，80幣補2天）</td><td>優先消耗補簽卡，幣留著抽寶箱</td></tr>
+        <tr><td>斷簽 3 天以上</td><td>玩家重新登入時</td><td>回歸禮包：幸運幣 + 低門檻蜜月任務</td><td>補簽卡 + 幸運幣 + 低門檻任務</td></tr>
+        <tr><td>新玩家<br><span style="font-size:11px;color:var(--gray-mid)">≤7天</span></td><td>每次登入</td><td>新手蜜月任務推送（in-game）</td><td>—</td></tr>
+        <tr><td>高押量（鯨魚）</td><td>達標押注後</td><td>調整 RTP 貢獻池配置</td><td>VIP 專屬活動推送</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="concept-card card-amber">
+  <div class="concept-header">
+    <span class="concept-tag">概念四</span>
+    <span class="concept-label">動態 RTP 貢獻池：把遊戲回報轉化為活動獎勵</span>
+  </div>
+  <div class="concept-body">
+    <p><strong>核心思維：</strong>每個活動從遊戲基礎 RTP 中「撥出」一個比例進入獎池。玩家參與的活動越多，即時 RTP 越低——但那部分 RTP 並未消失，而是進入任務獎勵、Jackpot 彩金等活動的獎池，等待兌現。</p>
+    <p><strong>注單 RTP 紀錄（v3 新增）：</strong>每一筆押注注單必須記錄當下實際使用的 RTP（即扣除所有活動撥出後的即時 RTP）。目的是確保在玩家同時接多個活動時，有可追溯的 RTP 歷史，避免超出下限保護的爭議，並提供運營後台的活動效益分析依據。</p>
+    <p><strong>資格門檻：</strong>Jackpot 等活動設最低押注門檻，押注不達標的玩家不被扣除 Jackpot 撥出部分，維持較高即時 RTP。</p>
+    <p><strong>硬下限保護：</strong>各活動撥出比例加總不得使任何玩家即時 RTP 低於設定下限（建議依 VIP 等級設定差異化下限）。超過時，後端自動停止計入新活動撥出。此下限寫死於 Server 端，不可人工突破。</p>
+
+    <table>
+      <thead><tr><th>活動類型</th><th>RTP 撥出範圍</th><th>資格條件</th><th>兌現方式</th></tr></thead>
+      <tbody>
+        <tr><td>押注任務</td><td>0.3 – 0.8%</td><td>接受任務即適用</td><td>任務完成 → 發幸運幣</td></tr>
+        <tr><td>指定遊戲任務</td><td>0.5 – 1.0%</td><td>於指定遊戲進行</td><td>任務完成 → 發幸運幣</td></tr>
+        <tr><td>Jackpot 連線彩金</td><td>0.5 – 2.0%</td><td>押注達最低門檻</td><td>隨機觸發累計彩金</td></tr>
+        <tr><td>排行榜活動</td><td>0.2 – 0.5%</td><td>活動期間所有押注</td><td>賽季結算依名次發放</td></tr>
+        <tr><td>新玩家蜜月任務</td><td>0.3%</td><td>登入前 7 天</td><td>任務完成 → 發幸運幣</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="concept-card card-coral">
+  <div class="concept-header">
+    <span class="concept-tag">概念五</span>
+    <span class="concept-label">分層遞進：每個 Phase 解決一個留存問題</span>
+  </div>
+  <div class="concept-body">
+    <p>留存問題不是一次性解決的，不同階段的玩家面對不同的流失原因。四個 Phase 分別針對習慣建立、目標感、資產依附感、長期成長路徑，按順序推進。</p>
+    <table>
+      <thead><tr><th>Phase</th><th>玩家痛點</th><th>解法重點</th></tr></thead>
+      <tbody>
+        <tr><td><strong>P1</strong></td><td>沒有每天回來的理由</td><td>建立每日小目標 + 獎勵基礎設施 + RTP 引擎地基</td></tr>
+        <tr><td><strong>P2</strong></td><td>有回來但沒事情做</td><td>啟動 RTP 撥出：任務獎池、排行榜，建立完整任務循環</td></tr>
+        <tr><td><strong>P3</strong></td><td>覺得隨時可以走</td><td>建立資產依附感：背包系統 + VIP 分層</td></tr>
+        <tr><td><strong>P4</strong></td><td>高價值玩家缺乏長期目標</td><td>長期成長路徑 + Jackpot 高撥出活動 + 幸運輪閉環</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CHAPTER 3: 第二貨幣經濟循環 -->
+<div class="chapter-banner" id="economy">
+  <div class="chapter-num">Chapter 03</div>
+  <div class="chapter-title">第二貨幣（幸運幣）：經濟循環與數值設計</div>
+</div>
+
+<h2>3.1 經濟循環架構</h2>
+<p class="lead">幸運幣是整個 CRM 獎勵生態的媒介。所有行為獎勵統一以幸運幣發放，所有消耗場景統一以幸運幣結算，形成可控的單一閉環。</p>
+
+<div style="background:white;border:1px solid var(--border);border-radius:12px;padding:24px;margin:20px 0;overflow-x:auto">
+<svg width="100%" viewBox="0 0 680 400" style="min-width:520px">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <!-- Center: 幸運幣 -->
+  <rect x="250" y="22" width="180" height="54" rx="10" fill="#e8f7f2" stroke="#5dcaa5" stroke-width="1"/>
+  <text x="340" y="44" text-anchor="middle" font-size="15" font-weight="600" fill="#085041" font-family="sans-serif">幸運幣</text>
+  <text x="340" y="62" text-anchor="middle" font-size="12" fill="#0f6e56" font-family="sans-serif">第二貨幣 · 統一媒介</text>
+  <!-- 發行端 boxes -->
+  <rect x="20" y="140" width="148" height="48" rx="8" fill="#eeedfe" stroke="#afa9ec" stroke-width="0.8"/>
+  <text x="94" y="160" text-anchor="middle" font-size="13" font-weight="600" fill="#26215c" font-family="sans-serif">每日登入</text>
+  <text x="94" y="178" text-anchor="middle" font-size="11" fill="#534ab7" font-family="sans-serif">固定 70 幣 / 天</text>
+  <rect x="20" y="220" width="148" height="48" rx="8" fill="#eeedfe" stroke="#afa9ec" stroke-width="0.8"/>
+  <text x="94" y="240" text-anchor="middle" font-size="13" font-weight="600" fill="#26215c" font-family="sans-serif">押注任務</text>
+  <text x="94" y="258" text-anchor="middle" font-size="11" fill="#534ab7" font-family="sans-serif">RTP 0.5% 撥出</text>
+  <rect x="20" y="300" width="148" height="48" rx="8" fill="#eeedfe" stroke="#afa9ec" stroke-width="0.8"/>
+  <text x="94" y="320" text-anchor="middle" font-size="13" font-weight="600" fill="#26215c" font-family="sans-serif">排行榜 / 分享</text>
+  <text x="94" y="338" text-anchor="middle" font-size="11" fill="#534ab7" font-family="sans-serif">活動獎勵</text>
+  <!-- 消耗端 boxes -->
+  <rect x="512" y="140" width="148" height="48" rx="8" fill="#faeeda" stroke="#fac775" stroke-width="0.8"/>
+  <text x="586" y="160" text-anchor="middle" font-size="13" font-weight="600" fill="#412402" font-family="sans-serif">抽寶箱</text>
+  <text x="586" y="178" text-anchor="middle" font-size="11" fill="#854f0b" font-family="sans-serif">銅 / 銀 / 金籤筒</text>
+  <rect x="512" y="220" width="148" height="48" rx="8" fill="#faeeda" stroke="#fac775" stroke-width="0.8"/>
+  <text x="586" y="240" text-anchor="middle" font-size="13" font-weight="600" fill="#412402" font-family="sans-serif">幸運輪</text>
+  <text x="586" y="258" text-anchor="middle" font-size="11" fill="#854f0b" font-family="sans-serif">Phase 4 · 儀式感版</text>
+  <!-- 道具卡 -->
+  <rect x="252" y="318" width="176" height="48" rx="8" fill="#faece7" stroke="#f09977" stroke-width="0.8"/>
+  <text x="340" y="338" text-anchor="middle" font-size="13" font-weight="600" fill="#4a1b0c" font-family="sans-serif">道具卡</text>
+  <text x="340" y="356" text-anchor="middle" font-size="11" fill="#993c1d" font-family="sans-serif">旋轉卡 / 遊戲卡 / 補簽卡</text>
+  <!-- 發行端 arrows -->
+  <line x1="168" y1="160" x2="248" y2="52" stroke="#afa9ec" stroke-width="1.2" marker-end="url(#arr)" fill="none"/>
+  <line x1="168" y1="244" x2="248" y2="58" stroke="#afa9ec" stroke-width="1.2" marker-end="url(#arr)" fill="none"/>
+  <line x1="168" y1="322" x2="248" y2="66" stroke="#afa9ec" stroke-width="1.2" marker-end="url(#arr)" fill="none"/>
+  <text x="194" y="118" font-size="11" fill="#888" font-family="sans-serif">發行</text>
+  <!-- 消耗端 arrows -->
+  <line x1="430" y1="50" x2="510" y2="160" stroke="#ba7517" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+  <line x1="430" y1="62" x2="510" y2="230" stroke="#ba7517" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+  <text x="492" y="112" font-size="11" fill="#888" font-family="sans-serif">消耗</text>
+  <!-- 道具獎品 arrows -->
+  <line x1="512" y1="172" x2="428" y2="320" stroke="#c8c5c0" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+  <text x="470" y="256" font-size="10" fill="#aaa" font-family="sans-serif" transform="rotate(-55,470,256)">獲得道具</text>
+  <!-- 任務回訪 -->
+  <line x1="340" y1="318" x2="340" y2="78" stroke="#c8c5c0" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+  <text x="350" y="206" font-size="10" fill="#aaa" font-family="sans-serif">道具驅動回訪</text>
+  <!-- Labels -->
+  <text x="10" y="128" font-size="10" fill="#888" font-family="sans-serif" letter-spacing="1">發行端</text>
+  <text x="575" y="128" font-size="10" fill="#888" font-family="sans-serif" letter-spacing="1">消耗端</text>
+</svg>
+</div>
+
+<h2>3.2 Phase 1 數值設計（初版）</h2>
+
+<div class="alert-box" style="border-left-color:var(--amber);background:var(--amber-light)">
+  <div class="alert-title" style="color:var(--amber)">📌 幣值待確認</div>
+  <p style="color:var(--amber)">以下數值以「幸運幣」為單位進行設計，幣的實際價值（各市場 USD 折算）需進一步參考現有平台幣值、各國玩家 ARPU 及 LTV 數據進行估算，<strong>後續將另行訂定</strong>。目前以數量結構確保14天 / 7天的推進節奏合理。</p>
+</div>
+
+<h3>設計目標</h3>
+<table>
+  <thead><tr><th>目標</th><th>條件</th><th>說明</th></tr></thead>
+  <tbody>
+    <tr><td><strong>14 天完成全部寶箱</strong></td><td>純靠每日登入</td><td>新玩家 Day 1 免費抽，後續每日 70 幣登入，13 天累積 910 幣 ≥ 全部費用 890 幣</td></tr>
+    <tr><td><strong>7 天完成全部寶箱</strong></td><td>登入 + 任務（Phase 2）</td><td>每日任務額外約 80 幣，7 天含免費首抽即可完成全部籤筒</td></tr>
+    <tr><td><strong>Day 1 立即有體驗</strong></td><td>新手免費首抽</td><td>第一天登入直接抽銅籤筒，無需存幣，立刻感受到第二貨幣的價值</td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:28px">14天推進進度表</h3>
+<table>
+  <thead>
+    <tr><th>天數</th><th>籤筒等級</th><th style="text-align:right">當日費用</th><th style="text-align:right">登入累積幣</th><th style="text-align:right">餘額（純登入）</th><th style="text-align:right">餘額（+任務80幣）</th><th>備注</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Day 1</td><td>銅</td><td style="text-align:right"><span style="background:var(--teal-light);color:var(--teal);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">FREE</span></td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="color:var(--teal);font-size:12px">新手禮，立即抽</td></tr>
+    <tr><td>Day 2</td><td>銅</td><td style="text-align:right">10</td><td style="text-align:right">70</td><td style="text-align:right">60</td><td style="text-align:right">130</td><td></td></tr>
+    <tr><td>Day 3</td><td>銅</td><td style="text-align:right">15</td><td style="text-align:right">140</td><td style="text-align:right">115</td><td style="text-align:right">255</td><td></td></tr>
+    <tr><td>Day 4</td><td>銅</td><td style="text-align:right">20</td><td style="text-align:right">210</td><td style="text-align:right">170</td><td style="text-align:right">380</td><td></td></tr>
+    <tr><td>Day 5</td><td>銅</td><td style="text-align:right">25</td><td style="text-align:right">280</td><td style="text-align:right">220</td><td style="text-align:right">500</td><td style="color:var(--teal);font-size:12px">銅籤筒完成</td></tr>
+    <tr><td>Day 6</td><td>銀</td><td style="text-align:right">35</td><td style="text-align:right">350</td><td style="text-align:right">255</td><td style="text-align:right">615</td><td></td></tr>
+    <tr style="background:var(--teal-light)"><td><strong>Day 7</strong></td><td><strong>銀</strong></td><td style="text-align:right"><strong>45</strong></td><td style="text-align:right"><strong>420</strong></td><td style="text-align:right">295</td><td style="text-align:right;color:var(--teal);font-weight:700">725 ✓</td><td style="color:var(--teal);font-size:12px;font-weight:600">任務玩家完成全部</td></tr>
+    <tr><td>Day 8</td><td>銀</td><td style="text-align:right">55</td><td style="text-align:right">490</td><td style="text-align:right">330</td><td style="text-align:right">—</td><td></td></tr>
+    <tr><td>Day 9</td><td>銀</td><td style="text-align:right">65</td><td style="text-align:right">560</td><td style="text-align:right">360</td><td style="text-align:right">—</td><td></td></tr>
+    <tr><td>Day 10</td><td>銀</td><td style="text-align:right">80</td><td style="text-align:right">630</td><td style="text-align:right">380</td><td style="text-align:right">—</td><td style="color:var(--teal);font-size:12px">銀籤筒完成</td></tr>
+    <tr><td>Day 11</td><td>金</td><td style="text-align:right">100</td><td style="text-align:right">700</td><td style="text-align:right">380</td><td style="text-align:right">—</td><td></td></tr>
+    <tr><td>Day 12</td><td>金</td><td style="text-align:right">120</td><td style="text-align:right">770</td><td style="text-align:right">350</td><td style="text-align:right">—</td><td></td></tr>
+    <tr><td>Day 13</td><td>金</td><td style="text-align:right">145</td><td style="text-align:right">840</td><td style="text-align:right">305</td><td style="text-align:right">—</td><td></td></tr>
+    <tr style="background:#f8f0fc"><td><strong>Day 14</strong></td><td><strong>金</strong></td><td style="text-align:right"><strong>175</strong></td><td style="text-align:right"><strong>910</strong></td><td style="text-align:right;color:var(--teal);font-weight:700">20 ✓</td><td style="text-align:right">—</td><td style="color:var(--purple);font-size:12px;font-weight:600">登入玩家完成全部</td></tr>
+  </tbody>
+</table>
+
+<h2 style="margin-top:36px">3.3 籤筒設計（銅 / 銀 / 金）</h2>
+<p>每個籤筒包含固定數量的籤，抽出不重複，確保玩家能感受到「剩餘張數」帶來的驅動力。每個籤筒內各有一張保底稀有道具（位置隨機）。</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:20px 0">
+  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);background:white">
+    <div style="background:#fdf0e8;color:#7a3e18;padding:12px 16px;font-weight:700;font-size:14px">銅籤筒（Days 1–5）</div>
+    <div style="padding:12px 16px">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×20</span><span style="color:var(--gray-mid);font-size:11px">Day 1 免費</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×30</span><span style="color:var(--gray-mid);font-size:11px">10 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>旋轉卡 ×5</span><span style="color:var(--gray-mid);font-size:11px">15 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×50</span><span style="color:var(--gray-mid);font-size:11px">20 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px"><span style="color:var(--amber);font-weight:600">★ 加速道具卡</span><span style="color:var(--gray-mid);font-size:11px">25 幣 · 保底稀有</span></div>
+    </div>
+  </div>
+  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);background:white">
+    <div style="background:#f2f2f2;color:#444;padding:12px 16px;font-weight:700;font-size:14px">銀籤筒（Days 6–10）</div>
+    <div style="padding:12px 16px">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×80</span><span style="color:var(--gray-mid);font-size:11px">35 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>旋轉卡 ×15</span><span style="color:var(--gray-mid);font-size:11px">45 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×100</span><span style="color:var(--gray-mid);font-size:11px">55 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×150</span><span style="color:var(--gray-mid);font-size:11px">65 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px"><span style="color:var(--blue);font-weight:600">★ 倍率提升卡</span><span style="color:var(--gray-mid);font-size:11px">80 幣 · 保底稀有</span></div>
+    </div>
+  </div>
+  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);background:white">
+    <div style="background:#fdf5d0;color:#6b5010;padding:12px 16px;font-weight:700;font-size:14px">金籤筒（Days 11–14）</div>
+    <div style="padding:12px 16px">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×200</span><span style="color:var(--gray-mid);font-size:11px">100 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>旋轉卡 ×30</span><span style="color:var(--gray-mid);font-size:11px">120 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px"><span>幸運幣 ×300</span><span style="color:var(--gray-mid);font-size:11px">145 幣</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px"><span style="color:var(--purple);font-weight:600">★ 現金等值獎勵</span><span style="color:var(--gray-mid);font-size:11px">175 幣 · 保底大獎</span></div>
+    </div>
+  </div>
+</div>
+
+<h2>3.4 各市場幣值規劃（草案）</h2>
+<div class="alert-box" style="border-left-color:var(--amber);background:var(--amber-light)">
+  <div class="alert-title" style="color:var(--amber)">⚠ 幣值尚待確認</div>
+  <p style="color:var(--amber)">下表為初步框架，幣的 USD 折算需進一步參考現有平台的點數 / 虛擬貨幣現行定價、各國玩家實際 LTV 與 ARPU 數據後另行訂定，不作為上線標準。</p>
+</div>
+<table>
+  <thead><tr><th>市場等級</th><th>代表國家</th><th style="text-align:right">參考幣值（USD/幣）</th><th style="text-align:right">70幣登入約值</th><th style="text-align:right">任務門檻日押注</th><th>說明</th></tr></thead>
+  <tbody>
+    <tr><td><strong style="color:#8b2020">Tier A 高 LTV</strong></td><td>日本 · 香港 · 新加坡 · 韓國</td><td style="text-align:right">$0.030（參考值）</td><td style="text-align:right">$2.10</td><td style="text-align:right">$480 / 天</td><td style="color:var(--gray-mid);font-size:12px">待平台現有幣值校準</td></tr>
+    <tr><td><strong style="color:#7a5000">Tier B 中 LTV</strong></td><td>台灣 · 馬來西亞 · 泰國</td><td style="text-align:right">$0.015（參考值）</td><td style="text-align:right">$1.05</td><td style="text-align:right">$240 / 天</td><td style="color:var(--gray-mid);font-size:12px">本計畫預設主力市場</td></tr>
+    <tr><td><strong style="color:#1a5c1a">Tier C 低 LTV</strong></td><td>越南 · 印尼 · 菲律賓</td><td style="text-align:right">$0.005（參考值）</td><td style="text-align:right">$0.35</td><td style="text-align:right">$80 / 天</td><td style="color:var(--gray-mid);font-size:12px">新興市場，門檻友善</td></tr>
+  </tbody>
+</table>
+<p style="margin-top:12px;font-size:13px;color:var(--gray-mid)">校準公式：任務日押注門檻 = 80幣 × 幣值 ÷ 0.5%（RTP撥出率）。各市場幣值由運營端在後台設定，籤筒費用表全球統一，只調整各市場幣值係數。</p>
+
+<!-- CHAPTER 4: ITEM UX (renumbered from 03) -->
+<div class="chapter-banner" id="ux-fix">
+  <div class="chapter-num">Chapter 04</div>
+  <div class="chapter-title">道具管理系統：三段演進設計</div>
+</div>
+
+<p>道具管理能力依 Phase 分三個階段遞進交付，每個階段在當時的功能範圍內完整支援玩家操作，隨道具種類增加逐步豐富。</p>
+
+<div class="item-evo">
+  <div class="item-stage stage-teal">
+    <div class="item-stage-header">Phase 1 · S3｜輕量道具欄</div>
+    <div class="item-stage-body">
+      <ul>
+        <li>與幣包頁整合，簡單列表呈現</li>
+        <li>顯示道具名稱、數量、到期時間</li>
+        <li>單一「使用」按鈕，進遊戲前啟用</li>
+        <li>不需排序、不需分類</li>
+        <li>開發量：3–4 天</li>
+      </ul>
+    </div>
+  </div>
+  <div class="item-arrow">→</div>
+  <div class="item-stage stage-blue">
+    <div class="item-stage-header">Phase 2 · S8｜道具欄強化</div>
+    <div class="item-stage-body">
+      <ul>
+        <li>獨立道具欄入口（Tab 頁）</li>
+        <li>加入「快到期」醒目提示</li>
+        <li>道具分類（旋轉卡 / 特殊卡 / 補簽卡）</li>
+        <li>道具使用歷史記錄</li>
+        <li>開發量：4–5 天</li>
+      </ul>
+    </div>
+  </div>
+  <div class="item-arrow">→</div>
+  <div class="item-stage stage-purple">
+    <div class="item-stage-header">Phase 3 · S12｜完整背包系統</div>
+    <div class="item-stage-body">
+      <ul>
+        <li>完整背包 UI（搜尋/排序/篩選）</li>
+        <li>VIP 專屬道具槽位展示</li>
+        <li>道具組合使用（特殊遊戲卡）</li>
+        <li>道具贈送（Phase 3 社交功能）</li>
+        <li>開發量：8–10 天</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 5: PHASES -->
+<div class="chapter-banner" id="phases">
+  <div class="chapter-num">Chapter 05</div>
+  <div class="chapter-title">全年 Sprint 時程框架</div>
+</div>
+
+<p>全年分 16 個 Sprint，每 Sprint 2 週。道具管理能力從 S3 隨 Phase 推進逐步升級，確保每個階段玩家體驗完整。</p>
+
+<div class="phase-grid">
+  <div class="phase-block p1">
+    <div class="phase-header">
+      <div class="phase-tag">Phase 1 · M1–M2</div>
+      <div class="phase-title">回訪基礎</div>
+      <div class="phase-period">S1 – S4 · 建立基礎設施，讓玩家第一天就有事做</div>
+    </div>
+    <div class="phase-sprints">
+      <div class="sprint-item"><span class="sprint-code">S1</span><span class="sprint-name">簽到系統 + Tag 系統（3個核心標籤：新玩家、斷簽風險、高押量）+ 幸運幣補簽機制（斷簽登入時自動觸發）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S2</span><span class="sprint-name">第二貨幣系統 + RTP 撥出引擎（含注單 RTP 紀錄、每日獲取上限、幣水庫觀測基礎）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S3</span><span class="sprint-name">抽寶箱 + 旋轉卡道具化 + 輕量道具欄（S2&amp;S3 同日上線）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S4</span><span class="sprint-name">廣宣 Popup + Inbox 通知中心</span></div>
+    </div>
+    <div class="phase-kpi"><strong>Phase 1 KPI</strong>次日留存 +15%　簽到完成率 &gt;30%　第二貨幣日活使用率 &gt;20%</div>
+  </div>
+
+  <div class="phase-block p2">
+    <div class="phase-header">
+      <div class="phase-tag">Phase 2 · M3–M4</div>
+      <div class="phase-title">任務循環 + 社交</div>
+      <div class="phase-period">S5 – S8 · 啟動 RTP 撥出機制的第一批活動</div>
+    </div>
+    <div class="phase-sprints">
+      <div class="sprint-item"><span class="sprint-code">S5</span><span class="sprint-name">押注任務（正式啟動 RTP 撥出機制，注單紀錄驗證）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S6</span><span class="sprint-name">指定遊戲任務（強化對目標遊戲的黏著）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S7</span><span class="sprint-name">排行榜系統（即時積分 + 賽季結算）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S8</span><span class="sprint-name">大獎回放 + 社交分享 + 道具欄強化（獨立 Tab、到期提醒、分類顯示）</span></div>
+    </div>
+    <div class="phase-kpi"><strong>Phase 2 KPI</strong>日均押注量 +20%　任務完成率 &gt;25%　社交分享率 &gt;5%</div>
+  </div>
+
+  <div class="phase-block p3">
+    <div class="phase-header">
+      <div class="phase-tag">Phase 3 · M5–M6</div>
+      <div class="phase-title">道具生態 + 玩家分層</div>
+      <div class="phase-period">S9 – S12 · 讓高價值玩家的離開成本越來越高</div>
+    </div>
+    <div class="phase-sprints">
+      <div class="sprint-item"><span class="sprint-code">S9</span><span class="sprint-name">補簽卡完整系統（Phase 1 幸運幣補簽的升級版：玩家改用補簽卡補回，幣可留著抽寶箱；補簽卡透過寶箱或任務取得）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S10</span><span class="sprint-name">Tag 擴充（精準 CRM 觸發腳本，新增 5–8 個標籤）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S11</span><span class="sprint-name">特殊遊戲卡系統（稀有道具、遊戲內效果整合）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S12</span><span class="sprint-name">完整背包系統（搜尋/排序/篩選/VIP槽位）+ VIP 分層</span></div>
+    </div>
+    <div class="phase-kpi"><strong>Phase 3 KPI</strong>7日留存 +20%　VIP 轉化率 &gt;8%　道具使用率 &gt;50%</div>
+  </div>
+
+  <div class="phase-block p4">
+    <div class="phase-header">
+      <div class="phase-tag">Phase 4 · M7–M8</div>
+      <div class="phase-title">深度成長系統</div>
+      <div class="phase-period">S13 – S16 · 長期路徑 + Jackpot + 幸運輪閉環</div>
+    </div>
+    <div class="phase-sprints">
+      <div class="sprint-item"><span class="sprint-code">S13</span><span class="sprint-name">升級系統（等級 + 經驗值 + 里程碑獎勵）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S14</span><span class="sprint-name">積分競賽（賽季制，季度活躍峰值設計）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S15</span><span class="sprint-name">RTP 運營後台 + Jackpot 連線彩金（高撥出 RTP 活動）</span></div>
+      <div class="sprint-item"><span class="sprint-code">S16</span><span class="sprint-name">幸運輪（終局升級版，玩家已習慣抽箱 6 個月後推出）</span></div>
+    </div>
+    <div class="phase-kpi"><strong>Phase 4 KPI</strong>30日留存 +15%　季度活躍峰值 +30%　ARPU +25%</div>
+  </div>
+</div>
+
+<!-- CHAPTER 6: PRINCIPLES -->
+<div class="chapter-banner">
+  <div class="chapter-num">Chapter 06</div>
+  <div class="chapter-title">執行原則與注意事項</div>
+</div>
+
+<div class="principles">
+  <div class="principle pr-teal">
+    <div class="principle-num">1</div>
+    <h4>幣上線與消耗場景同一天</h4>
+    <p>S2（幣系統）和 S3（抽寶箱 + 輕量道具欄）必須同一天上線，消除空窗期，確保玩家第一天賺到幣就能花出去，且花完有地方看。</p>
+  </div>
+  <div class="principle pr-blue">
+    <div class="principle-num">2</div>
+    <h4>RTP 下限由 Server 鎖定</h4>
+    <p>各活動撥出比例加總不得使玩家即時 RTP 低於設定下限，由後端程式強制執行，無法人工突破。可依 VIP 等級設定差異化下限。</p>
+  </div>
+  <div class="principle pr-amber">
+    <div class="principle-num">3</div>
+    <h4>每季根據數據動態調整</h4>
+    <p>本計畫是框架，不是固定劇本。每季末 KPI 回顧後，動態調整 Phase 優先序與各活動 RTP 撥出比例是否合理，幣水庫水位納入調整依據。</p>
+  </div>
+</div>
+
+<h2>動態 RTP 設計的常見錯誤</h2>
+<table>
+  <thead><tr><th>錯誤</th><th>後果</th><th>正確做法</th></tr></thead>
+  <tbody>
+    <tr class="warn-row"><td>多個活動撥出過大，未設下限</td><td>玩家即時 RTP 過低，體驗變差直接流失</td><td>設定 RTP 下限，後端鎖定，超過即停止計入</td></tr>
+    <tr class="warn-row"><td>Jackpot 對所有人撥出，不分押注資格</td><td>小押注玩家被扣 RTP 但無緣彩金，不公平</td><td>Jackpot 撥出僅適用達門檻玩家，系統自動判斷</td></tr>
+    <tr class="warn-row"><td>撥出比例與獎金預算不匹配</td><td>撥出 1% 但實際發獎遠低於此，平台財務有損</td><td>撥出比例 = 預計發獎總額 ÷ 預計總押注量</td></tr>
+    <tr class="warn-row"><td>沒有注單 RTP 紀錄</td><td>無法追蹤玩家實際體驗到的即時 RTP，活動效益無從分析</td><td>每筆押注注單記錄當下實際 RTP，供後台查詢</td></tr>
+    <tr class="warn-row"><td>第二貨幣無每日發放上限</td><td>異常漏洞行為、幣快速通膨、激勵效果失效</td><td>依押注量或 VIP 設定每日獲取上限，並監控水庫水位</td></tr>
+    <tr class="warn-row"><td>斷簽召回設計為站外推播</td><td>遊戲商無法觸達離線玩家，機制形同虛設</td><td>所有召回動作設計為「玩家登入當下自動觸發」：幣補簽提示（P1）→ 補簽卡（P3）</td></tr>
+  </tbody>
+</table>
+
+<h2>遊戲商 CRM 的核心限制：無站外觸達能力</h2>
+<div class="highlight-box"><p>作為遊戲商（非平台方），我們無法對已離線的玩家發送任何站外推播或通知。所有 CRM 動作必須設計為「玩家主動回來的那一刻才觸發」，而非主動追出去。這是本計畫所有召回設計的根本前提。</p></div>
+
+<table>
+  <thead><tr><th>召回場景</th><th>錯誤設計</th><th>正確設計</th><th>上線時機</th></tr></thead>
+  <tbody>
+    <tr><td>斷簽 1–2 天</td><td>推播通知「你已斷簽」</td><td>玩家登入時顯示幸運幣補簽提示（50–80 幣）</td><td>Phase 1 · S1</td></tr>
+    <tr><td>斷簽 3 天以上</td><td>發送召回 SMS / Email</td><td>登入觸發回歸禮包：幸運幣 + 低門檻任務</td><td>Phase 1 · S1</td></tr>
+    <tr><td>斷簽補救（升級版）</td><td>—</td><td>補簽卡取代幣補簽，玩家不需花幣，幣留著抽寶箱</td><td>Phase 3 · S9</td></tr>
+    <tr><td>高押量玩家流失</td><td>發送 VIP 專屬優惠信</td><td>VIP 回歸禮包在下次登入時自動發放</td><td>Phase 3 · S12</td></tr>
+  </tbody>
+</table>
+
+<!-- CHAPTER 7: STAFFING -->
+<div class="chapter-banner" id="staffing">
+  <div class="chapter-num">Chapter 07</div>
+  <div class="chapter-title">人力配置需求（四季估算）</div>
+</div>
+
+<p class="lead">以下估算基於每季 40 個工作天、單位為「人天（person-days）」。含 v3 新增的輕量道具欄（S3）、道具欄強化（S8）工作量。</p>
+
+<h2>Q1｜Phase 1：回訪基礎（S1–S4）</h2>
+<p>本季核心難度在後端：Tag引擎（含斷簽偵測與幣補簽觸發）、RTP撥出引擎（含注單RTP紀錄）、第二貨幣帳本（含每日上限）、抽寶箱機率引擎，同時還需交付輕量道具欄，是全年技術複雜度最高的一季。</p>
+<table>
+  <thead><tr><th>職能</th><th class="td-center">估算人天</th><th>主要工作內容</th></tr></thead>
+  <tbody>
+    <tr><td class="td-em">企劃（PM+企劃）</td><td class="td-center td-em">80天</td><td>四個系統需求文件、UI流程規劃、KPI定義、Sprint Review、幣發放/消耗規則設計</td></tr>
+    <tr><td>平面美術</td><td class="td-center">28天</td><td>簽到UI、幸運幣圖示+錢包視覺、三階寶箱設計、開箱動效素材、輕量道具欄 UI、Popup模板</td></tr>
+    <tr><td>Web 前端</td><td class="td-center">26天</td><td>簽到頁面、幣錢包頁面（含輕量道具欄整合）、Inbox列表/詳情頁、Popup觸發前端邏輯</td></tr>
+    <tr><td>Unity</td><td class="td-center">18天</td><td>旋轉卡道具化（in-game卡牌系統整合）、開箱動畫接入、遊戲內幣餘額顯示</td></tr>
+    <tr><td class="td-em" style="color:var(--coral)">後端</td><td class="td-center td-em" style="color:var(--coral)">50天</td><td>Tag引擎（自動打標 + 斷簽偵測 + 登入觸發幣補簽）、RTP撥出計算引擎（即時扣除+下限鎖定+注單RTP紀錄）、第二貨幣帳本（含每日上限）、抽寶箱機率引擎+保底機制</td></tr>
+    <tr><td>數據分析</td><td class="td-center">14天</td><td>基礎留存/簽到監控看板、幣水庫觀測表初版（發行量 vs 消耗量）</td></tr>
+  </tbody>
+</table>
+<div class="alert-box"><div class="alert-title">⚠ Q1 後端風險</div><p>後端50天對單人幾乎是滿載（40天/季）。強烈建議 Q1 配置後端 1.5 人力，或讓後端提前一個 Sprint 預先設計 RTP 引擎的資料模型與 API 規格，再進入正式開發。</p></div>
+
+<h2>Q2｜Phase 2：任務循環 + 社交（S5–S8）</h2>
+<table>
+  <thead><tr><th>職能</th><th class="td-center">估算人天</th><th>主要工作內容</th></tr></thead>
+  <tbody>
+    <tr><td class="td-em">企劃</td><td class="td-center td-em">80天</td><td>任務設計邏輯（觸發條件/獎勵配比）、排行榜規則、分享機制、RTP撥出比例第一次實際校準</td></tr>
+    <tr><td>平面美術</td><td class="td-center">22天</td><td>任務列表UI、進度條視覺、排行榜介面、大獎回放/分享卡模板、道具欄強化 UI（獨立Tab）</td></tr>
+    <tr><td>Web 前端</td><td class="td-center">25天</td><td>任務大廳頁、進度條動態顯示、排行榜即時更新、分享頁面、道具欄強化（到期提醒、分類Tab）</td></tr>
+    <tr><td>Unity</td><td class="td-center">12天</td><td>大獎回放動畫（in-game replay）、遊戲內任務進度浮層提示</td></tr>
+    <tr><td>後端</td><td class="td-center">38天</td><td>任務觸發+完成判定（串接RTP撥出）、排行榜積分計算+結算、分享驗證+防刷邏輯、獎池即時餘額管理</td></tr>
+    <tr><td>數據分析</td><td class="td-center">22天</td><td>任務完成率漏斗分析、各活動RTP撥出 vs 實際發獎效益報表、排行榜參與度、幣水庫水位週報</td></tr>
+  </tbody>
+</table>
+
+<h2>Q3｜Phase 3：道具生態 + 玩家分層（S9–S12）</h2>
+<table>
+  <thead><tr><th>職能</th><th class="td-center">估算人天</th><th>主要工作內容</th></tr></thead>
+  <tbody>
+    <tr><td class="td-em">企劃</td><td class="td-center td-em">80天</td><td>VIP分層設計（權益/門檻）、完整背包道具分類邏輯、Tag新增規則擴充、補簽卡系統設計（幣補簽升級版：補簽卡來源、使用流程、到期管理）</td></tr>
+    <tr><td>平面美術</td><td class="td-center">30天</td><td>完整背包介面視覺、VIP徽章與等級視覺識別、特殊遊戲卡樣式（稀有度區別）、補簽卡UI</td></tr>
+    <tr><td>Web 前端</td><td class="td-center">28天</td><td>完整背包頁面（搜尋/排序/篩選）、VIP會員中心頁、Tag觸發個人化Popup前端、補簽卡互動</td></tr>
+    <tr><td>Unity</td><td class="td-center">20天</td><td>特殊遊戲卡在遊戲內的啟用效果整合、道具使用後的遊戲內回饋動效</td></tr>
+    <tr><td>後端</td><td class="td-center">38天</td><td>完整背包庫存系統、VIP等級計算+維護邏輯、Tag規則擴充+自動觸發精準推送、道具有效期管理</td></tr>
+    <tr><td>數據分析</td><td class="td-center">26天</td><td>VIP轉化率分析、7日留存分層追蹤、道具使用率報表、幣水庫稀缺性健康度監控</td></tr>
+  </tbody>
+</table>
+
+<h2>Q4｜Phase 4：深度成長系統（S13–S16）</h2>
+<table>
+  <thead><tr><th>職能</th><th class="td-center">估算人天</th><th>主要工作內容</th></tr></thead>
+  <tbody>
+    <tr><td class="td-em">企劃</td><td class="td-center td-em">80天</td><td>升級系統經驗值曲線設計、賽季規則（積分/獎勵/重置）、Jackpot觸發機制設計、幸運輪分段設計</td></tr>
+    <tr><td>平面美術</td><td class="td-center">35天</td><td>幸運輪完整視覺（旋轉+停格+特效，本季最重）、Jackpot爆獎動畫素材、升級里程碑視覺、賽季競賽視覺識別</td></tr>
+    <tr><td>Web 前端</td><td class="td-center">30天</td><td>RTP運營後台管理介面（活動撥出設定、即時監控、下限警示）、幸運輪頁面、賽季積分排行</td></tr>
+    <tr><td>Unity</td><td class="td-center">28天</td><td>幸運輪in-game整合（動畫+儀式感）、Jackpot爆獎全屏動效、升級到達特效</td></tr>
+    <tr><td class="td-em" style="color:var(--coral)">後端</td><td class="td-center td-em" style="color:var(--coral)">50天</td><td>Jackpot彩金池累積+觸發機制、幸運輪機率引擎、升級系統帳本、RTP後台API（含權限管控）、賽季結算引擎</td></tr>
+    <tr><td>數據分析</td><td class="td-center">30天</td><td>ARPU分層追蹤、Jackpot ROI分析、賽季活躍峰值分析、幸運輪轉化效益、全年CRM系統總效益回顧</td></tr>
+  </tbody>
+</table>
+
+<h2>全年人力彙整</h2>
+<div class="staffing-intro">
+  <div class="staff-card"><div class="staff-role">企劃（PM+企劃）</div><div class="staff-total">320</div><div class="staff-unit">人天</div><div class="staff-note">2人全年全投入，計畫如期交付的核心</div></div>
+  <div class="staff-card"><div class="staff-role">平面美術</div><div class="staff-total">115</div><div class="staff-unit">人天</div><div class="staff-note">約 0.7人全年；Q4幸運輪視覺為高峰，建議預先安排</div></div>
+  <div class="staff-card"><div class="staff-role">Web 前端</div><div class="staff-total">109</div><div class="staff-unit">人天</div><div class="staff-note">約 0.7人全年；Q4 RTP後台複雜度高</div></div>
+  <div class="staff-card"><div class="staff-role">Unity</div><div class="staff-total">78</div><div class="staff-unit">人天</div><div class="staff-note">約 0.5人全年；建議以專案制外包或內部兼職處理</div></div>
+  <div class="staff-card" style="border-color:var(--coral)"><div class="staff-role">後端</div><div class="staff-total" style="color:var(--coral)">176</div><div class="staff-unit">人天</div><div class="staff-note" style="color:var(--coral)">⚠ Q1/Q4各需1.5人；全年至少需1人，高峰季需增援</div></div>
+  <div class="staff-card"><div class="staff-role">數據分析</div><div class="staff-total">92</div><div class="staff-unit">人天</div><div class="staff-note">Q1起即需part-time投入（幣水庫觀測）；Q3-Q4近全職</div></div>
+</div>
+
+<table>
+  <thead><tr><th>職能</th><th class="td-center">Q1</th><th class="td-center">Q2</th><th class="td-center">Q3</th><th class="td-center">Q4</th><th class="td-center">全年合計</th><th>建議配置</th></tr></thead>
+  <tbody>
+    <tr><td class="td-em">企劃（PM+企劃）</td><td class="td-center">80</td><td class="td-center">80</td><td class="td-center">80</td><td class="td-center">80</td><td class="td-center td-em">320天</td><td>2人全年</td></tr>
+    <tr><td>平面美術</td><td class="td-center">28</td><td class="td-center">22</td><td class="td-center">30</td><td class="td-center">35</td><td class="td-center">115天</td><td>1人（非滿載），Q4提前預排</td></tr>
+    <tr><td>Web 前端</td><td class="td-center">26</td><td class="td-center">25</td><td class="td-center">28</td><td class="td-center">30</td><td class="td-center">109天</td><td>1人（兼跑），Q4稍重</td></tr>
+    <tr><td>Unity</td><td class="td-center">18</td><td class="td-center">12</td><td class="td-center">20</td><td class="td-center">28</td><td class="td-center">78天</td><td>外包/兼職，專案制安排</td></tr>
+    <tr class="warn-row"><td>後端</td><td class="td-center">50</td><td class="td-center">38</td><td class="td-center">38</td><td class="td-center">50</td><td class="td-center">176天</td><td>⚠ 1人全年，Q1/Q4需1.5人</td></tr>
+    <tr><td>數據分析</td><td class="td-center">14</td><td class="td-center">22</td><td class="td-center">26</td><td class="td-center">30</td><td class="td-center">92天</td><td>Q1 part-time；Q3-Q4近全職</td></tr>
+  </tbody>
+</table>
+
+<!-- CLOSING -->
+<div class="chapter-banner" style="background:var(--teal)">
+  <div class="chapter-num" style="color:rgba(255,255,255,.5)">執行方針</div>
+  <div class="chapter-title">小步快跑，數據驅動，透明匯報</div>
+</div>
+
+<div class="pillars">
+  <div class="pillar" style="background:#f0fbf7;border-color:#b3dece">
+    <div class="pillar-num" style="color:var(--teal)">原則</div>
+    <div class="pillar-title" style="color:var(--teal)">體驗閉環優先</div>
+    <div class="pillar-body" style="color:#1a5c44">每個 Sprint 交付的功能必須讓玩家有完整體驗，不留斷點。道具可以簡單，但不能有了道具卻沒地方放。</div>
+  </div>
+  <div class="pillar" style="background:#e8f0fa;border-color:#b3cdf0">
+    <div class="pillar-num" style="color:var(--blue)">原則</div>
+    <div class="pillar-title" style="color:var(--blue)">財務安全優先</div>
+    <div class="pillar-body" style="color:#1a3a6b">RTP 下限由 Server 全程保護，幣水庫水位持續監控，注單 RTP 紀錄確保可追溯，活動設計必須先算清楚財務邏輯。</div>
+  </div>
+  <div class="pillar" style="background:var(--amber-light);border-color:#e5c97a">
+    <div class="pillar-num" style="color:var(--amber)">原則</div>
+    <div class="pillar-title" style="color:var(--amber)">計畫跟著數據走</div>
+    <div class="pillar-body" style="color:#6b4800">Phase 1 結束即可看到留存數據，不需等年底。每月 10 分鐘高層匯報，KPI 紅黃綠燈透明同步，每季動態調整。</div>
+  </div>
+</div>
+
+</div>
+
+<footer>SLOT 遊戲 CRM 計畫書　·　策略框架版 v3　·　含道具體驗修正 &amp; 人力配置估算<br>每個功能的細節設計會在對應 Sprint 啟動前，以獨立需求文件呈現</footer>
+</body>
+</html>
