@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLOT CRM MVP 計畫書</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink: #0d1117;
+  --ink-mid: #3d4148;
+  --ink-soft: #6b7280;
+  --paper: #f9f7f4;
+  --paper-warm: #f3f0eb;
+  --paper-card: #ffffff;
+  --rule: rgba(0,0,0,.08);
+  --rule-mid: rgba(0,0,0,.14);
+  --jade: #0a5c45;
+  --jade-mid: #1a8a68;
+  --jade-light: #e6f5f0;
+  --jade-pale: #f0faf6;
+  --gold: #7a4f00;
+  --gold-mid: #b87a00;
+  --gold-light: #fdf4e0;
+  --gold-pale: #fffbf0;
+  --indigo: #2d3a8c;
+  --indigo-mid: #4a5bbf;
+  --indigo-light: #eef0fc;
+  --crimson: #8c2020;
+  --crimson-mid: #bf4040;
+  --crimson-light: #fceaea;
+  --slate: #374151;
+  --slate-light: #f1f3f5;
+  --vip0: #6b7280;
+  --vip1: #639922;
+  --vip2: #2563eb;
+  --vip3: #7c3aed;
+  --vip4: #b45309;
+  --vip5: #b45309;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans TC', sans-serif; background: var(--paper); color: var(--ink); line-height: 1.75; font-size: 14px; }
+
+nav { position: sticky; top: 0; z-index: 100; background: var(--ink); height: 50px; display: flex; align-items: center; padding: 0 48px; gap: 28px; }
+.nav-brand { font-family: 'DM Serif Display', serif; font-size: 15px; color: rgba(255,255,255,.5); margin-right: auto; }
+nav a { color: rgba(255,255,255,.38); text-decoration: none; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+nav a:hover { color: rgba(255,255,255,.85); }
+
+.wrap { max-width: 980px; margin: 0 auto; padding: 48px 48px 140px; }
+
+.cover { padding: 100px 0 100px; border-bottom: 1px solid var(--rule-mid); }
+.cover-kicker { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--jade-mid); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.cover-kicker::before { content: ''; width: 32px; height: 1px; background: var(--jade-mid); }
+.cover-title { font-family: 'DM Serif Display', serif; font-size: clamp(52px,7vw,80px); color: var(--ink); line-height: 1.0; margin-bottom: 20px; }
+.cover-title em { font-style: italic; color: var(--jade); }
+.cover-sub { font-size: 17px; color: var(--ink-soft); font-weight: 300; margin-bottom: 48px; max-width: 580px; line-height: 1.85; }
+.cover-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; }
+.cpill { font-size: 11px; padding: 4px 12px; border-radius: 2px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
+.cp-j { background: var(--jade-light); color: var(--jade); }
+.cp-g { background: var(--gold-light); color: var(--gold); }
+.cp-i { background: var(--indigo-light); color: var(--indigo); }
+.cp-s { background: var(--slate-light); color: var(--slate); }
+.cover-meta { display: grid; grid-template-columns: repeat(5,1fr); border: 1px solid var(--rule-mid); overflow: hidden; background: var(--paper-card); max-width: 780px; }
+.cm { padding: 16px 18px; border-right: 1px solid var(--rule); }
+.cm:last-child { border-right: none; }
+.cm-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 5px; }
+.cm-val { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+
+.ch { background: var(--ink); color: white; padding: 32px 44px; margin: 72px 0 40px; }
+.ch-jade { background: var(--jade); }
+.ch-gold { background: var(--gold); }
+.ch-num { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 8px; }
+.ch-title { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; }
+
+h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--ink); margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-mid); }
+h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin: 28px 0 10px; }
+p { margin-bottom: 14px; color: var(--ink-mid); line-height: 1.8; }
+
+.hl { border-left: 3px solid var(--jade-mid); background: var(--jade-pale); padding: 16px 20px; margin: 22px 0; }
+.hl p { font-size: 15px; font-weight: 500; color: var(--jade); margin: 0; line-height: 1.7; }
+.al { border-left: 3px solid var(--gold-mid); background: var(--gold-pale); padding: 14px 18px; margin: 18px 0; }
+.al-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.al p { font-size: 13px; color: var(--gold); margin: 0; line-height: 1.65; }
+.rl { border-left: 3px solid var(--crimson-mid); background: var(--crimson-light); padding: 14px 18px; margin: 18px 0; }
+.rl-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--crimson); margin-bottom: 4px; }
+.rl p { font-size: 13px; color: var(--crimson); margin: 0; line-height: 1.65; }
+
+.chip { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 2px; white-space: nowrap; line-height: 1.6; }
+.c-j { background: var(--jade-light); color: var(--jade); }
+.c-g { background: var(--gold-light); color: var(--gold); }
+.c-i { background: var(--indigo-light); color: var(--indigo); }
+.c-s { background: var(--slate-light); color: var(--slate); }
+.c-r { background: var(--crimson-light); color: var(--crimson); }
+.c-k { background: var(--ink); color: white; }
+
+/* DUAL TRACK */
+.dual-track { display: grid; grid-template-columns: 1fr 36px 1fr; margin: 24px 0; }
+.dt-block { border: 1px solid var(--rule-mid); background: var(--paper-card); padding: 22px 24px; }
+.dt-left { border-right: none; }
+.dt-right { border-left: none; }
+.dt-mid { background: var(--ink); display: flex; align-items: center; justify-content: center; }
+.dt-mid-text { color: rgba(255,255,255,.4); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; writing-mode: vertical-rl; }
+.dt-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.dt-title { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 10px; }
+.dt-body { font-size: 12px; color: var(--ink-soft); line-height: 1.7; }
+.dt-tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 9px; margin-top: 10px; border-radius: 2px; }
+
+/* FLOW STEPS */
+.flow-steps { display: grid; grid-template-columns: repeat(5,1fr); background: var(--rule-mid); gap: 1px; border: 1px solid var(--rule-mid); margin: 24px 0; }
+.fs { background: var(--paper-card); padding: 18px 16px 22px; }
+.fs-n { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--rule-mid); line-height: 1; margin-bottom: 10px; }
+.fs-title { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.fs-body { font-size: 11px; color: var(--ink-soft); line-height: 1.55; }
+.fs-tag { font-size: 10px; font-weight: 500; padding: 2px 7px; display: inline-block; margin-top: 8px; border-radius: 2px; }
+
+/* FORMULA */
+.formula { background: var(--ink); padding: 24px 28px; margin: 20px 0; font-family: 'DM Mono', monospace; font-size: 13px; color: rgba(255,255,255,.7); line-height: 2.2; }
+.f-comment { color: rgba(255,255,255,.28); font-family: 'Noto Sans TC', sans-serif; font-size: 11px; }
+.f-key { color: #5dcaa5; }
+.f-val { color: #fac775; }
+.f-op { color: rgba(255,255,255,.4); }
+.f-sep { border-top: 1px solid rgba(255,255,255,.1); margin: 10px 0; }
+
+/* VIP GRID */
+.vip-grid { border: 1px solid var(--rule-mid); overflow: hidden; margin: 20px 0; }
+.vip-row { display: grid; grid-template-columns: 160px 140px 160px 180px 1fr; border-bottom: 1px solid var(--rule); }
+.vip-row:last-child { border-bottom: none; }
+.vip-row.head { background: var(--ink); }
+.vr-cell { padding: 11px 16px; border-right: 1px solid var(--rule); font-size: 12px; }
+.vr-cell:last-child { border-right: none; }
+.vip-row.head .vr-cell { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); font-weight: 500; }
+.vip-row:nth-child(even) { background: var(--paper-warm); }
+.vip-row:nth-child(2) { background: var(--jade-pale); }
+
+/* UNLOCK TABLE */
+.unlock-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+.unlock-table th { padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; color: rgba(255,255,255,.75); background: var(--ink); }
+.unlock-table td { padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: middle; line-height: 1.55; color: var(--ink-mid); }
+.unlock-table tr:nth-child(even) td { background: var(--paper-warm); }
+.unlock-table tr:first-child td { background: var(--jade-pale); }
+.pts { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); }
+
+/* CARD COMPARE */
+.card-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+.cc { border: 1px solid var(--rule-mid); background: var(--paper-card); overflow: hidden; }
+.cc-head { padding: 16px 20px; border-bottom: 1px solid var(--rule); }
+.cc-tag { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+.cc-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); }
+.cc-sub { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+.cc-body { padding: 16px 20px; }
+.cc-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px dotted var(--rule-mid); font-size: 13px; }
+.cc-row:last-child { border-bottom: none; }
+.cc-label { color: var(--ink-soft); font-size: 12px; flex-shrink: 0; width: 80px; }
+.cc-desc { color: var(--ink-mid); line-height: 1.55; flex: 1; text-align: right; }
+
+/* SPRINT */
+.sprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule-mid); border: 1px solid var(--rule-mid); margin: 20px 0; }
+.sprint { background: var(--paper-card); }
+.sprint-head { padding: 18px 22px 14px; border-bottom: 1px solid var(--rule); }
+.sprint-code { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+.sprint-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); margin-bottom: 3px; }
+.sprint-goal { font-size: 12px; color: var(--ink-soft); }
+.sprint-body { padding: 14px 22px; }
+.task { display: flex; gap: 12px; padding: 7px 0; border-bottom: 1px dotted var(--rule-mid); font-size: 13px; line-height: 1.55; color: var(--ink-mid); }
+.task:last-child { border-bottom: none; }
+.task-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+.sprint-footer { padding: 12px 22px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--ink-soft); background: var(--paper-warm); }
+.sprint-footer strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 2px; }
+.s1 .sprint-code { color: var(--jade); } .s1 .task-dot { background: var(--jade-mid); }
+.s2 .sprint-code { color: var(--indigo); } .s2 .task-dot { background: var(--indigo-mid); }
+.s3 .sprint-code { color: var(--gold); } .s3 .task-dot { background: var(--gold-mid); }
+.s4 .sprint-code { color: var(--crimson); } .s4 .task-dot { background: var(--crimson-mid); }
+
+/* TABLES */
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+thead tr { background: var(--ink); }
+thead th { padding: 10px 14px; text-align: left; font-weight: 500; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+tbody tr:nth-child(even) { background: var(--paper-warm); }
+tbody tr:hover { background: var(--jade-pale); }
+td { padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.55; color: var(--ink-mid); }
+
+/* TWO COL */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.card { border: 1px solid var(--rule-mid); background: var(--paper-card); overflow: hidden; }
+.card-head { padding: 14px 18px; border-bottom: 1px solid var(--rule); }
+.card-tag { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; }
+.card-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+.card-body { padding: 14px 18px; font-size: 12px; color: var(--ink-soft); line-height: 1.7; }
+.card-body b { font-weight: 600; color: var(--ink); }
+.pro, .con { font-size: 13px; padding: 4px 0; line-height: 1.65; }
+.pro::before { content: "+ "; font-weight: 700; color: var(--jade-mid); }
+.con::before { content: "− "; font-weight: 700; color: var(--crimson-mid); }
+
+/* SIGNALS */
+.signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.signal { border: 1px solid var(--rule-mid); background: var(--paper-card); padding: 16px 18px; }
+.signal-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--ink); margin-bottom: 4px; line-height: 1; }
+.signal-label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.signal-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
+
+/* JOURNEY */
+.journey { overflow-x: auto; margin: 16px 0; }
+.j-table { min-width: 740px; width: 100%; border-collapse: collapse; }
+.j-table th { padding: 10px 8px; text-align: center; font-size: 11px; font-weight: 600; color: white; letter-spacing: .04em; }
+.j-table td { padding: 8px 6px; border: 1px solid var(--rule); vertical-align: middle; font-size: 11px; text-align: center; line-height: 1.45; }
+.j-table .row-label { text-align: left; padding-left: 12px; font-weight: 600; color: var(--ink-soft); background: var(--paper-warm); white-space: nowrap; }
+.dh { background: var(--ink); }
+.da { background: #3a0a0a; }
+.dr { background: var(--crimson); }
+.dot-wrap { display: flex; gap: 3px; justify-content: center; flex-wrap: wrap; padding: 2px 0; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.df { background: var(--jade-mid); }
+.de { border: 1.5px solid #b4b2a9; }
+.jc { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }
+
+/* PHASE ROW */
+.phase-row { display: flex; border: 1px solid var(--rule-mid); overflow: hidden; margin: 14px 0; }
+.phase-cell { flex: 1; padding: 14px 16px; border-right: 1px solid var(--rule); background: var(--paper-card); }
+.phase-cell:nth-child(even) { background: var(--paper-warm); }
+.phase-cell:last-child { border-right: none; }
+.phase-lbl { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+.phase-val { font-size: 12px; color: var(--ink-mid); line-height: 1.6; }
+
+/* DB */
+.db { border: 1px solid var(--rule-mid); background: var(--paper-card); overflow: hidden; margin: 16px 0; }
+.db-head { padding: 11px 16px; background: var(--paper-warm); border-bottom: 1px solid var(--rule-mid); font-size: 12px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.db-note { font-weight: 400; font-size: 11px; color: var(--ink-soft); margin-left: auto; font-family: 'DM Mono', monospace; }
+.db-fields { padding: 0; }
+.field { display: grid; grid-template-columns: 210px 110px 1fr; gap: 10px; padding: 8px 16px; border-bottom: 1px solid var(--rule); }
+.field:last-child { border-bottom: none; }
+.field.f-j { background: rgba(26,138,104,.05); }
+.field.f-g { background: rgba(184,122,0,.05); }
+.field.f-i { background: rgba(74,91,191,.05); }
+.fname { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink); }
+.ftype { font-size: 11px; color: var(--ink-soft); font-family: 'DM Mono', monospace; }
+.fnote { font-size: 11px; color: var(--ink-soft); line-height: 1.5; }
+.fnote .nw { color: var(--jade); font-weight: 600; }
+.fnote .wn { color: var(--gold); font-weight: 600; }
+.fnote .p3 { color: var(--indigo); font-weight: 600; }
+
+/* PRINCIPLES */
+.principles { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule-mid); border: 1px solid var(--rule-mid); margin: 20px 0; }
+.pr { background: var(--paper-card); padding: 20px; }
+.pr-n { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--rule-mid); line-height: 1; margin-bottom: 10px; }
+.pr h4 { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.pr p { font-size: 12px; color: var(--ink-soft); margin: 0; line-height: 1.65; }
+
+footer { text-align: center; padding: 48px; color: var(--ink-soft); font-size: 12px; letter-spacing: .08em; border-top: 1px solid var(--rule-mid); margin-top: 80px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">SLOT CRM · MVP 提案</div>
+  <a href="#design">系統設計</a>
+  <a href="#exp">EXP 架構</a>
+  <a href="#cards">道具卡</a>
+  <a href="#sprints">Sprint</a>
+  <a href="#currency">第二貨幣</a>
+  <a href="#journey">玩家旅程</a>
+  <a href="#db">資料模型</a>
+</nav>
+
+<div class="wrap">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-kicker">Product Strategy · CRM MVP Proposal</div>
+  <div class="cover-title">SLOT 遊戲<br><em>CRM MVP</em> 計畫書</div>
+  <div class="cover-sub">以碎片集卡為核心的留存機制，搭配雙軌積分系統驅動玩家每日回訪與長期黏著。</div>
+  <div class="cover-pills">
+    <span class="cpill cp-j">碎片被動發放</span>
+    <span class="cpill cp-j">玩家手動解鎖</span>
+    <span class="cpill cp-g">解鎖積分獨立</span>
+    <span class="cpill cp-g">VIP 積分獨立</span>
+    <span class="cpill cp-i">旋轉卡 1星 · MVP 核心</span>
+    <span class="cpill cp-s">特殊遊戲卡 · 架構預留</span>
+  </div>
+  <div class="cover-meta">
+    <div class="cm"><div class="cm-label">計畫週期</div><div class="cm-val">8 週 · 4 Sprint</div></div>
+    <div class="cm"><div class="cm-label">MVP 道具卡</div><div class="cm-val">旋轉卡 1星</div></div>
+    <div class="cm"><div class="cm-label">解鎖機制</div><div class="cm-val">碎片 + 解鎖積分</div></div>
+    <div class="cm"><div class="cm-label">VIP 整合</div><div class="cm-val">押注同時給 VIP 積分</div></div>
+    <div class="cm"><div class="cm-label">第二貨幣</div><div class="cm-val">MVP 不納入，數據驅動</div></div>
+  </div>
+</div>
+
+<!-- CH1 -->
+<div class="ch" id="design">
+  <div class="ch-num">Chapter 01</div>
+  <div class="ch-title">核心設計：碎片集卡 × 雙軌積分解鎖</div>
+</div>
+
+<h2>1.1 為什麼選擇這個設計方向</h2>
+<p>SLOT 遊戲 CRM 的核心問題是：如何讓玩家每天有一個具體的、小的理由回來。廣告和現金補貼只能帶來短期流量，真正有效的留存來自遊戲內建立「每天有事要做、有東西在進行中」的目標感。</p>
+<p>本計畫以「碎片集卡 + 解鎖積分」作為 MVP 核心機制：碎片讓玩家每天登入都有進展，解鎖積分讓押注行為直接對應道具卡的獲得，兩者共同形成每日回訪的內在動力。</p>
+
+<div class="hl"><p>碎片是道具卡的鎖定預覽。玩家持有它、看得見它，知道「我已經有這張卡，只差解鎖」。這種擁有感比等待感更能驅動行動。</p></div>
+
+<h2>1.2 雙軌積分：完全獨立的兩個數值</h2>
+<p>押注行為同時給予兩個完全獨立的積分，各自服務不同目的，互不干擾。</p>
+
+<div class="dual-track">
+  <div class="dt-block dt-left" style="border-color:var(--jade-mid)">
+    <div class="dt-label" style="color:var(--jade)">VIP 積分</div>
+    <div class="dt-title" style="color:var(--jade)">永久累積，決定等級</div>
+    <div class="dt-body">只增不減。代表玩家的歷史忠誠度，決定 VIP 等級與登入碎片星級。無論玩家如何使用獎勵，VIP 等級永遠不會退步。</div>
+    <div class="dt-tag" style="background:var(--jade-light);color:var(--jade)">用於 VIP 等級判斷</div>
+  </div>
+  <div class="dt-mid"><div class="dt-mid-text">每次押注</div></div>
+  <div class="dt-block dt-right" style="border-color:var(--gold-mid)">
+    <div class="dt-label" style="color:var(--gold)">解鎖積分</div>
+    <div class="dt-title" style="color:var(--gold)">可消耗，解鎖道具卡</div>
+    <div class="dt-body">押注時增加，玩家選擇解鎖道具卡時扣除。積分不足就無法解鎖高星卡，確保每張道具卡背後都有對應的真實押注成本。</div>
+    <div class="dt-tag" style="background:var(--gold-light);color:var(--gold)">用於道具卡解鎖</div>
+  </div>
+</div>
+
+<div class="formula">
+  <div class="f-comment">// 每次押注行為（兩個積分完全獨立計算）</div>
+  <div><span class="f-key">vip_points_total</span> <span class="f-op">+=</span> bet_amount <span class="f-op">×</span> <span class="f-val">vip_earn_rate</span></div>
+  <div><span class="f-key">unlock_points_available</span> <span class="f-op">+=</span> bet_amount <span class="f-op">×</span> <span class="f-val">unlock_earn_rate</span></div>
+  <div class="f-sep"></div>
+  <div class="f-comment">// 玩家選擇解鎖道具卡（VIP 積分不受影響）</div>
+  <div><span class="f-key">unlock_points_available</span> <span class="f-op">-=</span> card.unlock_cost</div>
+  <div><span class="f-key">card.status</span> <span class="f-op">=</span> <span class="f-val">'active'</span>　<span class="f-comment">// 道具卡進背包可用</span></div>
+  <div class="f-sep"></div>
+  <div class="f-comment">// VIP 等級判斷（看歷史總量，解鎖不影響）</div>
+  <div><span class="f-key">vip_level</span> <span class="f-op">=</span> <span class="f-val">lookup</span>( vip_tier_config, vip_points_total )</div>
+</div>
+
+<h2>1.3 完整玩家旅程</h2>
+<div class="flow-steps">
+  <div class="fs">
+    <div class="fs-n" style="color:var(--jade-light)">01</div>
+    <div class="fs-title" style="color:var(--jade)">每日登入</div>
+    <div class="fs-body">依 VIP 等級發碎片 ×1（MVP 全員 1星）。碎片以鎖定狀態入背包，玩家可以看見它。</div>
+    <div class="fs-tag" style="background:var(--jade-light);color:var(--jade)">被動獲得</div>
+  </div>
+  <div class="fs">
+    <div class="fs-n" style="color:var(--jade-light)">02</div>
+    <div class="fs-title" style="color:var(--jade)">流水任務</div>
+    <div class="fs-body">押注同時累積解鎖積分和 VIP 積分。流水達標再得對應 bet 段星級碎片 ×1。</div>
+    <div class="fs-tag" style="background:var(--jade-light);color:var(--jade)">雙軌累積</div>
+  </div>
+  <div class="fs">
+    <div class="fs-n" style="color:var(--gold-light)">03</div>
+    <div class="fs-title" style="color:var(--gold)">碎片達門檻</div>
+    <div class="fs-body">同星級碎片累積到 3 張，進入解鎖清單。背包顯示「可解鎖，需 XXX 解鎖積分」。</div>
+    <div class="fs-tag" style="background:var(--gold-light);color:var(--gold)">解鎖可選</div>
+  </div>
+  <div class="fs">
+    <div class="fs-n" style="color:var(--gold-light)">04</div>
+    <div class="fs-title" style="color:var(--gold)">玩家主動選擇</div>
+    <div class="fs-body">玩家選擇要解鎖哪張卡，消耗對應解鎖積分。積分不夠可繼續押注賺取。</div>
+    <div class="fs-tag" style="background:var(--gold-light);color:var(--gold)">主動決策</div>
+  </div>
+  <div class="fs">
+    <div class="fs-n" style="color:var(--indigo-light)">05</div>
+    <div class="fs-title" style="color:var(--indigo)">道具卡啟用</div>
+    <div class="fs-body">碎片歸零，旋轉卡進入可用區，14 天內使用。解鎖積分扣除，VIP 積分不動。</div>
+    <div class="fs-tag" style="background:var(--indigo-light);color:var(--indigo)">入背包可用</div>
+  </div>
+</div>
+
+<!-- CH2 -->
+<div class="ch ch-gold" id="exp">
+  <div class="ch-num">Chapter 02</div>
+  <div class="ch-title">EXP 架構：解鎖積分 × VIP 積分</div>
+</div>
+
+<h2>2.1 解鎖積分：消耗對照表</h2>
+<p>解鎖積分的消耗量依道具卡星級設計，確保玩家必須真實押注才能取得對應價值的道具卡。特殊遊戲卡因 Free Game 期望值約為旋轉卡的 100 倍，解鎖成本也相應提高約 100 倍。</p>
+
+<table class="unlock-table">
+  <thead>
+    <tr><th>道具卡</th><th>碎片門檻</th><th>解鎖積分消耗</th><th>對應押注量（參考）</th><th>狀態</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span style="color:var(--vip0)">★</span> 旋轉卡 1星</td>
+      <td>1星碎片 ×3</td>
+      <td><span class="pts">100</span> 積分</td>
+      <td>約押注 200 元以上可取得</td>
+      <td><span class="chip c-j">MVP 啟用</span></td>
+    </tr>
+    <tr>
+      <td><span style="color:var(--vip1)">★★</span> 旋轉卡 2星</td>
+      <td>2星碎片 ×3</td>
+      <td><span class="pts">300</span> 積分</td>
+      <td>約押注 600 元以上</td>
+      <td><span class="chip c-s">預留</span></td>
+    </tr>
+    <tr>
+      <td><span style="color:var(--vip2)">★★★</span> 旋轉卡 3星</td>
+      <td>3星碎片 ×3</td>
+      <td><span class="pts">1,000</span> 積分</td>
+      <td>約押注 2,000 元以上</td>
+      <td><span class="chip c-s">預留</span></td>
+    </tr>
+    <tr>
+      <td><span style="color:var(--vip3)">★★★★</span> 旋轉卡 4星</td>
+      <td>4星碎片 ×3</td>
+      <td><span class="pts">3,000</span> 積分</td>
+      <td>約押注 6,000 元以上</td>
+      <td><span class="chip c-s">預留</span></td>
+    </tr>
+    <tr>
+      <td><span style="color:var(--vip4)">★★★★★</span> 旋轉卡 5星</td>
+      <td>5星碎片 ×3</td>
+      <td><span class="pts">10,000</span> 積分</td>
+      <td>約押注 20,000 元以上</td>
+      <td><span class="chip c-s">預留</span></td>
+    </tr>
+    <tr>
+      <td><span style="color:var(--vip0)">★</span> 特殊遊戲卡 1星</td>
+      <td>1星碎片 ×10</td>
+      <td><span class="pts">10,000</span> 積分</td>
+      <td>旋轉卡 1星的 100 倍成本</td>
+      <td><span class="chip c-i">Phase 3</span></td>
+    </tr>
+    <tr>
+      <td><span style="color:var(--vip4)">★★★★★</span> 特殊遊戲卡 5星</td>
+      <td>5星碎片 ×10</td>
+      <td><span class="pts">1,000,000</span> 積分</td>
+      <td>鯨魚專屬，門檻極高</td>
+      <td><span class="chip c-i">Phase 3</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="al">
+  <div class="al-label">碎片門檻設定說明</div>
+  <p>旋轉卡碎片門檻設為 3 張（非 5 張），因為解鎖積分已是主要的防套利機制。光靠登入碎片湊到 3 張，沒有解鎖積分仍無法解鎖。較低的碎片門檻讓玩家更快看到解鎖清單，增加選擇感與期待感，而財務控制的責任由解鎖積分承擔。</p>
+</div>
+
+<h2>2.2 VIP 積分與等級系統</h2>
+<p>VIP 積分永久累積，是玩家歷史押注總量的可視化表現。VIP 等級決定每日登入碎片的星級，高 VIP 玩家每天登入就能獲得更高星的碎片——這是最直接可感知的 VIP 特權差距。</p>
+
+<div class="vip-grid">
+  <div class="vip-row head">
+    <div class="vr-cell">VIP 等級</div>
+    <div class="vr-cell">累積門檻</div>
+    <div class="vr-cell">每日登入碎片</div>
+    <div class="vr-cell">解鎖積分倍率</div>
+    <div class="vr-cell">設計意圖</div>
+  </div>
+  <div class="vip-row">
+    <div class="vr-cell"><strong>無 VIP</strong><br><span style="font-size:11px;color:var(--ink-soft)">MVP 全員</span></div>
+    <div class="vr-cell" style="font-family:'DM Serif Display',serif;font-size:18px">0</div>
+    <div class="vr-cell"><span style="color:var(--vip0)">★</span> 1星碎片 ×1</div>
+    <div class="vr-cell">×1.0（基礎）</div>
+    <div class="vr-cell" style="font-size:12px;color:var(--ink-soft)">基礎體驗，確保最小回訪動力</div>
+  </div>
+  <div class="vip-row">
+    <div class="vr-cell"><strong>VIP 1</strong></div>
+    <div class="vr-cell" style="font-family:'DM Serif Display',serif;font-size:18px">5,000</div>
+    <div class="vr-cell"><span style="color:var(--vip1)">★★</span> 2星碎片 ×1</div>
+    <div class="vr-cell">×1.2</div>
+    <div class="vr-cell" style="font-size:12px;color:var(--ink-soft)">進階玩家感知差距</div>
+  </div>
+  <div class="vip-row">
+    <div class="vr-cell"><strong>VIP 2–3</strong></div>
+    <div class="vr-cell" style="font-family:'DM Serif Display',serif;font-size:18px">20,000</div>
+    <div class="vr-cell"><span style="color:var(--vip2)">★★★</span> 3星碎片 ×1</div>
+    <div class="vr-cell">×1.5</div>
+    <div class="vr-cell" style="font-size:12px;color:var(--ink-soft)">中等大客明顯受益</div>
+  </div>
+  <div class="vip-row">
+    <div class="vr-cell"><strong>VIP 4</strong></div>
+    <div class="vr-cell" style="font-family:'DM Serif Display',serif;font-size:18px">100,000</div>
+    <div class="vr-cell"><span style="color:var(--vip3)">★★★★</span> 4星碎片 ×1</div>
+    <div class="vr-cell">×2.0</div>
+    <div class="vr-cell" style="font-size:12px;color:var(--ink-soft)">高階玩家特權感強</div>
+  </div>
+  <div class="vip-row">
+    <div class="vr-cell"><strong>VIP 5</strong><br><span style="font-size:11px;color:var(--ink-soft)">鯨魚</span></div>
+    <div class="vr-cell" style="font-family:'DM Serif Display',serif;font-size:18px">500,000</div>
+    <div class="vr-cell"><span style="color:var(--vip4)">★★★★★</span> 5星碎片 ×1</div>
+    <div class="vr-cell">×3.0</div>
+    <div class="vr-cell" style="font-size:12px;color:var(--ink-soft)">鯨魚解鎖速度最快，長期留存鉤子最深</div>
+  </div>
+</div>
+
+<div class="al">
+  <div class="al-label">解鎖積分倍率的意義</div>
+  <p>VIP 5 玩家押注相同金額，賺到的解鎖積分是普通玩家的 3 倍，意味著鯨魚可以更頻繁解鎖高星道具卡。這讓「押得越多、回報越快」的感知直接可量化，而不只是「等級更高」的空洞特權。VIP 積分倍率維持 ×1.0 不變，確保 VIP 等級只和真實累積押注量掛鉤。</p>
+</div>
+
+<!-- CH3 -->
+<div class="ch" id="cards">
+  <div class="ch-num">Chapter 03</div>
+  <div class="ch-title">道具卡系統：旋轉卡 × 特殊遊戲卡</div>
+</div>
+
+<h2>3.1 兩種道具卡的本質差異</h2>
+<div class="card-compare">
+  <div class="cc">
+    <div class="cc-head" style="background:var(--jade-pale)">
+      <div class="cc-tag" style="color:var(--jade)">旋轉卡　Spin Card</div>
+      <div class="cc-title">Main Game 免費旋轉</div>
+      <div class="cc-sub">MVP 啟用 · 1星</div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row"><div class="cc-label">觸發方式</div><div class="cc-desc">在 Main Game 用卡片定義的 bet 旋轉一次</div></div>
+      <div class="cc-row"><div class="cc-label">bet 基準</div><div class="cc-desc">對應星級 bet 段最低值 × 係數（1.0–1.5）</div></div>
+      <div class="cc-row"><div class="cc-label">期望值</div><div class="cc-desc">1 次 Main Game bet 期望值</div></div>
+      <div class="cc-row"><div class="cc-label">碎片門檻</div><div class="cc-desc">同星級碎片 ×3</div></div>
+      <div class="cc-row"><div class="cc-label">MVP 狀態</div><div class="cc-desc"><span class="chip c-j">1星啟用</span>，2–5星架構預留</div></div>
+    </div>
+  </div>
+  <div class="cc">
+    <div class="cc-head" style="background:var(--indigo-light)">
+      <div class="cc-tag" style="color:var(--indigo)">特殊遊戲卡　Special Game Card</div>
+      <div class="cc-title">直接進入 Free Game</div>
+      <div class="cc-sub">架構預留 · Phase 3 啟用</div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row"><div class="cc-label">觸發方式</div><div class="cc-desc">直接觸發 Free Game，跳過 Main Game 普通旋轉</div></div>
+      <div class="cc-row"><div class="cc-label">bet 基準</div><div class="cc-desc">卡片定義的 bet，對應星級 bet 段</div></div>
+      <div class="cc-row"><div class="cc-label">期望值</div><div class="cc-desc">同 bet 旋轉卡的約 <strong>100 倍</strong>（Free Game 乘數機制）</div></div>
+      <div class="cc-row"><div class="cc-label">碎片門檻</div><div class="cc-desc">同星級碎片 ×10，Phase 3 確認</div></div>
+      <div class="cc-row"><div class="cc-label">MVP 狀態</div><div class="cc-desc"><span class="chip c-i">全部架構預留</span></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>3.2 碎片來源：兩種獨立管道</h2>
+<div class="two">
+  <div class="card">
+    <div class="card-head" style="background:var(--jade-pale)">
+      <div class="card-tag" style="color:var(--jade)">來源一　每日登入</div>
+      <div class="card-title">星級由 VIP 等級決定</div>
+    </div>
+    <div class="card-body">
+      獎勵<b>忠誠度</b>。VIP 越高，每天登入拿越高星碎片。<br><br>
+      <b>MVP：</b>VIP 系統未上線，全員固定 1星碎片 ×1。後端讀 vip_level，null 時預設 1星。Phase 3 VIP 上線後自動對應，發碎片邏輯不需修改。
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head" style="background:var(--gold-pale)">
+      <div class="card-tag" style="color:var(--gold)">來源二　每日流水任務</div>
+      <div class="card-title">星級由當日 bet 段決定</div>
+    </div>
+    <div class="card-body">
+      獎勵<b>當日活躍度</b>。當天押得越高，達標後拿越高星碎片。<br><br>
+      登入碎片與流水碎片<b>同星級共同累積</b>，推進同一條進度條。當天登入又達標的玩家可拿到 2 張同星碎片，進度是只登入的兩倍。
+    </div>
+  </div>
+</div>
+
+<h2>3.3 道具卡到期設計</h2>
+<p>碎片鎖定狀態永久保留，無到期壓力，玩家可以慢慢累積。玩家選擇解鎖後道具卡進入可用區，起算 14 天。背包平時只顯示總數量，不顯示個別到期日。只在最近 3 天有卡即將到期時，才顯示「N 張旋轉卡將於 N 天內到期」的警示，每張卡只推一次通知。使用時後端自動取最早到期的那張（FIFO），玩家不需選擇。到期靜默移除，不主動發通知避免負面情緒。</p>
+
+<!-- CH4 -->
+<div class="ch" id="sprints">
+  <div class="ch-num">Chapter 04</div>
+  <div class="ch-title">4 Sprint MVP 計畫（8 週）</div>
+</div>
+
+<p>每個 Sprint 結束時玩家都有完整可運作的體驗，不存在功能斷點。S1 結束能登入領碎片；S2 結束能完成流水任務、雙軌積分開始累積；S3 結束能手動選擇解鎖道具卡並在遊戲中使用；S4 是數據校準與決策版本。</p>
+
+<div class="sprint-grid">
+  <div class="sprint s1">
+    <div class="sprint-head">
+      <div class="sprint-code">S1 · 第 1–2 週</div>
+      <div class="sprint-title">登入碎片 + 背包地基 + Tag 引擎</div>
+      <div class="sprint-goal">目標：Day 1 就有碎片可拿，背包看得到鎖定預覽</div>
+    </div>
+    <div class="sprint-body">
+      <div class="task"><div class="task-dot"></div><div>簽到整合進任務頁，「今日登入」= 第一個任務，完成給 1星碎片 ×1（鎖定狀態顯示在背包）</div></div>
+      <div class="task"><div class="task-dot"></div><div>背包頁建殼：碎片鎖定區（N/3 進度條）+ 解鎖清單區 + 可用道具卡區 + 解鎖積分餘額顯示，S3 填解鎖互動</div></div>
+      <div class="task"><div class="task-dot"></div><div>Tag 引擎後端：新玩家（≤7天）、高黏著（近7天≥5次）、低黏著（≤3次）、斷簽風險（≥2天）、斷簽回歸（≥3天重登）</div></div>
+      <div class="task"><div class="task-dot"></div><div>斷簽回歸觸發：登入當下補發碎片 ×1 + 解鎖積分補償 + 彈窗「你的碎片還在，繼續集吧」</div></div>
+      <div class="task"><div class="task-dot"></div><div>帳本結構預留所有欄位：vip_points_total、unlock_points_available、vip_level（null 預設 0）</div></div>
+    </div>
+    <div class="sprint-footer"><strong>後端重點（10天）</strong>雙軌帳本結構 + Tag 引擎 + 碎片帳本。前端（7天）任務頁框架 + 背包殼含積分顯示。</div>
+  </div>
+
+  <div class="sprint s2">
+    <div class="sprint-head">
+      <div class="sprint-code">S2 · 第 3–4 週</div>
+      <div class="sprint-title">流水任務 + 雙軌積分引擎 + RTP 地基</div>
+      <div class="sprint-goal">目標：押注行為開始同時累積解鎖積分和 VIP 積分</div>
+    </div>
+    <div class="sprint-body">
+      <div class="task"><div class="task-dot"></div><div>每日流水任務：達標給對應 bet 段星級碎片 ×1；鯨魚達高門檻直接給旋轉卡 ×1（跳過集卡，獎勵即時感知）</div></div>
+      <div class="task"><div class="task-dot"></div><div>雙軌積分引擎：每筆押注同時計算 vip_earn_rate 和 unlock_earn_rate，各自累積，同一 transaction 確保原子性</div></div>
+      <div class="task"><div class="task-dot"></div><div>card_type_config 參數表上線：各市場 bet 段、旋轉卡面值、解鎖積分門檻、碎片門檻由運營後台設定</div></div>
+      <div class="task"><div class="task-dot"></div><div>RTP 撥出引擎（純後端）：每筆注單記錄基礎 RTP、撥出比例、即時 RTP，初版撥出 0.3%，硬下限寫死 server 端</div></div>
+      <div class="task"><div class="task-dot"></div><div>低黏著 Tag 玩家流水門檻自動降 20%；MVP 階段解鎖積分賺取倍率全員 ×1.0</div></div>
+    </div>
+    <div class="sprint-footer"><strong>後端重點（14天）</strong>雙軌積分引擎 + RTP 引擎。數據（3天）積分水位看板 + RTP 看板。S1 前務必預設計資料模型。</div>
+  </div>
+
+  <div class="sprint s3">
+    <div class="sprint-head">
+      <div class="sprint-code">S3 · 第 5–6 週</div>
+      <div class="sprint-title">解鎖互動 + 背包正式上線 + 遊戲效果接入</div>
+      <div class="sprint-goal">目標：玩家第一次主動選擇解鎖，走完完整閉環</div>
+    </div>
+    <div class="sprint-body">
+      <div class="task"><div class="task-dot"></div><div>解鎖清單：碎片達 3 張的卡進入解鎖區，顯示「需 XXX 解鎖積分」與玩家目前積分餘額對比</div></div>
+      <div class="task"><div class="task-dot"></div><div>玩家點「解鎖」→ 確認彈窗（消耗 XXX 積分）→ 確認後立即解鎖，碎片歸零，旋轉卡進可用區，通知推送</div></div>
+      <div class="task"><div class="task-dot"></div><div>積分不足時：顯示「還需 XXX 積分，繼續押注即可獲得」，給玩家明確的行動目標，而非模糊等待</div></div>
+      <div class="task"><div class="task-dot"></div><div>背包三區塊正式完整：鎖定碎片區 / 解鎖清單 / 可用道具卡，到期警示（剩3天才顯示，每張卡只推一次）</div></div>
+      <div class="task"><div class="task-dot"></div><div>Unity 接入旋轉卡遊戲內效果（本 Sprint 唯一碰 Unity，S3 啟動前確認排程）</div></div>
+    </div>
+    <div class="sprint-footer"><strong>Unity 風險（6天）</strong>旋轉卡遊戲內效果接入，S3 前確認排程。解鎖操作需 row-level lock，後端需求文件要明確寫清楚。</div>
+  </div>
+
+  <div class="sprint s4">
+    <div class="sprint-head">
+      <div class="sprint-code">S4 · 第 7–8 週</div>
+      <div class="sprint-title">數據校準 + 召回強化 + 決策報告</div>
+      <div class="sprint-goal">目標：不加新功能，根據數據修正，輸出決策依據</div>
+    </div>
+    <div class="sprint-body">
+      <div class="task"><div class="task-dot"></div><div>校準碎片門檻與解鎖積分消耗：目標「活躍玩家 Day 5–8 首次解鎖旋轉卡」，觀察碎片達門檻後到解鎖的等待時間</div></div>
+      <div class="task"><div class="task-dot"></div><div>若大量玩家積分不足無法解鎖：調低解鎖積分門檻，或提高積分賺取倍率，確保一般活躍玩家在合理時間內完成首次解鎖</div></div>
+      <div class="task"><div class="task-dot"></div><div>強化斷簽召回：若斷簽回歸玩家當週留存 &lt;25%，升級為補 2 張碎片 + 解鎖積分補償（約等於 1 天正常押注量）</div></div>
+      <div class="task"><div class="task-dot"></div><div>決策報告：次日/7日留存變化、任務完成率、碎片首次解鎖完成率（最核心指標）、積分消耗分布、各 Tag 玩家行為差異</div></div>
+    </div>
+    <div class="sprint-footer"><strong>決策門檻</strong>首次解鎖完成率 &gt;40% + 7日留存提升 &gt;10% → 推薦 M3 引入 VIP 擴充或第二貨幣。</div>
+  </div>
+</div>
+
+<h2>人力估算（8 週）</h2>
+<table>
+  <thead><tr><th>職能</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>合計</th><th>風險說明</th></tr></thead>
+  <tbody>
+    <tr><td><strong>企劃 / PM</strong></td><td>20</td><td>20</td><td>20</td><td>14</td><td><strong>74天</strong></td><td>雙軌數值設計 + 解鎖 UX 流程 + 數值校準文件</td></tr>
+    <tr><td>平面美術</td><td>8</td><td>4</td><td>10</td><td>2</td><td>24天</td><td>S3 解鎖確認互動動效是高峰</td></tr>
+    <tr><td>Web 前端</td><td>8</td><td>6</td><td>10</td><td>4</td><td>28天</td><td>背包三區塊 + 解鎖互動流程複雜度較高</td></tr>
+    <tr><td>Unity</td><td>—</td><td>—</td><td>6</td><td>2</td><td>8天</td><td>S3 旋轉卡效果接入，S3 前確認排程</td></tr>
+    <tr style="background:#fff8f0"><td><strong style="color:var(--crimson)">後端</strong></td><td><strong style="color:var(--crimson)">12</strong></td><td><strong style="color:var(--crimson)">16</strong></td><td>8</td><td>6</td><td><strong style="color:var(--crimson)">42天</strong></td><td><strong style="color:var(--crimson)">⚠ S2 雙軌積分引擎是全 MVP 技術難度最高，S1 前務必預設計資料模型與 API 規格</strong></td></tr>
+    <tr><td>數據分析</td><td>2</td><td>4</td><td>4</td><td>10</td><td>20天</td><td>S4 新增積分消耗分布、解鎖漏斗、VIP 積分累積曲線</td></tr>
+  </tbody>
+</table>
+
+<!-- CH5 -->
+<div class="ch" id="currency">
+  <div class="ch-num">Chapter 05</div>
+  <div class="ch-title">第二貨幣：為什麼 MVP 不做，何時才考慮</div>
+</div>
+
+<h2>5.1 解鎖積分與第二貨幣的關係</h2>
+<p>本計畫的解鎖積分在工程架構上已經是一種「有限用途的第二貨幣」——押注賺取，消耗解鎖道具卡。與完整第二貨幣的差異只在消耗場景的豐富度：解鎖積分目前只能解鎖道具卡，而第二貨幣可以用在更多場景（抽寶箱、幸運輪、排行榜兌換等）。</p>
+
+<div class="hl"><p>升級到第二貨幣不需要重構帳本，只需要把「解鎖積分」的消耗場景擴充。後端架構的地基 MVP 期間已建好，未來升級的工程成本很低。</p></div>
+
+<h2>5.2 第二貨幣的優缺點分析</h2>
+<div class="two">
+  <div class="card">
+    <div class="card-head" style="background:var(--jade-pale)">
+      <div class="card-tag" style="color:var(--jade)">優點</div>
+      <div class="card-title">第二貨幣能額外解決什麼</div>
+    </div>
+    <div class="card-body">
+      <div class="pro">統一所有 CRM 出口：簽到、任務、排行榜都發同一種幣，玩家只管一個餘額</div>
+      <div class="pro">可設計隨機消耗場景（抽寶箱、幸運輪），製造驚喜感與留存激勵</div>
+      <div class="pro">玩家有更豐富的選擇：決定幣要花在哪個消耗場景，主動感更強</div>
+      <div class="pro">餘額數字可視化，累積感比單一解鎖路徑更強</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head" style="background:var(--crimson-light)">
+      <div class="card-tag" style="color:var(--crimson)">MVP 不納入的原因</div>
+      <div class="card-title">現階段的複雜度與風險</div>
+    </div>
+    <div class="card-body">
+      <div class="con">並發問題：玩家主動兌換需要資料庫 row-level lock，MVP 已需要，但擴充場景後並發複雜度倍增</div>
+      <div class="con">通膨風險：多個消耗場景需要「幣水庫」看板持續監控發行與消耗平衡</div>
+      <div class="con">玩家學習成本：抽象貨幣比碎片集卡更難在 5 分鐘內建立直覺感知</div>
+      <div class="con">運營複雜度：兌換率表、異常行為偵測、客訴處理都需要額外投入</div>
+    </div>
+  </div>
+</div>
+
+<h2>5.3 從數據訊號決定是否引入</h2>
+<div class="signal-grid">
+  <div class="signal">
+    <div class="signal-num">01</div>
+    <div class="signal-label">道具卡到期率 &gt; 30%</div>
+    <div class="signal-desc">玩家解鎖了太多卡用不完，但還在持續押注。代表需要更多消耗場景讓積分有地方花。</div>
+  </div>
+  <div class="signal">
+    <div class="signal-num">02</div>
+    <div class="signal-label">解鎖積分大量閒置</div>
+    <div class="signal-desc">玩家積分餘額持續增長但不消耗，道具卡解鎖需求已飽和，代表消耗場景不夠豐富。</div>
+  </div>
+  <div class="signal">
+    <div class="signal-num">03</div>
+    <div class="signal-label">解鎖完成率曲線平坦</div>
+    <div class="signal-desc">碎片達門檻後玩家長時間不解鎖。要先確認是積分門檻太高還是道具卡吸引力不足，再決定方向。</div>
+  </div>
+  <div class="signal">
+    <div class="signal-num">04</div>
+    <div class="signal-label">任務完成率無鋸齒形</div>
+    <div class="signal-desc">正常情況碎片 2/3 那天任務完成率應明顯升高。若曲線平坦，代表集卡機制心理效果為零，先修任務設計。</div>
+  </div>
+</div>
+
+<div class="al">
+  <div class="al-label">引入第二貨幣的觸發條件</div>
+  <p>道具卡到期率 &gt;30% <strong>且</strong> 7日留存沒有同步下降。代表玩家仍活躍但解鎖機制的激勵上限已到，需要更多消耗場景。此時的工程升級成本很低——帳本不動，只擴充消耗場景。</p>
+</div>
+
+<h2>5.4 無縫銜接路徑</h2>
+<div class="phase-row">
+  <div class="phase-cell">
+    <div class="phase-lbl">MVP（現在）</div>
+    <div class="phase-val">unlock_points 帳本建立，唯一消耗場景是道具卡解鎖。</div>
+  </div>
+  <div class="phase-cell">
+    <div class="phase-lbl">升級步驟 1</div>
+    <div class="phase-val">unlock_points 改名為 currency，新增發放來源（簽到、排行榜等）。</div>
+  </div>
+  <div class="phase-cell">
+    <div class="phase-lbl">升級步驟 2</div>
+    <div class="phase-val">新增消耗場景（抽寶箱、幸運輪），加強並發控制，建幣水庫看板。</div>
+  </div>
+  <div class="phase-cell">
+    <div class="phase-lbl">升級步驟 3</div>
+    <div class="phase-val">前台錢包 UI 上線，顯示餘額與所有消耗場景入口，碎片解鎖機制保留並行。</div>
+  </div>
+</div>
+
+<!-- CH6 -->
+<div class="ch" id="journey">
+  <div class="ch-num">Chapter 06</div>
+  <div class="ch-title">三種玩家的體驗旅程模擬</div>
+</div>
+
+<h2>6.1 新玩家（Day 1–7）</h2>
+<p>偶爾小押，低流水，Day 3–4 斷簽後 Day 5 回來。這是最典型的新手流失邊緣場景，也是最能驗證 CRM 機制有沒有用的旅程。</p>
+
+<div class="journey">
+<table class="j-table">
+  <thead>
+    <tr>
+      <th class="dh" style="width:92px">項目</th>
+      <th class="dh">Day 1<br><small>首次登入</small></th>
+      <th class="dh">Day 2<br><small>嘗試</small></th>
+      <th class="da">Day 3<br><small>斷簽</small></th>
+      <th class="da">Day 4<br><small>斷簽</small></th>
+      <th class="dr">Day 5<br><small>回歸</small></th>
+      <th class="dh">Day 6<br><small>習慣建立</small></th>
+      <th class="dh">Day 7<br><small>首次解鎖</small></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="row-label">玩家狀態</td>
+      <td><span class="jc" style="background:var(--indigo-light);color:var(--indigo)">首次登入</span></td>
+      <td><span class="jc" style="background:var(--gold-light);color:var(--gold)">低黏著</span></td>
+      <td style="background:#2a0808"><span class="jc" style="background:#4a1010;color:#f5a0a0">缺席</span></td>
+      <td style="background:#2a0808"><span class="jc" style="background:#4a1010;color:#f5a0a0">缺席</span></td>
+      <td><span class="jc" style="background:var(--crimson-light);color:var(--crimson)">斷簽回歸</span></td>
+      <td><span class="jc" style="background:var(--gold-light);color:var(--gold)">低黏著</span></td>
+      <td><span class="jc" style="background:var(--jade-light);color:var(--jade)">低黏著↑</span></td>
+    </tr>
+    <tr>
+      <td class="row-label">登入碎片</td>
+      <td><span class="jc" style="background:var(--jade-light);color:var(--jade)">1星 ×1</span></td>
+      <td><span class="jc" style="background:var(--jade-light);color:var(--jade)">1星 ×1</span></td>
+      <td style="background:#200505;color:#a06060">—</td>
+      <td style="background:#200505;color:#a06060">—</td>
+      <td><span class="jc" style="background:var(--crimson-light);color:var(--crimson)">補發 ×1</span></td>
+      <td><span class="jc" style="background:var(--jade-light);color:var(--jade)">1星 ×1</span></td>
+      <td><span class="jc" style="background:var(--jade-light);color:var(--jade)">1星 ×1</span></td>
+    </tr>
+    <tr>
+      <td class="row-label">流水碎片</td>
+      <td style="color:var(--ink-soft)">跳過</td>
+      <td style="color:var(--ink-soft)">未達標</td>
+      <td style="background:#200505;color:#a06060">—</td>
+      <td style="background:#200505;color:#a06060">—</td>
+      <td style="color:var(--ink-soft)">未達標</td>
+      <td><span class="jc" style="background:var(--jade-light);color:var(--jade)">1星 ×1</span></td>
+      <td><span class="jc" style="background:var(--jade-light);color:var(--jade)">1星 ×1</span></td>
+    </tr>
+    <tr>
+      <td class="row-label">碎片進度</td>
+      <td><div class="dot-wrap"><div class="dot df"></div><div class="dot de"></div><div class="dot de"></div></div></td>
+      <td><div class="dot-wrap"><div class="dot df"></div><div class="dot df"></div><div class="dot de"></div></div></td>
+      <td style="background:#200505"><div class="dot-wrap" style="opacity:.3"><div class="dot df"></div><div class="dot df"></div><div class="dot de"></div></div></td>
+      <td style="background:#200505"><div class="dot-wrap" style="opacity:.3"><div class="dot df"></div><div class="dot df"></div><div class="dot de"></div></div></td>
+      <td><div class="dot-wrap"><div class="dot df"></div><div class="dot df"></div><div class="dot df"></div></div></td>
+      <td><div class="dot-wrap"><div class="dot df"></div><div class="dot df"></div><div class="dot df"></div></div></td>
+      <td><div class="dot-wrap"><div class="dot df"></div><div class="dot df"></div><div class="dot df"></div></div></td>
+    </tr>
+    <tr>
+      <td class="row-label">解鎖積分</td>
+      <td style="font-size:11px;color:var(--ink-soft)">0 積分<br>開始累積</td>
+      <td style="font-size:11px;color:var(--ink-soft)">押注中<br>慢慢累積</td>
+      <td style="background:#200505;color:#c07070;font-size:11px">暫停</td>
+      <td style="background:#200505;color:#c07070;font-size:11px">暫停</td>
+      <td style="font-size:11px;color:var(--crimson)">積分補償<br>＋回歸禮</td>
+      <td style="font-size:11px;color:var(--jade);font-weight:600">積分達標！<br>可以解鎖了</td>
+      <td style="font-size:11px;color:var(--indigo);font-weight:600">消耗 100 積分<br>手動解鎖！</td>
+    </tr>
+    <tr>
+      <td class="row-label">關鍵時刻</td>
+      <td style="font-size:11px">3步引導<br><span style="color:var(--ink-soft)">集碎片→積分→解鎖</span></td>
+      <td style="font-size:11px">嘗試流水任務<br><span style="color:var(--ink-soft)">小押中</span></td>
+      <td style="background:#200505;font-size:11px"><span style="color:#d08080">Tag→斷簽風險<br>靜默等待</span></td>
+      <td style="background:#200505;font-size:11px"><span style="color:#d08080">Tag→斷簽回歸<br>禮包待觸發</span></td>
+      <td style="font-size:11px">回歸禮包觸發<br><span style="color:var(--crimson)">碎片還在 3/3<br>進解鎖清單！</span></td>
+      <td style="font-size:11px">首次流水達標<br><span style="color:var(--jade)">積分到 100！</span></td>
+      <td style="font-size:11px">點解鎖→確認<br><span style="color:var(--indigo)">旋轉卡入背包！</span></td>
+    </tr>
+    <tr>
+      <td class="row-label">玩家心理</td>
+      <td style="font-size:11px">新鮮<br>好奇</td>
+      <td style="font-size:11px">我有碎片了<br>在進行中</td>
+      <td style="background:#200505;font-size:11px;color:#c07070">忘了<br>或懶了</td>
+      <td style="background:#200505;font-size:11px;color:#c07070">越來越<br>遠了</td>
+      <td style="font-size:11px">碎片還在<br>鬆一口氣</td>
+      <td style="font-size:11px">積分到了<br>可以解鎖了！</td>
+      <td style="font-size:11px">我選擇解鎖<br>這感覺不同</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="al">
+  <div class="al-label">Day 5 回歸的設計關鍵</div>
+  <p>回歸時碎片已滿 3/3 直接進解鎖清單，玩家感受到「我已經可以解鎖了，只差積分」而非「我還要等流水達標」。補發的解鎖積分讓玩家在 Day 6 達到流水任務時的積分能夠解鎖，Day 7 完成解鎖閉環——從斷簽到第一張旋轉卡，整個過程在 3 天內完成，召回效果最大化。</p>
+</div>
+
+<h2>6.2 偶爾回流小客（7–30 天）</h2>
+<table>
+  <thead><tr><th>時間點</th><th>Tag 狀態</th><th>系統回應</th><th>設計目的</th></tr></thead>
+  <tbody>
+    <tr><td>正常回來的那天</td><td>低黏著</td><td>登入碎片入帳（鎖定狀態），流水門檻自動降 20%</td><td>讓每次回來都有進展，降低達標難度</td></tr>
+    <tr><td>碎片達門檻但積分不足</td><td>低黏著</td><td>背包顯示「還需 XX 積分解鎖，繼續押注即可」</td><td>明確的行動目標，消除模糊等待感</td></tr>
+    <tr><td>積分足夠可以解鎖時</td><td>低黏著</td><td>背包解鎖清單高亮「可解鎖！」，輕推玩家行動</td><td>解鎖是情感峰值，讓玩家主動感受選擇的快感</td></tr>
+    <tr><td>斷簽 3 天後回來</td><td>斷簽回歸</td><td>補發碎片 ×1 + 解鎖積分補償 + 彈窗「你的碎片還在」</td><td>消除「之前白做了」的心理阻力</td></tr>
+    <tr><td>道具卡快到期</td><td>低黏著</td><td>剩 3 天內才顯示警示，每張卡只推一次通知</td><td>在有意義的時間點提醒，不製造持續焦慮</td></tr>
+  </tbody>
+</table>
+
+<h2>6.3 鯨魚玩家（高 bet，VIP 5）</h2>
+<table>
+  <thead><tr><th>時間點</th><th>Tag 狀態</th><th>系統回應</th><th>設計目的</th></tr></thead>
+  <tbody>
+    <tr><td>每日高流水押注</td><td>高黏著</td><td>流水達高門檻直接給旋轉卡 ×1（跳過集卡）；解鎖積分賺取倍率 ×3.0（Phase 3 VIP 5 上線後）</td><td>鯨魚不需集卡心理機制，直接給高價值獎勵且速度遠快於小客</td></tr>
+    <tr><td>解鎖清單有多張卡可選</td><td>高黏著</td><td>玩家自己決定先解鎖旋轉卡，還是等積分更多再解鎖高星卡</td><td>鯨魚有更多選擇，主動性更強，留存鉤子更深</td></tr>
+    <tr><td>Phase 3 特殊遊戲卡上線</td><td>高黏著 + VIP 5</td><td>5星特殊遊戲卡進解鎖清單，需 1,000,000 積分，鯨魚的長期終極目標</td><td>100 倍期望值 Free Game 是鯨魚真正的長期留存鉤子</td></tr>
+    <tr><td>短暫斷簽 1–2 天</td><td>斷簽風險</td><td>下次登入旋轉卡直接入帳（若任務達標），不做額外召回動作</td><td>鯨魚不需要被拉回，過度召回會引起反感</td></tr>
+  </tbody>
+</table>
+
+<!-- CH7 -->
+<div class="ch" id="db">
+  <div class="ch-num">Chapter 07</div>
+  <div class="ch-title">資料模型設計</div>
+</div>
+
+<p>後端帳本從 S1 起即建立完整架構，MVP 只填入啟用的欄位值，Phase 3 填值不需改表結構。</p>
+
+<div class="db">
+  <div class="db-head">player_account　玩家帳本（雙軌積分）<span class="chip c-j">S1 建立</span><div class="db-note">主鍵：player_id</div></div>
+  <div class="db-fields">
+    <div class="field"><div class="fname">player_id</div><div class="ftype">UUID</div><div class="fnote">玩家唯一識別</div></div>
+    <div class="field f-j"><div class="fname">vip_points_total</div><div class="ftype">BIGINT</div><div class="fnote"><span class="nw">VIP 積分</span>　永久累積，只增不減。每次押注加（bet × vip_earn_rate）。VIP 等級查 vip_tier_config。</div></div>
+    <div class="field f-g"><div class="fname">unlock_points_available</div><div class="ftype">BIGINT</div><div class="fnote"><span class="nw">解鎖積分</span>　可消耗。押注時加（bet × unlock_earn_rate），玩家解鎖道具卡時扣除。兩個積分完全獨立。</div></div>
+    <div class="field f-j"><div class="fname">vip_level</div><div class="ftype">INT (0–5)</div><div class="fnote">由 vip_points_total 自動對應。<span class="wn">MVP 期間為 0</span>，Phase 3 VIP 系統上線後開始有意義。</div></div>
+    <div class="field"><div class="fname">updated_at</div><div class="ftype">TIMESTAMP</div><div class="fnote">最後更新時間，稽核用</div></div>
+  </div>
+</div>
+
+<div class="db">
+  <div class="db-head">player_fragments　玩家碎片帳本<span class="chip c-j">S1 建立</span><div class="db-note">複合主鍵：(player_id, star_level)</div></div>
+  <div class="db-fields">
+    <div class="field"><div class="fname">player_id</div><div class="ftype">UUID</div><div class="fnote">玩家唯一識別</div></div>
+    <div class="field"><div class="fname">star_level</div><div class="ftype">INT (1–5)</div><div class="fnote"><span class="wn">MVP 只寫入 1</span>，欄位支援 1–5，未來啟用高星不需改表結構</div></div>
+    <div class="field"><div class="fname">fragment_count</div><div class="ftype">INT</div><div class="fnote">當前該星級碎片數。達 fragment_unlock_threshold 後進解鎖清單，玩家手動觸發解鎖消耗積分。</div></div>
+    <div class="field"><div class="fname">daily_login_used</div><div class="ftype">BOOL</div><div class="fnote">當日登入碎片是否已發放，每日 00:00 重置</div></div>
+    <div class="field"><div class="fname">daily_task_used</div><div class="ftype">BOOL</div><div class="fnote">當日流水任務碎片是否已發放，每日 00:00 重置</div></div>
+    <div class="field"><div class="fname">updated_at</div><div class="ftype">TIMESTAMP</div><div class="fnote">最後更新時間</div></div>
+  </div>
+</div>
+
+<div class="db">
+  <div class="db-head">player_cards　玩家道具卡背包<span class="chip c-g">S3 建立</span></div>
+  <div class="db-fields">
+    <div class="field"><div class="fname">card_id</div><div class="ftype">UUID</div><div class="fnote">道具卡唯一識別，FIFO 取最早到期的那張</div></div>
+    <div class="field"><div class="fname">player_id</div><div class="ftype">UUID</div><div class="fnote">所屬玩家</div></div>
+    <div class="field"><div class="fname">card_type</div><div class="ftype">ENUM</div><div class="fnote"><span class="wn">MVP 只用 spin_card</span>，預留 special_game_card，新增類型不需改表</div></div>
+    <div class="field"><div class="fname">star_level</div><div class="ftype">INT (1–5)</div><div class="fnote">旋轉卡決定 Main Game bet 面值；特殊遊戲卡決定 Free Game 觸發 bet</div></div>
+    <div class="field"><div class="fname">bet_value</div><div class="ftype">DECIMAL</div><div class="fnote">解鎖當下從參數表讀取並<span class="wn">寫死</span>，後台調整不影響已解鎖的卡</div></div>
+    <div class="field"><div class="fname">status</div><div class="ftype">ENUM</div><div class="fnote">active / used / expired，背包可用區只顯示 active</div></div>
+    <div class="field"><div class="fname">source</div><div class="ftype">ENUM</div><div class="fnote">unlock（碎片解鎖）/ direct（大客直發）/ event（活動），稽核與數據分析用</div></div>
+    <div class="field f-j"><div class="fname">expires_at</div><div class="ftype">TIMESTAMP</div><div class="fnote"><span class="nw">解鎖當下寫入 NOW() + 14天</span>。凌晨掃描：&lt;NOW()+3天 → 推提示一次；&lt;NOW() → 靜默設 expired</div></div>
+    <div class="field f-j"><div class="fname">notified_expiry</div><div class="ftype">BOOL</div><div class="fnote"><span class="nw">新增</span>　到期提示是否已推送，防每天重複通知同一張卡</div></div>
+  </div>
+</div>
+
+<div class="db">
+  <div class="db-head">card_type_config　道具卡類型參數表<span class="chip c-g">S2 建立，運營後台可調</span></div>
+  <div class="db-fields">
+    <div class="field"><div class="fname">market_id</div><div class="ftype">VARCHAR</div><div class="fnote">市場識別（TW / MY / TH / JP 等）</div></div>
+    <div class="field"><div class="fname">card_type</div><div class="ftype">ENUM</div><div class="fnote"><span class="wn">MVP 只填 spin_card</span>，預留 special_game_card</div></div>
+    <div class="field"><div class="fname">star_level</div><div class="ftype">INT (1–5)</div><div class="fnote">對應碎片星級</div></div>
+    <div class="field"><div class="fname">bet_value</div><div class="ftype">DECIMAL</div><div class="fnote">旋轉卡 Main Game bet 面值 = bet 段最低值 × 係數（1.0–1.5）</div></div>
+    <div class="field f-i"><div class="fname">free_game_bet</div><div class="ftype">DECIMAL</div><div class="fnote"><span class="p3">特殊遊戲卡 Free Game bet（Phase 3 填值）</span>，MVP 期間 null</div></div>
+    <div class="field f-g"><div class="fname">unlock_cost</div><div class="ftype">BIGINT</div><div class="fnote"><span class="nw">解鎖所需積分</span>　玩家選擇解鎖時消耗的解鎖積分數量，按星級遞增</div></div>
+    <div class="field f-g"><div class="fname">fragment_unlock_threshold</div><div class="ftype">INT</div><div class="fnote"><span class="nw">碎片解鎖門檻</span>　需累積幾張碎片才進入解鎖清單（旋轉卡 = 3，特殊遊戲卡 Phase 3 另定）</div></div>
+    <div class="field"><div class="fname">task_threshold</div><div class="ftype">DECIMAL</div><div class="fnote">每日流水任務達標門檻</div></div>
+  </div>
+</div>
+
+<div class="db">
+  <div class="db-head">vip_tier_config　VIP 等級參數表<span class="chip c-i">S2 建立，Phase 3 填值</span></div>
+  <div class="db-fields">
+    <div class="field"><div class="fname">vip_level</div><div class="ftype">INT (0–5)</div><div class="fnote">VIP 等級</div></div>
+    <div class="field"><div class="fname">vip_points_required</div><div class="ftype">BIGINT</div><div class="fnote">達到此等級所需的 vip_points_total 累積量</div></div>
+    <div class="field f-j"><div class="fname">login_fragment_star</div><div class="ftype">INT (1–5)</div><div class="fnote">此 VIP 等級的每日登入碎片星級。<span class="wn">MVP 全員為 1</span>，Phase 3 填值後自動生效，發碎片邏輯不需修改</div></div>
+    <div class="field f-g"><div class="fname">unlock_earn_rate</div><div class="ftype">DECIMAL</div><div class="fnote">解鎖積分賺取倍率。MVP 全員 1.0，VIP 5 可達 3.0，高 VIP 押注相同金額賺更多解鎖積分</div></div>
+    <div class="field"><div class="fname">vip_earn_rate</div><div class="ftype">DECIMAL</div><div class="fnote">VIP 積分賺取倍率，全員相同（1.0），確保 VIP 等級只和真實押注總量掛鉤</div></div>
+  </div>
+</div>
+
+<!-- CH8 -->
+<div class="ch ch-jade">
+  <div class="ch-num" style="color:rgba(255,255,255,.4)">Chapter 08</div>
+  <div class="ch-title">執行原則</div>
+</div>
+
+<div class="principles">
+  <div class="pr">
+    <div class="pr-n">1</div>
+    <h4>碎片與背包同天上線</h4>
+    <p>S1 碎片帳本和背包殼必須同日上線。玩家第一天拿到碎片就要有地方看到它的鎖定狀態和積分進度，不能有空窗期。</p>
+  </div>
+  <div class="pr">
+    <div class="pr-n">2</div>
+    <h4>雙軌積分絕對獨立</h4>
+    <p>vip_points_total 和 unlock_points_available 在同一個 transaction 更新，但邏輯完全分開。解鎖道具卡只扣解鎖積分，VIP 等級永遠不因使用獎勵而退步。</p>
+  </div>
+  <div class="pr">
+    <div class="pr-n">3</div>
+    <h4>RTP 下限 Server 鎖定</h4>
+    <p>S2 上線前 RTP 硬下限必須和財務確認，寫死後端，任何人工操作無法突破，保護財務安全底線。</p>
+  </div>
+  <div class="pr">
+    <div class="pr-n">4</div>
+    <h4>bet_value 解鎖時寫死</h4>
+    <p>道具卡面值在玩家選擇解鎖當下從參數表讀取並寫入卡片記錄，後台調整不影響已解鎖的卡，避免財務爭議。</p>
+  </div>
+  <div class="pr">
+    <div class="pr-n">5</div>
+    <h4>S4 不加功能</h4>
+    <p>任何 S4 期間的新想法一律進 Backlog。S4 只做校準和報告，讓數據說話，不以直覺加功能。</p>
+  </div>
+  <div class="pr">
+    <div class="pr-n">6</div>
+    <h4>帳本預留所有擴充欄位</h4>
+    <p>vip_level、free_game_bet、unlock_earn_rate、login_fragment_star 等 Phase 3 欄位在 S1–S2 即建立，MVP 填預設值，Phase 3 填值不改表結構。</p>
+  </div>
+</div>
+
+</div>
+
+<footer>SLOT 遊戲 CRM MVP 計畫書　·　雙軌 EXP 解鎖 × 碎片集卡 × 旋轉卡 × Tag × 動態 RTP<br>各功能細節設計將在對應 Sprint 啟動前以獨立需求文件呈現</footer>
+
+</body>
+</html>
