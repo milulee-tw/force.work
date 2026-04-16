@@ -1,3 +1,42 @@
+
+網頁更新
+/
+CMB專案事務記錄 - CMB專案事務紀錄.pdf
+pdf
+
+請幫我更新cmb動態並產生新的原始碼
+
+下午3:58
+我來讀取 PDF 內容並更新右側面板。
+
+
+Check skills directory
+Check skills directory
+PDF 內容已在文件中，我直接根據最新資料更新右側面板，新增了 4月第1週遊戲上線、4月第2週遊戲上線（Free Spin 調整）兩筆，以及修正其他細節。
+
+
+Created a file, read a file
+Created a file, read a file
+已根據 PDF 更新完成，直接覆蓋原始檔即可。本次新增／調整的內容：
+
+新增
+
+🛠 遊戲開發・4月第2週 → 補上 (4/15) CMB 官網第一次進度同步會議（Server 預計 4/23 完成）
+⚙️ 系統技術・4月第2週 → 獨立為一個卡片，補上 (4/15) 伺服器版更計劃（原本混在遊戲開發裡）
+🚀 遊戲上線・4月第1週 → 補上 (4/7) PB 站台移除 Combo 越南/孟加拉 Hot Game 版位
+🚀 遊戲上線・4月第2週 → 全新卡片，(4/16) 調整 Free Spin Bet 段
+
+Index
+Code · HTML 
+
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Index · HTML
+Copy
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -25,9 +64,9 @@
             --radius: 8px;
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
+ 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
         body {
             font-family: 'Noto Sans TC', sans-serif;
             display: flex;
@@ -36,7 +75,7 @@
             background: var(--bg-deep);
             color: var(--text-primary);
         }
-
+ 
         /* ─── SIDEBAR ─── */
         .sidebar {
             width: var(--sidebar-width);
@@ -49,9 +88,9 @@
             transition: width var(--transition);
             overflow: hidden;
         }
-
+ 
         .sidebar.collapsed { width: var(--collapsed-width); }
-
+ 
         .sidebar-header {
             padding: 16px 12px;
             border-bottom: 1px solid var(--border);
@@ -61,7 +100,7 @@
             min-height: 64px;
             flex-shrink: 0;
         }
-
+ 
         .logo-icon {
             width: 28px; height: 28px;
             background: linear-gradient(135deg, var(--accent), #0098a6);
@@ -72,19 +111,19 @@
             cursor: pointer;
             transition: opacity 0.15s, box-shadow 0.15s;
         }
-
+ 
         .logo-icon:hover { opacity: 0.85; }
         .sidebar.collapsed .logo-icon { box-shadow: 0 0 0 2px rgba(0,212,170,0.4); }
-
+ 
         .logo-text-wrap {
             flex: 1;
             overflow: hidden;
             white-space: nowrap;
             transition: opacity var(--transition), width var(--transition);
         }
-
+ 
         .sidebar.collapsed .logo-text-wrap { opacity: 0; width: 0; pointer-events: none; }
-
+ 
         .logo-text {
             font-family: 'Space Mono', monospace;
             font-size: 0.78em;
@@ -93,14 +132,14 @@
             letter-spacing: 0.04em;
             line-height: 1.2;
         }
-
+ 
         .logo-sub {
             font-size: 0.66em;
             color: var(--text-muted);
             margin-top: 2px;
             font-family: 'Space Mono', monospace;
         }
-
+ 
         .toggle-btn {
             width: 24px; height: 24px;
             background: none;
@@ -113,16 +152,16 @@
             transition: all 0.15s;
             padding: 0;
         }
-
+ 
         .toggle-btn:hover {
             border-color: var(--accent);
             color: var(--accent);
             background: rgba(0,212,170,0.06);
         }
-
+ 
         .toggle-btn svg { transition: transform var(--transition); }
         .sidebar.collapsed .toggle-btn svg { transform: rotate(180deg); }
-
+ 
         /* ─── MENU ─── */
         .menu {
             list-style: none;
@@ -131,13 +170,13 @@
             overflow-x: hidden;
             padding: 10px 0;
         }
-
+ 
         .menu::-webkit-scrollbar { width: 3px; }
         .menu::-webkit-scrollbar-track { background: transparent; }
         .menu::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
-
+ 
         .menu-item { border-bottom: none; }
-
+ 
         .category-title {
             padding: 9px 12px;
             cursor: pointer;
@@ -154,19 +193,19 @@
             transition: color 0.15s;
             white-space: nowrap;
         }
-
+ 
         .category-title:hover { color: var(--text-primary); }
-
+ 
         .category-icon { font-size: 13px; flex-shrink: 0; }
-
+ 
         .category-title-text {
             flex: 1;
             transition: opacity var(--transition);
             overflow: hidden;
         }
-
+ 
         .sidebar.collapsed .category-title-text { opacity: 0; width: 0; }
-
+ 
         .chevron {
             width: 11px; height: 11px;
             border-right: 1.5px solid currentColor;
@@ -176,10 +215,10 @@
             flex-shrink: 0;
             margin-left: auto;
         }
-
+ 
         .sidebar.collapsed .chevron { display: none; }
         .menu-item.active .chevron { transform: rotate(-135deg); }
-
+ 
         .submenu {
             list-style: none;
             padding: 0;
@@ -187,10 +226,10 @@
             overflow: hidden;
             transition: max-height 0.3s ease;
         }
-
+ 
         .menu-item.active .submenu { max-height: 400px; }
         .sidebar.collapsed .submenu { display: none; }
-
+ 
         .submenu li a {
             padding: 8px 12px 8px 36px;
             display: flex;
@@ -205,13 +244,13 @@
             border-radius: var(--radius);
             white-space: nowrap;
         }
-
+ 
         .submenu li a:hover {
             color: var(--text-primary);
             background: var(--bg-hover);
             border-left-color: var(--accent);
         }
-
+ 
         .submenu li a::before {
             content: '';
             width: 4px; height: 4px;
@@ -220,9 +259,9 @@
             flex-shrink: 0;
             transition: background 0.15s;
         }
-
+ 
         .submenu li a:hover::before { background: var(--accent); }
-
+ 
         .sidebar-footer {
             padding: 12px;
             border-top: 1px solid var(--border);
@@ -233,16 +272,16 @@
             overflow: hidden;
             transition: opacity var(--transition);
         }
-
+ 
         .sidebar.collapsed .sidebar-footer { opacity: 0; }
-
+ 
         /* ─── LAYOUT ─── */
         .center-wrapper {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
-
+ 
         /* ─── MAIN ─── */
         .main {
             flex: 1;
@@ -250,7 +289,7 @@
             flex-direction: column;
             overflow: hidden;
         }
-
+ 
         /* ─── TOPBAR ─── */
         .topbar {
             height: 46px;
@@ -262,16 +301,16 @@
             gap: 10px;
             flex-shrink: 0;
         }
-
+ 
         .topbar-breadcrumb {
             font-size: 0.76em;
             color: var(--text-secondary);
             font-family: 'Space Mono', monospace;
             flex: 1;
         }
-
+ 
         .topbar-breadcrumb span { color: var(--text-muted); }
-
+ 
         .status-dot {
             width: 6px; height: 6px;
             background: var(--accent);
@@ -279,27 +318,27 @@
             animation: pulse 2s infinite;
             flex-shrink: 0;
         }
-
+ 
         @keyframes pulse {
             0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,212,170,0.4); }
             50% { opacity: 0.8; box-shadow: 0 0 0 4px rgba(0,212,170,0); }
         }
-
+ 
         .topbar-meta {
             font-size: 0.7em;
             color: var(--text-muted);
             font-family: 'Space Mono', monospace;
         }
-
+ 
         /* ─── CONTENT ─── */
         .content {
             flex: 1;
             position: relative;
             background: var(--bg-deep);
         }
-
+ 
         iframe { width: 100%; height: 100%; border: none; display: block; }
-
+ 
         .placeholder {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
@@ -307,23 +346,23 @@
             pointer-events: none;
             z-index: 0;
         }
-
+ 
         .placeholder-icon { font-size: 42px; margin-bottom: 14px; opacity: 0.25; }
-
+ 
         .placeholder h2 {
             color: var(--text-muted);
             font-size: 0.92em;
             font-weight: 400;
             margin-bottom: 6px;
         }
-
+ 
         .placeholder p {
             color: var(--text-muted);
             font-size: 0.76em;
             font-family: 'Space Mono', monospace;
             opacity: 0.5;
         }
-
+ 
         /* ─── RIGHT PANEL ─── */
         .right-panel {
             width: var(--panel-width);
@@ -335,9 +374,9 @@
             overflow: hidden;
             transition: width var(--transition);
         }
-
+ 
         .right-panel.collapsed { width: var(--collapsed-width); }
-
+ 
         /* Right panel header */
         .right-panel-header {
             min-height: 64px;
@@ -348,7 +387,7 @@
             gap: 8px;
             flex-shrink: 0;
         }
-
+ 
         .right-panel-title {
             font-family: 'Space Mono', monospace;
             font-size: 0.72em;
@@ -360,9 +399,9 @@
             transition: opacity var(--transition);
             flex: 1;
         }
-
+ 
         .right-panel.collapsed .right-panel-title { opacity: 0; width: 0; }
-
+ 
         .right-toggle-btn {
             width: 24px; height: 24px;
             background: none;
@@ -376,16 +415,16 @@
             padding: 0;
             margin-left: auto;
         }
-
+ 
         .right-toggle-btn:hover {
             border-color: var(--accent);
             color: var(--accent);
             background: rgba(0,212,170,0.06);
         }
-
+ 
         .right-toggle-btn svg { transition: transform var(--transition); }
         .right-panel.collapsed .right-toggle-btn svg { transform: rotate(180deg); }
-
+ 
         /* Collapsed vertical label */
         .right-collapsed-label {
             display: none;
@@ -401,10 +440,10 @@
             cursor: pointer;
             transition: color 0.15s;
         }
-
+ 
         .right-collapsed-label:hover { color: var(--accent); }
         .right-panel.collapsed .right-collapsed-label { display: block; }
-
+ 
         /* Panel content */
         .right-panel-content {
             flex: 1;
@@ -412,18 +451,18 @@
             overflow-x: hidden;
             transition: opacity var(--transition);
         }
-
+ 
         .right-panel.collapsed .right-panel-content { opacity: 0; pointer-events: none; }
-
+ 
         .right-panel-content::-webkit-scrollbar { width: 3px; }
         .right-panel-content::-webkit-scrollbar-track { background: transparent; }
         .right-panel-content::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
-
+ 
         .panel-section {
             padding: 18px;
             border-bottom: 1px solid var(--border);
         }
-
+ 
         .panel-title {
             font-family: 'Space Mono', monospace;
             font-size: 0.66em;
@@ -436,7 +475,7 @@
             gap: 8px;
             white-space: nowrap;
         }
-
+ 
         .panel-title::before {
             content: '';
             width: 3px; height: 11px;
@@ -444,10 +483,10 @@
             border-radius: 2px;
             flex-shrink: 0;
         }
-
+ 
         /* CRM Items */
         .crm-list { display: flex; flex-direction: column; gap: 8px; }
-
+ 
         .crm-item {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -456,11 +495,11 @@
             padding: 11px 13px;
             transition: background 0.15s;
         }
-
+ 
         .crm-item:hover { background: var(--bg-hover); }
         .crm-item.warn { border-left-color: var(--accent-warn); }
         .crm-item.amber { border-left-color: var(--accent-2); }
-
+ 
         .crm-item-label {
             font-size: 0.65em;
             color: var(--text-muted);
@@ -468,32 +507,32 @@
             letter-spacing: 0.04em;
             margin-bottom: 5px;
         }
-
+ 
         .crm-item-text {
             font-size: 0.83em;
             color: var(--text-primary);
             line-height: 1.55;
         }
-
+ 
         .entry {
             display: flex;
             gap: 6px;
             margin-bottom: 6px;
         }
-
+ 
         .entry:last-child { margin-bottom: 0; }
-
+ 
         .entry-arrow {
             color: var(--accent);
             flex-shrink: 0;
             font-size: 0.9em;
             margin-top: 1px;
         }
-
+ 
         .entry-body { flex: 1; }
-
+ 
         .entry-title { color: var(--text-primary); line-height: 1.5; }
-
+ 
         .entry-sub {
             padding-left: 2px;
             margin-top: 3px;
@@ -501,12 +540,12 @@
             font-size: 0.95em;
             line-height: 1.6;
         }
-
+ 
         .entry-sub b { color: var(--text-primary); font-weight: 600; }
     </style>
 </head>
 <body>
-
+ 
 <!-- LEFT SIDEBAR -->
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
@@ -521,7 +560,7 @@
             </svg>
         </button>
     </div>
-
+ 
     <ul class="menu">
         <li class="menu-item active">
             <div class="category-title" onclick="toggleMenu(this)">
@@ -534,7 +573,7 @@
                 <li><a href="Pool_Values.html" target="content-frame" onclick="setTitle('水池數值工具')">水池數值工具</a></li>
             </ul>
         </li>
-
+ 
         <li class="menu-item">
             <div class="category-title" onclick="toggleMenu(this)">
                 <span class="category-icon">🎯</span>
@@ -548,32 +587,10 @@
             </ul>
         </li>
     </ul>
-
+ 
     <div class="sidebar-footer">v1.0.0 · 2026 internal</div>
 </div>
-
-<!-- CENTER + RIGHT -->
-<div class="center-wrapper">
-
-    <!-- MAIN CONTENT -->
-    <div class="main">
-        <div class="topbar">
-            <div class="status-dot"></div>
-            <div class="topbar-breadcrumb" id="breadcrumb">
-                <span>規格庫</span> / 選擇文件
-            </div>
-            <div class="topbar-meta" id="topbar-date"></div>
-        </div>
-        <div class="content">
-            <div id="placeholder" class="placeholder">
-                <div class="placeholder-icon">📋</div>
-                <h2>請從左側選擇要查看的規格書</h2>
-                <p>點擊選單後，文件將顯示在此區域</p>
-            </div>
-            <iframe name="content-frame" id="content-frame"></iframe>
-        </div>
-    </div>
-
+ 
 <!-- CENTER + RIGHT -->
 <div class="center-wrapper">
  
@@ -788,32 +805,32 @@
     </div>
  
 </div>
-
+ 
 <script>
     function toggleSidebar() {
         document.getElementById('sidebar').classList.toggle('collapsed');
     }
-
+ 
     function toggleRightPanel() {
         document.getElementById('right-panel').classList.toggle('collapsed');
     }
-
+ 
     function toggleMenu(element) {
         if (document.getElementById('sidebar').classList.contains('collapsed')) return;
         element.parentElement.classList.toggle('active');
     }
-
+ 
     function setTitle(name) {
         document.getElementById('breadcrumb').innerHTML = '<span>規格庫</span> / ' + name;
         document.getElementById('placeholder').style.display = 'none';
     }
-
+ 
     const now = new Date();
     document.getElementById('topbar-date').textContent =
         now.getFullYear() + '-' +
         String(now.getMonth() + 1).padStart(2, '0') + '-' +
         String(now.getDate()).padStart(2, '0');
 </script>
-
+ 
 </body>
 </html>
