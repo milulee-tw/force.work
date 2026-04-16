@@ -574,6 +574,28 @@
         </div>
     </div>
 
+<!-- CENTER + RIGHT -->
+<div class="center-wrapper">
+ 
+    <!-- MAIN CONTENT -->
+    <div class="main">
+        <div class="topbar">
+            <div class="status-dot"></div>
+            <div class="topbar-breadcrumb" id="breadcrumb">
+                <span>規格庫</span> / 選擇文件
+            </div>
+            <div class="topbar-meta" id="topbar-date"></div>
+        </div>
+        <div class="content">
+            <div id="placeholder" class="placeholder">
+                <div class="placeholder-icon">📋</div>
+                <h2>請從左側選擇要查看的規格書</h2>
+                <p>點擊選單後，文件將顯示在此區域</p>
+            </div>
+            <iframe name="content-frame" id="content-frame"></iframe>
+        </div>
+    </div>
+ 
     <!-- RIGHT PANEL -->
     <div class="right-panel" id="right-panel">
         <div class="right-panel-header">
@@ -584,14 +606,14 @@
                 </svg>
             </button>
         </div>
-
+ 
         <div class="right-collapsed-label" onclick="toggleRightPanel()" title="展開面板">CMB 動態</div>
-
+ 
         <div class="right-panel-content">
             <div class="panel-section">
                 <div class="panel-title">本週動態</div>
                 <div class="crm-list" id="crm-items">
-
+ 
                     <div class="crm-item amber">
                         <div class="crm-item-label">🛠 遊戲開發・3月第4週</div>
                         <div class="crm-item-text">
@@ -603,7 +625,7 @@
                             </div>
                         </div>
                     </div>
-
+ 
                     <div class="crm-item amber">
                         <div class="crm-item-label">🛠 遊戲開發・4月第1週</div>
                         <div class="crm-item-text">
@@ -615,7 +637,7 @@
                             </div>
                         </div>
                     </div>
-
+ 
                     <div class="crm-item amber">
                         <div class="crm-item-label">🛠 遊戲開發・4月第2週</div>
                         <div class="crm-item-text">
@@ -628,35 +650,13 @@
                             <div class="entry">
                                 <span class="entry-arrow">→</span>
                                 <div class="entry-body">
-                                    <div class="entry-title">(4/15) 伺服器功能更新・版更計劃</div>
-                                    <div class="entry-sub">
-                                        <b>Gateway：</b>水池設定（只需更新 MongoDB）、修復遊戲注單資源未釋放 bug<br>
-                                        <b>Gateway + Gamelog：</b>toml 轉 mongo（需要設定 MongoDB）
-                                    </div>
+                                    <div class="entry-title">(4/15) 進行 CMB 官網第一次進度同步會議</div>
+                                    <div class="entry-sub">Server 預計 4/23 完成</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="crm-item">
-                        <div class="crm-item-label">🚀 遊戲上線・4月第1週</div>
-                        <div class="crm-item-text">
-                            <div class="entry">
-                                <span class="entry-arrow">→</span>
-                                <div class="entry-body">
-                                    <div class="entry-title">(4/8) [S009 星際動物] 於 AWC 開放遊玩</div>
-                                </div>
-                            </div>
-                            <div class="entry">
-                                <span class="entry-arrow">→</span>
-                                <div class="entry-body">
-                                    <div class="entry-title">(4/10) [S023 海盜女王][S009 星際動物] 在 MPS 開放遊玩</div>
-                                    <div class="entry-sub">新遊戲提升 DAU 約 +250 人，第3天趨緩 (-160 人)</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+ 
                     <div class="crm-item warn">
                         <div class="crm-item-label">⚙️ 系統技術・3月第4週</div>
                         <div class="crm-item-text">
@@ -682,7 +682,7 @@
                             </div>
                         </div>
                     </div>
-
+ 
                     <div class="crm-item warn">
                         <div class="crm-item-label">⚙️ 系統技術・3月第5週</div>
                         <div class="crm-item-text">
@@ -697,7 +697,62 @@
                             </div>
                         </div>
                     </div>
-
+ 
+                    <div class="crm-item warn">
+                        <div class="crm-item-label">⚙️ 系統技術・4月第2週</div>
+                        <div class="crm-item-text">
+                            <div class="entry">
+                                <span class="entry-arrow">→</span>
+                                <div class="entry-body">
+                                    <div class="entry-title">(4/15) 伺服器功能更新・版更計劃</div>
+                                    <div class="entry-sub">
+                                        <b>Gateway：</b>水池設定（只需更新 MongoDB）、修復遊戲注單資源未釋放 bug<br>
+                                        <b>Gateway + Gamelog：</b>toml 轉 mongo（需要設定 MongoDB）
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="crm-item">
+                        <div class="crm-item-label">🚀 遊戲上線・4月第1週</div>
+                        <div class="crm-item-text">
+                            <div class="entry">
+                                <span class="entry-arrow">→</span>
+                                <div class="entry-body">
+                                    <div class="entry-title">(4/7) PB 站台移除 Combo 在越南站和孟加拉站的 Hot Game 版位</div>
+                                    <div class="entry-sub">孟加拉及越南市場主要差異：將 Combo 遊戲從 Hot Games 版位移除</div>
+                                </div>
+                            </div>
+                            <div class="entry">
+                                <span class="entry-arrow">→</span>
+                                <div class="entry-body">
+                                    <div class="entry-title">(4/8) [S009 星際動物] 於 AWC 開放遊玩</div>
+                                </div>
+                            </div>
+                            <div class="entry">
+                                <span class="entry-arrow">→</span>
+                                <div class="entry-body">
+                                    <div class="entry-title">(4/10) [S023 海盜女王][S009 星際動物] 在 MPS 開放遊玩</div>
+                                    <div class="entry-sub">新遊戲提升 DAU 約 +250 人，第 3 天趨緩（-160 人）</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="crm-item">
+                        <div class="crm-item-label">🚀 遊戲上線・4月第2週</div>
+                        <div class="crm-item-text">
+                            <div class="entry">
+                                <span class="entry-arrow">→</span>
+                                <div class="entry-body">
+                                    <div class="entry-title">(4/16) 調整 Free Spin Bet 段</div>
+                                    <div class="entry-sub">除 Arcade Game 和 S015 錢來也外，一律支援 Free Spin 3 段以上 Bet 段使用 Free Spin</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
                     <div class="crm-item amber">
                         <div class="crm-item-label">📋 合規送審・3月第5週</div>
                         <div class="crm-item-text">
@@ -713,7 +768,7 @@
                             </div>
                         </div>
                     </div>
-
+ 
                     <div class="crm-item">
                         <div class="crm-item-label">🎯 CRM・4月第2週</div>
                         <div class="crm-item-text">
@@ -726,12 +781,12 @@
                             </div>
                         </div>
                     </div>
-
+ 
                 </div>
             </div>
         </div>
     </div>
-
+ 
 </div>
 
 <script>
