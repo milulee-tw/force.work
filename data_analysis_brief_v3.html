@@ -1,0 +1,389 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:0 0 2rem}
+.intro{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;margin-bottom:1.5rem;border:0.5px solid var(--color-border-tertiary)}
+.intro-title{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+.intro-sub{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.phase-block{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.25rem;background:var(--color-background-primary)}
+.phase-header{padding:14px 20px;display:flex;align-items:center;gap:12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.phase-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.phase-name{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.phase-desc{font-size:12px;color:var(--color-text-secondary);margin-left:auto}
+.phase-journey{padding:10px 20px;font-size:12px;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);line-height:1.5}
+.phase-journey span{color:var(--color-text-primary);font-weight:500}
+.item{padding:14px 20px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.item:last-child{border-bottom:none}
+.item-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.item-num{font-size:11px;font-weight:500;color:var(--color-text-tertiary);min-width:24px;padding-top:2px}
+.item-name{font-size:14px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+.item-rows{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-left:34px}
+.item-field{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.field-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:4px;letter-spacing:.04em}
+.field-val{font-size:12px;color:var(--color-text-secondary);line-height:1.55}
+.priority-high{color:#854F0B;background:#FAEEDA;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:500}
+.priority-med{color:#085041;background:#E1F5EE;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:500}
+.section-note{margin:0 20px 14px;padding:10px 14px;background:var(--color-background-secondary);border-left:2.5px solid var(--color-border-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.market-badge{display:inline-flex;align-items:center;gap:4px;background:var(--color-background-info);color:var(--color-text-info);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:500;margin-left:6px}
+</style>
+
+<div class="wrap">
+
+<div class="intro">
+  <div class="intro-title">CRM 留存分析 — 數據需求說明書</div>
+  <div class="intro-sub">目標：以玩家旅程漏斗找出各階段的主要流失點，並為不同玩家族群（大客 / 小客）建立差異化 CRM 對策的數據基礎。優先市場為菲律賓（PHP）與泰國（TH），所有拆分分析請以此兩個市場為主維度。請優先完成高優先項目。</div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase-block">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:#185FA5"></div>
+    <div class="phase-name">階段 1 · 進入期</div>
+    <div class="phase-desc">技術留存 · 第一印象</div>
+  </div>
+  <div class="phase-journey">玩家旅程：<span>點擊遊戲圖示</span> → <span>資源載入完成</span> → <span>進入遊戲主介面</span></div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">1.1</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">載入完成率</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">成功進入主介面的 session 數 ÷ 點擊遊戲圖示的 session 數，以百分比表示</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">玩家點擊進入遊戲的那一刻，以及遊戲主介面成功顯示的那一刻，兩個時間點需各有一筆紀錄，並共用同一個 session 識別碼以便配對</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">確認「技術流失」比例。載入完成率低於 90% 代表 CRM 可觸及的玩家母體遠小於點擊母體，需先解決技術問題再做 CRM</div></div>
+      <div class="item-field"><div class="field-label">拆分維度</div><div class="field-val">菲律賓 vs 泰國各自獨立計算；再細分裝置類型（Android / iOS）、網路環境（WiFi / 行動網路）、新玩家 vs 回訪玩家。兩市場行動網路品質差異大，此項對比尤其重要</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">1.2</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">載入時間分位數</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">從玩家點擊進入遊戲到主介面顯示的秒數，取 P50 / P90 / P95</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">1.1 兩個埋點的時間戳相減即可取得，無需額外埋點。依市場與裝置類型分組計算分位數</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">菲律賓與泰國行動網路速度相對不穩定，P90 超過 8 秒即有顯著流失風險。用來判斷「等待放棄」在兩個市場的嚴重程度是否不同，決定是否需要市場差異化的輕量化載入方案</div></div>
+      <div class="item-field"><div class="field-label">預期輸出</div><div class="field-val">菲律賓 / 泰國各自的 P50 / P90 / P95 對比表，標記超出閾值的裝置類型或網路環境</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">1.3</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">新玩家 vs 回訪玩家的載入完成率差異</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">依玩家首次遊玩日判斷是否為新玩家（首次遊玩日 = 今日），分組計算各自的載入完成率</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">同 1.1，加上玩家首次遊玩的日期紀錄，用來判斷是否為新玩家</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">新玩家對載入速度容忍度更低。菲律賓與泰國均以行動裝置為主，若新玩家完成率明顯低於回訪玩家，需針對首次進入體驗做優先優化，否則 CRM 新手任務觸及不到真正的新用戶</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase-block">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:#0F6E56"></div>
+    <div class="phase-name">階段 2 · 體驗期</div>
+    <div class="phase-desc">首輪感知 · 期待建立</div>
+  </div>
+  <div class="phase-journey">玩家旅程：<span>完成首旋</span> → <span>觸發小獎</span> → <span>達到前 50 轉</span></div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">2.1</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">前 50 轉流失率漏斗</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">每個 session 在第 1 / 5 / 10 / 20 / 30 / 50 轉時的留存比例（仍在遊玩的 session 數 ÷ 首旋 session 數）</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每一轉的押注行為需有紀錄，並標記該轉是玩家在這個 session 中的第幾轉；加上 session 結束時間，用來確認玩家離場時停在第幾轉</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">找出體驗期最大的流失斷崖在第幾轉。菲律賓與泰國玩家的充值金額普遍偏小，若第 5 轉流失率超過 40%，代表首輪體驗設計有根本問題，需在 CRM 設計前先處理</div></div>
+      <div class="item-field"><div class="field-label">預期輸出</div><div class="field-val">兩市場各自的漏斗圖：首旋 → 第 5 轉 → 第 10 轉 → 第 20 轉 → 第 50 轉，各節點留存率與流失量</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">2.2</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">前 50 轉內小獎觸發率</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">前 50 轉內至少觸發一次小獎（派彩 ≥ 1x 押注金額）的 session 比例；以及首次小獎出現在第幾轉的分佈</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每一轉的派彩結果需有紀錄（含派彩金額與對應押注金額），用來計算倍率是否達到 1x；並標記該轉是第幾轉，以找出首次小獎的位置</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">小獎是「正向回饋錨點」，對菲律賓與泰國小額充值玩家尤其重要——這群玩家的資金緩衝較薄，若超過 30 轉才觸發首次小獎，期待值崩塌的速度比高消費市場更快。結果將決定 CRM 新手任務的最小獎勵設計頻率</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">2.3</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">前 50 轉淨餘額變化分佈</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">第 50 轉結束時的餘額 − 進入遊戲時的餘額，分為：虧損 50% 以上 / 虧損 20–50% / 持平（±20%）/ 盈利，統計各組比例</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">session 開始時玩家的餘額快照，以及前 50 轉的累計押注總額與累計派彩總額，兩者相減即得淨餘額變化，無需每轉記錄餘額</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">菲律賓與泰國玩家平均充值金額偏低（Tier C 市場），前 50 轉虧損超過 50% 對這群玩家而言等同接近破產。此數據決定是否要為這兩個市場設計「新手保護機制」（如前 N 轉提高 RTP）</div></div>
+      <div class="item-field"><div class="field-label">拆分維度</div><div class="field-val">菲律賓 vs 泰國分開看；再依大客（高 bet）/ 小客（低 bet）分組，確認兩族群的虧損分佈差異</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">2.4</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">投注金額波動係數（體驗期）</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">前 50 轉中，玩家自行調整 bet 金額的次數及方向（升注 / 降注），計算降注次數 ÷ 總調整次數</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每一轉的押注金額紀錄，與前一轉相比若金額有變動，即記錄為一次調整行為，並標記方向（升注或降注）</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">連續降注是「風險規避行為」，代表玩家對遊戲失去信心但還沒走。這群人是 CRM 最需要即時介入的對象，尤其對資金較薄的菲律賓與泰國小客，降注後很快就會破產離場</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">2.5</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">暫停行為（轉與轉之間的停頓）</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">相鄰兩轉之間的時間間隔超過 30 秒定義為「主動暫停」，統計前 50 轉內的暫停次數及暫停時長分佈</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每一轉的結束時間與下一轉的開始時間，兩者時間戳相減即得間隔，無需額外埋點，由既有的逐轉紀錄計算</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">暫停是「猶豫」或「分心」的訊號，菲律賓與泰國玩家以行動裝置為主，被通知或電話打斷的情況較多。高暫停次數玩家是流失邊緣群，後續可作為 in-game 提示的觸發條件依據</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase-block">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:#854F0B"></div>
+    <div class="phase-name">階段 3 · 沉浸期</div>
+    <div class="phase-desc">高峰體驗 · 期待兌現</div>
+  </div>
+  <div class="phase-journey">玩家旅程：<span>觸發首次 Free Game / Bonus</span> → <span>產生首次餘額回升</span></div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">3.1</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">FG 觸發率 vs 轉數分佈</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">各 session 首次 FG 觸發在第幾轉；統計「從未觸發 FG 即離場」的 session 佔比；以及觸發 FG 的轉數分佈（P25 / P50 / P75）</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">Free Game 或 Bonus Game 被觸發時需有一筆紀錄，標記觸發當下是該 session 的第幾轉；對比 session 的總轉數，找出「整個 session 從未觸發 FG」的比例</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">若超過 60% 的 session 從未觸發 FG，代表大多數玩家從未體驗遊戲的核心高峰。菲律賓與泰國玩家資金偏薄、session 時長較短，FG 觸發機會比高消費市場更少，需特別確認這個比例</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">3.2</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">FG 後行為：繼續遊玩 vs 立即離場</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">FG 結束後 5 分鐘內是否繼續有押注紀錄；分成「FG 後繼續」/ 「FG 後 5 分鐘內離場」兩組，計算各組比例</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">FG 結束的時間點需有紀錄，對比同一 session 中下一筆押注的時間，若超過 5 分鐘無押注則視為離場</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">「FG 後立即離場」是最嚴重的失望訊號——代表 FG 是玩家的「最後期待」而非留存動力。若此比例在兩市場超過 40%，FG 的遊戲設計與 CRM 配套需要根本調整</div></div>
+      <div class="item-field"><div class="field-label">拆分維度</div><div class="field-val">依 FG 派彩倍率高 / 中 / 低分組，確認派彩金額是否影響後續行為；菲律賓 vs 泰國分開比較</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">3.3</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">FG 前後的 bet 金額變化</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">FG 後 10 轉的平均 bet 金額 vs FG 前 10 轉的平均 bet 金額，計算比值</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">同 3.1 與 3.2 的埋點，取 FG 觸發前後各 10 筆押注紀錄的金額平均即可</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">FG 後加注 = 滿足感延伸（正向），FG 後降注 = 心理收支平衡後退出（需要 CRM 介入）。這個指標決定 CRM 應在 FG 後多久觸發任務激勵</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">3.4</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">無回饋沉默期流失率</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">連續 N 轉無任何派彩（派彩金額為 0）的序列中，統計連續 10 / 20 / 30 / 50 轉無派彩後的 session 離場率</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每一轉的派彩金額紀錄（0 也需記錄），連續計算派彩為 0 的轉數序列，對比該 session 是否在此序列內結束</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">找出菲律賓與泰國玩家的「無回饋忍耐閾值」。這兩個市場的玩家資金緩衝薄，沉默期的耐受度預計低於高消費市場。若連續 15 轉無派彩離場率即超過 50%，CRM 任務的獎勵觸發頻率設計需要對應提高</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase-block">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:#3C3489"></div>
+    <div class="phase-name">階段 4 · 存續期</div>
+    <div class="phase-desc">資金耗盡 · 再訪決策</div>
+  </div>
+  <div class="phase-journey">玩家旅程：<span>破產（餘額耗盡）</span> → <span>離開遊戲</span></div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">4.1</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">破產後回充時間分佈</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">破產（session 結束時餘額低於最小押注額）後，下一次充值發生在多少小時後。分組：1 小時內 / 1–24 小時 / 1–7 天 / 7 天以上 / 從未再充值</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每次充值行為的時間點需有紀錄，與上一次 session 結束（破產）的時間點相減，取得回充間隔。需確認「破產」的定義：餘額 = 0，或餘額低於平台最小押注額，請統一口徑後再撈</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">判斷玩家黏著層級。「從未再充值」比例是菲律賓與泰國市場 CRM 回歸禮包必要性的關鍵依據；「1 小時內回充」的比例決定大客族群的規模是否足以在 Phase 1 就設計 VIP 召回機制</div></div>
+      <div class="item-field"><div class="field-label">拆分維度</div><div class="field-val">菲律賓 vs 泰國分開比較；再依歷史總充值金額分層（小客 / 中客 / 大客），作為後續 VIP 分層設計的基礎</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">4.2</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">連續破產流失臨界點</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">統計玩家在第幾次連續破產（無中間充值）後停止回訪（30 天未再登入），計算各「連續破產次數」對應的永久流失率</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每次充值紀錄與每次破產紀錄需可依玩家識別碼串聯，找出「破產後未充值、直接再次破產」的連續序列；再對比 30 天後的登入紀錄確認是否永久流失</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">找出菲律賓與泰國市場的流失臨界點，決定 CRM 應在第幾次破產後觸發回歸禮包。預期兩市場因充值金額偏低、連續破產容忍度較低，臨界點可能在 2–3 次即出現</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">4.3</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">破產前最後 20 轉的押注行為</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">破產前最後 20 轉的 bet 金額趨勢，分類為：逐漸降注收尾 / 維持穩定 / 大幅加注博回來，統計各模式比例</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">逐轉的押注金額紀錄（同 2.1 的埋點），取每次破產 session 的最後 20 筆押注紀錄，計算金額的趨勢方向即可</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">「博回來」型是憤怒型流失（不易召回），「穩定收尾」型是理性型流失（可用回歸禮包召回）。菲律賓與泰國小客若以「穩定收尾」為主，CRM 回歸禮包的設計效益會更高</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">4.4</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">每次遊玩時長分佈</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">每個 session 從首旋到最後一轉的時間長度，計算 P10 / P25 / P50 / P75 / P90</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">session 內首次押注與最後一次押注的時間戳相減，即得 session 時長，由既有逐轉紀錄計算，無需額外埋點</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">建立菲律賓與泰國市場的「正常遊玩時長」基準線。這兩個市場以小客為主，P50 預期在 30–60 分鐘左右。偏離基準的異常 session 可作為 CRM 介入時機的參考條件</div></div>
+      <div class="item-field"><div class="field-label">拆分維度</div><div class="field-val">菲律賓 vs 泰國；大客 vs 小客，確認兩族群的時長差異是否符合假設</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PHASE 5 -->
+<div class="phase-block">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:#993C1D"></div>
+    <div class="phase-name">階段 5 · 跨 Session 行為（失望訊號）</div>
+    <div class="phase-desc">長期流失預警</div>
+  </div>
+  <div class="phase-journey">觀察維度：<span>連續多次 session 的行為趨勢</span>，而非單次遊玩</div>
+
+  <div class="section-note">此階段需跨 session 縱向追蹤，請以玩家識別碼為主鍵做時序分析，數據時間窗口至少 90 天。</div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">5.1</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">連續遊玩後突然中斷的偵測</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">曾連續遊玩 5 天以上、後續中斷超過 3 天的玩家比例，以及中斷前最後一次 session 的特徵（是否破產、是否觸發 FG）</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每日登入紀錄（含日期），以及每次 session 的破產狀態與 FG 觸發狀態。三筆紀錄依玩家識別碼串聯，找出「連續登入後突然消失」的型態</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">這是最強的失望訊號。中斷前的 session 特徵決定菲律賓與泰國市場 CRM 召回訊息的設計重點——若多數是破產中斷，回歸禮包是主軸；若是 FG 未觸發後中斷，需考慮調整遊戲節奏</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">5.2</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">跨 session 投注金額長期趨勢</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">每位玩家過去 30 天，以每次 session 的平均 bet 金額畫時序線，判斷趨勢：上升 / 穩定 / 持續下降（連續 3 次 session 均低於前一次）</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">每次 session 的平均押注金額（session 內總押注額 ÷ 總轉數），依玩家識別碼與 session 日期排序，計算相鄰 session 的金額變化方向</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">「持續降注」是信心流失的訊號，早於最終流失 2–4 週出現。菲律賓與泰國市場這群玩家是 CRM 最值得提前介入的對象，識別後可設計「信心恢復任務」以阻止流失</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">5.3</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">遊戲時長逐週變化</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">以週為單位，計算每位玩家的週總遊玩時長，觀察連續 4 週以上的趨勢</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">同 4.4 的 session 時長計算，彙總至週維度即可，無需額外埋點</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">小客的主要失望訊號是時長下降而非破產，這在菲律賓與泰國小額充值玩家中尤為明顯。與 5.2 投注金額趨勢合併看，可更早識別小客流失前兆</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">5.4</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">跨遊戲移轉行為</div><span class="priority-med">中優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">過去 30 天，玩家在本遊戲的遊玩時長佔其平台總遊玩時長的比例，觀察此比例的月變化</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">平台層級的所有遊戲 session 時長彙總，以玩家識別碼計算本遊戲時長 ÷ 平台總時長的佔比，需要平台端提供跨遊戲的 session 數據，非單一遊戲可獨立計算</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">佔比下降代表玩家「還在平台上，但在移轉到其他遊戲」。菲律賓與泰國市場競品遊戲多，這個指標能區分「玩家流失」與「遊戲流失」，讓 CRM 介入有更精準的目標</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PHASE 6 -->
+<div class="phase-block">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:#3B6D11"></div>
+    <div class="phase-name">階段 6 · 玩家族群分類</div>
+    <div class="phase-desc">大客 / 小客基礎建立</div>
+  </div>
+  <div class="phase-journey">目的：建立可反覆使用的玩家分群定義，作為所有後續 CRM 分析的基礎維度</div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">6.1</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">大客 / 小客的客觀定義與切分</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">以過去 30 天每次 session 的平均 bet 金額，計算各玩家的中位數。依全體分佈取前 20% 為大客候選、後 60% 為小客候選、中間 20% 為中客。請提供各組的實際人數與總流水貢獻佔比</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">逐轉押注金額紀錄（同 2.1），以 session 為單位計算平均值，再依玩家識別碼彙總過去 30 天的中位數。此計算基於既有埋點即可完成</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">確認菲律賓與泰國市場大客 / 小客的實際數量比例與流水貢獻比例，決定 CRM 初期資源應集中在哪個族群。預期兩市場以小客為主，大客佔比低但流水貢獻高</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">6.2</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">大客 vs 小客的遊玩行為差異驗證</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">依 6.1 的分群，比較兩組在以下指標的差異：平均 session 時長、每月 session 次數、破產後回充率、FG 觸發頻率、偏好遊戲的 RTP 設定</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">以上各指標均基於前面階段的既有埋點彙總，無需新增埋點。依 6.1 的分群標籤，對各指標做分組統計即可</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">驗證行為假設是否在菲律賓與泰國市場成立（大客單次短高強度、小客長時間低強度）。若假設不符，需在 CRM 設計前調整族群策略方向</div></div>
+      <div class="item-field"><div class="field-label">預期輸出</div><div class="field-val">菲律賓 / 泰國各自的兩組指標對比表，標記統計上顯著的差異項目</div></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-top">
+      <div class="item-num">6.3</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="item-name">新玩家 Day 1–7 行為基準</div><span class="priority-high">高優先</span></div>
+    </div>
+    <div class="item-rows">
+      <div class="item-field"><div class="field-label">數據定義</div><div class="field-val">取過去 90 天的新玩家（首次充值後 7 天內），統計 Day 1 / 3 / 7 留存率、首週平均 session 次數、首週是否觸發過 FG</div></div>
+      <div class="item-field"><div class="field-label">需要的埋點行為</div><div class="field-val">玩家首次充值的時間點作為起始日，對比後續 7 天內的每日登入紀錄計算留存率；首週 session 次數與 FG 觸發狀態依既有埋點彙總</div></div>
+      <div class="item-field"><div class="field-label">分析目的</div><div class="field-val">建立菲律賓與泰國市場新玩家蜜月期的行為基準，作為 CRM 新手任務設計的依據。若 Day 3 留存率低於 30%，新手期任務需要更強的前置激勵，且需菲律賓 / 泰國分開設定目標值</div></div>
+    </div>
+  </div>
+
+</div>
+
+</div>
