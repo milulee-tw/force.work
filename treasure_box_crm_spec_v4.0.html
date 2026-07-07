@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 CRM 功能規格書 v4.3.1</title>
+<title>抽寶箱 CRM 功能規格書 v5.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1132,7 +1132,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · SPEC DOC</div>
     <div class="sidebar-title">抽寶箱 CRM<br>功能規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v4.3.1</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v5.0</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-review">REVIEW</span></div>
@@ -1493,7 +1493,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="sub-title">解鎖門檻設計（累積押注金額）</div>
   <div class="callout success">
     <strong>翻牌機制（v3.2 核心）：</strong>累積押注每跨過一個門檻，玩家就獲得 <strong>1 次「翻牌機會」</strong>（非解鎖固定位置的格子）。玩家可用累積的翻牌次數，<strong>自由翻開任意一個尚未翻開的格子</strong>——<em>可翻次數 = 已解鎖次數 − 已翻開數</em>。沒有剩餘次數時，所有未開格顯示鎖頭、不可點擊。<br>
-    <strong>為何不影響經濟：</strong>集滿當日總門檻後可翻次數累積至 9，玩家最終仍會翻完全部 9 格、拿到全部獎項；翻牌結果依 config 權重於當日解鎖時決定並寫死，玩家翻開順序不影響已定結果，<strong>RTP 與通膨風險不變</strong>。
+    <strong>為何不影響經濟：</strong>集滿當日總門檻後可翻次數累積至 9，玩家最終仍會翻完全部 9 格、拿到全部獎項；翻牌結果依機率表權重於當日解鎖時決定並寫死，玩家翻開順序不影響已定結果，<strong>RTP 與通膨風險不變</strong>。
   </div>
   <div class="callout info">
     <strong>為什麼改用累積押注金額而非 Spin 次數？</strong><br>
@@ -1611,55 +1611,42 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="sub-title">亂數模型（方案 A：固定池 + 不放回加權抽）</div>
   <div class="callout">
     <strong>固定獎池（不可變）：</strong>小 ×5（₱1）、中 ×2（₱3）、大 ×1（₱8）、終 ×1（₱18）＝ <strong>₱37</strong>。<br><br>
-    <strong>產生方式：</strong>玩家<strong>每日首次解鎖</strong>時，依 <code>resolveConfig()</code> 命中的 config 權重表以<strong>不放回加權抽</strong>產生 9 格排列並寫死當日 DB，當日不可重抽。翻完 9 格必得 ₱37，完成者 RTP 由該 config 的總門檻決定、零變異、絕不超池。<br><br>
-    <strong>終獎位置有機化：</strong>終獎<strong>不固定第 9 格</strong>，由權重分佈於後段（各 config 分佈不同，見下表），避免每日回訪玩家看破。
+    <strong>產生方式：</strong>玩家<strong>每日首次解鎖</strong>時，依 <code>resolveTable()</code> 選定的機率表權重以<strong>不放回加權抽</strong>產生 9 格排列並寫死當日 DB，當日不可重抽。翻完 9 格必得 ₱37，完成者 RTP 由該機率表的總門檻決定、零變異、絕不超池。<br><br>
+    <strong>終獎位置有機化：</strong>終獎<strong>不固定第 9 格</strong>，由權重分佈於後段（各機率表分佈不同，見下表），避免每日回訪玩家看破。
   </div>
 
-  <div class="sub-title">後端 RTP 驗算公式（每貨幣 × 每 config 各自驗算）</div>
+  <div class="sub-title">後端 RTP 驗算公式（每貨幣 × 每機率表各自驗算）</div>
   <div class="callout info">
-    <code>config RTP = ( Σ 固定池獎項金額 ) ÷ ( 該 config 的 Σ 9 格門檻增量 )</code><br><br>
-    分子固定 ₱37；分母 = 該 config 的總門檻。<strong>每套貨幣（PHP／THB／USD）× 每個 config 各自代入、各自驗算，不做匯率換算。</strong>後台即時試算，超出該 config 目標區間即警示、擋送審。
+    <code>機率表 RTP = ( Σ 固定池獎項金額 ) ÷ ( 該機率表的 Σ 9 格門檻增量 )</code><br><br>
+    分子固定 ₱37；分母 = 該機率表的總門檻。<strong>每套貨幣（PHP／THB／USD）× 每張機率表各自代入、各自驗算，不做匯率換算。</strong>後台即時試算，超出該機率表目標區間即警示、擋送審。
   </div>
 
-  <div class="sub-title">分眾架構：配置庫 ＋ 命中規則 ＋ resolveConfig（拆開，不綁死）</div>
+  <div class="sub-title">分眾架構：機率表（給什麼）＋ tag（給誰）＝一層直掛（v5.0 拆除中介抽象層）</div>
   <div class="callout">
-    分眾照顧拆成三件互相獨立的東西，避免「誰命中」與「給什麼」綁死：<br><br>
-    <strong>① 獎勵配置庫（config）＝給什麼：</strong>每個 config 只含 門檻表(9格)＋權重表(9×4)＋目標RTP（＋<code>configId</code>／版本／多貨幣），為純 payload；<strong>【不含護欄】</strong>。護欄不屬於 config——與「誰命中」無關，可被多條命中規則共用。（v4.3）<br>
-    <strong>② 命中規則（targeting）＝誰用哪個 config：</strong>「（tag 條件 ＋ 可選數值條件）→ configId」的<strong>有序清單（由上而下 first-match）</strong>＋ <code>default</code> fallback。數值條件（如近 30 天累積押注 ≥ X）即反套利門檻，寫在命中規則的分支上，不寫進 config。此數值由 DA/CDP 提供（跨活動近 30 天總押注）；門檻 X 建議取近 30 天有實際押注真實玩家的中低位（如中位數/P30～P50），上線後依命中率調整。（v4.3）<br>
-    <strong>③ 分群（tags）：</strong>由 DA／CDP 提供，box 不自算。<br>
-    <strong>④ 解析介面 <code>resolveConfig()</code>：</strong>box 只呼叫它取配置（見 §04）；內部怎麼判斷都不影響 box。<br><br>
-    <strong>照顧的兩個槓桿（寫在 config 的「意圖」裡）：</strong>(1) 目標RTP 越高→總門檻越低；(2) 終獎最早格越前→早退也可能已中終獎。系統可由「意圖(目標RTP＋終獎最早格)」自動編譯出門檻＋權重表。以下為 PHP 示範 3 個 config（THB／USD 各自另設、結構相同）。
+    <strong>v5.0 拆掉中間的抽象層</strong>，分眾只剩<strong>兩個角色</strong>——「給什麼」與「給誰」，玩家當日 tag <strong>直接</strong>對應一張機率表，中間不再有映射層：<br><br>
+    <strong>① 機率表（給什麼）＝CRM 維護：</strong>每張機率表含 門檻表(9格)＋權重表(9×4)＋目標RTP（＋<code>tagId</code>／版本／多貨幣），為純 payload。一個 tag 直接掛一張機率表；同一份機率表可被多個 tag 共用。<br>
+    <strong>② tag（給誰）＝DA／CDP 提供、已內含資格門檻：</strong>玩家分群 tag 由 DA 打上，<strong>box／CRM 不自算、不判斷資格門檻</strong>。反套利護欄<strong>內含於 tag 本身</strong>（例：救援類 tag 需「近 30 天累積押注 ≥ X」才會被 DA 打上），CRM 只認 tag。<br>
+    <strong>③ 選表規則：</strong>玩家當日 tag（多 tag 時依 <strong>DA tag Priority 取最高</strong>）<strong>直接</strong>決定跑哪張機率表；<strong>不再有中間映射層、也不再有「有序清單／樹狀分支」這類中介</strong>。無任何 tag／同步延遲 → <code>tag_default</code> 安全機率表兜底。<br>
+    <strong>④ 解析介面 <code>resolveTable()</code>：</strong>box 只呼叫它取當日機率表（見 §04）。<br><br>
+    <strong>照顧的兩個槓桿（寫在機率表的「意圖」裡）：</strong>(1) 目標RTP 越高→總門檻越低；(2) 終獎最早格越前→早退也可能已中終獎。系統可由「意圖(目標RTP＋終獎最早格)」自動編譯出門檻＋權重表。<strong>落地方式＝1 個活動 / N 組 tag 設定</strong>（示範 3 張機率表，實務可擴至 7 組）；以下為 PHP 示範（THB／USD 各自另設、結構相同）。
   </div>
 
-  <div class="sub-title">① 獎勵配置庫（PHP 示範）</div>
+  <div class="sub-title">① 機率表庫（PHP 示範 · tag 直掛）</div>
   <table class="spec-table">
-    <thead><tr><th>configId</th><th>說明</th><th>意圖·目標RTP</th><th>意圖·終獎最早格</th><th>總門檻</th></tr></thead>
+    <thead><tr><th>tagId</th><th>說明</th><th>意圖·目標RTP</th><th>意圖·終獎最早格</th><th>總門檻</th></tr></thead>
     <tbody>
-      <tr><td class="mono">cfg_default</td><td>預設（fallback 用）</td><td>1.03%</td><td>第 6 格</td><td class="mono">₱3,650</td></tr>
-      <tr><td class="mono">cfg_loyal</td><td>忠誠加碼</td><td>1.50%</td><td>第 5 格</td><td class="mono">₱2,460</td></tr>
-      <tr><td class="mono">cfg_rescue</td><td>救援加碼</td><td>2.00%</td><td>第 3 格</td><td class="mono">₱1,830</td></tr>
+      <tr><td class="mono">tag_default</td><td>預設兜底（無 tag／同步延遲）</td><td>1.03%</td><td>第 6 格</td><td class="mono">₱3,650</td></tr>
+      <tr><td class="mono">tag_loyal</td><td>忠誠加碼</td><td>1.50%</td><td>第 5 格</td><td class="mono">₱2,460</td></tr>
+      <tr><td class="mono">tag_rescue</td><td>救援加碼</td><td>2.00%</td><td>第 3 格</td><td class="mono">₱1,830</td></tr>
     </tbody>
   </table>
-  <div class="body-text" style="font-size:12px;">cfg_rescue 的反套利門檻已移至「命中規則」的分支條件（見下方 targeting 表），config 本身不含護欄。（v4.3）</div>
-
-  <div class="sub-title">② 命中規則 targeting（有序清單＝決策樹深度 1）</div>
-  <table class="spec-table">
-    <thead><tr><th>順序</th><th>match 條件</th><th>→ configId</th></tr></thead>
-    <tbody>
-      <tr><td>1</td><td>個人 RTP 偏低 ＋ 近 30 天累積押注 ≥ X</td><td class="mono">cfg_rescue</td></tr>
-      <tr><td>2</td><td>連續 3 日遊玩 ＋ 日均押注 ≥ N</td><td class="mono">cfg_loyal</td></tr>
-      <tr><td class="mono">default</td><td>其餘所有人（fallback）</td><td class="mono">cfg_default</td></tr>
-    </tbody>
-  </table>
-  <div class="body-text" style="font-size:12px;">
-    <strong>順序即優先序：</strong>由上而下第一個命中者勝（不再需要獨立的優先序數字）。同時命中救援與忠誠者→取救援（排在前）。<strong>窄的條件排前、廣的排後</strong>，避免下方規則永遠命中 0 人（遮蔽）。高照顧 config（如 cfg_rescue）的分支必須帶數值護欄（近 30 天累積押注 ≥ X），可被玩家自控的 tag 才不會被薅。（v4.3）
-  </div>
+  <div class="body-text" style="font-size:12px;"><strong>選表＝依 DA tag Priority 取最高的單一 tag → 直接跑該表</strong>，無中間映射層。<code>tag_rescue</code> 的反套利門檻由 DA 在打 tag 時內含（近 30 天累積押注 ≥ X 才會被打上救援類 tag），CRM 只認 tag、不自判資格。（v5.0）</div>
 
   <div class="callout info">
-    <strong>為 v2 決策樹鋪路（重要）：</strong>v1 的命中規則是<strong>有序清單＝決策樹深度 1（root＋數片葉）</strong>。v2 只把這份清單升級成<strong>巢狀樹＋繼承</strong>；<strong>配置庫（config）、resolveConfig 介面、意圖編譯器一律不動，資料零遷移</strong>。屆時 v1 的每個 config 就是「一片沒有繼承差異的葉」。
+    <strong>未來演進（重要）：</strong>若要更細緻的個人化，<strong>於 DA 端擴充 tag 維度即可</strong>；CRM 的「tag → 機率表」掛載方式不變、<strong>資料零遷移</strong>。不再需要「有序清單／樹狀分支」這類中介選表層。
   </div>
 
-  <div class="sub-title">config：cfg_default · 預設（RTP 1.03% · v1）</div>
+  <div class="sub-title">機率表：tag_default · 預設兜底（RTP 1.03% · v1）</div>
   <table class="spec-table">
     <thead><tr><th>格</th><th>累積門檻</th><th>小%</th><th>中%</th><th>大%</th><th>終%</th></tr></thead>
     <tbody>
@@ -1675,7 +1662,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title">config：cfg_loyal · 忠誠加碼（RTP 1.50% · v1）</div>
+  <div class="sub-title">機率表：tag_loyal · 忠誠加碼（RTP 1.50% · v1）</div>
   <table class="spec-table">
     <thead><tr><th>格</th><th>累積門檻</th><th>小%</th><th>中%</th><th>大%</th><th>終%</th></tr></thead>
     <tbody>
@@ -1691,7 +1678,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title">config：cfg_rescue · 救援加碼（RTP 2.00% · v1）</div>
+  <div class="sub-title">機率表：tag_rescue · 救援加碼（RTP 2.00% · v1）</div>
   <table class="spec-table">
     <thead><tr><th>格</th><th>累積門檻</th><th>小%</th><th>中%</th><th>大%</th><th>終%</th></tr></thead>
     <tbody>
@@ -1707,14 +1694,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="body-text" style="font-size:12px;">上表為各 config 的<strong>邊際機率（描述用）</strong>；後台實際輸入為每格 roll 權重，系統即時算出邊際機率、終獎落點分佈與 RTP。門檻 ∝ 各格期望派彩，使該 config 段內任一停手點 RTP 皆等於其目標值（段內防套利）。</div>
+  <div class="body-text" style="font-size:12px;">上表為各機率表的<strong>邊際機率（描述用）</strong>；後台實際輸入為每格 roll 權重，系統即時算出邊際機率、終獎落點分佈與 RTP。門檻 ∝ 各格期望派彩，使該機率表段內任一停手點 RTP 皆等於其目標值（段內防套利）。</div>
 
   <div class="callout warn">
-    <strong>養 tag 套利風險（救援類必讀 · v4.3 護欄歸位）：</strong>救援 config（cfg_rescue）讓終獎在第 3 格即可能出現，前 1%（P99）玩家在第 3 格 RTP 可達約 8%。有心人可能<strong>刻意壓低自己的 RTP 以觸發救援命中規則</strong>、專薅早期終獎。防線拆三層、各歸其位：<strong>①【命中規則層】</strong> 反套利門檻（近 30 天累積押注 ≥ X）寫成救援分支的 AND 條件——不符門檻者根本不命中 cfg_rescue；<strong>②【結算層風控】</strong> per-config RTP 上限 ＋ 異常自動凍結；<strong>③【資料設計】</strong>「個人 RTP」tag 的計算需玩家難以自控。config 本身不含任何護欄。
+    <strong>養 tag 套利風險（救援類必讀 · v5.0 護欄移至 DA 端）：</strong>救援機率表（tag_rescue）讓終獎在第 3 格即可能出現，前 1%（P99）玩家在第 3 格 RTP 可達約 8%。有心人可能<strong>刻意壓低自己的 RTP 以被打上救援類 tag</strong>、專薅早期終獎。防線拆三層、各歸其位：<strong>①【DA tag 內含門檻】</strong> 反套利門檻（近 30 天累積押注 ≥ X）內含於 DA 打 tag 的條件——不符門檻者<strong>根本不會被打上救援類 tag</strong>，自然選不到 tag_rescue；<strong>CRM 只認 tag、不自判資格</strong>；<strong>②【結算層風控】</strong> per-機率表 RTP 上限 ＋ 異常自動凍結；<strong>③【資料設計】</strong>「個人 RTP」tag 的計算需玩家難以自控。機率表本身不含任何護欄。
   </div>
 
   <div class="callout warn" style="font-size:12px;">
-    <strong>表格性質與 QA 驗收：</strong>上列各 config 表為固定池「不放回加權抽」下各格的<strong>邊際機率</strong>（每個 config 各欄總和 = 該獎項在固定池的數量：小 5、中 2、大 1、終 1；各列總和 = 100%）。後端<strong>不以此表逐格 roll</strong>，而是依 <strong>resolveConfig() 命中的 config</strong> 實作「不放回加權抽」演算法；QA 以蒙地卡羅跑 ≥ 10 萬次排列，驗證實際邊際機率落在對應 config 表 ±2% 內、且每次總派彩恆為 ₱37 即通過。
+    <strong>表格性質與 QA 驗收：</strong>上列各機率表為固定池「不放回加權抽」下各格的<strong>邊際機率</strong>（每張機率表各欄總和 = 該獎項在固定池的數量：小 5、中 2、大 1、終 1；各列總和 = 100%）。後端<strong>不以此表逐格 roll</strong>，而是依 <strong>resolveTable() 選定的機率表</strong> 實作「不放回加權抽」演算法；QA 以蒙地卡羅跑 ≥ 10 萬次排列，驗證實際邊際機率落在對應機率表 ±2% 內、且每次總派彩恆為 ₱37 即通過。
   </div>
 
   <div class="callout warn">
@@ -1731,22 +1718,22 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <span class="section-title-en">ARCHITECTURE & FLOW</span>
   </div>
 
-  <div class="sub-title">每日配置解析（resolveConfig）</div>
+  <div class="sub-title">每日機率表解析（resolveTable）</div>
   <div class="callout info">
     <strong>穩定介面（box 只認這個）：</strong><br>
-    <code>resolveConfig(playerId, date, currency) → { configId, matchedPath, thresholds[9], weights[9][4], tiers, targetRTP }</code><br><br>
-    <strong>流程：</strong>
+    <code>resolveTable(playerId, date, currency) → { tagId, matchedTag, thresholds[9], weights[9][4], tiers, targetRTP }</code><br><br>
+    <strong>流程（v5.0 · 一層直掛，無中間映射）：</strong>
     <ol style="margin:6px 0 0;padding-left:18px;line-height:1.9;">
       <li>玩家當日<strong>首次</strong>解鎖（達第 1 格門檻）。</li>
-      <li>讀該玩家<strong>當日 tag 快照</strong>（個人RTP／連3日／日均押注…）。</li>
-      <li>依<strong>命中規則（有序清單 first-match）</strong>得 <code>configId</code>；無命中→ <code>default</code>。</li>
-      <li>從<strong>配置庫</strong>取該 config，以其權重表<strong>不放回加權抽</strong>產生 9 格排列，連同門檻表<strong>寫死當日 box</strong>。</li>
-      <li>記 audit：<code>matchedPath</code>（命中路徑）＋ <code>configVersion</code>，供合規回溯「這人為什麼拿此 RTP」。</li>
-      <li><strong>隔日重新解析</strong>（tag 變了就換 config）＝每日照顧。</li>
+      <li>讀該玩家<strong>當日 tag 快照</strong>（DA 提供；個人RTP／連3日／日均押注…，護欄門檻已內含於打 tag 條件）。</li>
+      <li>多 tag → 依 <strong>DA tag Priority 取最高</strong>的那個 tag；<strong>無任何 tag／同步延遲 → <code>tag_default</code> 兜底</strong>。該 tag <strong>直接</strong>對應一張機率表，無中間映射層。</li>
+      <li>取該 tag 的機率表，以其權重表<strong>不放回加權抽</strong>產生 9 格排列，連同門檻表<strong>寫死當日 box</strong>。</li>
+      <li>記 audit：<code>matchedTag</code>（命中的 tag）＋ <code>tableVersion</code>，供合規回溯「這人為什麼拿此 RTP」。</li>
+      <li><strong>隔日重新解析</strong>（tag 變了就換機率表）＝每日照顧。</li>
     </ol>
-    <strong>鎖定時點：</strong>config 於「當日首次解鎖」即鎖定，當日 tag 中途變動不影響當日 box、隔日生效。<br>
-    <strong>准入 vs 給獎（v4.3）：</strong>resolveConfig 只做「今天給哪個 config」的每日決策；「這位玩家能不能進這檔活動」是上游「資格投放＝准入閘門」的一次性判定（見 §04 受眾 tag 資格判定），一旦本檔期投放成功即 sticky，檔期內只換 config、不撤活動。<br>
-    <strong>前瞻：</strong>v2 把「命中規則」從清單換成決策樹時，<strong>只換此函式第 3 步的內部實作</strong>（清單 first-match → 樹 traversal＋繼承 merge），輸出形狀與 box 呼叫方式不變。
+    <strong>鎖定時點：</strong>機率表於「當日首次解鎖」即鎖定，當日 tag 中途變動不影響當日 box、隔日生效。<br>
+    <strong>准入 vs 選表（v5.0）：</strong>resolveTable 只做「今天跑哪張機率表」的每日決策；「這位玩家能不能進這檔活動」是上游「資格投放＝准入閘門」的一次性判定（見下方 受眾 tag 資格判定），一旦本檔期投放成功即 sticky，檔期內只換機率表、不撤活動。<strong>准入與選表同源同一份 DA tag</strong>。<br>
+    <strong>前瞻：</strong>若要更細緻的個人化，於 <strong>DA 端擴充 tag 維度</strong>即可，<code>resolveTable</code> 的「tag → 機率表」掛載方式與 box 呼叫方式不變、資料零遷移。
   </div>
 
   <div class="sub-title">資料結構（v1 基建一次做滿，含背包水管）</div>
@@ -1811,8 +1798,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>規則（2026-06-23 與後端對齊）：</strong>每個抽寶箱活動在後台設「受眾 tag」；玩家身上的 tag <strong>由 DA（數據組）提供</strong>，中台<strong>不自己跑排程算資格</strong>，只負責比對「玩家 tag 是否符合活動受眾 tag」——符合才會有該活動（顯示 icon＋押注計入＋可觸發翻牌）。tag 同步機制見 <em>CRM Roadmap §09 / W1「Tag 接收·同步」</em>。
   </div>
   <div class="callout info">
-    <strong>資格投放層＝准入閘門（v4.3）：</strong> 受眾 tag 是三層架構最外圈、範圍最廣的一次性判定，決定「這位玩家這檔能不能進場、看不看得到 icon」。行為：（a）只在「登入／投放一檔新活動」時判定一次；（b）判定通過後 <strong>sticky</strong>——檔期內只會每日切換獎勵配置庫（config），絕不會因為某天押注沒到門檻就撤掉活動或不顯示 icon（避免客訴）；（c）薅羊毛／不押注玩家在准入這一層就過濾掉、一開始就不投放，而非進場後才消失。<br>
-    <strong>與命中規則同源：</strong> 資格投放 tag 與命中規則 tag 是<strong>同一份 DA 標籤清單</strong>——資格投放取「最外圈聯集」（誰能進），命中規則是它底下的「分支決策樹」（進來的人今天給哪個 config）。兩者不是兩套 tag。
+    <strong>資格投放層＝准入閘門（v5.0）：</strong> 受眾 tag 是最外圈、範圍最廣的一次性判定，決定「這位玩家這檔能不能進場、看不看得到 icon」。<strong>本活動內含 N 組 <code>tag → 機率表</code></strong>（1 個 campaign_id／1 張主題圖／1 個到期日，示範 3～7 組）；受眾准入＝玩家 tag 落在這 N 個 tag 任一即可進。行為：（a）只在「登入／投放一檔新活動」時判定一次；（b）判定通過後 <strong>sticky</strong>——檔期內只會每日切換<strong>機率表</strong>，絕不會因為某天押注沒到門檻就撤掉活動或不顯示 icon（避免客訴）；（c）薅羊毛／不押注玩家在准入這一層就過濾掉、一開始就不投放，而非進場後才消失。<br>
+    <strong>准入與選表同源：</strong> 兩者是<strong>同一份 DA tag</strong>，不再有獨立的中介命中層——<strong>准入取「最外圈聯集」（誰能進）；選表取「最高 Priority 的單一 tag」（進來的人今天跑哪張機率表）</strong>。玩家從小客升大客（或反之）隔日即時換照顧，外觀無感。
   </div>
   <table class="spec-table">
     <thead><tr><th>項目</th><th>設計</th></tr></thead>
@@ -1839,10 +1826,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout info">
-    <strong>tag → config 命中規則（v4.3）：</strong>DA（數據組）提供 tag；平台維護「命中規則」＝<strong>tag 條件 → configId 的有序清單＋default</strong>。<strong>順序即優先序</strong>（上而下 first-match），不再用獨立優先序數字。<br>
+    <strong>tag → 機率表（v5.0 · 一層直掛）：</strong>DA（數據組）提供 tag；平台維護「<strong>tag → 機率表</strong>」的直接掛載（一個 tag 一張機率表）。<strong>選表＝多 tag 依 DA tag Priority 取最高</strong>，無中間映射層、無有序清單／樹狀分支。無任何 tag／同步延遲 → <code>tag_default</code> 兜底。<br>
     <strong>資料頻率：</strong>「連續 3 日遊玩 / 日均押注」＝<strong>每日批次</strong>（隔日生效即可）；「個人 RTP 偏低」＝<strong>即時</strong>。<br>
-    <strong>複用：</strong>同一 config 可被多條命中規則指向（例如「新手」「回流」都指向 cfg_loyal）。<br>
-    <strong>反套利（護欄歸位·v4.3）：</strong> 可被玩家自控的 tag（如近期 RTP）指向高照顧 config 時，於「命中規則」加近 30 天累積押注 ≥ X 作為分支 AND 條件（不寫進 config）；per-config RTP 上限＋異常自動凍結屬結算層風控。
+    <strong>複用：</strong>同一張機率表可被多個 tag 共用（例如「新手」「回流」都掛 tag_loyal 的表）。<br>
+    <strong>反套利（護欄移至 DA 端·v5.0）：</strong> 可被玩家自控的維度（如近期 RTP）對應高照顧機率表時，其資格門檻（近 30 天累積押注 ≥ X）<strong>內含於 DA 打 tag 的條件</strong>——不符者不會被打上該 tag、自然選不到該表；CRM 只認 tag、不自判資格。per-機率表 RTP 上限＋異常自動凍結屬結算層風控。
   </div>
 
   <div class="sub-title">玩家押注後的系統處理流程</div>
@@ -1863,7 +1850,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="flow-step highlight" style="min-width:400px;">
         <div class="flow-step-num">3 · AUDIENCE CHECK</div>
         <div class="flow-step-title">受眾資格判定（符合才計入）</div>
-        <div class="flow-step-desc">取玩家 tag（DA 同步）∩ 活動受眾 tag；活動受眾 tag 留空＝全體通過。符合多個活動時依 DA tag Priority 取最高那組。不符 → 不計入該 campaign、直接結束（玩家無感）。（此為准入閘門，判定通過後 sticky；檔期內只換 config、不撤活動 · v4.3）</div>
+        <div class="flow-step-desc">取玩家 tag（DA 同步）∩ 活動受眾 tag；活動受眾 tag 留空＝全體通過。符合多個活動時依 DA tag Priority 取最高那組。不符 → 不計入該 campaign、直接結束（玩家無感）。（此為准入閘門，判定通過後 sticky；檔期內只換機率表、不撤活動 · v5.0）</div>
       </div>
       <div class="flow-arrow-down">↓</div>
       <div class="flow-step" style="min-width:400px;">
@@ -1875,7 +1862,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="flow-step highlight" style="min-width:400px;">
         <div class="flow-step-num">5 · THRESHOLD CHECK</div>
         <div class="flow-step-title">檢查是否達下一門檻 → 記翻牌次數</div>
-        <div class="flow-step-desc">計算 unlocked_flips = 累積門檻中 ≤ today_wager 的數量；若較前次增加且為今日首次取得任何機會：執行洗牌寫入（若尚未）。可翻次數 = unlocked_flips − opened_count。每日 config 由 resolveConfig 依當日 tag 命中，資格不因單日未達門檻而取消 · v4.3</div>
+        <div class="flow-step-desc">計算 unlocked_flips = 累積門檻中 ≤ today_wager 的數量；若較前次增加且為今日首次取得任何機會：執行洗牌寫入（若尚未）。可翻次數 = unlocked_flips − opened_count。每日機率表由 resolveTable 依當日 tag 直接選定，資格不因單日未達門檻而取消 · v5.0</div>
       </div>
       <div class="flow-arrow-down">↓</div>
       <div class="flow-step" style="min-width:400px;">
@@ -1956,23 +1943,23 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <span class="tag-pill" style="background:var(--purple-fill);color:var(--purple-bright);">🎨 UI設計</span>
   </div>
 
-  <div class="sub-title">分眾（配置庫＋命中規則）· 分期與新增 Task（v4.3）</div>
+  <div class="sub-title">分眾（tag → 機率表）· 分期與新增 Task（v5.0）</div>
   <div class="callout">
-    <strong>分眾（配置庫＋命中規則）是大功能，分兩期上線：</strong><br>
-    <strong>① 最小方案（先上）：</strong>單一 config（cfg_default）＋命中規則僅 default 一條（＝決策樹深度 1），維持現行單表流程，但<strong>終獎改後段分佈</strong>、RTP 公式與亂數模型定義寫清楚。<br>
-    <strong>② 完整方案：</strong>多 config ＋ 命中規則（tag→config 有序清單，v2 升樹）＋ resolveConfig 解析服務 ＋ 意圖編譯器 ＋ 後台兩維設定（貨幣 × config）＋命中規則區 ＋ per-config RTP 監控 ＋ 命中規則分支護欄（反套利）＋ 結算層 per-config RTP 上限/異常凍結。
+    <strong>分眾（tag → 機率表）是大功能，分兩期上線：</strong><br>
+    <strong>① 最小方案（先上）：</strong>單一機率表（tag_default）＋選表僅 default 一張，維持現行單表流程，但<strong>終獎改後段分佈</strong>、RTP 公式與亂數模型定義寫清楚。<br>
+    <strong>② 完整方案：</strong>多機率表 ＋ 1 活動 N 組 tag 設定 ＋ resolveTable 解析服務（依 DA Priority 取最高 tag 直接選表）＋ 意圖編譯器 ＋ 後台兩維設定（貨幣 × tag 分頁）＋ per-機率表 RTP 監控 ＋ 結算層 per-機率表 RTP 上限/異常凍結。<strong>反套利護欄移至 DA 端內含於 tag，不在 CRM。</strong>
   </div>
   <table class="spec-table">
     <thead><tr><th>#</th><th>Task 項目</th><th>職能</th><th>分期</th></tr></thead>
     <tbody>
-      <tr><td>P.1</td><td>配置庫＋命中規則資料模型（configs／targeting 分離）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
-      <tr><td>P.1b</td><td>resolveConfig() 解析服務（介面穩定，v2 換內部即可）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>P.1</td><td>機率表庫資料模型（tag → 機率表 直掛，無中介抽象層）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>P.1b</td><td>resolveTable() 解析服務（依 DA Priority 取最高 tag 直接選表；無 tag→tag_default 兜底）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
       <tr><td>P.1c</td><td>意圖編譯器 compile(目標RTP,終獎最早格)→門檻+權重</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
-      <tr><td>P.2</td><td>命中規則（tag→config 有序清單）與 audit（matchedPath＋版本）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-data">📊 數據組</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
-      <tr><td>P.3</td><td>後台：配置庫分頁（貨幣×config）＋命中規則區</td><td><span class="tag-pill tag-web">🌐 前端Web</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
-      <tr><td>P.4</td><td>per-config RTP 即時試算與監控</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
-      <tr><td>P.5a</td><td>命中規則分支條件（反套利：近 30 天累積押注 ≥ X）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-data">📊 數據組</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
-      <tr><td>P.5b</td><td>結算層 per-config RTP 上限 ＋ 異常自動凍結</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>P.2</td><td>選表 audit（matchedTag＋tableVersion）＋ 多 tag Priority 裁決</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-data">📊 數據組</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>P.3</td><td>後台：機率表分頁（貨幣 × tag 分頁；1 活動 N 組 tag 設定）</td><td><span class="tag-pill tag-web">🌐 前端Web</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>P.4</td><td>per-機率表 RTP 即時試算與監控</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>P.5a</td><td>反套利門檻內含於 DA tag（救援類 tag 需近 30 天累積押注 ≥ X 才打上；CRM 只認 tag）</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>P.5b</td><td>結算層 per-機率表 RTP 上限 ＋ 異常自動凍結</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
       <tr><td>P.6</td><td>資格投放准入閘門（sticky；不押注玩家不投放、檔期內不撤活動）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-req">🖥 基礎建設</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
       <tr><td>P.0</td><td>終獎後段分佈 ＋ 亂數模型/RTP 公式定義（沿用單表）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill" style="background:var(--gold-fill);color:var(--gold-light);">📋 PM</span></td><td><span class="tag-pill tag-v1" style="background:var(--gold-fill);color:var(--gold-light);">最小方案</span></td></tr>
     </tbody>
@@ -2010,7 +1997,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <tr><td>2.3</td><td>建立 player_progress 資料表</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">player_id + campaign_id + date 為複合主鍵；today_wager, cell_states[], shuffle_result, created_at</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
         <tr><td>2.4</td><td>建立 reward_grant 資料表</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">發放收據：player_id, campaign_id, cell_index, reward_id, amount, awc_txn_id, status(pending/active/failed), created_at</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
         <tr><td>2.5</td><td>建立 MongoDB Index</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">player_progress: {player_id, date} compound index；reward_grant: {player_id, status} index</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
-        <tr><td>2.6</td><td>寫入初始活動設定檔</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">v1 先用 config file 管理活動參數，後台 UI 後補。工程上線即可，不需後台介面</td><td></td></tr>
+        <tr><td>2.6</td><td>寫入初始活動設定檔</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">v1 先用設定檔管理活動參數，後台 UI 後補。工程上線即可，不需後台介面</td><td></td></tr>
         <tr><td>2.7</td><td>建立 inventory（背包）資料表</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">儲存玩家持有道具：player_id, item_type(FREE_SPIN), item_id, game_ids[], rounds, expire_at, status(active/used/expired), created_at</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
         <tr><td>2.8</td><td>建立 item_use_log 資料表</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">記錄每次道具使用：player_id, item_id, game_id, awc_launch_url, used_at, status</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
       </tbody>
@@ -2853,7 +2840,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="info-card-desc" style="line-height:1.8;margin-top:8px;">
         · 活動管理（列表／新增／編輯／啟停）<br>
         · 活動審查（待審查佇列／唯讀檢視／通過·駁回）<br>
-        · 命中規則設定（tag→config 有序清單 · 完整方案）
+        · 機率表設定（tag → 機率表 直掛 · 完整方案）
       </div>
     </div>
     <div class="info-card" style="border-color:var(--gold-border-mid);">
@@ -2938,31 +2925,21 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
       <div class="admin-form-row">
         <div class="admin-label">符合規則</div>
-        <div class="admin-input">支援多 tag · 多活動衝突依 <span style="color:var(--purple-bright);">DA tag Priority</span> 取最高 · <span style="color:var(--gold-light);">玩家同時只跑 1 檔（落選活動無感）</span> · <span style="color:var(--text-dim);">留空＝全體玩家可玩</span> · <span style="color:var(--gold-light);">通過即 sticky：檔期內只換 config、不撤活動；不押注/薅羊毛玩家一開始就不投放</span></div>
+        <div class="admin-input">支援多 tag · 多活動衝突依 <span style="color:var(--purple-bright);">DA tag Priority</span> 取最高 · <span style="color:var(--gold-light);">玩家同時只跑 1 檔（落選活動無感）</span> · <span style="color:var(--text-dim);">留空＝全體玩家可玩</span> · <span style="color:var(--gold-light);">通過即 sticky：檔期內只換機率表、不撤活動；不押注/薅羊毛玩家一開始就不投放</span></div>
       </div>
 
-      <div class="admin-section-divider">命中規則（決策樹 · tag → config · 有序清單 first-match · v4.3）</div>
+      <div class="admin-section-divider">機率表（tag → 機率表 純 PAYLOAD · 無護欄 · 下方門檻/權重/RTP 皆屬「當前選定 tag」· v5.0）</div>
       <div class="admin-form-row">
-        <div class="admin-label">規則 1</div>
-        <div class="admin-input"><span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">個人 RTP 偏低</span> ＋ <span style="color:var(--gold-light);">近 30 天累積押注 ≥ ₱X</span> &nbsp;→&nbsp; <span style="color:var(--gold-light);font-family:'DM Mono',monospace;">cfg_rescue</span> &nbsp; <span style="color:var(--text-dim);">⋮⋮ 拖曳排序</span></div>
+        <div class="admin-label">tag 分頁</div>
+        <div class="admin-input"><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">● tag_default</span> &nbsp; <span style="color:var(--text-dim);font-family:'DM Mono',monospace;">○ tag_loyal</span> &nbsp; <span style="color:var(--text-dim);font-family:'DM Mono',monospace;">○ tag_rescue</span> &nbsp; <span style="color:var(--text-dim);">＋ 新增 tag（可擴至 7 組）</span> &nbsp;｜&nbsp; 目標 RTP <span style="color:var(--gold-light);">1.03%</span> · 終獎最早格 <span style="color:var(--gold-light);">第 6 格</span></div>
       </div>
       <div class="admin-form-row">
-        <div class="admin-label">規則 2</div>
-        <div class="admin-input"><span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">連續 3 日遊玩 ＋ 日均押注 ≥ N</span> &nbsp;→&nbsp; <span style="color:var(--gold-light);font-family:'DM Mono',monospace;">cfg_loyal</span></div>
-      </div>
-      <div class="admin-form-row">
-        <div class="admin-label">default</div>
-        <div class="admin-input">其餘所有人（fallback） &nbsp;→&nbsp; <span style="color:var(--gold-light);font-family:'DM Mono',monospace;">cfg_default</span> &nbsp; <span style="color:var(--text-dim);">＋ 新增規則</span></div>
+        <div class="admin-label">選表方式</div>
+        <div class="admin-input"><span style="color:var(--gold-light);">玩家當天是哪個 tag，就直接跑那張表</span>（多 tag 依 DA Priority 取最高）· <span style="color:var(--text-dim);">無中間映射層、無有序清單／樹狀分支</span> · <span style="color:var(--purple-bright);">tag_default</span> 兜底</div>
       </div>
       <div class="admin-form-row">
         <div class="admin-label">反套利提示</div>
-        <div class="admin-input"><span style="color:var(--orange);">⚠ 高照顧 config（如 cfg_rescue）以「可被玩家自控的 tag」命中時，須設「近 30 天累積押注 ≥ X」分支門檻，否則擋送審</span></div>
-      </div>
-
-      <div class="admin-section-divider">獎勵配置 config（純 payload · 無護欄 · 下方門檻/權重/RTP 皆屬「當前選定 config」· v4.3）</div>
-      <div class="admin-form-row">
-        <div class="admin-label">config tabs</div>
-        <div class="admin-input"><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">● cfg_default</span> &nbsp; <span style="color:var(--text-dim);font-family:'DM Mono',monospace;">○ cfg_loyal</span> &nbsp; <span style="color:var(--text-dim);font-family:'DM Mono',monospace;">○ cfg_rescue</span> &nbsp; <span style="color:var(--text-dim);">＋ 新增 config</span> &nbsp;｜&nbsp; 目標 RTP <span style="color:var(--gold-light);">1.03%</span> · 終獎最早格 <span style="color:var(--gold-light);">第 6 格</span></div>
+        <div class="admin-input"><span style="color:var(--orange);">⚠ 反套利門檻（近 30 天累積押注 ≥ X）內含於 DA 打 tag 條件（例：救援類 tag），CRM 只認 tag、不自判資格</span></div>
       </div>
 
       <div class="admin-section-divider">解鎖門檻設定（每格增量，單位：披索；內部累積至 ₱3,600）<span style="font-size:9px;color:var(--gold-light);font-weight:400;">　· 當前貨幣 tab：PHP 披索（切換貨幣 tab 各自一套門檻）</span></div>
@@ -3097,7 +3074,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
           <span style="font-size:11px;color:#9AA0AB;">唯讀</span>
         </div>
         <div style="font-size:12px;color:#5A5F6B;line-height:1.9;background:#F7F8FA;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
-          門檻 · 獎池 · RTP · 線路 · 受眾 · 權重 · 命中規則 · config<br><span style="color:#9AA0AB;">（完整設定，僅供檢視、不可編輯）</span>
+          門檻 · 獎池 · RTP · 線路 · 受眾 · 權重 · tag → 機率表<br><span style="color:#9AA0AB;">（完整設定，僅供檢視、不可編輯）</span>
         </div>
         <div style="display:flex;gap:10px;justify-content:flex-end;">
           <span style="font-size:12px;font-weight:700;color:#fff;background:#E0563A;border-radius:7px;padding:9px 16px;">駁回</span>
@@ -3110,7 +3087,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="ui-doc-spec">
       <div class="ui-doc-spec-h">② 唯讀檢視 ＋ ③ 操作</div>
       <dl>
-        <dt>唯讀檢視</dt><dd>查看活動<strong>完整設定（唯讀）</strong>，含<strong>門檻／獎池／RTP／線路／受眾／權重／命中規則／config</strong>，不可在此編輯</dd>
+        <dt>唯讀檢視</dt><dd>查看活動<strong>完整設定（唯讀）</strong>，含<strong>門檻／獎池／RTP／線路／受眾／權重／tag → 機率表</strong>，不可在此編輯</dd>
         <dt>操作</dt><dd>僅兩個動作：「<strong style="color:var(--green);">通過·上線</strong>」（核准後活動上線）／「<strong style="color:var(--red);">駁回</strong>」</dd>
         <dt>多貨幣</dt><dd>含多貨幣的活動，各貨幣門檻／獎池／RTP 皆於唯讀檢視內可切換查看</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.review.readonly</span> / <span class="mono">admin.review.approve</span> / <span class="mono">admin.review.reject</span></dd>
@@ -3162,8 +3139,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <!-- Row 0z：多貨幣設定（v4.1 新增 · 對齊後台原型） -->
   <div class="ui-doc-row">
     <div class="ui-doc-shot">
-      <div class="ui-doc-shot-cap">截圖 · 多貨幣 × config 設定（currency tabs × config tabs · 建立活動）</div>
-      <img src="design_assets/admin_07_multicurrency.png" alt="多貨幣 × config tabs 設定 · 各〔貨幣×config〕門檻/獎池/RTP（config 為純 payload、無護欄）" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div class="ui-doc-shot-cap">截圖 · 多貨幣 × tag 分頁 設定（currency tabs × tag 分頁 · 建立活動）</div>
+      <img src="design_assets/admin_07_multicurrency.png" alt="多貨幣 × tag 分頁 設定 · 各〔貨幣×tag〕門檻/獎池/RTP（機率表為純 payload、無護欄）" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div style="display:none;">
       <div style="background:#fff;border:1px solid #E6E8EC;border-radius:12px;padding:18px 20px;font-family:-apple-system,'Segoe UI',sans-serif;color:#1A1D26;">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px;">
@@ -3186,10 +3163,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
     </div>
     <div class="ui-doc-spec">
-      <div class="ui-doc-spec-h">多貨幣 × config tabs 設定</div>
+      <div class="ui-doc-spec-h">多貨幣 × tag 分頁 設定</div>
       <dl>
         <dt>元件類型</dt><dd>頂部 <strong>currency tabs</strong>（PHP 為預設）＋「＋ 新增貨幣」；切換 tab 切換整套貨幣設定</dd>
-        <dt>config tabs</dt><dd>currency tab 內再分 <strong>config tabs</strong>（cfg_default／cfg_loyal／cfg_rescue…可新增）；每個〔貨幣 × config〕各自一套門檻/權重/RTP，<strong>config 為純 payload、不含護欄與命中條件</strong>（反套利門檻在命中規則區設定）</dd>
+        <dt>tag 分頁</dt><dd>currency tab 內再分 <strong>tag 分頁</strong>（tag_default／tag_loyal／tag_rescue…可擴至 7 組）；每個〔貨幣 × tag〕各自一張機率表（門檻/權重/RTP），<strong>機率表為純 payload、不含護欄與命中條件</strong>（反套利門檻內含於 DA 打 tag；玩家當天是哪個 tag 就直接跑那張表，無中間映射層）</dd>
         <dt>每貨幣</dt><dd>各自一套<strong>各抽次累積門檻 / 獎池組成 / RTP 即時驗算</strong>；獎勵類型含<strong>現金與 Free Spin</strong></dd>
         <dt>RTP</dt><dd><strong>RTP 依當前貨幣即時計算</strong>，各貨幣各自驗算是否落在容許區間</dd>
         <dt>規則</dt><dd>一檔 campaign 內含多貨幣，各貨幣<strong>獨立設定、互不換算</strong>（非匯率換算）</dd>
@@ -3199,7 +3176,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout">
-    <strong>兩維設定（v4.3）：</strong>活動編輯採 <strong>貨幣 tabs × config tabs</strong> 兩層切換，另設<strong>命中規則區</strong>（tag→config 有序清單）。先選貨幣（PHP／THB／USD），再選 config（cfg_default／cfg_loyal／cfg_rescue…可新增）。每個〔貨幣 × config〕格子各自設定：<strong>目標 RTP、終獎最早格、9 格門檻表、9 格 × 4 類別權重表</strong>（config 為純 payload，不含護欄與命中條件；反套利門檻改於命中規則區設定、per-config RTP 上限＋異常凍結屬結算層風控 · v4.3）；命中條件在命中規則區設定；獎項金額（四階級）於貨幣層共用。系統對每個〔貨幣 × config〕<strong>即時試算 RTP 與終獎落點分佈</strong>，超出該 config 目標區間即警示、擋送審。
+    <strong>兩維設定（v5.0）：</strong>活動編輯採 <strong>貨幣 tabs × tag 分頁</strong> 兩層切換（<strong>1 活動 / N 組 tag 設定</strong>，無獨立的規則映射區）。先選貨幣（PHP／THB／USD），再選 tag（tag_default／tag_loyal／tag_rescue…可擴至 7 組）。每個〔貨幣 × tag〕格子各自設定：<strong>目標 RTP、終獎最早格、9 格門檻表、9 格 × 4 類別權重表</strong>（機率表為純 payload，不含護欄與命中條件；反套利門檻內含於 DA 打 tag、per-機率表 RTP 上限＋異常凍結屬結算層風控 · v5.0）；<strong>玩家當天是哪個 tag，就直接跑那張表（多 tag 依 DA Priority 取最高），無中間映射層</strong>；獎項金額（四階級）於貨幣層共用。系統對每個〔貨幣 × tag〕<strong>即時試算 RTP 與終獎落點分佈</strong>，超出該機率表目標區間即警示、擋送審。
   </div>
 
   <!-- Row 0a：版型主題下拉（v3.9 新增） -->
@@ -3339,9 +3316,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <figcaption>① 活動列表頁 · 狀態篩選＋角色切換</figcaption>
     </figure>
     <figure class="ui-shot-fig">
-      <img src="design_assets/admin_02_create_top.png" alt="建立活動（上）· 基本資料含版型主題 → 線路投放（需依新原型重截 · 含 config tabs 與命中規則區）" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-      <div class="ui-shot-missing" style="display:none;">放入 <span class="mono">design_assets/admin_02_create_top.png</span><br>建立活動（上）· 基本資料含版型主題 → 線路投放（⚠ 需依新原型重截 · 含 config tabs 與命中規則區）</div>
-      <figcaption>② 建立活動（上）· 基本資料含版型主題 → 線路投放<br><span style="color:var(--text-dim);font-size:10px;">⚠ 需依新原型重截（含 config tabs 與命中規則區）</span></figcaption>
+      <img src="design_assets/admin_02_create_top.png" alt="建立活動（上）· 基本資料含版型主題 → 線路投放（需依新原型重截 · 含 tag 分頁（tag → 機率表））" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div class="ui-shot-missing" style="display:none;">放入 <span class="mono">design_assets/admin_02_create_top.png</span><br>建立活動（上）· 基本資料含版型主題 → 線路投放（⚠ 需依新原型重截 · 含 tag 分頁（tag → 機率表））</div>
+      <figcaption>② 建立活動（上）· 基本資料含版型主題 → 線路投放<br><span style="color:var(--text-dim);font-size:10px;">⚠ 需依新原型重截（含 tag 分頁（tag → 機率表））</span></figcaption>
     </figure>
     <figure class="ui-shot-fig">
       <img src="design_assets/admin_03_line_audience.png" alt="線路投放＋受眾 tag＋解鎖門檻＋RTP 驗算（受眾 tag 區已正名『資格投放·准入閘門』）" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
@@ -3740,19 +3717,19 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
           <td>洗牌機制</td>
           <td class="v1-val">✅ 動態洗牌</td>
           <td class="v2-val">✓ 沿用</td>
-          <td class="dim">最終獎依 config 權重分佈於後段，不固定第 9 格</td>
+          <td class="dim">最終獎依機率表權重分佈於後段，不固定第 9 格</td>
         </tr>
         <tr>
           <td>分眾（每日 tag 照顧）</td>
-          <td class="v1-val">✅ 拆開架構：配置庫(cfg_default 等)＋命中規則(有序清單＝決策樹深度1)＋resolveConfig；終獎後段分佈</td>
-          <td class="v2-val">＋ 命中規則升級為決策樹（繼承＋意圖編譯＋解析預覽/遮蔽偵測＋節點預算 roll-up）；config 與介面不變、零遷移</td>
-          <td class="dim">v4.3：payload 與 targeting 分離，v2 只換命中那一塊（見 §03／§04）</td>
+          <td class="v1-val">✅ 一層直掛：tag → 機率表（tag_default 等）＋ resolveTable（依 DA Priority 取最高 tag 直接選表）；終獎後段分佈</td>
+          <td class="v2-val">＋ 於 DA 端擴充 tag 維度做更細個人化；CRM「tag → 機率表」掛載方式不變、零遷移</td>
+          <td class="dim">v5.0：拆除中介抽象層，tag 直接對應機率表（見 §03／§04）</td>
         </tr>
         <tr>
           <td>資格投放（准入閘門·sticky）</td>
           <td class="v1-val">✅ 受眾 tag 比對＝准入閘門；薅羊毛／不押注玩家一開始就不投放</td>
-          <td class="v2-val">＋ 一次性投放通過後 sticky，檔期內只換 config、不撤活動（避免客訴）</td>
-          <td class="dim">v4.3：資格投放＝最外圈聯集、命中規則＝其下分支（同一份 DA tag，見 §04）</td>
+          <td class="v2-val">＋ 一次性投放通過後 sticky，檔期內只換機率表、不撤活動（避免客訴）</td>
+          <td class="dim">v5.0：准入取最外圈聯集、選表取最高 Priority 單一 tag（同一份 DA tag，見 §04）</td>
         </tr>
         <tr>
           <td>後台設定</td>
@@ -4012,7 +3989,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
   <div class="oq-item pm">
     <div class="oq-owner">✅ 已決（2026-06-23）</div>
-    <div class="oq-q"><strong>固定獎池 ₱37（小×5 + 中×2 + 大×1 + 終×1）→ 已核准。</strong>固定池 ₱37；各 config 以自身門檻與權重控制其目標 RTP，段內 RTP 打平（終獎依 config 權重分佈於後段、不固定第 9 格）。</div>
+    <div class="oq-q"><strong>固定獎池 ₱37（小×5 + 中×2 + 大×1 + 終×1）→ 已核准。</strong>固定池 ₱37；各機率表以自身門檻與權重控制其目標 RTP，段內 RTP 打平（終獎依機率表權重分佈於後段、不固定第 9 格）。</div>
   </div>
   <div class="oq-item pm">
     <div class="oq-owner">✅ 已決（2026-06-23）</div>
@@ -4153,9 +4130,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 CRM 功能規格書 · LUCKY CHEST V4.3.1 · CONFIDENTIAL 2026<br>
+  抽寶箱 CRM 功能規格書 · LUCKY CHEST V5.0 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 兩階段實作（v1 現金獎 + 完整基建 / v2 編輯工具 + 背包）<br>
-  v4.3.1（2026-07-03）：§07 後台 UI 示意對齊 v4.3 三層架構——活動設定 mockup 受眾 tag 正名「資格投放·准入閘門(sticky)」、新增「命中規則區」示意（tag→config 有序清單＋cfg_rescue 分支帶「近 30 天累積押注 ≥ X」＋反套利警示）、門檻/權重上方加 config tabs 指示並標明 config 純 payload 無護欄；重截 admin_07（多貨幣×config tabs）、admin_06/03（受眾 tag 正名）；活動審查唯讀檢視補列命中規則/config；導覽補「命中規則設定」。純示意/文字對齊，數值不變。<br>
+  v5.0（2026-07-07）：<strong>拆除 config 抽象層，改為 tag 直接對應機率表</strong>——移除 configId／配置庫／命中規則(targeting 有序清單)／決策樹 三個中介概念；玩家當日 tag（多 tag 依 DA Priority 取最高）直接選一張機率表，<code>resolveConfig</code>→<code>resolveTable</code>（回傳 <code>tagId／matchedTag／tableVersion</code>）；落地＝<strong>1 活動 / N 組 tag 設定</strong>（同 campaign_id／主題／到期日，示範 3～7 組），每日重判、當日鎖定、隔日無縫換照顧；<strong>反套利護欄移至 DA 端內含於 tag</strong>（CRM 只認 tag、不自判資格）；新增 <code>tag_default</code> 兜底；cfg_default／loyal／rescue→tag_default／loyal／rescue（9 格門檻／9×4 權重／目標RTP／多貨幣／固定池 ₱37／每日 reset／AWC 一律不變）。後台 mockup 移除命中規則區、config tabs→tag 分頁。<br>
+  v4.3.1（2026-07-03）：§07 後台 UI 示意對齊 v4.3 三層架構——活動設定 mockup 受眾 tag 正名「資格投放·准入閘門(sticky)」、新增「命中規則區」示意（tag→config 有序清單＋cfg_rescue 分支帶「近 30 天累積押注 ≥ X」＋反套利警示）、門檻/權重上方加 config tabs 指示並標明 config 純 payload 無護欄；重截 admin_07（多貨幣×config tabs）、admin_06/03（受眾 tag 正名）；活動審查唯讀檢視補列命中規則/config；導覽補「命中規則設定」。純示意/文字對齊，數值不變。<br>§07 後台 UI 示意對齊 v4.3 三層架構——活動設定 mockup 受眾 tag 正名「資格投放·准入閘門(sticky)」、新增「命中規則區」示意（tag→config 有序清單＋cfg_rescue 分支帶「近 30 天累積押注 ≥ X」＋反套利警示）、門檻/權重上方加 config tabs 指示並標明 config 純 payload 無護欄；重截 admin_07（多貨幣×config tabs）、admin_06/03（受眾 tag 正名）；活動審查唯讀檢視補列命中規則/config；導覽補「命中規則設定」。純示意/文字對齊，數值不變。<br>
   v4.3（2026-07-02）：護欄歸位＋tag 語意統一——config 回歸純 payload（移除 guard 欄位與 resolveConfig 回傳的 guard）；反套利門檻移入「命中規則」分支條件；per-config RTP 上限＋異常凍結歸結算層風控；明確「受眾 tag 資格投放＝准入閘門（一次性·sticky·檔期內不撤活動）」，並與命中規則統一為同一份 DA 標籤清單（資格投放＝最外圈聯集、命中規則＝其下分支決策樹）；Task P.5 拆為 P.5a/P.5b 並新增 P.6 准入閘門。數值（RTP/門檻/權重/貨幣配方）一律不變。<br>
   v4.2（2026-06-30）：補強 §06 美術描述讓美術可直接設計——新增〈整體美術風格基準〉（對標附件參考圖 DIY Pass：夢幻星空紫×糖果光澤 3D 的休閒精品風，含風格參考圖佔位 style_reference.png 與 8 維度質感規格）；P6 由「需定稿」升為定稿，新增 P6-A 4 套主題結算畫面（P4／P7）美術描述、P6-B 4 套主題小/中/大/最終獎物品分級說明（不同實體獎品）；treasure_box 主色由金黑改為<strong>藍紫</strong>（對齊星空紫風格）；側欄新增三個美術子連結。<br>
   v4.1（2026-06-26）：對齊新版後台原型——多貨幣架構、每日重置時間欄、權限改頁面可見性模型、補活動審查頁細節（含截圖佔位 admin_07~admin_11）與後台導覽結構；移除 UAT 測試工具（移交獨立工具規格）；美術資產清單釐清 1 套 vs 4 套主題換算。<br>
