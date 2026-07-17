@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 CRM 功能規格書 v5.1</title>
+<title>抽寶箱 CRM 功能規格書 v5.2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1203,7 +1203,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · SPEC DOC</div>
     <div class="sidebar-title">抽寶箱 CRM<br>功能規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v5.1</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v5.2</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-review">REVIEW</span></div>
@@ -1461,6 +1461,33 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="sub-title" id="changelog">版本紀錄 · CHANGELOG</div>
+  <div class="changelog-v5">
+    <div class="cl-head">
+      <span class="cl-ver">v5.2</span>
+      <span class="tag-new txt"><span style="font-size:10px;">v5.2</span></span>
+      <span class="cl-meta">與後台原型 v2 落差比對 ＋ 模板版本控制 · 2026-07-16</span>
+    </div>
+    <div style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:10px;">
+      本版依 <strong style="color:var(--text-primary);">2026-07-16 與後台原型 v2 的落差比對結論</strong>更新，並補入 <strong style="color:var(--text-primary);">2026-07-16 與後端 Eric 確認的模板版本控制機制</strong>。<strong>僅異動文字內容與版本資訊，CSS／版面架構不變</strong>；各修改處均標 <span class="tag-new txt"><span style="font-size:10px;">v5.2</span></span>。重點如下：
+    </div>
+    <ol>
+      <li><strong>模板版本控制新增（§07 五／§16／§17／§19）<span style="color:var(--gold-light);">〔核心新增〕</span>：</strong>模板編輯<strong>不換 ID</strong>、每次儲存<strong>產生新版本序號</strong>（V1、V2…；DB 已有序號、後台轉版號格式顯示）；<strong>每版保留完整快照</strong>（門檻／獎項／權重／各貨幣），模板編輯器<strong>重用活動 Tab 4 的「版本下拉＋快照明細」模式</strong>；<strong>生效時機</strong>——被運行中活動引用者於<strong>各活動的「次一個每日重置時點」生效</strong>、玩家當日已鎖定配置沿用舊版快照，未被引用者<strong>儲存即生效</strong>；模板編輯器頂部與模板列表顯示<strong>黃色提示「此模板被 N 檔運行中活動使用…」</strong>（Eric 要求）。§16 活動快照改引用「<strong>模板 ID ＋ 模板版本序號</strong>」、Tab 4 模板名稱<strong>帶版號</strong>（例：忠誠加碼 V2）；§17 獎勵歷程欄位補 <span class="mono">template_id ＋ template_version</span>；§19 新增 Task <strong>V5.15</strong>（最小方案）。</li>
+      <li><strong>衝突與重疊語意改寫（§15／§07 Tab 2）<span style="color:var(--gold-light);">〔核心修改〕</span>：</strong>改為<strong>三層規則</strong>——① <strong>空規則</strong>（未選任何標籤）→ 紅底警示、擋送審；② <strong>標籤組合完全重複</strong> → 紅底警示、擋送審；③ <strong>部分重疊</strong>（一條規則的標籤是另一條的子集）<strong>合法不擋</strong>，命中採「<strong>符合度高者優先</strong>」＝取<strong>標籤數最多</strong>且玩家全部符合者，<strong>同標籤數又同時命中多條 → 視為設定衝突、存檔時警示擋送審</strong>。<strong>移除原「要求釐清優先序」的人工釐清描述</strong>；§07 Tab 2 與 BDD 驗收情境同步補「重疊命中 → 標籤數多者優先」。</li>
+      <li><strong>§07 C4 與 §16 編輯規則統一：</strong>「上線中禁止直接編輯」改寫為<strong>以 §16 快照機制為準</strong>——編輯運行中活動<strong>產生「待生效版本」</strong>、不影響運行中快照與已參與玩家；<strong>Admin 可對運行中活動編輯</strong>，<strong>一般操作者僅可編輯草稿／被駁回</strong>（§16 權限矩陣 △）；<strong>緊急停用仍走「先暫停 → 修改 → 恢復」</strong>。§16 權限矩陣註解同步補上對應關係。</li>
+      <li><strong>§07 線路必選驗證描述更正：</strong>原型 v2 <strong>已含</strong>紅字提示「⚠ 請至少選擇 1 條投放線路，否則無法上線。」<strong>並會 disable 提交審查</strong>；僅<strong>輸入框紅框（#E0563A）樣式為規格加嚴、開發時補</strong>（原誤述為「原型尚未含此驗證態」）。</li>
+      <li><strong>§07 審查唯讀彈窗降級對齊原型：</strong>內容改為<strong>基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>；刪去「模板（門檻・獎池・RTP・權重）」與「多貨幣於模板卡片內可切換查看」，改為<strong>「模板數值明細請至模板管理頁查看（審查頁不展開數值）」</strong>。</li>
+      <li><strong>§07 模板編輯器欄位對齊原型：</strong>刪除「押注比例／目標 RTP／終獎最早格」三列的<strong>可編輯欄位定位</strong>，改為一列<strong>「模板屬性（唯讀）」</strong>——<strong>v1 後台不提供編輯</strong>；目標 RTP 唯讀顯示於 <strong>RTP 驗算卡</strong>，押注比例與目標 RTP 顯示於<strong>模板列表與活動 Tab 3 卡片</strong>；<strong>屬性編輯功能列 v2</strong>。<strong>終獎最早格 v1 僅屬性顯示參考、不做與權重表的連動驗證</strong>（驗證列 v2）。</li>
+      <li><strong>搜尋功能移出 v1（§16 活動列表／§07 模板列表／§15）：</strong>活動名稱與模板名稱刪去「可搜尋」，各補<strong>「名稱搜尋列 v2」</strong>；§15「標籤下拉支援搜尋與分類」<strong>同步標 v2</strong>（v1 標籤僅 5 個、chips 直選即可）。</li>
+      <li><strong>Tab 4 快照計數規則明定（§07／§16）：</strong>「標籤規則數量」＝<strong>規則 N 組、預設配置另列不計入</strong>；<strong>顯示格式「N 組規則 ＋ 預設」</strong>。加註：<strong>原型 v2 文案「N 組（含預設）」之 N 未含預設、與文字矛盾，開發時依本規格修正</strong>。</li>
+      <li><strong>暫停/恢復入口定義（§16 五）：</strong>運行中 ⇄ 已暫停 的操作入口＝<strong>活動表單（查看／編輯頁）頂部狀態列的「暫停活動／恢復活動」按鈕</strong>，<strong>僅最高權限（Admin）可操作</strong>；<strong>活動列表不提供啟停</strong>（v5.1 已移除）。<strong>原型 v2 未含此入口、開發時補做</strong>。</li>
+      <li><strong>核准後狀態語意（§16 狀態機）：</strong>Admin 核准時——<strong>已達活動開始時間 → 直接進入「運行中」</strong>（對應原型「核准並上線」）；<strong>未達開始時間 → 進入「已核准」</strong>，到達開始時間<strong>由排程自動轉「運行中」</strong>。</li>
+      <li><strong>FS v2 標註說明（§07）：</strong>獎勵歷程模組卡與模板編輯器 FREE SPIN 段落補註——<strong>原型 v2 畫面未標 v2 badge</strong>，開發時依本規格於 <strong>FREE SPIN 卡 tab 與現金↔FREE SPIN 切換處補 v2 標示</strong>。</li>
+      <li><strong>雜項更正：</strong>① §07 模組卡「📒 注單查詢（對帳）」加註<strong>沿用平台既有注單查詢功能、非本次 CRM 後台開發範圍、不在原型 v2 導覽內</strong>；② §15 匹配邏輯範例「（中客 AND <s>回流</s>）→ 配置 B」改為<strong>「（中客 AND 低風險）→ 配置 B」</strong>（「回流」不在 v1 統一標籤池）；③ §07 帳號權限段補註——<strong>原型 v2 的「僅查看」角色導覽誤含活動審查頁</strong>（與其自身權限矩陣矛盾），<strong>開發以本規格為準：僅查看不可見活動審查</strong>。</li>
+    </ol>
+    <div style="font-size:11.5px;color:var(--text-dim);line-height:1.7;margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
+      ⚠ 相容性提醒：§15 的「重疊 → 要求釐清優先序」（v5.0）已由 v5.2「部分重疊合法、標籤數多者優先」<strong style="color:var(--orange-bright);">取代</strong>；§07 的「上線中禁止直接編輯」（v4.0 C4）已由 v5.2「以 §16 快照機制為準、Admin 可編輯運行中活動產生待生效版本」<strong style="color:var(--orange-bright);">取代</strong>。兩處並存時<strong>一律以 v5.2 敘述為準</strong>。
+    </div>
+  </div>
   <div class="changelog-v5">
     <div class="cl-head">
       <span class="cl-ver">v5.1</span>
@@ -2982,7 +3009,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         · CRM 活動獎勵發放紀錄（獨立於遊戲歷程）<br>
         · 頁頂固定警示「不計入單一遊戲收入（GGR）」<br>
         · 檢視切換：抽寶箱（v1）／FREE SPIN卡（v2 標註）<br>
-        · 與 §17 獨立獎勵歷程互為 UI/資料層對照
+        · 與 §17 獨立獎勵歷程互為 UI/資料層對照<br>
+        <span style="color:var(--orange);font-size:11px;">v5.2：原型 v2 畫面未標 v2 badge，開發時依本規格於 FREE SPIN 卡 tab 補 v2 標示</span>
       </div>
     </div>
     <div class="info-card" style="border-color:var(--gold-border-mid);">
@@ -3001,7 +3029,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         · 依 bonus_type 篩選：<br>
         　一般注單 / CHEST_REWARD（現金獎） / FREE_SPIN（道具）<br>
         · 支援日期區間查詢<br>
-        · <strong style="color:var(--gold-light);">對帳走注單查詢、活動獎勵明細走獎勵歷程頁，兩者用途不同</strong>
+        · <strong style="color:var(--gold-light);">對帳走注單查詢、活動獎勵明細走獎勵歷程頁，兩者用途不同</strong><br>
+        <span style="color:var(--orange);font-size:11px;">v5.2：沿用平台既有注單查詢功能，非本次 CRM 後台開發範圍，不在原型 v2 導覽內</span>
       </div>
     </div>
     <div class="info-card" style="border-color:var(--purple-line-strong);">
@@ -3113,8 +3142,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <div class="admin-input" style="border-color:var(--gold-border-mid);"><span style="color:var(--text-dim);">未命中任何規則 →</span> <span style="color:var(--gold-light);">模板：標準模板 A</span> &nbsp; <span style="color:var(--text-dim);">＋ 新增標籤規則</span></div>
       </div>
       <div class="admin-form-row">
-        <div class="admin-label">衝突檢查</div>
-        <div class="admin-input"><span style="color:var(--orange);">即時檢查：標籤組合重複、或規則未選任何標籤 → 紅底警示、擋送審</span></div>
+        <div class="admin-label">衝突檢查<br><span style="font-size:8px;color:var(--text-dim);">v5.2 三層規則</span></div>
+        <div class="admin-input" style="line-height:1.9;"><span style="color:var(--orange);">① 未選任何標籤（空規則） → 紅底警示、擋送審</span><br><span style="color:var(--orange);">② 標籤組合完全重複 → 紅底警示、擋送審</span><br><span style="color:var(--green);">③ 部分重疊（子集關係） → 合法不擋，命中取「標籤數最多且全部符合」者優先</span>；<span style="color:var(--orange);">同標籤數又同時命中多條 → 警示、擋送審</span></div>
       </div>
 
       <div class="admin-section-divider">Tab 3 · 獎項與門檻（唯讀摘要 · 數值於模板管理編輯）</div>
@@ -3135,7 +3164,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
       <div class="admin-form-row">
         <div class="admin-label">V1 快照明細</div>
-        <div class="admin-input" style="line-height:1.9;">目標 RTP：1.03%／1.50%／2.00%<br>標籤規則數量：<strong>3</strong>（含預設）— 大客 AND 低風險 → 忠誠加碼｜小客 AND 低風險 → 救援高倍｜預設 → 標準模板 A<br>開始：2026/07/01 00:00:00　結束：2026/09/30 23:59:59<br>使用模板數量：<strong>3 個</strong>（標準模板 A、忠誠加碼、救援高倍）</div>
+        <div class="admin-input" style="line-height:1.9;">目標 RTP：1.03%／1.50%／2.00%<br>標籤規則數量：<strong>2 組規則 ＋ 預設</strong> — 大客 AND 低風險 → 忠誠加碼｜小客 AND 低風險 → 救援高倍｜＋預設 → 標準模板 A<br>開始：2026/07/01 00:00:00　結束：2026/09/30 23:59:59<br>使用模板數量：<strong>3 個</strong>（標準模板 A、忠誠加碼、救援高倍）</div>
       </div>
       <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ UI 不再顯示「運行中/待生效」badge；current/pending 概念保留於資料層，UI 以「版本下拉＋快照明細」呈現（見 §16）。</div>
 
@@ -3145,6 +3174,11 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
       <div class="body-text" style="font-size:11px;color:var(--text-dim);margin-top:6px;text-align:right;">未過驗算或未選線路時「提交審查」<strong>disabled ＋ 原因提示</strong>；Admin 檢視送審中活動時額外顯示「<strong style="color:var(--green);">核准並上線</strong>」。</div>
     </div>
+  </div>
+
+  <div class="callout warn" style="font-size:12px;">
+    <strong>Tab 4 快照「標籤規則數量」計數規則（明定）<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span>：</strong><strong>「標籤規則數量」＝規則 N 組，<span style="color:var(--gold-light);">預設配置另列、不計入 N</span></strong>；<strong>顯示格式固定為「N 組規則 ＋ 預設」</strong>（上例＝2 條規則 ＋ 1 個預設配置 → 顯示「<strong>2 組規則 ＋ 預設</strong>」）。<br>
+    <strong style="color:var(--orange-bright);">⚠ 原型落差：</strong>原型 v2 文案為「<strong>N 組（含預設）</strong>」，但其 N 實際<strong>未含預設</strong>、<strong>與文字自相矛盾</strong>；<strong>開發時依本規格修正</strong>為「N 組規則 ＋ 預設」。同步適用 <a href="#admin-version" style="color:var(--gold-light);">§16 版本快照</a>。
   </div>
 
   <div class="sub-title">活動上線審核流程（v4.0 · v5.1 核准權改最高權限 Admin）</div>
@@ -3163,12 +3197,17 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
   <div class="callout warn">
-    <strong>② 上線中禁止直接編輯（C4）：</strong><strong>上線中的活動不可直接編輯</strong>，須<strong>先下架或暫停才能修改</strong>；緊急調整時<strong>先暫停 → 確認無誤 → 再恢復</strong>，避免線上活動在玩家進行中被改動造成爭議或資料不一致。
+    <strong>② 上線中的編輯規則（C4）<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span>：</strong>本項於 v5.2 改寫，<strong>以 <a href="#admin-version" style="color:var(--gold-light);">§16 快照機制</a>為準</strong>（原「上線中一律不可編輯、須先下架才能修改」敘述已作廢）：
+    <ol style="margin:6px 0 0;padding-left:18px;line-height:1.9;">
+      <li><strong>運行中活動的編輯走快照機制：</strong>編輯運行中活動<strong>產生「待生效版本」</strong>，<strong>不影響運行中快照與已參與玩家</strong>（進行中玩家沿用命中當下的快照），於下一個生效切點才切換為運行中版本。</li>
+      <li><strong>權限差異：</strong><strong>最高權限（Admin）可對運行中活動編輯</strong>（產生待生效版本）；<strong>一般操作者（Operator）僅可編輯「草稿／被駁回」狀態的活動</strong>——即 <a href="#admin-version" style="color:var(--gold-light);">§16 權限矩陣</a>「編輯」欄的 <span class="perm-cond">△</span> 條件式。</li>
+      <li><strong>緊急停用仍走「先暫停 → 修改 → 恢復」：</strong>需要立即讓玩家停止參與時，仍以<strong>暫停活動</strong>為手段，確認無誤後再恢復。</li>
+    </ol>
   </div>
 
   <div class="sub-title">活動審查頁規格（v5.1 對齊後台原型 v2）</div>
   <div class="callout info">
-    <strong>審查頁：</strong>設定者「提交審查」後，活動進入<strong>待審查佇列</strong>（導覽含<strong style="color:var(--red-bright);">待審數量紅色 badge</strong>）。<strong>待審佇列卡片直接含 RTP／活動期間／重置時間／主題／審查備註輸入／核准／駁回</strong>；「<strong>查看完整設定（唯讀）</strong>」為彈窗，內容含<strong>標籤規則 → 模板對照</strong>。核准權為<strong>最高權限（Admin）</strong>；<strong>駁回原因＝必填</strong>。
+    <strong>審查頁：</strong>設定者「提交審查」後，活動進入<strong>待審查佇列</strong>（導覽含<strong style="color:var(--red-bright);">待審數量紅色 badge</strong>）。<strong>待審佇列卡片直接含 RTP／活動期間／重置時間／主題／審查備註輸入／核准／駁回</strong>；「<strong>查看完整設定（唯讀）</strong>」為彈窗——<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 彈窗內容<strong>對齊原型 v2 降級為：基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>；<strong>模板數值明細（門檻／獎池／RTP／權重／多貨幣）請至模板管理頁查看，審查頁不展開數值</strong>。核准權為<strong>最高權限（Admin）</strong>；<strong>駁回原因＝必填</strong>。
   </div>
 
   <!-- 審查頁 ① 待審查佇列（含空狀態） -->
@@ -3213,7 +3252,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
           <span style="font-size:11px;color:#9AA0AB;">唯讀</span>
         </div>
         <div style="font-size:12px;color:#5A5F6B;line-height:1.9;background:#F7F8FA;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
-          模板（門檻/獎池/RTP/權重）· 線路 · <strong>標籤規則 → 模板對照</strong><br><span style="color:#9AA0AB;">（完整設定，僅供檢視、不可編輯）</span>
+          基本設定（主題 / 起訖 / 重置 / 線路）· <strong>標籤規則 → 模板名稱對照</strong><br><span style="color:#9AA0AB;">（僅供檢視、不可編輯；模板數值明細請至模板管理頁查看）</span>
         </div>
         <div style="display:flex;gap:10px;justify-content:flex-end;">
           <span style="font-size:12px;font-weight:700;color:#fff;background:#E0563A;border-radius:7px;padding:9px 16px;">駁回</span>
@@ -3226,9 +3265,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="ui-doc-spec">
       <div class="ui-doc-spec-h">② 唯讀檢視 ＋ ③ 操作</div>
       <dl>
-        <dt>唯讀檢視</dt><dd>查看活動<strong>完整設定（唯讀）</strong>，含<strong>線路／模板（門檻・獎池・RTP・權重）／標籤規則 → 模板對照</strong>，不可在此編輯</dd>
+        <dt>唯讀檢視<span class="tag-new txt" style="margin-left:4px;"><span style="font-size:9px;">v5.2</span></span></dt><dd><strong>對齊原型 v2 降級</strong>：內容為<strong>基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>，不可在此編輯</dd>
         <dt>操作</dt><dd>僅兩個動作：「<strong style="color:var(--green);">核准並上線</strong>」（由<strong>最高權限 Admin</strong> 核准後活動上線）／「<strong style="color:var(--red);">駁回</strong>」（<strong>駁回原因必填</strong>）</dd>
-        <dt>多貨幣</dt><dd>各模板的多貨幣門檻／獎項／RTP 於模板卡片內可切換查看（多貨幣設定屬模板編輯器）</dd>
+        <dt>模板數值<span class="tag-new txt" style="margin-left:4px;"><span style="font-size:9px;">v5.2</span></span></dt><dd><strong>模板數值明細（門檻／獎池／RTP／權重／多貨幣）請至模板管理頁查看，審查頁不展開數值</strong>（審查頁只對照到模板名稱）</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.review.readonly</span> / <span class="mono">admin.review.approve</span> / <span class="mono">admin.review.reject</span></dd>
       </dl>
     </div>
@@ -3442,19 +3481,19 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
           <span style="margin-left:auto;font-size:10px;font-weight:700;color:#9A6B0B;background:#FBEFC8;padding:3px 10px;border-radius:6px;">必填</span>
         </div>
         <div style="border:1.5px solid #E0563A;border-radius:9px;padding:10px 14px;font-size:12px;color:#B23A1A;margin-bottom:10px;">▾ 從清單勾選　<span style="color:#C0392B;">（尚未選擇任何線路）</span></div>
-        <div style="font-size:12px;color:#C0392B;margin-bottom:12px;">⚠ 請至少選擇 1 條投放線路</div>
+        <div style="font-size:12px;color:#C0392B;margin-bottom:12px;">⚠ 請至少選擇 1 條投放線路，否則無法上線。</div>
         <div style="display:flex;gap:10px;justify-content:flex-end;">
           <span style="font-size:12px;font-weight:700;color:#5A5F6B;background:#EEF0F3;border-radius:7px;padding:9px 16px;">儲存草稿</span>
           <span style="font-size:12px;font-weight:700;color:#fff;background:#B9BEC7;border-radius:7px;padding:9px 16px;opacity:.7;">提交審查（disabled）</span>
         </div>
       </div>
-      <div style="font-size:10px;color:var(--text-dim);margin-top:7px;text-align:center;">↑ 還原示意（原型 v2 尚未含此驗證態，依本規格補做）</div>
+      <div style="font-size:10px;color:var(--text-dim);margin-top:7px;text-align:center;">↑ 還原示意 <span class="tag-new txt" style="vertical-align:middle;"><span style="font-size:9px;">v5.2</span></span>：<strong style="color:var(--green-bright);">原型 v2 已含紅字提示與擋送審</strong>（「⚠ 請至少選擇 1 條投放線路，否則無法上線。」＋提交審查 disable）；<strong>輸入框紅框（#E0563A）樣式為規格加嚴、開發時補</strong>。</div>
     </div>
     <div class="ui-doc-spec">
       <div class="ui-doc-spec-h">線路必選驗證 · 阻擋送審（規格定義）</div>
       <dl>
         <dt>觸發</dt><dd>未勾選任何線路時，點「提交審查」或失焦驗證</dd>
-        <dt>欄位狀態</dt><dd>輸入框紅框（#E0563A）＋下方紅字提示「請至少選擇 1 條投放線路」</dd>
+        <dt>欄位狀態</dt><dd><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> <strong style="color:var(--green-bright);">原型 v2 已含</strong>紅字提示「⚠ 請至少選擇 1 條投放線路，否則無法上線。」並 disable 提交審查；<strong>輸入框紅框（#E0563A）為本規格加嚴要求、原型未含，開發時補</strong></dd>
         <dt>按鈕狀態</dt><dd><strong>「提交審查」維持 disabled ＋ 原因提示</strong>直到至少選 1 條；「儲存草稿」可照常存</dd>
         <dt>規則</dt><dd><strong>投放線路必選 ≥1，未選擋送審</strong>；每日重置時間的時區依第一條投放線路動態顯示</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.line.error_required</span></dd>
@@ -3529,7 +3568,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
   <div class="sub-title">帳號權限頁（後台帳號 ＋ 角色權限對照 · v5.1 對齊原型 v2）</div>
   <div class="callout info">
-    <strong>帳號權限頁＝「後台帳號」卡片列表 ＋「角色權限對照」矩陣。</strong>權限以<strong>頁面可見性</strong>控管——<strong>角色＝一組可見頁面的集合</strong>，頁面內不再做欄位級切分。<strong>最高權限（Admin）可新增帳號並指派角色與可見頁面</strong>。頁面可見性：<strong>一般操作者可見「活動列表＋模板管理＋獎勵歷程」</strong>；<strong>僅查看角色可見「活動列表（部分）＋獎勵歷程（部分）」</strong>，不可見活動審查／模板管理／帳號權限。
+    <strong>帳號權限頁＝「後台帳號」卡片列表 ＋「角色權限對照」矩陣。</strong>權限以<strong>頁面可見性</strong>控管——<strong>角色＝一組可見頁面的集合</strong>，頁面內不再做欄位級切分。<strong>最高權限（Admin）可新增帳號並指派角色與可見頁面</strong>。頁面可見性：<strong>一般操作者可見「活動列表＋模板管理＋獎勵歷程」</strong>；<strong>僅查看角色可見「活動列表（部分）＋獎勵歷程（部分）」</strong>，不可見活動審查／模板管理／帳號權限。<br>
+    <strong style="color:var(--orange-bright);"><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> ⚠ 原型落差：</strong>原型 v2 的「<strong>僅查看</strong>」角色<strong>導覽誤含活動審查頁</strong>（與其自身的權限矩陣相互矛盾）；<strong>開發以本規格為準——僅查看角色不可見活動審查</strong>。
   </div>
 
   <div class="ui-doc-row">
@@ -3587,7 +3627,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
-      <tr><td>模板名稱</td><td class="dim">營運自訂、可搜尋</td></tr>
+      <tr><td>模板名稱</td><td class="dim">營運自訂。<strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 名稱搜尋列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>（v1 不提供搜尋）</td></tr>
       <tr><td>押注比例（betRatio）</td><td class="dim">如 1.0x／1.2x／1.5x／0.8x</td></tr>
       <tr><td>目標 RTP</td><td class="dim">每模板自訂，容許 ±0.1%</td></tr>
       <tr><td>貨幣（chips）</td><td class="dim">該模板已設定的貨幣以 chip 呈現（PHP 預設）</td></tr>
@@ -3601,9 +3641,11 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
       <tr><td>模板名稱</td><td class="dim">文字輸入</td></tr>
-      <tr><td>押注比例</td><td class="dim">數值（betRatio）</td></tr>
-      <tr><td>目標 RTP</td><td class="dim">數值；驗算容許 <strong>±0.1%</strong></td></tr>
-      <tr><td>終獎最早格</td><td class="dim">final prize 最早可出現的格數</td></tr>
+      <tr><td><strong>模板屬性（唯讀）</strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span><br><span class="dim" style="font-size:10px;">押注比例／目標 RTP／終獎最早格</span></td><td class="dim"><strong>押注比例（betRatio）、目標 RTP、終獎最早格為「模板屬性」，v1 後台不提供編輯</strong>（原 v5.1 將三者列為可編輯欄位，v5.2 更正）。<br>
+      · <strong>目標 RTP</strong>：唯讀顯示於 <strong>RTP 驗算卡</strong>（作為 ±0.1% 驗算基準）。<br>
+      · <strong>押注比例、目標 RTP</strong>：顯示於<strong>模板列表</strong>與<strong>活動 Tab 3 卡片</strong>。<br>
+      · <strong>終獎最早格</strong>：v1 <strong>僅屬性顯示參考</strong>，<strong>不做與權重表的連動驗證</strong>（驗證列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>）。<br>
+      · <strong>屬性編輯功能列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>。</td></tr>
       <tr><td>貨幣 tabs</td><td class="dim"><strong>PHP 預設</strong>＋「＋從貨幣清單新增」；備選 11 種：PHP／USD／TWD／THB／VND／MYR／IDR／KRW／JPY／BRL／INR</td></tr>
       <tr><td>9 格累積門檻</td><td class="dim">累積制 ［100, 220, 360, 550, 850, 1250, 1700, 2500, <strong>3650</strong>］（PHP，各貨幣各自一套）</td></tr>
       <tr><td>四階獎項</td><td class="dim">小獎 ×5／中獎 ×2／大獎 ×1／最終獎 ×1；<strong>現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充（原型先行示意）</strong>，v1 僅現金</td></tr>
@@ -3612,7 +3654,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
   <div class="callout" style="font-size:12px;">
-    <strong>FREE SPIN（v2 擴充 · 原型先行示意）：</strong>模板編輯器「現金↔FREE SPIN 切換」含 FS 品項清單 <span class="mono">FS_S023_10 / FS_S011_8 / FS_S009_5</span>、各幣別估值計入獎池參與 RTP 驗算——<strong>一律標「v2 擴充（原型先行示意）」，v1 範圍僅現金獎</strong>。
+    <strong>FREE SPIN（v2 擴充 · 原型先行示意）：</strong>模板編輯器「現金↔FREE SPIN 切換」含 FS 品項清單 <span class="mono">FS_S023_10 / FS_S011_8 / FS_S009_5</span>、各幣別估值計入獎池參與 RTP 驗算——<strong>一律標「v2 擴充（原型先行示意）」，v1 範圍僅現金獎</strong>。<br>
+    <strong style="color:var(--orange-bright);"><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 標註落差提醒：</strong>原型 v2 畫面<strong>未標 v2 badge</strong>，開發時依本規格於 <strong>FREE SPIN 卡 tab</strong> 與<strong>現金↔FREE SPIN 切換處</strong>補 v2 標示，避免營運誤以為 v1 即可設定 FS 獎項。
   </div>
 
   <div class="sub-title" style="font-size:14px;">三、示範模板（四組）</div>
@@ -3655,6 +3698,26 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </table>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ <strong>權重輸入範圍＝第 1~8 抽</strong>（四類相對權重，每列合計 &gt;0 即可驗證）；<strong>第 9 抽不提供輸入框、不參與合計驗證</strong>。旁附系統試算「各格實際機率分佈」表與「終獎落點分佈」視覺條<strong>維持 9 格顯示</strong>——其中<strong>第 9 格機率由前 8 抽消耗結果推導，屬顯示性資訊、非設定值</strong>。</div>
 
+  <div class="sub-title" id="template-version" style="font-size:14px;">五、模板版本控制 <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></div>
+  <div class="callout success">
+    <strong>2026-07-16 與後端 Eric 確認 <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span>：</strong>模板既為<strong>可被多檔活動／多條規則共用的獨立實體</strong>，其編輯必須有版本控制，才不會在營運改一個模板時，連帶改掉正在運行的活動與玩家當日已鎖定的配置。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th>機制</th><th>v5.2 設計</th></tr></thead>
+    <tbody>
+      <tr><td>模板編輯<strong>不換 ID</strong></td><td class="dim">同一<strong>模板 ID</strong> 下，<strong>每次儲存產生新版本序號</strong>（V1、V2…）。<strong>DB 已有序號</strong>，後台顯示時<strong>轉為版號格式</strong>（V1／V2）。活動引用的是<strong>模板 ID</strong>，不因編輯而斷開引用。</td></tr>
+      <tr><td>版本歷程</td><td class="dim"><strong>每版保留完整快照</strong>（門檻／獎項／權重／各貨幣設定）。<strong>模板編輯器內重用活動 Tab 4 的模式呈現</strong>——<strong>版本下拉</strong>（格式「<span class="mono">V1（更新 2026-06-28 10:12）</span>」）＋<strong>該版快照明細</strong>。</td></tr>
+      <tr><td><strong>生效時機</strong></td><td class="dim">· 模板被<strong>「運行中活動」引用</strong>時：新版本於<strong>各活動的「次一個每日重置時點」生效</strong>；<strong>玩家當日已鎖定的配置沿用舊版快照</strong>。<br>· <strong>未被任何運行中活動引用</strong>的模板：<strong>儲存即生效</strong>。<br>· 此設計與 <a href="#tag-rules" style="color:var(--gold-light);">§15 當日鎖定</a>、<a href="#admin-version" style="color:var(--gold-light);">§16「飛行中資料不被改寫」</a><strong>同一設計哲學</strong>。</td></tr>
+      <tr><td>後台備注<br><span class="dim" style="font-size:10px;">Eric 要求</span></td><td class="dim"><strong>模板編輯器頂部</strong>與<strong>模板列表</strong>需顯示<strong style="color:var(--orange-bright);">黃色提示</strong>：「<strong>此模板被 N 檔運行中活動使用，儲存後將於次一個每日重置時點生效</strong>」，避免營運誤以為改完立刻生效。</td></tr>
+    </tbody>
+  </table>
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 模板改版不影響當日已鎖定玩家 <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></div>
+    <b class="g">Given</b> 模板 A（<strong>V1</strong>）被<strong>運行中活動</strong>引用，玩家甲今日已登錄並<strong>鎖定 V1</strong><br>
+    <b class="w">When</b> 營運編輯模板 A 並儲存，<strong>產生 V2</strong><br>
+    <b class="t">Then</b> <strong>玩家甲今日仍跑 V1</strong>；<strong>次一個每日重置時點後，新鎖定的玩家跑 V2</strong>；獎勵歷程<strong>分別記錄 <span class="mono">template_version = V1／V2</span></strong>，對帳可追溯玩家當日命中哪一版模板。
+  </div>
+
   <div class="sub-title" id="monitoring">監控與警報（Grafana + Telegram · 不做後台頁面）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></div>
   <div class="callout warn">
     <strong>v5.1：後台 v1 UI 範圍內的「異常處理」模組（Pending 發放列表／手動重試／AWC Log 頁）與「一鍵啟停」按鈕已移除。</strong>監控與警報改由 <strong>Grafana + Telegram</strong> 值班流程處理，<strong>不做後台頁面</strong>——本節只列規則與警報內容。
@@ -3676,7 +3739,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>頁頂固定警示：</strong>此頁獎勵屬 CRM 活動發放，<strong>不計入單一遊戲收入（GGR）</strong>。
   </div>
   <div class="callout info">
-    <strong>獎勵歷程＝獨立於遊戲歷程的活動獎勵發放紀錄。</strong>檢視切換：<strong>抽寶箱（v1）／FREE SPIN卡（<span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 標註）</strong>。與 §17「獨立獎勵歷程＋activity_type」互為 <strong>UI / 資料層對照</strong>。原「注單查詢（bonus_type 對帳）」模組保留：<strong>對帳走注單查詢、活動獎勵明細走獎勵歷程頁，兩者用途不同</strong>。
+    <strong>獎勵歷程＝獨立於遊戲歷程的活動獎勵發放紀錄。</strong>檢視切換：<strong>抽寶箱（v1）／FREE SPIN卡（<span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 標註）</strong>。與 §17「獨立獎勵歷程＋activity_type」互為 <strong>UI / 資料層對照</strong>。原「注單查詢（bonus_type 對帳）」模組保留：<strong>對帳走注單查詢、活動獎勵明細走獎勵歷程頁，兩者用途不同</strong>。<br>
+    <strong style="color:var(--orange-bright);"><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 標註落差提醒：</strong>原型 v2 畫面<strong>未標 v2 badge</strong>，開發時依本規格於 <strong>FREE SPIN 卡 tab</strong> 補 v2 標示。
   </div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
@@ -3697,7 +3761,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <tbody>
       <tr><td>活動建立表單（四分頁）</td><td class="dim"><strong>Tab 1 基本設定</strong>（活動ID唯讀／名稱／版型／期間／每日重置 HH:MM／倒數天數／投放線路）、<strong>Tab 2 標籤與配置</strong>（標籤規則 AND→模板＋預設配置）、<strong>Tab 3 獎項與門檻</strong>（唯讀摘要）、<strong>Tab 4 版本</strong>（下拉＋快照明細）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>模板管理（獎項與門檻）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim"><strong>模板為獨立實體、可被多檔活動／多條規則共用</strong>；模板編輯器含押注比例／目標 RTP／終獎最早格／貨幣 tabs（PHP＋11 備選）／9 格累積門檻／四階獎項／9×4 權重；<strong>後台模板編輯取代 Excel</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：押注比例模板匯入自動套 RTP</td></tr>
-      <tr><td>標籤規則 → 模板（分眾配置）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim">每列＝多標籤 chip（<strong>AND 需同時符合</strong>）→ 指定模板；固定置底<strong>預設配置（不可刪除）</strong>；未命中走預設配置、<strong>無准入閘門</strong>；即時衝突檢查（組合重複／未選標籤 → 紅底擋送審）。標籤池：大客/中客/小客/高風險/低風險</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：分群模型輸出核心標籤</td></tr>
+      <tr><td>標籤規則 → 模板（分眾配置）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim">每列＝多標籤 chip（<strong>AND 需同時符合</strong>）→ 指定模板；固定置底<strong>預設配置（不可刪除）</strong>；未命中走預設配置、<strong>無准入閘門</strong>；<strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 即時衝突檢查三層</strong>：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋</strong>，命中取「標籤數最多且全部符合」者優先，同標籤數又同時命中多條 → 警示擋送審。標籤池：大客/中客/小客/高風險/低風險</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：分群模型輸出核心標籤</td></tr>
       <tr><td>線路投放設定（platform_lines）</td><td class="dim">從<strong>預定義「已開通 Bet=0」平台清單</strong>多選投放線路；<strong>必選 ≥1、未選擋送審</strong>；每日重置時間時區依第一條投放線路動態顯示</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：依線路差異化獎池</td></tr>
       <tr><td>版型主題設定（theme_id）</td><td class="dim">從<strong>預定義主題清單單選</strong>（treasure_box / gold_egg / red_envelope / xmas_gift），選中顯示縮圖預覽，控制前台換皮；<strong>不可自由輸入、不影響玩法數值</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：營運可自上傳素材</td></tr>
       <tr><td>活動期間倒數設定（countdown_lead_days）</td><td class="dim">設定前台由日期區間轉倒數的提前天數（預設 3）；活動列表倒數欄剩餘天數 &lt; 此值時轉紅</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
@@ -3708,7 +3772,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>監控與警報（Grafana + Telegram）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim"><strong>不做後台頁面</strong>；門檻於 Grafana 側維護、警報經 Telegram 通知、處理狀態由值班流程管理。<strong>取代原「Pending 異常列表／手動重試／AWC Log 頁」與「一鍵啟停」</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>版本快照（下拉＋明細）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim">Tab 4 版本下拉切換（「V1（更新 2026-06-28 10:12）」）＋快照明細（目標 RTP／標籤規則數量含預設逐行／起訖／使用模板數量）；<strong>UI 不顯示運行中/待生效 badge</strong>（current/pending 保留於資料層）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>活動上線審核流程</td><td class="dim">活動上線前須「提交審查」→ 由<strong>最高權限（Admin）核准</strong>才上線；<strong>「送審」與「核准/上線」須不同角色（職責分離）</strong>；<strong>駁回原因必填</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：多級審核／稽核</td></tr>
-      <tr><td>上線中禁止編輯（v4.0 · C4）</td><td class="dim"><strong>上線中活動禁止直接編輯，須先下架／暫停才能修改</strong>；緊急調整先暫停 → 確認無誤 → 再恢復（狀態機含「暫停」節點）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
+      <tr><td>上線中的編輯規則（C4）<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></td><td class="dim"><strong>以 §16 快照機制為準</strong>：編輯運行中活動<strong>產生「待生效版本」</strong>、不影響運行中快照與已參與玩家；<strong>Admin 可編輯運行中活動</strong>，<strong>一般操作者僅可編輯草稿／被駁回</strong>（§16 權限矩陣 △）；緊急停用仍走<strong>先暫停 → 修改 → 恢復</strong>（狀態機含「暫停」節點）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>帳號權限管理（角色權限對照）</td><td class="dim"><strong>後台帳號卡片列表 ＋ 角色權限對照矩陣</strong>：最高權限（Admin，全部＋帳號權限）／一般操作者（Operator，活動列表＋模板管理＋獎勵歷程）／僅查看（Viewer，活動列表部分＋獎勵歷程部分）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：頁內動作級權限</td></tr>
       <tr><td>活動複製</td><td class="dim">複本帶入<strong>全部設定</strong>、狀態重置為<strong>草稿</strong>、版本 V1、ID 加 <span class="mono">_COPY</span></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>月結對帳儀表板</td><td class="dim">視覺化活動成本 vs GGR 拆帳</td><td class="dim">—（數據組另拉）</td><td><span class="tag-pill" style="background:var(--purple-fill);color:var(--purple-bright);">v2 擴充</span></td></tr>
@@ -4443,8 +4507,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <thead><tr><th>項目</th><th>v5.0 設計</th></tr></thead>
     <tbody>
       <tr><td>標籤取得時機</td><td class="dim">玩家<strong>每日「登錄時」</strong>，由系統向<strong>數據組（DA）</strong>取得該玩家的<strong>多組 Tag</strong>（大/中/小客、風險標籤…）。非玩家每次動作即查，登錄時取一次當日快照。</td></tr>
-      <tr><td>匹配邏輯（核心變更）</td><td class="dim">需<strong>同時符合多個標籤條件（AND 複合條件）</strong>，才對應到<strong>該組抽取門檻與獎項配置</strong>。例：<em>（大客 AND 非高風險）</em> → 配置 A；<em>（中客 AND 回流）</em> → 配置 B。單一標籤不足以命中，必須整組條件同時成立。</td></tr>
-      <tr><td>命中結果</td><td class="dim">命中 → 套用該組「抽取門檻 + 獎項配置（9 格獎池／權重／目標 RTP）」；<strong>未命中任何一組 → 走預設配置（tag_default）</strong>，活動仍可正常參與，不因未命中而消失。</td></tr>
+      <tr><td>匹配邏輯（核心變更）</td><td class="dim">需<strong>同時符合多個標籤條件（AND 複合條件）</strong>，才對應到<strong>該組抽取門檻與獎項配置</strong>。例：<em>（大客 AND 非高風險）</em> → 配置 A；<em>（中客 AND 低風險）</em> → 配置 B <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span>（原例「回流」不在 v1 統一標籤池，已更正）。單一標籤不足以命中，必須整組條件同時成立。</td></tr>
+      <tr><td>命中結果</td><td class="dim">命中 → 套用該組「抽取門檻 + 獎項配置（9 格獎池／權重／目標 RTP）」；<strong>未命中任何一組 → 走預設配置（tag_default）</strong>，活動仍可正常參與，不因未命中而消失。<br><strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 重疊命中：</strong>玩家同時符合多條規則時採「<strong>符合度高者優先</strong>」——取<strong>標籤數最多</strong>且玩家全部符合的規則（見下方「五、防呆 · 衝突檢查」）。</td></tr>
       <tr><td>資料來源一致性</td><td class="dim">標籤值與分群定義<strong>由數據組提供</strong>，平台只接收 + 比對套用（非自動打標），沿用 §04 B2 原則。</td></tr>
     </tbody>
   </table>
@@ -4485,7 +4549,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="mermaid" id="mmd-tag">flowchart TD
   A["玩家每日登錄"] --> B["系統向數據組(DA)<br/>取得多組 Tag"]
   B --> C{"AND 複合標籤<br/>規則比對"}
-  C -->|"同時符合<br/>多標籤條件"| D["命中設定檔<br/>抽取門檻＋獎項配置"]
+  C -->|"同時符合<br/>多標籤條件"| D["命中設定檔<br/>抽取門檻＋獎項配置<br/>(重疊時取標籤數最多者)"]
   C -->|"任一條件不符<br/>或無 Tag / 同步延遲"| E["走預設配置<br/>tag_default"]
   D --> F["套用當日門檻與獎項<br/>(當日鎖定)"]
   E --> F
@@ -4507,6 +4571,18 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 走預設配置 tag_default，活動正常可玩、不因未命中而消失或報錯。
   </div>
   <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 重疊命中 → 標籤數多者優先 <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></div>
+    <b class="g">Given</b> 活動內有規則 R1＝（大客）→ 標準模板 A、規則 R2＝（大客 AND 低風險）→ 忠誠加碼（R1 的標籤為 R2 的子集），玩家帶「大客 + 低風險」<br>
+    <b class="w">When</b> 玩家當日登錄比對規則<br>
+    <b class="t">Then</b> R1、R2 皆符合，採「<strong>符合度高者優先</strong>」命中<strong>標籤數最多</strong>的 R2 → 套用「忠誠加碼」；此設定<strong>合法、存檔與送審皆不擋</strong>。
+  </div>
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 同標籤數同時命中 → 擋送審 <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></div>
+    <b class="g">Given</b> 活動內有規則 R3＝（大客 AND 低風險）→ 忠誠加碼、規則 R4＝（大客 AND 高風險）→ 救援高倍，且營運另建 R5＝（大客 AND 低風險）→ 保守低倍（與 R3 標籤數相同且同時命中）<br>
+    <b class="w">When</b> 營運存檔或提交審查<br>
+    <b class="t">Then</b> 系統判定為<strong>設定衝突</strong>（同標籤數、同時命中多條，無法決定優先）→ <strong style="color:var(--red-bright);">警示並擋送審</strong>，須由營運自行調整規則。
+  </div>
+  <div class="bdd-card">
     <div class="bdd-title">BDD 驗收情境 · 進行中標籤變動</div>
     <b class="g">Given</b> 玩家於活動進行中由「中客」升為「大客」<br>
     <b class="w">When</b> 標籤在活動運行期間變動<br>
@@ -4519,9 +4595,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <tbody>
       <tr><td>標籤複選器</td><td class="dim">Multi-select（Chips/Checkbox）</td><td class="dim">後台設定標籤條件時須支援<strong>「複選」</strong>；標籤清單由數據組提供、後端直抓，不可自由輸入（沿用 §04 B2）。已選標籤以 chip 呈現、可單獨移除。</td></tr>
       <tr><td>複合條件群組</td><td class="dim">AND 條件群組</td><td class="dim">同一組配置的多個標籤以 <strong>AND</strong> 串接，介面明確標示「需<em>同時</em>符合」，避免誤解為 OR。初期<strong>僅一層</strong>（不做巢狀規則樹）。</td></tr>
-      <tr><td>防呆 · 衝突檢查</td><td class="dim">即時驗證</td><td class="dim">同一活動內若兩組配置的 AND 條件<strong>互相重疊/矛盾</strong>（同一玩家可能同時命中兩組），存檔前即時警示並要求釐清優先序，<strong>避免規則打架</strong>。</td></tr>
+      <tr><td>防呆 · 衝突檢查<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></td><td class="dim">即時驗證</td><td class="dim"><strong>v5.2 三層規則</strong>（取代原「重疊即要求釐清優先序」）：<br>
+      <strong>①「空規則」（未選任何標籤）</strong> → <strong style="color:var(--red-bright);">紅底警示、擋送審</strong>（同原型 v2）。<br>
+      <strong>②「標籤組合完全重複」</strong>（兩條規則的標籤集合完全相同） → <strong style="color:var(--red-bright);">紅底警示、擋送審</strong>（同原型 v2）。<br>
+      <strong>③「部分重疊」</strong>（一條規則的標籤是另一條的子集，玩家可能同時命中多條） → <strong style="color:var(--green-bright);">合法、不擋</strong>；命中採「<strong>符合度高者優先</strong>」——取<strong>標籤數最多</strong>且玩家<strong>全部符合</strong>的那條規則。<strong>若同標籤數且同時命中多條 → 視為設定衝突，存檔時警示、擋送審。</strong></td></tr>
       <tr><td>防呆 · 預設兜底提示</td><td class="dim">說明文字</td><td class="dim">介面固定顯示「未命中任何組 → 走預設配置 tag_default」，提醒營運<strong>務必設好預設配置</strong>，避免玩家落空。</td></tr>
-      <tr><td>友善操作</td><td class="dim">搜尋 / 分類</td><td class="dim">標籤下拉支援搜尋與分類（客群類：大/中/小客；風險類：風險標籤），降低誤選；hover 顯示標籤定義。</td></tr>
+      <tr><td>友善操作</td><td class="dim">搜尋 / 分類 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></td><td class="dim"><strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 標籤下拉支援搜尋與分類（客群類：大/中/小客；風險類：高/低風險）＋ hover 顯示標籤定義 → 列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>；<strong>v1 標籤僅 5 個，以 chips 直選即可</strong>，不做搜尋與分類。</td></tr>
     </tbody>
   </table>
   <div class="callout warn">
@@ -4545,7 +4624,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
-      <tr><td>活動名稱</td><td class="dim">營運自訂，可搜尋。</td></tr>
+      <tr><td>活動名稱</td><td class="dim">營運自訂。<strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 名稱搜尋列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>（v1 不提供搜尋；篩選以狀態 chips＋線路下拉＋日期區間為主）。</td></tr>
       <tr><td>Campaign ID</td><td class="dim"><strong>系統自動產生、唯讀</strong>（不可人工編輯），作為對帳與 audit 的唯一鍵。</td></tr>
       <tr><td>版型</td><td class="dim">版型主題（theme_id，預定義單選；沿用 §04/§07 換皮架構）。</td></tr>
       <tr><td>起訖時間</td><td class="dim">活動開始 / 結束時間，<strong>以線路時區呈現與計算</strong>（見下）。</td></tr>
@@ -4574,6 +4653,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>版本流水號</td><td class="dim">每次編輯<strong>自動產生版本流水號（V1、V2…）</strong>。</td></tr>
       <tr><td>運行中 vs 待生效<br><span class="dim" style="font-size:10px;">v5.1 UI 呈現</span></td><td class="dim">資料層保留<strong>「運行中版本（current）」</strong>與<strong>「待生效版本（pending）」</strong>；編輯產生的是待生效版本，於下一個生效切點（活動暫停更新 / 排程）才切換為運行中。<strong style="color:var(--gold-light);">v5.1：UI 不再顯示「運行中/待生效」badge，改以活動表單 Tab 4「版本下拉＋快照明細」呈現</strong>（下拉選項格式「V1（更新 2026-06-28 10:12）」）。</td></tr>
       <tr><td>多版本並存</td><td class="dim">同一活動<strong>不同版本可並存</strong>，支援<strong>比對與追溯</strong>（誰在何時改了什麼、玩家當時跑哪一版）。</td></tr>
+      <tr><td>快照計數規則<br><span class="dim" style="font-size:10px;">v5.2</span></td><td class="dim"><strong>快照明細的「標籤規則數量」＝規則 N 組，<span style="color:var(--gold-light);">預設配置另列、不計入 N</span></strong>；<strong>顯示格式「N 組規則 ＋ 預設」</strong>。<strong style="color:var(--orange-bright);">⚠ 原型 v2 文案「N 組（含預設）」之 N 未含預設、與文字矛盾，開發時依本規格修正。</strong></td></tr>
+      <tr><td>引用模板版本<br><span class="dim" style="font-size:10px;">v5.2</span></td><td class="dim"><strong>活動版本快照引用「模板 ID ＋ 模板版本序號」</strong>（非僅模板 ID），確保回溯時取得的是當時實際生效的那一版模板數值；<strong>活動 Tab 4 快照明細中的模板名稱須帶版號</strong>（例：<strong>忠誠加碼 V2</strong>）。模板版本控制機制見 <a href="#template-version" style="color:var(--gold-light);">§07 五、模板版本控制</a>。</td></tr>
       <tr><td>與標籤變動一致</td><td class="dim">此「快照 + 下次切點生效」機制與 §15「標籤變動不即時、待暫停更新後下次登錄套用」<strong>同一設計哲學</strong>：飛行中資料不被改寫。</td></tr>
     </tbody>
   </table>
@@ -4586,6 +4667,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="sub-title" id="review-fsm">五、審核流程（狀態機 · 六態）<span class="tag-new"></span></div>
   <div class="callout info">
     <strong>規則（v5.1）：</strong>設定完成後<strong>提交審查</strong>，由<strong>最高權限（Admin）</strong>核准後方可上線；一般操作者<strong>不可自審自上</strong>（職責分離）。<strong>活動狀態六態：草稿 → 送審中 → 已核准 → 運行中 → 已暫停 → 已結束</strong>；<strong>駁回 → 回草稿並顯示駁回原因（必填）</strong>。上線中 ⇄ 已暫停 可互切（緊急調整先暫停）。
+  </div>
+  <div class="callout warn">
+    <strong>暫停／恢復的操作入口（明定）<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span>：</strong><strong>運行中 ⇄ 已暫停</strong> 的操作入口＝<strong>活動表單（查看／編輯頁）頂部狀態列的「暫停活動／恢復活動」按鈕</strong>，<strong>僅最高權限（Admin）可操作</strong>。<strong>活動列表不提供啟停</strong>（一鍵啟停已於 v5.1 移除）。<br>
+    <strong style="color:var(--orange-bright);">⚠ 原型落差：</strong>原型 v2 <strong>未含此入口</strong>，<strong>開發時依本規格補做</strong>。
   </div>
   <div class="mermaid-box">
     <div class="mermaid" id="mmd-fsm">stateDiagram-v2
@@ -4601,6 +4686,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   已暫停 --> 已結束: 到期 / 手動下架
   已結束 --> [*]</div>
     <div class="mermaid-cap">FIG.16 · 活動審核狀態機（六態：草稿 → 送審中 → 已核准 → 運行中 ⇄ 已暫停 → 已結束；駁回→回草稿）</div>
+  </div>
+  <div class="callout info">
+    <strong>核准後的狀態語意（明定）<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span>：</strong>Admin 核准時，落到哪一態<strong>取決於是否已達活動開始時間</strong>：
+    <ol style="margin:6px 0 0;padding-left:18px;line-height:1.9;">
+      <li><strong>已達活動開始時間 → 直接進入「運行中」</strong>（對應原型 v2 的「<strong style="color:var(--green);">核准並上線</strong>」按鈕語意）。</li>
+      <li><strong>未達開始時間 → 進入「已核准」</strong>；到達活動開始時間後，<strong>由排程自動轉「運行中」</strong>，不需人工再操作一次上線。</li>
+    </ol>
   </div>
 
   <div class="sub-title">六、權限角色矩陣（三類角色）<span class="tag-new"></span></div>
@@ -4645,7 +4737,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
   <div class="callout warn">
-    <strong>職責分離（Separation of Duties）：</strong>一般操作者可<strong>建立 / 編輯 / 送審</strong>，但<strong>不可核准、不可上線</strong>——「送審」與「核准/上線」必須是不同角色，防止自審自上。<span class="perm-cond">△</span>＝條件式（僅限草稿或退回狀態可編輯，上線中版本須先下架/暫停再改）。
+    <strong>職責分離（Separation of Duties）：</strong>一般操作者可<strong>建立 / 編輯 / 送審</strong>，但<strong>不可核准、不可上線</strong>——「送審」與「核准/上線」必須是不同角色，防止自審自上。<br>
+    <strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> <span class="perm-cond">△</span> 的對應關係（同 §07「② 上線中的編輯規則（C4）」）：</strong><span class="perm-cond">△</span>＝條件式——<strong>一般操作者僅可編輯「草稿／被駁回」狀態</strong>的活動；<strong>Admin 可對運行中活動編輯，編輯結果產生「待生效版本」</strong>（走本章三、快照機制），<strong>不影響運行中快照與已參與玩家</strong>，<strong>不需先下架</strong>；緊急停用仍走「先暫停 → 修改 → 恢復」。
   </div>
 </section>
 
@@ -4686,7 +4779,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <tbody>
       <tr><td>獨立歷程</td><td class="dim">CRM 活動獎勵（<strong>現金、Free Spin 卡</strong>等）獨立為<strong>專屬歷程</strong>，<strong>與遊戲內歷程分離</strong>。</td></tr>
       <tr><td>不記入單一遊戲收入</td><td class="dim">因玩家可能<strong>跨遊戲參與</strong>，獎勵<strong>不記入單一遊戲收入</strong>，避免玩家收益計算偏差（某款遊戲被錯誤灌入跨遊戲活動的獎勵）。</td></tr>
-      <tr><td>結構擴展</td><td class="dim">獎勵歷程<strong>採現有結構擴展</strong>（沿用 §04 LAYER 04 發放紀錄），<strong>新增「活動類型」分類欄位</strong>（activity_type），區分抽寶箱 / 其他 CRM 活動來源。</td></tr>
+      <tr><td>結構擴展</td><td class="dim">獎勵歷程<strong>採現有結構擴展</strong>（沿用 §04 LAYER 04 發放紀錄），<strong>新增「活動類型」分類欄位</strong>（activity_type），區分抽寶箱 / 其他 CRM 活動來源。<br>
+      <strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 欄位再補：<span class="mono">template_id</span> ＋ <span class="mono">template_version</span></strong>——<strong>對帳可追溯玩家當日命中哪一版模板</strong>（模板版本控制見 <a href="#template-version" style="color:var(--gold-light);">§07 五、模板版本控制</a>）。</td></tr>
     </tbody>
   </table>
 
@@ -4801,6 +4895,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>V5.12</td><td>遊戲新增自動讀取後端固定品項（線路掛載優化）</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v2">完整方案<span class="dim" style="font-size:10px;">（第二迭代）</span></span></td></tr>
       <tr><td>V5.13</td><td>Bet=0 站長確認（PB 8 月底前 → 成效 OK 後問 MPS）＋ MPS 適配專項會議</td><td><span class="tag-pill" style="background:var(--gold-fill);color:var(--gold-light);">📋 PM</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-inf">前置關卡</span></td></tr>
       <tr><td>V5.14</td><td>Free Spin 卡背包原型 ＋ 後台設定功能確認</td><td><span class="tag-pill tag-web">🌐 前端Web</span> <span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
+      <tr><td>V5.15<span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></td><td><strong>模板版本控制</strong>（版本序號＋快照歷程＋隔日生效＋使用中提示）<br><span class="dim" style="font-size:10px;">模板管理已入 v1，版本控制為保護運行中活動的必要機制（2026-07-16 與後端 Eric 確認）</span></td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-web">🌐 前端Web</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v1" style="background:var(--gold-fill);color:var(--gold-light);">最小方案</span></td></tr>
     </tbody>
   </table>
   <div class="callout info">
@@ -4822,7 +4917,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <tr><td>獨立獎勵歷程</td><td class="v1-val">獨立歷程 ＋ 活動類型欄位</td><td class="v2-val">同（沿用擴展結構）</td></tr>
         <tr><td>後台版本控制</td><td class="v1-val">活動列表 ＋ 狀態 ＋ Campaign ID 唯讀</td><td class="v2-val">＋ 版本快照/流水號、審核狀態機、活動複製</td></tr>
         <tr><td>權限</td><td class="v1-val">基本角色（可上線把關）</td><td class="v2-val">＋ 三類角色完整權限矩陣、職責分離</td></tr>
-        <tr><td>押注比例設定 / 模板</td><td class="v1-val"><strong>後台模板編輯（取代 Excel）＋ 模板管理頁</strong>（模板為獨立實體、可共用）</td><td class="v2-val">＋ 押注比例模板匯入（選模板自動套 RTP）</td></tr>
+        <tr><td>押注比例設定 / 模板</td><td class="v1-val"><strong>後台模板編輯（取代 Excel）＋ 模板管理頁</strong>（模板為獨立實體、可共用）<br><strong style="color:var(--gold-light);">＋ 模板版本序號／快照歷程／隔日生效</strong> <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></td><td class="v2-val">＋ 押注比例模板匯入（選模板自動套 RTP）<br><strong>＋ 版本差異比對（兩版並排 diff）</strong> <span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span></td></tr>
         <tr><td>遊戲 / 線路掛載</td><td class="v1-val">人工填寫</td><td class="v2-val">＋ 自動讀取後端固定品項</td></tr>
         <tr><td>警報監控</td><td class="v1-val">Log 盤點就緒（埋點＋異常判定依據）</td><td class="v2-val">＋ 活動警報機制（上線前完成部署）</td></tr>
         <tr><td>分群模型</td><td class="v1-val"><span class="cross">✘</span> 不含（純規則）</td><td class="v2-val"><span class="plus">＋</span> 導入分群模型（規則兜底）</td></tr>
@@ -4837,8 +4932,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 CRM 功能規格書 · LUCKY CHEST V5.1 · CONFIDENTIAL 2026<br>
+  抽寶箱 CRM 功能規格書 · LUCKY CHEST V5.2 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 兩階段實作（v1 現金獎 + 完整基建 / v2 編輯工具 + 背包）<br>
+  v5.2（2026-07-16 · 與後台原型 v2 落差比對 ＋ 模板版本控制）：<strong>新增模板版本控制</strong>（2026-07-16 與後端 Eric 確認）——模板編輯<strong>不換 ID</strong>、每次儲存產生新版本序號（V1、V2…；DB 已有序號、後台轉版號顯示）、<strong>每版保留完整快照</strong>（門檻／獎項／權重／各貨幣）、模板編輯器重用活動 Tab 4「版本下拉＋快照明細」模式；<strong>生效時機＝被運行中活動引用者於各活動「次一個每日重置時點」生效</strong>（玩家當日已鎖定配置沿用舊版快照）、未被引用者儲存即生效；模板編輯器頂部與模板列表顯示<strong>黃色「此模板被 N 檔運行中活動使用」提示</strong>；§16 活動快照改引用「模板 ID＋模板版本序號」、Tab 4 模板名稱帶版號；§17 獎勵歷程補 <strong>template_id ＋ template_version</strong>；§19 新增 Task V5.15（最小方案）＋最小/完整方案表補模板版本序號與版本差異比對（v2）。<strong>衝突與重疊語意改寫</strong>（§15／§07 Tab 2）——三層規則：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋、命中採「符合度高者優先」（標籤數最多且全部符合）</strong>，同標籤數又同時命中多條 → 設定衝突、存檔警示擋送審（移除原「要求釐清優先序」人工釐清）。<strong>§07 C4 與 §16 編輯規則統一</strong>：以 §16 快照機制為準，編輯運行中活動產生「待生效版本」、不影響已參與玩家；Admin 可編輯運行中活動、一般操作者僅可編輯草稿/被駁回（權限矩陣 △）；緊急停用仍走先暫停→修改→恢復。<strong>對齊原型 v2</strong>：線路必選驗證更正（原型已含紅字提示與擋送審、僅紅框為規格加嚴）、審查唯讀彈窗降級（基本設定＋標籤規則→模板名稱對照，數值明細改至模板管理頁）、模板編輯器「押注比例／目標 RTP／終獎最早格」改為<strong>模板屬性（唯讀）</strong>（v1 不提供編輯、屬性編輯列 v2；終獎最早格 v1 僅顯示參考、連動驗證列 v2）、<strong>搜尋功能移出 v1</strong>（活動/模板名稱搜尋列 v2、§15 標籤下拉搜尋分類標 v2）、<strong>Tab 4 快照計數明定「N 組規則 ＋ 預設」</strong>（原型「N 組（含預設）」文案與 N 矛盾、開發時修正）、<strong>暫停/恢復入口＝活動表單頂部狀態列按鈕</strong>（僅 Admin、活動列表不提供啟停、原型未含需補做）、<strong>核准後狀態語意</strong>（已達開始時間→運行中；未達→已核准、排程自動轉運行中）、FS v2 標註補做說明、注單查詢為平台既有功能非本次範圍、§15 範例「回流」改「低風險」、僅查看角色不可見活動審查（原型導覽誤含）。<br>
   v5.1（2026-07-15 · 對齊後台原型 v2）：對齊《抽寶箱後台管理介面 v2.html》——<strong>標籤規則→模板映射</strong>（取代 tag 直掛機率表、准入閘門移除，未命中走預設配置）、<strong>模板管理入 v1</strong>（模板為獨立實體、可共用、取代 Excel）、<strong>活動表單四分頁</strong>（基本設定／標籤與配置／獎項與門檻唯讀摘要／版本）、<strong>版本快照下拉檢視</strong>（UI 不再顯示運行中/待生效 badge、以版本下拉＋快照明細呈現）、多貨幣移入模板編輯器、門檻改累積制、RTP 每模板自訂 ±0.1%、<strong>監控警報改 Grafana+Telegram</strong>（刪除後台異常處理模組與一鍵啟停）、新增獎勵歷程頁（不計入 GGR）、FS 後台設定標 v2、核准權改最高權限（Admin）、第三角色正名僅查看（Viewer）、<strong>駁回原因必填</strong>（原型 v2 為選填，開發時補必填驗證）；標籤池統一為大/中/小客＋高/低風險；<strong>抽獎權重＝第 1~8 抽</strong>（9 格不放回抽第 1~8 抽後必剩 1 個獎項，<strong>第 9 抽由系統自動決定</strong>·必中剩餘最後 1 個獎項·為唯讀說明列不參與合計驗證·合計為 0 檢查範圍＝第 1~8 列；機率分佈試算與終獎落點維持 9 格顯示、第 9 格為推導的顯示性資訊；§03 三張示範機率表「格 9」加註為系統推導的實際機率分佈、非後台輸入值）。<br>
   v5.0（2026-07-14 · 2026/07 CRM 開案會議）：<strong>依 7 月 CRM 開案會議結論新增五大章節</strong>——§15 玩家標籤與權限規則（每日登錄取多組 Tag、<strong>AND 複合標籤 → 單一配置</strong>、標籤變動待暫停更新後下次登錄才套用、初期一層複合規則、大/中/小客＋風險標籤、後台複選＋防呆、含 Mermaid 命中流程圖）；§16 後台管理與版本控制（活動列表＋線路時區、<strong>版本快照/流水號 V1/V2 運行中 vs 待生效</strong>、活動複製、審核狀態機、三類角色權限矩陣）；§17 獎勵發放與數據紀錄（<strong>Bet=0【待確認·AWC/MPS】</strong>、<strong>RTP −1% 守恆</strong>、獨立獎勵歷程＋活動類型欄、<strong>Kafka 每日批次</strong>＋異常排除、含資料流圖）；§18 優化項目·第二迭代（押注比例模板匯入、後台模板編輯取代 Excel、遊戲掛載自動化、Log 盤點＋警報、MPS Bet=0 適配專項）；§19 開發進度/測試/任務更新（8 月中提測、9 月初串接、Demo 站內測、Free Spin 卡背包原型、Task 標註基礎建設 vs 活動功能、最小 vs 完整方案比較表）。全數新增段落標 <span style="color:var(--red-bright);">v5.0</span>。<br>
   v5.0（2026-07-07）：<strong>拆除 config 抽象層，改為 tag 直接對應機率表</strong>——移除 configId／配置庫／命中規則(targeting 有序清單)／決策樹 三個中介概念；玩家當日 tag（多 tag 依 DA Priority 取最高）直接選一張機率表，<code>resolveConfig</code>→<code>resolveTable</code>（回傳 <code>tagId／matchedTag／tableVersion</code>）；落地＝<strong>1 活動 / N 組 tag 設定</strong>（同 campaign_id／主題／到期日，示範 3～7 組），每日重判、當日鎖定、隔日無縫換照顧；<strong>反套利護欄移至 DA 端內含於 tag</strong>（CRM 只認 tag、不自判資格）；新增 <code>tag_default</code> 兜底；cfg_default／loyal／rescue→tag_default／loyal／rescue（9 格門檻／9×4 權重／目標RTP／多貨幣／固定池 ₱37／每日 reset／AWC 一律不變）。後台 mockup 移除命中規則區、config tabs→tag 分頁。<br>
