@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-09",
-  "count": 51,
+  "updated": "2026-07-30",
+  "count": 66,
   "items": [
     {
       "date": "2026-03-09",
@@ -243,9 +243,34 @@
       "event": "[S064 海盜嬌娃][S033 富豪] 進行結案"
     },
     {
+      "date": "2026-06-23",
+      "category": "遊戲上線",
+      "event": "[S056 狂野水牛] 於 AWC 線路開放遊玩（有實際玩家數據）"
+    },
+    {
+      "date": "2026-06-24",
+      "category": "遊戲上線",
+      "event": "[S056 狂野水牛] 於 MPS 線路開放遊玩（有實際玩家數據）"
+    },
+    {
+      "date": "2026-06-24",
+      "category": "數據異常",
+      "event": "發生約 6 分鐘資料遺失"
+    },
+    {
+      "date": "2026-06-25",
+      "category": "數據異常",
+      "event": "請遊戲組轉拋遊戲 log 給數據組補上 6/24 遺失資料；同時發現 Promotion Tool 發出的 Free Spin 卡所產生的注單，僅記錄實際扣款 Bet ID，未記錄獲獎使用的 Bet ID；待 Server 實作完成後安排補齊注單資料缺漏"
+    },
+    {
       "date": "2026-06-25",
       "category": "遊戲上線",
-      "event": "[S005 礦工] 於 UFA SLOT 開放遊玩（獨佔）；其他 AWC 支援泰銖線路同步關閉 S005"
+      "event": "[S005 礦工] 原訂於 UFA SLOT 開放遊玩，因文字修正問題延期"
+    },
+    {
+      "date": "2026-06-26",
+      "category": "合規送審",
+      "event": "bmm 測試帳號環境由 LLG PP 改為 Combo PP 進度同步：後端預計 2026-07-01 上 UAT，測試無誤後上 Combo PP 環境；完成後關閉 LLG PP 環境"
     },
     {
       "date": "2026-06-26",
@@ -253,9 +278,59 @@
       "event": "[S033 富豪] 進行全公司試玩會"
     },
     {
-      "date": "2026-07-09",
+      "date": "2026-06-29",
       "category": "遊戲上線",
-      "event": "[S012 釣魚哥] 於 UFA SLOT 開放遊玩（獨佔）；其他 AWC 支援泰銖線路同步關閉 S012"
+      "event": "前端 Prod 版本更新：[Feat] 新增孟加拉語系；[Feat] Info 後加載；[Feat] 歐陸數字套用；[Fix] JBL Click Log 時間 Bug；[Fix] 補漏爆獎金幣粒子特效；[Fix] 更新泰文語系素材；更新遊戲代號 Slot005"
+    },
+    {
+      "date": "2026-06-30",
+      "category": "遊戲上線",
+      "event": "[S005 礦工] 於 UFA SLOT 開放遊玩（獨佔）；其他 AWC 支援泰銖線路同步關閉 S005"
+    },
+    {
+      "date": "2026-07-01",
+      "category": "伺服器更新",
+      "event": "停機更新（10:00，約 30 分鐘）：開啟遊戲 S027/S063/S064；新增後台遊戲列表功能；擴充 LoginGame API（user-type）；data-collection 更新資料表（玩家群組 RTP 設定）；新增線路 gameconverge；修正 Buy Win Bonus 在部分遊戲連續 no-win 導致回傳錯誤"
+    },
+    {
+      "date": "2026-07-01",
+      "category": "遊戲上線",
+      "event": "[S027 熊貓] 開放 Prod 遊玩；[S063 豹勇士] 開放 Prod 遊玩（UFA SLOT 以外線路）；[S023 海盜女王][S004 索爾] 移出 UFA SLOT 獨佔，改為非獨佔遊戲"
+    },
+    {
+      "date": "2026-07-02",
+      "category": "客戶需求",
+      "event": "UFA 提出多項 [S012 釣魚哥] 修改項目，預計 2026-07-03 修改完成並提前於 UFA SLOT 開放（原訂 2026-07-09）"
+    },
+    {
+      "date": "2026-07-03",
+      "category": "遊戲上線",
+      "event": "[S012 釣魚哥] 未如預期於 UFA SLOT 開放；發現遊戲音效與轉輪卡頓問題，需修正後再上線"
+    },
+    {
+      "date": "2026-07-07",
+      "category": "遊戲上線",
+      "event": "[S012 釣魚哥] 問題修正完畢，於 UFA SLOT 正式開放遊玩（獨佔）；其他 AWC 支援泰銖線路同步關閉 S012（原訂 2026-07-09）"
+    },
+    {
+      "date": "2026-07-15",
+      "category": "遊戲上線",
+      "event": "[S008 農場][S032 阿拉丁] 進行版更並上線 Prod 正式機"
+    },
+    {
+      "date": "2026-07-17",
+      "category": "合規送審",
+      "event": "UK 送審資料（access control / asset register）已提供給 EMB Alv；後續等候 Alv 同步審查並安排視訊時間"
+    },
+    {
+      "date": "2026-07-17",
+      "category": "遊戲開發",
+      "event": "[S025 古墓貓] 進行全公司試玩會"
+    },
+    {
+      "date": "2026-07-30",
+      "category": "遊戲開發",
+      "event": "[S021 財神] 機率 AB Testing 開始（2026-07-30 ～ 2026-08-13）"
     }
   ]
 }
