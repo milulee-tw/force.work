@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 CRM 功能規格書 v5.2</title>
+<title>抽寶箱 CRM 功能規格書 v5.3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1203,7 +1203,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · SPEC DOC</div>
     <div class="sidebar-title">抽寶箱 CRM<br>功能規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v5.2</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-review">REVIEW</span></div>
@@ -1522,7 +1522,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
     <ol>
       <li><strong>玩家標籤與權限規則（§15 新增）：</strong>標籤於「每日登錄時」向數據組取得多組 Tag；匹配改採 <strong>AND 複合標籤條件</strong>（多標籤同時符合 → 單一抽取門檻與獎項配置）；活動進行中標籤變動<strong>不即時更換配置</strong>，須待活動暫停更新後、玩家下次登錄才套用；初期只做「一層複合標籤規則」與「大/中/小客＋風險標籤」簡單分類；後台標籤設定支援<strong>複選＋防呆介面</strong>。</li>
-      <li><strong>後台管理與版本控制（§16 新增）：</strong>活動列表、線路時區、<strong>版本快照 / 流水號（V1、V2…，運行中版本 vs 待生效版本）</strong>、活動複製、<strong>審核狀態機</strong>（草稿→送審→已核准/退回→上線中→已結束）、三類角色權限矩陣。</li>
+      <li><strong>後台管理與版本控制（§16 新增）：</strong>活動列表、時區規範（UTC+8）、<strong>版本快照 / 流水號（V1、V2…，運行中版本 vs 待生效版本）</strong>、活動複製、<strong>審核狀態機</strong>（草稿→送審→已核准/退回→上線中→已結束）、三類角色權限矩陣。</li>
       <li><strong>獎勵發放與數據紀錄（§17 新增/改寫）：</strong>確認採 <strong>Bet=0</strong> 發放【待確認風險，需與 AWC／MPS 確認】；<strong>RTP 調降 1% 作為預算來源、不提升整體 RTP 佔比（守恆原則）</strong>；CRM 獎勵獨立為專屬歷程、不記入單一遊戲收入、擴展「活動類型」欄位；<strong>Kafka 每日批次訂閱</strong>推送標籤數據（非 API 即時查詢）＋異常排除機制。</li>
       <li><strong>系統優化與技術整合（§18 新增 · 第二迭代）：</strong>押注比例改「模板匯入」自動套 RTP、後台模板編輯取代外部 Excel、遊戲新增自動讀取後端固定品項、Log 盤點＋活動警報機制（上線前完成部署）、MPS 直連站台 Bet=0 適配專項會議。</li>
       <li><strong>開發進度、測試與任務更新（§19 新增）：</strong>抽寶箱第一階段 8 月中提測 / 9 月初串接測試；優化項目拆分迭代；Demo 站內部模擬測試；Free Spin 卡背包原型確認；更新 Task／職能表並標註<strong>基礎建設 vs 活動功能</strong>；補<strong>最小方案（8 月中提測範圍）vs 完整方案</strong>比較表。</li>
@@ -1735,7 +1735,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>重置週期與時間點（v4.0 新增 · 2026-06-26 開案）：</strong><br>
     <strong>① 固定 24 小時週期（C1）：</strong>每日 reset 為固定 24 小時循環；活動「總週期」則依各活動設定（例：兩週檔期），到期即整檔結束（搭配 §06 活動期間元件呈現）。<br>
     <strong>② Reset 時間點可逐活動設定（C2）：</strong><strong>不同活動 ID 可各自設定 reset 時間點</strong>（非全站統一），以 <em>Server +8</em> 為基準。例如 A 活動 00:00 reset、B 活動 06:00 reset，互不影響。<br>
-    <span style="color:var(--text-dim);font-size:11px;">＊備註：後續評估「依各線路時區調整 reset 時間」的可行性（暫以 Server +8 為準）。</span><br>
+    <span style="color:var(--text-dim);font-size:11px;">＊v5.3 更新：全系統一律以 UTC+8 設定與計算，原「依各線路時區調整 reset 時間」的評估項已取消（見 §16 二、時區處理）。</span><br>
     <strong style="color:var(--gold-light);">v4.1（2026-06-26 對齊後台原型）：</strong>每日 reset 為<strong>固定 24h 週期</strong>；<strong>reset 時間點可依活動（campaign）各自設定</strong>、以 Server <em>UTC+8</em> 為準、<strong>精確至秒</strong>。後台「基本資料」新增「<strong>每日重置時間</strong>」欄位（<span class="mono">admin_daily_reset_time</span>），一番賞累積門檻即於該時間點每日歸零（見 §07 表單）。
   </div>
 
@@ -2113,7 +2113,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="info-grid-3">
     <div class="info-card">
       <div class="info-card-title">⏰ 觸發時機</div>
-      <div class="info-card-desc">每日 00:00 伺服器時間（菲律賓 UTC+8）自動排程觸發</div>
+      <div class="info-card-desc">每日 00:00（系統時間 UTC+8）自動排程觸發</div>
     </div>
     <div class="info-card">
       <div class="info-card-title">🔄 重置內容</div>
@@ -2215,7 +2215,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <tr><td>3.4</td><td>翻格 API（POST /chest/open）</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">驗證格子狀態合法 → 呼叫 AWC place_bet 派現金 → 等回成功 → 寫 reward_grant(active) → 更新 cell_state</td><td></td></tr>
         <tr><td>3.5</td><td>重試機制（Retry Queue）</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">AWC 呼叫失敗時 reward_grant 維持 pending，背景排程重試至成功為止</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
         <tr><td>3.6</td><td>冪等性保護</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">同一格重複翻格請求（前端重傳）需被正確攔截，不重複派獎</td><td></td></tr>
-        <tr><td>3.7</td><td>每日重置排程</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">固定 24 小時週期清空當日 player_progress，不清歷史 reward_grant。<strong>v4.0：reset 時間點改為逐活動可設定（campaign.reset_time · Server +8），非全站統一</strong>（後續評估依線路時區調整）</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
+        <tr><td>3.7</td><td>每日重置排程</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">固定 24 小時週期清空當日 player_progress，不清歷史 reward_grant。<strong>v4.0：reset 時間點改為逐活動可設定（campaign.reset_time · Server +8），非全站統一</strong>（<strong style="color:var(--gold-light);">v5.3：全系統一律 UTC+8，取消線路時區評估</strong>）</td><td><span class="tag-pill tag-req">⚠️ 基礎建設</span></td></tr>
         <tr><td>3.8</td><td>查詢玩家寶箱狀態 API（GET /chest/status）</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">回傳當日進度、各格解鎖狀態、已翻格獎勵，供前端渲染</td><td></td></tr>
         <tr><td>3.9</td><td>FREE SPIN 卡派發邏輯</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">翻格結果為 FREE SPIN 卡時，寫入 inventory 資料表，不呼叫 AWC place_bet，改以道具形式儲存（實際發卡）</td><td><span class="tag-pill tag-v2">v2 啟用</span></td></tr>
         <tr><td>3.10</td><td>背包查詢 API（GET /inventory）</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td class="dim">回傳玩家目前持有道具清單，含道具類型、數量、可使用遊戲列表、有效期限</td><td><span class="tag-pill tag-v2">v2 啟用</span></td></tr>
@@ -2963,7 +2963,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout warn">
-    <strong>v5.0 補充 <span class="tag-new"></span>：</strong>後台的<strong>版本控制（快照 / 流水號 V1、V2…）、審核狀態機、活動複製、時區處理與三類角色權限矩陣</strong>已於 <a href="#admin-version" style="color:var(--gold-light);">§16 後台管理與版本控制</a> 完整定義。本章聚焦活動設定內容與 UI 示意，治理流程請併看 §16。
+    <strong>v5.0 補充 <span class="tag-new"></span>：</strong>後台的<strong>版本控制（快照 / 流水號 V1、V2…）、審核狀態機、活動複製、時區規範（UTC+8）與三類角色權限矩陣</strong>已於 <a href="#admin-version" style="color:var(--gold-light);">§16 後台管理與版本控制</a> 完整定義。本章聚焦活動設定內容與 UI 示意，治理流程請併看 §16。
   </div>
 
   <div class="callout info">
@@ -3108,7 +3108,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </div>
       </div>
       <div class="admin-form-row">
-        <div class="admin-label">活動期間<br><span style="font-size:8px;color:var(--text-dim);">起訖 · 精確至秒</span></div>
+        <div class="admin-label">活動期間<br><span style="font-size:8px;color:var(--text-dim);">起訖 · UTC+8 · 精確至秒</span></div>
         <div class="admin-input-group">
           <div class="admin-input" style="flex:1;">2026/07/01 00:00:00</div>
           <div style="padding:9px 4px;color:var(--text-dim);">→</div>
@@ -3117,7 +3117,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
       <div class="admin-form-row">
         <div class="admin-label">每日重置時間<br><span style="font-size:8px;color:var(--text-dim);">admin_daily_reset_time</span></div>
-        <div class="admin-input"><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">00:00</span> &nbsp; <span style="color:var(--text-dim);">type=time · HH:MM · <strong style="color:var(--gold-light);">時區依第一條投放線路動態顯示</strong>（例：LINE_A 菲律賓 UTC+8），非固定 UTC+8</span></div>
+        <div class="admin-input"><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">00:00</span> &nbsp; <span style="color:var(--text-dim);">type=time · HH:MM · <strong style="color:var(--gold-light);">固定 UTC+8（系統唯一時區）</strong></span><br><span style="color:var(--text-dim);font-size:10px;">各線路當地重置時間請營運自行換算後填入</span></div>
       </div>
       <div class="admin-form-row">
         <div class="admin-label">倒數啟動天數<br><span style="font-size:8px;color:var(--text-dim);">countdown_lead_days</span></div>
@@ -3125,7 +3125,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
       <div class="admin-form-row">
         <div class="admin-label">投放線路<br><span style="font-size:8px;color:var(--text-dim);">必選 ≥1 · 未選擋送審</span></div>
-        <div class="admin-input"><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">✓ LINE_A 菲律賓 UTC+8</span> &nbsp; <span style="color:var(--gold-light);font-family:'DM Mono',monospace;">✓ LINE_C 泰國 UTC+7</span> &nbsp; <span style="color:var(--text-dim);font-family:'DM Mono',monospace;">🔒 LINE_B 越南 UTC+7（未開通·鎖定）</span></div>
+        <div class="admin-input"><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">✓ LINE_A 菲律賓</span> &nbsp; <span style="color:var(--gold-light);font-family:'DM Mono',monospace;">✓ LINE_C 泰國</span> &nbsp; <span style="color:var(--text-dim);font-family:'DM Mono',monospace;">🔒 LINE_B 越南（未開通·鎖定）</span></div>
       </div>
 
       <div class="admin-section-divider">Tab 2 · 標籤與配置（標籤規則 AND 複合條件 → 模板）</div>
@@ -3495,7 +3495,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <dt>觸發</dt><dd>未勾選任何線路時，點「提交審查」或失焦驗證</dd>
         <dt>欄位狀態</dt><dd><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> <strong style="color:var(--green-bright);">原型 v2 已含</strong>紅字提示「⚠ 請至少選擇 1 條投放線路，否則無法上線。」並 disable 提交審查；<strong>輸入框紅框（#E0563A）為本規格加嚴要求、原型未含，開發時補</strong></dd>
         <dt>按鈕狀態</dt><dd><strong>「提交審查」維持 disabled ＋ 原因提示</strong>直到至少選 1 條；「儲存草稿」可照常存</dd>
-        <dt>規則</dt><dd><strong>投放線路必選 ≥1，未選擋送審</strong>；每日重置時間的時區依第一條投放線路動態顯示</dd>
+        <dt>規則</dt><dd><strong>投放線路必選 ≥1，未選擋送審</strong>；每日重置時間一律以 UTC+8 計算</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.line.error_required</span></dd>
       </dl>
     </div>
@@ -3762,7 +3762,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>活動建立表單（四分頁）</td><td class="dim"><strong>Tab 1 基本設定</strong>（活動ID唯讀／名稱／版型／期間／每日重置 HH:MM／倒數天數／投放線路）、<strong>Tab 2 標籤與配置</strong>（標籤規則 AND→模板＋預設配置）、<strong>Tab 3 獎項與門檻</strong>（唯讀摘要）、<strong>Tab 4 版本</strong>（下拉＋快照明細）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>模板管理（獎項與門檻）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim"><strong>模板為獨立實體、可被多檔活動／多條規則共用</strong>；模板編輯器含押注比例／目標 RTP／終獎最早格／貨幣 tabs（PHP＋11 備選）／9 格累積門檻／四階獎項／9×4 權重；<strong>後台模板編輯取代 Excel</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：押注比例模板匯入自動套 RTP</td></tr>
       <tr><td>標籤規則 → 模板（分眾配置）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim">每列＝多標籤 chip（<strong>AND 需同時符合</strong>）→ 指定模板；固定置底<strong>預設配置（不可刪除）</strong>；未命中走預設配置、<strong>無准入閘門</strong>；<strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 即時衝突檢查三層</strong>：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋</strong>，命中取「標籤數最多且全部符合」者優先，同標籤數又同時命中多條 → 警示擋送審。標籤池：大客/中客/小客/高風險/低風險</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：分群模型輸出核心標籤</td></tr>
-      <tr><td>線路投放設定（platform_lines）</td><td class="dim">從<strong>預定義「已開通 Bet=0」平台清單</strong>多選投放線路；<strong>必選 ≥1、未選擋送審</strong>；每日重置時間時區依第一條投放線路動態顯示</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：依線路差異化獎池</td></tr>
+      <tr><td>線路投放設定（platform_lines）</td><td class="dim">從<strong>預定義「已開通 Bet=0」平台清單</strong>多選投放線路；<strong>必選 ≥1、未選擋送審</strong>；每日重置時間一律以 UTC+8 計算</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：依線路差異化獎池</td></tr>
       <tr><td>版型主題設定（theme_id）</td><td class="dim">從<strong>預定義主題清單單選</strong>（treasure_box / gold_egg / red_envelope / xmas_gift），選中顯示縮圖預覽，控制前台換皮；<strong>不可自由輸入、不影響玩法數值</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：營運可自上傳素材</td></tr>
       <tr><td>活動期間倒數設定（countdown_lead_days）</td><td class="dim">設定前台由日期區間轉倒數的提前天數（預設 3）；活動列表倒數欄剩餘天數 &lt; 此值時轉紅</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>抽獎權重表（第 1~8 抽）<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td class="dim">模板編輯器內<strong>第 1~8 抽可輸入相對權重</strong>（每列合計 &gt;0 即可、<strong>非強制 100</strong>）；<strong>第 9 抽由系統自動決定</strong>（不放回抽、必中剩餘的最後 1 個獎項）為唯讀說明列、不參與合計驗證；旁附系統試算：各格機率分佈＋終獎落點視覺條維持 9 格顯示（第 9 格為推導值）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
@@ -4617,7 +4617,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout success">
-    <strong>本章依 2026/07 CRM 開案會議結論撰寫 <span class="tag-new"></span>：</strong>定義活動列表、線路時區、活動版本快照與流水號、活動複製、審核狀態機與角色權限矩陣。與 §07 後台管理規劃互補（§07 偏活動設定內容，本章偏<strong>版本控制與治理流程</strong>）。
+    <strong>本章依 2026/07 CRM 開案會議結論撰寫 <span class="tag-new"></span>：</strong>定義活動列表、時區規範（UTC+8）、活動版本快照與流水號、活動複製、審核狀態機與角色權限矩陣。與 §07 後台管理規劃互補（§07 偏活動設定內容，本章偏<strong>版本控制與治理流程</strong>）。
   </div>
 
   <div class="sub-title">一、活動列表（可建立新活動）<span class="tag-new"></span></div>
@@ -4627,8 +4627,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>活動名稱</td><td class="dim">營運自訂。<strong><span class="tag-new txt"><span style="font-size:9px;">v5.2</span></span> 名稱搜尋列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>（v1 不提供搜尋；篩選以狀態 chips＋線路下拉＋日期區間為主）。</td></tr>
       <tr><td>Campaign ID</td><td class="dim"><strong>系統自動產生、唯讀</strong>（不可人工編輯），作為對帳與 audit 的唯一鍵。</td></tr>
       <tr><td>版型</td><td class="dim">版型主題（theme_id，預定義單選；沿用 §04/§07 換皮架構）。</td></tr>
-      <tr><td>起訖時間</td><td class="dim">活動開始 / 結束時間，<strong>以線路時區呈現與計算</strong>（見下）。</td></tr>
-      <tr><td>重置時間</td><td class="dim">每日 reset 時間點（HH:MM），<strong>時區依第一條投放線路</strong>呈現與計算（見下）。</td></tr>
+      <tr><td>起訖時間</td><td class="dim">活動開始 / 結束時間，<strong>一律以 UTC+8 設定與計算</strong>（見下）。</td></tr>
+      <tr><td>重置時間</td><td class="dim">每日 reset 時間點（HH:MM），<strong>一律以 UTC+8</strong>（見下）。</td></tr>
       <tr><td>適用線路</td><td class="dim">投放的平台線路（chips 多選，取自預定義「已開通 Bet=0」清單）。</td></tr>
       <tr><td>活動倒數</td><td class="dim"><strong>即時倒數計時</strong>；<strong>剩餘天數 &lt; 倒數啟動天數時轉紅</strong>。</td></tr>
       <tr><td>狀態</td><td class="dim">六態：草稿／送審中／已核准／運行中／已暫停／已結束（見審核狀態機）。<strong>移除「啟停」操作</strong>。</td></tr>
@@ -4642,7 +4642,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
   <div class="sub-title">二、時區處理 <span class="tag-new"></span></div>
   <div class="callout info">
-    <strong>依不同線路匹配對應時區：</strong>起訖時間、重置時間須<strong>以「線路時區」呈現與計算</strong>，而非固定單一 Server 時區。同一活動投放到不同時區線路時，各線路依自己的時區判定起訖與每日重置，避免跨區玩家的「當日」定義錯亂。
+    <strong>系統唯一時區＝UTC+8 <span class="tag-new txt"><span style="font-size:10px;">v5.3</span></span>：</strong>活動起訖時間、每日重置時間，一律<strong>以 UTC+8 設定、顯示與計算</strong>（前端、後端、DB、排程皆同）。<br>
+    <strong>線路不帶時區屬性：</strong>投放線路僅代表站台／地區，<strong>不參與任何時間計算</strong>。<br>
+    <strong>營運換算原則：</strong>跨時區線路（如泰國、越南）的<strong>當地生效時間，由營運人員於建立活動時自行換算成 UTC+8 填入</strong>（例：希望泰國當地 00:00 重置 → 填 01:00）。<br>
+    <span style="color:var(--text-dim);font-size:11px;">＊設計理由：v5.3 取消線路時區動態計算——單一時區可消除跨線路「當日」定義的工程複雜度與排程邊界案例，換算成本移轉給營運端，屬可接受的人工成本。</span>
   </div>
 
   <div class="sub-title">三、版本編輯與存檔（快照 ＋ 流水號）<span class="tag-new"></span></div>
@@ -4889,7 +4892,6 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>V5.7</td><td>後台版本快照 / 流水號（運行中 vs 待生效、比對追溯）</td><td><span class="tag-pill tag-web">🌐 前端Web</span> <span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
       <tr><td>V5.8</td><td>審核狀態機（草稿→送審→核准/退回→上線→結束）＋ 活動複製</td><td><span class="tag-pill tag-web">🌐 前端Web</span> <span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
       <tr><td>V5.9</td><td>標籤變動延遲套用（活動暫停更新 → 下次登錄生效）</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v1" style="background:var(--gold-fill);color:var(--gold-light);">最小方案</span></td></tr>
-      <tr><td>V5.10</td><td>線路時區處理（起訖 / 重置依線路時區計算）</td><td><span class="tag-pill tag-eng">🛠 後端</span> <span class="tag-pill tag-web">🌐 前端Web</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v2">完整方案</span></td></tr>
       <tr><td>V5.11a</td><td>後台模板編輯（取代 Excel）＋ 模板管理頁<span class="tag-new txt"><span style="font-size:9px;">v5.1</span></span></td><td><span class="tag-pill tag-web">🌐 前端Web</span> <span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v1" style="background:var(--gold-fill);color:var(--gold-light);">最小方案</span></td></tr>
       <tr><td>V5.11b</td><td>押注比例模板匯入（選模板自動套 RTP）</td><td><span class="tag-pill tag-web">🌐 前端Web</span> <span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v2">完整方案<span class="dim" style="font-size:10px;">（第二迭代）</span></span></td></tr>
       <tr><td>V5.12</td><td>遊戲新增自動讀取後端固定品項（線路掛載優化）</td><td><span class="tag-pill tag-eng">🛠 後端</span></td><td><span class="tag-pill tag-feat">🎯 活動功能</span></td><td><span class="tag-pill tag-v2">完整方案<span class="dim" style="font-size:10px;">（第二迭代）</span></span></td></tr>
@@ -4932,8 +4934,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 CRM 功能規格書 · LUCKY CHEST V5.2 · CONFIDENTIAL 2026<br>
+  抽寶箱 CRM 功能規格書 · LUCKY CHEST V5.3 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 兩階段實作（v1 現金獎 + 完整基建 / v2 編輯工具 + 背包）<br>
+  v5.3（2026-07-20 · 時區統一）：<strong>時區統一 UTC+8——取消「依線路時區呈現與計算」設計</strong>：全系統（起訖／每日重置／排程）一律以 <strong>UTC+8</strong> 設定與計算；<strong>線路移除時區屬性</strong>（chips 僅留地區名）；各線路當地時間由<strong>營運自行換算填入</strong>（UI 加 UTC+8 標示＋換算提示）；§16 二、時區處理整段改寫、§07 表單／Corner Case／v1 範圍表同步、Task 3.7 尾註更新、<strong>Task V5.10（線路時區處理）刪除</strong>；後台原型 v2 同步修改（另行交付：LINE_META 移除 tz、lineTzLabel 動態邏輯拔除、各頁時區字樣固定 UTC+8）。<br>
   v5.2（2026-07-16 · 與後台原型 v2 落差比對 ＋ 模板版本控制）：<strong>新增模板版本控制</strong>（2026-07-16 與後端 Eric 確認）——模板編輯<strong>不換 ID</strong>、每次儲存產生新版本序號（V1、V2…；DB 已有序號、後台轉版號顯示）、<strong>每版保留完整快照</strong>（門檻／獎項／權重／各貨幣）、模板編輯器重用活動 Tab 4「版本下拉＋快照明細」模式；<strong>生效時機＝被運行中活動引用者於各活動「次一個每日重置時點」生效</strong>（玩家當日已鎖定配置沿用舊版快照）、未被引用者儲存即生效；模板編輯器頂部與模板列表顯示<strong>黃色「此模板被 N 檔運行中活動使用」提示</strong>；§16 活動快照改引用「模板 ID＋模板版本序號」、Tab 4 模板名稱帶版號；§17 獎勵歷程補 <strong>template_id ＋ template_version</strong>；§19 新增 Task V5.15（最小方案）＋最小/完整方案表補模板版本序號與版本差異比對（v2）。<strong>衝突與重疊語意改寫</strong>（§15／§07 Tab 2）——三層規則：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋、命中採「符合度高者優先」（標籤數最多且全部符合）</strong>，同標籤數又同時命中多條 → 設定衝突、存檔警示擋送審（移除原「要求釐清優先序」人工釐清）。<strong>§07 C4 與 §16 編輯規則統一</strong>：以 §16 快照機制為準，編輯運行中活動產生「待生效版本」、不影響已參與玩家；Admin 可編輯運行中活動、一般操作者僅可編輯草稿/被駁回（權限矩陣 △）；緊急停用仍走先暫停→修改→恢復。<strong>對齊原型 v2</strong>：線路必選驗證更正（原型已含紅字提示與擋送審、僅紅框為規格加嚴）、審查唯讀彈窗降級（基本設定＋標籤規則→模板名稱對照，數值明細改至模板管理頁）、模板編輯器「押注比例／目標 RTP／終獎最早格」改為<strong>模板屬性（唯讀）</strong>（v1 不提供編輯、屬性編輯列 v2；終獎最早格 v1 僅顯示參考、連動驗證列 v2）、<strong>搜尋功能移出 v1</strong>（活動/模板名稱搜尋列 v2、§15 標籤下拉搜尋分類標 v2）、<strong>Tab 4 快照計數明定「N 組規則 ＋ 預設」</strong>（原型「N 組（含預設）」文案與 N 矛盾、開發時修正）、<strong>暫停/恢復入口＝活動表單頂部狀態列按鈕</strong>（僅 Admin、活動列表不提供啟停、原型未含需補做）、<strong>核准後狀態語意</strong>（已達開始時間→運行中；未達→已核准、排程自動轉運行中）、FS v2 標註補做說明、注單查詢為平台既有功能非本次範圍、§15 範例「回流」改「低風險」、僅查看角色不可見活動審查（原型導覽誤含）。<br>
   v5.1（2026-07-15 · 對齊後台原型 v2）：對齊《抽寶箱後台管理介面 v2.html》——<strong>標籤規則→模板映射</strong>（取代 tag 直掛機率表、准入閘門移除，未命中走預設配置）、<strong>模板管理入 v1</strong>（模板為獨立實體、可共用、取代 Excel）、<strong>活動表單四分頁</strong>（基本設定／標籤與配置／獎項與門檻唯讀摘要／版本）、<strong>版本快照下拉檢視</strong>（UI 不再顯示運行中/待生效 badge、以版本下拉＋快照明細呈現）、多貨幣移入模板編輯器、門檻改累積制、RTP 每模板自訂 ±0.1%、<strong>監控警報改 Grafana+Telegram</strong>（刪除後台異常處理模組與一鍵啟停）、新增獎勵歷程頁（不計入 GGR）、FS 後台設定標 v2、核准權改最高權限（Admin）、第三角色正名僅查看（Viewer）、<strong>駁回原因必填</strong>（原型 v2 為選填，開發時補必填驗證）；標籤池統一為大/中/小客＋高/低風險；<strong>抽獎權重＝第 1~8 抽</strong>（9 格不放回抽第 1~8 抽後必剩 1 個獎項，<strong>第 9 抽由系統自動決定</strong>·必中剩餘最後 1 個獎項·為唯讀說明列不參與合計驗證·合計為 0 檢查範圍＝第 1~8 列；機率分佈試算與終獎落點維持 9 格顯示、第 9 格為推導的顯示性資訊；§03 三張示範機率表「格 9」加註為系統推導的實際機率分佈、非後台輸入值）。<br>
   v5.0（2026-07-14 · 2026/07 CRM 開案會議）：<strong>依 7 月 CRM 開案會議結論新增五大章節</strong>——§15 玩家標籤與權限規則（每日登錄取多組 Tag、<strong>AND 複合標籤 → 單一配置</strong>、標籤變動待暫停更新後下次登錄才套用、初期一層複合規則、大/中/小客＋風險標籤、後台複選＋防呆、含 Mermaid 命中流程圖）；§16 後台管理與版本控制（活動列表＋線路時區、<strong>版本快照/流水號 V1/V2 運行中 vs 待生效</strong>、活動複製、審核狀態機、三類角色權限矩陣）；§17 獎勵發放與數據紀錄（<strong>Bet=0【待確認·AWC/MPS】</strong>、<strong>RTP −1% 守恆</strong>、獨立獎勵歷程＋活動類型欄、<strong>Kafka 每日批次</strong>＋異常排除、含資料流圖）；§18 優化項目·第二迭代（押注比例模板匯入、後台模板編輯取代 Excel、遊戲掛載自動化、Log 盤點＋警報、MPS Bet=0 適配專項）；§19 開發進度/測試/任務更新（8 月中提測、9 月初串接、Demo 站內測、Free Spin 卡背包原型、Task 標註基礎建設 vs 活動功能、最小 vs 完整方案比較表）。全數新增段落標 <span style="color:var(--red-bright);">v5.0</span>。<br>
