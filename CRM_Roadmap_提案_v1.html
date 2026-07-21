@@ -497,6 +497,50 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
 .tl-task.inf { border-left: 2px solid var(--red); }
 .tl-task.design { border-left: 2px solid var(--purple); }
 
+/* ─── GANTT（職能 × 月份 · 1.5x buffer） ─── */
+.gantt-wrap { overflow-x: auto; margin-bottom: 12px; border: 1px solid var(--border); border-radius: 4px; background: var(--dark-3); }
+.gantt { min-width: 1308px; font-family: 'DM Mono', monospace; }
+.g-row { display: flex; align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.g-row:last-child { border-bottom: none; }
+.g-row.infra { background: rgba(224,90,58,0.06); }
+.g-label {
+  position: sticky; left: 0; z-index: 3;
+  flex: 0 0 120px; width: 120px;
+  padding: 8px 10px; font-size: 10px; color: var(--text-secondary);
+  background: var(--dark-3); border-right: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.g-row.infra .g-label { background: #241C1B; }
+.g-row.head .g-label, .g-row.band .g-label { background: var(--dark-4); color: var(--text-dim); letter-spacing: 0.12em; font-size: 9px; }
+.g-pill { font-size: 8px; padding: 1px 5px; border-radius: 2px; border: 1px solid var(--red); color: var(--red); letter-spacing: 0.06em; }
+.g-track {
+  flex: 0 0 1188px; width: 1188px;
+  display: grid; grid-template-columns: repeat(54, 22px);
+  grid-auto-rows: 20px; gap: 3px 0; padding: 5px 0;
+  background-image: repeating-linear-gradient(to right, rgba(255,255,255,0.045) 0 1px, transparent 1px 22px);
+}
+.g-row.head .g-track, .g-row.band .g-track { grid-auto-rows: 20px; padding: 4px 0; }
+.g-bar {
+  font-size: 9px; line-height: 20px; height: 20px;
+  padding: 0 6px; border-radius: 2px; white-space: nowrap; overflow: hidden;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--bar) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bar) 55%, transparent);
+  border-left: 2px solid var(--bar);
+}
+.g-bar.thin { height: 12px; line-height: 12px; margin-top: 4px; font-size: 8px; opacity: .75; }
+.g-bar.dashed { border-style: dashed; border-left-style: solid; }
+.g-bar.bold { border-width: 1px 1px 1px 4px; background: color-mix(in srgb, var(--bar) 38%, transparent); font-weight: 700; }
+.g-bar.gapblock { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.22); border-left: 1px dashed rgba(255,255,255,0.22); color: var(--text-dim); }
+.g-month { font-size: 9px; color: var(--text-secondary); text-align: center; line-height: 20px; border-right: 1px solid rgba(255,255,255,0.10); }
+.g-wave { font-size: 9px; line-height: 20px; text-align: center; border-radius: 2px; color: var(--dark); font-weight: 700; background: var(--bar); }
+.g-milestone { font-size: 9px; line-height: 20px; color: var(--gold-light); white-space: nowrap; }
+.g-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-secondary); }
+.g-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.g-legend i { width: 12px; height: 8px; border-radius: 2px; background: var(--bar); display: inline-block; }
+.w0{--bar:var(--gold);} .w1{--bar:var(--blue);} .w2{--bar:var(--purple);}
+.w3{--bar:var(--teal);} .w4{--bar:var(--red);} .w5{--bar:var(--green);} .w6{--bar:var(--orange);}
+
 /* ─── CALLOUT ─── */
 .callout {
   background: var(--dark-3); border: 1px solid var(--border);
@@ -592,7 +636,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
 
 <!-- ═══════════ TOP NAV ═══════════ -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">CRM-ROADMAP · V1.3</span>
+  <span class="nav-brand">CRM-ROADMAP · V1.5</span>
   <a class="nav-item active" href="#overview">策略思路</a>
   <a class="nav-item" href="#logic">留存邏輯鏈</a>
   <a class="nav-item" href="#scope">功能盤點</a>
@@ -620,7 +664,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <div class="sidebar-meta">
       <div class="sidebar-meta-row">
         <span class="sidebar-meta-label">VERSION</span>
-        <span class="sidebar-meta-val">v1.3</span>
+        <span class="sidebar-meta-val">v1.5</span>
       </div>
       <div class="sidebar-meta-row">
         <span class="sidebar-meta-label">DATE</span>
@@ -688,6 +732,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
       </button>
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#roadmap">W0–W6 時間軸</a>
+        <a class="sidebar-sub-link" href="#gantt">職能甘特圖（1.5x buffer）</a>
         <a class="sidebar-sub-link" href="#roadmap">排程理由</a>
       </div>
     </div>
@@ -699,9 +744,9 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
         <span class="sidebar-chevron">›</span>
       </button>
       <div class="sidebar-subsections">
-        <a class="sidebar-sub-link" href="#mechanic">簽到 + 補簽卡</a>
-        <a class="sidebar-sub-link" href="#mechanic">排行榜 + 回放</a>
+        <a class="sidebar-sub-link" href="#mechanic">排行榜 + 回放 + 門面 Lite</a>
         <a class="sidebar-sub-link" href="#mechanic">任務系統</a>
+        <a class="sidebar-sub-link" href="#mechanic">簽到 + 補簽卡</a>
         <a class="sidebar-sub-link" href="#mechanic">即時競賽</a>
       </div>
     </div>
@@ -779,7 +824,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
   <div class="cover-grid"></div>
   <div class="cover-tag">CMB · STRATEGY PROPOSAL · 2026</div>
   <h1>CRM <span>ROADMAP</span></h1>
-  <div class="cover-sub">SLOT CRM 後續開發順序與雙線排程提案 · V1.3</div>
+  <div class="cover-sub">SLOT CRM 後續開發順序與雙線排程提案 · V1.5</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>類型</strong> 策略提案</div>
     <div class="cover-pill"><strong>北極星</strong> 次日 D1 留存</div>
@@ -828,7 +873,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <div class="info-card">
       <div class="info-card-icon">⚙️</div>
       <div class="info-card-title">④ 務實節奏</div>
-      <div class="info-card-desc">小步快跑、後端<strong style="color:var(--text-primary)">雙線並行</strong>、重後端/高風險往後排、財務改走 <strong style="color:var(--text-primary)">動態總邊際管理</strong>（活動+遊戲 RTP 守 ≈96.7%、§08）嚴控；差異化用輕量「即時競賽」收尾。</div>
+      <div class="info-card-desc">小步快跑、後端<strong style="color:var(--text-primary)">雙線並行</strong>、重後端/高風險往後排、財務改走 <strong style="color:var(--text-primary)">動態總邊際管理</strong>（活動+遊戲 RTP 守 ≈96.7%、§08）嚴控；差異化用輕量「即時競賽」收尾。<strong style="color:var(--text-primary)">重後端交錯排</strong>（W0/W2/W4 與輕 Wave 相隔），避免重引擎背靠背。</div>
     </div>
   </div>
 
@@ -844,6 +889,8 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
       <tr><td>人力</td><td class="dim">後端 1.5–2、前端 1+、Unity 兼職/外包；可並行 2 線</td></tr>
       <tr><td>起跑線</td><td class="dim">抽寶箱 v1 已拍板（已建好共用水管）</td></tr>
       <tr><td>差異化主打</td><td class="dim">即時競賽（連續即時排名賽，net win 計分）+ 品牌門面</td></tr>
+      <tr><td>排程原則（v1.5 新增）</td><td class="dim">免費型獎勵活動一律排在 W4 監控之後；行為門檻型（固定獎勵上限）可先行＋過渡條款</td></tr>
+      <tr><td>次要目標（v1.4 新增）</td><td class="dim">跨品牌導流與「會開大獎」品牌感 — 新遊戲宣傳持續帶新客，排行榜＋回放＋門面 Lite 提前接住流量</td></tr>
     </tbody>
   </table>
 
@@ -869,7 +916,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <div class="hypo-text">玩家當日<strong>玩得越多（押注 / Spin 越多），次日留存越好</strong>。所有機制的目的，都是製造「玩家明天回來、且回來會押注」的理由。</div>
   </div>
 
-  <div class="body-text">本提案把「抽寶箱 → FREE SPIN 卡 → 背包 → 簽到碎片」排在最前面，背後是一條環環相扣的 D1 留存邏輯，由兩個機制合成一個閉環：</div>
+  <div class="body-text">本提案把「抽寶箱 → FREE SPIN 卡 → 背包」排在最前面，背後是一條環環相扣的 D1 留存邏輯，由兩個機制合成一個閉環。<strong>v1.5 起分兩段接力</strong>：<strong>W3 起 D1 鉤子由日任務承擔</strong>（每日小目標 → 開寶箱 → 明天再來），<strong>簽到碎片鏈延後至 W5</strong> 作 D1 補強：</div>
 
   <div class="info-grid-2">
     <div class="info-card">
@@ -889,24 +936,30 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <div class="flow">
       <div class="flow-step highlight">
         <div class="flow-step-num">STEP 01</div>
-        <div class="flow-step-title">簽到領碎片</div>
+        <div class="flow-step-title">日任務開寶箱（W3）</div>
+        <div class="flow-step-desc">每日小目標 → 開寶箱</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight">
+        <div class="flow-step-num">STEP 02</div>
+        <div class="flow-step-title">簽到領碎片（W5）</div>
         <div class="flow-step-desc">須當日 ≥1 押注</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step">
-        <div class="flow-step-num">STEP 02</div>
+        <div class="flow-step-num">STEP 03</div>
         <div class="flow-step-title">湊卡 / 抽寶箱抽卡</div>
         <div class="flow-step-desc">10 碎片換 1 張卡</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step">
-        <div class="flow-step-num">STEP 03</div>
+        <div class="flow-step-num">STEP 04</div>
         <div class="flow-step-title">卡隔日才能用</div>
         <div class="flow-step-desc">D+1～D+7 使用窗</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step success">
-        <div class="flow-step-num">STEP 04</div>
+        <div class="flow-step-num">STEP 05</div>
         <div class="flow-step-title">隔日回來用卡</div>
         <div class="flow-step-desc">再押注 → 回到 STEP 01</div>
       </div>
@@ -914,7 +967,15 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
   </div>
 
   <div class="callout">
-    這條鏈就是 <strong>W1（抽寶箱＋FREE SPIN 卡＋背包）</strong> 與 <strong>W2（簽到碎片）</strong> 必須緊鄰、且排在競技線之前的原因：它們不是各自獨立的功能，而是同一個 D1 留存引擎的四個零件。
+    這條鏈的零件不是各自獨立的功能，而是同一個 D1 留存引擎。<strong>v1.4 調整</strong>：簽到碎片由 W2 移至 W3。<strong>v1.5 再調整</strong>：簽到碎片由 W3 移至 <strong>W5</strong>，D1 鉤子改由 <strong>W3 日任務</strong>（每日小目標→開寶箱）先行接手，簽到於 W5 作 D1 補強。
+  </div>
+  <div class="callout warn">
+    <strong>⚠ v1.5 取捨說明</strong><br>
+    • <strong>仍有 D1 鉤子</strong>：排行榜 Wave（W2）期間，玩家仍有「抽寶箱 → FREE SPIN 卡（D+1～D+7 使用窗）」維持隔日回訪的鉤子；W3 起再由日任務接手，閉環不是空的。<br>
+    • <strong>付出</strong>：簽到收集體驗與補簽召回網延後約 <strong>10 週</strong>。<br>
+    • <strong>換到</strong>：① <strong>任務（可算死成本）提前 6 週上線接手 D1 鉤子</strong>；② <strong>免費型簽到改在 W4 監控保護下上線，獎勵計算不再裸奔</strong>。<br>
+    • <strong>D1 主要驗證起點</strong>：由「W3 簽到起」改為 <strong>W3 任務起</strong>（日任務回訪），<strong>W5 簽到補強</strong>。<br>
+    • <em style="color:var(--gold-light);font-style:normal">v1.4 既有取捨保留</em>：跨品牌導流入口（排行榜＋大獎回放＋品牌門面 Lite）提早一個 Wave 上線 — 屬 v1.4 新增的次要目標（見 <em style="color:var(--gold-light);font-style:normal">§01 決策前提總表</em>）。
   </div>
 </section>
 
@@ -934,19 +995,20 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     </thead>
     <tbody>
       <tr><td>抽寶箱 v1</td><td>✅ 已拍板</td><td class="dim">每日重置引擎，起跑線（W0）</td></tr>
-      <tr><td>簽到系統</td><td>🟢 獨立 Wave（W2）</td><td class="dim">D1 核心，改發碎片湊卡（非直接發現金）；簽到另外拆成一個 Wave</td></tr>
+      <tr><td>簽到系統</td><td>🟢 獨立 Wave（W5）</td><td class="dim">D1 補強，改發碎片湊卡；v1.5 由 W3 移至 W5——免費型活動成本最難抓，排 W4 監控上線後、保護下上線</td></tr>
       <tr><td>Tag（新玩家/斷簽/高押量）</td><td>🟢 保留·改設計（W1）</td><td class="dim">精準投放地基；<strong>分群判斷改由數據組提供</strong>、平台接收+套用（非自動打標），越早建越划算（詳見 §09）</td></tr>
-      <tr><td>斷簽處理</td><td>🟢 保留·改設計</td><td class="dim">改為補簽卡續簽（隨簽到 W2），取消「斷簽召回禮包」</td></tr>
+      <tr><td>斷簽處理</td><td>🟢 保留·改設計</td><td class="dim">改為補簽卡續簽（隨簽到 W5），取消「斷簽召回禮包」</td></tr>
       <tr><td>抽寶箱第二段（道具獎勵庫+卡+背包）</td><td>🟢 保留（W1）</td><td class="dim">CRM 共用基建，另立規格；卡水管已建</td></tr>
-      <tr><td>排行榜（個人 + 全線路）</td><td>🟢 保留·提前（W3）</td><td class="dim">含日即時排名賽（net win），即時競賽地基；與大獎回放同 Wave</td></tr>
-      <tr><td>大獎回放</td><td>🟢 提前·綁排行榜（W3）</td><td class="dim">與排行榜同一個 Wave，從榜上可點看大獎回放（複用既有規格）</td></tr>
+      <tr><td>排行榜（個人 + 全線路）</td><td>🟢 保留·再提前（W2）</td><td class="dim">含日即時排名賽（net win），即時競賽地基；與大獎回放同 Wave。<strong>v1.4 為跨品牌導流與品牌大獎感提前至 W2；結算發 FREE SPIN 卡（可指定其他品牌遊戲）</strong></td></tr>
+      <tr><td>大獎回放</td><td>🟢 提前·綁排行榜（W2）</td><td class="dim">與排行榜同一個 Wave，從榜上可點看大獎回放（複用既有規格）</td></tr>
       <tr><td>CRM 獎勵監控 + 動態 RTP 控制</td><td>🟢 基礎建設·新增（W4）</td><td class="dim">多活動並行前置依賴；總邊際即時監控 + 動態 RTP 反向補償（詳見 §08）</td></tr>
-      <tr><td>日任務 + 週任務（常態）</td><td>🟢 新增（W5）</td><td class="dim">基礎留存，固定寶箱獎勵複用獎勵庫；發獎佔比納入 W4 總邊際監控</td></tr>
+      <tr><td>日任務 + 週任務（常態）</td><td>🟢 提前（W3）</td><td class="dim">基礎留存＋D1 鉤子；行為門檻型、固定寶箱、成本可算死故提前；W4 前走過渡條款（固定寶箱＋每日上限＋人工週對帳），W4 後發獎佔比納入總邊際監控</td></tr>
       <tr><td>挑戰/地圖任務（寶箱·特殊活動）</td><td>🟠 後期·特殊限定</td><td class="dim">非常態，依時機（週末/節慶）或 usertype（押量下滑/回流）投放；活動期間 RTP 調降 ~2%、bet 不與日/週重複計入</td></tr>
-      <tr><td>即時競賽</td><td>🟢 差異化主打（W6）</td><td class="dim">連續即時排名賽，建在 W3 排行榜引擎上；net win 短週期結算發卡</td></tr>
+      <tr><td>即時競賽</td><td>🟢 差異化主打（W6）</td><td class="dim">連續即時排名賽，建在 W2 排行榜引擎上；net win 短週期結算發卡</td></tr>
       <tr><td>通知中心（Inbox/Popup）</td><td>🟠 後續·活動量起來後</td><td class="dim">各功能早期用自身提示即可；活動多時再做聚合通道</td></tr>
-      <tr><td>品牌門面（展示頁）</td><td>🟠 後續·不綁即時競賽</td><td class="dim">隨活動量增長，與通知中心一起後做</td></tr>
+      <tr><td>品牌門面（展示頁）</td><td>🟢 Lite 版提前（W2）</td><td class="dim">純前端、輪播寫死；遊戲列表 + 跳轉 + 大獎輪播。完整版（後台編輯）維持後續。前端吃緊時 Lite 可順延至 W3 前段（任務大廳排 W3 後段）</td></tr>
       <tr><td>押注任務 + RTP 撥出引擎</td><td>🟠 後期 Backlog</td><td class="dim">衝押注量、最重後端，留到衝 GGR 階段</td></tr>
+      <tr><td>Free Game 卡（原 Free Bonus 卡）</td><td>🟠 後期 Backlog·排行榜二期頭獎</td><td class="dim">使用後直接進入免費特殊遊戲（bonus game），實作走「buy bonus 但玩家支出＝0」。首期不上；<strong>AWC 對齊自 W1 啟動</strong>（不等排行榜上線前才談）。真實成本＝buy 價 × RTP，屬大獎級、須限量＋max win 上限（詳見 §05 / §07）</td></tr>
       <tr><td>VIP 分層 / 完整背包 / 升級/賽季/Jackpot/幸運輪</td><td>🟠 Backlog</td><td class="dim">看數據再啟動</td></tr>
       <tr><td>幸運幣第二貨幣 / 幣水庫看板</td><td>🔴 凍結</td><td class="dim">直接機制路線下整套移除</td></tr>
     </tbody>
@@ -962,7 +1024,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
   </div>
 
   <div class="callout info">
-    <strong>設計原則</strong>：各 Wave 時程依複雜度不等（<strong>約 4–6 週，下方為估算、待開發團隊校準</strong>）。<em style="color:var(--gold-light);font-style:normal">🅐 線＝後端主力（一個 Wave 一顆重引擎）</em>；<em style="color:var(--purple);font-style:normal">🅑 線＝前端 / Unity 並行</em>。後端依序 Tag 同步 → 排行榜 → 風控/動態RTP → 任務 → 即時競賽，不重疊（Tag 改接收數據組分群、相對輕，詳見 §09）。
+    <strong>設計原則</strong>：各 Wave 時程依複雜度不等（<strong>約 4–6 週，下方為估算、待開發團隊校準</strong>）。<em style="color:var(--gold-light);font-style:normal">🅐 線＝後端主力（一個 Wave 一顆重引擎）</em>；<em style="color:var(--purple);font-style:normal">🅑 線＝前端 / Unity 並行</em>。後端依序 Tag 同步 → 排行榜 → 任務 → 風控/動態RTP → 即時競賽，不重疊（Tag 改接收數據組分群、相對輕，詳見 §09）。
   </div>
 
   <div class="timeline">
@@ -987,20 +1049,24 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-phase">WAVE 2 · 簽到收集（D1 核心）· 約 4 週</div>
-      <div class="tl-title">簽到系統 + 補簽卡</div>
+      <div class="tl-phase">WAVE 2 · 排行榜 + 回放 + 門面 Lite（品牌導流）· 約 6 週</div>
+      <div class="tl-title">排行榜（個人 + 全線路）+ 大獎回放 + 品牌門面 Lite</div>
       <div class="tl-tasks">
-        <span class="tl-task eng">🅐 碎片帳本 + 補簽卡（複用 v1 背包/庫存水管）</span>
-        <span class="tl-task design">🅑 簽到 UI（碎片湊卡）+ 補簽續簽</span>
+        <span class="tl-task eng">🅐 排行榜分數引擎 + 個人榜 / 全線路榜（日賽 net win）+ 短週期結算發 FREE SPIN 卡（可指定其他品牌遊戲＝導流工具）</span>
+        <span class="tl-task design">🅑 大獎回放 UI（從榜上點看）+ 品牌門面 Lite（遊戲列表 + LoginWithoutRedirect 跳轉 + 大獎輪播，輪播寫死、純前端）</span>
+        <span class="tl-task inf">⚠ W4 前發卡採固定日上限＋人工週對帳</span>
+        <span class="tl-task inf">門面 Lite 前端吃緊時順延至 W3 前段（任務大廳排 W3 後段）</span>
       </div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-phase">WAVE 3 · 基礎排行榜 + 回放 · 約 6 週</div>
-      <div class="tl-title">排行榜（個人 + 全線路）+ 大獎回放</div>
+      <div class="tl-phase">WAVE 3 · 基礎任務留存 · 約 4 週</div>
+      <div class="tl-title">任務系統（日 / 週任務 · 常態）</div>
       <div class="tl-tasks">
-        <span class="tl-task eng">🅐 排行榜分數引擎 + 個人榜 / 全線路榜（日賽 net win）</span>
-        <span class="tl-task design">🅑 大獎回放（從排行榜點看大獎）</span>
+        <span class="tl-task eng">🅐 任務引擎（日 + 週任務 · 寶箱發獎 · 複用 W1 獎勵庫）</span>
+        <span class="tl-task design">🅑 任務大廳 + 寶箱開獎演出</span>
+        <span class="tl-task inf">⚠ W4 前過渡條款：固定寶箱獎勵＋每日完成上限＋人工週對帳</span>
+        <span class="tl-task inf">W4 上線後發獎佔比改由總邊際監控即時接管</span>
       </div>
     </div>
     <div class="tl-item">
@@ -1016,12 +1082,12 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-phase">WAVE 5 · 基礎任務留存 · 約 4 週</div>
-      <div class="tl-title">任務系統(日 / 週任務 · 常態)</div>
+      <div class="tl-phase">WAVE 5 · 簽到收集（D1 補強）· 約 4 週</div>
+      <div class="tl-title">簽到系統 + 補簽卡</div>
       <div class="tl-tasks">
-        <span class="tl-task eng">🅐 任務引擎(日 + 週任務 · 寶箱發獎 · 複用獎勵庫)</span>
-        <span class="tl-task design">🅑 任務大廳 + 寶箱開獎演出</span>
-        <span class="tl-task inf">發獎佔比納入 W4 總邊際監控</span>
+        <span class="tl-task eng">🅐 碎片帳本 + 補簽卡（複用 v1 背包/庫存水管）</span>
+        <span class="tl-task design">🅑 簽到 UI（碎片湊卡）+ 補簽續簽</span>
+        <span class="tl-task inf">免費型活動 · 於 W4 監控保護下上線，發獎佔比即時納管</span>
       </div>
     </div>
     <div class="tl-item">
@@ -1029,52 +1095,182 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
       <div class="tl-phase">WAVE 6 · 差異化 · 約 5 週</div>
       <div class="tl-title">即時競賽</div>
       <div class="tl-tasks">
-        <span class="tl-task eng">🅐 即時競賽（連續即時排名賽 · 建在 W3 排行榜引擎上 · net win）</span>
+        <span class="tl-task eng">🅐 即時競賽（連續即時排名賽 · 建在 W2 排行榜引擎上 · net win）</span>
       </div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-phase">後續 · 活動量起來後加入</div>
-      <div class="tl-title">通知中心 + 品牌門面</div>
+      <div class="tl-title">通知中心 + 品牌門面完整版</div>
       <div class="tl-tasks">
         <span class="tl-task design">通知中心（Inbox / Popup）— 活動多時做聚合通道</span>
-        <span class="tl-task design">品牌門面 v1 + 社交分享</span>
+        <span class="tl-task design">品牌門面完整版（後台編輯工具 + 活動輪播管理 + 社交分享）· Lite 已於 W2 先行</span>
       </div>
     </div>
   </div>
 
   <div class="callout">
-    <strong>後期 Backlog（看數據再啟動）</strong>：挑戰 / 地圖任務（寶箱 · 特殊限定活動，週末/節慶或 usertype 投放）、RTP 撥出引擎 + 押注任務（RTP 版）、Jackpot 連線彩金、Free Bonus 卡、品牌門面後台、VIP 分層、完整背包、升級系統、積分賽季、幸運輪。🔴 幸運幣經濟維持凍結。
+    <strong>後期 Backlog（看數據再啟動）</strong>：挑戰 / 地圖任務（寶箱 · 特殊限定活動，週末/節慶或 usertype 投放）、RTP 撥出引擎 + 押注任務（RTP 版）、Jackpot 連線彩金、<strong>Free Game 卡</strong>（原 Free Bonus 卡整併命名；buy bonus 支出=0 直入免費特殊遊戲，定位<strong>排行榜二期頭獎</strong>，AWC 對齊自 W1 啟動）、品牌門面完整版後台（Lite 已於 W2 先行）、VIP 分層、完整背包、升級系統、積分賽季、幸運輪。🔴 幸運幣經濟維持凍結。
   </div>
 
   <div class="sub-title">時程估算（待開發團隊校準）</div>
   <div class="cost-block">
     <div class="cost-row"><span class="cost-label">W0 · 抽寶箱 v1（現金獎，最重單一基建）</span><span class="cost-val">約 6 週</span></div>
     <div class="cost-row"><span class="cost-label">W1 · Tag 接收/同步 + 抽寶箱第二段</span><span class="cost-val">約 5 週</span></div>
-    <div class="cost-row"><span class="cost-label">W2 · 簽到系統 + 補簽卡</span><span class="cost-val">約 4 週</span></div>
-    <div class="cost-row"><span class="cost-label">W3 · 排行榜（個人 + 全線路）+ 大獎回放（後端較重）</span><span class="cost-val">約 6 週</span></div>
+    <div class="cost-row"><span class="cost-label">W2 · 排行榜＋回放＋門面 Lite（後端較重）</span><span class="cost-val">約 6 週</span></div>
+    <div class="cost-row"><span class="cost-label">W3 · 任務系統（日 / 週任務）</span><span class="cost-val">約 4 週</span></div>
     <div class="cost-row"><span class="cost-label">W4 · 風控與動態RTP基建（重後端基建）</span><span class="cost-val">約 6 週</span></div>
-    <div class="cost-row"><span class="cost-label">W5 · 任務系統（日 / 週任務）</span><span class="cost-val">約 4 週</span></div>
+    <div class="cost-row"><span class="cost-label">W5 · 簽到系統 + 補簽卡</span><span class="cost-val">約 4 週</span></div>
     <div class="cost-row"><span class="cost-label">W6 · 即時競賽</span><span class="cost-val">約 5 週</span></div>
     <div class="cost-row total"><span class="cost-label">W0 → W6 連續推進合計</span><span class="cost-val highlight">約 36 週（≈ 8 個月）</span></div>
   </div>
+  <div class="callout info">
+    <strong>總時程不變</strong>：v1.4 只對調 W2／W3 順序，門面 Lite 併入 W2 的前端空檔（搭 🅐 重後端的車、人力互補），<strong>不增加總時程</strong>，合計仍為約 36 週。<br>v1.5 對調 W3／W5（任務提前、簽到後移），兩者同為約 4 週輕 Wave，不影響總時程與重輕交錯。
+  </div>
   <div class="callout warn">
-    <strong>⚠ 工時為估算，需開發團隊校準</strong>：後端較重的是 W0（抽寶箱基建）、W3（排行榜引擎）、W4（風控與動態RTP基建）；W1 改為接收數據組分群（Tag 同步），較原「自動打標」規劃輕；簽到（W2）複用 v1 背包/庫存水管、相對輕。<strong>通知中心、品牌門面</strong>放到後續、活動量起來後加入，不計入上表。Wave 間可部分前後重疊（前端先動），實際總時程以開發評估為準。
+    <strong>⚠ 工時為估算，需開發團隊校準</strong>：後端較重的是 W0（抽寶箱基建）、W2（排行榜引擎）、W4（風控與動態RTP基建）；W1 改為接收數據組分群（Tag 同步），較原「自動打標」規劃輕；任務（W3）走固定寶箱、複用 W1 獎勵庫，簽到（W5）複用 v1 背包/庫存水管，兩者皆相對輕。<strong>通知中心、品牌門面完整版</strong>放到後續、活動量起來後加入，不計入上表。Wave 間可部分前後重疊（前端先動），實際總時程以開發評估為準。
+  </div>
+
+
+  <div class="sub-title" id="gantt">職能 × 月份甘特圖（1.5x buffer）</div>
+  <div class="callout info">
+    <strong>雙軌並列</strong>：上方 36 週為<strong>理想估算</strong>（純工時）；本甘特圖套 <strong>1.5x buffer</strong>（含會議、聯調、修 bug、等待與跨組依賴）。佐證：W0 原估 6 週、實際 6/29 開工 → 預計 <strong>8/26</strong> 完成 ≈ 8.5 週 ＝ <strong>1.4x</strong>，1.5x 屬務實抓法。Buffer 版總時程：<strong>2026/6/29 → 約 2027/7 上旬（約 54 週 ≈ 12.5 個月）</strong>。實際仍以開發團隊校準為準。
+  </div>
+  <div class="g-legend">
+    <span class="w0"><i></i>W0 抽寶箱 v1</span><span class="w1"><i></i>W1 Tag + 抽寶箱二段</span><span class="w2"><i></i>W2 排行榜+回放+門面 Lite</span><span class="w3"><i></i>W3 任務系統</span><span class="w4"><i></i>W4 風控/動態RTP 基建</span><span class="w5"><i></i>W5 簽到+補簽卡</span><span class="w6"><i></i>W6 即時競賽</span>
+  </div>
+  <div class="gantt-wrap">
+    <div class="gantt">
+      <div class="g-row head">
+        <div class="g-label">月份 / 週</div>
+        <div class="g-track">
+          <div class="g-month" style="grid-column:1/5;grid-row:1;">2026/7</div>
+          <div class="g-month" style="grid-column:5/10;grid-row:1;">8</div>
+          <div class="g-month" style="grid-column:10/14;grid-row:1;">9</div>
+          <div class="g-month" style="grid-column:14/18;grid-row:1;">10</div>
+          <div class="g-month" style="grid-column:18/23;grid-row:1;">11</div>
+          <div class="g-month" style="grid-column:23/27;grid-row:1;">12</div>
+          <div class="g-month" style="grid-column:27/32;grid-row:1;">2027/1</div>
+          <div class="g-month" style="grid-column:32/36;grid-row:1;">2</div>
+          <div class="g-month" style="grid-column:36/40;grid-row:1;">3</div>
+          <div class="g-month" style="grid-column:40/45;grid-row:1;">4</div>
+          <div class="g-month" style="grid-column:45/49;grid-row:1;">5</div>
+          <div class="g-month" style="grid-column:49/53;grid-row:1;">6</div>
+          <div class="g-month" style="grid-column:53/55;grid-row:1;">7</div>
+        </div>
+      </div>
+      <div class="g-row band">
+        <div class="g-label">WAVE</div>
+        <div class="g-track">
+          <div class="g-wave w0" style="grid-column:1/10;grid-row:1;">W0</div>
+          <div class="g-wave w1" style="grid-column:10/17;grid-row:1;">W1</div>
+          <div class="g-wave w2" style="grid-column:17/26;grid-row:1;">W2</div>
+          <div class="g-wave w3" style="grid-column:26/32;grid-row:1;">W3</div>
+          <div class="g-wave w4" style="grid-column:32/41;grid-row:1;">W4</div>
+          <div class="g-wave w5" style="grid-column:41/47;grid-row:1;">W5</div>
+          <div class="g-wave w6" style="grid-column:47/55;grid-row:1;">W6</div>
+        </div>
+      </div>
+      <div class="g-row">
+        <div class="g-label">里程碑</div>
+        <div class="g-track">
+          <div class="g-milestone" style="grid-column:9/17;grid-row:1;">◆ W0 完成（8/26 · 實績 1.4x）</div>
+        </div>
+      </div>
+      <div class="g-row">
+        <div class="g-label">企劃</div>
+        <div class="g-track">
+        <div class="g-bar w0" style="grid-column:1/10;grid-row:1;" title="W0 數值/驗收">W0 數值/驗收</div>
+        <div class="g-bar w2" style="grid-column:12/18;grid-row:1;" title="W2 規格先行">W2 規格先行</div>
+        <div class="g-bar w3" style="grid-column:21/27;grid-row:1;" title="W3 任務規格/數值">W3 任務規格/數值</div>
+        <div class="g-bar w4" style="grid-column:28/33;grid-row:1;" title="W4 風控規則定義">W4 風控規則定義</div>
+        <div class="g-bar w5" style="grid-column:36/42;grid-row:1;" title="W5 簽到規格/數值">W5 簽到規格/數值</div>
+        <div class="g-bar w6" style="grid-column:43/48;grid-row:1;" title="W6 競賽規格">W6 競賽規格</div>
+        <div class="g-bar w1" style="grid-column:5/10;grid-row:2;" title="W1 規格先行">W1 規格先行</div>
+        </div>
+      </div>
+      <div class="g-row">
+        <div class="g-label">🅐 後端</div>
+        <div class="g-track">
+        <div class="g-bar w0" style="grid-column:1/10;grid-row:1;" title="W0 抽寶箱引擎+共用水管">W0 抽寶箱引擎+共用水管</div>
+        <div class="g-bar w1" style="grid-column:10/17;grid-row:1;" title="W1 Tag 接收/同步">W1 Tag 接收/同步</div>
+        <div class="g-bar w2" style="grid-column:17/26;grid-row:1;" title="W2 排行榜引擎+結算發卡">W2 排行榜引擎+結算發卡</div>
+        <div class="g-bar w3" style="grid-column:26/32;grid-row:1;" title="W3 任務引擎">W3 任務引擎</div>
+        <div class="g-bar w4" style="grid-column:32/41;grid-row:1;" title="W4 基建支援（RTP累計/節流）">W4 基建支援（RTP累計/節流）</div>
+        <div class="g-bar w5" style="grid-column:41/47;grid-row:1;" title="W5 碎片帳本+補簽卡（輕）">W5 碎片帳本+補簽卡（輕）</div>
+        <div class="g-bar w6" style="grid-column:47/55;grid-row:1;" title="W6 即時競賽">W6 即時競賽</div>
+        </div>
+      </div>
+      <div class="g-row">
+        <div class="g-label">🅑 前端 / Unity</div>
+        <div class="g-track">
+        <div class="g-bar w0" style="grid-column:1/10;grid-row:1;" title="W0 開箱演出">W0 開箱演出</div>
+        <div class="g-bar w1" style="grid-column:10/17;grid-row:1;" title="W1 背包+卡 UI">W1 背包+卡 UI</div>
+        <div class="g-bar w2" style="grid-column:17/26;grid-row:1;" title="W2 榜單+回放+門面 Lite">W2 榜單+回放+門面 Lite</div>
+        <div class="g-bar w3" style="grid-column:26/32;grid-row:1;" title="W3 任務大廳">W3 任務大廳</div>
+        <div class="g-bar w4" style="grid-column:34/41;grid-row:1;" title="W4 監控看板（輕）">W4 監控看板（輕）</div>
+        <div class="g-bar w5" style="grid-column:41/47;grid-row:1;" title="W5 簽到 UI">W5 簽到 UI</div>
+        <div class="g-bar w6" style="grid-column:47/55;grid-row:1;" title="W6 競賽 UI">W6 競賽 UI</div>
+        </div>
+      </div>
+      <div class="g-row">
+        <div class="g-label">美術</div>
+        <div class="g-track">
+        <div class="g-bar w0" style="grid-column:1/8;grid-row:1;" title="W0 寶箱演出素材">W0 寶箱演出素材</div>
+        <div class="g-bar w1" style="grid-column:9/15;grid-row:1;" title="W1 卡面/道具 icon">W1 卡面/道具 icon</div>
+        <div class="g-bar w2" style="grid-column:15/23;grid-row:1;" title="W2 門面視覺（先行）">W2 門面視覺（先行）</div>
+        <div class="g-bar w3" style="grid-column:24/31;grid-row:1;" title="W3 任務大廳/開獎演出">W3 任務大廳/開獎演出</div>
+        <div class="g-bar  gapblock" style="grid-column:32/39;grid-row:1;" title="美術空窗 → 預作 W5/W6 素材">美術空窗 → 預作 W5/W6 素材</div>
+        <div class="g-bar w5" style="grid-column:39/46;grid-row:1;" title="W5 簽到視覺">W5 簽到視覺</div>
+        <div class="g-bar w6" style="grid-column:46/53;grid-row:1;" title="W6 競賽演出">W6 競賽演出</div>
+        </div>
+      </div>
+      <div class="g-row">
+        <div class="g-label">數據組</div>
+        <div class="g-track">
+        <div class="g-bar w1" style="grid-column:9/17;grid-row:1;" title="W1 分群管線對接">W1 分群管線對接</div>
+        <div class="g-bar w4" style="grid-column:32/41;grid-row:1;" title="W4 監控資料管線">W4 監控資料管線</div>
+        <div class="g-bar w1 thin" style="grid-column:17/55;grid-row:2;" title="每日批次維運">每日批次維運</div>
+        </div>
+      </div>
+      <div class="g-row infra">
+        <div class="g-label">基建 <span class="g-pill">⚠ 基建</span></div>
+        <div class="g-track">
+        <div class="g-bar w0" style="grid-column:1/10;grid-row:1;" title="W0 共用水管（發現金/卡/Tag/對帳）">W0 共用水管（發現金/卡/Tag/對帳）</div>
+        <div class="g-bar w4 bold" style="grid-column:32/41;grid-row:1;" title="W4 風控 / 動態RTP（本命）">W4 風控 / 動態RTP（本命）</div>
+        <div class="g-bar w4 thin" style="grid-column:41/55;grid-row:1;" title="監控即時接管">監控即時接管</div>
+        <div class="g-bar w4 thin dashed" style="grid-column:17/41;grid-row:2;" title="過渡風控條款（W2 發卡固定上限 + W3 任務固定上限）">過渡風控條款（W2 發卡固定上限 + W3 任務固定上限）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="callout">
+    企劃固定領先一個 Wave 做規格 / 數值先行；美術於 W4 空窗預作素材；Wave 間可部分重疊（前端先動），此圖為 buffer 後的<strong>保守排法</strong>。與上方「約 36 週」理想估算<strong>雙軌並列</strong>，兩者互為對照、非取代關係。
   </div>
 
   <div class="sub-title">排程關鍵理由</div>
   <div class="body-text">
     • <strong>抽寶箱兩段上線</strong>：第一段（現金獎，v3.2）先上線；第二段（道具獎勵庫＋卡＋背包＋後台調整）另立規格，作 CRM 全功能共用基建。<br>
-    • <strong>W1 純基建、通知後置</strong>：Tag 引擎 + 斷簽偵測先建好，餵給 W2 補簽卡判斷與精準投放；通知中心移到後續、活動量起來再做聚合通道，早期各功能用自身提示即可。<br>
-    • <strong>簽到拆獨立 Wave（W2）</strong>：簽到是 D1 核心引擎，緊接 W1 卡水管；補簽卡同屬簽到、一起做，接住斷簽。<br>
-    • <strong>排行榜 + 回放一起（W3）</strong>：排行榜引擎 + 個人/全線路榜 + 大獎回放同一個 Wave，獨立可玩，也是即時競賽的地基。<br>
-    • <strong>W4 風控基建排在任務之前</strong>：多活動疊加爆量前，總邊際監控與動態 RTP 必須先就位，否則後續任何疊加活動都在賭莊家邊際。<br>
-    • <strong>任務（W5）→ 即時競賽（W6）</strong>：任務是成熟低風險的基礎留存、走固定寶箱、不需 RTP 撥出引擎；即時競賽建在 W3 排行榜引擎上、差異化收尾。<br>
-    • <strong>品牌門面後置、不綁即時競賽</strong>：門面價值隨活動量增長，與通知中心一起放後續、活動齊了再上。
+    • <strong>W1 純基建、通知後置</strong>：Tag 引擎 + 斷簽偵測先建好，餵給 W5 補簽卡判斷與精準投放（斷簽偵測先建好待用）；通知中心移到後續、活動量起來再做聚合通道，早期各功能用自身提示即可。<br>
+    • <strong>排行榜＋回放＋門面 Lite 提前（W2）</strong>：① <strong>跨品牌導流</strong>——新遊戲宣傳持續帶進新玩家，但玩家進來後沒有入口跳到品牌其他遊戲，門面 Lite 就是那個入口；② <strong>品牌大獎感</strong>——全線路榜 + 大獎回放建立「這個品牌會開大獎」的形象；③ <strong>人力互補</strong>——門面 Lite 純前端、輪播寫死，搭 🅐 重後端排行榜引擎的車，前端不閒置、後端不加載；④ <strong>獎勵即導流</strong>——日賽結算發的 FREE SPIN 卡可設定「指定其他品牌遊戲可用」，獎勵本身就是導流工具。宣傳是持續性的、無硬死線，入口愈早上線、累積接住的流量愈多。<br>
+    • <strong>任務提前（W3）</strong>：任務是行為門檻型＋固定寶箱＋每日完成上限，<strong>成本天花板是設計出來的、可事先算死</strong>——依「押注/門檻型免管、免費型要管」的風控原則，它是 W4 監控上線前最安全的留存活動；W4 前配過渡條款（固定寶箱＋每日上限＋人工週對帳）。D1 鉤子由「日任務：每日小目標→開寶箱→每日回訪理由」承擔。<br>
+    • <strong>簽到後移（W5）</strong>：簽到是<strong>純免費型</strong>、獎勵成本最難抓的活動，v1.5 改排在 W4 總邊際監控上線之後，在監控保護下上線、發獎佔比即時納管。<em style="color:var(--gold-light);font-style:normal">代價</em>：補簽卡／斷簽召回網延後約 10 週（W1 斷簽偵測先建好待用）。<br>
+    • <strong>重輕交錯</strong>：新順序後端負載為 重(W0)→輕(W1)→重(W2)→輕(W3 任務)→重(W4)→輕(W5 簽到)，排行榜與風控兩顆重引擎之間隔了任務這個輕 Wave，<strong>天然化解重疊風險</strong>（原 v1.3 W3/W4 兩顆重引擎背靠背）；v1.5 對調 W3／W5 後交錯結構不變。<br>
+    • <strong>W4 風控基建排在簽到之前</strong>：免費型活動（簽到）疊加前，總邊際監控與動態 RTP 必須先就位，否則後續任何疊加活動都在賭莊家邊際；任務（W3）因成本固定可先行。<br>
+    • <strong>簽到（W5）→ 即時競賽（W6）</strong>：簽到複用 v1 背包/庫存水管、在 W4 監控保護下補強 D1；即時競賽建在 W2 排行榜引擎上、差異化收尾。<br>
+    • <strong>品牌門面完整版後置、不綁即時競賽</strong>：Lite 版已於 W2 先行；完整版（後台編輯工具、活動輪播管理、社交分享）價值隨活動量增長，與通知中心一起放後續、活動齊了再上。
   </div>
 
   <div class="callout warn">
-    <strong>⚠ 負載提醒</strong>：後端較重集中在 W0（抽寶箱基建）、W3（排行榜引擎）、W4（風控與動態RTP基建），需吃滿 1.5–2 後端；W1（Tag 接收/同步）改接收數據組分群、相對輕。<strong>W4 切勿與 W3 排行榜引擎重疊</strong>——兩者都是重後端，疊在一起會卡死。簽到（W2）複用抽寶箱 v1 的背包/道具庫存水管，相對輕、不是從零。
+    <strong>⚠ 負載提醒</strong>：後端較重集中在 W0（抽寶箱基建）、W2（排行榜引擎）、W4（風控與動態RTP基建），需吃滿 1.5–2 後端；W1（Tag 接收/同步）改接收數據組分群、相對輕。<strong>W2 排行榜與 W4 風控之間已隔任務輕 Wave（W3），重疊風險已由排序解除</strong>。任務（W3）走固定寶箱、複用 W1 獎勵庫；簽到（W5）複用抽寶箱 v1 的背包/道具庫存水管，兩者相對輕、不是從零。<strong>W2 前端負載</strong>：榜單 UI + 回放 UI + 門面 Lite 同 Wave，前端 1+ 可能吃緊——門面 Lite 不依賴排行榜引擎，可順延至 <strong>W3 前段</strong>，任務大廳排 W3 後段（前端內部錯開），不動總時程（退路條款）。
+  </div>
+
+  <div class="callout info">
+    <strong>v1.4 調整</strong>：W2↔W3 對調（排行榜提前、簽到後移）＋門面 Lite 併入 W2，動機與取捨見 <em style="color:var(--gold-light);font-style:normal">§01 次要目標</em>、<em style="color:var(--gold-light);font-style:normal">§02 取捨說明</em>。
+  </div>
+
+  <div class="callout info">
+    <strong>v1.5 調整</strong>：W3↔W5 對調（任務提前、簽到後移）＋ 新增職能甘特圖（1.5x buffer 雙軌並列）。
   </div>
 </section>
 
@@ -1086,8 +1282,100 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <span class="section-title-en">CORE MECHANICS</span>
   </div>
 
-  <div class="sub-title">簽到收集系統 + 補簽卡（W2）</div>
-  <div class="body-text">把「每日領獎」變成「多日收集目標」，且不產生純薅羊毛、無押注的免費仔。</div>
+  <div class="sub-title">排行榜層（個人 + 全線路）+ 大獎回放 + 品牌門面 Lite（W2）</div>
+  <div class="body-text">排行榜、大獎回放與品牌門面 Lite 放在同一個 Wave。即時競賽不是憑空長出來的——它建在這層「基礎排行榜 + 回放」之上，這層本身就是 W2 的留存內容，同時擔起 <strong>跨品牌導流</strong> 與 <strong>「這個品牌會開大獎」品牌感</strong> 兩個 v1.4 新增的次要目標。</div>
+  <div class="info-grid-3">
+    <div class="info-card">
+      <div class="info-card-icon">👤</div>
+      <div class="info-card-title">個人排行榜</div>
+      <div class="info-card-desc">玩家自己的紀錄 / 最高贏分 / 歷史名次，給「超越昨天的自己」的目標感。</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🌐</div>
+      <div class="info-card-title">全線路排行榜</div>
+      <div class="info-card-desc">跨全服 / 全線路的大獎榜、即時 net win 榜（日即時排名賽呈現面），製造 FOMO。</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🎬</div>
+      <div class="info-card-title">大獎回放</div>
+      <div class="info-card-desc">從榜上大獎紀錄點進看 in-game 回放，把「別人中大獎」變成可圍觀、可炫耀的社交事件。</div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="font-size:15px">獎勵設計：結算發卡即導流</div>
+  <div class="info-grid-2">
+    <div class="info-card">
+      <div class="info-card-title">首期：FREE SPIN 卡（複用 W1 卡水管）</div>
+      <div class="info-card-desc">
+        • 日賽 <strong style="color:var(--gold-light)">net win</strong> 短週期結算發 FREE SPIN 卡，完全複用 W1 已建好的卡水管<br>
+        • 卡帶「<strong style="color:var(--gold-light)">可用遊戲 list</strong>」設定，可指定<strong style="color:var(--gold-light)">其他品牌遊戲</strong>才能使用 → 獎勵本身即強制導流工具<br>
+        • 卡沿用 max win 上限（v1 已建）
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">二期頭獎：Free Game 卡（首期不上）</div>
+      <div class="info-card-desc">
+        • 使用後<strong style="color:var(--gold-light)">直接進入免費特殊遊戲（bonus game）</strong>，實作走「buy bonus 但玩家支出＝0」<br>
+        • <strong style="color:var(--red)">⚠ 真實成本 ≠ 0</strong>：帳面支出 0，實際期望成本 ＝ <strong style="color:var(--gold-light)">該遊戲 buy bonus 價格 × RTP</strong><br>
+        • 例：buy 價 100 倍 bet、RTP 96.7% → 一張 ₱1 bet 的卡期望成本約 <strong style="color:var(--gold-light)">₱96.7</strong>（約 FREE SPIN 卡的近百倍）<br>
+        • 屬<strong style="color:var(--gold-light)">大獎級獎品</strong>：須限量發放 + 設 max win 上限<br>
+        • <strong style="color:var(--gold-light)">AWC 溝通自 W1 即啟動</strong>，不等排行榜上線前才談（清單見 §10）
+      </div>
+    </div>
+  </div>
+  <div class="callout warn">
+    <strong>⚠ 風控過渡條款（W4 前）</strong>：W4 總邊際監控上線前，排行榜結算發卡採 <strong>固定日上限 ＋ 人工週對帳</strong> 硬控；W4 上線後改由總邊際監控即時接管（§08）。
+  </div>
+
+  <div class="sub-title" style="font-size:15px">品牌門面 Lite（🅑 前端線 · 1～2 週）</div>
+  <div class="info-grid-2">
+    <div class="info-card">
+      <div class="info-card-title">Lite 版做什麼（W2）</div>
+      <div class="info-card-desc">
+        • <strong style="color:var(--text-primary)">遊戲列表</strong>：品牌旗下遊戲一覽，點擊經 <strong style="color:var(--gold-light)">LoginWithoutRedirect</strong> 直接跳轉進遊戲（複用 v1 水管）<br>
+        • <strong style="color:var(--text-primary)">大獎輪播區</strong>：資料直接取自排行榜 / 大獎回放，做出「這個品牌會開大獎」的門面感<br>
+        • <strong style="color:var(--gold-light)">輪播寫死、純前端</strong>，不動後端，約 1～2 週
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">留給完整版 + 退路條款</div>
+      <div class="info-card-desc">
+        • <strong style="color:var(--text-primary)">完整版（後續）</strong>：後台編輯工具、活動輪播管理、社交分享<br>
+        • <strong style="color:var(--gold-light)">退路條款</strong>：門面 Lite <strong>不依賴排行榜引擎</strong>，若 W2 前端評估吃緊，可順延至 <strong>W3 前段</strong>，任務大廳排 W3 後段（前端內部錯開），不動總時程、不影響 🅐 線
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">任務系統（W3 日/週常態；挑戰任務後期特殊限定）</div>
+  <div class="body-text">獎勵統一以「寶箱」發放（金錢、FREE SPIN 卡等，複用抽寶箱獎勵庫與背包）。依開放性質分兩塊：</div>
+  <div class="info-grid-2">
+    <div class="info-card">
+      <div class="info-card-title">常態（W3 先做）</div>
+      <div class="info-card-desc">
+        • <strong style="color:var(--text-primary)">日任務</strong>：每日小目標，完成開寶箱 → 每日回訪理由<br>
+        • <strong style="color:var(--text-primary)">週任務</strong>：跨日累積中目標，完成開更大寶箱 → 拉長回訪週期
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">特殊限定活動（後期 · 非常態）</div>
+      <div class="info-card-desc">
+        • <strong style="color:var(--text-primary)">挑戰任務（地圖 / 寶箱任務）</strong>：走到指定遊戲完成關卡 → 解鎖下一關 → 每過一關開寶箱<br>
+        • <strong style="color:var(--gold-light)">兩種觸發</strong>：① 週末 / 節慶檔期；② 針對特殊 usertype（押量下滑、回流玩家）投放（複用 Tag 投放）
+      </div>
+    </div>
+  </div>
+  <div class="callout warn">
+    <strong>⚠ 風控過渡條款（W4 前）</strong>：任務發獎走<strong>固定寶箱＋每日完成上限＋人工週對帳</strong>（因獎勵本為固定制，此條款比排行榜的輕）；W4 上線後改由總邊際監控即時接管（§08）。
+  </div>
+  <div class="callout warn">
+    <strong>💰 財務鐵則：納入動態總邊際管理（§08）</strong><br>
+    • 任務發獎佔比不再用固定上限框，而是即時計入 <strong>W4 總邊際監控</strong>，由遊戲 RTP 反向補償，使「活動+遊戲 RTP」總和守 ≈96.7%、邊際 ≈3.3%（灰色市場）。<br>
+    • <strong>不可重複計入</strong>：挑戰任務進行期間，其 bet 累積不得同時計入日 / 週任務 → 否則同一筆押注被多重發獎、總邊際被吃穿、很難給。<br>
+    • <strong>觸線自動節流</strong>：邊際逼近門檻 / 遊戲 RTP 觸 92% 地板時，系統自動把當期活動發獎打折 / 暫停（不只靠人工看警報）。
+  </div>
+
+  <div class="sub-title">簽到收集系統 + 補簽卡（W5）</div>
+  <div class="body-text">把「每日領獎」變成「多日收集目標」，且不產生純薅羊毛、無押注的免費仔。<strong>v1.5 由 W3 移至 W5——免費型活動在 W4 監控保護下上線</strong>（取捨見 §02）。</div>
   <div class="info-grid-2">
     <div class="info-card">
       <div class="info-card-title">簽到碎片</div>
@@ -1107,53 +1395,8 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     </div>
   </div>
 
-  <div class="sub-title">排行榜層（個人 + 全線路）+ 大獎回放（W3）</div>
-  <div class="body-text">排行榜與大獎回放放在同一個 Wave。即時競賽不是憑空長出來的——它建在這層「基礎排行榜 + 回放」之上，這層本身就是 W3 的留存內容。</div>
-  <div class="info-grid-3">
-    <div class="info-card">
-      <div class="info-card-icon">👤</div>
-      <div class="info-card-title">個人排行榜</div>
-      <div class="info-card-desc">玩家自己的紀錄 / 最高贏分 / 歷史名次，給「超越昨天的自己」的目標感。</div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-icon">🌐</div>
-      <div class="info-card-title">全線路排行榜</div>
-      <div class="info-card-desc">跨全服 / 全線路的大獎榜、即時 net win 榜（日即時排名賽呈現面），製造 FOMO。</div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-icon">🎬</div>
-      <div class="info-card-title">大獎回放</div>
-      <div class="info-card-desc">從榜上大獎紀錄點進看 in-game 回放，把「別人中大獎」變成可圍觀、可炫耀的社交事件。</div>
-    </div>
-  </div>
-
-  <div class="sub-title">任務系統（W5 日/週常態；挑戰任務後期特殊限定）</div>
-  <div class="body-text">獎勵統一以「寶箱」發放（金錢、FREE SPIN 卡等，複用抽寶箱獎勵庫與背包）。依開放性質分兩塊：</div>
-  <div class="info-grid-2">
-    <div class="info-card">
-      <div class="info-card-title">常態（W5 先做）</div>
-      <div class="info-card-desc">
-        • <strong style="color:var(--text-primary)">日任務</strong>：每日小目標，完成開寶箱 → 每日回訪理由<br>
-        • <strong style="color:var(--text-primary)">週任務</strong>：跨日累積中目標，完成開更大寶箱 → 拉長回訪週期
-      </div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-title">特殊限定活動（後期 · 非常態）</div>
-      <div class="info-card-desc">
-        • <strong style="color:var(--text-primary)">挑戰任務（地圖 / 寶箱任務）</strong>：走到指定遊戲完成關卡 → 解鎖下一關 → 每過一關開寶箱<br>
-        • <strong style="color:var(--gold-light)">兩種觸發</strong>：① 週末 / 節慶檔期；② 針對特殊 usertype（押量下滑、回流玩家）投放（複用 Tag 投放）
-      </div>
-    </div>
-  </div>
-  <div class="callout warn">
-    <strong>💰 財務鐵則：納入動態總邊際管理（§08）</strong><br>
-    • 任務發獎佔比不再用固定上限框，而是即時計入 <strong>W4 總邊際監控</strong>，由遊戲 RTP 反向補償，使「活動+遊戲 RTP」總和守 ≈96.7%、邊際 ≈3.3%（灰色市場）。<br>
-    • <strong>不可重複計入</strong>：挑戰任務進行期間，其 bet 累積不得同時計入日 / 週任務 → 否則同一筆押注被多重發獎、總邊際被吃穿、很難給。<br>
-    • <strong>觸線自動節流</strong>：邊際逼近門檻 / 遊戲 RTP 觸 92% 地板時，系統自動把當期活動發獎打折 / 暫停（不只靠人工看警報）。
-  </div>
-
   <div class="sub-title">即時競賽（W6 · 差異化主打）</div>
-  <div class="body-text">形式：<strong>連續即時排名賽</strong>，建在 W3 排行榜引擎之上。隨時加入、即時對全服排名，依 net win 計分，短週期結算發 FREE SPIN 卡 — 用「即時排名跳動」與「重置前衝一波」的張力做出與其他廠商的區別。</div>
+  <div class="body-text">形式：<strong>連續即時排名賽</strong>，建在 W2 排行榜引擎之上。隨時加入、即時對全服排名，依 net win 計分，短週期結算發 FREE SPIN 卡 — 用「即時排名跳動」與「重置前衝一波」的張力做出與其他廠商的區別。</div>
   <table class="spec-table">
     <thead><tr><th>項目</th><th>設計</th></tr></thead>
     <tbody>
@@ -1165,11 +1408,11 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
   </table>
   <div class="callout info">競技深度可在中後期視數據再行深化（榜單機制可擴充），本提案先以「即時競賽」輕量收尾，控制首期規模。</div>
 
-  <div class="sub-title">通知中心 + 品牌門面（後續 · 活動量起來後）</div>
+  <div class="sub-title">通知中心 + 品牌門面完整版（後續 · 活動量起來後）</div>
   <div class="body-text">
     這兩塊都<strong>放到後續、不卡核心</strong>，等活動量起來再加入：<br>
     • <strong>通知中心（Inbox / Popup）</strong>：早期各功能用自身提示即可；活動一多，才需要一個聚合的通知/廣宣通道。<br>
-    • <strong>品牌門面（展示頁）</strong>：品牌識別 + 活動輪播 + 導流，價值與「有幾個活動可輪播」成正比，故等簽到/排行榜/任務/即時競賽都上線、且<strong>不與即時競賽綁</strong>之後再上；v1 輪播先寫死、幾乎純前端，後台編輯工具列入 Backlog。
+    • <strong>品牌門面完整版</strong>：<strong style="color:var(--gold-light)">門面 Lite 已於 W2 先行</strong>（遊戲列表 + 跳轉 + 大獎輪播、輪播寫死、純前端），後續只做<strong>完整版</strong>——後台編輯工具、活動輪播管理、社交分享。這部分價值與「有幾個活動可輪播」成正比，故等簽到/排行榜/任務/即時競賽都上線後再上，且<strong>不與即時競賽綁</strong>。
   </div>
 </section>
 
@@ -1185,7 +1428,12 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <div class="kpi-card primary">
       <div class="kpi-label">北極星</div>
       <div class="kpi-val">D1 ↑</div>
-      <div class="kpi-desc">次日 / D1 留存 — W2 簽到起為主要驗證</div>
+      <div class="kpi-desc">次日 / D1 留存 — W3 任務起為主要驗證、W5 簽到補強</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">導流｜跨遊戲</div>
+      <div class="kpi-val">跳轉率</div>
+      <div class="kpi-desc">門面跳轉率、他遊戲開啟率</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">收集回訪</div>
@@ -1204,10 +1452,10 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <tbody>
       <tr><td class="mono">W0</td><td class="dim">單日 Spin 數（活動 vs 對照組）、活動參與率、完整循環完成率、D1 變化</td></tr>
       <tr><td class="mono">W1</td><td class="dim">Tag 覆蓋率、Tag 同步成功率（每日批次 / RTP 即時）、投放命中率、FREE SPIN 卡使用率（抽寶箱第二段）</td></tr>
-      <tr><td class="mono">W2</td><td class="dim">D1 留存 ↑、簽到完成率、碎片→卡兌換率、補簽卡使用率</td></tr>
-      <tr><td class="mono">W3</td><td class="dim">個人/全線路榜開啟率、日賽參與率、大獎回放觀看率</td></tr>
+      <tr><td class="mono">W2</td><td class="dim">個人/全線路榜開啟率、日賽參與率、大獎回放觀看率、<strong>跨遊戲跳轉率（門面 Lite）</strong>、<strong>導流後其他遊戲開啟率</strong>、<strong>指定他遊戲 FREE SPIN 卡使用率</strong></td></tr>
+      <tr><td class="mono">W3</td><td class="dim">D1 留存 ↑、任務完成率（日/週）、寶箱開啟率、指定遊戲導量</td></tr>
       <tr><td class="mono">W4</td><td class="dim">邊際守線達成率、活動超發攔截次數、92% 地板觸發次數、自動節流反應延遲</td></tr>
-      <tr><td class="mono">W5</td><td class="dim">任務完成率（日/週）、寶箱開啟率、指定遊戲導量</td></tr>
+      <tr><td class="mono">W5</td><td class="dim">簽到完成率、碎片→卡兌換率、補簽卡使用率、D1 二段提升</td></tr>
       <tr><td class="mono">W6</td><td class="dim">即時競賽參與率、競賽週留存</td></tr>
       <tr><td class="mono">後續</td><td class="dim">通知開啟/點擊率、品牌門面導流率、社交分享率</td></tr>
       <tr><td class="mono">後期</td><td class="dim">日均押注量 ↑、押注任務完成率、RTP 撥出 vs 實際發獎效益（衝 GGR 階段）</td></tr>
@@ -1231,8 +1479,11 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
     <thead><tr><th>風險</th><th>說明</th><th>建議處理</th></tr></thead>
     <tbody>
       <tr><td>net win 排名高度運氣導向</td><td class="dim">單日波動大，₱1 小注玩家可能靠運氣洗榜壓過大 R</td><td class="dim">加最低押注量資格門檻才計入排名</td></tr>
-      <tr><td>W2 後端過載</td><td class="dim">排行榜引擎 + 日賽 + 簽到/補簽帳本同期</td><td class="dim">簽到/補簽複用 v1 庫存水管；必要時配 1.5–2 後端</td></tr>
-      <tr><td>FREE SPIN 卡通膨</td><td class="dim">簽到碎片 + 即時競賽 + 抽寶箱多來源發卡</td><td class="dim">監控發放量；卡有 max win 上限（v1 已建）</td></tr>
+      <tr><td>W2 後端過載</td><td class="dim">新 W2 排行榜引擎 + 日賽結算發卡同期，且 W4 總邊際監控尚未上線</td><td class="dim">發卡採<strong>固定日上限 ＋ 人工週對帳</strong>硬控；重輕交錯排程已將 W4 隔開（中間夾 W3 任務輕 Wave）；必要時配 1.5–2 後端</td></tr>
+      <tr><td>W2 前端負載</td><td class="dim">榜單 UI + 回放 UI + 門面 Lite 同 Wave，前端 1+ 可能吃緊</td><td class="dim">門面 Lite 不依賴排行榜引擎，可順延至 <strong>W3 前段</strong>，任務大廳排 W3 後段（前端內部錯開），不動總時程（退路條款）</td></tr>
+      <tr><td>任務先於監控上線（W3）</td><td class="dim">任務發獎於 W4 總邊際監控上線前運行</td><td class="dim">獎勵為<strong>固定寶箱＋每日完成上限</strong>（成本上限＝設計值）＋<strong>人工週對帳</strong>；W4 上線後即時接管；同一筆 bet 不重複計入日 / 週任務</td></tr>
+      <tr><td>FREE SPIN 卡通膨</td><td class="dim">簽到碎片（W5）+ <strong>排行榜結算</strong> + 即時競賽 + 抽寶箱多來源發卡</td><td class="dim">監控發放量；卡有 max win 上限（v1 已建）</td></tr>
+      <tr><td>Free Game 卡成本誤判</td><td class="dim">帳面支出 0，實際成本＝<strong>buy 價 × RTP</strong>，一張可達 FREE SPIN 卡近百倍（例：buy 100 倍 bet × 96.7% → ₱1 bet 卡約 ₱96.7）</td><td class="dim">定位<strong>排行榜二期頭獎</strong>、限量發放、設 max win 上限；發放量計入固定上限與未來 W4 監控</td></tr>
       <tr><td>總活動 RTP 超標</td><td class="dim">同一筆 bet 重複計入多個任務 → 多重發獎、總 RTP &gt; 2%</td><td class="dim">任務間不重複計入；改採動態總邊際管理（§08）；特殊活動期間 RTP 調降</td></tr>
       <tr><td>動態 RTP 反應延遲</td><td class="dim">RTP 是回頭看的統計值、警報具事後性，錢已發追不回</td><td class="dim">硬性自動節流 + 保守門檻先行，不只靠人工看警報手動降</td></tr>
       <tr><td>per-player 公平性 / 觀感 / 合規</td><td class="dim">個人化調 RTP 可能引發公平性與觀感爭議</td><td class="dim">完整方案才開；最小方案先以全線路總邊際為主、不個人化</td></tr>
@@ -1585,6 +1836,9 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
       <tr><td>即時競賽計分</td><td class="dim">net win（當日淨贏分），短週期結算發 FREE SPIN 卡</td></tr>
       <tr><td>總邊際管理</td><td class="dim">動態總邊際管理：活動+遊戲 RTP 總和守 ≈96.7%、邊際 ≈3.3%、92% 硬地板、超線自動節流（灰色市場）；任務間 bet 不重複計入（詳見 §08）</td></tr>
       <tr><td>抽寶箱兩段上線</td><td class="dim">第一段現金獎先上線；第二段道具/卡/背包/後台另立規格</td></tr>
+      <tr><td>排行榜提前（v1.4）</td><td class="dim">W2＝排行榜 + 大獎回放 + 品牌門面 Lite；簽到後移；結算發 FREE SPIN 卡、可指定其他品牌遊戲（導流）</td></tr>
+      <tr><td>任務提前 / 簽到後移（v1.5）</td><td class="dim">W3＝任務系統（過渡條款硬控）、W5＝簽到 + 補簽卡（監控保護下上線）；依「門檻型免管、免費型要管」原則排程</td></tr>
+      <tr><td>Free Game 卡</td><td class="dim">排行榜二期頭獎；buy bonus 支出=0 直入免費特殊遊戲；限量 ＋ max win 上限；AWC 對齊 W1 啟動</td></tr>
       <tr><td>玩家分群 Tag</td><td class="dim">分群判斷由數據組提供、平台接收+套用（非自動打標）；RTP 相關 Tag 即時更新（搭 §08 管線）、其餘每日批次同步（詳見 §09）</td></tr>
     </tbody>
   </table>
@@ -1596,7 +1850,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
   </div>
   <div class="oq-item pm">
     <div class="oq-owner">PM DECISION</div>
-    <div class="oq-q">排行榜層：個人/全線路榜的榜單維度（最高贏分？net win？倍率？）、大獎回放的「大獎」入榜門檻、回放資料保存期。</div>
+    <div class="oq-q">排行榜層：個人/全線路榜的榜單維度（最高贏分？net win？倍率？）、大獎回放的「大獎」入榜門檻、回放資料保存期；<strong>門面 Lite 的遊戲清單與輪播內容</strong>、<strong>FREE SPIN 卡「指定遊戲 list」的導流策略（要推哪幾款）</strong>、<strong>Free Game 卡頭獎名額與適用遊戲</strong>、<strong>W4 前固定日上限的數值</strong>。</div>
   </div>
   <div class="oq-item pm">
     <div class="oq-owner">PM DECISION</div>
@@ -1612,14 +1866,22 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
   </div>
   <div class="oq-item awc">
     <div class="oq-owner">AWC ALIGN</div>
-    <div class="oq-q">Free Bonus 卡的 Unity in-game bonus 觸發整合；FREE SPIN 卡 LoginWithoutRedirect 跳轉與各星 bet / 帶遊戲 list 設定（隨抽寶箱第二段規格提出）。</div>
+    <div class="oq-q">
+      FREE SPIN 卡 LoginWithoutRedirect 跳轉與各星 bet / 帶遊戲 list 設定（隨抽寶箱第二段規格提出）。<br>
+      <strong style="color:var(--gold-light)">Free Game 卡確認清單（W1 即啟動溝通，不等排行榜上線前才談）</strong>：<br>
+      ① 支援 buy feature 的遊戲清單<br>
+      ② 平台 API 能否帶參數啟動「免扣款 buy bonus」；錢包記帳方式（扣 0、贏分正常入帳）<br>
+      ③ max win 上限可否比照 FREE SPIN 卡設定<br>
+      ④ 此類發獎在報表的歸類（須能計入活動發獎 RTP，供 W4 監控抓取）<br>
+      ⑤ Unity in-game bonus 觸發整合
+    </div>
   </div>
 </section>
 
 </div><!-- /page -->
 
 <div class="doc-footer">
-  SLOT CRM 後續開發 Roadmap 提案 · V1.3 · CONFIDENTIAL 2026<br>
+  SLOT CRM 後續開發 Roadmap 提案 · V1.5 · CONFIDENTIAL 2026<br>
   CMB · 菲律賓市場 · 框架文件，各功能細節於對應 Wave 啟動前以獨立需求文件呈現
 </div>
 
