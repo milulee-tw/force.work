@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 開發交付版規格書 DEV V1.0</title>
+<title>抽寶箱 開發交付版規格書 DEV V1.4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -805,7 +805,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
   border-radius:6px;margin-top:8px;
 }
 
-/* Admin mockup */
+/* 後台 mockup */
 .admin-wrap{
   background:var(--dark-2);border:1px solid var(--border);
   border-radius:8px;overflow:hidden;margin-bottom:28px;
@@ -1179,6 +1179,21 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 .bdd-card b.g{color:var(--blue-bright);}
 .bdd-card b.w{color:var(--gold-light);}
 .bdd-card b.t{color:var(--green-bright);}
+
+/* 語言中立虛擬碼區塊（供 Client Web / 後端照抄實作） */
+.pseudo-box{
+  background:var(--dark-3);border:1px solid var(--border);
+  border-left:3px solid var(--gold);border-radius:0 6px 6px 0;
+  padding:16px 18px;margin:0 0 16px;overflow-x:auto;
+}
+.pseudo-box .pseudo-label{
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px;
+}
+.pseudo-box pre{
+  font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.75;
+  color:var(--text-secondary);white-space:pre;margin:0;
+}
 </style>
 <script>
 /* ═══ FOUC 防閃：盡早把 data-theme 設到 <html>（spec-theme → 系統 → 暗色） ═══ */
@@ -1216,7 +1231,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
 <!-- ═══════════ TOP NAV ═══════════ -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">CHEST DEV SPEC · V1.0</span>
+  <span class="nav-brand">CHEST DEV SPEC · V1.2</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#mechanic">玩法機制</a>
   <a class="nav-item" href="#prizes">獎勵設計</a>
@@ -1248,7 +1263,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">抽寶箱<br>開發交付版規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.0</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.4</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">SOURCE</span><span class="sidebar-meta-val">完整版 V5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
@@ -1319,7 +1334,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <a class="sidebar-sub-link" href="#backend">活動類型擴充</a>
         <a class="sidebar-sub-link" href="#backend">活動表單（四分頁）</a>
         <a class="sidebar-sub-link" href="#backend">模板管理</a>
-        <a class="sidebar-sub-link" href="#backend">模板版本控制</a>
+        <a class="sidebar-sub-link" href="#template-delete">模板刪除規則</a>
+        <a class="sidebar-sub-link" href="#template-new">新增模板初始狀態</a>
+        <a class="sidebar-sub-link" href="#template-version">模板版本控制</a>
         <a class="sidebar-sub-link" href="#backend">監控與警報</a>
         <a class="sidebar-sub-link" href="#backend">獎勵歷程查詢（遊戲後台）</a>
         <a class="sidebar-sub-link" href="#backend">功能規格補充</a>
@@ -1410,7 +1427,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.0 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.4 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1419,7 +1436,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.0 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.4 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1455,6 +1472,30 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-08-03</td>
+          <td>DEV V1.4</td>
+          <td><a href="#backend" style="color:var(--gold-light);">§06 模板管理</a></td>
+          <td>多貨幣改版：貨幣清單 v1 <a href="#currency-list" style="color:var(--gold-light);">寫死 64 種</a>（含 k 前綴與變體幣別）、必填 17 種／選填 47 種、選填全空不驗證·填了須填完整、快照僅存已啟用幣別；貨幣清單管理列為 v2 基建</td>
+        </tr>
+        <tr>
+          <td>2026-08-03</td>
+          <td>DEV V1.3</td>
+          <td><a href="#account-perm" style="color:var(--gold-light);">帳號權限頁</a>／<a href="#admin-version" style="color:var(--gold-light);">§13 權限矩陣</a></td>
+          <td>角色權限對照用語修訂：查看(Platform) 欄統一 ✕＋Server 配置註腳、操作(Operator) 欄統一「依指派」、鎖定標註改「🔒 最高權限專屬」、角色稱謂中英成對</td>
+        </tr>
+        <tr>
+          <td>2026-08-03</td>
+          <td>DEV V1.2</td>
+          <td><a href="#rtp-formula" style="color:var(--gold-light);">§03</a>／<a href="#template-mgmt" style="color:var(--gold-light);">§06 模板管理</a>／<a href="#account-perm" style="color:var(--gold-light);">帳號權限頁</a></td>
+          <td>移除「分佈預覽即時計算公式」整節（前後端一併取消）；新增「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」（使用中不可刪＋二次確認＋軟刪除）；帳號權限頁新增「<a href="#account-add-modal" style="color:var(--gold-light);">新增帳號視窗</a>」與可指派頁面清單</td>
+        </tr>
+        <tr>
+          <td>2026-07-31</td>
+          <td>DEV V1.1</td>
+          <td><a href="#template-mgmt" style="color:var(--gold-light);">§06 模板管理</a></td>
+          <td>新增「<a href="#template-new" style="color:var(--gold-light);">新增模板初始狀態</a>」與「分佈預覽即時計算公式（Client Web）」兩節</td>
+        </tr>
         <tr>
           <td>2026-07-28</td>
           <td>DEV V1.0</td>
@@ -1500,7 +1541,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <details class="fold">
-    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.0<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
+    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.4<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
     <div class="fold-body">
       <table class="spec-table compact">
         <thead><tr><th style="width:190px;">完整版章節</th><th style="width:150px;">本文件章節</th><th>處理方式</th></tr></thead>
@@ -1792,11 +1833,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>終獎位置有機化：</strong>終獎<strong>不固定第 9 格</strong>，由權重分佈於後段（各模板分佈不同，見下方示範表），避免每日回訪玩家看破。
   </div>
 
-  <div class="sub-title">後端 RTP 驗算公式（每貨幣 × 每模板各自驗算）</div>
+  <div class="sub-title" id="rtp-formula">後端 RTP 驗算公式（每貨幣 × 每模板各自驗算）<span class="tag-upd">2026-08-03</span></div>
   <div class="callout info">
     <code>模板 RTP = ( 該模板 9 格獎項金額總和 ) ÷ ( 該模板第 9 格累積門檻 )</code><br><br>
     <strong>分子</strong>＝該模板四階獎項按格數加總（小×5 ＋ 中×2 ＋ 大×1 ＋ 最終×1）；<strong>分母</strong>＝該模板的總（累積）門檻。<strong>兩者皆為模板設定值，隨標籤族群而異，公式中不含任何固定金額。</strong><br>
-    <strong>每套貨幣（各貨幣一套）× 每個模板各自代入、各自驗算，不做匯率換算。</strong>後台即時試算，超出該模板<strong>目標 RTP ±0.1%</strong> 即警示、擋送審。
+    <strong>每套貨幣（各貨幣一套）× 每個模板各自代入、各自驗算，不做匯率換算。</strong><strong style="color:var(--gold-light);">驗算範圍＝已啟用幣別</strong>（必填 17 ＋ 已啟用的選填；清單見 <a href="#currency-list" style="color:var(--gold-light);">DEV §06 二之一、貨幣清單</a>）。後台即時試算，超出該模板<strong>目標 RTP ±0.1%</strong> 即警示、擋送審。<br>
+    <strong>此驗證與後台模板編輯器的儲存前驗證為同一套規則</strong>（見 <a href="#template-mgmt" style="color:var(--gold-light);">DEV §06 模板編輯器欄位「RTP 驗證」</a>）。
   </div>
 
   <div class="sub-title">分眾架構：標籤規則（AND 複合條件）→ 模板（對齊後台原型 v2）</div>
@@ -1877,7 +1919,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="body-text" style="font-size:12px;">上表為各模板的<strong>邊際機率（描述用）</strong>；後台實際輸入為每格 roll 權重，系統即時算出邊際機率、終獎落點分佈與 RTP。門檻 ∝ 各格期望派彩，使該模板段內任一停手點 RTP 皆等於其目標值（段內防套利）。</div>
+  <div class="body-text" style="font-size:12px;">上表為各模板的<strong>邊際機率（描述用）</strong>；後台實際輸入為每格 roll 權重，系統據以驗算 RTP。門檻 ∝ 各格期望派彩，使該模板段內任一停手點 RTP 皆等於其目標值（段內防套利）。</div>
   <div class="callout info" style="font-size:12px;">
     <strong>格 9 為系統推導、非後台輸入值：</strong>上列三張示範機率表（標準模板 A／忠誠加碼／救援高倍）的<strong>「格 9」列之小／中／大／終 %</strong>，為系統依<strong>不放回邏輯</strong>由前 8 抽消耗結果推導的<strong>實際機率分佈</strong>，<strong>非後台輸入值</strong>；後台僅設定<strong>第 1~8 抽權重</strong>，第 9 抽由系統自動決定（必中剩餘的最後 1 個獎項）。詳見 <a href="#template-mgmt" style="color:var(--gold-light);">DEV §06 抽獎權重設定</a>。
   </div>
@@ -1989,7 +2031,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>A7</td><td>冪等</td><td class="dim">同格重複請求只產生一筆派獎（見上方 BDD）。</td></tr>
       <tr><td>A8</td><td>失敗不誤扣</td><td class="dim">發放失敗 → 格子未開、次數退回、有失敗事件可被警報接住。</td></tr>
       <tr><td>A9</td><td>斷線一致</td><td class="dim">任何時點斷線重入，狀態與後端一致，無「扣次數沒獎」或「重複領獎」。</td></tr>
-      <tr><td>A10</td><td>RTP 驗證</td><td class="dim">每組〔貨幣 × 模板〕實際 RTP 與目標 RTP 差距在 <strong>±0.1%</strong> 內（見 <a href="#prizes" style="color:var(--gold-light);">DEV §03</a>）。</td></tr>
+      <tr><td>A10</td><td>RTP 驗證</td><td class="dim">每組〔<strong>已啟用</strong>貨幣 × 模板〕實際 RTP 與目標 RTP 差距在 <strong>±0.1%</strong> 內（見 <a href="#prizes" style="color:var(--gold-light);">DEV §03</a>）。</td></tr>
       <tr><td>A11</td><td>可回溯</td><td class="dim">任一筆派獎皆可查回：領獎時間、活動、活動版本、模板與模板版本、獎勵類型與面額。</td></tr>
     </tbody>
   </table>
@@ -2748,7 +2790,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="info-card-desc" style="line-height:1.8;margin-top:8px;">
         · <strong>模板為獨立實體、可被多檔活動／多條規則共用</strong><br>
         · 押注比例 / 目標 RTP / 終獎最早格<br>
-        · 貨幣 tabs（PHP 預設＋11 種備選）<br>
+        · 貨幣 tabs（寫死 64 種清單，17 種必填）<br>
         · 9 格累積門檻 ＋ 9×4 權重表<br>
         <span style="color:var(--gold-light);font-size:11px;">後台模板編輯取代 Excel、入 v1</span>
       </div>
@@ -2776,9 +2818,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="info-card-title" style="color:var(--gold-light);">👥 帳號權限</div>
       <div class="info-card-desc" style="line-height:1.8;margin-top:8px;">
         · <strong>後台帳號</strong>卡片列表 ＋ <strong>角色權限對照</strong>矩陣<br>
-        · 最高權限（Admin）：全部頁面＋新增/設定帳號<br>
-        · 一般操作者（Operator）：活動管理＋抽寶箱模板管理<br>
-        · 僅查看（Viewer）：活動管理（部分）<br>
+        · 最高權限(Admin)：全部頁面＋新增/設定帳號<br>
+        · 操作(Operator)：活動管理＋抽寶箱模板管理<br>
+        · 查看(Platform)：CRM 頁面皆不可見（權限由 Server 配置）<br>
         <span style="color:var(--orange);font-size:11px;">獎勵查詢權限沿用遊戲後台的投注資料查詢權限控管</span><br>
         <span style="color:var(--purple);font-size:11px;">v2：頁內動作級權限</span>
       </div>
@@ -2804,7 +2846,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title" id="nav-crm">後台導覽結構（CRM活動）</div>
+  <div class="sub-title" id="nav-crm">後台導覽結構（CRM活動）<span class="tag-upd">2026-08-03</span></div>
   <div class="callout warn">
     <strong>導覽結構：</strong>左側<strong>第一層為「CRM活動」</strong>，其下<strong>第二層子頁籤</strong>為「<strong>活動管理</strong>」「<strong>抽寶箱模板管理</strong>」「<strong>活動審查</strong>」三頁。<br>
     <strong>設計意圖：</strong>CRM 未來會有多種玩法活動，導覽以「CRM活動」為單一入口收斂，玩法差異靠<strong>活動類型</strong>欄位區分，<strong>不因新增玩法而長出新的第一層選單</strong>。
@@ -2825,7 +2867,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="info-card-desc" style="line-height:1.8;margin-top:8px;">
         · <strong>模板為獨立實體、可被多檔活動／多條規則共用</strong><br>
         · 9 格累積門檻 ＋ 第 1~8 抽權重 ＋ 四階獎項<br>
-        · 貨幣 tabs（PHP 預設＋11 種備選）<br>
+        · 貨幣 tabs（寫死 64 種清單，17 種必填）<br>
         · 模板版本序號與快照歷程<br>
         <span style="color:var(--gold-light);font-size:11px;">頁名帶玩法名，未來其他玩法各自一頁</span>
       </div>
@@ -2983,7 +3025,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <button class="admin-btn secondary">儲存草稿</button>
         <button class="admin-btn primary">提交審查</button>
       </div>
-      <div class="body-text" style="font-size:11px;color:var(--text-dim);margin-top:6px;text-align:right;">未過驗算或未選線路時「提交審查」<strong>disabled ＋ 原因提示</strong>；Admin 檢視送審中活動時額外顯示「<strong style="color:var(--green);">核准並上線</strong>」。</div>
+      <div class="body-text" style="font-size:11px;color:var(--text-dim);margin-top:6px;text-align:right;">未過驗算或未選線路時「提交審查」<strong>disabled ＋ 原因提示</strong>；最高權限(Admin) 檢視送審中活動時額外顯示「<strong style="color:var(--green);">核准並上線</strong>」。</div>
     </div>
   </div>
 
@@ -2992,9 +3034,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong style="color:var(--orange-bright);">⚠ 顯示格式須為</strong>「<strong>N 組規則 ＋ 預設</strong>」（<strong>N 不含預設配置</strong>）。同步適用 <a href="#admin-version" style="color:var(--gold-light);">DEV §13 版本快照</a>。
   </div>
 
-  <div class="sub-title">活動上線審核流程（核准權＝最高權限 Admin）</div>
+  <div class="sub-title">活動上線審核流程（核准權＝最高權限(Admin)）<span class="tag-upd">2026-08-03</span></div>
   <div class="callout info">
-    <strong>① 上線需審核（B1）：</strong>活動上線前<strong>須經審核流程</strong>——一般操作者建立／編輯活動後「提交審查」，由<strong>最高權限（Admin）</strong>核准才能上線（<strong>核准權＝Admin</strong>，對齊 DEV §13 權限矩陣）。<strong>「送審」與「核准/上線」必須是不同角色（職責分離）</strong>，避免自審自上。
+    <strong>① 上線需審核（B1）：</strong>活動上線前<strong>須經審核流程</strong>——一般操作者建立／編輯活動後「提交審查」，由<strong>最高權限（Admin）</strong>核准才能上線（<strong>核准權＝最高權限(Admin)</strong>，對齊 DEV §13 權限矩陣）。<strong>「送審」與「核准/上線」必須是不同角色（職責分離）</strong>，避免自審自上。
   </div>
   <div class="flow-wrap">
     <div class="flow">
@@ -3002,7 +3044,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="flow-arrow">→</div>
       <div class="flow-step highlight"><div class="flow-step-num">STEP 02</div><div class="flow-step-title">📤 提交審核</div><div class="flow-step-desc">送出審核<br>狀態＝待審核</div></div>
       <div class="flow-arrow">→</div>
-      <div class="flow-step"><div class="flow-step-num">STEP 03</div><div class="flow-step-title">🔐 最高權限核准</div><div class="flow-step-desc">Admin 檢視<br>核准／駁回</div></div>
+      <div class="flow-step"><div class="flow-step-num">STEP 03</div><div class="flow-step-title">🔐 最高權限核准</div><div class="flow-step-desc">最高權限(Admin) 檢視<br>核准／駁回</div></div>
       <div class="flow-arrow">→</div>
       <div class="flow-step success"><div class="flow-step-num">STEP 04</div><div class="flow-step-title">🚀 上線</div><div class="flow-step-desc">核准後才上線<br>退回則回草稿</div></div>
     </div>
@@ -3016,7 +3058,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </ol>
   </div>
 
-  <div class="sub-title">活動審查頁規格（對齊後台原型 v2）</div>
+  <div class="sub-title">活動審查頁規格（對齊後台原型 v2）<span class="tag-upd">2026-08-03</span></div>
   <div class="callout info">
     <strong>審查頁：</strong>設定者「提交審查」後，活動進入<strong>待審查佇列</strong>（導覽含<strong style="color:var(--red-bright);">待審數量紅色 badge</strong>）。<strong>待審佇列卡片直接含 RTP／活動期間／重置時間／主題／審查備註輸入／核准／駁回</strong>；「<strong>查看完整設定（唯讀）</strong>」為彈窗——彈窗內容<strong>對齊原型 v2：基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>；<strong>模板數值明細（門檻／獎池／RTP／權重／多貨幣）請至模板管理頁查看，審查頁不展開數值</strong>。核准權為<strong>最高權限（Admin）</strong>；<strong>駁回原因＝必填</strong>。
   </div>
@@ -3077,7 +3119,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="ui-doc-spec-h">② 唯讀檢視 ＋ ③ 操作</div>
       <dl>
         <dt>唯讀檢視</dt><dd><strong>對齊原型 v2</strong>：內容為<strong>基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>，不可在此編輯</dd>
-        <dt>操作</dt><dd>僅兩個動作：「<strong style="color:var(--green);">核准並上線</strong>」（由<strong>最高權限 Admin</strong> 核准後活動上線）／「<strong style="color:var(--red);">駁回</strong>」（<strong>駁回原因必填</strong>）</dd>
+        <dt>操作</dt><dd>僅兩個動作：「<strong style="color:var(--green);">核准並上線</strong>」（由<strong>最高權限(Admin)</strong> 核准後活動上線）／「<strong style="color:var(--red);">駁回</strong>」（<strong>駁回原因必填</strong>）</dd>
         <dt>模板數值</dt><dd><strong>模板數值明細（門檻／獎池／RTP／權重／多貨幣）請至模板管理頁查看，審查頁不展開數值</strong>（審查頁只對照到模板名稱）</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.review.readonly</span> / <span class="mono">admin.review.approve</span> / <span class="mono">admin.review.reject</span></dd>
       </dl>
@@ -3108,7 +3150,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="ui-doc-spec">
       <div class="ui-doc-spec-h">④ 駁回回流</div>
       <dl>
-        <dt>駁回原因</dt><dd>Admin 駁回時<strong>需填「駁回原因」</strong>（<strong>必填</strong>）。<span style="color:var(--orange);">⚠ 未填駁回原因不可送出，須做必填驗證。</span></dd>
+        <dt>駁回原因</dt><dd>最高權限(Admin) 駁回時<strong>需填「駁回原因」</strong>（<strong>必填</strong>）。<span style="color:var(--orange);">⚠ 未填駁回原因不可送出，須做必填驗證。</span></dd>
         <dt>回流</dt><dd>被駁回活動回到設定者「<strong>活動管理</strong>」，並顯示「<strong>此活動曾被駁回，請修改後重新送審。駁回原因：…</strong>」</dd>
         <dt>重新送審</dt><dd>設定者修改後可<strong>重新送審</strong>，再次進入待審查佇列</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.review.reject_reason</span> / <span class="mono">admin.review.rejected_notice</span> / <span class="mono">admin.review.resubmit</span></dd>
@@ -3155,7 +3197,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="ui-doc-spec-h">模板 × 多貨幣（於模板編輯器設定）</div>
       <dl>
         <dt>位置</dt><dd><strong>多貨幣設定屬「模板編輯器」</strong>（非活動層）；一個模板內以 currency tabs 切換各貨幣設定</dd>
-        <dt>元件類型</dt><dd>頂部 <strong>currency tabs</strong>（<strong>PHP 為預設</strong>）＋「＋ 從貨幣清單新增」；備選 11 種：PHP／USD／TWD／THB／VND／MYR／IDR／KRW／JPY／BRL／INR</dd>
+        <dt>元件類型</dt><dd>頂部 <strong>currency tabs</strong>（<strong>PHP 為預設 tab</strong>）＋「<strong>＋新增貨幣</strong>」（可搜尋下拉）；<strong>v1 清單寫死 64 種、必填 17 種</strong>（完整清單見 <a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>）</dd>
         <dt>每貨幣</dt><dd>各自一套 <strong>9 格累積門檻 / 四階獎項 / 9×4 權重 / RTP 即時驗算</strong>；獎勵類型 v1 僅<strong>現金</strong>（現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充·原型先行示意）</dd>
         <dt>RTP</dt><dd>依當前貨幣即時計算，各貨幣各自驗算是否落在<strong>該模板目標 RTP ±0.1%</strong></dd>
         <dt>規則</dt><dd>各貨幣<strong>獨立設定、互不換算</strong>（非匯率換算）</dd>
@@ -3165,7 +3207,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout">
-    <strong>模板 × 多貨幣：</strong>模板編輯器以 <strong>currency tabs</strong> 切換（PHP 預設＋11 種備選）。每個貨幣各自設定：<strong>目標 RTP、終獎最早格、9 格累積門檻、9 格 × 4 類別權重表</strong>；四階獎項（小×5／中×2／大×1／最終×1）於模板層設定。系統對每個〔模板 × 貨幣〕<strong>即時試算 RTP 與終獎落點分佈</strong>，超出該模板<strong>目標 RTP ±0.1%</strong>（或<strong>第 1~8 抽權重列合計為 0</strong>）即警示、擋送審。<strong>玩家跑哪個模板由「標籤規則（AND）→ 模板」決定，未命中走預設配置</strong>（無中介映射層、無准入閘門）。
+    <strong>模板 × 多貨幣：</strong>模板編輯器以 <strong>currency tabs</strong> 切換（<strong>v1 寫死 64 種清單、必填 17 種</strong>，PHP 為預設 tab；見 <a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>）。每個貨幣各自設定：<strong>目標 RTP、終獎最早格、9 格累積門檻、9 格 × 4 類別權重表</strong>；四階獎項（小×5／中×2／大×1／最終×1）於模板層設定。系統對每個〔模板 × 貨幣〕<strong>即時試算 RTP</strong>，超出該模板<strong>目標 RTP ±0.1%</strong>（或<strong>第 1~8 抽權重列合計為 0</strong>）即警示、擋送審。<strong>玩家跑哪個模板由「標籤規則（AND）→ 模板」決定，未命中走預設配置</strong>（無中介映射層、無准入閘門）。
   </div>
 
   <!-- Row 0a：版型主題下拉 -->
@@ -3372,15 +3414,15 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong style="color:var(--gold-light);">模板與版本相關：</strong><span class="mono">admin_12_template_list</span>（模板列表）、<span class="mono">admin_13_template_editor</span>（模板編輯器）、<span class="mono">admin_14_tag_rules</span>（Tab2 標籤與配置）、<span class="mono">admin_15_prize_summary</span>（Tab3 唯讀摘要）、<span class="mono">admin_16_versions</span>（Tab4 版本）。<strong style="color:var(--orange-bright);">無 admin_17_rewards_log（獎勵歷程雙檢視）</strong>——CRM 後台不設此頁，改由<strong>遊戲後台</strong>的投注資料查詢承接。
   </div>
 
-  <div class="sub-title">帳號權限頁（後台帳號 ＋ 角色權限對照 · 對齊原型 v2）</div>
+  <div class="sub-title" id="account-perm">帳號權限頁（後台帳號 ＋ 角色權限對照 · 對齊原型 v2）<span class="tag-upd">2026-08-03</span></div>
   <div class="callout info">
     <strong>帳號權限頁＝「後台帳號」卡片列表 ＋「角色權限對照」矩陣。</strong>權限以<strong>頁面可見性</strong>控管——<strong>角色＝一組可見頁面的集合</strong>，頁面內不再做欄位級切分。<br><br>
-    <strong>三個層級：最高權限 ／ 一般操作 ／ 查看（站長 Platform）。</strong>
+    <strong>三個層級：最高權限(Admin) ／ 操作(Operator) ／ 查看(Platform)（站長）。</strong>
   </div>
   <div class="callout danger">
     <strong>⚠ 帳號建立與權限歸屬（務必照做）：</strong><br>
     <strong>① 最高權限帳號＝由 Server 端設置，後台不可自行新增。</strong>最高權限者<strong>可以新增「一般操作」帳號</strong>並設定該帳號<strong>可看到哪些頁面</strong>；但<strong>不可新增另一個最高權限帳號</strong>——需要新增最高權限使用者時，<strong>一律由 Server 端設置</strong>。<br>
-    <strong>② 查看（站長 Platform）＝完全看不到 CRM 的任何頁面。</strong>站長<strong>不出現在 CRM 後台的任何導覽中</strong>；其可見範圍是<strong>遊戲後台側</strong>的「<strong>指定線路、指定玩家的注單相關頁面</strong>」與「<strong>營收報表</strong>」等資料。<br>
+    <strong>② 查看(Platform)（站長）＝完全看不到 CRM 的任何頁面。</strong>站長<strong>不出現在 CRM 後台的任何導覽中</strong>；其可見範圍是<strong>遊戲後台側</strong>的「<strong>指定線路、指定玩家的注單相關頁面</strong>」與「<strong>營收報表</strong>」等資料。<br>
     <strong>③ 查看權限的內容由 Server 設置，不在 CRM 後台編輯。</strong>站長能看哪些線路、哪些玩家、哪些報表，<strong>一律由 Server 端配置</strong>；<strong>CRM 後台不提供站長權限的編輯介面</strong>。
   </div>
 
@@ -3410,9 +3452,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="ui-doc-spec">
       <div class="ui-doc-spec-h">後台帳號管理</div>
       <dl>
-        <dt>新增帳號</dt><dd><strong>最高權限僅可新增「一般操作」帳號</strong>並設定其<strong>可見頁面</strong>；<strong style="color:var(--orange-bright);">不可新增最高權限帳號</strong>（由 Server 端設置）</dd>
-        <dt>角色</dt><dd>最高權限（Admin）／一般操作（Operator）／<strong>查看（站長 Platform）</strong></dd>
-        <dt>可見頁面</dt><dd>最高權限＝CRM 全部頁面＋帳號權限；一般操作＝由最高權限逐帳號指派（預設活動管理＋抽寶箱模板管理）；<strong>站長＝CRM 全部頁面皆不可見</strong></dd>
+        <dt>新增帳號</dt><dd><strong>最高權限僅可新增「一般操作」帳號</strong>並設定其<strong>可見頁面</strong>；<strong style="color:var(--orange-bright);">不可新增最高權限帳號</strong>（由 Server 端設置）。點卡片右上「<strong>＋ 新增帳號</strong>」開啟視窗，<strong>視窗欄位與可指派頁面清單見下方〈<a href="#account-add-modal" style="color:var(--gold-light);">新增帳號視窗</a>〉</strong>；<strong>此按鈕僅最高權限可見</strong></dd>
+        <dt>角色</dt><dd>最高權限(Admin)／操作(Operator)／<strong>查看(Platform)</strong>（站長）</dd>
+        <dt>可見頁面</dt><dd>最高權限＝CRM 全部頁面＋帳號權限；一般操作＝由最高權限逐帳號指派（<strong>含遊戲後台頁面</strong>；預設活動管理＋抽寶箱模板管理）；<strong>站長＝CRM 全部頁面皆不可見</strong></dd>
         <dt>站長權限</dt><dd><strong>由 Server 設置、CRM 後台不提供編輯</strong>；範圍為遊戲後台側的<strong>指定線路／指定玩家注單頁與營收報表</strong></dd>
         <dt>切分層級</dt><dd><strong>頁面級</strong>（非動作級）；頁內不再細分欄位權限</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.account.add</span> / <span class="mono">admin.account.role</span> / <span class="mono">admin.account.visible_pages</span></dd>
@@ -3420,32 +3462,121 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title" style="font-size:14px;">頁面可見性對照表（三層級）</div>
+  <div class="sub-title" id="account-add-modal" style="font-size:14px;">新增帳號視窗<span class="tag-upd">2026-08-03</span></div>
+  <div class="callout danger" style="font-size:12px;">
+    <strong>此視窗只能新增「操作(Operator)」帳號。</strong>角色欄<strong>固定唯讀</strong>，<strong style="color:var(--orange-bright);">後台無法建立最高權限或站長帳號</strong>——需要新增這兩種帳號時，一律由 <strong>Server 端設置</strong>。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>規格</th></tr></thead>
+    <tbody>
+      <tr><td>觸發</td><td class="dim">後台帳號卡片右上「<strong>＋ 新增帳號</strong>」→ 開啟視窗（<strong>僅最高權限可見此按鈕</strong>）。</td></tr>
+      <tr><td>帳號名稱</td><td class="dim"><strong>必填</strong>；<strong>不可與既有帳號重複</strong>（重複時即時提示、擋儲存）。</td></tr>
+      <tr><td>角色</td><td class="dim"><strong>固定顯示「操作(Operator)」、唯讀不可改</strong>；欄位下方附說明文字：「<strong>最高權限(Admin) 與查看(Platform)（站長）帳號由 Server 端設置，無法於後台新增</strong>」。</td></tr>
+      <tr><td>可見頁面</td><td class="dim"><strong>checkbox 清單（分群組）</strong>，見下表。</td></tr>
+      <tr><td>驗證</td><td class="dim">① <strong>帳號名稱必填</strong>；② <strong>至少勾選 1 頁</strong>（皆未勾選不可儲存）。</td></tr>
+      <tr><td>儲存後</td><td class="dim">後台帳號列表<strong>新增一列</strong>（角色＝<strong>一般操作</strong>、<strong>可見頁面摘要</strong>）。<strong>既有一般操作帳號可由最高權限編輯其可見頁面</strong>——<strong>重用同一視窗</strong>，此時<strong>帳號名稱唯讀</strong>。</td></tr>
+      <tr><td><strong>備注</strong><br><span class="dim" style="font-size:10px;">基礎建設</span></td><td class="dim"><strong>帳號登入憑證（預設密碼／啟用方式）沿用 Server 端既有後台帳號機制，本規格不另定義</strong>；<strong style="color:var(--orange-bright);">若平台無既有機制，需後端補齊（開發確認）</strong>。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="font-size:13px;margin-top:22px;">可見頁面清單（分群組）<span class="tag-upd">2026-08-03</span></div>
+  <table class="spec-table">
+    <thead><tr><th style="width:180px;">群組</th><th>頁面</th><th style="width:150px;">可否開關</th><th style="width:110px;">預設</th></tr></thead>
+    <tbody>
+      <tr><td>遊戲後台 · 線路管理</td><td class="dim">防爆水池管理／押注段管理／線路資料管理</td><td class="dim">可開關</td><td class="dim">關</td></tr>
+      <tr><td>遊戲後台 · 遊戲管理</td><td class="dim">遊戲管理／押注段模板管理</td><td class="dim">可開關</td><td class="dim">關</td></tr>
+      <tr><td>遊戲後台 · 資料查詢</td><td class="dim">玩家資料查詢／投注資料查詢／遊戲盈虧報表</td><td class="dim">可開關</td><td class="dim">關</td></tr>
+      <tr><td>CRM活動</td><td class="dim">活動管理／抽寶箱模板管理</td><td class="dim">可開關</td><td class="dim"><strong style="color:var(--green-bright);">開</strong></td></tr>
+      <tr><td>CRM活動</td><td class="dim">活動審查／核准</td><td class="dim"><strong style="color:var(--red-bright);">鎖定（disabled）</strong></td><td class="dim">恆關 · <strong>🔒 最高權限專屬</strong></td></tr>
+      <tr><td>系統</td><td class="dim">帳號權限</td><td class="dim"><strong style="color:var(--red-bright);">鎖定（disabled）</strong></td><td class="dim">恆關 · <strong>🔒 最高權限專屬</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="body-text" style="font-size:11px;color:var(--text-dim);">
+    ※ 鎖定兩列<strong>仍需列出</strong>（不可隱藏），並以 <strong>disabled checkbox ＋「🔒 最高權限專屬」標註</strong>呈現，讓營運明確知道這兩頁不會被指派給操作(Operator)帳號。<br>
+    ※ 遊戲後台三群組頁面<strong>本來就存在於平台既有後台</strong>；此視窗只是把「該帳號能不能看到這些頁」納入同一份指派清單，<strong>不改動這些頁面本身的功能</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 新增一般操作帳號並指派可見頁面</div>
+    <b class="g">Given</b> <strong>最高權限帳號</strong>在帳號權限頁點「<strong>＋ 新增帳號</strong>」<br>
+    <b class="w">When</b> 於視窗<strong>輸入帳號名稱</strong>、勾選「<strong>活動管理 ＋ 玩家資料查詢</strong>」並儲存<br>
+    <b class="t">Then</b> 列表<strong>新增該一般操作帳號</strong>；該帳號登入後<strong>僅見活動管理與玩家資料查詢兩頁</strong>；「<strong>活動審查／核准</strong>」與「<strong>帳號權限</strong>」在視窗中呈 <strong>disabled、無法勾選</strong>；<strong>角色欄不可改</strong>、<strong style="color:var(--orange-bright);">無法建立最高權限或站長帳號</strong>。
+  </div>
+
+  <div class="sub-title" style="font-size:14px;">頁面可見性對照表（三層級）<span class="tag-upd">2026-08-03</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:150px;">層級</th><th style="width:190px;">帳號如何建立</th><th>可見頁面</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong style="color:var(--gold-light);">最高權限</strong><br><span class="dim" style="font-size:10px;">Admin</span></td>
+        <td><strong style="color:var(--gold-light);">最高權限(Admin)</strong></td>
         <td class="dim"><strong style="color:var(--orange-bright);">由 Server 端設置</strong><br><span style="font-size:11px;">後台不可自行新增最高權限帳號</span></td>
-        <td class="dim"><strong>CRM 全部頁面</strong>：活動管理／抽寶箱模板管理／活動審查（核准·駁回）／帳號權限。<br><strong>可新增「一般操作」帳號並指派其可見頁面</strong>。</td>
+        <td class="dim"><strong>CRM 全部頁面</strong>：活動管理／抽寶箱模板管理／活動審查（核准·駁回）／帳號權限。<br><strong>可新增「一般操作」帳號並指派其可見頁面（含遊戲後台頁面）</strong>。</td>
       </tr>
       <tr>
-        <td><strong style="color:var(--green-bright);">一般操作</strong><br><span class="dim" style="font-size:10px;">Operator</span></td>
+        <td><strong style="color:var(--green-bright);">操作(Operator)</strong></td>
         <td class="dim"><strong>由最高權限於後台新增</strong><br><span style="font-size:11px;">可逐帳號設定可見頁面</span></td>
-        <td class="dim">由最高權限指派；預設<strong>活動管理＋抽寶箱模板管理</strong>（可建立／編輯／送審，<strong>不可核准、不可上線</strong>）。<strong>不可見帳號權限頁</strong>。</td>
+        <td class="dim">由最高權限指派（<strong>CRM 頁面 ＋ 遊戲後台頁面</strong>，見上方〈<a href="#account-add-modal" style="color:var(--gold-light);">新增帳號視窗</a>〉清單）；預設<strong>活動管理＋抽寶箱模板管理</strong>（可建立／編輯／送審，<strong>不可核准、不可上線</strong>）。<strong>不可見活動審查與帳號權限頁</strong>。</td>
       </tr>
       <tr>
-        <td><strong style="color:var(--blue-bright);">查看（站長）</strong><br><span class="dim" style="font-size:10px;">Platform</span></td>
+        <td><strong style="color:var(--blue-bright);">查看(Platform)</strong><br><span class="dim" style="font-size:10px;">站長</span></td>
         <td class="dim"><strong style="color:var(--orange-bright);">由 Server 端設置</strong><br><span style="font-size:11px;">CRM 後台不提供編輯介面</span></td>
         <td class="dim"><strong style="color:var(--red-bright);">CRM 相關頁面一律不可見</strong>（不出現在 CRM 導覽中）。<br>可見範圍在<strong>遊戲後台側</strong>：<strong>指定線路、指定玩家的注單相關頁面</strong>與<strong>營收報表</strong>等資料。</td>
       </tr>
     </tbody>
   </table>
+  <div class="sub-title" style="font-size:13px;margin-top:22px;">逐頁對照（頁面群組 × 三層級）<span class="tag-upd">2026-08-03</span></div>
+  <table class="spec-table">
+    <thead><tr>
+      <th style="width:180px;">頁面群組</th>
+      <th style="width:230px;">頁面</th>
+      <th class="perm-center" style="width:110px;">最高權限(Admin)</th>
+      <th class="perm-center" style="width:150px;">操作(Operator)</th>
+      <th class="perm-center">查看(Platform)</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>遊戲後台 · 線路管理</td><td class="dim">防爆水池管理／押注段管理／線路資料管理</td>
+        <td class="perm-center"><span class="perm-yes">✔</span><br><span class="dim" style="font-size:10px;">全部</span></td>
+        <td class="perm-center"><span class="perm-cond">△</span><br><span class="dim" style="font-size:10px;">依指派（預設關）</span></td>
+        <td class="perm-center"><span class="perm-no">✕</span></td>
+      </tr>
+      <tr>
+        <td>遊戲後台 · 遊戲管理</td><td class="dim">遊戲管理／押注段模板管理</td>
+        <td class="perm-center"><span class="perm-yes">✔</span><br><span class="dim" style="font-size:10px;">全部</span></td>
+        <td class="perm-center"><span class="perm-cond">△</span><br><span class="dim" style="font-size:10px;">依指派（預設關）</span></td>
+        <td class="perm-center"><span class="perm-no">✕</span></td>
+      </tr>
+      <tr>
+        <td>遊戲後台 · 資料查詢</td><td class="dim">玩家資料查詢／投注資料查詢／遊戲盈虧報表</td>
+        <td class="perm-center"><span class="perm-yes">✔</span><br><span class="dim" style="font-size:10px;">全部</span></td>
+        <td class="perm-center"><span class="perm-cond">△</span><br><span class="dim" style="font-size:10px;">依指派（預設關）</span></td>
+        <td class="perm-center"><span class="perm-no">✕</span></td>
+      </tr>
+      <tr>
+        <td>CRM活動</td><td class="dim">活動管理／抽寶箱模板管理</td>
+        <td class="perm-center"><span class="perm-yes">✔</span></td>
+        <td class="perm-center"><span class="perm-cond">△</span><br><span class="dim" style="font-size:10px;">依指派（<strong>預設開</strong>）</span></td>
+        <td class="perm-center" rowspan="3" style="vertical-align:middle;"><span class="perm-no">✕</span><br><span class="dim" style="font-size:10px;">CRM 頁面一律不可見<br>不出現在 CRM 導覽中</span></td>
+      </tr>
+      <tr>
+        <td>CRM活動</td><td class="dim">活動審查／核准</td>
+        <td class="perm-center"><span class="perm-yes">✔</span></td>
+        <td class="perm-center"><span class="perm-no">✕</span><br><span class="dim" style="font-size:10px;"><strong>🔒 最高權限專屬</strong>（視窗中 disabled）</span></td>
+      </tr>
+      <tr>
+        <td>系統</td><td class="dim">帳號權限</td>
+        <td class="perm-center"><span class="perm-yes">✔</span></td>
+        <td class="perm-center"><span class="perm-no">✕</span><br><span class="dim" style="font-size:10px;"><strong>🔒 最高權限專屬</strong>（視窗中 disabled）</span></td>
+      </tr>
+    </tbody>
+  </table>
+
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">
     ※ 角色＝可見頁面集合，切分到<strong>頁面級</strong>、不做欄位級。<br>
     ※ <strong>最高權限與站長帳號皆由 Server 端建立</strong>；後台可新增與維護的只有<strong>一般操作</strong>帳號（含其可見頁面）。<br>
-    ※ 核准權為最高權限；一般操作可送審但不可自審自上（職責分離，見 <a href="#admin-version" style="color:var(--gold-light);">DEV §13</a>）。<br>
-    ※ 站長的注單與報表權限由 Server 配置，<strong>不在 CRM 角色矩陣內</strong>。
+    ※ <span class="perm-cond">△</span> ＝<strong>依指派</strong>——<strong>逐帳號於〈<a href="#account-add-modal" style="color:var(--gold-light);">新增帳號視窗</a>〉勾選</strong>；遊戲後台三群組<strong>預設關</strong>、CRM 活動管理與抽寶箱模板管理<strong>預設開</strong>。<br>
+    ※ 核准權為最高權限(Admin)；操作(Operator)可送審但不可自審自上（職責分離，見 <a href="#admin-version" style="color:var(--gold-light);">DEV §13</a>）。<br>
+    ※ <strong>查看(Platform) 的注單與報表權限由 Server 配置（指定線路／指定玩家），不在本矩陣內。</strong>
   </div>
 
   <div class="sub-title" id="template-mgmt">模板管理（獎項與門檻）</div>
@@ -3453,20 +3584,52 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>模板為 v1 核心頁面、獨立實體：</strong>模板可被<strong>多檔活動 / 多條標籤規則共用</strong>；於「🎁 抽寶箱」群組下的「模板管理」頁維護。活動 Tab 3 只顯示唯讀摘要並「前往模板管理 →」，<strong>不可在活動內直接編輯數值</strong>。後台模板編輯<strong>取代外部試算表</strong>，<strong>此項納入 v1 範圍</strong>。
   </div>
 
-  <div class="sub-title" style="font-size:14px;">一、模板列表欄位</div>
+  <div class="sub-title" style="font-size:14px;">一、模板列表欄位<span class="tag-upd">2026-08-03</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
       <tr><td>模板名稱</td><td class="dim">營運自訂。<strong> 名稱搜尋列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>（v1 不提供搜尋）</td></tr>
       <tr><td>押注比例（betRatio）</td><td class="dim">如 1.0x／1.2x／1.5x／0.8x</td></tr>
       <tr><td>目標 RTP</td><td class="dim">每模板自訂，容許 ±0.1%</td></tr>
-      <tr><td>貨幣（chips）</td><td class="dim">該模板已設定的貨幣以 chip 呈現（PHP 預設）</td></tr>
+      <tr><td>貨幣（chips）</td><td class="dim">該模板<strong>已啟用</strong>的貨幣以 chip 呈現（<strong>必填 17 ＋ 已啟用的選填</strong>；PHP 為預設 tab）</td></tr>
       <tr><td>使用中活動</td><td class="dim">被幾檔活動引用（<strong>N 檔</strong>）</td></tr>
-      <tr><td>操作</td><td class="dim">編輯 · 複製 · 刪除（<strong>最後一個模板不可刪</strong>）</td></tr>
+      <tr><td>操作</td><td class="dim">編輯 · 複製 · 刪除（受下方「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」限制）</td></tr>
     </tbody>
   </table>
 
-  <div class="sub-title" style="font-size:14px;">二、模板編輯器欄位</div>
+  <div class="sub-title" id="template-delete" style="font-size:14px;">模板刪除規則<span class="tag-upd">2026-08-03</span></div>
+  <table class="spec-table">
+    <thead><tr><th style="width:190px;">規則</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>使用中不可刪</strong></td><td class="dim">只要「<strong>使用中活動</strong>」<span class="mono">N ≥ 1</span>（被任何<strong>未結束</strong>活動的<strong>標籤規則</strong>或<strong>預設配置</strong>引用，狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>皆算），刪除不可用——按鈕 <strong>disabled</strong> ＋ tooltip「<strong>此模板有活動使用中，無法刪除</strong>」。<strong>已結束活動不計入 N</strong>。</td></tr>
+      <tr><td><strong>二次確認</strong></td><td class="dim"><span class="mono">N ＝ 0</span> 時點「刪除」→ 跳出確認視窗「<strong>是否確認刪除模板</strong>」（內文含<strong>模板名稱</strong>與警語：<strong>刪除後此模板無法再被活動引用</strong>），按「<strong>確認刪除</strong>」才執行、按「<strong>取消</strong>」關閉。</td></tr>
+      <tr><td>既有規則保留</td><td class="dim"><strong>最後一個模板不可刪</strong>；被「<strong>預設配置</strong>」引用中的模板<strong>恆為使用中、不可刪</strong>。</td></tr>
+      <tr><td><strong>軟刪除</strong><br><span class="dim" style="font-size:10px;">後端 · 基礎建設備注</span></td><td class="dim">刪除＝<strong>soft delete</strong>：<strong>列表不再顯示、不可再被活動引用</strong>，但<strong>模板資料與全部版本快照保留</strong>；獎勵歷程／對帳仍可依「<strong>模板 ID ＋ <span class="mono">template_version</span></strong>」追溯已刪模板的<strong>門檻／獎項</strong>內容。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 使用中模板不可刪</div>
+    <b class="g">Given</b> 模板 A 被 <strong>1 檔運行中活動</strong>引用（<span class="mono">N＝1</span>）<br>
+    <b class="w">When</b> 營運在模板列表檢視模板 A<br>
+    <b class="t">Then</b> 「刪除」呈 <strong>disabled</strong>、hover 顯示「<strong>此模板有活動使用中，無法刪除</strong>」，<strong>點擊無任何反應</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 未使用模板需二次確認</div>
+    <b class="g">Given</b> 模板 B <strong>未被任何未結束活動引用</strong>（<span class="mono">N＝0</span>）<br>
+    <b class="w">When</b> 營運點「刪除」並於「<strong>是否確認刪除模板</strong>」視窗按「<strong>確認刪除</strong>」<br>
+    <b class="t">Then</b> 模板 B <strong>自列表消失</strong>；若按「<strong>取消</strong>」則<strong>模板 B 保留、無任何變更</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 軟刪除可追溯</div>
+    <b class="g">Given</b> 模板 B <strong>已刪除</strong>，且歷史上曾有活動<strong>使用模板 B 發獎</strong><br>
+    <b class="w">When</b> 營運於<strong>遊戲後台「投注資料查詢」</strong>查該筆<strong>活動獎勵注單</strong><br>
+    <b class="t">Then</b> 仍可依<strong>模板 ID ＋ <span class="mono">template_version</span></strong> 查回<strong>當時的模板內容（門檻／獎項）</strong>。
+  </div>
+
+  <div class="sub-title" style="font-size:14px;">二、模板編輯器欄位<span class="tag-upd">2026-08-03</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
@@ -3476,11 +3639,11 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       · <strong>押注比例、目標 RTP</strong>：顯示於<strong>模板列表</strong>與<strong>活動 Tab 3 卡片</strong>。<br>
       · <strong>終獎最早格</strong>：v1 <strong>僅屬性顯示參考</strong>，<strong>不做與權重表的連動驗證</strong>（驗證列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>）。<br>
       · <strong>屬性編輯功能列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>。</td></tr>
-      <tr><td>貨幣 tabs</td><td class="dim"><strong>PHP 預設</strong>＋「＋從貨幣清單新增」；備選 11 種：PHP／USD／TWD／THB／VND／MYR／IDR／KRW／JPY／BRL／INR</td></tr>
+      <tr><td>貨幣 tabs</td><td class="dim"><strong>v1 貨幣清單寫死 64 種</strong>（硬編碼於前端與後端設定、<strong>非後台可維護</strong>），其中 <strong style="color:var(--gold-light);">必填 17 種</strong>（tab 恆顯示、不可移除、標必填記號）、<strong>選填 47 種</strong>（預設不顯示 tab，經「<strong>＋新增貨幣</strong>」啟用後才出現、可移除）。<strong>預設進入 PHP tab</strong>；tab 上顯示<strong>填寫狀態（已完成／未完成）</strong>。<strong>完整 64 種清單、必填 17 種與 UI 規則見下方〈<a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>〉</strong>。</td></tr>
       <tr><td>9 格累積門檻</td><td class="dim">累積制 ［100, 220, 360, 550, 850, 1250, 1700, 2500, <strong>3650</strong>］（PHP，各貨幣各自一套）</td></tr>
       <tr><td>四階獎項</td><td class="dim">小獎 ×5／中獎 ×2／大獎 ×1／最終獎 ×1；<strong>現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充（原型先行示意）</strong>，v1 僅現金</td></tr>
-      <tr><td>抽獎權重表</td><td class="dim"><strong>第 1~8 抽</strong>可輸入相對權重（每列合計 &gt;0 即可、非強制 100）；<strong>第 9 抽為唯讀說明列</strong>「依前 8 抽剩餘獎項自動決定（必中最後 1 個獎項）」，不提供輸入、不參與合計驗證。旁附系統試算：各格四類獎項機率分佈表＋終獎落點分佈視覺條維持 9 格顯示（第 9 格為推導的顯示性資訊）</td></tr>
-      <tr><td>RTP 驗證</td><td class="dim">任一〔貨幣 × 模板〕未通過（RTP 偏離目標 ±0.1% 或<strong>第 1~8 抽任一權重列合計為 0</strong>）→ 全域警示＋擋送審</td></tr>
+      <tr><td>抽獎權重表</td><td class="dim"><strong>第 1~8 抽</strong>可輸入相對權重（每列合計 &gt;0 即可、非強制 100）；<strong>第 9 抽為唯讀說明列</strong>「依前 8 抽剩餘獎項自動決定（必中最後 1 個獎項）」，不提供輸入、不參與合計驗證。</td></tr>
+      <tr><td>RTP 驗證<br><span class="dim" style="font-size:10px;">必填 vs 選填分層</span></td><td class="dim">· <strong style="color:var(--gold-light);">必填 17 種</strong>：任一幣別<strong>未完整填寫</strong>，或任一〔<strong>必填幣別 × 模板</strong>〕<strong>RTP 偏離目標 ±0.1%</strong>、或<strong>第 1~8 抽任一權重列合計為 0</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>，<strong>錯誤訊息需列出未通過的幣別</strong>。<br>· <strong>選填幣別</strong>：<strong>全空＝未啟用</strong>，不參與驗證、不擋儲存；<strong>一旦有任何欄位填寫即視為啟用</strong>，須填寫完整並通過與必填相同的驗證，否則<strong style="color:var(--red-bright);">擋儲存</strong>（避免半套資料上線）。<br>· <strong>版本快照僅保存已啟用幣別</strong>（必填 17 ＋ 已啟用的選填），未啟用幣別不入快照。<br>· 詳見〈<a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>〉。</td></tr>
     </tbody>
   </table>
   <div class="callout" style="font-size:12px;">
@@ -3488,7 +3651,193 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong style="color:var(--orange-bright);">⚠ 須加 v2 標示：</strong>於 <strong>FREE SPIN 卡 tab</strong> 與<strong>現金↔FREE SPIN 切換處</strong>標註 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>，避免營運誤以為 v1 即可設定 FS 獎項。
   </div>
 
-  <div class="sub-title" style="font-size:14px;">三、示範模板（四組）</div>
+  <div class="sub-title" id="currency-list" style="font-size:14px;">二之一、貨幣清單（v1 寫死 64 種 · 必填 17 種）<span class="tag-upd">2026-08-03</span></div>
+  <div class="callout danger" style="font-size:12px;">
+    <strong>⚠ v1 貨幣清單＝寫死（硬編碼）配置：</strong>平台「貨幣清單管理」功能尚未上線，<strong>v1 的 64 種貨幣清單與必填集合硬編碼於前端與後端設定，非後台可維護</strong>。<br>
+    <strong>k 前綴（kMMK／kIDR／kVND／kKHR／kLAK）＝千元計價變體</strong>；<strong>TWDp／TWDv、MYRh／MYRd、GBP 年齡分段（GBP(&lt; 25y)／GBP(&#8807; 25y)）為平台既有幣別變體</strong>——<strong style="color:var(--orange-bright);">照清單原樣使用，不得合併、不得改名</strong>。
+  </div>
+
+  <div class="sub-title" style="font-size:13px;margin-top:20px;">一、完整清單（64 種 · 依此順序）</div>
+  <div class="body-text" style="font-size:11.5px;">
+    <span class="line-chip on"> ★ 必填</span> 共 <strong>17 種</strong>（tab 恆顯示、不可移除）　
+    <span class="line-chip off"> 選填</span> 共 <strong>47 種</strong>（預設不顯示 tab，經「＋新增貨幣」啟用）
+  </div>
+  <div style="margin:10px 0 16px;">
+    <span class="line-chip on" title="第 1 種"> ★ PHP</span>
+    <span class="line-chip on" title="第 2 種"> ★ USD</span>
+    <span class="line-chip off" title="第 3 種"> TWD</span>
+    <span class="line-chip off" title="第 4 種"> TWDp</span>
+    <span class="line-chip off" title="第 5 種"> TWDv</span>
+    <span class="line-chip on" title="第 6 種"> ★ BDT</span>
+    <span class="line-chip off" title="第 7 種"> BND</span>
+    <span class="line-chip on" title="第 8 種"> ★ BRL</span>
+    <span class="line-chip on" title="第 9 種"> ★ CNY</span>
+    <span class="line-chip off" title="第 10 種"> EUR</span>
+    <span class="line-chip on" title="第 11 種"> ★ HKD</span>
+    <span class="line-chip on" title="第 12 種"> ★ INR</span>
+    <span class="line-chip off" title="第 13 種"> JPY</span>
+    <span class="line-chip on" title="第 14 種"> ★ KRW</span>
+    <span class="line-chip off" title="第 15 種"> LKR</span>
+    <span class="line-chip on" title="第 16 種"> ★ MMK</span>
+    <span class="line-chip off" title="第 17 種"> kMMK</span>
+    <span class="line-chip off" title="第 18 種"> MXN</span>
+    <span class="line-chip on" title="第 19 種"> ★ MYR</span>
+    <span class="line-chip off" title="第 20 種"> MYRh</span>
+    <span class="line-chip off" title="第 21 種"> MYRd</span>
+    <span class="line-chip on" title="第 22 種"> ★ PKR</span>
+    <span class="line-chip on" title="第 23 種"> ★ IDR</span>
+    <span class="line-chip on" title="第 24 種"> ★ kIDR</span>
+    <span class="line-chip off" title="第 25 種"> RUB</span>
+    <span class="line-chip off" title="第 26 種"> SGD</span>
+    <span class="line-chip on" title="第 27 種"> ★ THB</span>
+    <span class="line-chip off" title="第 28 種"> VND</span>
+    <span class="line-chip on" title="第 29 種"> ★ kVND</span>
+    <span class="line-chip off" title="第 30 種"> KHR</span>
+    <span class="line-chip off" title="第 31 種"> kKHR</span>
+    <span class="line-chip off" title="第 32 種"> LAK</span>
+    <span class="line-chip off" title="第 33 種"> kLAK</span>
+    <span class="line-chip off" title="第 34 種"> AED</span>
+    <span class="line-chip on" title="第 35 種"> ★ NPR</span>
+    <span class="line-chip off" title="第 36 種"> GBP</span>
+    <span class="line-chip off" title="第 37 種"> GBP(&lt; 25y)</span>
+    <span class="line-chip off" title="第 38 種"> GBP(≧ 25y)</span>
+    <span class="line-chip off" title="第 39 種"> AMD</span>
+    <span class="line-chip off" title="第 40 種"> AUD</span>
+    <span class="line-chip off" title="第 41 種"> ARS</span>
+    <span class="line-chip off" title="第 42 種"> CAD</span>
+    <span class="line-chip off" title="第 43 種"> CHF</span>
+    <span class="line-chip off" title="第 44 種"> CLP</span>
+    <span class="line-chip off" title="第 45 種"> COP</span>
+    <span class="line-chip off" title="第 46 種"> GEL</span>
+    <span class="line-chip off" title="第 47 種"> GHS</span>
+    <span class="line-chip off" title="第 48 種"> KES</span>
+    <span class="line-chip off" title="第 49 種"> KZT</span>
+    <span class="line-chip off" title="第 50 種"> NGN</span>
+    <span class="line-chip off" title="第 51 種"> NOK</span>
+    <span class="line-chip off" title="第 52 種"> NZD</span>
+    <span class="line-chip off" title="第 53 種"> OMR</span>
+    <span class="line-chip off" title="第 54 種"> PGK</span>
+    <span class="line-chip off" title="第 55 種"> PEN</span>
+    <span class="line-chip off" title="第 56 種"> PLN</span>
+    <span class="line-chip off" title="第 57 種"> SAR</span>
+    <span class="line-chip off" title="第 58 種"> SEK</span>
+    <span class="line-chip off" title="第 59 種"> TND</span>
+    <span class="line-chip on" title="第 60 種"> ★ TRY</span>
+    <span class="line-chip off" title="第 61 種"> TZS</span>
+    <span class="line-chip off" title="第 62 種"> VES</span>
+    <span class="line-chip off" title="第 63 種"> ZAR</span>
+    <span class="line-chip off" title="第 64 種"> UGX</span>
+  </div>
+
+  <div class="sub-title" style="font-size:13px;margin-top:20px;">二、必填 17 種（每個模板必須完整設定）</div>
+  <div class="body-text" style="font-size:12.5px;">
+    <strong>THB</strong>／<strong>BDT</strong>／<strong>PHP</strong>／<strong>TRY</strong>／<strong>IDR</strong>／<strong>MMK</strong>／<strong>INR</strong>／<strong>MYR</strong>／<strong>PKR</strong>／<strong>kVND</strong>／<strong>KRW</strong>／<strong>NPR</strong>／<strong>USD</strong>／<strong>HKD</strong>／<strong>BRL</strong>／<strong>kIDR</strong>／<strong>CNY</strong><br>
+    <span style="color:var(--text-dim);font-size:11px;">每一種必填幣別都須完成 <strong>9 格累積門檻 ＋ 四階獎項</strong>（含 9&times;4 權重）；<strong>未完成不可儲存</strong>。其餘 <strong>47 種為選填</strong>，可完全空白（＝未啟用）。</span>
+  </div>
+
+  <div class="sub-title" style="font-size:13px;margin-top:20px;">三、UI 結構（currency tabs）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">項目</th><th>規格</th></tr></thead>
+    <tbody>
+      <tr><td>預設 tab</td><td class="dim">進入模板編輯器<strong>預設停在 PHP tab</strong>。</td></tr>
+      <tr><td>必填 17 種</td><td class="dim"><strong>tab 恆顯示、不可移除</strong>；tab 上標<strong>必填記號</strong>（★）。</td></tr>
+      <tr><td>選填 47 種</td><td class="dim"><strong>預設不顯示 tab</strong>；經「<strong>＋新增貨幣</strong>」加入後才出現 tab，<strong>可移除</strong>——<strong style="color:var(--orange-bright);">移除＝清空該幣別設定</strong>。</td></tr>
+      <tr><td>＋新增貨幣</td><td class="dim"><strong>可搜尋的下拉選單</strong>；<strong>資料源＝上述寫死 64 種扣除已顯示者</strong>（不可自由輸入幣別代碼）。</td></tr>
+      <tr><td>填寫狀態</td><td class="dim">每個 tab 上顯示<strong>填寫狀態（已完成／未完成）</strong>，讓營運一眼看出哪些幣別還沒填完。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="font-size:13px;margin-top:20px;">四、儲存／送審驗證規則（必填 vs 選填）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">分層</th><th style="width:130px;">填寫狀態</th><th>驗證行為</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:var(--gold-light);">必填 17 種</strong></td>
+        <td class="dim">未完整填寫</td>
+        <td class="dim"><strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>；<strong>錯誤訊息須列出未通過的幣別</strong>。</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--gold-light);">必填 17 種</strong></td>
+        <td class="dim">已完整填寫</td>
+        <td class="dim">逐一驗算：任一〔<strong>必填幣別 &times; 模板</strong>〕<strong>RTP 偏離目標 &plusmn;0.1&#37;</strong>、或<strong>第 1~8 抽任一權重列合計為 0</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>（訊息列出未通過幣別）。</td>
+      </tr>
+      <tr>
+        <td><strong>選填 47 種</strong></td>
+        <td class="dim"><strong>全空</strong>（＝未啟用）</td>
+        <td class="dim"><strong style="color:var(--green-bright);">不參與驗證、不擋儲存</strong>。</td>
+      </tr>
+      <tr>
+        <td><strong>選填 47 種</strong></td>
+        <td class="dim">有<strong>任何欄位</strong>填寫</td>
+        <td class="dim">即視為<strong>已啟用</strong>，<strong>須填寫完整並通過與必填相同的驗證</strong>，否則<strong style="color:var(--red-bright);">擋儲存</strong>——<strong style="color:var(--orange-bright);">避免半套資料上線</strong>。</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout warn" style="font-size:12px;">
+    <strong>版本快照範圍：</strong><strong>僅保存已啟用幣別</strong>（必填 17 ＋ 已啟用的選填）；<strong style="color:var(--orange-bright);">未啟用幣別不入快照</strong>。<br>
+    <strong>「每套貨幣 &times; 每模板各自驗算、不做匯率換算」的既有原則不變</strong>（見 <a href="#rtp-formula" style="color:var(--gold-light);">DEV &sect;03 後端 RTP 驗算公式</a>；<strong>驗算範圍＝已啟用幣別</strong>）。
+  </div>
+
+  <div class="callout info" style="font-size:12px;">
+    <strong>🏗 基礎建設備注 &mdash; 貨幣清單管理＝後續平台基建 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>：</strong><br>
+    <strong>v1 貨幣清單與必填規則為寫死配置</strong>，<strong style="color:var(--orange-bright);">新增／停用幣別、調整必填集合需改版釋出</strong>。待平台「<strong>貨幣清單管理</strong>」功能上線後，改為<strong>讀取平台清單並於後台維護</strong>，屆時<strong>取代本節寫死清單</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 &middot; 必填幣別未完成 &rarr; 擋儲存</div>
+    <b class="g">Given</b> 營運編輯模板，必填幣別 <span class="mono">kVND</span> 的<strong>門檻尚有空格</strong><br>
+    <b class="w">When</b> 按「<strong>儲存</strong>」<br>
+    <b class="t">Then</b> <strong style="color:var(--red-bright);">儲存被擋下</strong>，錯誤訊息列出「<strong>kVND 未完成設定</strong>」；<strong>其餘已完成幣別的輸入內容保留、不遺失</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 &middot; 選填幣別全空 &rarr; 可儲存、不入快照</div>
+    <b class="g">Given</b> <strong>必填 17 種皆完整</strong>且 RTP 驗證通過，選填幣別（如 <span class="mono">EUR</span>、<span class="mono">SGD</span>）<strong>完全空白</strong><br>
+    <b class="w">When</b> 按「<strong>儲存</strong>」<br>
+    <b class="t">Then</b> <strong style="color:var(--green-bright);">儲存成功</strong>、<strong>產生新版本</strong>；<strong>版本快照僅含已啟用幣別</strong>，<span class="mono">EUR</span>／<span class="mono">SGD</span> <strong>不入快照</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 &middot; 選填幣別填一半 &rarr; 擋儲存</div>
+    <b class="g">Given</b> 營運以「<strong>＋新增貨幣</strong>」啟用 <span class="mono">SGD</span>，<strong>只填了部分門檻</strong><br>
+    <b class="w">When</b> 按「<strong>儲存</strong>」<br>
+    <b class="t">Then</b> <strong style="color:var(--red-bright);">儲存被擋下</strong>，錯誤訊息列出「<strong>SGD 未完成設定</strong>」；<strong>若營運改為移除 SGD tab（清空該幣別）則可正常儲存</strong>。
+  </div>
+
+  <div class="sub-title" id="template-new" style="font-size:14px;">三、新增模板初始狀態<span class="tag-upd">2026-08-03</span></div>
+  <div class="callout info" style="font-size:12px;">
+    <strong>原則：新增模板＝全空白，不預帶任何既有模板的數值。</strong>模板編輯器<strong>不得以任何既有模板作為預設值來源</strong>，避免營運誤沿用他組族群的門檻／獎項／權重而不自知。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:190px;">區塊</th><th>點「新增模板」進入編輯器時的初始狀態</th></tr></thead>
+    <tbody>
+      <tr><td>模板名稱、備註</td><td class="dim"><strong>空字串</strong>，僅顯示 placeholder（不預填「模板 A」等既有名稱）。</td></tr>
+      <tr><td>各幣別 9 格累積門檻</td><td class="dim"><strong>空</strong>（每個幣別 tab 各自為空，不帶入 PHP 或任何既有模板的門檻）。</td></tr>
+      <tr><td>四類獎項（小／中／大／終）</td><td class="dim"><strong>面額與類型設定皆空</strong>（現金／FS 類型不預選）。</td></tr>
+      <tr><td>第 1~8 抽 × 4 類別權重表</td><td class="dim"><strong>全部空白</strong>——<strong style="color:var(--orange-bright);">不預填 0</strong>。預填 0 會產生「已填寫」的假資料錯覺，且整列為 0 本就無法通過儲存驗證。</td></tr>
+      <tr><td>版本區塊</td><td class="dim"><strong>無任何版本紀錄</strong>：版本顯示「<strong>未建立</strong>」；版本歷程下拉為空狀態「<strong>尚未有版本紀錄</strong>」。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="body-text" style="font-size:12.5px;">
+    <strong>首次儲存才產生 V1：</strong>新模板在<strong>首次儲存成功</strong>時才寫入 <span class="mono">V1</span>＋更新時間戳並<strong>開始版本歷程</strong>；此後每次儲存<strong>依既有規則遞增版本並保留完整快照</strong>，行為沿用 <a href="#template-version" style="color:var(--gold-light);">下方「模板版本控制」</a>一節，不另立規則。
+  </div>
+
+  <div class="callout warn" style="font-size:12px;">
+    <strong>儲存前驗證（沿用既有規則，於此明確列出適用於新模板）：</strong><br>
+    ① <strong>第 1~8 抽每列權重合計 &gt; 0</strong>（任一列為 0 即不可儲存）；<br>
+    ② <strong>per-模板 RTP 與目標 RTP 差 ≤ ±0.1%</strong>（每貨幣 × 每模板各自驗算，見 <a href="#rtp-formula" style="color:var(--gold-light);">DEV §03 後端 RTP 驗算公式</a>）；<br>
+    ③ <strong>未通過不可儲存</strong>（同時擋送審）。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 新增模板為全空白且首次儲存才產生 V1</div>
+    <b class="g">Given</b> 營運在模板管理頁點「<strong>新增模板</strong>」進入模板編輯器<br>
+    <b class="w">When</b> 編輯器載入完成、尚未輸入任何內容<br>
+    <b class="t">Then</b> 名稱／備註／各幣別門檻／四類獎項／第 1~8 抽權重<strong>皆為空</strong>（權重非預填 0）；版本顯示「<strong>未建立</strong>」、版本歷程為「<strong>尚未有版本紀錄</strong>」；<strong>首次儲存成功後才出現 <span class="mono">V1</span></strong> 與更新時間戳。
+  </div>
+
+  <div class="sub-title" style="font-size:14px;">四、示範模板（四組）</div>
   <table class="spec-table">
     <thead><tr><th>模板</th><th>押注比例</th><th>目標 RTP</th><th>終獎最早格</th></tr></thead>
     <tbody>
@@ -3499,7 +3848,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title" style="font-size:14px;">四、抽獎權重設定（第 1~8 抽）</div>
+  <div class="sub-title" id="weight-setting" style="font-size:14px;">五、抽獎權重設定（第 1~8 抽）<span class="tag-upd">2026-08-03</span></div>
   <div class="callout info" style="font-size:12px;">
     <strong>設定第 1~8 抽權重；第 9 抽由系統自動決定</strong>（不放回抽，第 1~8 抽後必定只剩 1 個獎項，第 9 抽<strong>必中剩餘的最後 1 個獎項</strong>，故第 9 抽權重設定無意義）。
   </div>
@@ -3526,9 +3875,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr style="background:var(--dark-3);font-style:italic;color:var(--text-dim);"><td>第 9 抽</td><td colspan="4" style="text-align:center;font-style:italic;">依前 8 抽剩餘獎項自動決定（必中最後 1 個獎項）</td><td class="dim">系統自動 · 唯讀</td></tr>
     </tbody>
   </table>
-  <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ <strong>權重輸入範圍＝第 1~8 抽</strong>（四類相對權重，每列合計 &gt;0 即可驗證）；<strong>第 9 抽不提供輸入框、不參與合計驗證</strong>。旁附系統試算「各格實際機率分佈」表與「終獎落點分佈」視覺條<strong>維持 9 格顯示</strong>——其中<strong>第 9 格機率由前 8 抽消耗結果推導，屬顯示性資訊、非設定值</strong>。</div>
+  <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ <strong>權重輸入範圍＝第 1~8 抽</strong>（四類相對權重，每列合計 &gt;0 即可驗證）；<strong>第 9 抽不提供輸入框、不參與合計驗證</strong>。</div>
 
-  <div class="sub-title" id="template-version" style="font-size:14px;">五、模板版本控制</div>
+  <div class="sub-title" id="template-version" style="font-size:14px;">六、模板版本控制<span class="tag-upd">2026-08-03</span></div>
   <div class="callout success">
     <strong>2026-07-16 與後端 Eric 確認：</strong>模板既為<strong>可被多檔活動／多條規則共用的獨立實體</strong>，其編輯必須有版本控制，才不會在營運改一個模板時，連帶改掉正在運行的活動與玩家當日已鎖定的配置。
   </div>
@@ -3536,7 +3885,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <thead><tr><th>機制</th><th>設計</th></tr></thead>
     <tbody>
       <tr><td>模板編輯<strong>不換 ID</strong></td><td class="dim">同一<strong>模板 ID</strong> 下，<strong>每次儲存產生新版本序號</strong>（V1、V2…）。<strong>DB 已有序號</strong>，後台顯示時<strong>轉為版號格式</strong>（V1／V2）。活動引用的是<strong>模板 ID</strong>，不因編輯而斷開引用。</td></tr>
-      <tr><td>版本歷程</td><td class="dim"><strong>每版保留完整快照</strong>（門檻／獎項／權重／各貨幣設定）。<strong>模板編輯器內重用活動 Tab 4 的模式呈現</strong>——<strong>版本下拉</strong>（格式「<span class="mono">V1（更新 2026-06-28 10:12）</span>」）＋<strong>該版快照明細</strong>。</td></tr>
+      <tr><td>版本歷程</td><td class="dim"><strong>每版保留完整快照</strong>（門檻／獎項／權重／各貨幣設定；<strong>快照僅含已啟用幣別</strong>）。<strong>模板編輯器內重用活動 Tab 4 的模式呈現</strong>——<strong>版本下拉</strong>（格式「<span class="mono">V1（更新 2026-06-28 10:12）</span>」）＋<strong>該版快照明細</strong>。</td></tr>
       <tr><td><strong>生效時機</strong></td><td class="dim">· 模板被<strong>「運行中活動」引用</strong>時：新版本於<strong>各活動的「次一個每日重置時點」生效</strong>；<strong>玩家當日已鎖定的配置沿用舊版快照</strong>。<br>· <strong>未被任何運行中活動引用</strong>的模板：<strong>儲存即生效</strong>。<br>· 此設計與 <a href="#tag-rules" style="color:var(--gold-light);">DEV §12 當日鎖定</a>、<a href="#admin-version" style="color:var(--gold-light);">DEV §13「飛行中資料不被改寫」</a><strong>同一設計哲學</strong>。</td></tr>
       <tr><td>後台備注<br><span class="dim" style="font-size:10px;">Eric 要求</span></td><td class="dim"><strong>模板編輯器頂部</strong>與<strong>模板列表</strong>需顯示<strong style="color:var(--orange-bright);">黃色提示</strong>：「<strong>此模板被 N 檔運行中活動使用，儲存後將於次一個每日重置時點生效</strong>」，避免營運誤以為改完立刻生效。</td></tr>
     </tbody>
@@ -3601,17 +3950,17 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 列表列出該筆獎勵，並<strong>額外顯示 CAMPAIGN ID 與獎勵類型</strong>；同一筆紀錄與玩家端活動歷程所見一致；該筆金額<strong>不出現在任何單一遊戲的 GGR 統計中</strong>。
   </div>
 
-  <div class="sub-title">後台功能規格補充</div>
+  <div class="sub-title">後台功能規格補充<span class="tag-upd">2026-08-03</span></div>
   <table class="spec-table">
     <thead><tr><th>功能</th><th>描述</th><th>v1</th><th>v2預留</th></tr></thead>
     <tbody>
       <tr><td>活動建立表單（四分頁）</td><td class="dim"><strong>Tab 1 基本設定</strong>（活動ID唯讀／名稱／版型／期間／每日重置 HH:MM／倒數天數／投放線路）、<strong>Tab 2 標籤與配置</strong>（標籤規則 AND→模板＋預設配置）、<strong>Tab 3 獎項與門檻</strong>（唯讀摘要）、<strong>Tab 4 版本</strong>（下拉＋快照明細）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
-      <tr><td>模板管理（獎項與門檻）</td><td class="dim"><strong>模板為獨立實體、可被多檔活動／多條規則共用</strong>；模板編輯器含押注比例／目標 RTP／終獎最早格／貨幣 tabs（PHP＋11 備選）／9 格累積門檻／四階獎項／9×4 權重；<strong>後台模板編輯取代 Excel</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：押注比例模板匯入自動套 RTP</td></tr>
+      <tr><td>模板管理（獎項與門檻）</td><td class="dim"><strong>模板為獨立實體、可被多檔活動／多條規則共用</strong>；模板編輯器含押注比例／目標 RTP／終獎最早格／貨幣 tabs（<strong>寫死 64 種、必填 17 種</strong>）／9 格累積門檻／四階獎項／9×4 權重；<strong>後台模板編輯取代 Excel</strong>；<strong>刪除受「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」限制</strong>（使用中不可刪＋二次確認＋<strong>軟刪除保留版本快照</strong>）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：押注比例模板匯入自動套 RTP</td></tr>
       <tr><td>標籤規則 → 模板（分眾配置）</td><td class="dim">每列＝多標籤 chip（<strong>AND 需同時符合</strong>）→ 指定模板；固定置底<strong>預設配置（不可刪除）</strong>；未命中走預設配置、<strong>無准入閘門</strong>；<strong> 即時衝突檢查三層</strong>：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋</strong>，命中取「標籤數最多且全部符合」者優先，同標籤數又同時命中多條 → 警示擋送審。標籤池：大客/中客/小客/高風險/低風險</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：分群模型輸出核心標籤</td></tr>
       <tr><td>線路投放設定（platform_lines）</td><td class="dim">從<strong>預定義「已開通 Bet=0」平台清單</strong>多選投放線路；<strong>必選 ≥1、未選擋送審</strong>；每日重置時間一律以 UTC+8 計算</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：依線路差異化獎池</td></tr>
       <tr><td>版型主題設定（theme_id）</td><td class="dim">從<strong>預定義主題清單單選</strong>（treasure_box / gold_egg / red_envelope / xmas_gift），選中顯示縮圖預覽，控制前台換皮；<strong>不可自由輸入、不影響玩法數值</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：營運可自上傳素材</td></tr>
       <tr><td>活動期間倒數設定（countdown_lead_days）</td><td class="dim">設定前台由日期區間轉倒數的提前天數（預設 3）；活動列表倒數欄剩餘天數 &lt; 此值時轉紅</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
-      <tr><td>抽獎權重表（第 1~8 抽）</td><td class="dim">模板編輯器內<strong>第 1~8 抽可輸入相對權重</strong>（每列合計 &gt;0 即可、<strong>非強制 100</strong>）；<strong>第 9 抽由系統自動決定</strong>（不放回抽、必中剩餘的最後 1 個獎項）為唯讀說明列、不參與合計驗證；旁附系統試算：各格機率分佈＋終獎落點視覺條維持 9 格顯示（第 9 格為推導值）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
+      <tr><td>抽獎權重表（第 1~8 抽）</td><td class="dim">模板編輯器內<strong>第 1~8 抽可輸入相對權重</strong>（每列合計 &gt;0 即可、<strong>非強制 100</strong>）；<strong>第 9 抽由系統自動決定</strong>（不放回抽、必中剩餘的最後 1 個獎項）為唯讀說明列、不參與合計驗證</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>注單類型篩選（遊戲後台）</td><td class="dim">遊戲後台既有「投注資料查詢」新增<strong>注單類型：一般注單／活動獎勵</strong>；篩活動獎勵時額外呈現 <strong>CAMPAIGN ID ＋ 獎勵類型</strong>欄。</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：FREE SPIN 卡併入獎勵類型值域</td></tr>
       <tr><td>RTP 自動試算（每模板 ±0.1%）</td><td class="dim">填完即時顯示 RTP%；<strong>每模板自訂目標 RTP，容許 ±0.1%</strong>；任一〔貨幣 × 模板〕未通過（RTP 偏離或<strong>第 1~8 抽權重列合計 0</strong>）→ 全域警示＋擋送審</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>CRM 獨立獎勵歷程頁</td><td class="dim"><strong style="color:var(--orange-bright);">不設此頁</strong>——改於遊戲後台「投注資料查詢」（見上一列與本章「獎勵歷程查詢」）</td><td class="dim">✘ 不做</td><td class="dim">—</td></tr>
@@ -3620,8 +3969,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>監控與警報（Grafana + Telegram）</td><td class="dim"><strong>不做後台頁面</strong>；門檻於 Grafana 側維護、警報經 Telegram 通知、處理狀態由值班流程管理。<strong>取代原「Pending 異常列表／手動重試／AWC Log 頁」與「一鍵啟停」</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>版本快照（下拉＋明細）</td><td class="dim">Tab 4 版本下拉切換（「V1（更新 2026-06-28 10:12）」）＋快照明細（目標 RTP／標籤規則數量含預設逐行／起訖／使用模板數量）；<strong>UI 不顯示運行中/待生效 badge</strong>（current/pending 保留於資料層）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>活動上線審核流程</td><td class="dim">活動上線前須「提交審查」→ 由<strong>最高權限（Admin）核准</strong>才上線；<strong>「送審」與「核准/上線」須不同角色（職責分離）</strong>；<strong>駁回原因必填</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：多級審核／稽核</td></tr>
-      <tr><td>上線中的編輯規則（C4）</td><td class="dim"><strong>以 DEV §13 快照機制為準</strong>：編輯運行中活動<strong>產生「待生效版本」</strong>、不影響運行中快照與已參與玩家；<strong>Admin 可編輯運行中活動</strong>，<strong>一般操作者僅可編輯草稿／被駁回</strong>（DEV §13 權限矩陣 △）；緊急停用仍走<strong>先暫停 → 修改 → 恢復</strong>（狀態機含「暫停」節點）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
-      <tr><td>帳號權限管理（角色權限對照）</td><td class="dim"><strong>後台帳號卡片列表 ＋ 角色權限對照矩陣</strong>：<strong>最高權限</strong>（CRM 全部＋帳號權限；<strong>帳號由 Server 設置</strong>，可新增「一般操作」帳號但不可新增最高權限）／<strong>一般操作</strong>（由最高權限新增並指派可見頁面）／<strong>查看（站長 Platform）</strong>（<strong style="color:var(--orange-bright);">CRM 頁面皆不可見</strong>，權限由 Server 設置）。<strong>活動獎勵查詢權限由遊戲後台控管、不在此矩陣</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：頁內動作級權限</td></tr>
+      <tr><td>上線中的編輯規則（C4）</td><td class="dim"><strong>以 DEV §13 快照機制為準</strong>：編輯運行中活動<strong>產生「待生效版本」</strong>、不影響運行中快照與已參與玩家；<strong>最高權限(Admin) 可編輯運行中活動</strong>，<strong>一般操作者僅可編輯草稿／被駁回</strong>（DEV §13 權限矩陣 △）；緊急停用仍走<strong>先暫停 → 修改 → 恢復</strong>（狀態機含「暫停」節點）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
+      <tr><td>帳號權限管理（角色權限對照）</td><td class="dim"><strong>後台帳號卡片列表 ＋ 角色權限對照矩陣</strong>：<strong>最高權限</strong>（CRM 全部＋帳號權限；<strong>帳號由 Server 設置</strong>，可新增「一般操作」帳號但不可新增最高權限）／<strong>一般操作</strong>（由最高權限新增並指派可見頁面）／<strong>查看(Platform)</strong>（<strong style="color:var(--orange-bright);">CRM 頁面皆不可見</strong>，權限由 Server 設置）。<strong>活動獎勵查詢權限由遊戲後台控管、不在此矩陣</strong>。<strong>「<a href="#account-add-modal" style="color:var(--gold-light);">新增帳號視窗</a>」僅能新增一般操作帳號</strong>，可見頁面 checkbox <strong>含遊戲後台頁面</strong>（線路管理／遊戲管理／資料查詢，預設關）；<strong>活動審查／核准與帳號權限兩頁列出但 disabled（🔒 最高權限專屬）</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：頁內動作級權限</td></tr>
       <tr><td>活動複製</td><td class="dim">複本帶入<strong>全部設定</strong>、狀態重置為<strong>草稿</strong>、版本 V1、ID 加 <span class="mono">_COPY</span></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>月結對帳儀表板</td><td class="dim">視覺化活動成本 vs GGR 拆帳</td><td class="dim">—（數據組另拉）</td><td><span class="tag-pill" style="background:var(--purple-fill);color:var(--purple-bright);">v2 擴充</span></td></tr>
     </tbody>
@@ -4162,7 +4511,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>運行中 vs 待生效<br><span class="dim" style="font-size:10px;">UI 呈現</span></td><td class="dim">資料層保留<strong>「運行中版本（current）」</strong>與<strong>「待生效版本（pending）」</strong>；編輯產生的是待生效版本，於下一個生效切點（活動暫停更新 / 排程）才切換為運行中。<strong style="color:var(--gold-light);">UI 不顯示「運行中/待生效」badge，改以活動表單 Tab 4「版本下拉＋快照明細」呈現</strong>（下拉選項格式「V1（更新 2026-06-28 10:12）」）。</td></tr>
       <tr><td>多版本並存</td><td class="dim">同一活動<strong>不同版本可並存</strong>，支援<strong>比對與追溯</strong>（誰在何時改了什麼、玩家當時跑哪一版）。</td></tr>
       <tr><td>快照計數規則</td><td class="dim"><strong>快照明細的「標籤規則數量」＝規則 N 組，<span style="color:var(--gold-light);">預設配置另列、不計入 N</span></strong>；<strong>顯示格式「N 組規則 ＋ 預設」</strong>。<strong style="color:var(--orange-bright);">⚠ N 不含預設配置，文案須寫「N 組規則 ＋ 預設」。</strong></td></tr>
-      <tr><td>引用模板版本</td><td class="dim"><strong>活動版本快照引用「模板 ID ＋ 模板版本序號」</strong>（非僅模板 ID），確保回溯時取得的是當時實際生效的那一版模板數值；<strong>活動 Tab 4 快照明細中的模板名稱須帶版號</strong>（例：<strong>忠誠加碼 V2</strong>）。模板版本控制機制見 <a href="#template-version" style="color:var(--gold-light);">DEV §06 五、模板版本控制</a>。</td></tr>
+      <tr><td>引用模板版本</td><td class="dim"><strong>活動版本快照引用「模板 ID ＋ 模板版本序號」</strong>（非僅模板 ID），確保回溯時取得的是當時實際生效的那一版模板數值；<strong>活動 Tab 4 快照明細中的模板名稱須帶版號</strong>（例：<strong>忠誠加碼 V2</strong>）。模板版本控制機制見 <a href="#template-version" style="color:var(--gold-light);">DEV §06 六、模板版本控制</a>。</td></tr>
       <tr><td>與標籤變動一致</td><td class="dim">此「快照 + 下次切點生效」機制與 DEV §12「標籤變動不即時、待暫停更新後下次登錄套用」<strong>同一設計哲學</strong>：飛行中資料不被改寫。</td></tr>
     </tbody>
   </table>
@@ -4195,19 +4544,19 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="mermaid-cap">FIG.16 · 活動審核狀態機（六態：草稿 → 送審中 → 已核准 → 運行中 ⇄ 已暫停 → 已結束；駁回→回草稿）</div>
   </div>
   <div class="callout info">
-    <strong>核准後的狀態語意（明定）：</strong>Admin 核准時，落到哪一態<strong>取決於是否已達活動開始時間</strong>：
+    <strong>核准後的狀態語意（明定）：</strong>最高權限(Admin) 核准時，落到哪一態<strong>取決於是否已達活動開始時間</strong>：
     <ol style="margin:6px 0 0;padding-left:18px;line-height:1.9;">
       <li><strong>已達活動開始時間 → 直接進入「運行中」</strong>（對應原型 v2 的「<strong style="color:var(--green);">核准並上線</strong>」按鈕語意）。</li>
       <li><strong>未達開始時間 → 進入「已核准」</strong>；到達活動開始時間後，<strong>由排程自動轉「運行中」</strong>，不需人工再操作一次上線。</li>
     </ol>
   </div>
 
-  <div class="sub-title">六、權限角色矩陣（三層級）</div>
+  <div class="sub-title">六、權限角色矩陣（三層級）<span class="tag-upd">2026-08-03</span></div>
   <div class="callout danger">
     <strong>⚠ 層級與帳號來源（與 <a href="#backend" style="color:var(--gold-light);">DEV §06 頁面可見性對照表</a>一致）：</strong><br>
     <strong>① 最高權限</strong>：帳號<strong>由 Server 端設置</strong>；可於後台<strong>新增「一般操作」帳號並指派其可見頁面</strong>，但<strong>不可新增最高權限帳號</strong>。<br>
     <strong>② 一般操作</strong>：由最高權限於後台新增與維護。<br>
-    <strong>③ 查看（站長 Platform）</strong>：<strong style="color:var(--red-bright);">看不到 CRM 的任何頁面</strong>，因此<strong>不參與下表的 CRM 活動權限</strong>；其可見範圍為<strong>遊戲後台側的指定線路／指定玩家注單頁與營收報表</strong>，且<strong>權限內容由 Server 設置、不在 CRM 後台編輯</strong>。
+    <strong>③ 查看(Platform)（站長）</strong>：<strong style="color:var(--red-bright);">看不到 CRM 的任何頁面</strong>，因此<strong>不參與下表的 CRM 活動權限</strong>；其可見範圍為<strong>遊戲後台側的指定線路／指定玩家注單頁與營收報表</strong>，且<strong>權限內容由 Server 設置、不在 CRM 後台編輯</strong>。
   </div>
   <table class="spec-table">
     <thead><tr>
@@ -4221,7 +4570,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tr></thead>
     <tbody>
       <tr>
-        <td><strong>最高權限</strong><br><span class="dim" style="font-size:11px;">Admin · 由 Server 設置</span></td>
+        <td><strong>最高權限(Admin)</strong><br><span class="dim" style="font-size:11px;">由 Server 設置</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
@@ -4230,7 +4579,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <td class="perm-center"><span class="perm-cond">△</span><br><span class="dim" style="font-size:10px;">僅限一般操作</span></td>
       </tr>
       <tr>
-        <td><strong>一般操作</strong><br><span class="dim" style="font-size:11px;">Operator · 由最高權限新增</span></td>
+        <td><strong>操作(Operator)</strong><br><span class="dim" style="font-size:11px;">由最高權限新增</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-cond">△</span><br><span class="dim" style="font-size:10px;">限草稿/退回</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
@@ -4239,7 +4588,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <td class="perm-center"><span class="perm-no">✘</span></td>
       </tr>
       <tr>
-        <td><strong>查看（站長）</strong><br><span class="dim" style="font-size:11px;">Platform · 由 Server 設置</span></td>
+        <td><strong>查看(Platform)</strong><br><span class="dim" style="font-size:11px;">站長 · 由 Server 設置</span></td>
         <td class="perm-center" colspan="6" style="text-align:center;"><strong style="color:var(--red-bright);">不適用——CRM 全部頁面皆不可見</strong><br><span class="dim" style="font-size:10px;">可見範圍：遊戲後台側的指定線路／指定玩家注單頁與營收報表（由 Server 配置）</span></td>
       </tr>
     </tbody>
@@ -4247,7 +4596,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="callout warn">
     <strong>職責分離（Separation of Duties）：</strong>一般操作可<strong>建立 / 編輯 / 送審</strong>，但<strong>不可核准、不可上線</strong>——「送審」與「核准/上線」必須是不同層級，防止自審自上。<br>
     <strong><span class="perm-cond">△</span> 編輯（同 DEV §06「② 上線中的編輯規則（C4）」）：</strong><strong>一般操作僅可編輯「草稿／被駁回」狀態</strong>的活動；<strong>最高權限可對運行中活動編輯，編輯結果產生「待生效版本」</strong>（走本章三、快照機制），<strong>不影響運行中快照與已參與玩家</strong>，<strong>不需先下架</strong>；緊急停用仍走「先暫停 → 修改 → 恢復」。<br>
-    <strong><span class="perm-cond">△</span> 新增帳號：</strong>最高權限<strong>只能新增「一般操作」帳號</strong>；<strong>新增最高權限使用者一律由 Server 端設置</strong>。
+    <strong><span class="perm-cond">△</span> 新增帳號：</strong>最高權限<strong>只能新增「一般操作」帳號</strong>；<strong>新增最高權限使用者一律由 Server 端設置</strong>。<strong>視窗規格見 <a href="#account-add-modal" style="color:var(--gold-light);">DEV §06「帳號權限頁—新增帳號視窗」</a></strong>。
   </div>
 </section>
 
@@ -4354,7 +4703,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.0 · CONFIDENTIAL 2026<br>
+  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.4 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 受眾：後端／前端／美術／QA · 完整版（含 KPI／成本／時程）另見 <a href="treasure_box_crm_spec_v5.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">treasure_box_crm_spec_v5.0.html</a>（內容版號 V5.3）<br>
   <strong>兩份文件如有衝突，以本文件為準。</strong>
 </div>
