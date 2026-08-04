@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-30",
-  "count": 66,
+  "updated": "2026-08-27",
+  "count": 75,
   "items": [
     {
       "date": "2026-03-09",
@@ -39,7 +39,7 @@
     },
     {
       "date": "2026-04-07",
-      "category": "遊戲上線",
+      "category": "商務合作",
       "event": "PB 站台移除 Combo 在越南站和孟加拉站的 Hot Game 版位（PB 回應：該市場差異導致調整）"
     },
     {
@@ -314,6 +314,11 @@
     },
     {
       "date": "2026-07-15",
+      "category": "伺服器更新",
+      "event": "不停機更新（10:00）：新增 EGS & IGC 線路；後台新增線路管理（後端）；新增幣別 MYRh & MYRd & UGX；summary-service 寫入語法優化；retry-service 修正初始化缺漏；開啟遊戲 Slot008、Slot032"
+    },
+    {
+      "date": "2026-07-15",
       "category": "遊戲上線",
       "event": "[S008 農場][S032 阿拉丁] 進行版更並上線 Prod 正式機"
     },
@@ -328,9 +333,49 @@
       "event": "[S025 古墓貓] 進行全公司試玩會"
     },
     {
+      "date": "2026-07-24",
+      "category": "遊戲上線",
+      "event": "前端 Prod 版本更新（17:00）：[Fix] 修正 BMM_MGA 回饋問題；[Fix] 修復 iOS 音效異常；[Feat] 新增 UGX 幣值顯示；[Feat] 調整 MYRh 與 MYRd 符號顯示；[Feat] 統一 Spin 架構；[Feat] 更換 Debug 套件；[Feat] 優化 Shell 層功能（Preload 流程、Config 下載機制、動畫播放流程、錯誤防呆強化）；[Feat] 優化快取機制；[Feat] 統一並優化 Addressables 設定；[Feat] 優化 AssetBundle 下載流程與錯誤處理；[Feat] 更新網路底層與 WebView 套件；[Feat] 優化 Logo 動畫卡頓問題"
+    },
+    {
+      "date": "2026-07-29",
+      "category": "伺服器更新",
+      "event": "不停機更新（10:00）：遊戲歷程重構加入 API v2（尚未啟用）；遊戲後台－遊戲／線路管理優化 part1（僅後端）；開啟遊戲 [S033 Royal Riches][A001 Fast Game - Mines]"
+    },
+    {
       "date": "2026-07-30",
       "category": "遊戲開發",
-      "event": "[S021 財神] 機率 AB Testing 開始（2026-07-30 ～ 2026-08-13）"
+      "event": "[S021 Caishen Wins 財神] 機率 AB Testing 開始（2026-07-30 ～ 2026-08-13）"
+    },
+    {
+      "date": "2026-08-03",
+      "category": "數據異常",
+      "event": "[S021 Caishen Wins 財神] AB Testing B 組設定檔 `rtp` 參數人為配置錯誤：誤設為 `4`（依 Go 原始碼 iota 常數定義對應 `LOW_WIN_RTP` 低中獎編號），正確應為 `5`（`PCT_097_RTP_B`，即 96.7% B 組編號），導致 B 組玩家套用低中獎率。影響 B 組 1,086 名玩家（約占總測試人數 49.5%），B 組實際 RTP 僅 37.92%（押注 $13,224 USD／贏分 $5,015 USD）；受影響期間與週日 JP 活動新客流入期重疊。已於 2026-08-03 15:00 完成線上配置修正，數值恢復正常。風險評分 7/10（責任歸屬明確：配置審核不足＋缺乏 Staging 模擬驗證）"
+    },
+    {
+      "date": "2026-08-03",
+      "category": "商務合作",
+      "event": "UFA SLOT 協助宣傳 [S012 釣魚哥]，提供宣傳版位曝光（2026-08-03 ～ 2026-08-06）"
+    },
+    {
+      "date": "2026-08-06",
+      "category": "遊戲上線",
+      "event": "[S064 Lady Fortuna 海盜嬌娃] 預計於 UFA SLOT 開放遊玩（獨佔）；其他 AWC 支援泰銖線路須同步關閉 S064"
+    },
+    {
+      "date": "2026-08-27",
+      "category": "遊戲上線",
+      "event": "[S062 Lucky Paws 財神貓] 預計於 UFA SLOT 開放遊玩（獨佔）；其他 AWC 支援泰銖線路須同步關閉 S062"
+    },
+    {
+      "date": "2026-08-27",
+      "category": "遊戲開發",
+      "event": "[S062 Lucky Paws 財神貓] 機率 AB Testing 開始（2026-08-27 ～ 2026-09-10）；與上線同日開跑；本次為 S021 財神 AB Testing 數據污染後的重啟，須先經 Server Staging 模擬驗證設定檔再上線"
+    },
+    {
+      "date": "2026-08-27",
+      "category": "商務合作",
+      "event": "預計美國直連平台「House of Spins」開放營運"
     }
   ]
 }
