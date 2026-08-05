@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 開發交付版規格書 DEV V1.4</title>
+<title>抽寶箱 開發交付版規格書 DEV V1.6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1263,7 +1263,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">抽寶箱<br>開發交付版規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.4</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.6</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">SOURCE</span><span class="sidebar-meta-val">完整版 V5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
@@ -1333,8 +1333,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <a class="sidebar-sub-link" href="#backend">導覽結構（CRM活動）</a>
         <a class="sidebar-sub-link" href="#backend">活動類型擴充</a>
         <a class="sidebar-sub-link" href="#backend">活動表單（四分頁）</a>
-        <a class="sidebar-sub-link" href="#backend">模板管理</a>
+        <a class="sidebar-sub-link" href="#tag-pool">標籤池初版</a>
+        <a class="sidebar-sub-link" href="#camp-lines">適用路線（新增＋下拉）</a>
+        <a class="sidebar-sub-link" href="#template-mgmt">模板管理</a>
+        <a class="sidebar-sub-link" href="#template-pager">模板列表分頁</a>
         <a class="sidebar-sub-link" href="#template-delete">模板刪除規則</a>
+        <a class="sidebar-sub-link" href="#prize-count">獎項檔位數量（加總＝9）</a>
+        <a class="sidebar-sub-link" href="#rtp-info">RTP 驗算與獎池總額</a>
         <a class="sidebar-sub-link" href="#template-new">新增模板初始狀態</a>
         <a class="sidebar-sub-link" href="#template-version">模板版本控制</a>
         <a class="sidebar-sub-link" href="#backend">監控與警報</a>
@@ -1427,7 +1432,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.4 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.6 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1436,7 +1441,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.4 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.6 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1472,6 +1477,18 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-08-04</td>
+          <td>DEV V1.6</td>
+          <td><a href="#template-mgmt" style="color:var(--gold-light);">§06 模板管理</a>／模板編輯器／<a href="#backend" style="color:var(--gold-light);">建立新活動</a>／<a href="#account-perm" style="color:var(--gold-light);">帳號權限頁</a></td>
+          <td><a href="#template-mgmt" style="color:var(--gold-light);">使用中活動 N 檔可展開</a>（未結束明細、N 即時推導同刪除口徑）；<a href="#template-pager" style="color:var(--gold-light);">模板列表分頁</a>（10／50／100＋回第 1 頁）；<a href="#prize-count" style="color:var(--gold-light);">獎項四檔數量可自訂</a>（加總＝9、最終獎≥1）；RTP 驗算與獎池總額<strong>內移多貨幣區塊</strong>、<strong>移除目標 1.00%±0.1 與偏離警示</strong>；<a href="#tag-pool" style="color:var(--gold-light);">標籤池改消費分層 5 級×RTP 體驗 2 類</a>（移除低/高風險、僅留累積門檻）；<a href="#camp-lines" style="color:var(--gold-light);">適用路線改新增＋下拉選擇</a>（清單走後端 API）；<a href="#account-perm" style="color:var(--gold-light);">帳號搜尋（僅名稱）＋角色篩選</a>。<strong>七項皆納 v1</strong></td>
+        </tr>
+        <tr>
+          <td>2026-08-03</td>
+          <td>DEV V1.5</td>
+          <td><a href="#admin-i18n" style="color:var(--gold-light);">§06 後台</a></td>
+          <td>新增〈<a href="#admin-i18n" style="color:var(--gold-light);">後台多國語系（i18n · zh-TW／en）</a>〉：預設繁中、切換即時生效、偏好依帳號記憶、系統文案以 i18n key 管理、使用者資料/幣別/ID/時間不翻譯、附中英術語對照表（<strong>含 i18n key</strong>，原型不做語系）</td>
+        </tr>
         <tr>
           <td>2026-08-03</td>
           <td>DEV V1.4</td>
@@ -1541,7 +1558,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <details class="fold">
-    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.4<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
+    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.6<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
     <div class="fold-body">
       <table class="spec-table compact">
         <thead><tr><th style="width:190px;">完整版章節</th><th style="width:150px;">本文件章節</th><th>處理方式</th></tr></thead>
@@ -1837,16 +1854,16 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="callout info">
     <code>模板 RTP = ( 該模板 9 格獎項金額總和 ) ÷ ( 該模板第 9 格累積門檻 )</code><br><br>
     <strong>分子</strong>＝該模板四階獎項按格數加總（小×5 ＋ 中×2 ＋ 大×1 ＋ 最終×1）；<strong>分母</strong>＝該模板的總（累積）門檻。<strong>兩者皆為模板設定值，隨標籤族群而異，公式中不含任何固定金額。</strong><br>
-    <strong>每套貨幣（各貨幣一套）× 每個模板各自代入、各自驗算，不做匯率換算。</strong><strong style="color:var(--gold-light);">驗算範圍＝已啟用幣別</strong>（必填 17 ＋ 已啟用的選填；清單見 <a href="#currency-list" style="color:var(--gold-light);">DEV §06 二之一、貨幣清單</a>）。後台即時試算，超出該模板<strong>目標 RTP ±0.1%</strong> 即警示、擋送審。<br>
-    <strong>此驗證與後台模板編輯器的儲存前驗證為同一套規則</strong>（見 <a href="#template-mgmt" style="color:var(--gold-light);">DEV §06 模板編輯器欄位「RTP 驗證」</a>）。
+    <strong>每套貨幣（各貨幣一套）× 每個模板各自代入、各自驗算，不做匯率換算。</strong><strong style="color:var(--gold-light);">驗算範圍＝已啟用幣別</strong>（必填 17 ＋ 已啟用的選填；清單見 <a href="#currency-list" style="color:var(--gold-light);">DEV §06 二之一、貨幣清單</a>）。後台<strong>即時試算並顯示於各幣別 tab 內</strong>（連同該幣別<strong>獎池總額</strong>），<strong style="color:var(--gold-light);">為純資訊顯示</strong>——<strong style="color:var(--orange-bright);">不做目標值校驗、不警示、不擋儲存與送審</strong>。<br>
+    <strong>儲存前的硬性校驗</strong>為：<strong>獎項數量加總＝9</strong>、<strong>最終獎 ≥ 1</strong>、<strong>必填幣別填寫完整</strong>、<strong>第 1~8 抽權重列合計 &gt; 0</strong>（見 <a href="#rtp-info" style="color:var(--gold-light);">DEV §06 二之三、RTP 驗算與獎池總額</a>）。
   </div>
 
   <div class="sub-title">分眾架構：標籤規則（AND 複合條件）→ 模板（對齊後台原型 v2）</div>
   <div class="callout">
     <strong>對齊後台原型 v2：</strong>分眾以「<strong>標籤規則 → 模板</strong>」映射列表表達；標籤僅用於選模板，<strong>未命中任何規則走預設配置</strong>、活動照常可玩（<strong>無准入閘門</strong>）。完整規則見 <a href="#tag-rules" style="color:var(--gold-light);">DEV §12 玩家標籤與權限規則</a>。<br><br>
     <strong>① 模板（給什麼）＝CRM 維護：</strong>每個模板含 門檻表(9格)＋權重表(9×4)＋目標RTP（＋押注比例／貨幣／版本）。<strong>模板為獨立實體，可被多檔活動與多條標籤規則共用</strong>（見 <a href="#backend" style="color:var(--gold-light);">DEV §06 模板管理</a>）。<br>
-    <strong>② 標籤（給誰）＝DA／CDP 提供：</strong>玩家分群標籤由 DA 打上（<strong>大客／中客／小客／高風險／低風險</strong>），box／CRM 不自算、只比對。<br>
-    <strong>③ 標籤規則（AND 複合條件）：</strong>每列規則＝多個標籤 chip（<strong>AND，需同時符合</strong>）→ 指定一個模板（例：<em>大客 AND 非高風險 → 忠誠加碼</em>）。單一標籤不足以命中，須整組條件同時成立。<br>
+    <strong>② 標籤（給誰）＝DA／CDP 提供：</strong>玩家分群標籤由 DA 打上（<strong>消費分層：小客／中客／大客／超大客／巨客</strong>；<strong>RTP 體驗：正常／慘輸</strong>，共 7 個；見 <a href="#tag-pool" style="color:var(--gold-light);">DEV §06 標籤池初版</a>），box／CRM 不自算、只比對。<br>
+    <strong>③ 標籤規則（AND 複合條件）：</strong>每列規則＝多個標籤 chip（<strong>AND，需同時符合</strong>）→ 指定一個模板（例：<em>大客 AND 慘輸 → 救援高倍</em>）。單一標籤不足以命中，須整組條件同時成立。<br>
     <strong>④ 預設配置（固定置底、不可刪除）：</strong>未命中任何規則 → 走<strong>預設配置</strong>對應的模板，活動照常可玩；標籤僅用於選模板，未命中不會使活動消失。<br>
     <strong>⑤ 即時衝突檢查：</strong>標籤組合重複、或規則未選任何標籤 → 紅底警示、擋送審。<br><br>
     <strong>照顧的兩個槓桿（寫在模板的「意圖」裡）：</strong>(1) 目標RTP 越高→總門檻越低；(2) 終獎最早格越前→早退也可能已中終獎。系統可由「意圖(目標RTP＋終獎最早格)」自動編譯出門檻＋權重表。以下為 PHP 示範（各貨幣各自一套、結構相同）。
@@ -1862,7 +1879,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td class="mono">標準模板 A</td><td>預設配置（未命中任何規則兜底）</td><td class="mono">1.0x</td><td>1.03%</td><td>第 6 格</td><td class="mono">₱3,650</td></tr>
       <tr><td class="mono">忠誠加碼</td><td>忠誠玩家加碼</td><td class="mono">1.2x</td><td>1.50%</td><td>第 5 格</td><td class="mono">₱2,460</td></tr>
       <tr><td class="mono">救援高倍</td><td>回流／救援加碼</td><td class="mono">1.5x</td><td>2.00%</td><td>第 3 格</td><td class="mono">₱1,830</td></tr>
-      <tr><td class="mono">保守低倍</td><td>高風險客保守配置</td><td class="mono">0.8x</td><td>0.98%</td><td>第 6 格</td><td class="mono">₱3,780</td></tr>
+      <tr><td class="mono">保守低倍</td><td>小客保守配置</td><td class="mono">0.8x</td><td>0.98%</td><td>第 6 格</td><td class="mono">₱3,780</td></tr>
     </tbody>
   </table>
   <div class="body-text" style="font-size:12px;"><strong>選模板＝標籤規則（AND 複合條件）命中哪一列 → 套用該列指定的模板</strong>；未命中 → 走預設配置（標準模板 A）。標籤僅用於選模板、不做准入閘門。</div>
@@ -2031,7 +2048,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>A7</td><td>冪等</td><td class="dim">同格重複請求只產生一筆派獎（見上方 BDD）。</td></tr>
       <tr><td>A8</td><td>失敗不誤扣</td><td class="dim">發放失敗 → 格子未開、次數退回、有失敗事件可被警報接住。</td></tr>
       <tr><td>A9</td><td>斷線一致</td><td class="dim">任何時點斷線重入，狀態與後端一致，無「扣次數沒獎」或「重複領獎」。</td></tr>
-      <tr><td>A10</td><td>RTP 驗證</td><td class="dim">每組〔<strong>已啟用</strong>貨幣 × 模板〕實際 RTP 與目標 RTP 差距在 <strong>±0.1%</strong> 內（見 <a href="#prizes" style="color:var(--gold-light);">DEV §03</a>）。</td></tr>
+      <tr><td>A10</td><td>RTP 驗算可見</td><td class="dim">每組〔<strong>已啟用</strong>貨幣 × 模板〕於<strong>該幣別 tab 內</strong>顯示<strong>獎池總額與 RTP 驗算結果</strong>（<strong style="color:var(--orange-bright);">純資訊顯示、不做目標值校驗</strong>；見 <a href="#rtp-info" style="color:var(--gold-light);">DEV §06 二之三</a>）。</td></tr>
       <tr><td>A11</td><td>可回溯</td><td class="dim">任一筆派獎皆可查回：領獎時間、活動、活動版本、模板與模板版本、獎勵類型與面額。</td></tr>
     </tbody>
   </table>
@@ -2770,6 +2787,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
   <div class="callout info">
     <strong>後台設計原則（對齊原型 v2）：</strong>v1 後台聚焦「<strong>活動管理</strong>」「<strong>抽寶箱模板管理</strong>」「<strong>活動審查</strong>」三頁，不包含數據分析儀表板（由數據組另拉）。<strong style="color:var(--orange-bright);">活動獎勵查詢走遊戲後台的「投注資料查詢」，CRM 後台不設獨立獎勵歷程頁</strong>（見下方專節）。<strong>監控與警報改由 Grafana + Telegram 值班流程處理、不做後台頁面</strong>（見下方「監控與警報」小節）；<strong>不含「異常處理（Pending 發放列表／手動重試）」模組與「一鍵啟停」按鈕</strong>。<br>
+    <strong>多國語系：</strong><strong style="color:var(--gold-light);">後台全站支援 zh-TW／en 雙語系</strong>，規則見下方〈<a href="#admin-i18n" style="color:var(--gold-light);">後台多國語系</a>〉一節。<br>
     <strong>互動原型：</strong><a href="抽寶箱後台管理介面v2.html" target="_blank" rel="noopener" style="color:var(--gold-light);">《抽寶箱後台管理介面 v2.html》 ↗</a>（同資料夾，可點開）——下方畫面示意與「UI 設計說明」即依此原型還原。
   </div>
 
@@ -2926,7 +2944,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 先出現「活動類型選擇」下拉且僅有「抽寶箱」可選；選定後進入表單，表單內活動類型<strong>唯讀不可改</strong>；儲存後該活動出現在列表，「活動類型」欄顯示「抽寶箱」，且可被「活動類型」篩選命中。
   </div>
 
-  <div class="sub-title">後台活動設定畫面示意（四分頁表單）</div>
+  <div class="sub-title">後台活動設定畫面示意（四分頁表單）<span class="tag-upd">2026-08-04</span></div>
   <div class="callout info" style="font-size:12px;">
     <strong>活動表單為 4 分頁：</strong><span style="color:var(--gold-light);">Tab 1 基本設定</span> ／ <span style="color:var(--gold-light);">Tab 2 標籤與配置</span> ／ <span style="color:var(--gold-light);">Tab 3 獎項與門檻（唯讀摘要）</span> ／ <span style="color:var(--gold-light);">Tab 4 版本</span>。<strong>多貨幣設定、9 格門檻、9×4 權重、RTP 驗算整段移到「模板編輯器」</strong>（見下方模板管理），活動內不可直接編輯數值。
   </div>
@@ -2977,18 +2995,18 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <div class="admin-input"><span style="color:var(--gold-light);">3</span> &nbsp; <span style="color:var(--text-dim);">天 · 活動結束前幾天前台自動由日期區間切換為倒數計時（預設 3）</span></div>
       </div>
       <div class="admin-form-row">
-        <div class="admin-label">投放線路<br><span style="font-size:8px;color:var(--text-dim);">必選 ≥1 · 未選擋送審</span></div>
-        <div class="admin-input"><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">✓ LINE_A 菲律賓</span> &nbsp; <span style="color:var(--gold-light);font-family:'DM Mono',monospace;">✓ LINE_C 泰國</span> &nbsp; <span style="color:var(--text-dim);font-family:'DM Mono',monospace;">🔒 LINE_B 越南（未開通·鎖定）</span></div>
+        <div class="admin-label">適用路線<br><span style="font-size:8px;color:var(--text-dim);">新增＋下拉選擇 · 送審前 ≥1</span></div>
+        <div class="admin-input"><span style="color:var(--gold-light);">＋新增路線</span> <span style="color:var(--text-dim);">▾（下拉內建搜尋過濾 · 只列尚未加入的線路）</span> &nbsp; <span style="color:var(--gold-light);">全部加入</span><br><span style="color:var(--gold-light);font-family:'DM Mono',monospace;">AWS062 ×</span> &nbsp; <span style="color:var(--gold-light);font-family:'DM Mono',monospace;">AWS051 ×</span> &nbsp; <span style="color:var(--text-dim);font-size:10px;">已加入的線路以 chip（可移除 ×）顯示</span></div>
       </div>
 
       <div class="admin-section-divider">Tab 2 · 標籤與配置（標籤規則 AND 複合條件 → 模板）</div>
       <div class="admin-form-row">
         <div class="admin-label">標籤規則 1</div>
-        <div class="admin-input"><span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">大客</span> <span style="color:var(--text-dim);">AND</span> <span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">低風險</span> &nbsp;→&nbsp; <span style="color:var(--gold-light);">模板：忠誠加碼</span></div>
+        <div class="admin-input"><span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">大客</span> <span style="color:var(--text-dim);">AND</span> <span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">正常</span> &nbsp;→&nbsp; <span style="color:var(--gold-light);">模板：忠誠加碼</span></div>
       </div>
       <div class="admin-form-row">
         <div class="admin-label">標籤規則 2</div>
-        <div class="admin-input"><span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">小客</span> <span style="color:var(--text-dim);">AND</span> <span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">低風險</span> &nbsp;→&nbsp; <span style="color:var(--gold-light);">模板：救援高倍</span></div>
+        <div class="admin-input"><span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">大客</span> <span style="color:var(--text-dim);">AND</span> <span style="color:var(--purple-bright);font-family:'DM Mono',monospace;">慘輸</span> &nbsp;→&nbsp; <span style="color:var(--gold-light);">模板：救援高倍</span></div>
       </div>
       <div class="admin-form-row">
         <div class="admin-label" style="color:var(--gold-light);">預設配置<br><span style="font-size:8px;color:var(--text-dim);">固定置底 · 不可刪除</span></div>
@@ -3017,7 +3035,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
       <div class="admin-form-row">
         <div class="admin-label">V1 快照明細</div>
-        <div class="admin-input" style="line-height:1.9;">目標 RTP：1.03%／1.50%／2.00%<br>標籤規則數量：<strong>2 組規則 ＋ 預設</strong> — 大客 AND 低風險 → 忠誠加碼｜小客 AND 低風險 → 救援高倍｜＋預設 → 標準模板 A<br>開始：2026/07/01 00:00:00　結束：2026/09/30 23:59:59<br>使用模板數量：<strong>3 個</strong>（標準模板 A、忠誠加碼、救援高倍）</div>
+        <div class="admin-input" style="line-height:1.9;">目標 RTP：1.03%／1.50%／2.00%<br>標籤規則數量：<strong>2 組規則 ＋ 預設</strong> — 大客 AND 正常 → 忠誠加碼｜大客 AND 慘輸 → 救援高倍｜＋預設 → 標準模板 A<br>開始：2026/07/01 00:00:00　結束：2026/09/30 23:59:59<br>使用模板數量：<strong>3 個</strong>（標準模板 A、忠誠加碼、救援高倍）</div>
       </div>
       <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ UI 不再顯示「運行中/待生效」badge；current/pending 概念保留於資料層，UI 以「版本下拉＋快照明細」呈現（見 DEV §13）。</div>
 
@@ -3032,6 +3050,43 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="callout warn" style="font-size:12px;">
     <strong>Tab 4 快照「標籤規則數量」計數規則（明定）：</strong><strong>「標籤規則數量」＝規則 N 組，<span style="color:var(--gold-light);">預設配置另列、不計入 N</span></strong>；<strong>顯示格式固定為「N 組規則 ＋ 預設」</strong>（上例＝2 條規則 ＋ 1 個預設配置 → 顯示「<strong>2 組規則 ＋ 預設</strong>」）。<br>
     <strong style="color:var(--orange-bright);">⚠ 顯示格式須為</strong>「<strong>N 組規則 ＋ 預設</strong>」（<strong>N 不含預設配置</strong>）。同步適用 <a href="#admin-version" style="color:var(--gold-light);">DEV §13 版本快照</a>。
+  </div>
+
+  <div class="sub-title" id="tag-pool">標籤池初版（消費分層 × RTP 體驗）<span class="tag-upd">2026-08-04</span></div>
+  <div class="callout info" style="font-size:12px;">
+    <strong>兩個獨立維度、共 <span style="color:var(--gold-light);">7 個標籤</span>：</strong>活動標籤規則可<strong>組合引用</strong>（AND 複合條件），例如「<strong>大客 ＋ 慘輸 → 指派救援高倍模板</strong>」。<br>
+    <strong style="color:var(--red-bright);">v1 起移除「低風險」「高風險」標籤</strong>——全文任何引用低／高風險標籤之處（含活動示例、標籤規則示例、BDD）一併以新標籤替換。
+  </div>
+
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">維度一：消費分層（依玩家消費／押注金額之百分位 p）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">標籤</th><th>百分位區間</th></tr></thead>
+    <tbody>
+      <tr><td><strong>小客</strong></td><td class="dim"><span class="mono">0p–50p</span></td></tr>
+      <tr><td><strong>中客</strong></td><td class="dim"><span class="mono">51p–80p</span></td></tr>
+      <tr><td><strong>大客</strong></td><td class="dim"><span class="mono">81p–90p</span></td></tr>
+      <tr><td><strong>超大客</strong></td><td class="dim"><span class="mono">91p–99p</span></td></tr>
+      <tr><td><strong>巨客</strong></td><td class="dim"><span class="mono">99p–100p</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">維度二：RTP 體驗（依玩家實際遊戲 RTP 體驗）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">標籤</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>正常</strong></td><td class="dim">遊戲 RTP 體驗在<strong>正常範圍</strong></td></tr>
+      <tr><td><strong>慘輸</strong></td><td class="dim"><strong>實際 RTP 顯著低於期望值</strong>的玩家（<strong>判定門檻由數據端定義</strong>，<strong style="color:var(--gold-light);">v1 先以固定閾值上線</strong>）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn" style="font-size:12px;">
+    <strong>欄位精簡：</strong>標籤池表格的「<strong>門檻/RTP</strong>」欄改為<strong style="color:var(--gold-light);">只顯示「累積門檻」</strong>；<strong style="color:var(--red-bright);">移除 RTP 值顯示</strong>——對應模板下拉選單內已含 RTP，避免重複顯示。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 標籤池改版</div>
+    <b class="g">Given</b> 營運開啟<strong>建立新活動</strong>頁<br>
+    <b class="t">Then</b> 標籤池顯示<strong>消費分層 5 標籤</strong>（小客／中客／大客／超大客／巨客，<strong>含百分位區間</strong>）＋<strong>RTP 體驗 2 標籤</strong>（正常／慘輸）；門檻欄<strong>僅顯示「累積門檻」</strong>、<strong style="color:var(--orange-bright);">無 RTP 值欄</strong>、<strong style="color:var(--orange-bright);">無低風險／高風險標籤</strong>。
   </div>
 
   <div class="sub-title">活動上線審核流程（核准權＝最高權限(Admin)）<span class="tag-upd">2026-08-03</span></div>
@@ -3158,7 +3213,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title">後台 UI 設計說明 · 線路投放 + 版型主題（對齊原型 v2）</div>
+  <div class="sub-title">後台 UI 設計說明 · 適用路線 + 版型主題（對齊原型 v2）<span class="tag-upd">2026-08-04</span></div>
   <div class="callout info">
     <strong>給美術與 Client Web 同仁：</strong>左欄為畫面示意（依 design 原型 <span class="mono" style="color:var(--gold-light);">抽寶箱後台管理介面 v2.html</span> 還原；<strong>實際採淺色主題</strong>），右欄為對應的<strong>操作流程與 UI 元件規格</strong>（元件類型／命名／狀態／規則／文案 key）。線路投放位於活動表單 <strong>Tab 1 基本設定</strong>，<strong>標題用金色 accent bar ＋右上「必填」badge 強調</strong>（其他區塊為靛色 accent bar）。元件命名請沿用右欄 <span class="mono" style="color:var(--gold-light);">UI_Name</span>。
   </div>
@@ -3199,7 +3254,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <dt>位置</dt><dd><strong>多貨幣設定屬「模板編輯器」</strong>（非活動層）；一個模板內以 currency tabs 切換各貨幣設定</dd>
         <dt>元件類型</dt><dd>頂部 <strong>currency tabs</strong>（<strong>PHP 為預設 tab</strong>）＋「<strong>＋新增貨幣</strong>」（可搜尋下拉）；<strong>v1 清單寫死 64 種、必填 17 種</strong>（完整清單見 <a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>）</dd>
         <dt>每貨幣</dt><dd>各自一套 <strong>9 格累積門檻 / 四階獎項 / 9×4 權重 / RTP 即時驗算</strong>；獎勵類型 v1 僅<strong>現金</strong>（現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充·原型先行示意）</dd>
-        <dt>RTP</dt><dd>依當前貨幣即時計算，各貨幣各自驗算是否落在<strong>該模板目標 RTP ±0.1%</strong></dd>
+        <dt>RTP 與獎池總額</dt><dd><strong style="color:var(--gold-light);">顯示於各幣別 tab 內</strong>：依當前貨幣即時計算<strong>該幣別的獎池總額與 RTP 驗算結果</strong>；<strong style="color:var(--orange-bright);">純資訊顯示，不做目標值校驗、不擋儲存與送審</strong>（右側獨立驗算面板已移除，見 <a href="#rtp-info" style="color:var(--gold-light);">二之三</a>）</dd>
         <dt>規則</dt><dd>各貨幣<strong>獨立設定、互不換算</strong>（非匯率換算）</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.currency.tab</span> / <span class="mono">admin.currency.add</span></dd>
       </dl>
@@ -3207,7 +3262,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout">
-    <strong>模板 × 多貨幣：</strong>模板編輯器以 <strong>currency tabs</strong> 切換（<strong>v1 寫死 64 種清單、必填 17 種</strong>，PHP 為預設 tab；見 <a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>）。每個貨幣各自設定：<strong>目標 RTP、終獎最早格、9 格累積門檻、9 格 × 4 類別權重表</strong>；四階獎項（小×5／中×2／大×1／最終×1）於模板層設定。系統對每個〔模板 × 貨幣〕<strong>即時試算 RTP</strong>，超出該模板<strong>目標 RTP ±0.1%</strong>（或<strong>第 1~8 抽權重列合計為 0</strong>）即警示、擋送審。<strong>玩家跑哪個模板由「標籤規則（AND）→ 模板」決定，未命中走預設配置</strong>（無中介映射層、無准入閘門）。
+    <strong>模板 × 多貨幣：</strong>模板編輯器以 <strong>currency tabs</strong> 切換（<strong>v1 寫死 64 種清單、必填 17 種</strong>，PHP 為預設 tab；見 <a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>）。每個貨幣各自設定：<strong>目標 RTP、終獎最早格、9 格累積門檻、9 格 × 4 類別權重表</strong>；四階獎項（<strong>數量可自訂、加總＝9</strong>，預設小×5／中×2／大×1／最終×1）於模板層設定。系統對每個〔模板 × 貨幣〕<strong>於該幣別 tab 內即時顯示獎池總額與 RTP 驗算結果</strong>（<strong style="color:var(--orange-bright);">純資訊顯示、不做目標值校驗</strong>）；<strong style="color:var(--red-bright);">擋送審的硬性條件</strong>為<strong>獎項數量加總 ≠ 9</strong>、<strong>最終獎 &lt; 1</strong>、<strong>必填幣別未填完整</strong>或<strong>第 1~8 抽權重列合計為 0</strong>。<strong>玩家跑哪個模板由「標籤規則（AND）→ 模板」決定，未命中走預設配置</strong>（無中介映射層、無准入閘門）。
   </div>
 
   <!-- Row 0a：版型主題下拉 -->
@@ -3285,37 +3340,41 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div style="background:#fff;border:1px solid #E6E8EC;border-radius:12px;padding:18px 20px;font-family:-apple-system,'Segoe UI',sans-serif;color:#1A1D26;">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px;">
           <span style="width:4px;height:18px;background:#E0B23A;border-radius:2px;"></span>
-          <strong style="font-size:15px;">線路投放</strong>
-          <span style="font-size:11px;color:#9AA0AB;">平台/站台線路 · 必選 · 多選 · 預定義清單</span>
+          <strong style="font-size:15px;">適用路線</strong>
+          <span style="font-size:11px;color:#9AA0AB;">平台/站台線路 · 新增＋下拉選擇 · 清單走後端 API</span>
           <span style="margin-left:auto;font-size:10px;font-weight:700;color:#9A6B0B;background:#FBEFC8;padding:3px 10px;border-radius:6px;">必填</span>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
-          <span style="font-size:12px;color:#5A5F6B;font-weight:600;">投放線路</span>
-          <span style="font-size:11px;color:#8A8F9A;border:1px solid #E6E8EC;border-radius:8px;padding:6px 12px;">▾ 從清單勾選</span>
+          <span style="font-size:12px;color:#5A5F6B;font-weight:600;">適用路線</span>
+          <span style="font-size:11px;color:#8A8F9A;">
+            <span style="border:1px solid #E6C55A;background:#FBF3D6;color:#9A7B1A;border-radius:8px;padding:6px 12px;">＋新增路線 ▾</span>
+            <span style="border:1px solid #E6E8EC;border-radius:8px;padding:6px 12px;margin-left:6px;">全部加入</span>
+          </span>
         </div>
         <div style="display:flex;gap:11px;flex-wrap:wrap;margin-bottom:16px;">
-          <span style="font-family:'DM Mono',monospace;font-size:13px;color:#9A7B1A;background:#FBF3D6;border:1.5px solid #E6C55A;border-radius:9px;padding:9px 16px;">✓ LINE_A</span>
-          <span style="font-family:'DM Mono',monospace;font-size:13px;color:#A8ACB5;background:#F4F5F7;border:1.5px dashed #D2D5DB;border-radius:9px;padding:9px 16px;">🔒 LINE_B <span style="font-size:10px;">（未開通 Bet=0·不可選）</span></span>
-          <span style="font-family:'DM Mono',monospace;font-size:13px;color:#9A7B1A;background:#FBF3D6;border:1.5px solid #E6C55A;border-radius:9px;padding:9px 16px;">✓ LINE_C</span>
+          <span style="font-family:'DM Mono',monospace;font-size:13px;color:#9A7B1A;background:#FBF3D6;border:1.5px solid #E6C55A;border-radius:9px;padding:9px 16px;">AWS062 <span style="color:#B08A2A;">×</span></span>
+          <span style="font-family:'DM Mono',monospace;font-size:13px;color:#9A7B1A;background:#FBF3D6;border:1.5px solid #E6C55A;border-radius:9px;padding:9px 16px;">AWS051 <span style="color:#B08A2A;">×</span></span>
+          <span style="font-size:12px;color:#A8ACB5;align-self:center;">（下拉內建搜尋過濾 · 只列尚未加入的線路）</span>
         </div>
         <div style="font-size:12px;color:#5A5F6B;font-weight:600;margin-bottom:5px;">線路規則</div>
-        <div style="font-size:12px;color:#8A8F9A;line-height:1.7;">清單＝<strong style="color:#C8860B;">已開通 Bet=0 的平台</strong>（後端維護）· 必選至少 1 條 · 未選＝無法上線</div>
+        <div style="font-size:12px;color:#8A8F9A;line-height:1.7;">清單＝<strong style="color:#C8860B;">平台線路設定（後端 API）</strong>· 儲存草稿允許 0 條 · <strong style="color:#C8860B;">送審前至少 1 條</strong>，否則無法上線</div>
       </div>
         <div style="font-size:10px;color:var(--text-dim);margin-top:7px;text-align:center;">↑ 還原示意（未偵測到真實截圖 <span class="mono" style="color:var(--gold-light);">design_assets/admin_02_create_top.png</span>，放入後自動顯示）</div>
       </div>
     </div>
     <div class="ui-doc-spec">
-      <div class="ui-doc-spec-h">投放線路 · 多選下拉</div>
+      <div class="ui-doc-spec-h" id="camp-lines">適用路線 · 新增＋下拉選擇<span class="tag-upd">2026-08-04</span></div>
       <dl>
-        <dt>UI_Name</dt><dd><span class="mono" style="color:var(--gold-light);">admin_line_multiselect</span></dd>
-        <dt>區塊標題</dt><dd><strong>金色 accent bar</strong>（#E0B23A）＋「線路投放」＋灰色副標＋右上「<strong>必填</strong>」黃色 badge（#FBEFC8 底 / #9A6B0B 字）</dd>
-        <dt>元件類型</dt><dd>多選下拉（multi-select / checkbox dropdown）；觸發鈕「▾ 從清單勾選」固定在欄位<strong>右上角</strong>，已選項以膠囊 chip 列於下方</dd>
-        <dt>操作</dt><dd>① 點右上「▾ 從清單勾選」展開清單 → ② 勾選 1～N 條 → ③ 已選以金色 chip 呈現；再點 chip 可取消</dd>
-        <dt>選項來源</dt><dd>預定義平台清單（後端維護「已開通 Bet=0」的平台）；<strong>不可自由輸入</strong></dd>
-        <dt>狀態</dt><dd><span style="color:var(--gold-light);">已選</span>＝黃底（#FBF3D6）金描邊（#E6C55A）chip、前綴 ✓ ／ <span style="color:var(--text-dim);">未開通</span>＝灰底虛線、<strong>🔒 鎖頭 icon</strong>、不可點、註「未開通 Bet=0·不可選」 ／ 預設＝右上 placeholder「▾ 從清單勾選」</dd>
-        <dt>規則</dt><dd><strong>必選、至少 1 條</strong>；玩家所在線路須 ∈ 已選清單才看得到活動（見 DEV §02 線路資格判定）</dd>
-        <dt>文案 key</dt><dd><span class="mono">admin.line.title</span> / <span class="mono">admin.line.required_badge</span> / <span class="mono">admin.line.placeholder</span> / <span class="mono">admin.line.disabled_hint</span> / <span class="mono">admin.line.rule_hint</span></dd>
-        <dt>美術資產</dt><dd>金色 accent bar、必填 badge、chip 金/灰兩態、🔒 鎖頭 icon、checkbox 勾選 ✓、dropdown 箭頭 ▾</dd>
+        <dt>UI_Name</dt><dd><span class="mono" style="color:var(--gold-light);">admin_line_add_select</span></dd>
+        <dt>改版原因</dt><dd>現行為<strong>全列表直接顯示勾選</strong>，線路<strong>近 30 條、太長</strong> → 改為<strong style="color:var(--gold-light);">新增式選擇</strong></dd>
+        <dt>區塊標題</dt><dd><strong>金色 accent bar</strong>（#E0B23A）＋「適用路線」＋灰色副標＋右上「<strong>必填</strong>」黃色 badge（#FBEFC8 底 / #9A6B0B 字）</dd>
+        <dt>元件類型</dt><dd><strong>「＋新增路線」按鈕</strong>＋<strong>下拉選單（內建搜尋過濾）</strong>＋<strong>已選 chip 列</strong>＋「<strong>全部加入</strong>」快捷鈕</dd>
+        <dt>操作</dt><dd>① <strong>預設為空清單</strong> → ② 點「<strong>＋新增路線</strong>」彈出下拉（<strong>內建搜尋過濾</strong>，<strong style="color:var(--gold-light);">只列尚未加入的線路</strong>）→ ③ <strong>點選即加入</strong>，以 <strong>chip（可移除 ×）</strong>顯示；移除後該線路<strong>回到下拉可選</strong>。另提供「<strong>全部加入</strong>」一次加入全部線路</dd>
+        <dt>選項來源</dt><dd><strong>平台線路設定（後端 API）</strong>，<strong style="color:var(--orange-bright);">非前端寫死</strong>；<strong>不可自由輸入</strong>（見下方基建 callout）</dd>
+        <dt>狀態</dt><dd><span style="color:var(--gold-light);">已加入</span>＝黃底（#FBF3D6）金描邊（#E6C55A）chip ＋ 尾綴「<strong>×</strong>」移除鈕 ／ <span style="color:var(--text-dim);">空清單</span>＝顯示「<strong>尚未選擇適用路線</strong>」 ／ 下拉內<strong>已加入者不再出現</strong></dd>
+        <dt>校驗</dt><dd><strong style="color:var(--green-bright);">儲存草稿允許 0 條</strong>；<strong style="color:var(--red-bright);">送審前至少 1 條</strong>，否則<strong>阻擋並提示「請至少選擇 1 條適用路線」</strong>。玩家所在線路須 ∈ 已選清單才看得到活動（見 DEV §02 線路資格判定）</dd>
+        <dt>文案 key</dt><dd><span class="mono">admin.camp.lines.add</span> / <span class="mono">admin.camp.lines.add_all</span> / <span class="mono">admin.camp.lines.search</span> / <span class="mono">admin.camp.lines.empty</span> / <span class="mono">admin.camp.lines.required</span></dd>
+        <dt>美術資產</dt><dd>金色 accent bar、必填 badge、＋新增鈕、下拉搜尋框、chip（含 × 移除鈕）、空狀態文字、dropdown 箭頭 ▾</dd>
       </dl>
     </div>
   </div>
@@ -3343,15 +3402,31 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div style="font-size:10px;color:var(--text-dim);margin-top:7px;text-align:center;">↑ 還原示意：<strong style="color:var(--green-bright);">原型 v2 已含紅字提示與擋送審</strong>（「⚠ 請至少選擇 1 條投放線路，否則無法上線。」＋提交審查 disable）；<strong>輸入框紅框（#E0563A）樣式為規格加嚴、開發時補</strong>。</div>
     </div>
     <div class="ui-doc-spec">
-      <div class="ui-doc-spec-h">線路必選驗證 · 阻擋送審（規格定義）</div>
+      <div class="ui-doc-spec-h">適用路線必選驗證 · 阻擋送審（規格定義）<span class="tag-upd">2026-08-04</span></div>
       <dl>
-        <dt>觸發</dt><dd>未勾選任何線路時，點「提交審查」或失焦驗證</dd>
-        <dt>欄位狀態</dt><dd> <strong style="color:var(--green-bright);">原型 v2 已含</strong>紅字提示「⚠ 請至少選擇 1 條投放線路，否則無法上線。」並 disable 提交審查；<strong>輸入框紅框（#E0563A）為本規格加嚴要求、原型未含，開發時補</strong></dd>
-        <dt>按鈕狀態</dt><dd><strong>「提交審查」維持 disabled ＋ 原因提示</strong>直到至少選 1 條；「儲存草稿」可照常存</dd>
-        <dt>規則</dt><dd><strong>投放線路必選 ≥1，未選擋送審</strong>；每日重置時間一律以 UTC+8 計算</dd>
-        <dt>文案 key</dt><dd><span class="mono">admin.line.error_required</span></dd>
+        <dt>觸發</dt><dd><strong>適用路線為 0 條</strong>時，點「提交審查」或失焦驗證</dd>
+        <dt>欄位狀態</dt><dd> <strong style="color:var(--green-bright);">原型 v2 已含</strong>紅字提示並 disable 提交審查；<strong style="color:var(--gold-light);">v1.6 起提示文案統一為「請至少選擇 1 條適用路線」</strong>；<strong>輸入框紅框（#E0563A）樣式為本規格加嚴要求、原型未含，開發時補</strong></dd>
+        <dt>按鈕狀態</dt><dd><strong>「提交審查」維持 disabled ＋ 原因提示</strong>直到至少 1 條；「<strong>儲存草稿</strong>」<strong style="color:var(--green-bright);">允許 0 條、可照常存</strong></dd>
+        <dt>規則</dt><dd><strong>適用路線送審前 ≥1，未選擋送審</strong>；每日重置時間一律以 UTC+8 計算</dd>
+        <dt>文案 key</dt><dd><span class="mono">admin.camp.lines.required</span></dd>
       </dl>
     </div>
+  </div>
+
+  <div class="callout warn" style="font-size:12px;">
+    <strong>🏗 線路清單由後端 API 提供（基礎建設）：</strong>適用路線下拉之線路清單來自<strong>平台線路設定</strong>（<strong style="color:var(--orange-bright);">非前端寫死</strong>）；<strong>新線路上架後自動出現在下拉中</strong>。<br>
+    <strong>現行線路示例（29 條）：</strong><span class="mono" style="font-size:11px;">AWC、AWS、AWS062、AWS051、ADMIN、AWS101、AWS111、W9、OBBTW100、OBBTW、MPS、AWS071、PB10USER、OBB_ADMIN、AWC_ADMIN、KAADMIN、AWS021、AWS031、AWS082、AWSKR192、AWSKR196、PANAHAMA、TOPWEB、egs_asia、elitebethubz9myr、gameconverge、egs_europe、topadmin、houseofspins</span>
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 適用路線新增式選擇</div>
+    <b class="g">Given</b> 適用路線為<strong>空</strong><br>
+    <b class="w">When</b> 營運點「<strong>＋新增路線</strong>」、於搜尋輸入「<span class="mono">AWS0</span>」並選擇 <span class="mono">AWS062</span><br>
+    <b class="t">Then</b> <span class="mono">AWS062</span> 以 <strong>chip 加入</strong>且<strong style="color:var(--green-bright);">下拉中不再出現</strong>；<br>
+    <b class="w">When</b> 移除該 chip<br>
+    <b class="t">Then</b> <strong>回到下拉可選</strong>；<br>
+    <b class="w">When</b> 路線為 <strong>0 條</strong>時送審<br>
+    <b class="t">Then</b> <strong style="color:var(--red-bright);">阻擋並提示「請至少選擇 1 條適用路線」</strong>。
   </div>
 
   <div class="sub-title" style="font-size:14px;margin-top:24px;">原型完整畫面（參考截圖 · 抽寶箱後台管理介面 v2.html）</div>
@@ -3414,7 +3489,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong style="color:var(--gold-light);">模板與版本相關：</strong><span class="mono">admin_12_template_list</span>（模板列表）、<span class="mono">admin_13_template_editor</span>（模板編輯器）、<span class="mono">admin_14_tag_rules</span>（Tab2 標籤與配置）、<span class="mono">admin_15_prize_summary</span>（Tab3 唯讀摘要）、<span class="mono">admin_16_versions</span>（Tab4 版本）。<strong style="color:var(--orange-bright);">無 admin_17_rewards_log（獎勵歷程雙檢視）</strong>——CRM 後台不設此頁，改由<strong>遊戲後台</strong>的投注資料查詢承接。
   </div>
 
-  <div class="sub-title" id="account-perm">帳號權限頁（後台帳號 ＋ 角色權限對照 · 對齊原型 v2）<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="account-perm">帳號權限頁（後台帳號 ＋ 角色權限對照 · 對齊原型 v2）<span class="tag-upd">2026-08-04</span></div>
   <div class="callout info">
     <strong>帳號權限頁＝「後台帳號」卡片列表 ＋「角色權限對照」矩陣。</strong>權限以<strong>頁面可見性</strong>控管——<strong>角色＝一組可見頁面的集合</strong>，頁面內不再做欄位級切分。<br><br>
     <strong>三個層級：最高權限(Admin) ／ 操作(Operator) ／ 查看(Platform)（站長）。</strong>
@@ -3437,6 +3512,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
           <strong style="font-size:15px;">後台帳號管理</strong>
           <span style="margin-left:auto;font-size:11px;color:#fff;background:#5A5FE0;border-radius:6px;padding:5px 12px;">＋ 新增帳號</span>
         </div>
+        <!-- v1.6 新增：搜尋列＋角色篩選 chips -->
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <span style="flex:1;min-width:180px;font-size:12px;color:#9AA0AB;border:1px solid #E6E8EC;border-radius:8px;padding:7px 12px;">🔍 搜尋帳號名稱</span>
+          <span style="font-size:11px;color:#fff;background:#5A5FE0;border-radius:14px;padding:5px 12px;">全部</span>
+          <span style="font-size:11px;color:#5A5F6B;background:#F4F5F7;border:1px solid #E6E8EC;border-radius:14px;padding:5px 12px;">最高權限(Admin)</span>
+          <span style="font-size:11px;color:#5A5F6B;background:#F4F5F7;border:1px solid #E6E8EC;border-radius:14px;padding:5px 12px;">操作(Operator)</span>
+          <span style="font-size:11px;color:#5A5F6B;background:#F4F5F7;border:1px solid #E6E8EC;border-radius:14px;padding:5px 12px;">查看(Platform)</span>
+        </div>
         <table style="width:100%;border-collapse:collapse;font-size:12px;">
           <thead><tr style="color:#9AA0AB;text-align:left;"><th style="padding:6px 4px;font-weight:600;">帳號</th><th style="padding:6px 4px;font-weight:600;">角色</th><th style="padding:6px 4px;font-weight:600;">可見頁面</th></tr></thead>
           <tbody style="color:#1A1D26;">
@@ -3450,8 +3533,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
     </div>
     <div class="ui-doc-spec">
-      <div class="ui-doc-spec-h">後台帳號管理</div>
+      <div class="ui-doc-spec-h">後台帳號管理<span class="tag-upd">2026-08-04</span></div>
       <dl>
+        <dt>帳號搜尋列</dt><dd><strong style="color:var(--gold-light);">輸入即時過濾</strong>；比對範圍＝<strong>僅帳號名稱</strong>（<strong style="color:var(--orange-bright);">不含 Email</strong>；<strong>不分大小寫、部分符合</strong>）。<strong>清空即還原全列表</strong>。placeholder＝「<strong>搜尋帳號名稱</strong>」（<span class="mono">admin.account.search.placeholder</span>）</dd>
+        <dt>角色篩選 chips</dt><dd><strong>全部｜最高權限(Admin)｜操作(Operator)｜查看(Platform)</strong>；<strong>單選、預設「全部」</strong>。角色稱謂<strong>中英成對</strong>（沿用 DEV V1.3 用語慣例）</dd>
+        <dt>疊加規則</dt><dd>搜尋與角色篩選為 <strong style="color:var(--gold-light);">AND 疊加</strong>；<strong>無符合結果時顯示空狀態「找不到符合的帳號」</strong>（<span class="mono">admin.account.search.empty</span>）</dd>
+        <dt>範圍註記</dt><dd><strong style="color:var(--orange-bright);">此搜尋僅帳號權限頁</strong>；<strong>模板列表／活動列表的「名稱搜尋列」維持既有 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 標註不變</strong>，本次不納入</dd>
         <dt>新增帳號</dt><dd><strong>最高權限僅可新增「一般操作」帳號</strong>並設定其<strong>可見頁面</strong>；<strong style="color:var(--orange-bright);">不可新增最高權限帳號</strong>（由 Server 端設置）。點卡片右上「<strong>＋ 新增帳號</strong>」開啟視窗，<strong>視窗欄位與可指派頁面清單見下方〈<a href="#account-add-modal" style="color:var(--gold-light);">新增帳號視窗</a>〉</strong>；<strong>此按鈕僅最高權限可見</strong></dd>
         <dt>角色</dt><dd>最高權限(Admin)／操作(Operator)／<strong>查看(Platform)</strong>（站長）</dd>
         <dt>可見頁面</dt><dd>最高權限＝CRM 全部頁面＋帳號權限；一般操作＝由最高權限逐帳號指派（<strong>含遊戲後台頁面</strong>；預設活動管理＋抽寶箱模板管理）；<strong>站長＝CRM 全部頁面皆不可見</strong></dd>
@@ -3460,6 +3547,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <dt>文案 key</dt><dd><span class="mono">admin.account.add</span> / <span class="mono">admin.account.role</span> / <span class="mono">admin.account.visible_pages</span></dd>
       </dl>
     </div>
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 帳號搜尋＋角色篩選 AND 疊加</div>
+    <b class="g">Given</b> 帳號列表含多個角色<br>
+    <b class="w">When</b> 營運選角色「<strong>操作(Operator)</strong>」並於搜尋列輸入「<span class="mono">li</span>」<br>
+    <b class="t">Then</b> 僅顯示<strong style="color:var(--green-bright);">角色＝操作(Operator) 且帳號名稱含「li」</strong>的帳號（<strong>不比對 Email</strong>）；<strong>清空搜尋後回到僅角色篩選的結果</strong>；<strong>若無符合則顯示空狀態「找不到符合的帳號」</strong>。
   </div>
 
   <div class="sub-title" id="account-add-modal" style="font-size:14px;">新增帳號視窗<span class="tag-upd">2026-08-03</span></div>
@@ -3579,29 +3673,71 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     ※ <strong>查看(Platform) 的注單與報表權限由 Server 配置（指定線路／指定玩家），不在本矩陣內。</strong>
   </div>
 
-  <div class="sub-title" id="template-mgmt">模板管理（獎項與門檻）</div>
+  <div class="sub-title" id="template-mgmt">模板管理（獎項與門檻）<span class="tag-upd">2026-08-04</span></div>
   <div class="callout info">
     <strong>模板為 v1 核心頁面、獨立實體：</strong>模板可被<strong>多檔活動 / 多條標籤規則共用</strong>；於「🎁 抽寶箱」群組下的「模板管理」頁維護。活動 Tab 3 只顯示唯讀摘要並「前往模板管理 →」，<strong>不可在活動內直接編輯數值</strong>。後台模板編輯<strong>取代外部試算表</strong>，<strong>此項納入 v1 範圍</strong>。
   </div>
 
-  <div class="sub-title" style="font-size:14px;">一、模板列表欄位<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" style="font-size:14px;">一、模板列表欄位<span class="tag-upd">2026-08-04</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
       <tr><td>模板名稱</td><td class="dim">營運自訂。<strong> 名稱搜尋列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>（v1 不提供搜尋）</td></tr>
       <tr><td>押注比例（betRatio）</td><td class="dim">如 1.0x／1.2x／1.5x／0.8x</td></tr>
-      <tr><td>目標 RTP</td><td class="dim">每模板自訂，容許 ±0.1%</td></tr>
+      <tr><td>目標 RTP</td><td class="dim">每模板自訂，<strong>純資訊顯示</strong>（<strong style="color:var(--orange-bright);">不做目標值校驗、不擋儲存與送審</strong>）</td></tr>
       <tr><td>貨幣（chips）</td><td class="dim">該模板<strong>已啟用</strong>的貨幣以 chip 呈現（<strong>必填 17 ＋ 已啟用的選填</strong>；PHP 為預設 tab）</td></tr>
-      <tr><td>使用中活動</td><td class="dim">被幾檔活動引用（<strong>N 檔</strong>）</td></tr>
+      <tr><td><strong>使用中活動</strong><br><span class="dim" style="font-size:10px;">可展開</span></td><td class="dim">
+        <strong>① N 的來源＝即時推導、非獨立欄位：</strong><span class="mono">N</span> ＝ 引用此模板的<strong>未結束活動</strong>數（狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>；<strong style="color:var(--orange-bright);">已結束不計入</strong>）。活動透過<strong>標籤規則</strong>或<strong>預設配置</strong>引用模板；<strong>N 由活動資料即時計算，不是後台手動維護的數字</strong>。<strong style="color:var(--gold-light);">此口徑與「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」的 N 完全同一套（同一查詢、同一定義），兩處不得各算各的</strong>。<br>
+        <strong>② 可展開：</strong><span class="mono">N ≥ 1</span> 時，「<strong>N 檔</strong>」帶<strong>展開箭頭（chevron）</strong>；點擊該<strong>儲存格</strong>（或箭頭）→ 於<strong>該列正下方展開子列表</strong>；<strong>再點一次收合</strong>。<span class="mono">N ＝ 0</span> 顯示「<strong>0 檔</strong>」、<strong>無箭頭、不可展開</strong>。<br>
+        <strong>③ 展開子列表欄位</strong>（每檔活動一列）：見下表。<br>
+        <strong>④ 只列未結束活動：</strong><strong>展開筆數恆等於 N</strong>；<strong style="color:var(--orange-bright);">已結束活動不出現在展開清單</strong>（追溯需求走<strong>活動管理列表的狀態篩選</strong>）。</td></tr>
       <tr><td>操作</td><td class="dim">編輯 · 複製 · 刪除（受下方「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」限制）</td></tr>
     </tbody>
   </table>
 
-  <div class="sub-title" id="template-delete" style="font-size:14px;">模板刪除規則<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" style="font-size:13px;margin-top:18px;">「使用中活動」展開子列表欄位<span class="tag-upd">2026-08-04</span></div>
+  <table class="spec-table">
+    <thead><tr><th style="width:160px;">欄位</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td>Campaign ID</td><td class="dim">活動唯一識別碼（<span class="mono">mono</span> 字體）</td></tr>
+      <tr><td>活動名稱</td><td class="dim">營運自訂名稱</td></tr>
+      <tr><td>活動時間</td><td class="dim">起訖時間（<strong>UTC+8</strong>，<strong>格式與活動列表一致</strong>）</td></tr>
+      <tr><td>活動狀態</td><td class="dim">狀態 badge，<strong>樣式與活動管理列表共用同一組</strong>（草稿／送審中／已核准／運行中／已暫停）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" id="template-pager" style="font-size:14px;">模板列表分頁<span class="tag-upd">2026-08-04</span></div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>規則</th></tr></thead>
+    <tbody>
+      <tr><td><strong>每頁筆數</strong></td><td class="dim">預設 <strong style="color:var(--gold-light);">10 筆／頁</strong>；下拉可切換 <strong>10／50／100</strong>。<strong>切換每頁筆數後回到第 1 頁</strong>。</td></tr>
+      <tr><td><strong>分頁列</strong><br><span class="dim" style="font-size:10px;">列表底部</span></td><td class="dim">「<strong>上一頁</strong>」／<strong>頁碼</strong>（目前頁高亮；頁數多時<strong>省略中段為 <span class="mono">…</span></strong>）／「<strong>下一頁</strong>」＋「<strong style="color:var(--gold-light);">回第 1 頁</strong>」快捷鈕＋<strong>總筆數顯示</strong>（如「<strong>共 23 筆</strong>」）。<br><strong>第 1 頁</strong>時「上一頁」與「回第 1 頁」<strong>disabled</strong>；<strong>最後一頁</strong>時「下一頁」<strong>disabled</strong>。</td></tr>
+      <tr><td><strong>換頁行為</strong></td><td class="dim">換頁或切換每頁筆數時，<strong style="color:var(--orange-bright);">已展開的「使用中活動」子列表一律收合</strong>。</td></tr>
+    </tbody>
+  </table>
+  <div class="callout warn" style="font-size:12px;">
+    <strong>🏗 後端列表 API 需支援分頁（基礎建設）：</strong>模板列表查詢 API 需支援 <span class="mono">page</span>／<span class="mono">page_size</span>（<strong>10／50／100</strong>）參數並回傳<strong>總筆數</strong>；「<strong>使用中活動 N</strong>」與<strong>展開明細</strong>由後端<strong>隨列表回傳</strong>或提供<strong>明細查詢端點</strong>，<strong>口徑＝未結束活動引用數</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 使用中活動展開（口徑＝未結束活動）</div>
+    <b class="g">Given</b> 模板 A 被 <strong>3 檔未結束活動</strong>與 <strong>2 檔已結束活動</strong>引用<br>
+    <b class="w">When</b> 營運於<strong>模板列表</strong>點「<strong>3 檔</strong>」展開<br>
+    <b class="t">Then</b> 子列表<strong style="color:var(--green-bright);">恰好 3 列</strong>（<strong>Campaign ID／活動名稱／活動時間／活動狀態</strong>），<strong style="color:var(--orange-bright);">不含已結束活動</strong>；<strong>再點一次收合</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 模板列表分頁切換</div>
+    <b class="g">Given</b> 模板共 <strong>23 筆</strong>、每頁 <strong>10 筆</strong>、目前在<strong>第 3 頁</strong><br>
+    <b class="w">When</b> 營運將<strong>每頁筆數切為 50</strong><br>
+    <b class="t">Then</b> <strong style="color:var(--green-bright);">回到第 1 頁</strong>、單頁顯示<strong>全部 23 筆</strong>、分頁列「<strong>下一頁</strong>」<strong>disabled</strong>；<strong>已展開的子列表收合</strong>。
+  </div>
+
+  <div class="sub-title" id="template-delete" style="font-size:14px;">模板刪除規則<span class="tag-upd">2026-08-04</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:190px;">規則</th><th>說明</th></tr></thead>
     <tbody>
-      <tr><td><strong>使用中不可刪</strong></td><td class="dim">只要「<strong>使用中活動</strong>」<span class="mono">N ≥ 1</span>（被任何<strong>未結束</strong>活動的<strong>標籤規則</strong>或<strong>預設配置</strong>引用，狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>皆算），刪除不可用——按鈕 <strong>disabled</strong> ＋ tooltip「<strong>此模板有活動使用中，無法刪除</strong>」。<strong>已結束活動不計入 N</strong>。</td></tr>
+      <tr><td><strong>使用中不可刪</strong></td><td class="dim">只要「<strong>使用中活動</strong>」<span class="mono">N ≥ 1</span>（被任何<strong>未結束</strong>活動的<strong>標籤規則</strong>或<strong>預設配置</strong>引用，狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>皆算），刪除不可用——按鈕 <strong>disabled</strong> ＋ tooltip「<strong>此模板有活動使用中，無法刪除</strong>」。<strong>已結束活動不計入 N</strong>。<br><strong style="color:var(--gold-light);">使用中活動明細可於模板列表展開檢視</strong>（見上方「<a href="#template-mgmt" style="color:var(--gold-light);">一、模板列表欄位</a>」）。</td></tr>
       <tr><td><strong>二次確認</strong></td><td class="dim"><span class="mono">N ＝ 0</span> 時點「刪除」→ 跳出確認視窗「<strong>是否確認刪除模板</strong>」（內文含<strong>模板名稱</strong>與警語：<strong>刪除後此模板無法再被活動引用</strong>），按「<strong>確認刪除</strong>」才執行、按「<strong>取消</strong>」關閉。</td></tr>
       <tr><td>既有規則保留</td><td class="dim"><strong>最後一個模板不可刪</strong>；被「<strong>預設配置</strong>」引用中的模板<strong>恆為使用中、不可刪</strong>。</td></tr>
       <tr><td><strong>軟刪除</strong><br><span class="dim" style="font-size:10px;">後端 · 基礎建設備注</span></td><td class="dim">刪除＝<strong>soft delete</strong>：<strong>列表不再顯示、不可再被活動引用</strong>，但<strong>模板資料與全部版本快照保留</strong>；獎勵歷程／對帳仍可依「<strong>模板 ID ＋ <span class="mono">template_version</span></strong>」追溯已刪模板的<strong>門檻／獎項</strong>內容。</td></tr>
@@ -3629,21 +3765,21 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 仍可依<strong>模板 ID ＋ <span class="mono">template_version</span></strong> 查回<strong>當時的模板內容（門檻／獎項）</strong>。
   </div>
 
-  <div class="sub-title" style="font-size:14px;">二、模板編輯器欄位<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="template-editor" style="font-size:14px;">二、模板編輯器欄位<span class="tag-upd">2026-08-04</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
       <tr><td>模板名稱</td><td class="dim">文字輸入</td></tr>
       <tr><td><strong>模板屬性（唯讀）</strong><br><span class="dim" style="font-size:10px;">押注比例／目標 RTP／終獎最早格</span></td><td class="dim"><strong>押注比例（betRatio）、目標 RTP、終獎最早格為「模板屬性」，v1 後台不提供編輯</strong>。<br>
-      · <strong>目標 RTP</strong>：唯讀顯示於 <strong>RTP 驗算卡</strong>（作為 ±0.1% 驗算基準）。<br>
+      · <strong>目標 RTP</strong>：<strong>唯讀顯示</strong>，<strong style="color:var(--orange-bright);">僅供參考、不作為校驗基準</strong>（RTP 驗算已改為<strong>純資訊顯示</strong>，見下方「<a href="#prize-count" style="color:var(--gold-light);">獎項檔位數量</a>」與「<a href="#rtp-info" style="color:var(--gold-light);">RTP 驗算與獎池總額（內移多貨幣區塊）</a>」）。<br>
       · <strong>押注比例、目標 RTP</strong>：顯示於<strong>模板列表</strong>與<strong>活動 Tab 3 卡片</strong>。<br>
       · <strong>終獎最早格</strong>：v1 <strong>僅屬性顯示參考</strong>，<strong>不做與權重表的連動驗證</strong>（驗證列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>）。<br>
       · <strong>屬性編輯功能列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>。</td></tr>
       <tr><td>貨幣 tabs</td><td class="dim"><strong>v1 貨幣清單寫死 64 種</strong>（硬編碼於前端與後端設定、<strong>非後台可維護</strong>），其中 <strong style="color:var(--gold-light);">必填 17 種</strong>（tab 恆顯示、不可移除、標必填記號）、<strong>選填 47 種</strong>（預設不顯示 tab，經「<strong>＋新增貨幣</strong>」啟用後才出現、可移除）。<strong>預設進入 PHP tab</strong>；tab 上顯示<strong>填寫狀態（已完成／未完成）</strong>。<strong>完整 64 種清單、必填 17 種與 UI 規則見下方〈<a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>〉</strong>。</td></tr>
       <tr><td>9 格累積門檻</td><td class="dim">累積制 ［100, 220, 360, 550, 850, 1250, 1700, 2500, <strong>3650</strong>］（PHP，各貨幣各自一套）</td></tr>
-      <tr><td>四階獎項</td><td class="dim">小獎 ×5／中獎 ×2／大獎 ×1／最終獎 ×1；<strong>現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充（原型先行示意）</strong>，v1 僅現金</td></tr>
+      <tr><td><strong>四階獎項 · 數量可自訂</strong><br><span class="dim" style="font-size:10px;">加總必須＝9</span></td><td class="dim"><strong>小獎／中獎／大獎／最終獎四檔各提供「數量」輸入欄</strong>（整數 <span class="mono">0–9</span>），<strong>預設值維持 5／2／1／1</strong>；金額仍各檔一組。<strong>加總必須等於 9</strong>（寶箱總格數固定 9、不可增減），規則見下方〈<a href="#prize-count" style="color:var(--gold-light);">二之二、獎項檔位數量</a>〉。<strong>現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充（原型先行示意）</strong>，v1 僅現金</td></tr>
       <tr><td>抽獎權重表</td><td class="dim"><strong>第 1~8 抽</strong>可輸入相對權重（每列合計 &gt;0 即可、非強制 100）；<strong>第 9 抽為唯讀說明列</strong>「依前 8 抽剩餘獎項自動決定（必中最後 1 個獎項）」，不提供輸入、不參與合計驗證。</td></tr>
-      <tr><td>RTP 驗證<br><span class="dim" style="font-size:10px;">必填 vs 選填分層</span></td><td class="dim">· <strong style="color:var(--gold-light);">必填 17 種</strong>：任一幣別<strong>未完整填寫</strong>，或任一〔<strong>必填幣別 × 模板</strong>〕<strong>RTP 偏離目標 ±0.1%</strong>、或<strong>第 1~8 抽任一權重列合計為 0</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>，<strong>錯誤訊息需列出未通過的幣別</strong>。<br>· <strong>選填幣別</strong>：<strong>全空＝未啟用</strong>，不參與驗證、不擋儲存；<strong>一旦有任何欄位填寫即視為啟用</strong>，須填寫完整並通過與必填相同的驗證，否則<strong style="color:var(--red-bright);">擋儲存</strong>（避免半套資料上線）。<br>· <strong>版本快照僅保存已啟用幣別</strong>（必填 17 ＋ 已啟用的選填），未啟用幣別不入快照。<br>· 詳見〈<a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>〉。</td></tr>
+      <tr><td>幣別完整性驗證<br><span class="dim" style="font-size:10px;">必填 vs 選填分層</span></td><td class="dim">· <strong style="color:var(--gold-light);">必填 17 種</strong>：任一幣別<strong>未完整填寫</strong>，或<strong>第 1~8 抽任一權重列合計為 0</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>，<strong>錯誤訊息需列出未通過的幣別</strong>。<strong style="color:var(--orange-bright);">RTP 不再參與校驗</strong>（見〈<a href="#rtp-info" style="color:var(--gold-light);">二之三、RTP 驗算與獎池總額</a>〉）。<br>· <strong>選填幣別</strong>：<strong>全空＝未啟用</strong>，不參與驗證、不擋儲存；<strong>一旦有任何欄位填寫即視為啟用</strong>，須填寫完整並通過與必填相同的驗證，否則<strong style="color:var(--red-bright);">擋儲存</strong>（避免半套資料上線）。<br>· <strong>版本快照僅保存已啟用幣別</strong>（必填 17 ＋ 已啟用的選填），未啟用幣別不入快照。<br>· 詳見〈<a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>〉。</td></tr>
     </tbody>
   </table>
   <div class="callout" style="font-size:12px;">
@@ -3759,7 +3895,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr>
         <td><strong style="color:var(--gold-light);">必填 17 種</strong></td>
         <td class="dim">已完整填寫</td>
-        <td class="dim">逐一驗算：任一〔<strong>必填幣別 &times; 模板</strong>〕<strong>RTP 偏離目標 &plusmn;0.1&#37;</strong>、或<strong>第 1~8 抽任一權重列合計為 0</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>（訊息列出未通過幣別）。</td>
+        <td class="dim">逐一檢查：<strong>第 1~8 抽任一權重列合計為 0</strong>、或<strong>獎項數量加總 ≠ 9</strong>、或<strong>最終獎數量 &lt; 1</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>（訊息列出未通過幣別）。<br><strong style="color:var(--orange-bright);">RTP 不參與校驗</strong>：各幣別 tab 內的 RTP 驗算與獎池總額為<strong>純資訊顯示</strong>，<strong>不做目標值校驗、不阻擋儲存與送審</strong>（見〈<a href="#rtp-info" style="color:var(--gold-light);">二之三、RTP 驗算與獎池總額</a>〉）。</td>
       </tr>
       <tr>
         <td><strong>選填 47 種</strong></td>
@@ -3792,7 +3928,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
   <div class="bdd-card">
     <div class="bdd-title">BDD 驗收情境 &middot; 選填幣別全空 &rarr; 可儲存、不入快照</div>
-    <b class="g">Given</b> <strong>必填 17 種皆完整</strong>且 RTP 驗證通過，選填幣別（如 <span class="mono">EUR</span>、<span class="mono">SGD</span>）<strong>完全空白</strong><br>
+    <b class="g">Given</b> <strong>必填 17 種皆完整</strong>且<strong>獎項數量加總＝9</strong>、權重列皆 &gt; 0，選填幣別（如 <span class="mono">EUR</span>、<span class="mono">SGD</span>）<strong>完全空白</strong><br>
     <b class="w">When</b> 按「<strong>儲存</strong>」<br>
     <b class="t">Then</b> <strong style="color:var(--green-bright);">儲存成功</strong>、<strong>產生新版本</strong>；<strong>版本快照僅含已啟用幣別</strong>，<span class="mono">EUR</span>／<span class="mono">SGD</span> <strong>不入快照</strong>。
   </div>
@@ -3802,6 +3938,43 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="g">Given</b> 營運以「<strong>＋新增貨幣</strong>」啟用 <span class="mono">SGD</span>，<strong>只填了部分門檻</strong><br>
     <b class="w">When</b> 按「<strong>儲存</strong>」<br>
     <b class="t">Then</b> <strong style="color:var(--red-bright);">儲存被擋下</strong>，錯誤訊息列出「<strong>SGD 未完成設定</strong>」；<strong>若營運改為移除 SGD tab（清空該幣別）則可正常儲存</strong>。
+  </div>
+
+  <div class="sub-title" id="prize-count" style="font-size:14px;">二之二、獎項檔位數量（可自訂 · 加總必須＝9）<span class="tag-upd">2026-08-04</span></div>
+  <div class="callout info" style="font-size:12px;">
+    <strong>由固定配置改為可自訂：</strong>原「小獎 ×5＋中獎 ×2＋大獎 ×1＋最終獎 ×1（合計 9 格）」為<strong>固定配置</strong>；<strong style="color:var(--gold-light);">v1 起四檔數量改為營運可填</strong>，但<strong>寶箱總格數固定 9、不可增減</strong>。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">規則</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>各檔數量可填</strong></td><td class="dim"><strong>小獎／中獎／大獎／最終獎</strong>四檔各提供<strong>數量輸入欄</strong>（<strong>整數 <span class="mono">0–9</span></strong>）；<strong>預設值維持 5／2／1／1</strong>。</td></tr>
+      <tr><td><strong>加總校驗（硬性）</strong></td><td class="dim">四檔數量<strong style="color:var(--gold-light);">加總必須等於 9</strong>。編輯器<strong>即時顯示「獎項數量加總 <span class="mono">N</span>／9」</strong>：<br>· <span class="mono">N＝9</span> → 顯示<strong style="color:var(--green-bright);">通過（✓）</strong>；<br>· <span class="mono">N≠9</span> → 顯示錯誤「<strong style="color:var(--red-bright);">獎項數量加總需等於 9（目前 N）</strong>」，且「<strong>儲存</strong>」與「<strong>送審</strong>」<strong style="color:var(--red-bright);">disabled</strong>。</td></tr>
+      <tr><td><strong>最終獎至少 1</strong></td><td class="dim"><strong>最終獎數量 <span class="mono">≥ 1</span></strong>（翻完 9 格必得最終獎的玩法前提）；<strong>填 0 時顯示錯誤「最終獎數量至少 1」並禁止儲存</strong>。<strong>其餘三檔允許 0</strong>。</td></tr>
+      <tr><td><strong>連動重算</strong></td><td class="dim">數量變更時，「<strong>獎池總額</strong>」與「<strong>RTP 驗算</strong>」<strong style="color:var(--green-bright);">即時重算</strong>（顯示位置見〈<a href="#rtp-info" style="color:var(--gold-light);">二之三</a>〉）；「<strong>第幾抽權重</strong>」表<strong>本體不動</strong>，但其驗算需以<strong>當前數量配置</strong>計算。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" id="rtp-info" style="font-size:14px;">二之三、RTP 驗算與獎池總額（內移多貨幣區塊 · 純資訊顯示）<span class="tag-upd">2026-08-04</span></div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">項目</th><th>規則</th></tr></thead>
+    <tbody>
+      <tr><td><strong>顯示位置內移</strong></td><td class="dim">「<strong>RTP 驗算</strong>」與「<strong>獎池總額</strong>」改為顯示在「<strong style="color:var(--gold-light);">多貨幣獎項與門檻</strong>」區塊內——<strong>每個幣別 tab 內即時顯示「該幣別」的獎池總額與 RTP 驗算結果</strong>。<br><strong style="color:var(--orange-bright);">原右側欄位（獨立驗算面板）中的這兩項移除</strong>；<strong>若右側欄位因此清空則整個移除</strong>。</td></tr>
+      <tr><td><strong>移除目標值限制</strong></td><td class="dim">獎項換算結果<strong style="color:var(--red-bright);">移除「目標 1.00% ±0.1」限制</strong>；<strong style="color:var(--red-bright);">移除警示文案「偏離目標 1%，請調整門檻或獎項金額」</strong>。<br>RTP 驗算改為<strong style="color:var(--green-bright);">純資訊顯示</strong>——<strong>只算、只顯示</strong>，<strong>不做目標值校驗、不阻擋儲存與送審</strong>。</td></tr>
+      <tr><td><strong>硬性校驗不受影響</strong></td><td class="dim">〈<a href="#prize-count" style="color:var(--gold-light);">二之二</a>〉的「<strong>加總＝9</strong>」與「<strong>最終獎 ≥ 1</strong>」<strong>仍為硬性校驗</strong>；<strong>幣別完整性</strong>與<strong>第 1~8 抽權重列合計 &gt; 0</strong> 亦維持擋儲存／擋送審。</td></tr>
+    </tbody>
+  </table>
+  <div class="callout warn" style="font-size:12px;">
+    <strong>全文一致性：</strong>其他段落（含 BDD、欄位說明、校驗規則清單）提到「<strong>RTP 目標 1.00%±0.1</strong>」的<strong>校驗行為</strong>已一併移除。<br>
+    <strong style="color:var(--gold-light);">但數值定案的背景描述</strong>（如固定獎池 ₱37／RTP 1.028% 的由來、示範模板的目標 RTP 數值）<strong>屬歷史內容，維持原樣不動</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 獎項數量加總校驗</div>
+    <b class="g">Given</b> 模板獎項數量為<strong>小 5／中 2／大 1／最終 1</strong><br>
+    <b class="w">When</b> 營運將<strong>小獎改為 6</strong>（加總 10）<br>
+    <b class="t">Then</b> 顯示「<strong style="color:var(--red-bright);">獎項數量加總需等於 9（目前 10）</strong>」且<strong>儲存與送審 disabled</strong>；<br>
+    <b class="w">When</b> 再將<strong>中獎改為 1</strong>（加總 9）<br>
+    <b class="t">Then</b> <strong style="color:var(--green-bright);">錯誤消失</strong>，<strong>該幣別 tab 內的獎池總額與 RTP 驗算即時更新</strong>，<strong style="color:var(--orange-bright);">且不出現任何目標偏離警示</strong>。
   </div>
 
   <div class="sub-title" id="template-new" style="font-size:14px;">三、新增模板初始狀態<span class="tag-upd">2026-08-03</span></div>
@@ -3826,7 +3999,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="callout warn" style="font-size:12px;">
     <strong>儲存前驗證（沿用既有規則，於此明確列出適用於新模板）：</strong><br>
     ① <strong>第 1~8 抽每列權重合計 &gt; 0</strong>（任一列為 0 即不可儲存）；<br>
-    ② <strong>per-模板 RTP 與目標 RTP 差 ≤ ±0.1%</strong>（每貨幣 × 每模板各自驗算，見 <a href="#rtp-formula" style="color:var(--gold-light);">DEV §03 後端 RTP 驗算公式</a>）；<br>
+    ② <strong>獎項數量加總＝9 且最終獎 ≥ 1</strong>（見 <a href="#prize-count" style="color:var(--gold-light);">二之二、獎項檔位數量</a>）；<strong style="color:var(--orange-bright);">RTP 僅顯示、不校驗</strong>（見 <a href="#rtp-info" style="color:var(--gold-light);">二之三</a>）；<br>
     ③ <strong>未通過不可儲存</strong>（同時擋送審）。
   </div>
 
@@ -3956,13 +4129,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <tbody>
       <tr><td>活動建立表單（四分頁）</td><td class="dim"><strong>Tab 1 基本設定</strong>（活動ID唯讀／名稱／版型／期間／每日重置 HH:MM／倒數天數／投放線路）、<strong>Tab 2 標籤與配置</strong>（標籤規則 AND→模板＋預設配置）、<strong>Tab 3 獎項與門檻</strong>（唯讀摘要）、<strong>Tab 4 版本</strong>（下拉＋快照明細）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>模板管理（獎項與門檻）</td><td class="dim"><strong>模板為獨立實體、可被多檔活動／多條規則共用</strong>；模板編輯器含押注比例／目標 RTP／終獎最早格／貨幣 tabs（<strong>寫死 64 種、必填 17 種</strong>）／9 格累積門檻／四階獎項／9×4 權重；<strong>後台模板編輯取代 Excel</strong>；<strong>刪除受「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」限制</strong>（使用中不可刪＋二次確認＋<strong>軟刪除保留版本快照</strong>）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：押注比例模板匯入自動套 RTP</td></tr>
-      <tr><td>標籤規則 → 模板（分眾配置）</td><td class="dim">每列＝多標籤 chip（<strong>AND 需同時符合</strong>）→ 指定模板；固定置底<strong>預設配置（不可刪除）</strong>；未命中走預設配置、<strong>無准入閘門</strong>；<strong> 即時衝突檢查三層</strong>：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋</strong>，命中取「標籤數最多且全部符合」者優先，同標籤數又同時命中多條 → 警示擋送審。標籤池：大客/中客/小客/高風險/低風險</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：分群模型輸出核心標籤</td></tr>
-      <tr><td>線路投放設定（platform_lines）</td><td class="dim">從<strong>預定義「已開通 Bet=0」平台清單</strong>多選投放線路；<strong>必選 ≥1、未選擋送審</strong>；每日重置時間一律以 UTC+8 計算</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：依線路差異化獎池</td></tr>
+      <tr><td>標籤規則 → 模板（分眾配置）</td><td class="dim">每列＝多標籤 chip（<strong>AND 需同時符合</strong>）→ 指定模板；固定置底<strong>預設配置（不可刪除）</strong>；未命中走預設配置、<strong>無准入閘門</strong>；<strong> 即時衝突檢查三層</strong>：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋</strong>，命中取「標籤數最多且全部符合」者優先，同標籤數又同時命中多條 → 警示擋送審。<strong><a href="#tag-pool" style="color:var(--gold-light);">標籤池</a>（7 個 · 兩維度）</strong>：消費分層 小客/中客/大客/超大客/巨客 ＋ RTP 體驗 正常/慘輸</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：分群模型輸出核心標籤</td></tr>
+      <tr><td>適用路線設定（platform_lines）</td><td class="dim"><strong>新增式選擇</strong>：預設空清單 →「<strong>＋新增路線</strong>」下拉（<strong>內建搜尋、只列未加入者</strong>）→ chip（可移除 ×）；另有「<strong>全部加入</strong>」。<strong>清單走後端 API</strong>（非前端寫死）。<strong>儲存草稿允許 0 條、送審前 ≥1 條否則擋送審</strong>；每日重置時間一律以 UTC+8 計算</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：依線路差異化獎池</td></tr>
       <tr><td>版型主題設定（theme_id）</td><td class="dim">從<strong>預定義主題清單單選</strong>（treasure_box / gold_egg / red_envelope / xmas_gift），選中顯示縮圖預覽，控制前台換皮；<strong>不可自由輸入、不影響玩法數值</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：營運可自上傳素材</td></tr>
       <tr><td>活動期間倒數設定（countdown_lead_days）</td><td class="dim">設定前台由日期區間轉倒數的提前天數（預設 3）；活動列表倒數欄剩餘天數 &lt; 此值時轉紅</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>抽獎權重表（第 1~8 抽）</td><td class="dim">模板編輯器內<strong>第 1~8 抽可輸入相對權重</strong>（每列合計 &gt;0 即可、<strong>非強制 100</strong>）；<strong>第 9 抽由系統自動決定</strong>（不放回抽、必中剩餘的最後 1 個獎項）為唯讀說明列、不參與合計驗證</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>注單類型篩選（遊戲後台）</td><td class="dim">遊戲後台既有「投注資料查詢」新增<strong>注單類型：一般注單／活動獎勵</strong>；篩活動獎勵時額外呈現 <strong>CAMPAIGN ID ＋ 獎勵類型</strong>欄。</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：FREE SPIN 卡併入獎勵類型值域</td></tr>
-      <tr><td>RTP 自動試算（每模板 ±0.1%）</td><td class="dim">填完即時顯示 RTP%；<strong>每模板自訂目標 RTP，容許 ±0.1%</strong>；任一〔貨幣 × 模板〕未通過（RTP 偏離或<strong>第 1~8 抽權重列合計 0</strong>）→ 全域警示＋擋送審</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
+      <tr><td>RTP 自動試算（純資訊顯示）</td><td class="dim">於<strong>各幣別 tab 內</strong>即時顯示該幣別<strong>獎池總額與 RTP%</strong>；<strong style="color:var(--orange-bright);">不做目標值校驗、不擋儲存與送審</strong>。擋送審條件為<strong>獎項數量加總 ≠ 9／最終獎 &lt; 1／必填幣別未填完整／第 1~8 抽權重列合計 0</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>CRM 獨立獎勵歷程頁</td><td class="dim"><strong style="color:var(--orange-bright);">不設此頁</strong>——改於遊戲後台「投注資料查詢」（見上一列與本章「獎勵歷程查詢」）</td><td class="dim">✘ 不做</td><td class="dim">—</td></tr>
       <tr><td>玩家端「活動」歷程入口</td><td class="dim">遊戲歷程頂部分類新增「活動」（純入口、無 TOTAL BETS／Net Win/Lose）→ 抽寶箱方形卡 → 獎勵歷程列表（時間／CAMPAIGN ID／獎勵類型／面額，時間倒序、不可展開）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：其他玩法卡片並列</td></tr>
       <tr><td>活動類型（列表欄＋篩選＋建立流程）</td><td class="dim">列表於「版型」欄左側新增<strong>活動類型</strong>欄、篩選列新增活動類型下拉；建立新活動<strong>先選活動類型</strong>（目前僅抽寶箱），表單內<strong>唯讀</strong>；架構預留其他玩法，審核與版本控制共用</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：新增其他玩法類型</td></tr>
@@ -3993,6 +4166,123 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ 上表為「單一主題」需提供的一組資產；4 套主題依此 ×4。版位、尺寸切版規格沿用 DEV §05 美術資產清單（同版位只換皮）。v2 開放營運自上傳素材組主題時，沿用同一命名規範與資產清單。</div>
+
+  <div class="sub-title" id="admin-i18n">後台多國語系（i18n &middot; zh-TW／en）<span class="tag-upd">2026-08-04</span></div>
+  <div class="callout info">
+    <strong>v1 僅支援兩種語系：繁體中文（<span class="mono">zh-TW</span>，<strong style="color:var(--gold-light);">預設</strong>）／英文（<span class="mono">en</span>）。</strong>兩種語系<strong>寫死於前端</strong>，<strong style="color:var(--orange-bright);">不提供語系管理後台、不做其他語言</strong>。<br>
+    <strong style="color:var(--orange-bright);">⚠ 與 DEV &sect;11 區分：</strong>DEV &sect;11「多國語系文案表」為<strong>玩家端 Client 文案（13 語系）</strong>；<strong>本節為後台管理介面文案（僅 zh-TW／en）</strong>，兩者<strong>字典檔與範圍各自獨立</strong>，不互相沿用。
+  </div>
+
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>規格</th></tr></thead>
+    <tbody>
+      <tr><td>支援語系</td><td class="dim"><strong>繁體中文（zh-TW）＝預設</strong>／<strong>英文（en）</strong>；v1 <strong>寫死兩種</strong>，不提供語系管理後台。</td></tr>
+      <tr><td>切換器</td><td class="dim">後台<strong>頂部列</strong>提供語系切換（「<strong>中文｜EN</strong>」toggle 或下拉），<strong>建議置於主題切換／檢視工具附近</strong>；<strong style="color:var(--green-bright);">切換即時生效、不重新載入頁面資料</strong>。</td></tr>
+      <tr><td>偏好記憶</td><td class="dim">語系偏好<strong>依帳號記憶</strong>（<strong>帳號設定欄位</strong>；前端另以<strong>本地快取</strong>加速首屏），<strong>下次登入沿用上次選擇</strong>；<strong>未設定過＝zh-TW</strong>。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="font-size:13px;margin-top:20px;">一、翻譯範圍（系統文案 · 須雙語）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">類別</th><th>涵蓋項目</th></tr></thead>
+    <tbody>
+      <tr><td>導覽與標題</td><td class="dim"><strong>導覽選單、頁面標題</strong></td></tr>
+      <tr><td>表格與表單</td><td class="dim"><strong>表格欄位標題、按鈕、表單 label 與 placeholder</strong></td></tr>
+      <tr><td>狀態名稱</td><td class="dim"><strong>草稿／送審中／已核准／運行中／已暫停／已結束</strong></td></tr>
+      <tr><td>訊息</td><td class="dim"><strong>驗證與錯誤訊息</strong>、<strong>toast</strong>、<strong>空狀態文案</strong></td></tr>
+      <tr><td>確認視窗</td><td class="dim"><strong>確認視窗</strong>（含「<strong>是否確認刪除模板</strong>」）</td></tr>
+      <tr><td>tooltip</td><td class="dim">含「<strong>此模板有活動使用中，無法刪除</strong>」「<strong>🔒 最高權限專屬</strong>」</td></tr>
+      <tr><td>角色名稱</td><td class="dim"><strong>最高權限(Admin)／操作(Operator)／查看(Platform)</strong> &rarr; 英文版顯示 <strong class="mono">Admin／Operator／Platform Viewer</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="font-size:13px;margin-top:20px;">二、不翻譯範圍</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">類別</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td>營運輸入的資料</td><td class="dim"><strong>模板名稱、活動名稱、備註、帳號名稱</strong>——<strong style="color:var(--orange-bright);">原樣顯示，不得翻譯</strong>。</td></tr>
+      <tr><td>代碼與識別碼</td><td class="dim"><strong>幣別代碼（PHP／kVND…）、CAMPAIGN ID、模板版本號（V1／V2）</strong>。</td></tr>
+      <tr><td>數值與金額</td><td class="dim"><strong>數值與金額</strong>原樣顯示。</td></tr>
+      <tr><td>日期時間</td><td class="dim"><strong style="color:var(--red-bright);">格式與時區維持 UTC+8，不因語系改變</strong>。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn" style="font-size:12px;">
+    <strong>🏗 實作方式（基礎建設備注）：</strong>所有系統文案以 <strong>i18n key</strong> 管理（<strong>前端語系字典檔</strong>，v1 兩語系<strong>寫死於前端</strong>）；<strong style="color:var(--red-bright);">開發不得在元件內寫死中文字串</strong>。<br>
+    <strong>新增文案時兩語系需同時補齊</strong>；<strong>缺 key 時 fallback 顯示 zh-TW</strong>。<br>
+    英文文案由開發<strong>依下方「中英術語對照表」實作</strong>（<strong style="color:var(--gold-light);">該表已附對應 i18n key</strong>），<strong>未列出的字串以簡潔後台慣用語直譯</strong>（<strong style="color:var(--orange-bright);">語意以中文為準、不得改寫規則內容</strong>），<strong>企劃驗收時校對</strong>。
+  </div>
+
+  <div class="sub-title" style="font-size:13px;margin-top:20px;">三、中英術語對照表（i18n key ／ 英文文案基準）</div>
+  <div class="body-text" style="font-size:11px;color:var(--text-dim);">
+    ※ <strong>後台原型 v2 不做語系功能</strong>，<strong>本表即英文文案的唯一依據</strong>。<br>
+    ※ <strong>Key 命名規則：</strong><span class="mono">admin.&lt;模組&gt;.&lt;項目&gt;</span>（全小寫 snake_case），沿用本文件既有後台文案 key 慣例（如 <span class="mono">admin.account.add</span>、<span class="mono">admin.line.title</span>）。模組前綴：<span class="mono">nav</span>／<span class="mono">status</span>／<span class="mono">action</span>／<span class="mono">campaign</span>／<span class="mono">template</span>／<span class="mono">currency</span>／<span class="mono">review</span>／<span class="mono">perm</span>／<span class="mono">role</span>／<span class="mono">version</span>。<br>
+    ※ 標 <strong style="color:var(--gold-light);">※</strong> 的 key 為<strong>本文件他處已定義、此處沿用</strong>（<strong style="color:var(--orange-bright);">不得重複建立新 key</strong>）。<br>
+    ※ 一列對應多個詞時，<strong>key 依斜線順序逐一對應</strong>；<strong>本表未列出的字串沿用同一命名規則自行擴充</strong>，兩語系需同時補齊。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:210px;">i18n key</th><th style="width:33%;">zh-TW</th><th>en</th></tr></thead>
+    <tbody>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.nav.campaign</span></td><td class="dim">活動管理</td><td class="dim mono" style="font-size:11.5px;">Campaign Management</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.nav.template</span></td><td class="dim">抽寶箱模板管理</td><td class="dim mono" style="font-size:11.5px;">Treasure Box Template Management</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.nav.review</span></td><td class="dim">活動審查</td><td class="dim mono" style="font-size:11.5px;">Campaign Review</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.nav.account</span></td><td class="dim">帳號權限</td><td class="dim mono" style="font-size:11.5px;">Account &amp; Permissions</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.status.draft</span><br><span class="mono" style="font-size:11px;">admin.status.in_review</span><br><span class="mono" style="font-size:11px;">admin.status.approved</span><br><span class="mono" style="font-size:11px;">admin.status.running</span><br><span class="mono" style="font-size:11px;">admin.status.paused</span><br><span class="mono" style="font-size:11px;">admin.status.ended</span></td><td class="dim">草稿／送審中／已核准／運行中／已暫停／已結束</td><td class="dim mono" style="font-size:11.5px;">Draft / In Review / Approved / Running / Paused / Ended</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.campaign.create_btn</span></td><td class="dim">建立新活動</td><td class="dim mono" style="font-size:11.5px;">New Campaign</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.action.view</span><br><span class="mono" style="font-size:11px;">admin.action.edit</span><br><span class="mono" style="font-size:11px;">admin.action.copy</span><br><span class="mono" style="font-size:11px;">admin.action.delete</span></td><td class="dim">查看／編輯／複製／刪除</td><td class="dim mono" style="font-size:11.5px;">View / Edit / Copy / Delete</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.review.submit</span><br><span class="mono" style="font-size:11px;">admin.review.approve</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject_reason</span><span style="color:var(--gold-light);font-size:10px;"> ※</span></td><td class="dim">送審／核准／駁回（原因必填）</td><td class="dim mono" style="font-size:11.5px;">Submit for Review / Approve / Reject (reason required)</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.action.save</span><br><span class="mono" style="font-size:11px;">admin.action.cancel</span><br><span class="mono" style="font-size:11px;">admin.action.confirm_delete</span></td><td class="dim">儲存／取消／確認刪除</td><td class="dim mono" style="font-size:11.5px;">Save / Cancel / Confirm Delete</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.thresholds</span></td><td class="dim">9 格累積門檻</td><td class="dim mono" style="font-size:11.5px;">9-Slot Cumulative Thresholds</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.prizes</span><br><span class="mono" style="font-size:11px;">admin.template.prize_small</span><br><span class="mono" style="font-size:11px;">admin.template.prize_medium</span><br><span class="mono" style="font-size:11px;">admin.template.prize_large</span><br><span class="mono" style="font-size:11px;">admin.template.prize_final</span></td><td class="dim">四階獎項（小／中／大／最終獎）</td><td class="dim mono" style="font-size:11.5px;">4-Tier Prizes (Small / Medium / Large / Final)</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.weight_table</span></td><td class="dim">抽獎權重表（第 1~8 抽）</td><td class="dim mono" style="font-size:11.5px;">Draw Weight Table (Draws 1&ndash;8)</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.perm.required</span><br><span class="mono" style="font-size:11px;">admin.perm.per_assignment</span></td><td class="dim">必填／依指派</td><td class="dim mono" style="font-size:11.5px;">Required / Per assignment</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.currency.add</span><span style="color:var(--gold-light);font-size:10px;"> ※</span></td><td class="dim">＋新增貨幣</td><td class="dim mono" style="font-size:11.5px;">+ Add Currency</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.currency.incomplete</span></td><td class="dim">未完成：{幣別清單}</td><td class="dim mono" style="font-size:11.5px;">Incomplete: {currency list}</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.delete_blocked</span></td><td class="dim">此模板有活動使用中，無法刪除</td><td class="dim mono" style="font-size:11.5px;">This template is in use by a campaign and cannot be deleted</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.delete_confirm</span></td><td class="dim">是否確認刪除模板</td><td class="dim mono" style="font-size:11.5px;">Confirm template deletion?</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.perm.admin_only</span></td><td class="dim">🔒 最高權限專屬</td><td class="dim mono" style="font-size:11.5px;">🔒 Admin only</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.role.admin</span><br><span class="mono" style="font-size:11px;">admin.role.operator</span><br><span class="mono" style="font-size:11px;">admin.role.platform</span></td><td class="dim">最高權限(Admin)／操作(Operator)／查看(Platform)</td><td class="dim mono" style="font-size:11.5px;">Admin / Operator / Platform Viewer</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.version.empty</span></td><td class="dim">尚未有版本紀錄</td><td class="dim mono" style="font-size:11.5px;">No version history yet</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.version.label</span></td><td class="dim">版本（V1、更新時間）</td><td class="dim mono" style="font-size:11.5px;">Version (V1, updated at)</td></tr>
+      <tr><td colspan="3" style="background:var(--gold-fill-faint);font-size:11px;color:var(--gold-light);font-weight:600;">▼ DEV V1.6 新增（2026-08-04）</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.used_campaigns.expand</span></td><td class="dim">展開使用中活動</td><td class="dim mono" style="font-size:11.5px;">Show active campaigns</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.pager.page_size</span></td><td class="dim">每頁筆數</td><td class="dim mono" style="font-size:11.5px;">Rows per page</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.pager.first</span></td><td class="dim">回第 1 頁</td><td class="dim mono" style="font-size:11.5px;">First page</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.pager.prev</span><br><span class="mono" style="font-size:11px;">admin.tpl.pager.next</span></td><td class="dim">上一頁／下一頁</td><td class="dim mono" style="font-size:11.5px;">Previous / Next</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.pager.total</span></td><td class="dim">共 {n} 筆</td><td class="dim mono" style="font-size:11.5px;">{n} items</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.prize_count.sum</span></td><td class="dim">獎項數量加總 {n}／9</td><td class="dim mono" style="font-size:11.5px;">Prize count total {n}/9</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.prize_count.error_sum</span></td><td class="dim">獎項數量加總需等於 9（目前 {n}）</td><td class="dim mono" style="font-size:11.5px;">Prize counts must total 9 (now {n})</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.prize_count.error_final</span></td><td class="dim">最終獎數量至少 1</td><td class="dim mono" style="font-size:11.5px;">Final prize count must be &ge; 1</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.add</span></td><td class="dim">＋新增路線</td><td class="dim mono" style="font-size:11.5px;">Add line</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.add_all</span></td><td class="dim">全部加入</td><td class="dim mono" style="font-size:11.5px;">Add all</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.search</span></td><td class="dim">搜尋路線</td><td class="dim mono" style="font-size:11.5px;">Search lines</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.empty</span></td><td class="dim">尚未選擇適用路線</td><td class="dim mono" style="font-size:11.5px;">No lines selected</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.required</span></td><td class="dim">請至少選擇 1 條適用路線</td><td class="dim mono" style="font-size:11.5px;">Select at least 1 line</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tag.spend.small</span><br><span class="mono" style="font-size:11px;">admin.tag.spend.mid</span><br><span class="mono" style="font-size:11px;">admin.tag.spend.big</span><br><span class="mono" style="font-size:11px;">admin.tag.spend.xbig</span><br><span class="mono" style="font-size:11px;">admin.tag.spend.whale</span></td><td class="dim">小客／中客／大客／超大客／巨客</td><td class="dim mono" style="font-size:11.5px;">Small / Mid / Big / XBig / Whale</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tag.rtp.normal</span><br><span class="mono" style="font-size:11px;">admin.tag.rtp.unlucky</span></td><td class="dim">正常／慘輸</td><td class="dim mono" style="font-size:11.5px;">Normal / Unlucky</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.account.search.placeholder</span></td><td class="dim">搜尋帳號名稱</td><td class="dim mono" style="font-size:11.5px;">Search account name</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.account.filter.role</span></td><td class="dim">角色篩選</td><td class="dim mono" style="font-size:11.5px;">Filter by role</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.account.search.empty</span></td><td class="dim">找不到符合的帳號</td><td class="dim mono" style="font-size:11.5px;">No matching accounts</td></tr>
+</tbody>
+  </table>
+
+  <div class="callout danger" style="font-size:12px;">
+    <strong>範圍註記：</strong>多國語系為<strong>開發實作項目</strong>；<strong style="color:var(--orange-bright);">後台原型 v2 維持中文單語系、不加語系切換</strong>——<strong>原型不作為 i18n 的視覺參考</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 &middot; 切換即時生效且資料不受影響</div>
+    <b class="g">Given</b> <strong>操作(Operator)</strong> 帳號以<strong>中文介面</strong>開啟模板編輯器並<strong>已填寫部分欄位</strong><br>
+    <b class="w">When</b> <strong>切換語系為 EN</strong><br>
+    <b class="t">Then</b> 介面文案<strong style="color:var(--green-bright);">即時轉為英文</strong>；<strong>已填寫的門檻／獎項數值、模板名稱、幣別代碼與時間顯示完全不變</strong>；<strong>重新登入後仍為 EN</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 &middot; 不翻譯範圍</div>
+    <b class="g">Given</b> 語系為 <strong>EN</strong><br>
+    <b class="w">When</b> 檢視<strong>活動列表與模板列表</strong><br>
+    <b class="t">Then</b> <strong>欄位標題、狀態、按鈕為英文</strong>；<strong style="color:var(--orange-bright);">活動名稱、模板名稱、CAMPAIGN ID、幣別代碼維持原輸入內容、不被翻譯</strong>。
+  </div>
 </section>
 
 <!-- ═══════════ 07 V1 vs V2 ═══════════ -->
@@ -4235,7 +4525,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
   <div class="oq-item">
     <div class="oq-owner">📐 標籤資料供給</div>
-    <div class="oq-q"><strong>標籤資料到位的時點</strong>，以及首波實際可用的標籤值域是否即為「大客／中客／小客／高風險／低風險」五項（見 <a href="#tag-rules" style="color:var(--gold-light);">DEV §12</a>）。<br><span style="font-size:11px;">＊供給就緒前的行為<strong>無須等待確認</strong>：一律走預設配置、活動照常可玩，照 DEV §12 實作即可。</span></div>
+    <div class="oq-q"><strong>標籤資料到位的時點</strong>，以及首波實際可用的標籤值域是否即為<strong>消費分層 5 項（小客／中客／大客／超大客／巨客）＋ RTP 體驗 2 項（正常／慘輸）</strong>共 7 項（見 <a href="#tag-pool" style="color:var(--gold-light);">DEV §06 標籤池初版</a>、<a href="#tag-rules" style="color:var(--gold-light);">DEV §12</a>），以及「<strong>慘輸</strong>」的判定門檻定義。<br><span style="font-size:11px;">＊供給就緒前的行為<strong>無須等待確認</strong>：一律走預設配置、活動照常可玩，照 DEV §12 實作即可。</span></div>
   </div>
 </section>
 
@@ -4249,6 +4539,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout warn">
+    <strong style="color:var(--gold-light);">適用範圍＝玩家端 Client 文案</strong>（<strong>後台管理介面為 zh-TW／en 雙語系，另見 <a href="#admin-i18n" style="color:var(--gold-light);">DEV §06 後台多國語系</a></strong>）。<br>
     <strong>翻譯狀態：</strong>以下 13 語系翻譯為<strong>初稿（AI 產生）</strong>，上線前必須經在地化團隊審校，<strong>泰文（th）、緬甸文（my-MM）、孟加拉文（bn）為高優先審校項</strong>。zh-Hant 為文案原文基準。
   </div>
   <div class="callout success">
@@ -4359,8 +4650,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <table class="spec-table">
     <thead><tr><th>項目</th><th>設計</th></tr></thead>
     <tbody>
-      <tr><td>標籤取得時機</td><td class="dim">玩家<strong>每日「登錄時」</strong>，由系統向<strong>數據組（DA）</strong>取得該玩家的<strong>多組 Tag</strong>（大/中/小客、風險標籤…）。非玩家每次動作即查，登錄時取一次當日快照。</td></tr>
-      <tr><td>匹配邏輯（核心變更）</td><td class="dim">需<strong>同時符合多個標籤條件（AND 複合條件）</strong>，才對應到<strong>該組抽取門檻與獎項配置</strong>。例：<em>（大客 AND 非高風險）</em> → 配置 A；<em>（中客 AND 低風險）</em> → 配置 B。單一標籤不足以命中，必須整組條件同時成立。</td></tr>
+      <tr><td>標籤取得時機</td><td class="dim">玩家<strong>每日「登錄時」</strong>，由系統向<strong>數據組（DA）</strong>取得該玩家的<strong>多組 Tag</strong>（<strong>消費分層</strong>：小/中/大/超大/巨客；<strong>RTP 體驗</strong>：正常/慘輸）。非玩家每次動作即查，登錄時取一次當日快照。</td></tr>
+      <tr><td>匹配邏輯（核心變更）</td><td class="dim">需<strong>同時符合多個標籤條件（AND 複合條件）</strong>，才對應到<strong>該組抽取門檻與獎項配置</strong>。例：<em>（大客 AND 正常）</em> → 配置 A；<em>（大客 AND 慘輸）</em> → 配置 B。單一標籤不足以命中，必須整組條件同時成立。</td></tr>
       <tr><td>命中結果</td><td class="dim">命中 → 套用該組「抽取門檻 + 獎項配置（9 格獎池／權重／目標 RTP）」；<strong>未命中任何一組 → 走預設配置（tag_default）</strong>，活動仍可正常參與，不因未命中而消失。<br><strong> 重疊命中：</strong>玩家同時符合多條規則時採「<strong>符合度高者優先</strong>」——取<strong>標籤數最多</strong>且玩家全部符合的規則（見下方「五、防呆 · 衝突檢查」）。</td></tr>
       <tr><td>資料來源一致性</td><td class="dim">標籤值與分群定義<strong>由數據組提供</strong>，平台只接收 + 比對套用（非自動打標），沿用 DEV §04 B2 原則。</td></tr>
     </tbody>
@@ -4385,7 +4676,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="info-card-title">🟢 初期（本次範圍）</div>
       <div class="info-card-desc" style="margin-top:8px;line-height:1.8;">
         採<strong>「一層複合標籤規則」</strong>：<em>多標籤組合 → 單一設定值</em>，<strong>避免規則樹過於複雜</strong>。<br>
-        標籤範圍<strong>先只做簡單分類</strong>：<strong>大客 / 中客 / 小客 ＋ 風險標籤</strong>。
+        標籤範圍<strong>先只做兩個維度共 7 個標籤</strong>：<strong>消費分層（小客／中客／大客／超大客／巨客）＋ RTP 體驗（正常／慘輸）</strong>（見 <a href="#tag-pool" style="color:var(--gold-light);">DEV §06 標籤池初版</a>）。
       </div>
     </div>
     <div class="info-card" style="border-left:3px solid var(--purple);">
@@ -4413,7 +4704,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
   <div class="bdd-card">
     <div class="bdd-title">BDD 驗收情境 · 正常命中</div>
-    <b class="g">Given</b> 玩家帶「大客 + 非高風險」兩個 Tag、活動配置 A 的條件為（大客 AND 非高風險）<br>
+    <b class="g">Given</b> 玩家帶「大客 + 正常」兩個 Tag、活動配置 A 的條件為（大客 AND 正常）<br>
     <b class="w">When</b> 玩家當日登錄並首次解鎖<br>
     <b class="t">Then</b> 命中配置 A，當日套用 A 的門檻與獎項並鎖定，audit 記下命中的標籤組合。
   </div>
@@ -4425,13 +4716,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
   <div class="bdd-card">
     <div class="bdd-title">BDD 驗收情境 · 重疊命中 → 標籤數多者優先</div>
-    <b class="g">Given</b> 活動內有規則 R1＝（大客）→ 標準模板 A、規則 R2＝（大客 AND 低風險）→ 忠誠加碼（R1 的標籤為 R2 的子集），玩家帶「大客 + 低風險」<br>
+    <b class="g">Given</b> 活動內有規則 R1＝（大客）→ 標準模板 A、規則 R2＝（大客 AND 正常）→ 忠誠加碼（R1 的標籤為 R2 的子集），玩家帶「大客 + 正常」<br>
     <b class="w">When</b> 玩家當日登錄比對規則<br>
     <b class="t">Then</b> R1、R2 皆符合，採「<strong>符合度高者優先</strong>」命中<strong>標籤數最多</strong>的 R2 → 套用「忠誠加碼」；此設定<strong>合法、存檔與送審皆不擋</strong>。
   </div>
   <div class="bdd-card">
     <div class="bdd-title">BDD 驗收情境 · 同標籤數同時命中 → 擋送審</div>
-    <b class="g">Given</b> 活動內有規則 R3＝（大客 AND 低風險）→ 忠誠加碼、規則 R4＝（大客 AND 高風險）→ 救援高倍，且營運另建 R5＝（大客 AND 低風險）→ 保守低倍（與 R3 標籤數相同且同時命中）<br>
+    <b class="g">Given</b> 活動內有規則 R3＝（大客 AND 正常）→ 忠誠加碼、規則 R4＝（大客 AND 慘輸）→ 救援高倍，且營運另建 R5＝（大客 AND 正常）→ 保守低倍（與 R3 標籤數相同且同時命中）<br>
     <b class="w">When</b> 營運存檔或提交審查<br>
     <b class="t">Then</b> 系統判定為<strong>設定衝突</strong>（同標籤數、同時命中多條，無法決定優先）→ <strong style="color:var(--red-bright);">警示並擋送審</strong>，須由營運自行調整規則。
   </div>
@@ -4453,11 +4744,11 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <strong>②「標籤組合完全重複」</strong>（兩條規則的標籤集合完全相同） → <strong style="color:var(--red-bright);">紅底警示、擋送審</strong>（同原型 v2）。<br>
       <strong>③「部分重疊」</strong>（一條規則的標籤是另一條的子集，玩家可能同時命中多條） → <strong style="color:var(--green-bright);">合法、不擋</strong>；命中採「<strong>符合度高者優先</strong>」——取<strong>標籤數最多</strong>且玩家<strong>全部符合</strong>的那條規則。<strong>若同標籤數且同時命中多條 → 視為設定衝突，存檔時警示、擋送審。</strong></td></tr>
       <tr><td>防呆 · 預設兜底提示</td><td class="dim">說明文字</td><td class="dim">介面固定顯示「未命中任何組 → 走預設配置 tag_default」，提醒營運<strong>務必設好預設配置</strong>，避免玩家落空。</td></tr>
-      <tr><td>友善操作</td><td class="dim">搜尋 / 分類 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></td><td class="dim"><strong> 標籤下拉支援搜尋與分類（客群類：大/中/小客；風險類：高/低風險）＋ hover 顯示標籤定義 → 列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>；<strong>v1 標籤僅 5 個，以 chips 直選即可</strong>，不做搜尋與分類。</td></tr>
+      <tr><td>友善操作</td><td class="dim">搜尋 / 分類 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></td><td class="dim"><strong> 標籤下拉支援搜尋與分類（<strong>消費分層</strong>：小/中/大/超大/巨客；<strong>RTP 體驗</strong>：正常/慘輸）＋ hover 顯示標籤定義 → 列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>；<strong>v1 標籤僅 7 個，以 chips 直選即可</strong>，不做搜尋與分類。</td></tr>
     </tbody>
   </table>
   <div class="callout warn">
-    <strong>初期標籤範圍（本次僅做）：</strong>先只做簡單分類 —— <strong>大客 / 中客 / 小客</strong> ＋ <strong>風險標籤</strong>；複雜分群與模型標籤列未來迭代。
+    <strong>初期標籤範圍（本次僅做）：</strong>兩個獨立維度共 <strong>7 個標籤</strong> —— <strong>消費分層（小客／中客／大客／超大客／巨客）</strong> ＋ <strong>RTP 體驗（正常／慘輸）</strong>；完整定義與百分位區間見 <a href="#tag-pool" style="color:var(--gold-light);">DEV §06 標籤池初版</a>。<strong style="color:var(--orange-bright);">已移除「低風險」「高風險」標籤</strong>；複雜分群與模型標籤列未來迭代。
   </div>
 </section>
 
@@ -4703,7 +4994,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.4 · CONFIDENTIAL 2026<br>
+  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.6 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 受眾：後端／前端／美術／QA · 完整版（含 KPI／成本／時程）另見 <a href="treasure_box_crm_spec_v5.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">treasure_box_crm_spec_v5.0.html</a>（內容版號 V5.3）<br>
   <strong>兩份文件如有衝突，以本文件為準。</strong>
 </div>
