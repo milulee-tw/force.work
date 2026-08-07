@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 開發交付版規格書 DEV V1.7</title>
+<title>抽寶箱 開發交付版規格書 DEV V1.9</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1263,7 +1263,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">抽寶箱<br>開發交付版規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.7</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.9</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">SOURCE</span><span class="sidebar-meta-val">完整版 V5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
@@ -1397,8 +1397,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#admin-version">活動列表與欄位</a>
         <a class="sidebar-sub-link" href="#admin-version">時區與版本快照</a>
-        <a class="sidebar-sub-link" href="#admin-version">審核狀態機</a>
-        <a class="sidebar-sub-link" href="#admin-version">權限角色矩陣</a>
+        <a class="sidebar-sub-link" href="#camp-ops">操作欄精簡（移除查看）</a>
+        <a class="sidebar-sub-link" href="#camp-pause">活動暫停／運行</a>
+        <a class="sidebar-sub-link" href="#review-fsm">審核狀態機</a>
+        <a class="sidebar-sub-link" href="#perm-matrix">權限角色矩陣</a>
       </div>
     </div>
     <div class="sidebar-section open" data-section="reward-data">
@@ -1432,7 +1434,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.6 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.9 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1441,7 +1443,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.6 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.9 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1477,6 +1479,24 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-08-06</td>
+          <td>DEV V1.9</td>
+          <td><a href="#template-mgmt" style="color:var(--gold-light);">§06 模板管理</a></td>
+          <td>「使用中活動」<strong>展開明細功能延後至 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>（<strong>規格保留、掛 v2 標記</strong>；含<a href="#template-delete" style="color:var(--gold-light);">刪除規則備注</a>、<a href="#template-pager" style="color:var(--gold-light);">分頁收合行為</a>、基建明細端點、BDD 與 i18n key 同步標註）；「<strong>N 檔</strong>」數字與<strong>即時推導口徑維持 v1 不變</strong>（<strong style="color:var(--orange-bright);">刪除規則依賴</strong>）</td>
+        </tr>
+        <tr>
+          <td>2026-08-06</td>
+          <td>DEV V1.8</td>
+          <td><a href="#camp-pause" style="color:var(--gold-light);">活動管理列表</a></td>
+          <td>操作欄<strong>移除「查看」</strong>（詳情查閱改走「<strong>編輯</strong>」；<strong>查看(Platform) 角色無詳情入口、僅列表欄位</strong>，<strong style="color:var(--orange-bright);">屬刻意取捨</strong>）；「<strong>運行／暫停</strong>」<strong>改圖示按鈕</strong>（<strong>▶／⏸</strong>＋tooltip），<strong>行為與彈窗規則不變</strong></td>
+        </tr>
+        <tr>
+          <td>2026-08-06</td>
+          <td>DEV V1.7</td>
+          <td><a href="#camp-pause" style="color:var(--gold-light);">活動管理列表</a>／<a href="#review-fsm" style="color:var(--gold-light);">活動狀態機</a>／<a href="#account-perm" style="color:var(--gold-light);">帳號權限頁</a></td>
+          <td>活動列表新增「<a href="#camp-pause" style="color:var(--gold-light);">暫停／運行</a>」操作（<strong>Operator 以上、皆彈窗二次確認</strong>）；<strong>暫停</strong>＝未觸發玩家<strong>立即隱藏</strong>、已觸發玩家<strong>保護至當日 23:59（UTC+8）</strong>、<strong>隔日完全關閉</strong>、<strong>當日可反悔取消</strong>；<strong>恢復</strong>＝<strong>立即生效</strong>依當下設定觸發；<strong>已暫停逾迄時自動轉已結束</strong>；<a href="#perm-matrix" style="color:var(--gold-light);">權限矩陣</a>補「活動暫停／運行」項；操作紀錄基建備注。<strong>納 v1</strong></td>
+        </tr>
         <tr>
           <td>2026-08-04</td>
           <td>DEV V1.6</td>
@@ -1558,7 +1578,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <details class="fold">
-    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.6<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
+    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.9<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
     <div class="fold-body">
       <table class="spec-table compact">
         <thead><tr><th style="width:190px;">完整版章節</th><th style="width:150px;">本文件章節</th><th>處理方式</th></tr></thead>
@@ -2791,7 +2811,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>互動原型：</strong><a href="抽寶箱後台管理介面v2.html" target="_blank" rel="noopener" style="color:var(--gold-light);">《抽寶箱後台管理介面 v2.html》 ↗</a>（同資料夾，可點開）——下方畫面示意與「UI 設計說明」即依此原型還原。
   </div>
 
-  <div class="sub-title">後台功能模組</div>
+  <div class="sub-title">後台功能模組<span class="tag-upd">2026-08-06</span></div>
   <div class="info-grid-3">
     <div class="info-card" style="border-color:var(--green-line-strong);">
       <div class="info-card-title" style="color:var(--green-bright);">📋 活動列表</div>
@@ -2800,7 +2820,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         · 新增 / 編輯 / 複製活動<br>
         · 四分頁表單（基本設定／標籤與配置／獎項與門檻／版本）<br>
         · 活動倒數即時計時<br>
-        <span style="color:var(--purple);font-size:11px;">操作：查看 · 編輯 · 複製（移除啟停）</span>
+        <span style="color:var(--purple);font-size:11px;">操作：編輯 · 複製 · <span style="color:var(--gold-light);">⏸／▶ 暫停／運行（二次確認）</span></span>
       </div>
     </div>
     <div class="info-card" style="border-color:var(--gold-border-mid);">
@@ -2864,7 +2884,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title" id="nav-crm">後台導覽結構（CRM活動）<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="nav-crm">後台導覽結構（CRM活動）<span class="tag-upd">2026-08-06</span></div>
   <div class="callout warn">
     <strong>導覽結構：</strong>左側<strong>第一層為「CRM活動」</strong>，其下<strong>第二層子頁籤</strong>為「<strong>活動管理</strong>」「<strong>抽寶箱模板管理</strong>」「<strong>活動審查</strong>」三頁。<br>
     <strong>設計意圖：</strong>CRM 未來會有多種玩法活動，導覽以「CRM活動」為單一入口收斂，玩法差異靠<strong>活動類型</strong>欄位區分，<strong>不因新增玩法而長出新的第一層選單</strong>。
@@ -2876,8 +2896,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         · <strong>所有類型的 CRM 活動共用同一份列表</strong><br>
         · 欄位含<strong>活動類型</strong>（版型欄左側）<br>
         · 篩選列含<strong>活動類型下拉</strong><br>
-        · 建立新活動 / 編輯 / 複製 / 查看<br>
-        <span style="color:var(--purple);font-size:11px;">操作：查看 · 編輯 · 複製（不提供啟停）</span>
+        · 建立新活動 / 編輯（兼查閱）/ 複製<br>
+        <span style="color:var(--purple);font-size:11px;">操作：編輯 · 複製 · <span style="color:var(--gold-light);">⏸／▶ 暫停／運行（二次確認）</span></span>
       </div>
     </div>
     <div class="info-card" style="border-color:var(--gold-border-mid);">
@@ -3219,7 +3239,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout">
-    <strong>整體版面對照（原型 v2）：</strong>① <strong>活動列表頁</strong>欄位＝<strong>活動名稱／CAMPAIGN ID／版型／適用線路（chips）／起訖時間／重置／活動倒數（即時倒數計時，剩餘天數 &lt; 倒數啟動天數時轉紅）／狀態／版本／操作（查看·編輯·複製）</strong>；<strong>移除受眾 TAG、RTP 欄與「啟停」操作</strong>。篩選：<strong>狀態 chips（含各狀態數量）＋線路下拉＋日期區間＋清除篩選</strong>。右上有「＋建立新活動」與<strong>檢視角色三段切換（最高權限／一般操作者／僅查看）</strong>。<strong>活動複製</strong>：複本帶入全部設定、狀態重置為草稿、版本 V1、ID 加 <span class="mono">_COPY</span>。② <strong>建立／編輯表單為四分頁</strong>（取代舊兩欄式＋右欄 sticky）：<strong>Tab 1 基本設定 → Tab 2 標籤與配置 → Tab 3 獎項與門檻（唯讀摘要）→ Tab 4 版本</strong>；門檻／權重／RTP／多貨幣皆移至模板編輯器。
+    <strong>整體版面對照（原型 v2）：</strong>① <strong>活動列表頁</strong>欄位＝<strong>活動名稱／CAMPAIGN ID／版型／適用線路（chips）／起訖時間／重置／活動倒數（即時倒數計時，剩餘天數 &lt; 倒數啟動天數時轉紅）／狀態／版本／操作（編輯·複製<strong style="color:var(--gold-light);">·⏸／▶ 暫停／運行</strong>）</strong>；<strong>移除受眾 TAG 與 RTP 欄</strong>。<strong style="color:var(--gold-light);">「暫停／運行」為 DEV V1.7 新增</strong>（<strong>Operator 以上、皆彈窗二次確認</strong>，非一鍵啟停），<strong style="color:var(--gold-light);">DEV V1.8 起改為圖示按鈕（▶／⏸＋tooltip）並移除「查看」</strong>（詳情查閱走「編輯」；見 <a href="#camp-ops" style="color:var(--gold-light);">DEV §13 一之零</a>、<a href="#camp-pause" style="color:var(--gold-light);">一之一</a>）。篩選：<strong>狀態 chips（含各狀態數量）＋線路下拉＋日期區間＋清除篩選</strong>。右上有「＋建立新活動」與<strong>檢視角色三段切換（最高權限／一般操作者／僅查看）</strong>。<strong>活動複製</strong>：複本帶入全部設定、狀態重置為草稿、版本 V1、ID 加 <span class="mono">_COPY</span>。② <strong>建立／編輯表單為四分頁</strong>（取代舊兩欄式＋右欄 sticky）：<strong>Tab 1 基本設定 → Tab 2 標籤與配置 → Tab 3 獎項與門檻（唯讀摘要）→ Tab 4 版本</strong>；門檻／權重／RTP／多貨幣皆移至模板編輯器。
   </div>
 
   <!-- Row 0z：模板 × 多貨幣（多貨幣於模板編輯器設定） -->
@@ -3678,7 +3698,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>模板為 v1 核心頁面、獨立實體：</strong>模板可被<strong>多檔活動 / 多條標籤規則共用</strong>；於「🎁 抽寶箱」群組下的「模板管理」頁維護。活動 Tab 3 只顯示唯讀摘要並「前往模板管理 →」，<strong>不可在活動內直接編輯數值</strong>。後台模板編輯<strong>取代外部試算表</strong>，<strong>此項納入 v1 範圍</strong>。
   </div>
 
-  <div class="sub-title" style="font-size:14px;">一、模板列表欄位<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" style="font-size:14px;">一、模板列表欄位<span class="tag-upd">2026-08-06</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
@@ -3686,16 +3706,22 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>押注比例（betRatio）</td><td class="dim">如 1.0x／1.2x／1.5x／0.8x</td></tr>
       <tr><td>目標 RTP</td><td class="dim">每模板自訂，<strong>純資訊顯示</strong>（<strong style="color:var(--orange-bright);">不做目標值校驗、不擋儲存與送審</strong>）</td></tr>
       <tr><td>貨幣（chips）</td><td class="dim">該模板<strong>已啟用</strong>的貨幣以 chip 呈現（<strong>必填 17 ＋ 已啟用的選填</strong>；PHP 為預設 tab）</td></tr>
-      <tr><td><strong>使用中活動</strong><br><span class="dim" style="font-size:10px;">可展開</span></td><td class="dim">
-        <strong>① N 的來源＝即時推導、非獨立欄位：</strong><span class="mono">N</span> ＝ 引用此模板的<strong>未結束活動</strong>數（狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>；<strong style="color:var(--orange-bright);">已結束不計入</strong>）。活動透過<strong>標籤規則</strong>或<strong>預設配置</strong>引用模板；<strong>N 由活動資料即時計算，不是後台手動維護的數字</strong>。<strong style="color:var(--gold-light);">此口徑與「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」的 N 完全同一套（同一查詢、同一定義），兩處不得各算各的</strong>。<br>
-        <strong>② 可展開：</strong><span class="mono">N ≥ 1</span> 時，「<strong>N 檔</strong>」帶<strong>展開箭頭（chevron）</strong>；點擊該<strong>儲存格</strong>（或箭頭）→ 於<strong>該列正下方展開子列表</strong>；<strong>再點一次收合</strong>。<span class="mono">N ＝ 0</span> 顯示「<strong>0 檔</strong>」、<strong>無箭頭、不可展開</strong>。<br>
-        <strong>③ 展開子列表欄位</strong>（每檔活動一列）：見下表。<br>
-        <strong>④ 只列未結束活動：</strong><strong>展開筆數恆等於 N</strong>；<strong style="color:var(--orange-bright);">已結束活動不出現在展開清單</strong>（追溯需求走<strong>活動管理列表的狀態篩選</strong>）。</td></tr>
+      <tr><td><strong>使用中活動</strong><br><span class="dim" style="font-size:10px;">N 檔顯示 v1<br>展開明細 v2</span></td><td class="dim">
+        <strong style="color:var(--gold-light);">【v1 範圍 · 維持不變】</strong><br>
+        <strong>① 顯示「N 檔」。N 的來源＝即時推導、非獨立欄位：</strong><span class="mono">N</span> ＝ 引用此模板的<strong>未結束活動</strong>數（狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>；<strong style="color:var(--orange-bright);">已結束不計入</strong>）。活動透過<strong>標籤規則</strong>或<strong>預設配置</strong>引用模板；<strong>N 由活動資料即時計算，不是後台手動維護的數字</strong>。<strong style="color:var(--gold-light);">此口徑與「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」的 N 完全同一套（同一查詢、同一定義），兩處不得各算各的</strong>。<br>
+        <strong>② v1 不可展開：</strong>「N 檔」<strong style="color:var(--orange-bright);">無展開箭頭、不可點擊展開</strong>（<span class="mono">N ＝ 0</span> 亦僅顯示「0 檔」）。<br><br>
+        <strong style="color:var(--gold-light);">【v2 範圍 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> · 規格保留、v1 不執行】</strong><span style="font-size:11px;color:var(--orange-bright);">　v1 僅顯示 N 檔，展開明細於 v2 提供</span><br>
+        <strong>③ 可展開 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>：</strong><span class="mono">N ≥ 1</span> 時，「<strong>N 檔</strong>」帶<strong>展開箭頭（chevron）</strong>；點擊該<strong>儲存格</strong>（或箭頭）→ 於<strong>該列正下方展開子列表</strong>；<strong>再點一次收合</strong>。<span class="mono">N ＝ 0</span> 顯示「<strong>0 檔</strong>」、<strong>無箭頭、不可展開</strong>。<br>
+        <strong>④ 展開子列表欄位 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>（每檔活動一列）：<strong>Campaign ID／活動名稱／活動時間／活動狀態</strong>，見下表。<br>
+        <strong>⑤ 只列未結束活動 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>：</strong><strong>展開筆數恆等於 N</strong>；<strong style="color:var(--orange-bright);">已結束活動不出現在展開清單</strong>（追溯需求走<strong>活動管理列表的狀態篩選</strong>）。</td></tr>
       <tr><td>操作</td><td class="dim">編輯 · 複製 · 刪除（受下方「<a href="#template-delete" style="color:var(--gold-light);">模板刪除規則</a>」限制）</td></tr>
     </tbody>
   </table>
 
-  <div class="sub-title" style="font-size:13px;margin-top:18px;">「使用中活動」展開子列表欄位<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" style="font-size:13px;margin-top:18px;">「使用中活動」展開子列表欄位 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span><span class="tag-upd">2026-08-06</span></div>
+  <div class="callout info" style="font-size:12px;">
+    <strong style="color:var(--orange-bright);">⚠ 本小節整段為 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 範圍（D-009 · 2026-08-06 拍板延後）：</strong><strong>v1 僅顯示「N 檔」，展開明細於 v2 提供</strong>。<strong style="color:var(--gold-light);">規格內容完整保留、不刪</strong>，v2 開發時直接沿用本節。
+  </div>
   <table class="spec-table">
     <thead><tr><th style="width:160px;">欄位</th><th>說明</th></tr></thead>
     <tbody>
@@ -3706,21 +3732,24 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title" id="template-pager" style="font-size:14px;">模板列表分頁<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" id="template-pager" style="font-size:14px;">模板列表分頁<span class="tag-upd">2026-08-06</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:150px;">項目</th><th>規則</th></tr></thead>
     <tbody>
       <tr><td><strong>每頁筆數</strong></td><td class="dim">預設 <strong style="color:var(--gold-light);">10 筆／頁</strong>；下拉可切換 <strong>10／50／100</strong>。<strong>切換每頁筆數後回到第 1 頁</strong>。</td></tr>
       <tr><td><strong>分頁列</strong><br><span class="dim" style="font-size:10px;">列表底部</span></td><td class="dim">「<strong>上一頁</strong>」／<strong>頁碼</strong>（目前頁高亮；頁數多時<strong>省略中段為 <span class="mono">…</span></strong>）／「<strong>下一頁</strong>」＋「<strong style="color:var(--gold-light);">回第 1 頁</strong>」快捷鈕＋<strong>總筆數顯示</strong>（如「<strong>共 23 筆</strong>」）。<br><strong>第 1 頁</strong>時「上一頁」與「回第 1 頁」<strong>disabled</strong>；<strong>最後一頁</strong>時「下一頁」<strong>disabled</strong>。</td></tr>
-      <tr><td><strong>換頁行為</strong></td><td class="dim">換頁或切換每頁筆數時，<strong style="color:var(--orange-bright);">已展開的「使用中活動」子列表一律收合</strong>。</td></tr>
+      <tr><td><strong>換頁行為</strong> <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></td><td class="dim">換頁或切換每頁筆數時，<strong style="color:var(--orange-bright);">已展開的「使用中活動」子列表一律收合</strong>。<br><strong style="color:var(--gold-light);">（<span class="tag-new txt"><span style="font-size:9px;">v2</span></span>，隨展開功能生效）</strong>——<strong>v1 無展開功能，此條不適用</strong>；<strong>分頁其餘規則維持 v1 不變</strong>。</td></tr>
     </tbody>
   </table>
   <div class="callout warn" style="font-size:12px;">
-    <strong>🏗 後端列表 API 需支援分頁（基礎建設）：</strong>模板列表查詢 API 需支援 <span class="mono">page</span>／<span class="mono">page_size</span>（<strong>10／50／100</strong>）參數並回傳<strong>總筆數</strong>；「<strong>使用中活動 N</strong>」與<strong>展開明細</strong>由後端<strong>隨列表回傳</strong>或提供<strong>明細查詢端點</strong>，<strong>口徑＝未結束活動引用數</strong>。
+    <strong>🏗 後端列表 API 需支援分頁（基礎建設）：</strong>模板列表查詢 API 需支援 <span class="mono">page</span>／<span class="mono">page_size</span>（<strong>10／50／100</strong>）參數並回傳<strong>總筆數</strong>。<br>
+    · <strong style="color:var(--gold-light);">v1：</strong>「<strong>使用中活動 N</strong>」由後端<strong>隨列表回傳</strong>，<strong>口徑＝未結束活動引用數</strong>（<strong>與模板刪除規則同一函式</strong>）。<br>
+    · <strong><span class="tag-new txt"><span style="font-size:9px;">v2</span></span>：</strong><strong>展開明細</strong>由後端<strong>隨列表回傳</strong>或提供<strong>明細查詢端點</strong>（<strong style="color:var(--orange-bright);">隨展開功能於 v2 提供</strong>）。
   </div>
 
   <div class="bdd-card">
-    <div class="bdd-title">BDD 驗收情境 · 使用中活動展開（口徑＝未結束活動）</div>
+    <div class="bdd-title">BDD 驗收情境 · 使用中活動展開（口徑＝未結束活動） <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></div>
+    <div style="font-size:11px;color:var(--orange-bright);margin-bottom:6px;">※ 本情境隨「展開明細」<strong>延後至 v2 驗收</strong>；<strong>v1 不驗收此項</strong>（規格保留）。</div>
     <b class="g">Given</b> 模板 A 被 <strong>3 檔未結束活動</strong>與 <strong>2 檔已結束活動</strong>引用<br>
     <b class="w">When</b> 營運於<strong>模板列表</strong>點「<strong>3 檔</strong>」展開<br>
     <b class="t">Then</b> 子列表<strong style="color:var(--green-bright);">恰好 3 列</strong>（<strong>Campaign ID／活動名稱／活動時間／活動狀態</strong>），<strong style="color:var(--orange-bright);">不含已結束活動</strong>；<strong>再點一次收合</strong>。
@@ -3730,14 +3759,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="bdd-title">BDD 驗收情境 · 模板列表分頁切換</div>
     <b class="g">Given</b> 模板共 <strong>23 筆</strong>、每頁 <strong>10 筆</strong>、目前在<strong>第 3 頁</strong><br>
     <b class="w">When</b> 營運將<strong>每頁筆數切為 50</strong><br>
-    <b class="t">Then</b> <strong style="color:var(--green-bright);">回到第 1 頁</strong>、單頁顯示<strong>全部 23 筆</strong>、分頁列「<strong>下一頁</strong>」<strong>disabled</strong>；<strong>已展開的子列表收合</strong>。
+    <b class="t">Then</b> <strong style="color:var(--green-bright);">回到第 1 頁</strong>、單頁顯示<strong>全部 23 筆</strong>、分頁列「<strong>下一頁</strong>」<strong>disabled</strong>；<strong>已展開的子列表收合</strong>（<span class="tag-new txt"><span style="font-size:9px;">v2</span></span>，<strong>隨展開功能生效；v1 不驗收此句</strong>）。
   </div>
 
-  <div class="sub-title" id="template-delete" style="font-size:14px;">模板刪除規則<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" id="template-delete" style="font-size:14px;">模板刪除規則<span class="tag-upd">2026-08-06</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:190px;">規則</th><th>說明</th></tr></thead>
     <tbody>
-      <tr><td><strong>使用中不可刪</strong></td><td class="dim">只要「<strong>使用中活動</strong>」<span class="mono">N ≥ 1</span>（被任何<strong>未結束</strong>活動的<strong>標籤規則</strong>或<strong>預設配置</strong>引用，狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>皆算），刪除不可用——按鈕 <strong>disabled</strong> ＋ tooltip「<strong>此模板有活動使用中，無法刪除</strong>」。<strong>已結束活動不計入 N</strong>。<br><strong style="color:var(--gold-light);">使用中活動明細可於模板列表展開檢視</strong>（見上方「<a href="#template-mgmt" style="color:var(--gold-light);">一、模板列表欄位</a>」）。</td></tr>
+      <tr><td><strong>使用中不可刪</strong></td><td class="dim">只要「<strong>使用中活動</strong>」<span class="mono">N ≥ 1</span>（被任何<strong>未結束</strong>活動的<strong>標籤規則</strong>或<strong>預設配置</strong>引用，狀態＝<strong>草稿／送審中／已核准／運行中／已暫停</strong>皆算），刪除不可用——按鈕 <strong>disabled</strong> ＋ tooltip「<strong>此模板有活動使用中，無法刪除</strong>」。<strong>已結束活動不計入 N</strong>。<br><strong style="color:var(--gold-light);">使用中活動明細可於模板列表展開檢視</strong> <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>（見上方「<a href="#template-mgmt" style="color:var(--gold-light);">一、模板列表欄位</a>」）。<br><strong style="color:var(--orange-bright);">v1 期間可於活動管理列表逐檔確認引用模板</strong>（展開明細延後至 v2）。</td></tr>
       <tr><td><strong>二次確認</strong></td><td class="dim"><span class="mono">N ＝ 0</span> 時點「刪除」→ 跳出確認視窗「<strong>是否確認刪除模板</strong>」（內文含<strong>模板名稱</strong>與警語：<strong>刪除後此模板無法再被活動引用</strong>），按「<strong>確認刪除</strong>」才執行、按「<strong>取消</strong>」關閉。</td></tr>
       <tr><td>既有規則保留</td><td class="dim"><strong>最後一個模板不可刪</strong>；被「<strong>預設配置</strong>」引用中的模板<strong>恆為使用中、不可刪</strong>。</td></tr>
       <tr><td><strong>軟刪除</strong><br><span class="dim" style="font-size:10px;">後端 · 基礎建設備注</span></td><td class="dim">刪除＝<strong>soft delete</strong>：<strong>列表不再顯示、不可再被活動引用</strong>，但<strong>模板資料與全部版本快照保留</strong>；獎勵歷程／對帳仍可依「<strong>模板 ID ＋ <span class="mono">template_version</span></strong>」追溯已刪模板的<strong>門檻／獎項</strong>內容。</td></tr>
@@ -4072,7 +4101,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
   <div class="sub-title" id="monitoring">監控與警報（Grafana + Telegram · 不做後台頁面）</div>
   <div class="callout warn">
-    <strong>後台 v1 UI 範圍<u>不含</u>「異常處理」模組（Pending 發放列表／手動重試／AWC Log 頁）與「一鍵啟停」按鈕。</strong>監控與警報改由 <strong>Grafana + Telegram</strong> 值班流程處理，<strong>不做後台頁面</strong>——本節只列規則與警報內容。
+    <strong>後台 v1 UI 範圍<u>不含</u>「異常處理」模組（Pending 發放列表／手動重試／AWC Log 頁）與<u>無確認的「一鍵啟停」</u>按鈕。</strong>監控與警報改由 <strong>Grafana + Telegram</strong> 值班流程處理，<strong>不做後台頁面</strong>——本節只列規則與警報內容。<br>
+    <span style="font-size:11px;color:var(--text-dim);">＊<strong>DEV V1.7 起活動列表提供「暫停／運行」</strong>，<strong>兩者皆需彈窗二次確認</strong>，<strong style="color:var(--gold-light);">與此處排除的「一鍵啟停」不同</strong>（見 <a href="#camp-pause" style="color:var(--gold-light);">DEV §13 一之一</a>）。</span>
   </div>
   <table class="spec-table">
     <thead><tr><th>警報規則</th><th>門檻（預設）</th><th>觸發條件</th><th>Telegram 通知內容</th></tr></thead>
@@ -4167,7 +4197,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </table>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ 上表為「單一主題」需提供的一組資產；4 套主題依此 ×4。版位、尺寸切版規格沿用 DEV §05 美術資產清單（同版位只換皮）。v2 開放營運自上傳素材組主題時，沿用同一命名規範與資產清單。</div>
 
-  <div class="sub-title" id="admin-i18n">後台多國語系（i18n &middot; zh-TW／en）<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" id="admin-i18n">後台多國語系（i18n &middot; zh-TW／en）<span class="tag-upd">2026-08-06</span></div>
   <div class="callout info">
     <strong>v1 僅支援兩種語系：繁體中文（<span class="mono">zh-TW</span>，<strong style="color:var(--gold-light);">預設</strong>）／英文（<span class="mono">en</span>）。</strong>兩種語系<strong>寫死於前端</strong>，<strong style="color:var(--orange-bright);">不提供語系管理後台、不做其他語言</strong>。<br>
     <strong style="color:var(--orange-bright);">⚠ 與 DEV &sect;11 區分：</strong>DEV &sect;11「多國語系文案表」為<strong>玩家端 Client 文案（13 語系）</strong>；<strong>本節為後台管理介面文案（僅 zh-TW／en）</strong>，兩者<strong>字典檔與範圍各自獨立</strong>，不互相沿用。
@@ -4229,7 +4259,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.nav.account</span></td><td class="dim">帳號權限</td><td class="dim mono" style="font-size:11.5px;">Account &amp; Permissions</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.status.draft</span><br><span class="mono" style="font-size:11px;">admin.status.in_review</span><br><span class="mono" style="font-size:11px;">admin.status.approved</span><br><span class="mono" style="font-size:11px;">admin.status.running</span><br><span class="mono" style="font-size:11px;">admin.status.paused</span><br><span class="mono" style="font-size:11px;">admin.status.ended</span></td><td class="dim">草稿／送審中／已核准／運行中／已暫停／已結束</td><td class="dim mono" style="font-size:11.5px;">Draft / In Review / Approved / Running / Paused / Ended</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.campaign.create_btn</span></td><td class="dim">建立新活動</td><td class="dim mono" style="font-size:11.5px;">New Campaign</td></tr>
-      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.action.view</span><br><span class="mono" style="font-size:11px;">admin.action.edit</span><br><span class="mono" style="font-size:11px;">admin.action.copy</span><br><span class="mono" style="font-size:11px;">admin.action.delete</span></td><td class="dim">查看／編輯／複製／刪除</td><td class="dim mono" style="font-size:11.5px;">View / Edit / Copy / Delete</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.action.view</span><br><span class="mono" style="font-size:11px;">admin.action.edit</span><br><span class="mono" style="font-size:11px;">admin.action.copy</span><br><span class="mono" style="font-size:11px;">admin.action.delete</span></td><td class="dim">查看／編輯／複製／刪除<br><span style="font-size:10px;color:var(--orange-bright);">※ <span class="mono">admin.action.view</span> 自 DEV V1.8 起<strong>不再用於活動列表操作欄</strong>（該欄已移除「查看」），僅保留供<strong>活動審查頁「查看完整設定（唯讀）」</strong>使用</span></td><td class="dim mono" style="font-size:11.5px;">View / Edit / Copy / Delete</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.review.submit</span><br><span class="mono" style="font-size:11px;">admin.review.approve</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject_reason</span><span style="color:var(--gold-light);font-size:10px;"> ※</span></td><td class="dim">送審／核准／駁回（原因必填）</td><td class="dim mono" style="font-size:11.5px;">Submit for Review / Approve / Reject (reason required)</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.action.save</span><br><span class="mono" style="font-size:11px;">admin.action.cancel</span><br><span class="mono" style="font-size:11px;">admin.action.confirm_delete</span></td><td class="dim">儲存／取消／確認刪除</td><td class="dim mono" style="font-size:11.5px;">Save / Cancel / Confirm Delete</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.thresholds</span></td><td class="dim">9 格累積門檻</td><td class="dim mono" style="font-size:11.5px;">9-Slot Cumulative Thresholds</td></tr>
@@ -4245,7 +4275,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.version.empty</span></td><td class="dim">尚未有版本紀錄</td><td class="dim mono" style="font-size:11.5px;">No version history yet</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.version.label</span></td><td class="dim">版本（V1、更新時間）</td><td class="dim mono" style="font-size:11.5px;">Version (V1, updated at)</td></tr>
       <tr><td colspan="3" style="background:var(--gold-fill-faint);font-size:11px;color:var(--gold-light);font-weight:600;">▼ DEV V1.6 新增（2026-08-04）</td></tr>
-      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.used_campaigns.expand</span></td><td class="dim">展開使用中活動</td><td class="dim mono" style="font-size:11.5px;">Show active campaigns</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.used_campaigns.expand</span></td><td class="dim">展開使用中活動 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span><br><span style="font-size:10px;color:var(--orange-bright);">※ key 保留；<strong>展開功能延後至 v2</strong>，v1 不使用此文案</span></td><td class="dim mono" style="font-size:11.5px;">Show active campaigns</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.pager.page_size</span></td><td class="dim">每頁筆數</td><td class="dim mono" style="font-size:11.5px;">Rows per page</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.pager.first</span></td><td class="dim">回第 1 頁</td><td class="dim mono" style="font-size:11.5px;">First page</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.pager.prev</span><br><span class="mono" style="font-size:11px;">admin.tpl.pager.next</span></td><td class="dim">上一頁／下一頁</td><td class="dim mono" style="font-size:11.5px;">Previous / Next</td></tr>
@@ -4263,6 +4293,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.account.search.placeholder</span></td><td class="dim">搜尋帳號名稱</td><td class="dim mono" style="font-size:11.5px;">Search account name</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.account.filter.role</span></td><td class="dim">角色篩選</td><td class="dim mono" style="font-size:11.5px;">Filter by role</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.account.search.empty</span></td><td class="dim">找不到符合的帳號</td><td class="dim mono" style="font-size:11.5px;">No matching accounts</td></tr>
+      <tr><td colspan="3" style="background:var(--gold-fill-faint);font-size:11px;color:var(--gold-light);font-weight:600;">▼ DEV V1.7 新增（2026-08-06 · 活動暫停／運行）</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.action.pause</span></td><td class="dim">暫停</td><td class="dim mono" style="font-size:11.5px;">Pause</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.action.resume</span></td><td class="dim">運行</td><td class="dim mono" style="font-size:11.5px;">Resume</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.pause.confirm_title</span></td><td class="dim">確認暫停活動？</td><td class="dim mono" style="font-size:11.5px;">Pause this campaign?</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.pause.note_today</span></td><td class="dim">當日參與玩家運作至今日結束</td><td class="dim mono" style="font-size:11.5px;">Today's participants continue until end of day</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.resume.confirm_title</span></td><td class="dim">確認重新運行活動？</td><td class="dim mono" style="font-size:11.5px;">Resume this campaign?</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.pause.success</span></td><td class="dim">活動已暫停</td><td class="dim mono" style="font-size:11.5px;">Campaign paused</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.resume.success</span></td><td class="dim">活動已恢復運行</td><td class="dim mono" style="font-size:11.5px;">Campaign resumed</td></tr>
 </tbody>
   </table>
 
@@ -4764,7 +4802,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>本章依 2026/07 CRM 開案會議結論撰寫：</strong>定義活動列表、時區規範（UTC+8）、活動版本快照與流水號、活動複製、審核狀態機與角色權限矩陣。與 <a href="#backend" style="color:var(--gold-light);">DEV §06 後台管理規劃</a>互補（DEV §06 偏活動設定內容，本章偏<strong>版本控制與治理流程</strong>）。<strong>各種活動類型共用本章的審核流程與版本控制</strong>。
   </div>
 
-  <div class="sub-title">一、活動列表（可建立新活動）</div>
+  <div class="sub-title">一、活動列表（可建立新活動）<span class="tag-upd">2026-08-06</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
@@ -4776,13 +4814,118 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>重置時間</td><td class="dim">每日 reset 時間點（HH:MM），<strong>一律以 UTC+8</strong>（見下）。</td></tr>
       <tr><td>適用線路</td><td class="dim">投放的平台線路（chips 多選，取自預定義「已開通 Bet=0」清單）。</td></tr>
       <tr><td>活動倒數</td><td class="dim"><strong>即時倒數計時</strong>；<strong>剩餘天數 &lt; 倒數啟動天數時轉紅</strong>。</td></tr>
-      <tr><td>狀態</td><td class="dim">六態：草稿／送審中／已核准／運行中／已暫停／已結束（見審核狀態機）。<strong>移除「啟停」操作</strong>。</td></tr>
+      <tr><td>狀態</td><td class="dim">六態：草稿／送審中／已核准／運行中／已暫停／已結束（見審核狀態機）。<strong style="color:var(--gold-light);">「已暫停」當日另加一行小字備注「當日參與玩家運作至今日結束」（僅當日顯示）</strong>，見〈<a href="#camp-pause" style="color:var(--gold-light);">一之一、活動暫停／運行</a>〉。</td></tr>
       <tr><td>版本</td><td class="dim">當前版本流水號（V1、V2…）。</td></tr>
-      <tr><td>操作</td><td class="dim"><strong>查看 · 編輯 · 複製</strong>（移除 RTP／受眾 TAG 欄與啟停）。</td></tr>
+      <tr><td>操作</td><td class="dim"><strong>編輯 · 複製 ＋ <span style="color:var(--gold-light);">⏸ 暫停／▶ 運行（圖示按鈕）</span></strong>（移除 RTP／受眾 TAG 欄）。<br>
+      <strong style="color:var(--red-bright);">DEV V1.8 起移除「查看」操作</strong>——<strong>活動完整設定的查閱入口改為點「編輯」進入編輯頁瀏覽</strong>（<strong style="color:var(--green-bright);">不儲存即不會變更任何內容</strong>），<strong style="color:var(--orange-bright);">不另設唯讀詳情頁</strong>。<br>
+      <strong>暫停／運行皆需彈窗二次確認</strong>，非一鍵啟停；圖示規格、顯示條件與權限見〈<a href="#camp-pause" style="color:var(--gold-light);">一之一、活動暫停／運行</a>〉。</td></tr>
     </tbody>
   </table>
   <div class="callout info" style="font-size:12px;">
     <strong>篩選：</strong><strong>活動類型下拉</strong>＋狀態 chips（含各狀態數量）＋線路下拉＋日期區間＋清除篩選。<strong>活動複製：</strong>複本帶入全部設定、狀態重置為<strong>草稿</strong>、版本 V1、ID 加 <span class="mono">_COPY</span>。
+  </div>
+
+  <div class="sub-title" id="camp-ops">一之零、操作欄精簡（移除「查看」）<span class="tag-upd">2026-08-06</span></div>
+  <div class="callout info" style="font-size:12px;">
+    <strong>背景（D-008 · 2026-08-06 拍板）：</strong>Milu 檢視原型後決定<strong>活動列表操作欄精簡</strong>——<strong style="color:var(--red-bright);">移除「查看」</strong>、「<strong>運行／暫停</strong>」<strong>改圖示按鈕</strong>。<strong>納入 v1。</strong>
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">項目</th><th>規則</th></tr></thead>
+    <tbody>
+      <tr><td><strong>移除「查看」</strong></td><td class="dim">操作欄<strong style="color:var(--red-bright);">移除「查看」操作</strong>；活動完整設定的<strong>查閱入口改為：點「編輯」進入編輯頁瀏覽</strong>（<strong style="color:var(--green-bright);">不儲存即不會變更任何內容</strong>），<strong style="color:var(--orange-bright);">不另設唯讀詳情頁</strong>。</td></tr>
+      <tr><td><strong>精簡後操作欄</strong></td><td class="dim"><strong>編輯 · 複製 · <span style="color:var(--gold-light);">⏸／▶（暫停／運行圖示鈕）</span></strong></td></tr>
+      <tr><td><strong style="color:var(--orange-bright);">刻意取捨備注</strong><br><span class="dim" style="font-size:10px;">D-008 · 明文寫入避免被當成漏做</span></td><td class="dim"><strong>查看(Platform) 角色無編輯權限</strong>，因此<strong style="color:var(--red-bright);">無活動詳情入口</strong>，<strong>僅能瀏覽列表欄位</strong>（含<strong>使用中活動展開</strong>等列表內資訊）。<br><strong style="color:var(--gold-light);">此為刻意取捨（D-008）</strong>，<strong>若日後查看角色有詳情需求再另開需求</strong>。<br><span style="font-size:11px;color:var(--text-dim);">＊注意：查看(Platform) 本就<strong>看不到 CRM 任何頁面</strong>（見 <a href="#perm-matrix" style="color:var(--gold-light);">本章六、權限角色矩陣</a>）；此備注涵蓋的是<strong>未來若開放其進入 CRM 列表</strong>時的既定取捨。</span></td></tr>
+      <tr><td>不受影響者</td><td class="dim"><strong>活動審查頁</strong>的「<strong>查看完整設定（唯讀）</strong>」<strong style="color:var(--green-bright);">彈窗維持不變</strong>（屬審查流程，非活動列表操作欄）；<strong>模板列表</strong>操作欄（編輯·複製·刪除）<strong>不受影響</strong>。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" id="camp-pause">一之一、活動暫停／運行（列表直接操作 · 二次確認）<span class="tag-upd">2026-08-06</span></div>
+  <div class="callout info" style="font-size:12px;">
+    <strong>背景（D-007 · 2026-08-06 拍板）：</strong>原規格中「<strong>已暫停</strong>」狀態<strong style="color:var(--orange-bright);">沒有任何操作入口</strong>。v1 起於<strong>活動管理列表操作欄</strong>直接提供「<strong>暫停／運行</strong>」，<strong>兩者皆需彈窗二次確認</strong>。<br>
+    <strong>生效原則：</strong><strong>暫停</strong>對「<strong>未觸發玩家</strong>」<strong style="color:var(--red-bright);">立即生效</strong>、對「<strong>已觸發玩家</strong>」<strong style="color:var(--green-bright);">保護至當日結束（UTC+8）</strong>、<strong>隔日起活動完全關閉</strong>；<strong>恢復立即生效</strong>。<strong>納入 v1 開發範圍。</strong>
+  </div>
+
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">① 按鈕顯示規則（操作欄 · <span style="color:var(--gold-light);">圖示按鈕</span>）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:230px;">活動狀態</th><th>顯示按鈕</th></tr></thead>
+    <tbody>
+      <tr><td><strong>運行中</strong></td><td class="dim">顯示 <strong style="color:var(--orange-bright);font-size:15px;">⏸</strong>（<strong style="color:var(--orange-bright);">暫停</strong>）</td></tr>
+      <tr><td><strong>已暫停</strong>（且<strong>活動迄時未過</strong>）</td><td class="dim">顯示 <strong style="color:var(--green-bright);font-size:15px;">▶</strong>（<strong style="color:var(--green-bright);">運行</strong>）</td></tr>
+      <tr><td>草稿／送審中／已核准／已結束</td><td class="dim"><strong style="color:var(--red-bright);">不顯示</strong>暫停／運行鈕</td></tr>
+    </tbody>
+  </table>
+  <div class="callout warn" style="font-size:12px;">
+    <strong>🎨 圖示按鈕規格（DEV V1.8 · <span style="color:var(--orange-bright);">只改外觀、不改行為</span>）：</strong><br>
+    · <strong>元件類型</strong>＝<strong>icon button</strong>（非文字鈕）：<strong style="font-size:14px;">⏸</strong> ＝<strong>暫停</strong>（<strong style="color:var(--orange-bright);">警示色調</strong>）／<strong style="font-size:14px;">▶</strong> ＝<strong>運行</strong>（<strong style="color:var(--green-bright);">主色調</strong>）。<br>
+    · <strong>hover 顯示 tooltip 文字</strong>，<strong style="color:var(--gold-light);">沿用既有 i18n key</strong>：<span class="mono">admin.camp.action.pause</span>（暫停／Pause）、<span class="mono">admin.camp.action.resume</span>（運行／Resume）——<strong>不另建新 key</strong>。<br>
+    · <strong>無障礙</strong>：兩個按鈕皆須具 <span class="mono">aria-label</span>（<strong>值＝同一組 i18n 文字</strong>），供螢幕閱讀器讀取。<br>
+    · <strong style="color:var(--gold-light);">顯示條件、權限（操作(Operator) 以上）、二次確認彈窗與所有生效規則一律維持 DEV V1.7 不變</strong>——<strong style="color:var(--orange-bright);">本次只改按鈕外觀，不改任何行為</strong>。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>規則</th></tr></thead>
+    <tbody>
+      <tr><td><strong>權限</strong></td><td class="dim"><strong style="color:var(--gold-light);">操作(Operator) 以上可見可按</strong>；<strong style="color:var(--red-bright);">查看(Platform) 角色不顯示此按鈕</strong>。（權限矩陣見 <a href="#perm-matrix" style="color:var(--gold-light);">本章六、權限角色矩陣</a>）</td></tr>
+      <tr><td><strong>二次確認</strong></td><td class="dim">點擊<strong>皆先彈窗二次確認</strong>（見下方②③），<strong>確認後才執行</strong>；<strong>取消則無任何變更</strong>。</td></tr>
+      <tr><td><strong>過期防呆</strong></td><td class="dim">已暫停的活動若<strong>活動迄時已過</strong> → 系統<strong>自動將狀態轉為「已結束」</strong>，列表<strong>不再顯示「運行」鈕</strong>（<strong style="color:var(--orange-bright);">不可復活過期活動</strong>）。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">② 「暫停」確認彈窗（double check）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>內容</th></tr></thead>
+    <tbody>
+      <tr><td>標題</td><td class="dim">「<strong>確認暫停活動？</strong>」（<span class="mono">admin.camp.pause.confirm_title</span>）</td></tr>
+      <tr><td>內文</td><td class="dim">帶入 <strong>Campaign ID</strong> 與<strong>活動名稱</strong>。</td></tr>
+      <tr><td><strong>後果說明</strong><br><span class="dim" style="font-size:10px;">逐條列出</span></td><td class="dim">
+        · <strong>尚未觸發此活動的玩家</strong>：<strong style="color:var(--red-bright);">立即</strong>看不到／無法進入活動。<br>
+        · <strong>今日已參與（已觸發）的玩家</strong>：活動<strong style="color:var(--green-bright);">運作至今日 23:59（UTC+8）</strong>，<strong>不會被中斷</strong>。<br>
+        · <strong>明日 00:00 起</strong>活動<strong style="color:var(--orange-bright);">完全關閉</strong>，直到再次按「運行」。</td></tr>
+      <tr><td>按鈕</td><td class="dim">「<strong style="color:var(--orange-bright);">確認暫停</strong>」（<strong>警示色</strong>）／「<strong>取消</strong>」。</td></tr>
+      <tr><td>確認後</td><td class="dim">活動狀態轉「<strong>已暫停</strong>」，並顯示<strong>成功 toast</strong>「<strong>活動已暫停</strong>」（<span class="mono">admin.camp.pause.success</span>）。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">③ 「運行」確認彈窗（double check）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>內容</th></tr></thead>
+    <tbody>
+      <tr><td>標題</td><td class="dim">「<strong>確認重新運行活動？</strong>」（<span class="mono">admin.camp.resume.confirm_title</span>）</td></tr>
+      <tr><td>內文</td><td class="dim">帶入 <strong>Campaign ID</strong> 與<strong>活動名稱</strong>。</td></tr>
+      <tr><td><strong>後果說明</strong></td><td class="dim">
+        · <strong>尚未觸發的玩家</strong>：<strong style="color:var(--green-bright);">立即</strong>恢復可見，並依<strong>目前的活動設定</strong>觸發。<br>
+        · 若活動仍在<strong>當日收尾期間</strong>（今日稍早才按暫停）：等同<strong style="color:var(--gold-light);">取消暫停</strong>，活動<strong>視同未暫停過</strong>、<strong>隔日照常運行</strong>。</td></tr>
+      <tr><td>按鈕</td><td class="dim">「<strong style="color:var(--green-bright);">確認運行</strong>」（<strong>主色</strong>）／「<strong>取消</strong>」。</td></tr>
+      <tr><td>確認後</td><td class="dim">活動狀態轉「<strong>運行中</strong>」，並顯示<strong>成功 toast</strong>「<strong>活動已恢復運行</strong>」（<span class="mono">admin.camp.resume.success</span>）。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn" style="font-size:12px;">
+    <strong>🏗 操作紀錄與生效機制（基礎建設）：</strong><br>
+    ① 暫停／運行操作需寫入<strong style="color:var(--gold-light);">操作紀錄</strong>（<strong>操作人、時間、動作、Campaign ID</strong>），供<strong>審計追溯</strong>（對應 <a href="#logs" style="color:var(--gold-light);">DEV §09 E9 後台異動</a>）。<br>
+    ②「<strong>已觸發玩家保護至當日結束</strong>」需後端以<strong style="color:var(--orange-bright);">玩家觸發狀態</strong>判定——<strong>活動關閉檢查對「已觸發且當日」的玩家放行至 23:59</strong>，<strong>非單純活動開關</strong>。<br>
+    ③「<strong>已暫停且迄時已過 → 自動轉已結束</strong>」由<strong>排程</strong>或<strong>查詢時判定</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 暫停的玩家層級生效</div>
+    <b class="g">Given</b> 活動運行中、<strong>玩家甲今日已觸發</strong>、<strong>玩家乙未觸發</strong><br>
+    <b class="w">When</b> 營運按「<strong>暫停</strong>」並於彈窗<strong>確認</strong><br>
+    <b class="t">Then</b> <strong>乙</strong>進遊戲<strong style="color:var(--red-bright);">看不到</strong>活動；<strong>甲</strong>的活動<strong style="color:var(--green-bright);">運作至當日 23:59（UTC+8）</strong>正常派獎；<strong>隔日起甲乙皆不可見</strong>；列表狀態＝「<strong>已暫停</strong>」＋當日備注「<strong>當日參與玩家運作至今日結束</strong>」。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 收尾期間反悔</div>
+    <b class="g">Given</b> 今日 <strong>15:00</strong> 已按暫停（狀態＝<strong>已暫停</strong>）<br>
+    <b class="w">When</b> <strong>同日 18:00</strong> 按「<strong>運行</strong>」並確認<br>
+    <b class="t">Then</b> 狀態回「<strong>運行中</strong>」、<strong>未觸發玩家立即恢復可見</strong>、<strong>隔日照常觸發</strong>，<strong style="color:var(--green-bright);">視同未暫停過</strong>。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 權限與過期防呆</div>
+    <b class="g">Given</b> <strong>查看(Platform)</strong> 角色登入<br>
+    <b class="t">Then</b> 活動列表<strong style="color:var(--red-bright);">不顯示</strong>暫停／運行鈕。<br>
+    <b class="g">Given</b> <strong>已暫停</strong>活動的<strong>迄時已過</strong><br>
+    <b class="t">Then</b> 狀態<strong>自動轉「已結束」</strong>、<strong style="color:var(--orange-bright);">無「運行」鈕</strong>。
   </div>
 
   <div class="sub-title">二、時區處理</div>
@@ -4812,13 +4955,30 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>活動複製：</strong>可將現有活動<strong>複製為新活動</strong>——<strong>複本帶入全部設定、狀態重置為草稿、版本 V1、ID 加 <span class="mono">_COPY</span></strong>（新活動取得全新 Campaign ID·唯讀），加速同型活動開檔、降低重填錯誤。
   </div>
 
-  <div class="sub-title" id="review-fsm">五、審核流程（狀態機 · 六態）</div>
+  <div class="sub-title" id="review-fsm">五、審核流程（狀態機 · 六態）<span class="tag-upd">2026-08-06</span></div>
   <div class="callout info">
     <strong>規則：</strong>設定完成後<strong>提交審查</strong>，由<strong>最高權限（Admin）</strong>核准後方可上線；一般操作者<strong>不可自審自上</strong>（職責分離）。<strong>活動狀態六態：草稿 → 送審中 → 已核准 → 運行中 → 已暫停 → 已結束</strong>；<strong>駁回 → 回草稿並顯示駁回原因（必填）</strong>。上線中 ⇄ 已暫停 可互切（緊急調整先暫停）。
   </div>
   <div class="callout warn">
-    <strong>暫停／恢復的操作入口（明定）：</strong><strong>運行中 ⇄ 已暫停</strong> 的操作入口＝<strong>活動表單（查看／編輯頁）頂部狀態列的「暫停活動／恢復活動」按鈕</strong>，<strong>僅最高權限（Admin）可操作</strong>。<strong>活動列表不提供啟停</strong>（不提供一鍵啟停）。<br>
+    <strong>暫停／恢復的操作入口（明定 · <span style="color:var(--gold-light);">DEV V1.7 修訂</span>）：</strong><strong>運行中 ⇄ 已暫停</strong> 的操作入口＝<strong style="color:var(--gold-light);">活動管理列表的操作欄「暫停／運行」按鈕</strong>，<strong>操作(Operator) 以上可操作</strong>（查看(Platform) 不顯示）。<strong style="color:var(--orange-bright);">兩者皆需彈窗二次確認</strong>——<strong>非「一鍵啟停」</strong>。完整規格見〈<a href="#camp-pause" style="color:var(--gold-light);">一之一、活動暫停／運行</a>〉。<br>
+    <span style="font-size:11px;color:var(--text-dim);">＊<strong>取代 DEV V1.6 以前的敘述</strong>（原為「入口在活動表單頂部狀態列、僅最高權限可操作、列表不提供啟停」）。</span>
   </div>
+
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">暫停與恢復生效規則<span class="tag-upd">2026-08-06</span></div>
+  <table class="spec-table">
+    <thead><tr><th style="width:190px;">規則</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 狀態立即切換</strong></td><td class="dim">按下暫停（<strong>經確認</strong>）→ 狀態<strong style="color:var(--red-bright);">立即</strong>轉「<strong>已暫停</strong>」；列表該檔活動加一行小字備注「<strong>當日參與玩家運作至今日結束</strong>」，<strong style="color:var(--gold-light);">僅當日顯示</strong>（<strong>隔日 00:00 起備注消失</strong>）。<strong style="color:var(--orange-bright);">不另設過渡狀態</strong>。</td></tr>
+      <tr><td><strong>② 玩家層級生效<br>（暫停）</strong></td><td class="dim">
+        · <strong>未觸發玩家</strong>：<strong style="color:var(--red-bright);">立即</strong>隱藏活動入口、<strong>不可被觸發</strong>。<br>
+        · <strong>已觸發玩家</strong>：<strong style="color:var(--green-bright);">保護至當日 23:59（UTC+8）</strong>，期間<strong>正常遊玩、正常派獎</strong>。<br>
+        · <strong>隔日 00:00 起</strong>：活動<strong style="color:var(--orange-bright);">對所有玩家完全關閉</strong>、<strong>每日觸發批次跳過此活動</strong>。</td></tr>
+      <tr><td><strong>③ 玩家層級生效<br>（恢復）</strong></td><td class="dim">按運行後<strong style="color:var(--green-bright);">立即生效</strong>——未觸發玩家<strong>再進遊戲即可看到活動</strong>並<strong>依當下設定被觸發</strong>；<strong style="color:var(--orange-bright);">不需等隔日批次</strong>。</td></tr>
+      <tr><td><strong>④ 收尾期間反悔</strong></td><td class="dim"><strong>暫停當日再按「運行」＝取消暫停</strong>，活動<strong>連續運行</strong>、<strong style="color:var(--green-bright);">視同未暫停過</strong>。</td></tr>
+      <tr><td><strong>⑤ 過期自動結束</strong></td><td class="dim">「已暫停」期間若<strong>活動迄時到達</strong>，系統<strong>自動轉「已結束」</strong>；<strong style="color:var(--red-bright);">已結束不可再運行</strong>。</td></tr>
+      <tr><td><strong>⑥ 與模板 N 的關係</strong></td><td class="dim">「<strong>已暫停</strong>」活動<strong>仍計入模板「使用中活動 N」</strong>（<strong>未結束口徑</strong>，與 DEV V1.6 一致；見 <a href="#template-mgmt" style="color:var(--gold-light);">DEV §06 一、模板列表欄位</a>）。<strong style="color:var(--orange-bright);">此處不改變 N 的規則</strong>。</td></tr>
+    </tbody>
+  </table>
   <div class="mermaid-box">
     <div class="mermaid" id="mmd-fsm">stateDiagram-v2
   direction LR
@@ -4842,7 +5002,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </ol>
   </div>
 
-  <div class="sub-title">六、權限角色矩陣（三層級）<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="perm-matrix">六、權限角色矩陣（三層級）<span class="tag-upd">2026-08-06</span></div>
   <div class="callout danger">
     <strong>⚠ 層級與帳號來源（與 <a href="#backend" style="color:var(--gold-light);">DEV §06 頁面可見性對照表</a>一致）：</strong><br>
     <strong>① 最高權限</strong>：帳號<strong>由 Server 端設置</strong>；可於後台<strong>新增「一般操作」帳號並指派其可見頁面</strong>，但<strong>不可新增最高權限帳號</strong>。<br>
@@ -4857,11 +5017,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <th class="perm-center">送審</th>
       <th class="perm-center">核准</th>
       <th class="perm-center">上線</th>
+      <th class="perm-center">活動暫停／運行<br><span class="dim" style="font-size:10px;">Pause / Resume</span></th>
       <th class="perm-center">新增帳號</th>
     </tr></thead>
     <tbody>
       <tr>
         <td><strong>最高權限(Admin)</strong><br><span class="dim" style="font-size:11px;">由 Server 設置</span></td>
+        <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-yes">✔</span></td>
@@ -4876,16 +5038,18 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-no">✘</span></td>
         <td class="perm-center"><span class="perm-no">✘</span></td>
+        <td class="perm-center"><span class="perm-yes">✔</span></td>
         <td class="perm-center"><span class="perm-no">✘</span></td>
       </tr>
       <tr>
         <td><strong>查看(Platform)</strong><br><span class="dim" style="font-size:11px;">站長 · 由 Server 設置</span></td>
-        <td class="perm-center" colspan="6" style="text-align:center;"><strong style="color:var(--red-bright);">不適用——CRM 全部頁面皆不可見</strong><br><span class="dim" style="font-size:10px;">可見範圍：遊戲後台側的指定線路／指定玩家注單頁與營收報表（由 Server 配置）</span></td>
+        <td class="perm-center" colspan="7" style="text-align:center;"><strong style="color:var(--red-bright);">不適用——CRM 全部頁面皆不可見</strong><br><span class="dim" style="font-size:10px;">可見範圍：遊戲後台側的指定線路／指定玩家注單頁與營收報表（由 Server 配置）</span></td>
       </tr>
     </tbody>
   </table>
   <div class="callout warn">
     <strong>職責分離（Separation of Duties）：</strong>一般操作可<strong>建立 / 編輯 / 送審</strong>，但<strong>不可核准、不可上線</strong>——「送審」與「核准/上線」必須是不同層級，防止自審自上。<br>
+    <strong><span class="perm-yes">✔</span> 活動暫停／運行（Pause / Resume）：</strong><strong style="color:var(--gold-light);">操作(Operator) 以上皆可</strong>——暫停屬<strong>止血動作</strong>（風險越低越該讓第一線能立刻按），且<strong>兩者皆需彈窗二次確認</strong>並<strong>寫入操作紀錄</strong>，故<strong>不受核准/上線的職責分離限制</strong>；<strong style="color:var(--red-bright);">查看(Platform) 不顯示此按鈕</strong>。規格見〈<a href="#camp-pause" style="color:var(--gold-light);">本章一之一、活動暫停／運行</a>〉。<br>
     <strong><span class="perm-cond">△</span> 編輯（同 DEV §06「② 上線中的編輯規則（C4）」）：</strong><strong>一般操作僅可編輯「草稿／被駁回」狀態</strong>的活動；<strong>最高權限可對運行中活動編輯，編輯結果產生「待生效版本」</strong>（走本章三、快照機制），<strong>不影響運行中快照與已參與玩家</strong>，<strong>不需先下架</strong>；緊急停用仍走「先暫停 → 修改 → 恢復」。<br>
     <strong><span class="perm-cond">△</span> 新增帳號：</strong>最高權限<strong>只能新增「一般操作」帳號</strong>；<strong>新增最高權限使用者一律由 Server 端設置</strong>。<strong>視窗規格見 <a href="#account-add-modal" style="color:var(--gold-light);">DEV §06「帳號權限頁—新增帳號視窗」</a></strong>。
   </div>
@@ -4994,7 +5158,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.6 · CONFIDENTIAL 2026<br>
+  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.9 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 受眾：後端／前端／美術／QA · 完整版（含 KPI／成本／時程）另見 <a href="treasure_box_crm_spec_v5.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">treasure_box_crm_spec_v5.0.html</a>（內容版號 V5.3）<br>
   <strong>兩份文件如有衝突，以本文件為準。</strong>
 </div>
