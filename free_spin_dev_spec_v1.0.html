@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ─── CSS VARIABLES ─── */
+:root {
+  /* ── 金色主色 ── */
+  --gold: #D4A843;
+  --gold-light: #F0CC72;
+  --gold-dim: #8B6914;
+
+  /* ── 背景層 ── */
+  --dark: #0D0E12;
+  --dark-2: #161820;
+  --dark-3: #1E2028;
+  --dark-4: #262830;
+  --dark-5: #2E3040;
+
+  /* ── 邊框 ── */
+  --border: rgba(212,168,67,0.18);
+  --border-bright: rgba(212,168,67,0.45);
+
+  /* ── 文字 ── */
+  --text-primary: #F0EDE6;
+  --text-secondary: #9A9488;
+  --text-dim: #5A5650;
+
+  /* ── 狀態主色（邊框/點綴用） ── */
+  --red: #E05A3A;
+  --teal: #3ABFB0;
+  --blue: #4A8FE0;
+  --green: #5ABF7A;
+  --purple: #B084D8;
+  --orange: #E0963A;
+
+  /* ── 金色透明填充 / 光暈 ── */
+  --gold-fill: rgba(212,168,67,0.12);
+  --gold-fill-weak: rgba(212,168,67,0.1);
+  --gold-fill-faint: rgba(212,168,67,0.06);
+  --gold-line: rgba(212,168,67,0.03);
+  --gold-glow: rgba(212,168,67,0.25);
+  --gold-glow-faint: rgba(212,168,67,0.07);
+  --gold-fill-dot: rgba(212,168,67,0.2);
+  --border-kpi: rgba(212,168,67,0.35);
+
+  /* ── 中性疊加（hover / 細分隔線） ── */
+  --overlay-hover: rgba(255,255,255,0.03);
+  --overlay-row: rgba(255,255,255,0.04);
+  --overlay-faint: rgba(255,255,255,0.015);
+  --overlay-pill: rgba(255,255,255,0.02);
+
+  /* ── 陰影 / 半透明面板背景 ── */
+  --shadow: rgba(0,0,0,0.5);
+  --topnav-bg: rgba(13,14,18,0.92);
+
+  /* ── 狀態亮色文字 ── */
+  --green-bright: #7ADFA0;
+  --blue-bright: #90C0F0;
+  --purple-bright: #C8A0F0;
+  --red-bright: #F0907A;
+  --teal-bright: #70DFD0;
+  --orange-bright: #F0B060;
+
+  /* ── 狀態透明填充 ── */
+  --green-fill: rgba(90,191,122,0.12);
+  --green-fill-weak: rgba(90,191,122,0.1);
+  --green-fill-faint: rgba(90,191,122,0.06);
+  --green-line: rgba(90,191,122,0.25);
+  --green-line-strong: rgba(90,191,122,0.4);
+  --blue-fill: rgba(74,143,224,0.12);
+  --blue-fill-weak: rgba(74,143,224,0.1);
+  --blue-glow: rgba(74,143,224,0.05);
+  --blue-line-strong: rgba(74,143,224,0.4);
+  --purple-fill: rgba(176,132,216,0.12);
+  --purple-line: rgba(176,132,216,0.25);
+  --purple-glow: rgba(176,132,216,0.04);
+  --red-fill: rgba(224,90,58,0.12);
+  --red-fill-weak: rgba(224,90,58,0.1);
+  --red-fill-strong: rgba(224,90,58,0.15);
+  --red-fill-faint: rgba(224,90,58,0.06);
+  --red-line: rgba(224,90,58,0.25);
+  --red-line-strong: rgba(224,90,58,0.3);
+  --teal-fill: rgba(58,191,176,0.12);
+
+  /* ── 金色漸層按鈕文字（亮色時覆寫成淺色） ── */
+  --on-gold: #1a1206;
+
+  --sidebar-w: 280px;
+  --topnav-h: 48px;
+}
+
+/* ═══════════════════════════════════════
+   亮色主題：白底 + 琥珀/古銅金（目標 WCAG AA）
+   覆寫上方同一批變數，暗色完全不受影響
+═══════════════════════════════════════ */
+html[data-theme="light"] {
+  --gold: #9A6B00;
+  --gold-light: #8A5E00;
+  --gold-dim: #C9A24E;
+
+  --dark: #FAFAF7;
+  --dark-2: #F2EEE4;
+  --dark-3: #F4F1EA;
+  --dark-4: #ECE7DB;
+  --dark-5: #E4DECF;
+
+  --border: rgba(154,107,0,0.25);
+  --border-bright: rgba(154,107,0,0.5);
+
+  --text-primary: #2A2722;
+  --text-secondary: #5C564C;
+  --text-dim: #7C766A;
+
+  --red: #D24A2A;
+  --teal: #2A9D8F;
+  --blue: #2F73C4;
+  --green: #3DA35D;
+  --purple: #9457C4;
+  --orange: #C77A1A;
+
+  --gold-fill: rgba(184,134,11,0.18);
+  --gold-fill-weak: rgba(184,134,11,0.14);
+  --gold-fill-faint: rgba(184,134,11,0.1);
+  --gold-line: rgba(184,134,11,0.12);
+  --gold-glow: rgba(184,134,11,0.18);
+  --gold-glow-faint: rgba(184,134,11,0.08);
+  --gold-fill-dot: rgba(184,134,11,0.25);
+  --border-kpi: rgba(154,107,0,0.45);
+
+  --overlay-hover: rgba(0,0,0,0.03);
+  --overlay-row: rgba(0,0,0,0.08);
+  --overlay-faint: rgba(0,0,0,0.025);
+  --overlay-pill: rgba(0,0,0,0.02);
+
+  --shadow: rgba(0,0,0,0.15);
+  --topnav-bg: rgba(250,250,247,0.92);
+
+  --green-bright: #237A4A;
+  --blue-bright: #2563B0;
+  --purple-bright: #7A3FA8;
+  --red-bright: #C0431F;
+  --teal-bright: #1F7A72;
+  --orange-bright: #A05F10;
+
+  --green-fill: rgba(61,163,93,0.16);
+  --green-fill-weak: rgba(61,163,93,0.12);
+  --green-fill-faint: rgba(61,163,93,0.1);
+  --green-line: rgba(61,163,93,0.4);
+  --green-line-strong: rgba(61,163,93,0.55);
+  --blue-fill: rgba(47,115,196,0.14);
+  --blue-fill-weak: rgba(47,115,196,0.1);
+  --blue-glow: rgba(47,115,196,0.06);
+  --blue-line-strong: rgba(47,115,196,0.55);
+  --purple-fill: rgba(148,87,196,0.14);
+  --purple-line: rgba(148,87,196,0.4);
+  --purple-glow: rgba(148,87,196,0.05);
+  --red-fill: rgba(210,74,42,0.12);
+  --red-fill-weak: rgba(210,74,42,0.1);
+  --red-fill-strong: rgba(210,74,42,0.15);
+  --red-fill-faint: rgba(210,74,42,0.08);
+  --red-line: rgba(210,74,42,0.3);
+  --red-line-strong: rgba(210,74,42,0.4);
+  --teal-fill: rgba(42,157,143,0.14);
+
+  --on-gold: #FAFAF7;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--dark);
+  color:var(--text-primary);
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:400;
+  line-height:1.7;
+  font-size:14px;
+  transition: background .3s, color .3s;
+}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--dark-2);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+
+/* LAYOUT MODE TOGGLE */
+body.layout-top .sidebar { display: none; }
+body.layout-top .topnav  { display: flex; }
+body.layout-top .main-wrap { margin-left: 0; padding-top: var(--topnav-h); }
+body.layout-side .sidebar { display: flex; }
+body.layout-side .topnav  { display: none; }
+body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
+.layout-toggle { position: fixed; bottom: 88px; right: 24px; z-index: 200; display: flex; background: var(--dark-3); border: 1px solid var(--border-bright); border-radius: 6px; overflow: hidden; box-shadow: 0 4px 24px var(--shadow); }
+.layout-toggle-btn { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; padding: 8px 14px; cursor: pointer; color: var(--text-dim); background: none; border: none; transition: all .2s; display: flex; align-items: center; gap: 6px; }
+.layout-toggle-btn:hover { color: var(--text-secondary); }
+.layout-toggle-btn.active { background: var(--gold-fill); color: var(--gold-light); }
+.layout-toggle-divider { width: 1px; background: var(--border); align-self: stretch; }
+
+/* TOP NAV */
+.topnav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--topnav-bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); padding: 0 40px; height: var(--topnav-h); overflow-x: auto; align-items: center; gap: 0; }
+.topnav::-webkit-scrollbar{height:2px;}
+.nav-brand { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.15em; white-space: nowrap; margin-right: 32px; flex-shrink: 0; }
+.nav-item { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--text-dim); padding: 0 14px; height: var(--topnav-h); display: flex; align-items: center; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all .2s; text-decoration: none; }
+.nav-item:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+.nav-item.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+/* SIDEBAR */
+.sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: var(--sidebar-w); z-index: 100; background: var(--dark-2); border-right: 1px solid var(--border); flex-direction: column; overflow: hidden; }
+.sidebar-header { padding: 24px 20px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.sidebar-brand { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+.sidebar-title { font-size: 14px; font-weight: 700; color: var(--text-primary); line-height: 1.4; margin-bottom: 14px; }
+.sidebar-meta { display: flex; flex-direction: column; gap: 6px; }
+.sidebar-meta-row { display: flex; align-items: center; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.06em; }
+.sidebar-meta-label { color: var(--text-dim); }
+.sidebar-meta-val { color: var(--text-secondary); }
+.sidebar-meta-val.status-draft { color: var(--gold-light); background: var(--gold-fill-weak); padding: 2px 7px; border-radius: 2px; }
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 12px 0 80px; }
+.sidebar-nav::-webkit-scrollbar{width:3px;}
+.sidebar-section { margin-bottom: 2px; }
+.sidebar-section-btn { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 20px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--text-secondary); background: none; border: none; cursor: pointer; text-align: left; text-decoration: none; transition: all .2s; border-left: 2px solid transparent; }
+.sidebar-section-btn:hover { color: var(--text-secondary); background: var(--overlay-hover); }
+.sidebar-section-btn.active { color: var(--gold-light); border-left-color: var(--gold); background: var(--gold-fill-faint); }
+.sidebar-section-num { font-size: 10px; color: var(--text-dim); flex-shrink: 0; width: 20px; }
+.sidebar-section-btn.active .sidebar-section-num { color: var(--gold); }
+.sidebar-chevron { margin-left: auto; font-size: 10px; color: var(--text-dim); transition: transform .2s; flex-shrink: 0; }
+.sidebar-section.open .sidebar-chevron { transform: rotate(90deg); }
+.sidebar-subsections { display: none; padding: 2px 0 4px; border-left: 1px solid var(--border); margin-left: 30px; }
+.sidebar-section.open .sidebar-subsections { display: block; }
+.sidebar-sub-link { display: block; padding: 7px 16px 7px 14px; font-size: 12px; color: var(--text-secondary); text-decoration: none; transition: color .15s; border-left: 2px solid transparent; line-height: 1.4; }
+.sidebar-sub-link:hover { color: var(--text-secondary); }
+.sidebar-sub-link.active { color: var(--gold-light); border-left-color: var(--gold-dim); }
+
+/* MAIN */
+.main-wrap { transition: margin-left .3s, padding-top .3s; min-height: 100vh; }
+.page { max-width: 1040px; margin: 0 auto; padding: 0 40px 120px; }
+.section { margin-bottom: 100px; padding-top: 20px; }
+.section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.section-num { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gold-light); letter-spacing: 0.18em; }
+.section-title { font-size: 22px; font-weight: 700; color: var(--text-primary); letter-spacing: 0.02em; }
+.section-title-en { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-secondary); letter-spacing: 0.15em; margin-left: auto; }
+.sub-title { font-size: 15px; font-weight: 700; color: var(--gold-light); margin-bottom: 14px; margin-top: 28px; display: flex; align-items: center; gap: 10px; }
+.sub-title::before { content:''; width:3px; height:13px; background:var(--gold); flex-shrink:0; }
+.body-text { font-size: 13px; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.85; }
+.body-text strong { color: var(--text-primary); }
+.body-text em { color: var(--gold-light); font-style: normal; font-weight: 600; }
+
+/* COVER */
+.cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; padding: 60px 40px; text-align: center; }
+.cover-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 30%,var(--gold-glow-faint) 0%,transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%,var(--blue-glow) 0%,transparent 60%), radial-gradient(ellipse 40% 40% at 80% 70%,var(--purple-glow) 0%,transparent 60%); }
+.cover-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--gold-line) 1px,transparent 1px), linear-gradient(90deg,var(--gold-line) 1px,transparent 1px); background-size: 60px 60px; }
+.cover-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; border: 1px solid var(--border-bright); padding: 6px 18px; border-radius: 2px; margin-bottom: 36px; position: relative; }
+.cover h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px,10vw,96px); letter-spacing: 0.06em; line-height: 0.95; color: var(--gold-light); text-shadow: 0 0 80px var(--gold-glow); margin-bottom: 12px; position: relative; }
+.cover h1 span { color: var(--text-primary); }
+.cover-sub { font-size: 14px; color: var(--text-secondary); letter-spacing: 0.1em; margin-bottom: 56px; position: relative; }
+.cover-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; position: relative; margin-bottom: 60px; }
+.cover-pill { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--text-secondary); padding: 7px 14px; border: 1px solid var(--border); border-radius: 20px; background: var(--overlay-pill); }
+.cover-pill strong { color: var(--gold-light); }
+.cover-badges { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; position: relative; }
+.cover-proto-links { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center; position: relative; margin-top: 22px; }
+.cover-proto-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+.cover-proto-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--gold-light); text-decoration: none; padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-bright); background: var(--gold-fill-faint); transition: background 0.15s, border-color 0.15s; }
+.cover-proto-link:hover { background: var(--gold-fill); border-color: var(--gold); }
+.badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 5px 12px; border-radius: 2px; text-transform: uppercase; }
+.badge-v1 { background: var(--green-fill); color: var(--green-bright); border: 1px solid var(--green-line); }
+.badge-v2 { background: var(--purple-fill); color: var(--purple-bright); border: 1px solid var(--purple-line); }
+.badge-conf { background: var(--red-fill-weak); color: var(--red-bright); border: 1px solid var(--red-line); }
+
+/* HYPOTHESIS */
+.hypo-block { background: var(--dark-3); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 24px 28px; border-radius: 0 4px 4px 0; margin-bottom: 28px; }
+.hypo-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px; }
+.hypo-text { font-size: 15px; color: var(--text-primary); font-weight: 500; line-height: 1.75; }
+
+/* INFO GRID */
+.info-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 28px; }
+.info-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 28px; }
+.info-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; }
+.info-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: 4px; padding: 18px; }
+.info-card-icon { font-size: 22px; margin-bottom: 8px; }
+.info-card-title { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+.info-card-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+.info-card-val { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: var(--gold-light); margin-bottom: 4px; }
+.info-card-label { font-size: 11px; color: var(--text-dim); }
+
+/* TABLE */
+.spec-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px; }
+.spec-table th { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--text-secondary); text-transform: uppercase; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); background: var(--dark-3); }
+.spec-table td { padding: 11px 14px; color: var(--text-primary); border-bottom: 1px solid var(--overlay-row); vertical-align: top; }
+.spec-table td.mono { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold-light); }
+.spec-table td.dim { color: var(--text-secondary); }
+.spec-table tr:hover td { background: var(--overlay-faint); }
+.mono { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold-light); }
+
+/* TAG PILLS */
+.tag-pill { font-family: 'DM Mono', monospace; font-size: 9px; padding: 3px 8px; border-radius: 2px; letter-spacing: 0.08em; display: inline-block; white-space:nowrap; }
+.tag-v1 { background: var(--green-fill); color: var(--green-bright); }
+.tag-v2 { background: var(--purple-fill); color: var(--purple-bright); }
+.tag-req { background: var(--red-fill); color: var(--red-bright); }
+.tag-opt { background: var(--blue-fill); color: var(--blue-bright); }
+.tag-data { background: var(--teal-fill); color: var(--teal-bright); }
+.tag-eng { background: var(--gold-fill); color: var(--gold-light); }
+.tag-inf { background: var(--red-fill-strong); color: var(--red-bright); border: 1px solid var(--red-line-strong); }
+.tag-pm { background: var(--blue-fill); color: var(--blue-bright); }
+.tag-design { background: var(--purple-fill); color: var(--purple-bright); }
+.check { color: var(--green); }
+.cross { color: var(--text-dim); }
+.plus { color: var(--orange); }
+
+/* 章節更新標記 badge（金色系）——日後修訂時，於被修改的章節標題旁加：
+   <span class="tag-upd">2026-08-10</span> → 顯示「更新 2026-08-10」 */
+.tag-upd{
+  display:inline-block;font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:0.1em;padding:2px 7px;border-radius:2px;
+  background:var(--gold-fill);color:var(--gold-light);
+  border:1px solid var(--border-bright);
+  vertical-align:middle;margin-left:6px;white-space:nowrap;
+}
+.tag-upd::before{content:'更新 ';}
+
+/* 修改紀錄區塊 */
+.revlog{
+  background:var(--dark-3);border:1px solid var(--border-bright);
+  border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
+  padding:20px 24px;margin:40px 0 26px;
+}
+.revlog-title{
+  font-family:'DM Mono',monospace;font-size:12px;font-weight:500;
+  letter-spacing:0.14em;color:var(--gold-light);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.revlog table{width:100%;border-collapse:collapse;font-size:12px;}
+.revlog th{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;
+  color:var(--gold);text-align:left;padding:7px 10px;
+  border-bottom:1px solid var(--border-bright);white-space:nowrap;
+}
+.revlog td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top;}
+.revlog tr:last-child td{border-bottom:none;}
+.revlog-note{font-size:11px;color:var(--text-dim);line-height:1.8;margin-top:11px;}
+
+/* FLOW */
+.flow-wrap { margin-bottom: 32px; overflow-x: auto; }
+.flow { display: flex; align-items: center; gap: 0; min-width: max-content; padding: 4px; }
+.flow-step { background: var(--dark-3); border: 1px solid var(--border); border-radius: 4px; padding: 14px 18px; text-align: center; min-width: 140px; }
+.flow-step-num { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 6px; }
+.flow-step-title { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+.flow-step-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+.flow-step.highlight { border-color: var(--gold); background: var(--gold-fill-faint); }
+.flow-step.warn { border-color: var(--red); background: var(--red-fill-faint); }
+.flow-step.success { border-color: var(--green); background: var(--green-fill-faint); }
+.flow-arrow { color: var(--text-dim); font-size: 18px; padding: 0 8px; flex-shrink: 0; }
+.flow-arrow-down { text-align: center; color: var(--text-dim); font-size: 18px; padding: 8px 0; margin: 0 auto; }
+.flow-v { display: flex; flex-direction: column; gap: 0; align-items: center; }
+.flow-v .flow-step { min-width: 360px; text-align: left; }
+
+/* TABS */
+.tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 24px; flex-wrap:wrap; }
+.tab-btn { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--text-dim); padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; }
+.tab-btn:hover { color: var(--text-secondary); }
+.tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* CALLOUT */
+.callout { background: var(--dark-3); border: 1px solid var(--border); border-left: 3px solid var(--teal); padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 20px; font-size: 13px; color: var(--text-secondary); }
+.callout strong { color: var(--text-primary); }
+.callout.warn { border-left-color: var(--orange); }
+.callout.warn strong { color: var(--orange); }
+.callout.info { border-left-color: var(--blue); }
+.callout.success { border-left-color: var(--green); }
+.callout.danger { border-left-color: var(--red); }
+
+/* OPEN QUESTIONS */
+.oq-item { background: var(--dark-3); border: 1px solid var(--border); border-left: 3px solid var(--orange); padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 10px; }
+.oq-owner { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--orange); letter-spacing: 0.15em; margin-bottom: 6px; }
+.oq-q { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+.oq-item.awc { border-left-color: var(--blue); }
+.oq-item.awc .oq-owner { color: var(--blue); }
+.oq-item.pm { border-left-color: var(--purple); }
+.oq-item.pm .oq-owner { color: var(--purple); }
+
+/* LOG */
+.log-item { display: grid; grid-template-columns: 210px 1fr; gap: 12px; padding: 10px 12px; border-bottom: 1px solid var(--overlay-row); font-size: 12px; }
+.log-item:hover { background: var(--overlay-faint); }
+.log-item.header { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid var(--border); background: var(--dark-3); }
+.log-event { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold-light); }
+.log-desc { color: var(--text-secondary); line-height: 1.5; }
+
+/* MOCK UI */
+.mock { background: var(--dark-2); border: 1px solid var(--border-bright); border-radius: 10px; padding: 18px; margin-bottom: 20px; max-width: 380px; }
+.mock-head { font-family:'DM Mono',monospace; font-size: 10px; letter-spacing:0.12em; color: var(--gold); margin-bottom: 14px; display:flex; justify-content:space-between; }
+.fs-card { background: var(--dark-3); border: 1px solid var(--border-bright); border-radius: 8px; padding: 14px; margin-bottom: 12px; position:relative; }
+.fs-card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.fs-card-name { font-size: 13px; font-weight:700; color: var(--gold-light); }
+.fs-card-badge { font-family:'DM Mono',monospace; font-size:9px; padding:3px 8px; border-radius:10px; background:var(--green-fill); color:var(--green-bright); }
+.fs-row { display:flex; justify-content:space-between; font-size:11px; padding:3px 0; color:var(--text-secondary); }
+.fs-row b { color: var(--text-primary); font-weight:500; }
+.fs-games { display:flex; gap:5px; flex-wrap:wrap; margin:8px 0; }
+.fs-game-chip { font-size:10px; padding:3px 8px; border-radius:4px; background:var(--dark-4); color:var(--text-secondary); border:1px solid var(--border); }
+.fs-btn { width:100%; text-align:center; padding:9px; border-radius:6px; background:linear-gradient(180deg,var(--gold-light),var(--gold)); color:var(--on-gold); font-weight:700; font-size:12px; margin-top:8px; }
+
+/* ART · 星級材質色票 */
+.mat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+@media(max-width:900px){.mat-grid{grid-template-columns:repeat(2,1fr);}}
+.mat-card{border-radius:8px;padding:16px 12px;text-align:center;border:2px solid;background:var(--dark-3);}
+.mat-star{font-size:14px;font-weight:700;letter-spacing:.06em;margin-bottom:4px;}
+.mat-name{font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:3px;}
+.mat-desc{font-size:10px;color:var(--text-secondary);line-height:1.5;}
+.mat-1{border-color:#B87333;}   .mat-1 .mat-star{color:#C88A4A;}
+.mat-2{border-color:#B9BDC4;}   .mat-2 .mat-star{color:#C9CDD4;}
+.mat-3{border-color:var(--gold);} .mat-3 .mat-star{color:var(--gold-light);}
+.mat-4{border-color:#8FA6B8;}   .mat-4 .mat-star{color:#B6CBDA;}
+.mat-5{border-color:#B084D8;}   .mat-5 .mat-star{color:#D9B6F5;}
+
+/* ART · 狀態徽章示意 */
+.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+.st-badge{font-size:11px;padding:6px 14px;border-radius:20px;border:1px solid;}
+.st-use{background:var(--gold-fill);color:var(--gold-light);border-color:var(--border-bright);}
+.st-new{background:var(--green-fill);color:var(--green-bright);border-color:var(--green-line);}
+.st-soon{background:var(--red-fill-strong);color:var(--red-bright);border-color:var(--red-line-strong);}
+.st-exp{background:var(--dark-4);color:var(--text-dim);border-color:var(--border);}
+
+/* ART · 充能進度條示意 */
+.charge-demo{background:var(--dark-3);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:18px;}
+.charge-label{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text-secondary);margin-bottom:7px;}
+.charge-bar{height:7px;border-radius:4px;background:var(--dark-4);overflow:hidden;}
+.charge-fill{height:100%;background:linear-gradient(90deg,var(--gold-light),var(--gold));box-shadow:0 0 12px var(--gold-glow);}
+
+
+/* ─── DEV V1.1 新增：截圖圖文對照 ─── */
+.nav-group{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--text-dim);text-transform:uppercase;padding:16px 20px 4px;border-top:1px solid var(--border);margin-top:8px;}
+.nav-group:first-child{border-top:none;margin-top:0;}
+.shot-split{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;align-items:start;margin-bottom:24px;}
+.shot-split.narrow{grid-template-columns:400px 1fr;}
+@media(max-width:1000px){.shot-split,.shot-split.narrow{grid-template-columns:1fr;}}
+.shot-frame{background:var(--dark-2);border:1px solid var(--border-bright);border-radius:10px;padding:10px;}
+.shot-frame img{width:100%;display:block;border-radius:6px;}
+.shot-cap{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:.08em;margin-top:8px;text-align:center;line-height:1.7;}
+.shot-ph{display:none;border:1px dashed var(--border-bright);border-radius:6px;padding:48px 16px;text-align:center;color:var(--text-dim);font-size:12px;line-height:1.8;}
+.region-td{font-weight:700;color:var(--gold-light);white-space:nowrap;}
+
+/* FOOTER */
+.doc-footer { text-align: center; padding: 60px 40px; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; line-height: 2; }
+
+/* TOPNAV META */
+.topnav-meta { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding-left: 24px; border-left: 1px solid var(--border); }
+.topnav-meta-item { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--text-secondary); white-space: nowrap; }
+.topnav-meta-divider { color: var(--text-dim); font-size: 10px; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  body.layout-side .sidebar { display: none; }
+  body.layout-side .main-wrap { margin-left: 0; padding-top: var(--topnav-h); }
+  .info-grid-3,.info-grid-4 { grid-template-columns: 1fr 1fr; }
+  .info-grid-2 { grid-template-columns: 1fr; }
+  .page { padding: 0 20px 80px; }
+  .log-item { grid-template-columns: 1fr; gap:4px; }
+}
+
+/* ═══════════════════════════════════════
+   THEME TOGGLE（亮/暗主題切換 · 右下角浮動圓鈕）
+═══════════════════════════════════════ */
+.theme-toggle {
+  position: fixed; bottom: 24px; right: 24px; z-index: 210;
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; background: var(--dark-3);
+  border: 1px solid var(--border-bright); color: var(--gold-light);
+  box-shadow: 0 4px 24px var(--shadow);
+  transition: background .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s;
+  -webkit-appearance: none; appearance: none;
+}
+.theme-toggle:hover {
+  border-color: var(--gold); color: var(--gold); background: var(--gold-fill);
+  transform: translateY(-2px) rotate(-12deg); box-shadow: 0 6px 28px var(--shadow);
+}
+.theme-toggle svg { width: 20px; height: 20px; display: block; }
+.theme-toggle .icon-sun  { display: block; }
+.theme-toggle .icon-moon { display: none; }
+html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
+html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
+/* ─── PRINT：隱藏浮動控制鈕 ─── */
+@media print {
+  .theme-toggle, .layout-toggle { display: none !important; }
+}
+</style>
+<script>
+/* ═══════════ FOUC 防閃白：在 CSS 之後盡早把 data-theme 設到 <html> ═══════════
+   優先序：localStorage("spec-theme") → 系統 prefers-color-scheme → 暗色
+   （與「頂部列模式切換」的 spec-layout 是兩套獨立 key，互不干擾） */
+(function(){
+  try {
+    var stored = localStorage.getItem('spec-theme');
+    var theme = stored
+      || ((window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+<body class="layout-side">
+
+<!-- ═══════════ THEME TOGGLE（亮/暗主題切換 · 與頂部列模式切換為獨立邏輯） ═══════════ -->
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="切換亮/暗主題" title="切換亮/暗主題">
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+  </svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<!-- LAYOUT TOGGLE -->
+<div class="layout-toggle">
+  <button class="layout-toggle-btn" id="btn-side" onclick="setLayout('side')">▣ 側邊欄</button>
+  <div class="layout-toggle-divider"></div>
+  <button class="layout-toggle-btn" id="btn-top" onclick="setLayout('top')">☰ 頂部列</button>
+</div>
+
+<!-- TOP NAV -->
+<nav class="topnav" id="topnav">
+  <span class="nav-brand">FS-DEV · V1.1</span>
+  <a class="nav-item active" href="#overview">概要</a>
+  <a class="nav-item" href="#flowmap">流程與頁面地圖</a>
+  <a class="nav-item" href="#terms">名詞與全域規則</a>
+  <a class="nav-item" href="#art">美術主題</a>
+  <a class="nav-item" href="#pg-list">後台 · 發放管理</a>
+  <a class="nav-item" href="#pg-form">後台 · 建卡</a>
+  <a class="nav-item" href="#pg-bag">玩家背包</a>
+  <a class="nav-item" href="#test">跨頁驗收</a>
+  <a class="nav-item" href="#logs">事件紀錄</a>
+  <a class="nav-item" href="#prereq">前置與待確認</a>
+  <div class="topnav-meta">
+    <span class="topnav-meta-item" id="topnav-date"></span>
+    <span class="topnav-meta-divider">·</span>
+    <span class="topnav-meta-item">Milu</span>
+    <span class="topnav-meta-divider">·</span>
+    <span class="topnav-meta-item">Force / CMB</span>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">CMB · DEV SPEC</div>
+    <div class="sidebar-title">FREE SPIN 卡<br>規格書 · 開發交付版</div>
+    <div class="sidebar-meta">
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.1</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-draft">DRAFT</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">PLATFORM</span><span class="sidebar-meta-val">Force / CMB</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">DOC CODE</span><span class="sidebar-meta-val">FS-DEV</span></div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebar-nav">
+    <div class="nav-group">總覽</div>
+    <div class="sidebar-section open" data-section="overview">
+      <button class="sidebar-section-btn active" onclick="navTo('overview')"><span class="sidebar-section-num">01</span>概要與目的<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#revlog">修改紀錄</a>
+        <a class="sidebar-sub-link" href="#overview">文件定位</a>
+        <a class="sidebar-sub-link" href="#overview">需求對照</a>
+        <a class="sidebar-sub-link" href="#overview">In / Out of Scope</a>
+      </div>
+    </div>
+    <div class="sidebar-section" data-section="flowmap">
+      <button class="sidebar-section-btn" onclick="navTo('flowmap')"><span class="sidebar-section-num">02</span>整體流程與頁面地圖<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#flowmap">卡片生命週期（8 步）</a>
+        <a class="sidebar-sub-link" href="#flowmap">結算三步驟</a>
+        <a class="sidebar-sub-link" href="#flowmap">頁面地圖</a>
+      </div>
+    </div>
+    <div class="sidebar-section" data-section="terms">
+      <button class="sidebar-section-btn" onclick="navTo('terms')"><span class="sidebar-section-num">03</span>名詞與全域規則<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#terms">名詞釋義 / 三層 ID</a>
+        <a class="sidebar-sub-link" href="#terms">已發卡快照</a>
+        <a class="sidebar-sub-link" href="#terms">共用局數池 / 防濫用</a>
+        <a class="sidebar-sub-link" href="#terms">與集成商的行為邊界</a>
+      </div>
+    </div>
+    <div class="sidebar-section" data-section="art">
+      <button class="sidebar-section-btn" onclick="navTo('art')"><span class="sidebar-section-num">04</span>美術主題與風格<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#art">主題調性（已定案）</a>
+        <a class="sidebar-sub-link" href="#art">星級材質 / 徽章 / 進度條</a>
+        <a class="sidebar-sub-link" href="#art">關鍵美術資產清單</a>
+      </div>
+    </div>
+    <div class="nav-group">功能頁面（一頁一章）</div>
+    <div class="sidebar-section" data-section="pg-list">
+      <button class="sidebar-section-btn" onclick="navTo('pg-list')"><span class="sidebar-section-num">05</span>後台 · 發放管理列表<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#pg-list">全頁截圖＋區域對照</a>
+        <a class="sidebar-sub-link" href="#pg-list">道具基礎值與公版數值</a>
+        <a class="sidebar-sub-link" href="#pg-list">本頁防呆 / 友善度</a>
+        <a class="sidebar-sub-link" href="#pg-list">本頁驗收 / 錯誤處理</a>
+        <a class="sidebar-sub-link" href="#pg-list">後台文案中英對照</a>
+      </div>
+    </div>
+    <div class="sidebar-section" data-section="pg-form">
+      <button class="sidebar-section-btn" onclick="navTo('pg-form')"><span class="sidebar-section-num">06</span>後台 · 新增／編輯發放卡<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#pg-form">全頁截圖＋區域對照</a>
+        <a class="sidebar-sub-link" href="#pg-form">本頁防呆 / 友善度</a>
+        <a class="sidebar-sub-link" href="#pg-form">本頁驗收 / 錯誤處理</a>
+      </div>
+    </div>
+    <div class="sidebar-section" data-section="pg-bag">
+      <button class="sidebar-section-btn" onclick="navTo('pg-bag')"><span class="sidebar-section-num">07</span>玩家端 · 背包與進入遊戲<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#pg-bag">全頁截圖＋區域對照</a>
+        <a class="sidebar-sub-link" href="#pg-bag">進入遊戲流程</a>
+        <a class="sidebar-sub-link" href="#pg-bag">本頁驗收 / 錯誤處理</a>
+        <a class="sidebar-sub-link" href="#pg-bag">13 語系文案表</a>
+      </div>
+    </div>
+    <div class="nav-group">全域</div>
+    <div class="sidebar-section" data-section="test">
+      <button class="sidebar-section-btn" onclick="navTo('test')"><span class="sidebar-section-num">08</span>跨頁驗收與檢查清單<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#test">跨頁驗收情境</a>
+        <a class="sidebar-sub-link" href="#test">上線前必過檢查清單</a>
+        <a class="sidebar-sub-link" href="#test">跨頁共通錯誤</a>
+      </div>
+    </div>
+    <div class="sidebar-section" data-section="logs">
+      <button class="sidebar-section-btn" onclick="navTo('logs')"><span class="sidebar-section-num">09</span>需留存的事件紀錄<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections"><a class="sidebar-sub-link" href="#logs">8 類事件</a></div>
+    </div>
+    <div class="sidebar-section" data-section="prereq">
+      <button class="sidebar-section-btn" onclick="navTo('prereq')"><span class="sidebar-section-num">10</span>開發前置條件與待確認<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#prereq">三項基礎建設</a>
+        <a class="sidebar-sub-link" href="#prereq">待確認四項</a>
+      </div>
+    </div>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<div class="main-wrap" id="main-wrap">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-tag">CMB · DEV SPEC · 2026</div>
+  <h1>FREE <span>SPIN</span> 卡</h1>
+  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.1（源自完整版 V2.4）</div>
+  <div class="cover-pills">
+    <div class="cover-pill"><strong>類型</strong> CRM 周邊 · 非現金獎勵</div>
+    <div class="cover-pill"><strong>來源</strong> 抽寶箱 第二階段</div>
+    <div class="cover-pill"><strong>受眾</strong> 後端 / 前端 / 美術 / QA / 企劃</div>
+    <div class="cover-pill"><strong>結構</strong> 頁面式三層 · 圖文對照</div>
+  </div>
+  <div class="cover-badges">
+    <span class="badge badge-v1">開發交付版</span>
+    <span class="badge badge-v2">白話 · 可據以偵錯</span>
+    <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
+  </div>
+  <div class="cover-proto-links">
+    <span class="cover-proto-label">原型連結</span>
+    <a class="cover-proto-link" href="遊戲背包頁原型.html" target="_blank" rel="noopener">🎮 前台原型 · 遊戲背包頁 ↗</a>
+    <a class="cover-proto-link" href="後台獎勵系統 (standalone).html" target="_blank" rel="noopener">🛠 後台原型 · 獎勵清單工具 ↗</a>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══════════ 修改紀錄 ═══════════ -->
+<div class="revlog" id="revlog">
+  <div class="revlog-title">📌 修改紀錄 · REVISION LOG</div>
+  <table>
+    <thead><tr><th style="width:110px;">修改日期</th><th style="width:96px;">版號</th><th style="width:160px;">修改章節</th><th>修改摘要</th></tr></thead>
+    <tbody>
+      <tr><td>2026-08-11</td><td>DEV V1.1</td><td>全文</td><td>升版為「頁面式三層骨架」（總覽 → 功能頁面 → 全域）：一個功能頁面一章，該頁的截圖／規則／防呆／驗收／錯誤集中同章；三個頁面章改用「原型截圖＋紅框區域標號」圖文對照；補齊 V1.0 缺漏的「開發前置條件、事件紀錄、待確認」三章與文件導覽互動。<strong>規格規則本身無變更。</strong></td></tr>
+      <tr><td>2026-08-10</td><td>DEV V1.0</td><td>—</td><td>首次發行（自完整版 V2.4 拆分）</td></tr>
+    </tbody>
+  </table>
+  <div class="revlog-note">
+    本文件內容有任何調整時，會在此表新增一筆，並於被修改的章節標題旁標示「<span class="tag-upd">YYYY-MM-DD</span>」，請開發人員留意標記處的規格變動。
+  </div>
+</div>
+
+
+<!-- ═══════════ DEV 01 OVERVIEW ═══════════ -->
+<section class="section" id="overview">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">概要與目的</span>
+    <span class="section-title-en">SCOPE &amp; OVERVIEW</span>
+  </div>
+
+  <div class="hypo-block">
+    <div class="hypo-label">文件定位 · POSITIONING</div>
+    <div class="hypo-text">本文件是 FREE SPIN 卡的<strong>開發交付版</strong>，受眾為<strong>後端、前端、美術、QA 等實作人員，以及非工程背景的企劃</strong>。全文只描述「<strong>要達到什麼目的、系統要有什麼行為、怎麼驗證做對了、出錯時怎麼處理</strong>」，並以白話撰寫——企劃要能看懂、能對外解釋、能據以偵錯。</div>
+  </div>
+
+  <div class="info-grid-3">
+    <div class="info-card" style="border-color:var(--green-line-strong);">
+      <div class="info-card-icon">✅</div>
+      <div class="info-card-title" style="color:var(--green-bright);">本文件包含</div>
+      <div class="info-card-desc">卡片規則與生命週期、後台操作規格、玩家端背包與進入遊戲流程、美術主題與資產清單、驗收測試情境、錯誤處理、需留存的事件紀錄、開發前置條件</div>
+    </div>
+    <div class="info-card" style="border-color:rgba(224,86,58,0.35);">
+      <div class="info-card-icon">🚫</div>
+      <div class="info-card-title" style="color:var(--orange-bright);">本文件不含</div>
+      <div class="info-card-desc">開發時程與任務分工、人力與獎勵成本、目標數字與推算、方案比較等管理內容——這些屬企劃／管理受眾，請看完整版</div>
+    </div>
+    <div class="info-card" style="border-color:var(--blue-line-strong);">
+      <div class="info-card-icon">🛠</div>
+      <div class="info-card-title" style="color:var(--blue-bright);">串接細節由開發決定</div>
+      <div class="info-card-desc">本文件<strong>不指定</strong>介接端點、參數表、傳輸格式、簽章方式、錯誤代碼；只界定必須達成的結果與約束。集成商細節唯一來源為《integration_consolidated_checklist_v2.html》</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>與完整版的關係：</strong>完整版（含目標數字與串接脈絡）另見 <a href="free_spin_chest_spec_v2.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">《Free Spin 抽寶箱發放卡規格書》（內容版號 V2.4） ↗</a>。<strong>兩份文件如有衝突，以開發版（本文件）較新的修改紀錄為準。</strong>
+  </div>
+
+  <div class="callout warn" style="font-size:12px;">
+    <strong>章號已重新編號：</strong>本文件章號自 <strong>DEV §01</strong> 起重編，內文交叉引用已一併換算為本文件章號（統一寫作「DEV §NN」），可直接照讀。
+  </div>
+
+  <div class="sub-title">核心定位</div>
+  <div class="body-text">抽寶箱第一階段只派<strong>現金獎</strong>；第二階段起新增 <em>FREE SPIN 卡</em>這類「非現金獎勵」。一張 FREE SPIN 卡＝一張可在指定遊戲列表內免費旋轉 N 次的票券。本文件定義它從「<strong>後台建卡 → 抽中發卡 → 背包持有 → 進遊戲使用 → 整卡結算入帳</strong>」的完整行為，以及支撐它的<strong>後台獎勵清單工具</strong>與<strong>與集成商／平台的行為邊界</strong>。</div>
+
+  <div class="info-grid-3">
+    <div class="info-card">
+      <div class="info-card-icon">🎟️</div>
+      <div class="info-card-title">後台可建卡</div>
+      <div class="info-card-desc">後台可登記「非現金獎勵」；第一階段只放「FREE SPIN 卡」，每個幣別各有 5 個押注階段，並填入該幣別對應的卡片價值。</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🔒</div>
+      <div class="info-card-title">發卡即鎖定</div>
+      <div class="info-card-desc">發卡瞬間就決定幣別、可用時間、可玩遊戲列表；卡內可自由切換列表遊戲，整卡結束前不做任何中途結算。</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🏦</div>
+      <div class="info-card-title">結算有上限、入真金</div>
+      <div class="info-card-desc">每張卡可指定最終獎金上限（max_conversion）；結算一律入<strong>主錢包真金</strong>，可立即提領，沒有流水限制。</div>
+    </div>
+  </div>
+
+  <div class="sub-title">需求對照（本文件涵蓋的 6 點）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:36px;">#</th><th>需求</th><th style="width:120px;">對應章節</th><th>關鍵機制（白話）</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">1</td><td>後台可登記非現金獎勵，第一階段＝FREE SPIN 卡，每幣別 5 個押注階段＋填入價值</td><td class="dim">DEV §03 · §05 · §06</td><td class="dim">卡型錄 ID（reward_id）分 1★–5★；後台建檔一次、活動下拉選用</td></tr>
+      <tr><td class="mono">2</td><td>發卡當下鎖定幣別 / 起訖時間 / 可用遊戲列表；列表內可自由換遊戲，整卡結束前不結算</td><td class="dim">DEV §02 · §03</td><td class="dim">發卡當下把各項數值凍結成一份快照；同一張卡的次數是<strong>一個共用池</strong>，跨遊戲一起扣</td></tr>
+      <tr><td class="mono">3</td><td>可指定本次結算的最大上限值；結算入主錢包真金</td><td class="dim">DEV §02 · §03</td><td class="dim">結算時取「累積贏分」與「上限」中較小的那個；以一筆「下注 0／派彩 final」的注單入主錢包</td></tr>
+      <tr><td class="mono">4</td><td>玩家背包可看可用卡片與細節（押注額 / 剩餘次數 / 上限 / 可玩遊戲 / 剩餘時間）</td><td class="dim">DEV §07</td><td class="dim">背包欄位直接對齊卡片快照，另加「目前累積獎金」與到期倒數</td></tr>
+      <tr><td class="mono">5</td><td>背包卡片可跳轉到指定遊戲</td><td class="dim">DEV §07</td><td class="dim">進場前先綁定「這次要用的是哪一張卡」，再取得一次性遊戲入口</td></tr>
+      <tr><td class="mono">6</td><td>活動 / 卡序號源頭在我方；發卡時通知外部是哪個活動、幣值與獎金</td><td class="dim">DEV §03</td><td class="dim">卡序號由我方產生且全域唯一；發卡時通知集成商建卡並取得成功確認</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">In Scope / Out of Scope</div>
+  <div class="info-grid-2">
+    <div class="info-card">
+      <div class="info-card-title"><span class="check">✔</span> In Scope（本版要做）</div>
+      <div class="info-card-desc">
+        ① 獎勵清單「非現金 / FREE SPIN 卡」資料結構與後台設定工具<br>
+        ② 抽寶箱抽中 → 發卡 → 背包 → 進入遊戲 → 結算 全鏈路行為<br>
+        ③ 發卡通知、進入遊戲、查詢對帳三類對外行為邊界（怎麼串由開發決定）<br>
+        ④ 結算上限封頂 + 以「下注 0／派彩 final」注單<strong>入主錢包真金</strong>（帶活動 ID 與卡序號供對帳）<br>
+        ⑤ 背包顯示與一次性進入遊戲入口<br>
+        ⑥ 卡片美術主題與資產清單（燙金票券方向已定案，見 DEV §04）
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title"><span class="cross">✘</span> Out of Scope（本版不做）</div>
+      <div class="info-card-desc">
+        ① FREE SPIN 以外的其他非現金獎（如後續的<strong>補登入卡、Bonus 卡</strong>等）→ 後續階段<br>
+        ② 抽寶箱本身的格子 / 權重 / 解鎖機制（見抽寶箱開發版規格）<br>
+        ③ 受限紅利（紅利錢包 / 流水 / roll-over）<strong>本版不做</strong>——獎勵一律真金直入主錢包<br>
+        ④ 遊戲端 Free Spin 演出的<strong>美術製作</strong>（屬遊戲端 / slot 規格，本文件只定卡片本身的美術）
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info"><strong>權責邊界（誰是結果的源頭）</strong>：活動由 <strong>我方（Combo）主辦</strong>，所以<strong>局數與獎項結果都由我方提供</strong>、遊戲端 Free Spin 演出也由我方渲染。<strong>集成商只接收我方的結果再轉達給平台，不是結果的源頭</strong>。資料流向：<span class="mono">我方（局數 + 獎項結果 + 演出）→ 集成商（接收 / 轉達）→ 平台（入帳 / 通知）</span>。<br>另一種可能：若我方與平台直連（不經集成商），則由平台與我方串接這段。本文件負責「發卡 / 結算 / 行為邊界」，演出美術細節另立 slot 遊戲規格。</div>
+
+  <div class="callout info"><strong>與抽寶箱規格的關係</strong>：抽寶箱已在「獎勵清單」層預留 <span class="tag-pill tag-eng">R_FS_1STAR～5STAR</span> 樁位，並把 FREE SPIN 發放標記為第二階段啟用。兩份皆採「獎勵一律入主錢包真金」。本文件為該樁位的<strong>深度展開（不重寫抽寶箱本體）</strong>，命名與其對齊以避免兩份打架。</div>
+</section>
+
+<!-- ═══════════ DEV 02 FLOW & PAGE MAP ═══════════ -->
+<section class="section" id="flowmap">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">整體流程與頁面地圖<span class="tag-upd">2026-08-11</span></span>
+    <span class="section-title-en">FLOW &amp; PAGE MAP</span>
+  </div>
+
+  <div class="sub-title">總流程（8 步）</div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-step highlight"><div class="flow-step-num">01</div><div class="flow-step-title">抽中 FS 卡</div><div class="flow-step-desc">抽寶箱判定中獎獎勵為非現金 FREE_SPIN</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-title">產生卡序號</div><div class="flow-step-desc">我方產生 reference_id，寫入快照</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-title">通知集成商建卡</div><div class="flow-step-desc">告知這張卡的幣別／效期／遊戲／次數，並取得成功確認</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step success"><div class="flow-step-num">04</div><div class="flow-step-title">入背包</div><div class="flow-step-desc">狀態 ISSUED，玩家可見</div></div>
+    </div>
+  </div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-step"><div class="flow-step-num">05</div><div class="flow-step-title">背包點擊進入</div><div class="flow-step-desc">綁定這張卡，取得一次性遊戲入口</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight"><div class="flow-step-num">06</div><div class="flow-step-title">遊戲中使用</div><div class="flow-step-desc">剩餘次數遞減；可切換列表內的其他遊戲</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step warn"><div class="flow-step-num">07</div><div class="flow-step-title">時間結束</div><div class="flow-step-desc">到達 valid_to（時間到觸發結算）</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step success"><div class="flow-step-num">08</div><div class="flow-step-title">整卡結算</div><div class="flow-step-desc">付累積贏分、封頂在上限值；剩餘未轉次數放棄</div></div>
+    </div>
+  </div>
+  <div class="sub-title">結算上限與入帳（一律主錢包真金）</div>
+  <div class="flow-wrap">
+    <div class="flow-v">
+      <div class="flow-step highlight" style="min-width:380px;"><div class="flow-step-num">SETTLE 1</div><div class="flow-step-title">彙總整卡累積贏分（total_win）</div><div class="flow-step-desc">把整張卡所有遊戲、所有局的贏分加總</div></div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-step" style="min-width:380px;"><div class="flow-step-num">SETTLE 2</div><div class="flow-step-title">套用上限 max_conversion</div><div class="flow-step-desc">final = 取「total_win」與「max_conversion」中較小的那個；超出部分捨棄</div></div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-step success" style="min-width:380px;"><div class="flow-step-num">SETTLE 3 · 入主錢包真金</div><div class="flow-step-title">以「下注 0 / 派彩 final」注單發放</div><div class="flow-step-desc">產生一筆零下注中獎注單（帶 campaign_id 與卡序號），走既有的注單通道，由平台結算入<strong>玩家主錢包真金、可立即提領</strong>。無流水、無 roll-over。</div></div>
+    </div>
+  </div>
+  <div class="callout success"><strong>為什麼是注單而不是另開一條金流</strong>：獎勵即真金，搭遊戲本來就在跑的注單流送出，<em>不需要第二條金流管線</em>，也不需要紅利錢包、流水倍數或 roll-over。封頂由我方結算層自己算好再送出。</div>
+
+  <div class="sub-title">頁面地圖（本文件的功能頁面章）</div>
+  <div class="body-text">整條鏈路落在 <strong>3 個功能頁面</strong>上；每個頁面一章，該頁的畫面、規則、防呆、驗收與錯誤處理<strong>全部集中在該章</strong>，查一個功能不必跨章拼湊。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:210px;">頁面</th><th style="width:90px;">誰在用</th><th>這一頁做什麼</th><th style="width:100px;">對應章節</th></tr></thead>
+    <tbody>
+      <tr><td>後台 · 發放管理列表</td><td class="dim">營運</td><td class="dim">發放卡型錄總覽、道具基礎值維護、引用活動追蹤、停用把關</td><td class="mono">DEV §05</td></tr>
+      <tr><td>後台 · 新增／編輯發放卡</td><td class="dim">營運</td><td class="dim">建卡：選星級、勾遊戲、填次數與封頂、設有效期，儲存草稿或啟用</td><td class="mono">DEV §06</td></tr>
+      <tr><td>玩家端 · 背包</td><td class="dim">玩家</td><td class="dim">查看持卡明細與累積獎金、選攜帶遊戲、進入遊戲</td><td class="mono">DEV §07</td></tr>
+      <tr><td>（外部）抽寶箱活動獎項設定</td><td class="dim">營運</td><td class="dim">從獎池下拉引用「已啟用」的發放卡（reward_id）</td><td class="dim">見抽寶箱開發版規格</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info"><strong>頁面之間怎麼接</strong>：後台建卡（§06）→ 啟用後進入型錄（§05）→ 抽寶箱活動引用 → 玩家抽中發卡 → 背包持有與進入遊戲（§07）→ 到期整卡結算（規則見 §02 結算三步驟、§03 全域規則）。</div>
+</section>
+
+<!-- ═══════════ DEV 03 TERMS & GLOBAL RULES ═══════════ -->
+<section class="section" id="terms">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">名詞與全域規則</span>
+    <span class="section-title-en">TERMS &amp; GLOBAL RULES</span>
+  </div>
+
+  <div class="callout info"><strong>為什麼保留欄位名？</strong>下表的 <span class="mono">reference_id</span>、<span class="mono">campaign_id</span>、<span class="mono">max_conversion</span> 等是<strong>查 log、對帳、偵錯時大家共用的語言</strong>。企劃回報問題時直接講欄位名，工程師就知道要查哪裡，所以刻意保留。</div>
+
+  <div class="sub-title">名詞釋義</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:130px;">名詞</th><th style="width:180px;">我方欄位</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td>FREE SPIN 卡</td><td class="mono">free_spin_card</td><td class="dim">一張可在指定遊戲列表內使用 N 次免費旋轉的票券</td></tr>
+      <tr><td>卡序號</td><td class="mono">reference_id</td><td class="dim">每張卡的唯一序號，<strong>由我方產生</strong>，是通知外部、日後查詢與防重複的鑰匙（長度上限 50 字元）</td></tr>
+      <tr><td>活動 ID</td><td class="mono">campaign_id</td><td class="dim">這張卡是「哪一檔抽寶箱活動」發出的，用於對帳與來源追溯</td></tr>
+      <tr><td>幣別</td><td class="mono">currency</td><td class="dim">發卡當下鎖定，全程不可變</td></tr>
+      <tr><td>押注階段</td><td class="mono">bet_tier (1–5)</td><td class="dim">每個幣別有 5 個押注階段，對應不同的每轉押注金額</td></tr>
+      <tr><td>總次數 / 剩餘次數</td><td class="mono">num_of_rounds / rounds_left</td><td class="dim">整張卡的免費旋轉局數；跨列表內的遊戲<strong>共用同一池</strong></td></tr>
+      <tr><td>可用遊戲列表</td><td class="mono">game_ids[]</td><td class="dim">發卡當下鎖定，卡內可自由切換；串起來的長度上限 200 字元</td></tr>
+      <tr><td>有效期限</td><td class="mono">valid_from / valid_to</td><td class="dim">發卡當下依<strong>卡模板的 N 天</strong>換算並凍結；<strong>發卡日為第 1 天，第 N 天 23:59:59（GMT+8）到期</strong>（自然日制）。到期統一結算（付累積贏分、封頂），剩餘未轉次數視同放棄</td></tr>
+      <tr><td>結算上限</td><td class="mono">max_conversion</td><td class="dim">整卡結束後最終可獲得的獎金上限值，由我方結算層強制套用</td></tr>
+      <tr><td>入帳目標</td><td class="mono">—（固定主錢包）</td><td class="dim">一律入<strong>主錢包真金</strong>，以「下注 0／派彩 final」的注單發放，無流水、無 roll-over</td></tr>
+      <tr><td>卡片價值 / 面額</td><td class="mono">face_value</td><td class="dim">該幣別此押注階段的「對應價值」，供展示、成本估算與對帳</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">三層 ID 關係（campaign_id ↔ reward_id ↔ reference_id）</div>
+  <div class="callout warn"><strong>最容易誤解的一點</strong>：「跟著活動」的是 <strong>campaign_id</strong>，不是 reference_id。<strong>reference_id 跟著「每一張發出去的卡」、且必須全域唯一</strong>。一檔活動發給 1,000 位玩家＝1,000 張卡＝1,000 個不同的 reference_id。<strong>同一個序號重送，集成商會拒絕、不會重複建卡</strong>。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">ID</th><th style="width:190px;">跟著誰</th><th style="width:230px;">數量關係</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">campaign_id</td><td>活動</td><td>一檔抽寶箱活動 = 1 個</td><td class="dim">來源追溯、對帳分組</td></tr>
+      <tr><td class="mono">reward_id</td><td>卡型錄（R_FS_3STAR）</td><td>一款卡 = 1 個，<strong>可跨活動複用</strong></td><td class="dim">標記「哪一款卡」</td></tr>
+      <tr><td class="mono">reference_id</td><td><strong>每一張發出去的卡</strong></td><td><strong>每張唯一、全域不重複</strong></td><td class="dim">通知外部、查詢、防重複發卡</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>命名慣例</strong>（所以它看起來像跟著活動）：習慣把活動代碼當前綴放進 reference_id，但整串必須每張唯一——<br>
+    <span class="mono">reference_id = FS_{campaign_id}_{player_id}_{seq}　例：FS_CHEST0615_user88231_0007</span><br>
+    前綴可追溯來源（活動），後段（玩家 + 流水號）確保每張卡獨一無二。補發新卡時 campaign_id 可沿用，但 reference_id 必須產新的。</div>
+
+  <div class="sub-title">卡型錄 ID 結構（reward_id）</div>
+  <div class="body-text">沿用抽寶箱命名，FREE SPIN 卡的 reward_id 以 <em>R_FS_{星級}</em> 表示 5 個押注階段；實際「幣別」由發卡時帶入的 currency 決定，所以同一個 reward_id 可跨幣別複用，幣別專屬數值（coin_size / face_value / max_conversion）存在各幣別的子表。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:160px;">reward_id</th><th style="width:190px;">押注階段</th><th style="width:130px;">類型</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">R_FS_1STAR</td><td>Tier 1（最低押注）</td><td><span class="tag-pill tag-data">FREE_SPIN</span></td><td class="dim">入門級 Free Spin 卡</td></tr>
+      <tr><td class="mono">R_FS_2STAR</td><td>Tier 2</td><td><span class="tag-pill tag-data">FREE_SPIN</span></td><td class="dim">—</td></tr>
+      <tr><td class="mono">R_FS_3STAR</td><td>Tier 3</td><td><span class="tag-pill tag-data">FREE_SPIN</span></td><td class="dim">—</td></tr>
+      <tr><td class="mono">R_FS_4STAR</td><td>Tier 4</td><td><span class="tag-pill tag-data">FREE_SPIN</span></td><td class="dim">—</td></tr>
+      <tr><td class="mono">R_FS_5STAR</td><td>Tier 5（最高押注）</td><td><span class="tag-pill tag-data">FREE_SPIN</span></td><td class="dim">高價值 Free Spin 卡</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">已發卡快照（player_free_spin_card · 發卡即寫死）</div>
+  <div class="callout"><strong>關鍵設計</strong>：發卡的瞬間，下列欄位全部「凍結」成一筆快照，<strong>之後即使後台改了獎勵清單也不影響已發出的卡</strong>（避免改價回溯）。這是後台防呆最重要的一條，見 DEV §06。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:260px;">欄位</th><th style="width:300px;">發卡時來源</th><th>之後可否改變</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">reference_id</td><td class="dim">我方產生（全域唯一）</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">player_id</td><td class="dim">中獎玩家</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">campaign_id</td><td class="dim">來源抽寶箱活動</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">reward_id</td><td class="dim">R_FS_1~5STAR</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">currency</td><td class="dim">玩家幣別</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">bet_tier / coin_size / multiplier</td><td class="dim">獎勵清單對應幣別的設定值</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">num_of_rounds</td><td class="dim">獎勵清單</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">rounds_left</td><td class="dim">初始 = num_of_rounds</td><td><span class="check">是（每玩一局遞減）</span></td></tr>
+      <tr><td class="mono">game_ids[]</td><td class="dim">獎勵清單的遊戲列表</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">validity_days</td><td class="dim">卡模板（發卡 +N 天 · 自然日）</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">valid_from / valid_to</td><td class="dim">發卡時間 + 卡模板 N 天（自然日換算，GMT+8；valid_to = 第 N 天 23:59:59）</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">max_conversion</td><td class="dim">獎勵清單對應幣別的設定值</td><td><span class="cross">否</span></td></tr>
+      <tr><td class="mono">status</td><td class="dim">ISSUED → ACTIVE → SETTLED / EXPIRED</td><td><span class="check">是</span></td></tr>
+    </tbody>
+  </table>
+  <div class="sub-title">發卡即鎖定 + 多遊戲切換（共用局數池）</div>
+  <div class="callout success"><strong>一張卡 = 一個共用局數池</strong>：玩家用這張卡玩 A 遊戲後，只要還有剩餘次數，就可<strong>自由切換到列表內的 B 遊戲繼續玩</strong>，次數從同一池扣。整張卡結束前<strong>不做任何中途結算</strong>，贏分先累積在卡上，直到整卡結束才一次給最終獎金。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">規則</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td>列表鎖定</td><td class="dim">可玩遊戲列表在發卡當下決定，遊戲中不可新增 / 移除</td></tr>
+      <tr><td>自由切換</td><td class="dim">只要剩餘次數大於 0 且卡未過期，玩家可在列表內任一遊戲間切換</td></tr>
+      <tr><td>共用局數</td><td class="dim">A 遊戲花 3 局、B 遊戲花 2 局，總池一起遞減；不分遊戲各自計次</td></tr>
+      <tr><td>不中途結算</td><td class="dim">切換遊戲、離開遊戲、重新登入都<strong>不</strong>觸發結算；贏分暫存在卡上</td></tr>
+      <tr><td>結算唯一觸發</td><td class="dim">到達 <span class="mono">valid_to</span>（時間結束）統一結算一次</td></tr>
+      <tr><td>剩餘次數</td><td class="dim">結算時未轉的剩餘次數<strong>視同放棄</strong>，不補轉、不折現；<strong>已累積的贏分照常結算給付</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="callout warn"><strong>結算時機</strong>：本卡的局數與結果都由我方自產，<strong>不是每轉即時派彩</strong>；到時間結束才統一結算一次，金額取「累積贏分」與「上限」中較小的那個，剩餘未轉次數放棄。</div>
+  <div class="sub-title">⚠ 防濫用：真金直發的必要控管</div>
+  <div class="callout danger"><strong>風險必須有人接</strong>：舊設計靠「高價值卡鎖紅利錢包、用平台流水門檻擋提款」來防濫用。改成<strong>結算即真金、可立即提領</strong>後，<strong>這道防線消失</strong>。防濫用責任回到 CRM 中台自持，發卡 / 結算前須通過以下控管。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:170px;">控管</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td>領取資格</td><td class="dim">限定目標分群 / 玩家類型；不合格玩家不得發卡（防小號刷獎）</td></tr>
+      <tr><td>頻率 / 額度</td><td class="dim">單人 / 單活動 / 單日的發卡與派彩上限；搭配中台先鎖額度，避免非同步空窗期超發</td></tr>
+      <tr><td>黑名單 / 風控旗標</td><td class="dim">命中風控（多帳號、異常提款）即攔截發卡或結算</td></tr>
+      <tr><td>結算封頂</td><td class="dim">最終金額取「累積贏分」與 <span class="mono">max_conversion</span> 中較小者，由我方結算層強制套用，杜絕超發</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info"><strong>對帳單純化</strong>：入帳只有一種目標（主錢包），對帳時用 <span class="mono">campaign_id</span> 與卡序號把每筆中獎歸到正確的活動 / 卡片即可，不需要再區分錢包別。</div>
+  <div class="sub-title">已發卡不可變更 · 擴充走「補發新卡」</div>
+  <div class="callout warn"><strong>已經發到玩家背包、且已通知集成商建好的卡，遊戲列表 / 次數等不可原地修改。</strong>原因：<strong>集成商建卡後即無法修改內容，且卡序號不可重複使用</strong>。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:290px;">情境</th><th style="width:130px;">可行性</th><th>做法</th></tr></thead>
+    <tbody>
+      <tr><td>改「卡模板」往後多開遊戲</td><td><span class="check">✔ 可行</span></td><td class="dim">改獎勵清單即可，但<strong>僅對「改完之後才發出的卡」生效</strong>；已發卡因快照設計維持原樣（避免規則回溯）</td></tr>
+      <tr><td>幫「玩家手上使用中的卡」加遊戲</td><td><span class="cross">✘ 技術不可</span></td><td class="dim">該張卡在集成商端已建立且不可修改，無法追加範圍</td></tr>
+      <tr><td>真的要讓玩家能玩更多 → <strong>補發新卡（建議）</strong></td><td><span class="check">✔ 建議</span></td><td class="dim">用<strong>新的卡序號</strong> + 擴充後的遊戲列表發一張新卡；玩家持兩張卡＝兩個獨立局數池</td></tr>
+      <tr><td>作廢舊卡重發</td><td><span class="dim">✘ 不採用</span></td><td class="dim">已定調：已發卡不作原地變更 / 作廢，擴充一律走「補發新卡」</td></tr>
+    </tbody>
+  </table>
+<div class="sub-title">與集成商／平台的行為邊界</div>
+  <div class="hypo-block">
+    <div class="hypo-label">本章只講「要達成什麼」</div>
+    <div class="hypo-text">本章<strong>不指定怎麼串</strong>——端點、參數、傳輸格式、簽章方式由開發自行決定。這裡只界定<strong>必須達成的行為結果</strong>。</div>
+  </div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-step highlight"><div class="flow-step-num">我方</div><div class="flow-step-title">主辦活動 · 產卡序號</div><div class="flow-step-desc">活動、局數、獎項結果都在我方</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">集成商</div><div class="flow-step-title">接收 / 轉達</div><div class="flow-step-desc">純中繼，不是結果的源頭</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step success"><div class="flow-step-num">平台</div><div class="flow-step-title">入帳 / 通知</div><div class="flow-step-desc">收注單，結算入主錢包真金</div></div>
+    </div>
+  </div>
+
+  <table class="spec-table">
+    <thead><tr><th style="width:40px;">#</th><th style="width:190px;">行為要求</th><th>必須達成什麼</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">1</td><td>結果的源頭在我方</td><td class="dim"><strong>活動、局數、獎項結果的源頭都是我方</strong>；集成商只負責接收與轉達，不產生也不改寫結果。</td></tr>
+      <tr><td class="mono">2</td><td>發卡須通知並取得確認</td><td class="dim">發卡時須<strong>通知集成商建卡，並取得成功確認</strong>後才視為發卡完成；<strong>失敗要可重試</strong>，重試不得造成重複發卡。</td></tr>
+      <tr><td class="mono">3</td><td>卡序號全域唯一</td><td class="dim">每張卡的序號<strong>全域唯一</strong>；同一序號重複通知<strong>不得造成重複發卡</strong>（視為已成功）。</td></tr>
+      <tr><td class="mono">4</td><td>結算以一筆注單入主錢包</td><td class="dim">整卡結算以一筆<strong>「下注 0 / 派彩 final」</strong>的注單發放入<strong>主錢包真金</strong>，並<strong>須帶活動 ID 與卡序號</strong>供對帳歸戶。</td></tr>
+      <tr><td class="mono">5</td><td>對帳以我方自記為主</td><td class="dim">對帳的真相來源是<strong>我方自己的發卡與結算紀錄</strong>；向集成商查詢的結果<strong>僅作輔助校驗</strong>，不作為帳務依據。</td></tr>
+      <tr><td class="mono">6</td><td>過期卡不可再進入遊戲</td><td class="dim">已過期的卡<strong>不可再取得遊戲入口、不可進入遊戲</strong>；背包端置灰唯讀。</td></tr>
+      <tr><td class="mono">7</td><td>每次下注當下判斷有效性</td><td class="dim"><strong>每次下注當下判斷這張卡是否已失效</strong>；若已失效，<strong>直接結算給錢、不再起新局</strong>。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info"><strong>串接細節唯一來源</strong>：與集成商往來的實際端點、欄位、格式與確認事項，一律見 <strong>《integration_consolidated_checklist_v2.html》</strong>（唯一來源）。本文件不重複維護，也不得與該清單並列為第二來源。</div>
+</section>
+
+<!-- ═══════════ DEV 04 ART ═══════════ -->
+<section class="section" id="art">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">美術主題與風格（已定案）</span>
+    <span class="section-title-en">ART DIRECTION</span>
+  </div>
+
+  <div class="hypo-block">
+    <div class="hypo-label">定案方向 · DECIDED</div>
+    <div class="hypo-text">主體採「<em>燙金票券／珍藏卡</em>」，累積獎金進度條借用「<em>充能光效</em>」概念。本節內容<strong>已拍板</strong>，直接作為美術與前端的執行依據。</div>
+  </div>
+
+  <div class="sub-title">主題調性 · 燙金票券／珍藏卡</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:140px;">項目</th><th>定案內容</th></tr></thead>
+    <tbody>
+      <tr><td>主體意象</td><td class="dim">卡片呈<strong>實體票券質感</strong>——燙金邊框、票券撕角、鋼印壓紋，傳達「<strong>從寶箱抽出的珍藏票</strong>」的價值感</td></tr>
+      <tr><td>色調</td><td class="dim"><strong>深色底 ＋ 金色主調</strong>，延續抽寶箱金色寶箱的視覺系統，與現有背包原型的深金風格一致</td></tr>
+      <tr><td>為什麼選它</td><td class="dim">① <strong>與發卡來源（抽寶箱）視覺連貫</strong>——玩家一眼看得出這張卡是從寶箱來的；② <strong>可複用抽寶箱既有材質庫</strong>，大幅降低新製作量</td></tr>
+      <tr><td>不做什麼</td><td class="dim">不另起一套與抽寶箱無關的視覺語言；不用純扁平無質感卡面（會失去「珍藏票」的價值感）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">星級分級（1★–5★）· 以材質區分，不只靠顏色</div>
+  <div class="body-text">五個星級<strong>以材質做主要區分</strong>，卡框與底紋隨材質同步變化；<strong>星數圖示同時顯示</strong>，讓色弱玩家也能辨識等級（不可只用顏色傳達等級）。</div>
+  <div class="mat-grid">
+    <div class="mat-card mat-1"><div class="mat-star">★</div><div class="mat-name">1★ 銅</div><div class="mat-desc">霧面銅質、細粒質感<br>入門卡</div></div>
+    <div class="mat-card mat-2"><div class="mat-star">★★</div><div class="mat-name">2★ 銀</div><div class="mat-desc">拉絲銀面、冷色高光<br>—</div></div>
+    <div class="mat-card mat-3"><div class="mat-star">★★★</div><div class="mat-name">3★ 金</div><div class="mat-desc">燙金主視覺、暖色高光<br>主力卡</div></div>
+    <div class="mat-card mat-4"><div class="mat-star">★★★★</div><div class="mat-name">4★ 白金</div><div class="mat-desc">冷白金屬、鏡面反光<br>—</div></div>
+    <div class="mat-card mat-5"><div class="mat-star">★★★★★</div><div class="mat-name">5★ 彩鑽</div><div class="mat-desc">折射彩光、稀有感最強<br>高價值卡</div></div>
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:110px;">星級</th><th style="width:150px;">材質</th><th>卡框與底紋</th></tr></thead>
+    <tbody>
+      <tr><td>1★</td><td class="dim">銅</td><td class="dim">銅色邊框 + 霧面底紋；星數圖示顯示 1 顆</td></tr>
+      <tr><td>2★</td><td class="dim">銀</td><td class="dim">銀色拉絲邊框 + 冷色底紋；星數圖示顯示 2 顆</td></tr>
+      <tr><td>3★</td><td class="dim">金</td><td class="dim">燙金邊框 + 暖金底紋（系統主視覺基準）；星數圖示顯示 3 顆</td></tr>
+      <tr><td>4★</td><td class="dim">白金</td><td class="dim">冷白金屬邊框 + 鏡面底紋；星數圖示顯示 4 顆</td></tr>
+      <tr><td>5★</td><td class="dim">彩鑽</td><td class="dim">彩色折射邊框 + 稀有底紋；星數圖示顯示 5 顆</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">累積獎金進度條 · 充能光效</div>
+  <div class="body-text">獎金累積時，進度條<strong>由左至右填充金色光暈</strong>（充能感）；達到 <span class="mono">max_conversion</span> 上限封頂時，<strong>整條金光滿格</strong>並顯示「已達上限封頂」。沿用《遊戲背包頁原型》既有的進度條設計，本規格<strong>正式定為風格基準</strong>。</div>
+  <div class="charge-demo">
+    <div class="charge-label"><span>累積中（約 45%）</span><span class="mono">270 / 600 PHP</span></div>
+    <div class="charge-bar"><div class="charge-fill" style="width:45%;"></div></div>
+  </div>
+  <div class="charge-demo">
+    <div class="charge-label"><span>已達上限封頂（滿格）</span><span style="font-size:9px;padding:3px 8px;border-radius:10px;background:var(--gold-fill);color:var(--gold-light);">已達上限封頂</span></div>
+    <div class="charge-bar"><div class="charge-fill" style="width:100%;"></div></div>
+  </div>
+  <div class="callout info"><strong>行為對齊</strong>：進度條的分母是該卡的 <span class="mono">max_conversion</span>，不是累積贏分。累積贏分超過上限時進度條停在滿格，並在下方以一行小字說明「超過上限的部分不計入，結算以上限為準」（文案見 DEV §07 語系表）。</div>
+
+  <div class="sub-title">狀態徽章（四態）</div>
+  <div class="badge-row">
+    <span class="st-badge st-use">使用中（金）</span>
+    <span class="st-badge st-new">全新（綠）</span>
+    <span class="st-badge st-soon">即將到期（紅 · 含倒數）</span>
+    <span class="st-badge st-exp">已過期（灰 · 整卡置灰唯讀）</span>
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:130px;">狀態</th><th style="width:110px;">顏色</th><th>樣式規則</th></tr></thead>
+    <tbody>
+      <tr><td>使用中</td><td class="dim">金</td><td class="dim">已開打過的卡；卡框為該星級材質原色，徽章金底金字</td></tr>
+      <tr><td>全新</td><td class="dim">綠</td><td class="dim">尚未使用（已用 0 次）；徽章綠底綠字</td></tr>
+      <tr><td>即將到期</td><td class="dim">紅</td><td class="dim">剩餘時間少於 24 小時；<strong>徽章紅底紅字並顯示倒數計時</strong>，剩餘時間欄位同步轉紅（沿用原型的紅色警示樣式）</td></tr>
+      <tr><td>已過期</td><td class="dim">灰</td><td class="dim"><strong>整張卡置灰唯讀</strong>、按鈕不可點；歸入背包「已過期」分頁</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">關鍵美術資產清單</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:210px;">資產</th><th style="width:330px;">內容</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td>背包卡片 5 階材質框</td><td class="dim">銅 / 銀 / 金 / 白金 / 彩鑽，各含卡框 + 底紋一組</td><td class="dim">可複用抽寶箱金色系材質庫，降低新製作量</td></tr>
+      <tr><td>狀態徽章 4 態</td><td class="dim">使用中（金）/ 全新（綠）/ 即將到期（紅・含倒數）/ 已過期（灰）</td><td class="dim">可複用抽寶箱既有徽章樣式，僅換色與文字</td></tr>
+      <tr><td>遊戲圖示牆</td><td class="dim">卡片可玩遊戲的縮圖 chip（含已選中 / 未選中兩態）</td><td class="dim">沿用遊戲既有縮圖資源，僅需選中框樣式</td></tr>
+      <tr><td>累積獎金充能進度條</td><td class="dim">底槽 + 金色光暈填充 + 滿格封頂態（含光暈強度）</td><td class="dim">沿用《遊戲背包頁原型》既有進度條，定為風格基準</td></tr>
+      <tr><td>到期倒數警示樣式</td><td class="dim">紅字倒數 + 紅框卡片 + 紅底徽章一組</td><td class="dim">沿用原型紅色警示樣式，不另製</td></tr>
+    </tbody>
+  </table>
+
+  <div class="body-text" style="margin-top:6px;">視覺基準以下列兩個原型為準：
+    <a href="遊戲背包頁原型.html" target="_blank" rel="noopener" style="display:inline-block;margin:4px 6px 0 0;font-size:12px;padding:5px 12px;border:1px solid var(--border-bright);border-radius:6px;color:var(--gold-light);text-decoration:none;background:var(--gold-fill-faint);">🎮 遊戲背包頁原型 ↗</a>
+    <a href="後台獎勵系統 (standalone).html" target="_blank" rel="noopener" style="display:inline-block;margin:4px 0 0 0;font-size:12px;padding:5px 12px;border:1px solid var(--border-bright);border-radius:6px;color:var(--gold-light);text-decoration:none;background:var(--gold-fill-faint);">🛠 後台獎勵系統原型 ↗</a>
+  </div>
+
+  <div class="callout warn"><strong>本節範圍註記</strong>：細部規格（切圖尺寸、檔案命名、動效參數）待美術產出後補入升版——本節<strong>先定調性與資產清單，不阻塞開發</strong>。前端可先以現有原型樣式實作，材質圖替換即可。</div>
+</section>
+
+<!-- ═══════════ DEV 05 PAGE · ADMIN LIST ═══════════ -->
+<section class="section" id="pg-list">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">頁面 · 後台發放管理列表<span class="tag-upd">2026-08-11</span></span>
+    <span class="section-title-en">PAGE · ISSUANCE LIST</span>
+  </div>
+
+  <div class="hypo-block">
+    <div class="hypo-label">本頁目的</div>
+    <div class="hypo-text">營運在這一頁<strong>總覽所有發放卡型錄</strong>：維護各星級「道具基礎值」、追蹤每張卡被哪些抽寶箱活動引用、把關停用與狀態。Free Spin 卡是「<em>建檔一次、到處複用的型錄</em>」，這一頁就是型錄本身。</div>
+  </div>
+
+  <div class="sub-title">全頁截圖＋區域標號</div>
+
+<div class="shot-split"><div class="shot-frame"><img src="design_assets/fs_admin_01_issuance_list.png" alt="後台發放管理列表全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台發放管理列表全頁畫面<br><span style="font-size:10px;">將 fs_admin_01_issuance_list.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型 · 紅框 Ⓐ–Ⓕ 對應右表</div></div>
+  <div>
+  <table class="spec-table">
+    <thead><tr><th style="width:56px;">區域</th><th style="width:170px;">功能</th><th>限制與規則</th><th>防呆與錯誤</th></tr></thead>
+    <tbody>
+      <tr><td class="region-td">Ⓐ</td><td>後台選單</td><td class="dim">CRM 後台模組導覽；本功能位於「FREE SPIN 卡」</td><td class="dim">—</td></tr>
+      <tr><td class="region-td">Ⓑ</td><td>頁面標頭＋新增發放卡</td><td class="dim">「＋新增發放卡」進入建卡頁（DEV §06）；每張發放卡＝獨立獎勵道具、唯一 <span class="mono">reward_id</span>（RWD_FS_xxxx）</td><td class="dim">—</td></tr>
+      <tr><td class="region-td">Ⓒ</td><td>道具基礎值</td><td class="dim">各星級「固定每轉押注」，幣別分頁切換（THB/PHP/IDR/VND/USD）；1★–5★＝<span class="mono">R_FS_1STAR～5STAR</span>；不隨活動變動。「編輯基礎值」就地展開 coin_size × multiplier 編輯</td><td class="dim">改基礎值<strong>只影響之後發出的卡</strong>；已發卡走快照不受影響（DEV §03）</td></tr>
+      <tr><td class="region-td">Ⓓ</td><td>統計列</td><td class="dim">發放卡總數／已啟用／引用中活動／累計發卡，即時彙總</td><td class="dim">—</td></tr>
+      <tr><td class="region-td">Ⓔ</td><td>發放卡清單</td><td class="dim">每列：名稱＋已發張數／reward_id／星級＋每轉押注／遊戲數／有效期／使用活動數／狀態／修改。狀態僅「草稿／已啟用」兩種</td><td class="dim">草稿不會出現在抽寶箱獎池下拉；停用前檢查引用（見本頁防呆總表）</td></tr>
+      <tr><td class="region-td">Ⓕ</td><td>展開：引用活動</td><td class="dim">點列展開：campaign_id／活動名稱／發卡數＋期間／狀態（進行中·已結算）。<strong>一張卡可被多個活動引用＝型錄複用</strong></td><td class="dim">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+  <div class="sub-title">道具基礎值編輯（就地展開）</div>
+
+<div class="shot-split"><div class="shot-frame"><img src="design_assets/fs_admin_03_base_values_edit.png" alt="道具基礎值編輯狀態" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：道具基礎值編輯狀態<br><span style="font-size:10px;">將 fs_admin_03_base_values_edit.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">「編輯基礎值」展開後：各星級 coin_size / multiplier 可編輯，每轉押注即時算出</div></div>
+  <div>
+  <div class="body-text">按「編輯基礎值」後，各星級卡展開 <span class="mono">coin_size</span> 與 <span class="mono">multiplier</span> 輸入欄，<strong>每轉押注＝coin × mult × line</strong> 由系統即時算出。幣別分頁各自保留數值、互不覆蓋。基礎值是全幣別預設，玩家對各星級價值有固定認知，<strong>不隨活動變動</strong>。</div>
+  <div class="callout warn"><strong>只影響未來的卡</strong>：基礎值改完，只對「之後發出的卡」生效；玩家手上已持有的卡完全不變（快照凍結，DEV §03）。</div>
+  </div>
+</div>
+
+  <div class="sub-title">公版押注段 × 幣別 · 數值模板</div>
+
+  <div class="sub-title">幣別 × 5 階段押注設定矩陣（每個幣別一張）</div>
+  <div class="body-text">營運選定一個幣別後，後台展開 5 列（Tier 1–5），逐列填寫。下表為 <strong>THB</strong> 範例（數值僅示意，實際由營運填）：</div>
+  <table class="spec-table">
+    <thead><tr><th>Tier</th><th>reward_id</th><th>Coin Size</th><th>Multiplier</th><th>每轉押注</th><th>次數</th><th>face_value</th><th>max_conversion</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="mono">R_FS_1STAR</td><td>0.2</td><td>1</td><td>2</td><td>10</td><td>20 THB</td><td>200 THB</td></tr>
+      <tr><td>2</td><td class="mono">R_FS_2STAR</td><td>0.5</td><td>1</td><td>5</td><td>10</td><td>50 THB</td><td>500 THB</td></tr>
+      <tr><td>3</td><td class="mono">R_FS_3STAR</td><td>1</td><td>1</td><td>10</td><td>10</td><td>100 THB</td><td>1,000 THB</td></tr>
+      <tr><td>4</td><td class="mono">R_FS_4STAR</td><td>2</td><td>1</td><td>20</td><td>10</td><td>200 THB</td><td>2,000 THB</td></tr>
+      <tr><td>5</td><td class="mono">R_FS_5STAR</td><td>5</td><td>1</td><td>50</td><td>10</td><td>500 THB</td><td>5,000 THB</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info"><strong>「每轉押注」由我方帶入</strong>：幣別與每轉押注於發卡時由我方帶入，不是由外部預設。實際可帶入的欄位格式以集成商回覆為準（見 DEV §10 待確認第 ① 項）。</div>
+  <div class="sub-title">公版押注段 × 幣別 · face_value 對照表</div>
+  <div class="body-text">本表為<strong>可填模板</strong>，提供「一套規則 + 跨幣別示意值」讓營運直接套用。<em>幣別範圍以「Combo 平台貨幣設定」為準</em>；下列各幣別的每轉押注為符合幣值習慣的<strong>示意值</strong>，實際數字由營運於後台填寫。</div>
+
+  <div class="callout"><strong>計算規則（讓數值可推導、可對帳）</strong><br>
+    ① <strong>每轉押注</strong> = coin_size × multiplier × line（沿用該幣別公版押注段第 1–5 段）<br>
+    ② <strong>face_value（票面價值）</strong> = 每轉押注 × 次數 → 代表這張卡「送出去的成本基準」，用於成本估算與對帳<br>
+    ③ <strong>max_conversion（結算上限）</strong> = face_value × 封頂倍數（示意用 ×10，營運可逐段調整）<br>
+    ④ 次數預設全段 = 10（可逐段調）；所有階段一律入主錢包真金</div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(this,'thb')">THB · 泰銖</button>
+    <button class="tab-btn" onclick="switchTab(this,'php')">PHP · 披索</button>
+    <button class="tab-btn" onclick="switchTab(this,'idr')">IDR · 印尼盾</button>
+    <button class="tab-btn" onclick="switchTab(this,'vnd')">VND · 越南盾</button>
+    <button class="tab-btn" onclick="switchTab(this,'usd')">USD · 美元</button>
+  </div>
+
+  <div class="tab-content active" id="tab-thb">
+    <table class="spec-table">
+      <thead><tr><th>Tier</th><th>reward_id</th><th>每轉押注</th><th>次數</th><th>face_value</th><th>max_conversion (×10)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="mono">R_FS_1STAR</td><td>2</td><td>10</td><td>20 THB</td><td>200 THB</td></tr>
+        <tr><td>2</td><td class="mono">R_FS_2STAR</td><td>5</td><td>10</td><td>50 THB</td><td>500 THB</td></tr>
+        <tr><td>3</td><td class="mono">R_FS_3STAR</td><td>10</td><td>10</td><td>100 THB</td><td>1,000 THB</td></tr>
+        <tr><td>4</td><td class="mono">R_FS_4STAR</td><td>20</td><td>10</td><td>200 THB</td><td>2,000 THB</td></tr>
+        <tr><td>5</td><td class="mono">R_FS_5STAR</td><td>50</td><td>10</td><td>500 THB</td><td>5,000 THB</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tab-content" id="tab-php">
+    <table class="spec-table">
+      <thead><tr><th>Tier</th><th>reward_id</th><th>每轉押注</th><th>次數</th><th>face_value</th><th>max_conversion (×10)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="mono">R_FS_1STAR</td><td>1</td><td>10</td><td>10 PHP</td><td>100 PHP</td></tr>
+        <tr><td>2</td><td class="mono">R_FS_2STAR</td><td>3</td><td>10</td><td>30 PHP</td><td>300 PHP</td></tr>
+        <tr><td>3</td><td class="mono">R_FS_3STAR</td><td>6</td><td>10</td><td>60 PHP</td><td>600 PHP</td></tr>
+        <tr><td>4</td><td class="mono">R_FS_4STAR</td><td>12</td><td>10</td><td>120 PHP</td><td>1,200 PHP</td></tr>
+        <tr><td>5</td><td class="mono">R_FS_5STAR</td><td>30</td><td>10</td><td>300 PHP</td><td>3,000 PHP</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tab-content" id="tab-idr">
+    <table class="spec-table">
+      <thead><tr><th>Tier</th><th>reward_id</th><th>每轉押注</th><th>次數</th><th>face_value</th><th>max_conversion (×10)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="mono">R_FS_1STAR</td><td>1,000</td><td>10</td><td>10,000 IDR</td><td>100,000 IDR</td></tr>
+        <tr><td>2</td><td class="mono">R_FS_2STAR</td><td>3,000</td><td>10</td><td>30,000 IDR</td><td>300,000 IDR</td></tr>
+        <tr><td>3</td><td class="mono">R_FS_3STAR</td><td>6,000</td><td>10</td><td>60,000 IDR</td><td>600,000 IDR</td></tr>
+        <tr><td>4</td><td class="mono">R_FS_4STAR</td><td>15,000</td><td>10</td><td>150,000 IDR</td><td>1,500,000 IDR</td></tr>
+        <tr><td>5</td><td class="mono">R_FS_5STAR</td><td>30,000</td><td>10</td><td>300,000 IDR</td><td>3,000,000 IDR</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tab-content" id="tab-vnd">
+    <table class="spec-table">
+      <thead><tr><th>Tier</th><th>reward_id</th><th>每轉押注</th><th>次數</th><th>face_value</th><th>max_conversion (×10)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="mono">R_FS_1STAR</td><td>5,000</td><td>10</td><td>50,000 VND</td><td>500,000 VND</td></tr>
+        <tr><td>2</td><td class="mono">R_FS_2STAR</td><td>15,000</td><td>10</td><td>150,000 VND</td><td>1,500,000 VND</td></tr>
+        <tr><td>3</td><td class="mono">R_FS_3STAR</td><td>30,000</td><td>10</td><td>300,000 VND</td><td>3,000,000 VND</td></tr>
+        <tr><td>4</td><td class="mono">R_FS_4STAR</td><td>75,000</td><td>10</td><td>750,000 VND</td><td>7,500,000 VND</td></tr>
+        <tr><td>5</td><td class="mono">R_FS_5STAR</td><td>150,000</td><td>10</td><td>1,500,000 VND</td><td>15,000,000 VND</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tab-content" id="tab-usd">
+    <table class="spec-table">
+      <thead><tr><th>Tier</th><th>reward_id</th><th>每轉押注</th><th>次數</th><th>face_value</th><th>max_conversion (×10)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="mono">R_FS_1STAR</td><td>0.1</td><td>10</td><td>1 USD</td><td>10 USD</td></tr>
+        <tr><td>2</td><td class="mono">R_FS_2STAR</td><td>0.2</td><td>10</td><td>2 USD</td><td>20 USD</td></tr>
+        <tr><td>3</td><td class="mono">R_FS_3STAR</td><td>0.5</td><td>10</td><td>5 USD</td><td>50 USD</td></tr>
+        <tr><td>4</td><td class="mono">R_FS_4STAR</td><td>1</td><td>10</td><td>10 USD</td><td>100 USD</td></tr>
+        <tr><td>5</td><td class="mono">R_FS_5STAR</td><td>2</td><td>10</td><td>20 USD</td><td>200 USD</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn"><strong>填表注意</strong>：① 各幣別「每轉押注」須對齊該幣別<strong>遊戲端實際可用的最小押注段</strong>（避免送出遊戲端不接受的組合）；② IDR / VND 等大面額幣別，票面價值與上限位數很長，背包顯示需做千分位與縮寫（如 1.5M）；③ 同一個 reward_id（R_FS_nSTAR）跨幣別共用，但上表每列數值各幣別獨立存放。</div>
+
+  <div class="sub-title">獎勵類別</div>
+
+  <div class="sub-title">獎勵類別擴充</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:200px;">類別</th><th style="width:140px;">狀態</th><th>內容</th></tr></thead>
+    <tbody>
+      <tr><td>現金獎 CASH</td><td><span class="tag-pill tag-v1">已存在</span></td><td class="dim">R_CASH_*（抽寶箱第一階段）</td></tr>
+      <tr><td>非現金獎 NON_CASH</td><td><span class="tag-pill tag-v2">本案新增</span></td><td class="dim">第一階段子項僅「FREE SPIN 卡」（R_FS_1~5STAR）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">本頁防呆總表</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:190px;">防呆點</th><th style="width:330px;">規則</th><th>沒擋會發生什麼</th></tr></thead>
+    <tbody>
+      <tr><td>草稿不可被引用</td><td class="dim">未啟用（草稿）的卡<strong>不出現在抽寶箱獎池下拉</strong>，不會被活動選到。</td><td class="dim">活動抽到一張還沒設定完的卡，發卡流程當場失敗</td></tr>
+      <tr><td>型錄停用前檢查引用</td><td class="dim">停用或刪除一張卡前，<strong>先檢查是否仍被進行中的活動引用</strong>；有引用則擋下並列出是哪幾檔活動。</td><td class="dim">活動抽到一張已停用的卡，發卡流程當場失敗，玩家中獎卻沒拿到東西</td></tr>
+      <tr><td>基礎值／型錄修改不回溯</td><td class="dim">列表上的任何修改（基礎值、型錄內容）僅對「之後發出的卡」生效。</td><td class="dim">改價回溯到玩家手上的卡——完整規則見 DEV §06「已發卡快照凍結」</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">友善度設計</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:190px;">友善度設計</th><th>系統要做到什麼</th></tr></thead>
+    <tbody>
+      <tr><td>型錄建檔一次、活動下拉選用</td><td class="dim">設定活動獎項時<strong>只需從現成清單下拉挑卡</strong>，不必每次新建一組卡再把 ID 抄回來。只有現有卡都不符規格時才回型錄新增一張。</td></tr>
+      <tr><td>幣別分頁各自保留數值</td><td class="dim">切到 PHP 再切回 THB，<strong>剛才填的 THB 數值原封不動還在</strong>；不會因為切分頁而清空或互相覆蓋。</td></tr>
+      <tr><td>大面額幣別自動格式化</td><td class="dim">IDR / VND 等大面額幣別，輸入與顯示都<strong>自動加千分位</strong>，過長時另以縮寫輔助顯示（如 1.5M），避免營運數錯位數。</td></tr>
+      <tr><td>狀態一眼可辨</td><td class="dim">列表上「草稿 / 已啟用」與「被幾個活動引用」直接顯示，營運不必逐張點開才知道哪張卡在用。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">本頁操作流程 · 型錄複用</div>
+
+  <div class="sub-title">型錄複用：建檔一次 → 活動選用（不是每次新建）</div>
+  <div class="callout success"><strong>核心觀念</strong>：Free Spin 卡是「<em>建檔一次、到處複用的型錄</em>」。設定抽寶箱活動時，正常只是<strong>從現成清單下拉挑一張卡填進獎項欄位</strong>，不需要每次新建一組卡、拿 ID 再填回去。</div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-step highlight"><div class="flow-step-num">一次性</div><div class="flow-step-title">① 建檔型錄</div><div class="flow-step-desc">獎勵清單建好 R_FS_1~5STAR（各幣別參數 / 遊戲列表 / 上限）</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">每次活動</div><div class="flow-step-title">② 下拉選用</div><div class="flow-step-desc">抽寶箱獎項欄位選現成 reward_id（如第 8 抽 ← R_FS_3STAR）</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step success"><div class="flow-step-num">僅缺規格時</div><div class="flow-step-title">③ 才新增模板</div><div class="flow-step-desc">現有卡都不符（特殊次數 / 遊戲 / 上限）才回型錄多建一張，之後一樣複用</div></div>
+    </div>
+  </div>
+  <div class="callout info"><strong>遊戲列表會不會常變？（已定調）</strong>　這是唯一可能逼你常常新建卡的欄位：<br>
+    · 列表大致固定 → <strong>遊戲列表也鎖在卡模板上</strong>，純複用最單純（<em>本版採此</em>）<br>
+    · 列表常隨活動主題換 → 未來把<strong>遊戲列表升級為「活動可覆寫」</strong>，其他結算規則（上限 / 次數）仍永遠鎖在卡上<br>
+    <strong>本版定調</strong>：遊戲列表鎖卡模板；結算規則一律鎖卡；入帳一律主錢包真金，無錢包別設定。</div>
+
+  <div class="sub-title">本頁驗收情境</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:140px;">情境名稱</th><th style="width:250px;">前提（測試前先準備好什麼）</th><th style="width:210px;">動作（做什麼）</th><th>預期結果（應該看到什麼）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>草稿不可被引用</strong></td>
+        <td class="dim">有一張「草稿」狀態的發放卡</td>
+        <td class="dim">到抽寶箱活動的獎項設定打開卡片下拉</td>
+        <td class="dim">① 下拉清單<strong>看不到</strong>這張草稿卡；② 回本頁啟用後，重新打開下拉即出現</td>
+      </tr>
+      <tr>
+        <td><strong>停用被引用的卡</strong></td>
+        <td class="dim">某張卡被 1 檔進行中活動引用</td>
+        <td class="dim">在列表對它執行停用</td>
+        <td class="dim">① 系統<strong>擋下</strong>並列出引用中的活動；② 該活動結束後再停用可成功</td>
+      </tr>
+      <tr>
+        <td><strong>展開引用活動</strong></td>
+        <td class="dim">某張卡被 2 檔活動引用（1 進行中、1 已結算）</td>
+        <td class="dim">點該列展開</td>
+        <td class="dim">子表列出 2 筆，含 campaign_id／發卡數＋期間／狀態，與活動實況一致</td>
+      </tr>
+      <tr>
+        <td><strong>基礎值幣別分頁保值</strong></td>
+        <td class="dim">「編輯基礎值」已展開，先在 THB 分頁改了數值</td>
+        <td class="dim">切到 PHP 分頁再切回 THB</td>
+        <td class="dim">THB 剛才填的數值<strong>原封不動還在</strong>，不因切分頁清空或互相覆蓋</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">本頁錯誤處理</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:190px;">狀況</th><th style="width:340px;">系統怎麼反應</th><th>營運看到什麼</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>停用仍被引用的卡</strong></td>
+        <td class="dim">擋下停用動作，不改變卡片狀態。</td>
+        <td class="dim">提示「此卡仍被進行中活動引用，無法停用」並列出是哪幾檔活動。</td>
+      </tr>
+      <tr>
+        <td><strong>修改已啟用且已發出的卡</strong></td>
+        <td class="dim">允許儲存，但僅對「之後發出的卡」生效（快照凍結）。</td>
+        <td class="dim">儲存時提示「已發出的卡不受本次修改影響」。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">後台文案 · 多國語系（中英對照 · 兩個後台頁共用）</div>
+
+  <div class="sub-title">後台文案 · 多國語系（中英對照）</div>
+  <div class="body-text">FREE SPIN 卡發放後台所有介面文字 ×<strong>2 語系（en / zh-Hant）</strong>對照（依 FREE SPIN 卡設定後台原型）。後台為營運內部工具，僅需中英。</div>
+  <table class="spec-table" style="max-width:760px;">
+    <thead><tr><th>區塊</th><th>zh-Hant</th><th>en</th></tr></thead>
+    <tbody>
+      <tr><td>選單</td><td>儀表板</td><td>Dashboard</td></tr>
+      <tr><td>選單</td><td>抽寶箱活動</td><td>Treasure Box Campaigns</td></tr>
+      <tr><td>選單</td><td>FREE SPIN 卡</td><td>FREE SPIN Cards</td></tr>
+      <tr><td>選單</td><td>現金獎模板</td><td>Cash Prize Templates</td></tr>
+      <tr><td>選單</td><td>玩家背包</td><td>Player Backpack</td></tr>
+      <tr><td>選單</td><td>對帳報表</td><td>Reconciliation Reports</td></tr>
+      <tr><td>標題</td><td>FREE SPIN 卡 · 發放管理</td><td>FREE SPIN Card · Issuance Management</td></tr>
+      <tr><td>按鈕</td><td>＋ 新增發放卡</td><td>＋ New Issuance Card</td></tr>
+      <tr><td>區段</td><td>道具基礎值</td><td>Item Base Value</td></tr>
+      <tr><td>區段</td><td>固定每轉押注</td><td>Fixed Bet per Spin</td></tr>
+      <tr><td>連結</td><td>編輯基礎值</td><td>Edit Base Value</td></tr>
+      <tr><td>統計</td><td>發放卡總數</td><td>Total Cards</td></tr>
+      <tr><td>統計</td><td>已啟用</td><td>Active</td></tr>
+      <tr><td>統計</td><td>引用中活動</td><td>Referencing Campaigns</td></tr>
+      <tr><td>統計</td><td>累計發卡</td><td>Total Issued</td></tr>
+      <tr><td>表頭</td><td>發放卡名稱</td><td>Card Name</td></tr>
+      <tr><td>表頭</td><td>獎勵道具ID</td><td>Reward Item ID</td></tr>
+      <tr><td>表頭</td><td>星級</td><td>Star Tier</td></tr>
+      <tr><td>表頭</td><td>次數</td><td>Rounds</td></tr>
+      <tr><td>表頭</td><td>有效期</td><td>Validity</td></tr>
+      <tr><td>表頭</td><td>使用活動</td><td>Used in Campaigns</td></tr>
+      <tr><td>表頭</td><td>狀態</td><td>Status</td></tr>
+      <tr><td>表頭</td><td>操作</td><td>Action</td></tr>
+      <tr><td>列文字</td><td>已發 {n} 張</td><td>{n} issued</td></tr>
+      <tr><td>列文字</td><td>發卡 +{n} 天</td><td>+{n} days from issuance</td></tr>
+      <tr><td>列文字</td><td>{n} 個活動</td><td>{n} campaign(s)</td></tr>
+      <tr><td>狀態</td><td>已啟用</td><td>Active</td></tr>
+      <tr><td>狀態</td><td>草稿</td><td>Draft</td></tr>
+      <tr><td>操作</td><td>修改</td><td>Edit</td></tr>
+      <tr><td>展開標題</td><td>使用此發放卡的抽寶箱活動</td><td>Treasure-box campaigns using this card</td></tr>
+      <tr><td>展開表頭</td><td>活動名稱</td><td>Campaign Name</td></tr>
+      <tr><td>展開表頭</td><td>發卡數 · 期間</td><td>Cards Issued · Period</td></tr>
+      <tr><td>展開狀態</td><td>進行中</td><td>Ongoing</td></tr>
+      <tr><td>展開狀態</td><td>已結算</td><td>Settled</td></tr>
+      <tr><td>防呆提示</td><td>此欄為必填</td><td>This field is required</td></tr>
+      <tr><td>防呆提示</td><td>遊戲清單長度已超過上限</td><td>Game list exceeds the length limit</td></tr>
+      <tr><td>防呆提示</td><td>結算上限低於票面價值，請確認</td><td>Max conversion is lower than face value — please confirm</td></tr>
+      <tr><td>防呆提示</td><td>此卡仍被進行中活動引用，無法停用</td><td>This card is still used by an ongoing campaign and cannot be disabled</td></tr>
+      <tr><td>確認視窗</td><td>確認啟用這張發放卡？</td><td>Activate this issuance card?</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info"><strong>i18n 備註</strong>：① <span class="mono">CAMPAIGN_ID / NON_CASH / FREE SPIN / RWD_FS_xxxx</span> 等代碼為系統識別碼，不翻譯。② 數字、幣別、日期為動態值不進文案表。③ 繁中為文案基準（source）。</div>
+</section>
+
+<!-- ═══════════ DEV 06 PAGE · ADMIN FORM ═══════════ -->
+<section class="section" id="pg-form">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">頁面 · 後台新增／編輯發放卡<span class="tag-upd">2026-08-11</span></span>
+    <span class="section-title-en">PAGE · CARD FORM</span>
+  </div>
+
+  <div class="hypo-block">
+    <div class="hypo-label">本頁目的</div>
+    <div class="hypo-text">營運在這一頁<strong>建一張發放卡</strong>：選星級道具（押注價值固定、全幣別預設），只需設定<strong>遊戲／次數／封頂／有效期</strong>。啟用後這張卡才能被抽寶箱獎池引用；<strong>發出去的卡走快照，之後怎麼改都不受影響</strong>。</div>
+  </div>
+
+  <div class="sub-title">全頁截圖＋區域標號</div>
+
+<div class="shot-split"><div class="shot-frame"><img src="design_assets/fs_admin_02_card_form.png" alt="後台新增發放卡表單全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台新增發放卡表單全頁畫面<br><span style="font-size:10px;">將 fs_admin_02_card_form.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型 · 紅框 Ⓐ–Ⓔ 對應右表</div></div>
+  <div>
+  <table class="spec-table">
+    <thead><tr><th style="width:56px;">區域</th><th style="width:150px;">功能</th><th>限制與規則</th><th>防呆與錯誤</th></tr></thead>
+    <tbody>
+      <tr><td class="region-td">Ⓐ</td><td>名稱＋獎勵道具ID＋星級選擇</td><td class="dim">名稱自由填；<span class="mono">reward_id</span>（RWD_FS_xxxx）系統自動產生、<strong>啟用後鎖定</strong>；點選 1★–5★，押注價值固定來自道具基礎值，選中後顯示各幣別每轉押注（唯讀）</td><td class="dim">名稱必填；reward_id 不可手改</td></tr>
+      <tr><td class="region-td">Ⓑ</td><td>可用遊戲列表</td><td class="dim">搜尋＋點選加入，已選為可移除 chip；<span class="mono">game_ids</span> 逗號串長度上限 200 字元，即時顯示「已選 n 款 · 長度 x / 200」；<strong>發卡後鎖定不可改</strong></td><td class="dim">超過 200 擋下儲存並提示還差多少</td></tr>
+      <tr><td class="region-td">Ⓒ</td><td>發放參數（次數／結算封頂）</td><td class="dim">免費旋轉次數＝<strong>整卡共用池</strong>；結算封頂倍數 × face_value → 各幣別 <span class="mono">max_conversion</span> <strong>自動計算、唯讀</strong>（＝每轉押注 × 次數 × 倍數）</td><td class="dim">次數／倍數為 0 或負數擋存；上限低於票面價值跳警示</td></tr>
+      <tr><td class="region-td">Ⓓ</td><td>有效期＋入帳目標</td><td class="dim">預設「發卡 +N 天（相對）」、起算基準預設「發卡日為第 1 天」；<strong>自然日制 GMT+8、第 N 天 23:59:59 到期</strong>；絕對日期為次要選項。入帳目標固定「主錢包真金 · 無流水」</td><td class="dim">N 必填；入帳目標不可編輯</td></tr>
+      <tr><td class="region-td">Ⓔ</td><td>動作列</td><td class="dim">取消／儲存草稿／啟用；<strong>儲存 ≠ 啟用</strong>，啟用後才可被抽寶箱獎池引用</td><td class="dim">啟用前二次確認（摘要星級／次數／有效期／上限／遊戲數）</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+  <div class="sub-title">本頁防呆總表</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:190px;">防呆點</th><th style="width:330px;">規則</th><th>沒擋會發生什麼</th></tr></thead>
+    <tbody>
+      <tr><td><strong>已發卡快照凍結</strong><br><span class="tag-pill tag-inf">最重要</span></td><td class="dim">已發出的卡採<strong>快照凍結</strong>；後台之後修改型錄（次數、上限、遊戲列表、押注），<strong>只對「改完之後才發出的卡」生效</strong>，已發卡完全不受影響。</td><td class="dim">改價會回溯到玩家手上的卡——玩家昨天抽到上限 1,000 的卡，今天變成 200，直接構成客訴與信任危機，且對帳金額對不起來</td></tr>
+      <tr><td>必填未填不可儲存</td><td class="dim">星級、次數、有效期、可玩遊戲、各幣別押注與上限任一未填，<strong>擋下儲存並明確指出哪一欄沒填</strong>。</td><td class="dim">發出一張缺參數的卡，玩家點進去無法開局，或結算時算不出金額</td></tr>
+      <tr><td>可用遊戲列表超過上限</td><td class="dim">遊戲清單串起來超過 200 字元時<strong>擋下儲存並提示還差多少</strong>，同時即時顯示目前長度（如 42 / 200）。</td><td class="dim">發卡通知會被外部拒收，這張卡建不起來，玩家背包出現一張永遠無法使用的卡</td></tr>
+      <tr><td>數值不合理警示</td><td class="dim">例如<strong>結算上限低於票面價值</strong>、次數為 0、押注為 0 或負數，<strong>跳警示要求確認或直接擋存</strong>。</td><td class="dim">卡送出去玩家怎麼玩都拿不到合理獎金，或成本估算完全失真</td></tr>
+      <tr><td>啟用前二次確認</td><td class="dim">按下「啟用」時<strong>跳出確認視窗</strong>，摘要列出星級 / 次數 / 有效期 / 上限 / 可玩遊戲數，確認後才真正啟用。</td><td class="dim">誤點啟用一張還沒設定完的卡，被活動引用後發出去就收不回來（已發卡不可變更）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">友善度設計</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:190px;">友善度設計</th><th>系統要做到什麼</th></tr></thead>
+    <tbody>
+      <tr><td>自動計算欄位唯讀顯示</td><td class="dim"><strong>每轉押注</strong>（coin × mult × line）與 <strong>face_value</strong>（每轉押注 × 次數）由系統即時算出、<strong>以唯讀樣式呈現</strong>，不讓人手填，避免算錯或前後不一致。</td></tr>
+      <tr><td>儲存 ≠ 啟用</td><td class="dim">「儲存草稿」只是存起來；<strong>只有按下「啟用」之後，這張卡才能被抽寶箱獎池引用</strong>。草稿卡不會意外被活動選到。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">本頁操作流程 · 建卡到啟用</div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-step highlight"><div class="flow-step-num">01</div><div class="flow-step-title">點「＋新增發放卡」</div><div class="flow-step-desc">自列表頁進入；reward_id 自動產生</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-title">填名稱、選星級</div><div class="flow-step-desc">星級押注唯讀帶出各幣別每轉押注</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-title">勾選可用遊戲</div><div class="flow-step-desc">串長 ≤ 200 字元，即時顯示餘量</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-title">填次數＋封頂倍數</div><div class="flow-step-desc">各幣別 max_conversion 自動算出</div></div>
+    </div>
+  </div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-step"><div class="flow-step-num">05</div><div class="flow-step-title">設定有效期</div><div class="flow-step-desc">發卡 +N 天（預設）；自然日 GMT+8</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step warn"><div class="flow-step-num">06</div><div class="flow-step-title">儲存草稿 或 啟用</div><div class="flow-step-desc">按「啟用」跳出二次確認彈窗（摘要）</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step success"><div class="flow-step-num">07</div><div class="flow-step-title">確認後生效</div><div class="flow-step-desc">卡片進入型錄「已啟用」，可被獎池引用</div></div>
+    </div>
+  </div>
+
+  <div class="sub-title">本頁驗收情境</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:140px;">情境名稱</th><th style="width:250px;">前提（測試前先準備好什麼）</th><th style="width:210px;">動作（做什麼）</th><th>預期結果（應該看到什麼）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>必填擋存</strong></td>
+        <td class="dim">新增發放卡，名稱（或星級、次數、有效期任一必填欄）未填</td>
+        <td class="dim">按「儲存草稿」</td>
+        <td class="dim">① 擋下儲存並<strong>明確指出哪一欄沒填</strong>（「此欄為必填」）；② 補齊後可正常儲存</td>
+      </tr>
+      <tr>
+        <td><strong>遊戲列表超長擋存</strong></td>
+        <td class="dim">持續勾選遊戲直到 game_ids 串長超過 200 字元</td>
+        <td class="dim">按「儲存」</td>
+        <td class="dim">① 擋下並提示超出多少（長度計數轉紅）；② 移除部分遊戲降回上限內後可儲存</td>
+      </tr>
+      <tr>
+        <td><strong>自動計算欄位</strong></td>
+        <td class="dim">選 3★（每轉押注 10 THB）、次數 10、封頂倍數 10</td>
+        <td class="dim">檢視發放參數區的各幣別結算封頂</td>
+        <td class="dim">① face_value＝100 THB、max_conversion＝1,000 THB <strong>自動帶出且不可手改</strong>；② PHP／IDR 等其他幣別各自按該幣別押注同步算好</td>
+      </tr>
+      <tr>
+        <td><strong>快照凍結</strong></td>
+        <td class="dim">某張卡已被活動發出若干張</td>
+        <td class="dim">回本頁把該卡次數 10 改成 20 並重新啟用</td>
+        <td class="dim">① 已發出的卡<strong>仍是 10 次</strong>、各項數值完全不變；② 之後新發出的卡才是 20 次</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">本頁錯誤處理</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:190px;">狀況</th><th style="width:340px;">系統怎麼反應</th><th>營運看到什麼</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>儲存失敗（必填缺漏）</strong></td>
+        <td class="dim">擋下儲存，標示缺漏欄位，已填內容不清空。</td>
+        <td class="dim">缺漏欄位逐欄顯示「此欄為必填」。</td>
+      </tr>
+      <tr>
+        <td><strong>啟用未設定完成的卡</strong></td>
+        <td class="dim">二次確認彈窗顯示摘要；有缺漏時不允許確認。</td>
+        <td class="dim">彈窗摘要標示缺漏項，確認鈕不可按。</td>
+      </tr>
+      <tr>
+        <td><strong>編輯已啟用且已發出的卡</strong></td>
+        <td class="dim">允許儲存，但僅對之後發出的卡生效（快照凍結）。</td>
+        <td class="dim">儲存時提示「已發出的卡不受本次修改影響」。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════ DEV 07 PAGE · PLAYER BAG ═══════════ -->
+<section class="section" id="pg-bag">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <span class="section-title">頁面 · 玩家端背包與進入遊戲<span class="tag-upd">2026-08-11</span></span>
+    <span class="section-title-en">PAGE · PLAYER BACKPACK</span>
+  </div>
+
+  <div class="hypo-block">
+    <div class="hypo-label">本頁目的</div>
+    <div class="hypo-text">玩家在背包<strong>看到每張卡的全部細節</strong>（押注／次數／上限／累積獎金／剩餘時間），<strong>選一款攜帶遊戲後進入遊戲</strong>。背包資料以我方快照為主，集成商查詢僅作對帳校驗。</div>
+  </div>
+
+  <div class="sub-title">全頁截圖＋區域標號（可使用分頁）</div>
+
+<div class="shot-split narrow"><div class="shot-frame"><img src="design_assets/fs_bag_01_backpack.png" alt="玩家背包「可使用」分頁全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包「可使用」分頁全頁畫面<br><span style="font-size:10px;">將 fs_bag_01_backpack.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：遊戲背包頁原型.html（手機版）· 紅框 Ⓐ–Ⓗ 對應右表</div></div>
+  <div>
+  <table class="spec-table">
+    <thead><tr><th style="width:56px;">區域</th><th style="width:150px;">功能</th><th>限制與規則</th><th>防呆與錯誤</th></tr></thead>
+    <tbody>
+      <tr><td class="region-td">Ⓐ</td><td>標頭＋分類分頁</td><td class="dim">「我的背包」＋可用張數徽章；分頁：免費旋轉卡／道具／免費遊戲卡，本章只定義「免費旋轉卡」</td><td class="dim">—</td></tr>
+      <tr><td class="region-td">Ⓑ</td><td>狀態篩選</td><td class="dim">可使用／已過期；依 <span class="mono">valid_to</span> 與剩餘次數過濾</td><td class="dim">已過期分頁的卡一律唯讀</td></tr>
+      <tr><td class="region-td">Ⓒ</td><td>使用中卡片（展開明細）</td><td class="dim">標頭＝免費旋轉 ×N＋星級＋狀態徽章（樣式見 DEV §04）；明細＝每轉押注／最大獎金／已用次數／剩餘時間，全部來自發卡快照（DEV §03）；卡號＝<span class="mono">reference_id</span></td><td class="dim">剩餘時間少於 24 小時轉紅倒數</td></tr>
+      <tr><td class="region-td">Ⓓ</td><td>累積獎金充能進度條</td><td class="dim">即時累積派彩；<strong>分母＝max_conversion</strong>；達上限顯示「已達上限封頂」＋滿格光效（DEV §04）</td><td class="dim">下方一行說明「超過上限不計入，結算以上限為準」，防「少給錢」誤解</td></tr>
+      <tr><td class="region-td">Ⓔ</td><td>攜帶遊戲牆（必選一款）</td><td class="dim"><span class="mono">game_ids[]</span> 圖示牆；<strong>必選一款</strong>攜帶遊戲</td><td class="dim">未選時進入遊戲鈕維持灰色不可按</td></tr>
+      <tr><td class="region-td">Ⓕ</td><td>進入遊戲 CTA</td><td class="dim">觸發「綁卡 → 取一次性入口 → 跳轉」流程（見下方本頁操作流程）；文案見 13 語系表</td><td class="dim">連點做節流：同卡短時間內只取一次連結</td></tr>
+      <tr><td class="region-td">Ⓖ</td><td>即將到期卡</td><td class="dim">剩餘時間 &lt; 24 小時；紅底徽章＋紅字倒數</td><td class="dim">到期瞬間轉入已過期並觸發結算（DEV §08）</td></tr>
+      <tr><td class="region-td">Ⓗ</td><td>全新未使用卡</td><td class="dim">已用 0 次，收合摘要；點卡片展開 → 選攜帶遊戲 → 進入遊戲</td><td class="dim">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+  <div class="sub-title">已過期分頁（整卡置灰唯讀）</div>
+
+<div class="shot-split narrow"><div class="shot-frame"><img src="design_assets/fs_bag_02_expired.png" alt="玩家背包「已過期」分頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包「已過期」分頁畫面<br><span style="font-size:10px;">將 fs_bag_02_expired.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：遊戲背包頁原型.html · 已過期分頁</div></div>
+  <div>
+  <table class="spec-table">
+    <thead><tr><th style="width:56px;">區域</th><th style="width:150px;">功能</th><th>限制與規則</th><th>防呆與錯誤</th></tr></thead>
+    <tbody>
+      <tr><td class="region-td">Ⓐ</td><td>已過期卡</td><td class="dim">顯示<strong>結算獎金</strong>（該卡最終入帳金額）與最終已用次數；狀態徽章「已過期」（灰）</td><td class="dim">整張卡<strong>置灰唯讀</strong>、按鈕不可按；不可再取得遊戲入口</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info"><strong>為什麼要留著給玩家看</strong>：過期卡顯示「結算獎金」讓玩家自己核對「這張卡最後給了我多少」，減少「卡不見了／沒給錢」類客訴。</div>
+  </div>
+</div>
+
+  <div class="sub-title">背包顯示欄位</div>
+
+  <div class="sub-title">背包顯示欄位</div>
+  <div class="body-text">背包資料<strong>以我方快照為主</strong>；集成商的查詢結果只作對帳校驗。玩家點開背包即可看到每張卡的全部細節。</div>
+  <table class="spec-table" style="max-width:600px;">
+    <thead><tr><th style="width:180px;">背包顯示</th><th>欄位 / 來源</th></tr></thead>
+    <tbody>
+      <tr><td>多少押注額</td><td class="mono">coin_size × multiplier（每轉押注）</td></tr>
+      <tr><td>剩餘 / 總次數</td><td class="mono">rounds_left / num_of_rounds</td></tr>
+      <tr><td>最大獎金金額</td><td class="mono">max_conversion</td></tr>
+      <tr><td>可玩哪些遊戲</td><td class="mono">game_ids[]（圖示牆）</td></tr>
+      <tr><td>剩餘可使用時間</td><td class="mono">valid_to − now（倒數；少於 24 小時轉紅提示）</td></tr>
+      <tr><td>狀態</td><td class="mono">全新未使用 / 使用中 / 即將到期 / 已過期</td></tr>
+      <tr><td>目前累積獎金</td><td class="mono">本卡即時累積派彩；達 max_conversion 顯示「已達上限封頂」</td></tr>
+      <tr><td>最終入帳</td><td class="mono">主錢包真金（無流水）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">本頁操作流程 · 進入遊戲（5 步）</div>
+
+  <div class="sub-title">進入遊戲流程（白話 5 步）</div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-step"><div class="flow-step-num">01</div><div class="flow-step-title">選卡</div><div class="flow-step-desc">玩家在背包裡挑一張要用的 FREE SPIN 卡</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-title">選攜帶遊戲</div><div class="flow-step-desc">從這張卡的遊戲牆<strong>必選一款</strong>；沒選之前按鈕不可按</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight"><div class="flow-step-num">03</div><div class="flow-step-title">系統記住「這次要用的就是這張卡」</div><div class="flow-step-desc">綁定該卡序號，解決「同遊戲持多張卡」的歧義，也讓「續玩同一張卡」扣到正確的池</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-title">取得一次性遊戲入口</div><div class="flow-step-desc">系統取回一個只能用一次的遊戲進入連結</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step success"><div class="flow-step-num">05</div><div class="flow-step-title">進入遊戲，自動啟用該卡</div><div class="flow-step-desc">依第 3 步綁定的那張卡直接啟用，不靠進場後自動猜測</div></div>
+    </div>
+  </div>
+  <div class="callout warn"><strong>多卡歧義 / 續玩同卡</strong>：玩家同一款遊戲可能持有多張有效的卡，<strong>進場前一定要先綁定是哪一張</strong>；未用完的卡（如 5/10）續玩時帶<strong>同一張卡</strong>，續扣同一個池、不開新卡。<br><strong>一次性連結</strong>：連結只能用一次，連點與失效重取的處理見<a href="#pg-bag-err" style="color:var(--gold-light);">本章〈本頁錯誤處理〉</a>。</div>
+
+  <div class="sub-title">本頁驗收情境</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:140px;">情境名稱</th><th style="width:250px;">前提（測試前先準備好什麼）</th><th style="width:210px;">動作（做什麼）</th><th>預期結果（應該看到什麼）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>⑤ 多卡歧義</strong><br><span class="dim">續玩同卡</span></td>
+        <td class="dim">玩家同時持有兩張對同一款遊戲 A 有效的卡：卡甲（已用 5/10、使用中）與卡乙（全新 0/10）</td>
+        <td class="dim">玩家從<strong>卡甲</strong>點擊進入遊戲 A</td>
+        <td class="dim">① 進場前已綁定卡甲，平台啟用的是<strong>卡甲</strong>（不是卡乙），不靠進場自動猜測；② <strong>卡乙完全不受影響</strong>；③ 續玩卡甲時仍是同一張卡，次數由 5 繼續往下扣，<strong>不另開新卡</strong></td>
+      </tr>
+      <tr>
+        <td><strong>連點節流</strong><br><span class="dim">背包端</span></td>
+        <td class="dim">玩家持一張有效卡，已選攜帶遊戲</td>
+        <td class="dim">短時間內連點「進入遊戲」多次</td>
+        <td class="dim">① 同一張卡短時間內<strong>只取一次入口</strong>；② 玩家稍候仍正常進入，<strong>不出現「連結已失效」死路</strong></td>
+      </tr>
+      <tr>
+        <td><strong>未選遊戲不可進入</strong></td>
+        <td class="dim">卡片已展開、尚未選攜帶遊戲</td>
+        <td class="dim">嘗試按進入遊戲鈕</td>
+        <td class="dim">① 按鈕維持灰色<strong>不可按</strong>；② 選了一款遊戲後按鈕亮起可按</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" id="pg-bag-err">本頁錯誤處理</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:190px;">狀況</th><th style="width:340px;">系統怎麼反應</th><th>玩家（或營運）看到什麼</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>過期卡被點擊</strong></td>
+        <td class="dim"><strong>不取得連結、不允許進入遊戲</strong>；卡片改為唯讀狀態並歸入「已過期」分頁。</td>
+        <td class="dim">玩家：整張卡<strong>置灰唯讀</strong>，按鈕不可按；狀態徽章顯示「已過期」（灰）。</td>
+      </tr>
+      <tr>
+        <td><strong>進入連結已失效 / 玩家連點</strong></td>
+        <td class="dim">同一張卡<strong>短時間內只取一次連結</strong>（節流）；若手上的連結已失效，<strong>自動重新取得</strong>再導頁，不把失效狀態丟給玩家。</td>
+        <td class="dim">玩家：正常進入遊戲。<strong>不會看到「連結已失效」的死路</strong>；連點只是稍等一下仍會進去。</td>
+      </tr>
+      <tr>
+        <td><strong>玩到一半斷線 / 重新登入</strong></td>
+        <td class="dim">回來時<strong>續玩同一張卡</strong>、<strong>續扣同一個局數池</strong>；<strong>不開新卡、不觸發結算</strong>。</td>
+        <td class="dim">玩家：背包裡還是那張卡，已用次數與累積獎金<strong>都跟斷線前一致</strong>。</td>
+      </tr>
+      <tr>
+        <td><strong>同遊戲持多張卡</strong></td>
+        <td class="dim">以<strong>進場前綁定的那一張</strong>為準來扣次數與累積贏分；其他卡完全不動。</td>
+        <td class="dim">玩家：從哪張卡進去就扣哪張；<strong>另一張卡的次數與時間都不受影響</strong>。</td>
+      </tr>
+      <tr>
+        <td><strong>玩到一半跨過到期時間</strong></td>
+        <td class="dim"><strong>當下那一局照常結束</strong>；結束後<strong>直接結算，不再起新局</strong>。結算金額仍套用上限。</td>
+        <td class="dim">玩家：手上那局玩完，之後無法再開新局；背包卡片轉為已過期，獎金已入主錢包。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">背包前台 · 多國語系文案表（13 語系）</div>
+
+  <div class="sub-title">背包前台 · 多國語系文案表（13 語系）</div>
+  <div class="body-text">背包前台所有玩家可見文字 ×<strong>13 語系</strong>翻譯（依背包前台操作原型）。語系：en / zh-Hant / zh-Hans / th / ko-KR / pt / vi / id / my-MM / es-ES / tr-TR / ja-JP / bn。<code>{n}</code> 為數值代入。</div>
+  <div style="overflow-x:auto;margin-bottom:24px;">
+  <table class="spec-table" style="min-width:1680px;font-size:11px;">
+    <thead><tr>
+      <th>用途 (key)</th><th>en</th><th>zh-Hant</th><th>zh-Hans</th><th>th</th><th>ko-KR</th><th>pt</th><th>vi</th><th>id</th><th>my-MM</th><th>es-ES</th><th>tr-TR</th><th>ja-JP</th><th>bn</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>背包標題</td><td>My Backpack</td><td>我的背包</td><td>我的背包</td><td>กระเป๋าของฉัน</td><td>내 가방</td><td>Minha Mochila</td><td>Túi của tôi</td><td>Tas Saya</td><td>ကျွန်ုပ်၏အိတ်</td><td>Mi Mochila</td><td>Çantam</td><td>マイバッグ</td><td>আমার ব্যাগ</td></tr>
+      <tr><td>分頁·免費旋轉卡</td><td>Free Spin Cards</td><td>免費旋轉卡</td><td>免费旋转卡</td><td>การ์ดฟรีสปิน</td><td>프리스핀 카드</td><td>Cartões de Giros Grátis</td><td>Thẻ Quay Miễn Phí</td><td>Kartu Putaran Gratis</td><td>အခမဲ့လည်ပတ်ကတ်</td><td>Tarjetas de Giros Gratis</td><td>Bedava Dönüş Kartları</td><td>フリースピンカード</td><td>ফ্রি স্পিন কার্ড</td></tr>
+      <tr><td>分頁·道具</td><td>Items</td><td>道具</td><td>道具</td><td>ไอเทม</td><td>아이템</td><td>Itens</td><td>Vật phẩm</td><td>Item</td><td>ပစ္စည်းများ</td><td>Objetos</td><td>Eşyalar</td><td>アイテム</td><td>আইটেম</td></tr>
+      <tr><td>分頁·免費遊戲卡</td><td>Free Game Cards</td><td>免費遊戲卡</td><td>免费游戏卡</td><td>การ์ดเกมฟรี</td><td>무료 게임 카드</td><td>Cartões de Jogo Grátis</td><td>Thẻ Trò Chơi Miễn Phí</td><td>Kartu Game Gratis</td><td>အခမဲ့ဂိမ်းကတ်</td><td>Tarjetas de Juego Gratis</td><td>Bedava Oyun Kartları</td><td>無料ゲームカード</td><td>ফ্রি গেম কার্ড</td></tr>
+      <tr><td>篩選·可使用</td><td>Available</td><td>可使用</td><td>可使用</td><td>ใช้ได้</td><td>사용 가능</td><td>Disponível</td><td>Khả dụng</td><td>Tersedia</td><td>အသုံးပြုနိုင်</td><td>Disponible</td><td>Kullanılabilir</td><td>利用可能</td><td>উপলব্ধ</td></tr>
+      <tr><td>篩選·已過期</td><td>Expired</td><td>已過期</td><td>已过期</td><td>หมดอายุ</td><td>만료됨</td><td>Expirado</td><td>Đã hết hạn</td><td>Kedaluwarsa</td><td>သက်တမ်းကုန်</td><td>Caducado</td><td>Süresi Doldu</td><td>期限切れ</td><td>মেয়াদোত্তীর্ণ</td></tr>
+      <tr><td>可用張數徽章</td><td>{n} available</td><td>{n} 張可用</td><td>{n} 张可用</td><td>ใช้ได้ {n} ใบ</td><td>{n}장 사용 가능</td><td>{n} disponíveis</td><td>{n} thẻ khả dụng</td><td>{n} tersedia</td><td>{n} ခု အသုံးပြုနိုင်</td><td>{n} disponibles</td><td>{n} kullanılabilir</td><td>{n}枚利用可能</td><td>{n}টি উপলব্ধ</td></tr>
+      <tr><td>卡名·免費旋轉</td><td>Free Spins ×{n}</td><td>免費旋轉 ×{n}</td><td>免费旋转 ×{n}</td><td>ฟรีสปิน ×{n}</td><td>프리스핀 ×{n}</td><td>Giros Grátis ×{n}</td><td>Quay Miễn Phí ×{n}</td><td>Putaran Gratis ×{n}</td><td>အခမဲ့လည်ပတ် ×{n}</td><td>Giros Gratis ×{n}</td><td>Bedava Dönüş ×{n}</td><td>フリースピン ×{n}</td><td>ফ্রি স্পিন ×{n}</td></tr>
+      <tr><td>狀態·使用中</td><td>In Use</td><td>使用中</td><td>使用中</td><td>กำลังใช้งาน</td><td>사용 중</td><td>Em Uso</td><td>Đang dùng</td><td>Sedang Digunakan</td><td>အသုံးပြုနေဆဲ</td><td>En Uso</td><td>Kullanımda</td><td>使用中</td><td>ব্যবহৃত হচ্ছে</td></tr>
+      <tr><td>狀態·全新未使用</td><td>Unused</td><td>全新未使用</td><td>全新未使用</td><td>ยังไม่ได้ใช้</td><td>미사용</td><td>Não Usado</td><td>Chưa dùng</td><td>Belum Digunakan</td><td>မသုံးရသေး</td><td>Sin Usar</td><td>Kullanılmamış</td><td>未使用</td><td>অব্যবহৃত</td></tr>
+      <tr><td>狀態·即將到期</td><td>Expiring Soon</td><td>即將到期</td><td>即将到期</td><td>ใกล้หมดอายุ</td><td>곧 만료</td><td>Expira em Breve</td><td>Sắp hết hạn</td><td>Segera Berakhir</td><td>မကြာမီကုန်ဆုံးမည်</td><td>Caduca Pronto</td><td>Yakında Doluyor</td><td>まもなく期限切れ</td><td>শীঘ্রই মেয়াদ শেষ</td></tr>
+      <tr><td>每轉押注</td><td>Bet per Spin</td><td>每轉押注</td><td>每转押注</td><td>เดิมพันต่อสปิน</td><td>스핀당 베팅</td><td>Aposta por Giro</td><td>Cược mỗi vòng</td><td>Taruhan per Putaran</td><td>တစ်ပတ်လျှင်လောင်းကြေး</td><td>Apuesta por Giro</td><td>Dönüş Başına Bahis</td><td>スピンあたりベット</td><td>প্রতি স্পিনে বাজি</td></tr>
+      <tr><td>最大獎金</td><td>Max Win</td><td>最大獎金</td><td>最大奖金</td><td>รางวัลสูงสุด</td><td>최대 당첨금</td><td>Ganho Máximo</td><td>Thắng tối đa</td><td>Kemenangan Maks</td><td>အများဆုံးဆုကြေး</td><td>Ganancia Máxima</td><td>Maks Kazanç</td><td>最大賞金</td><td>সর্বোচ্চ জয়</td></tr>
+      <tr><td>已用 / 次數</td><td>Used / Rounds</td><td>已用 / 次數</td><td>已用 / 次数</td><td>ใช้แล้ว / รอบ</td><td>사용 / 횟수</td><td>Usados / Rodadas</td><td>Đã dùng / Lượt</td><td>Terpakai / Putaran</td><td>သုံးပြီး / အကြိမ်</td><td>Usados / Rondas</td><td>Kullanılan / Tur</td><td>使用 / 回数</td><td>ব্যবহৃত / রাউন্ড</td></tr>
+      <tr><td>剩餘時間</td><td>Time Left</td><td>剩餘時間</td><td>剩余时间</td><td>เวลาที่เหลือ</td><td>남은 시간</td><td>Tempo Restante</td><td>Thời gian còn lại</td><td>Sisa Waktu</td><td>ကျန်ချိန်</td><td>Tiempo Restante</td><td>Kalan Süre</td><td>残り時間</td><td>অবশিষ্ট সময়</td></tr>
+      <tr><td>目前累積獎金</td><td>Current Winnings</td><td>目前累積獎金</td><td>当前累积奖金</td><td>เงินรางวัลสะสมปัจจุบัน</td><td>현재 누적 당첨금</td><td>Ganhos Acumulados</td><td>Tiền thưởng tích lũy</td><td>Total Kemenangan Saat Ini</td><td>လက်ရှိစုဆောင်းဆုကြေး</td><td>Ganancias Actuales</td><td>Mevcut Kazanç</td><td>現在の累計賞金</td><td>বর্তমান জমা পুরস্কার</td></tr>
+      <tr><td>已達上限封頂</td><td>Max Cap Reached</td><td>已達上限封頂</td><td>已达上限封顶</td><td>ถึงขีดจำกัดสูงสุด</td><td>상한 도달</td><td>Limite Atingido</td><td>Đã đạt giới hạn</td><td>Batas Maks Tercapai</td><td>အမြင့်ဆုံးကန့်သတ်ချက်ရောက်</td><td>Límite Alcanzado</td><td>Üst Sınıra Ulaşıldı</td><td>上限到達</td><td>সর্বোচ্চ সীমায় পৌঁছেছে</td></tr>
+      <tr><td>上限提示</td><td>Amount over the cap is not counted; settled at the cap</td><td>超過上限不計入，結算以上限為準</td><td>超过上限不计入，结算以上限为准</td><td>ส่วนที่เกินขีดจำกัดจะไม่ถูกนับ ชำระตามขีดจำกัด</td><td>상한 초과분은 미포함, 상한 기준으로 정산</td><td>O excedente ao limite não é contado; liquidado no limite</td><td>Phần vượt giới hạn không được tính; quyết toán theo giới hạn</td><td>Kelebihan dari batas tidak dihitung; diselesaikan pada batas</td><td>ကန့်သတ်ချက်ကျော်လွန်သည်ကို မရေတွက်ပါ၊ ကန့်သတ်ချက်အတိုင်း ရှင်းလင်းသည်</td><td>El excedente del límite no se cuenta; se liquida en el límite</td><td>Sınırı aşan kısım sayılmaz; sınır üzerinden ödenir</td><td>上限超過分は計上されず、上限で精算</td><td>সীমার অতিরিক্ত অংশ গণনা করা হয় না; সীমা অনুযায়ী নিষ্পত্তি</td></tr>
+      <tr><td>攜帶遊戲（必選一個）</td><td>Choose a Game (required)</td><td>攜帶遊戲（必選一個）</td><td>携带游戏（必选一个）</td><td>เลือกเกม (ต้องเลือก 1)</td><td>게임 선택 (필수)</td><td>Escolha um Jogo (obrigatório)</td><td>Chọn trò chơi (bắt buộc)</td><td>Pilih Game (wajib)</td><td>ဂိမ်းရွေးပါ (မဖြစ်မနေ)</td><td>Elige un Juego (obligatorio)</td><td>Oyun Seç (zorunlu)</td><td>ゲームを選択（必須）</td><td>একটি গেম বাছুন (আবশ্যক)</td></tr>
+      <tr><td>進入遊戲 (CTA)</td><td>Enter Game</td><td>進入遊戲</td><td>进入游戏</td><td>เข้าเกม</td><td>게임 입장</td><td>Entrar no Jogo</td><td>Vào trò chơi</td><td>Masuk Game</td><td>ဂိမ်းဝင်ရန်</td><td>Entrar al Juego</td><td>Oyuna Gir</td><td>ゲームに入る</td><td>গেমে প্রবেশ করুন</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout info"><strong>i18n 備註</strong>：① 數字 / 幣別 / 倒數時間為動態值，不進文案表（依玩家錢包幣別與系統格式化）。② 翻譯為初稿，上線前送各語系母語者校稿；繁中為文案基準（source）。③ 與抽寶箱規格的 i18n 語系欄位一致。</div>
+</section>
+
+<!-- ═══════════ DEV 08 CROSS-PAGE ACCEPTANCE ═══════════ -->
+<section class="section" id="test">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">跨頁驗收與上線前檢查清單</span>
+    <span class="section-title-en">CROSS-PAGE ACCEPTANCE</span>
+  </div>
+
+  <div class="callout success"><strong>怎麼用這一章</strong>：QA 與企劃可以<strong>照表逐項驗</strong>。本章只放「涉及兩頁以上、或跨系統結算」的整體情境；單靠一頁就能驗的情境已放進各頁面章（DEV §05／§06／§07）。</div>
+
+  <div class="sub-title">跨頁驗收情境</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:140px;">情境名稱</th><th style="width:250px;">前提（測試前先準備好什麼）</th><th style="width:210px;">動作（做什麼）</th><th>預期結果（應該看到什麼）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>① 正常流</strong><br><span class="dim">跨遊戲玩完整卡</span></td>
+        <td class="dim">玩家持有一張 THB 卡：10 次、上限 1,000，可玩遊戲 A 與 B</td>
+        <td class="dim">用 A 遊戲玩 6 局，再切到 B 遊戲玩完剩下的 4 局</td>
+        <td class="dim">① 期間<strong>完全沒有任何中途結算</strong>；② 剩餘次數由 10 一路遞減到 0；③ 次數歸零時<strong>觸發一次結算</strong>，金額為「累積贏分」與 1,000 中較小者，直接<strong>入主錢包真金、無流水</strong></td>
+      </tr>
+      <tr>
+        <td><strong>② 上限封頂</strong></td>
+        <td class="dim">卡的結算上限為 1,000；玩家整張卡累積贏分為 1,350</td>
+        <td class="dim">整卡結算</td>
+        <td class="dim">① 最終給付 <strong>1,000</strong>（超出的 350 捨棄）；② 以一筆「下注 0 / 派彩 1,000」的注單入<strong>主錢包真金、可立即提領</strong>；③ 背包卡片顯示「已達上限封頂」、進度條滿格</td>
+      </tr>
+      <tr>
+        <td><strong>③ 過期未用完</strong><br><span class="dim">異常邊界</span></td>
+        <td class="dim">玩家持卡，剩餘 4 次未用，但已到達到期時間</td>
+        <td class="dim">玩家嘗試從背包點擊進入遊戲</td>
+        <td class="dim">① 卡片<strong>置灰唯讀、不可取得遊戲入口</strong>；② 到期<strong>觸發結算</strong>：付已累積贏分並套用上限；③ <strong>剩餘未轉的 4 次視同放棄</strong>，不補轉、不折現</td>
+      </tr>
+      <tr>
+        <td><strong>④ 重複發卡 / 連點</strong><br><span class="dim">風控</span></td>
+        <td class="dim">發卡通知因網路問題重送了相同的卡序號；或玩家在短時間內連點「進入遊戲」</td>
+        <td class="dim">第二次請求送達</td>
+        <td class="dim">① 發卡端<strong>不重複發卡</strong>——序號已存在即視為成功，玩家背包仍只有一張卡；② 進入遊戲端<strong>做節流</strong>——同一張卡在短時間內只取一次連結，不會出現「連結已失效」的死路</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="sub-title">上線前必過檢查清單</div>
+  <div class="body-text">以下 10 項是上線前<strong>每一項都必須通過</strong>的檢查。左欄是「要檢查什麼」，右欄是「怎麼算通過」——照做、照看即可判定。</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:40px;">#</th><th style="width:230px;">檢查什麼</th><th>怎麼算通過</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">1</td><td>結算封頂</td><td class="dim">分別測「累積贏分剛好等於上限 / 差 1 / 超過 1」三種情況，最後給的金額都等於<strong>累積贏分與上限中較小的那一個</strong></td></tr>
+      <tr><td class="mono">2</td><td>局數池共用</td><td class="dim">交替玩 A、B 兩款遊戲，扣的是<strong>同一個池</strong>；池歸零後再開一局<strong>會被擋下</strong></td></tr>
+      <tr><td class="mono">3</td><td>不中途結算</td><td class="dim">切換遊戲、登出再登入之後，<strong>查不到任何結算入帳紀錄</strong></td></tr>
+      <tr><td class="mono">4</td><td>過期判定與到期結算</td><td class="dim">到期前 1 秒還能轉；到期當下觸發結算，付累積贏分並套用上限，<strong>剩餘次數不補</strong>（時間基準 GMT+8）</td></tr>
+      <tr><td class="mono">5</td><td>卡序號不重複發卡</td><td class="dim">用同一個序號重送發卡通知，玩家背包<strong>仍然只有一張卡</strong></td></tr>
+      <tr><td class="mono">6</td><td>快照凍結</td><td class="dim">發卡後到後台修改型錄（次數 / 上限 / 遊戲列表 / 押注），<strong>已發出的卡各項數值完全不變</strong></td></tr>
+      <tr><td class="mono">7</td><td>結算入帳與歸戶</td><td class="dim">結算會產生一筆<strong>「下注 0 / 派彩 final」</strong>的紀錄，且<strong>查得到活動 ID 與卡序號</strong>；金額確實進到<strong>主錢包</strong></td></tr>
+      <tr><td class="mono">8</td><td>遊戲列表長度上限</td><td class="dim">在後台選到超過長度上限時<strong>擋下儲存並提示</strong>，不會把超長的清單送出去</td></tr>
+      <tr><td class="mono">9</td><td>指定啟用</td><td class="dim">同一款遊戲持兩張卡，從甲卡進場<strong>只扣甲卡</strong>；續玩仍是甲卡、<strong>不開新卡</strong></td></tr>
+      <tr><td class="mono">10</td><td>有效期換算</td><td class="dim">卡模板 N=7、發卡日為第 1 天 → 到期時間為<strong>第 7 天 23:59:59（GMT+8）</strong>；發卡當下換算成絕對時間再對外通知</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">跨頁共通錯誤（發卡與結算層）</div>
+
+<table class="spec-table">
+    <thead><tr><th style="width:190px;">狀況</th><th style="width:340px;">系統怎麼反應</th><th>玩家（或營運）看到什麼</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>發卡通知集成商失敗</strong></td>
+        <td class="dim">記錄失敗、<strong>自動重試</strong>；重試時帶<strong>同一個卡序號</strong>，確保<strong>不會重複發卡</strong>。重試到達上限仍失敗則標記為待處理並告警。</td>
+        <td class="dim">玩家：卡片<strong>暫不出現在背包</strong>（不會出現一張點不動的假卡）。營運：後台可看到該筆為「待處理」，可人工重送。</td>
+      </tr>
+      <tr>
+        <td><strong>卡序號重複通知</strong></td>
+        <td class="dim">收到「序號已存在」的回應時，<strong>視為已成功</strong>，不再重複建卡、不再重複寫入背包。</td>
+        <td class="dim">玩家：背包<strong>只有一張卡</strong>，沒有任何重複或錯誤提示。</td>
+      </tr>
+      <tr>
+        <td><strong>結算金額超過上限</strong></td>
+        <td class="dim"><strong>封頂給上限值</strong>，超出部分捨棄；上限由我方結算層強制套用，不依賴外部。</td>
+        <td class="dim">玩家：背包顯示「<strong>已達上限封頂</strong>」＋進度條滿格，並有一行說明「超過上限不計入，結算以上限為準」；實際入帳金額為上限值。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════ DEV 09 EVENT LOGS ═══════════ -->
+<section class="section" id="logs">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">需留存的事件紀錄<span class="tag-upd">2026-08-11</span></span>
+    <span class="section-title-en">EVENT RECORDS</span>
+  </div>
+
+  <div class="callout info"><strong>寫給誰看</strong>：這一章不定義欄位格式，只講「<strong>要記什麼、為了回答什麼問題</strong>」——客訴與對帳導向。事件名為系統識別碼，回報問題時直接講事件名即可。</div>
+
+  <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:24px;">
+    <div class="log-item header"><span>事件</span><span>記什麼 · 為了回答什麼問題</span></div>
+    <div class="log-item"><span class="log-event">fs_card_issued</span><span class="log-desc">發卡紀錄：這張卡（reference_id）何時發、來自哪檔活動（campaign_id）、哪款卡（reward_id）、幣別與面額——客訴「<strong>我沒收到卡</strong>」查這裡。</span></div>
+    <div class="log-item"><span class="log-event">fs_awc_create</span><span class="log-desc">通知集成商建卡的請求與結果（成功／失敗／序號已存在）——「<strong>卡發了但背包沒出現</strong>」的排查起點。</span></div>
+    <div class="log-item"><span class="log-event">fs_bag_view</span><span class="log-desc">玩家開背包查看 FREE SPIN 卡——曝光行為，輔助排查「<strong>看得到但用不了</strong>」類回報。</span></div>
+    <div class="log-item"><span class="log-event">fs_activate</span><span class="log-desc">進場前綁定啟用：綁了哪張卡（reference_id）＋哪款遊戲（game_id）——「<strong>扣錯卡／啟用錯卡</strong>」的多卡歧義爭議查這裡。</span></div>
+    <div class="log-item"><span class="log-event">fs_launch</span><span class="log-desc">取一次性遊戲入口的結果（成功／失效重取）——「<strong>點了進不去遊戲</strong>」排查。</span></div>
+    <div class="log-item"><span class="log-event">fs_round_used</span><span class="log-desc">每局扣次：rounds_left 變化、發生在哪款遊戲——「<strong>次數被多扣／少扣</strong>」爭議查這裡。</span></div>
+    <div class="log-item"><span class="log-event">fs_settled</span><span class="log-desc">整卡結算：累積贏分、封頂後實付金額、campaign_id 與卡序號——客訴「<strong>少給錢</strong>」查這裡。</span></div>
+    <div class="log-item"><span class="log-event">fs_expired</span><span class="log-desc">逾期紀錄：剩餘未轉局數、是否已觸發結算——「<strong>卡怎麼不見了</strong>」爭議查這裡。</span></div>
+  </div>
+</section>
+
+<!-- ═══════════ DEV 10 PREREQUISITES & OPEN ITEMS ═══════════ -->
+<section class="section" id="prereq">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <span class="section-title">開發前置條件與待確認<span class="tag-upd">2026-08-11</span></span>
+    <span class="section-title-en">PREREQUISITES &amp; OPEN ITEMS</span>
+  </div>
+
+  <div class="callout danger"><strong>基礎建設 · 先做，否則全卡關</strong>：以下三項是地基，任何一項沒先就位，發卡與結算整條鏈路都動不了。</div>
+
+  <div class="info-grid-3">
+    <div class="info-card" style="border-color:var(--red-line-strong);">
+      <div class="info-card-icon">🔐</div>
+      <div class="info-card-title">① 與集成商往來憑證的安全保管 <span class="tag-pill tag-inf">基建</span></div>
+      <div class="info-card-desc">與集成商往來所需的憑證／金鑰，須存放在安全位置並由專責模組使用，不得散落在程式碼或設定檔明文中。<br><strong>沒先做會卡什麼：</strong>無法與集成商建立可信往來，發卡通知完全送不出去。</div>
+    </div>
+    <div class="info-card" style="border-color:var(--red-line-strong);">
+      <div class="info-card-icon">⏰</div>
+      <div class="info-card-title">② 每日結算與過期掃描排程 <span class="tag-pill tag-inf">基建</span></div>
+      <div class="info-card-desc">伺服器定時掃描「次數歸零／已到期」的卡並觸發整卡結算與狀態轉換。<br><strong>沒先做會卡什麼：</strong>到期卡不會被結算、玩家拿不到錢；過期卡也不會轉唯讀，客訴必然發生。</div>
+    </div>
+    <div class="info-card" style="border-color:var(--red-line-strong);">
+      <div class="info-card-icon">🎫</div>
+      <div class="info-card-title">③ 一次性遊戲通行證＋防連點 <span class="tag-pill tag-inf">基建</span></div>
+      <div class="info-card-desc">進入遊戲的一次性入口產生、失效重取、與同卡節流機制。<br><strong>沒先做會卡什麼：</strong>玩家點「進入遊戲」會遇到連結失效死路，多卡綁定也無從保證。</div>
+    </div>
+  </div>
+
+  <div class="sub-title">待確認事項（未決 · 影響實作行為）</div>
+  <div class="oq-item awc">
+    <div class="oq-owner">與集成商確認</div>
+    <div class="oq-q">① 發卡時能否由我方指定「每轉押注」？若不能，押注大小如何決定？</div>
+  </div>
+  <div class="oq-item awc">
+    <div class="oq-owner">與集成商確認</div>
+    <div class="oq-q">② 集成商能否支援「指定啟用某一張卡」（帶卡序號）？若不支援，退回備援方案：玩家自背包點擊執行該卡。</div>
+  </div>
+  <div class="oq-item awc">
+    <div class="oq-owner">與集成商確認</div>
+    <div class="oq-q">③ 一次性遊戲入口的取用頻率限制與失效重取建議（同玩家短時間多卡／連點時的行為）。</div>
+  </div>
+  <div class="oq-item awc">
+    <div class="oq-owner">與集成商確認</div>
+    <div class="oq-q">④ 結算資料回灌的方式與時間差（約 5–10 分鐘）對「整卡結束才給獎」時序的影響。</div>
+  </div>
+  <div class="callout info"><strong>串接細節唯一來源</strong>：以上與集成商往來的實際串法，一律以《integration_consolidated_checklist_v2.html》為唯一來源；本文件只定行為結果，不重複維護串接細節。</div>
+</section>
+
+<div class="doc-footer">
+  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.1 · CONFIDENTIAL 2026<br>
+  DEV V1.1（2026-08-11）：升版為頁面式三層骨架（總覽→功能頁面→全域）；三個功能頁面章改「原型截圖＋紅框區域標號」圖文對照；驗收與錯誤處理依頁面歸位；補齊 V1.0 缺漏的開發前置條件／事件紀錄／待確認三章與文件導覽互動。規格規則本身無變更。<br>
+  DEV V1.0（2026-08-10）：自完整版 V2.4 拆分開發交付版；移除管理內容（目標數字／串接細節／任務分工）；新增錯誤處理、美術主題與風格（燙金票券定案）、後台操作友善度與防呆機制、開發前置條件；驗收測試情境白話表格化。
+</div>
+
+</div><!-- /page -->
+</div><!-- /main-wrap -->
+
+<script>
+// ═══════════ THEME TOGGLE（亮/暗主題；獨立 key：spec-theme） ═══════════
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function apply(theme){
+    root.setAttribute('data-theme', theme);
+    if (btn) btn.setAttribute('aria-label', theme === 'light' ? '切換為暗色主題' : '切換為亮色主題');
+  }
+  apply(root.getAttribute('data-theme') || 'dark');
+  if (btn) {
+    btn.addEventListener('click', function(){
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      apply(next);
+      try { localStorage.setItem('spec-theme', next); } catch (e) {}
+    });
+  }
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: light)');
+    var onChange = function(e){
+      var hasPref;
+      try { hasPref = localStorage.getItem('spec-theme'); } catch (err) { hasPref = null; }
+      if (hasPref) return;
+      apply(e.matches ? 'light' : 'dark');
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+})();
+
+function setLayout(mode) {
+  document.body.className = 'layout-' + mode;
+  document.getElementById('btn-side').classList.toggle('active', mode === 'side');
+  document.getElementById('btn-top').classList.toggle('active', mode === 'top');
+  localStorage.setItem('spec-layout', mode);
+}
+(function(){ const saved = localStorage.getItem('spec-layout') || 'side'; setLayout(saved); })();
+(function(){
+  const now = new Date();
+  const dateStr = now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
+  const sd = document.getElementById('sidebar-date'); const td = document.getElementById('topnav-date');
+  if (sd) sd.textContent = dateStr; if (td) td.textContent = dateStr;
+})();
+document.querySelectorAll('.sidebar-section-btn').forEach(btn => {
+  btn.addEventListener('click', function() { this.closest('.sidebar-section').classList.toggle('open'); });
+});
+function navTo(id) {
+  const target = document.getElementById(id);
+  if (target) {
+    const offset = document.body.classList.contains('layout-top') ? 60 : 20;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+const sections = document.querySelectorAll('.section');
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.nav-item').forEach(n => { n.classList.toggle('active', n.getAttribute('href') === '#' + current); });
+  document.querySelectorAll('.sidebar-section-btn').forEach(btn => { const el = btn.closest('.sidebar-section'); btn.classList.toggle('active', el.dataset.section === current); });
+  document.querySelectorAll('.sidebar-sub-link').forEach(link => { link.classList.toggle('active', link.getAttribute('href') === '#' + current); });
+}
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+});
+function switchTab(btn, id) {
+  const bar = btn.closest('.tab-bar');
+  bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const container = bar.parentElement;
+  container.querySelectorAll(':scope > .tab-content').forEach(c => c.classList.remove('active'));
+  const target = document.getElementById('tab-' + id);
+  if (target) target.classList.add('active');
+}
+</script>
+</body>
+</html>
