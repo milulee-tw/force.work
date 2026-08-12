@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 開發交付版規格書 DEV V1.9</title>
+<title>抽寶箱 開發交付版規格書 DEV V1.10</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1263,7 +1263,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">抽寶箱<br>開發交付版規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.9</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.10</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">SOURCE</span><span class="sidebar-meta-val">完整版 V5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
@@ -1323,6 +1323,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <a class="sidebar-sub-link" href="#ui">各主題結算畫面</a>
         <a class="sidebar-sub-link" href="#ui">各主題獎項物品</a>
         <a class="sidebar-sub-link" href="#ui">美術資產清單</a>
+        <a class="sidebar-sub-link" href="#ui-audio">音樂音效需求表</a>
         <a class="sidebar-sub-link" href="#ui">玩家端「活動」歷程入口</a>
       </div>
     </div>
@@ -1373,6 +1374,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <button class="sidebar-section-btn" onclick="navTo('openq')"><span class="sidebar-section-num">10</span>待確認事項<span class="sidebar-chevron">›</span></button>
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#openq">需外部確認</a>
+        <a class="sidebar-sub-link" href="#openq-internal">內部待確認</a>
       </div>
     </div>
     <div class="sidebar-section open" data-section="i18n">
@@ -1434,7 +1436,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.9 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.10 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1443,7 +1445,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.9 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.10 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1479,6 +1481,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-08-12</td>
+          <td>DEV V1.10</td>
+          <td><a href="#ui-audio" style="color:var(--gold-light);">§05 UI/UX</a>／<a href="#review-page" style="color:var(--gold-light);">§06 審查頁</a>／<a href="#openq-internal" style="color:var(--gold-light);">§10 待確認</a></td>
+          <td>§05 新增〈<a href="#ui-audio" style="color:var(--gold-light);">音樂音效需求表</a>〉（<strong>1 BGM ＋ 9 SFX 精簡版</strong>、含 <strong>autoplay／音量／無縫 loop</strong> 技術備注，v2 擴充候選列備注）；§06 審查頁改「<strong>審查反饋</strong>」<strong>通過／駁回共用</strong>（<strong style="color:var(--green-bright);">通過＝綠底「✓ 審查已通過」＋反饋</strong>、<strong>未填反饋整塊隱藏</strong>、<strong>重新送審清空</strong>；<strong>駁回紅底必填不變</strong>）＋<strong>i18n 補 2 key</strong>；§10 新增<strong>活動音效開關歸屬</strong>待確認</td>
+        </tr>
         <tr>
           <td>2026-08-06</td>
           <td>DEV V1.9</td>
@@ -1578,7 +1586,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <details class="fold">
-    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.9<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
+    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.10<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
     <div class="fold-body">
       <table class="spec-table compact">
         <thead><tr><th style="width:190px;">完整版章節</th><th style="width:150px;">本文件章節</th><th>處理方式</th></tr></thead>
@@ -2725,6 +2733,105 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </table>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ 總資產量＝<strong>共用（×1）</strong>＋<strong>（整張重畫 ＋ 重上色）× 套數</strong>。首發僅 treasure_box 一套；節慶 3 套後續再加、採前端寫死（見 P6 主題風格、DEV §06 主題資產對應規範）。</div>
 
+  <div class="sub-title" id="ui-audio" style="margin-top:40px;">音樂音效需求表（給音效製作）<span class="tag-upd">2026-08-12</span></div>
+  <div class="callout info">
+    <strong>本表數量＝首發單一主題（<span class="mono" style="color:var(--gold-light);">treasure_box</span>）的量</strong>；換主題<strong>僅換音色、不換觸發時機與秒數</strong>（命名對齊 DEV §06〈<a href="#backend" style="color:var(--gold-light);">主題資產對應規範</a>〉：<span class="mono">theme_{theme_id}_sfx_{event}</span> ／ <span class="mono">theme_{theme_id}_bgm_{scene}</span>）。<br>
+    <strong>觸發方式：</strong>音效由 <strong>🌐 前端 Web</strong> 於<strong>動畫時間軸節點</strong>觸發（秒數欄即對齊原型動畫長度）；<strong>副檔名／壓縮格式由開發決定</strong>，表內檔名<strong>不含副檔名</strong>。<br>
+    <strong>範圍：</strong>本表為 <strong>v1 必備清單</strong>（1 首 BGM ＋ 9 條核心 SFX、<strong>無語音</strong>）；v2 擴充候選見表尾備注。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:62px;">類別</th><th style="width:210px;">檔名</th><th>使用時機</th><th>音效描述</th><th style="width:110px;">需求秒數</th><th style="width:96px;">是否loop</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:var(--gold-light);">音樂</strong></td>
+        <td class="mono">theme_treasure_box_bgm_panel</td>
+        <td class="dim">寶箱面板（P3）開啟期間全程播放；面板關閉即停</td>
+        <td class="dim">星空魔幻輕快循環曲（鐘琴＋柔和弦樂 pad），音量低、不搶主遊戲演出</td>
+        <td class="dim">30~60秒</td>
+        <td class="dim"><strong style="color:var(--green-bright);">✅ 是</strong>（無縫循環）</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_unlock</td>
+        <td class="dim">解鎖氣泡跳出（押注達門檻、獲得翻牌機會；P1 icon 旁）</td>
+        <td class="dim">明亮「叮！」＋氣泡彈開</td>
+        <td class="dim">0.5~1秒</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_panel_open</td>
+        <td class="dim">面板自 icon 原點展開（動畫 0.42s）</td>
+        <td class="dim">上揚 whoosh ＋ 寶箱鉸鏈開啟</td>
+        <td class="dim">約0.5秒</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_panel_close</td>
+        <td class="dim">面板縮回 icon（動畫 0.3s）</td>
+        <td class="dim">下沉 whoosh</td>
+        <td class="dim">約0.3秒</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_shuffle</td>
+        <td class="dim">每日開始遊戲後的洗牌漩渦（動畫 1.5s）</td>
+        <td class="dim">牌卡快速刷動 ＋ 魔法星塵上升音</td>
+        <td class="dim">1.5秒（對齊動畫）</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_flip</td>
+        <td class="dim">點擊可翻格、卡牌 3D 翻轉（動畫 0.34s）</td>
+        <td class="dim">卡牌「唰」翻面</td>
+        <td class="dim">0.3~0.5秒</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_prize</td>
+        <td class="dim">小／中／大獎揭曉、金額由格內飛出上浮（動畫 1s）</td>
+        <td class="dim">金幣叮鈴入袋（<strong>獎階通用一條</strong>）</td>
+        <td class="dim">約1秒</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_locked</td>
+        <td class="dim">點擊鎖定格（可翻次數＝0）</td>
+        <td class="dim">低沉「叩」否定音</td>
+        <td class="dim">約0.3秒</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_final_reveal</td>
+        <td class="dim">P4 最終大獎開獎時間軸：容器開啟→光爆→獎品彈出（動畫 1.6s）</td>
+        <td class="dim">蓄力上升音 → 金光爆發（<strong>全套最重的一條</strong>）</td>
+        <td class="dim">1.6~2秒</td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_daily_done</td>
+        <td class="dim">P7 今日全部抽完、結算卡出現</td>
+        <td class="dim">達成／收尾提示音</td>
+        <td class="dim">1~1.5秒</td>
+        <td class="dim">否</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout warn">
+    <strong>技術備注（開發前置確認）：</strong><br>
+    ① <strong>瀏覽器自動播放限制：</strong>玩家首次點擊／觸碰頁面前，網頁<strong>不允許出聲</strong>（browser autoplay policy）——BGM 須設計為「<strong>玩家首次互動後</strong>」才開始播放，<strong>不可假設開面板即有聲</strong>。<br>
+    ② <strong>音量層級：</strong>BGM 音量<strong>低於</strong> SFX；整體<strong>不得蓋過主遊戲（slot）自身音效</strong>。建議 BGM／SFX <strong>分兩條音量匯流排（bus）</strong>以便日後調整。<br>
+    ③ <strong>loop 檔須無縫：</strong><span class="mono">bgm_panel</span> 循環點<strong>不可有可察覺的斷點或爆音</strong>。
+  </div>
+  <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ v2 擴充候選（本次不做）：通用按鈕點擊音 <span class="mono">sfx_btn_tap</span>、彩帶金幣雨 <span class="mono">sfx_confetti</span>、進度條集滿 <span class="mono">sfx_progress_full</span>、獎項三階分層（<span class="mono">sfx_prize_s／_m／_l</span> 取代通用一條）、慶祝演出 BGM（<span class="mono">bgm_celebrate</span>）、英文語音 <span class="mono">vo_congrats</span>／<span class="mono">vo_daily_done</span>（語音牽動 13 語系成本，v1 不做）。</div>
+
   <div class="sub-title" id="player-history" style="margin-top:40px;">玩家端「活動」歷程入口</div>
   <div class="callout info">
     <strong>目的：</strong>讓玩家能在<strong>遊戲內既有的「遊戲歷程」</strong>裡，查到自己在 CRM 活動中拿過哪些獎勵。做法是在遊戲歷程的頂部分類（Slot／Arcade…）旁<strong>新增一個「活動」分類</strong>，作為所有 CRM 活動玩法歷程的統一入口。
@@ -3133,9 +3240,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </ol>
   </div>
 
-  <div class="sub-title">活動審查頁規格（對齊後台原型 v2）<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="review-page">活動審查頁規格（對齊後台原型 v2）<span class="tag-upd">2026-08-12</span></div>
   <div class="callout info">
-    <strong>審查頁：</strong>設定者「提交審查」後，活動進入<strong>待審查佇列</strong>（導覽含<strong style="color:var(--red-bright);">待審數量紅色 badge</strong>）。<strong>待審佇列卡片直接含 RTP／活動期間／重置時間／主題／審查備註輸入／核准／駁回</strong>；「<strong>查看完整設定（唯讀）</strong>」為彈窗——彈窗內容<strong>對齊原型 v2：基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>；<strong>模板數值明細（門檻／獎池／RTP／權重／多貨幣）請至模板管理頁查看，審查頁不展開數值</strong>。核准權為<strong>最高權限（Admin）</strong>；<strong>駁回原因＝必填</strong>。
+    <strong>審查頁：</strong>設定者「提交審查」後，活動進入<strong>待審查佇列</strong>（導覽含<strong style="color:var(--red-bright);">待審數量紅色 badge</strong>）。<strong>待審佇列卡片直接含 RTP／活動期間／重置時間／主題／<span style="color:var(--gold-light);">審查反饋輸入（通過／駁回共用）</span>／核准／駁回</strong>；「<strong>查看完整設定（唯讀）</strong>」為彈窗——彈窗內容<strong>對齊原型 v2：基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>；<strong>模板數值明細（門檻／獎池／RTP／權重／多貨幣）請至模板管理頁查看，審查頁不展開數值</strong>。核准權為<strong>最高權限（Admin）</strong>；<strong>駁回原因＝必填</strong>。<strong style="color:var(--green-bright);">核准時已填寫的審查反饋一併保存，顯示於活動編輯頁（綠底）；駁回原因＝必填（不變）。</strong>
   </div>
 
   <!-- 審查頁 ① 待審查佇列（含空狀態） -->
@@ -3194,9 +3301,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="ui-doc-spec-h">② 唯讀檢視 ＋ ③ 操作</div>
       <dl>
         <dt>唯讀檢視</dt><dd><strong>對齊原型 v2</strong>：內容為<strong>基本設定（主題／起訖／重置／線路）＋「標籤規則 → 模板名稱對照」</strong>，不可在此編輯</dd>
-        <dt>操作</dt><dd>僅兩個動作：「<strong style="color:var(--green);">核准並上線</strong>」（由<strong>最高權限(Admin)</strong> 核准後活動上線）／「<strong style="color:var(--red);">駁回</strong>」（<strong>駁回原因必填</strong>）</dd>
+        <dt>操作</dt><dd>僅兩個動作：「<strong style="color:var(--green);">核准並上線</strong>」（由<strong>最高權限(Admin)</strong> 核准後活動上線；<strong style="color:var(--gold-light);">核准並上線時，「審查反饋」輸入框內容（如有）隨核准一併保存</strong>，顯示於活動編輯頁綠底 banner——見下方 ④）／「<strong style="color:var(--red);">駁回</strong>」（<strong>駁回原因必填</strong>）</dd>
         <dt>模板數值</dt><dd><strong>模板數值明細（門檻／獎池／RTP／權重／多貨幣）請至模板管理頁查看，審查頁不展開數值</strong>（審查頁只對照到模板名稱）</dd>
-        <dt>文案 key</dt><dd><span class="mono">admin.review.readonly</span> / <span class="mono">admin.review.approve</span> / <span class="mono">admin.review.reject</span></dd>
+        <dt>文案 key</dt><dd><span class="mono">admin.review.readonly</span> / <span class="mono">admin.review.approve</span> / <span class="mono">admin.review.reject</span> / <span class="mono" style="color:var(--gold-light);">admin.review.feedback</span>（輸入框 placeholder「審查反饋」）</dd>
       </dl>
     </div>
   </div>
@@ -3223,14 +3330,31 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
     </div>
     <div class="ui-doc-spec">
-      <div class="ui-doc-spec-h">④ 駁回回流</div>
+      <div class="ui-doc-spec-h">④ 審查反饋回流（通過／駁回）<span class="tag-upd">2026-08-12</span></div>
       <dl>
-        <dt>駁回原因</dt><dd>最高權限(Admin) 駁回時<strong>需填「駁回原因」</strong>（<strong>必填</strong>）。<span style="color:var(--orange);">⚠ 未填駁回原因不可送出，須做必填驗證。</span></dd>
-        <dt>回流</dt><dd>被駁回活動回到設定者「<strong>活動管理</strong>」，並顯示「<strong>此活動曾被駁回，請修改後重新送審。駁回原因：…</strong>」</dd>
+        <dt>顯示位置</dt><dd>活動<strong>編輯／查看頁表單頂部、tabs 之上</strong>的提示 banner，<strong style="color:var(--gold-light);">通過與駁回共用同一位置</strong>（審查頁輸入框亦為同一欄位：「審查反饋」）</dd>
+        <dt>駁回（紅底）</dt><dd><strong>現行不變</strong>——「<strong>⚠ 此活動曾被駁回，請修改後重新送審。駁回原因：…</strong>」；<strong>駁回原因必填</strong>。<span style="color:var(--orange);">⚠ 未填駁回原因不可送出，須做必填驗證。</span>被駁回活動回到設定者「<strong>活動管理</strong>」</dd>
+        <dt>通過（綠底）</dt><dd>審查人核准時<strong>如有填寫</strong>審查反饋，banner 以<strong style="color:var(--green-bright);">綠底</strong>顯示「<strong style="color:var(--green-bright);">✓ 審查已通過。審查反饋：…</strong>」（配色參考：底 <span class="mono">#f0fdf4</span>／框線 <span class="mono">#bbf7d0</span>／文字 <span class="mono">#15803d</span>，<strong>模式與紅底 banner 對稱</strong>）</dd>
+        <dt>未填反饋</dt><dd>核准時<strong>未填寫</strong>審查反饋 → <strong style="color:var(--orange-bright);">不顯示任何 banner（整塊隱藏）</strong></dd>
+        <dt>清除時機</dt><dd>活動<strong>重新送審（提交審查）時清空</strong>反饋與審查結果，<strong>通過／駁回一致</strong>；<strong>活動複製時複本亦清空</strong></dd>
         <dt>重新送審</dt><dd>設定者修改後可<strong>重新送審</strong>，再次進入待審查佇列</dd>
-        <dt>文案 key</dt><dd><span class="mono">admin.review.reject_reason</span> / <span class="mono">admin.review.rejected_notice</span> / <span class="mono">admin.review.resubmit</span></dd>
+        <dt>文案 key</dt><dd><span class="mono">admin.review.reject_reason</span> / <span class="mono">admin.review.rejected_notice</span> / <span class="mono">admin.review.resubmit</span> / <span class="mono" style="color:var(--gold-light);">admin.review.approved_notice</span>（綠底 banner 文案）</dd>
       </dl>
     </div>
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 核准附反饋</div>
+    <b class="g">Given</b> 活動 A 狀態＝<strong>送審中</strong>，審查人於<strong>「審查反饋」框輸入文字</strong><br>
+    <b class="w">When</b> 審查人點「<strong>核准並上線</strong>」<br>
+    <b class="t">Then</b> 活動 A <strong>正常上線</strong>；設定者開啟該活動<strong>編輯頁</strong>時，<strong>表單頂部顯示<span style="color:var(--green-bright);">綠底</span></strong>「<strong>✓ 審查已通過。審查反饋：（輸入內容）</strong>」。
+  </div>
+
+  <div class="bdd-card">
+    <div class="bdd-title">BDD 驗收情境 · 核准未填反饋</div>
+    <b class="g">Given</b> 活動 B 狀態＝<strong>送審中</strong>，<strong>「審查反饋」框空白</strong><br>
+    <b class="w">When</b> 審查人點「<strong>核准並上線</strong>」<br>
+    <b class="t">Then</b> 活動 B <strong>正常上線</strong>；設定者開啟該活動編輯頁時<strong style="color:var(--orange-bright);">不顯示任何審查 banner</strong>（整塊隱藏）。
   </div>
 
   <div class="sub-title">後台 UI 設計說明 · 適用路線 + 版型主題（對齊原型 v2）<span class="tag-upd">2026-08-04</span></div>
@@ -4191,7 +4315,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>9 格格子美術（locked）</td><td class="dim">未翻開（鎖定／牌背）格子美術</td><td class="mono">theme_{theme_id}_cell_locked</td></tr>
       <tr><td>9 格格子美術（unlocked）</td><td class="dim">已翻開（牌面框）格子美術</td><td class="mono">theme_{theme_id}_cell_unlocked</td></tr>
       <tr><td>開獎 sprite 序列</td><td class="dim">套用<strong>無屬性開獎動畫</strong>（容器開啟→光爆→獎品彈出）的分層／序列幀素材</td><td class="mono">theme_{theme_id}_reveal_seq</td></tr>
-      <tr><td>SFX 音效</td><td class="dim">開獎／翻格／最終獎音效（對應通用動畫時間軸節點）</td><td class="mono">theme_{theme_id}_sfx_{event}</td></tr>
+      <tr><td>SFX 音效</td><td class="dim">開獎／翻格／最終獎等音效——<strong>觸發時機、秒數與 loop 規則詳見 <a href="#ui-audio" style="color:var(--gold-light);">DEV §05〈音樂音效需求表〉</a></strong></td><td class="mono">theme_{theme_id}_sfx_{event}</td></tr>
       <tr><td>文案 key</td><td class="dim">主題化文案字串（面板標題、按鈕、恭喜語等），對應 DEV §11 i18n key 的主題覆寫</td><td class="mono">theme_{theme_id}_text_{key}</td></tr>
     </tbody>
   </table>
@@ -4260,7 +4384,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.status.draft</span><br><span class="mono" style="font-size:11px;">admin.status.in_review</span><br><span class="mono" style="font-size:11px;">admin.status.approved</span><br><span class="mono" style="font-size:11px;">admin.status.running</span><br><span class="mono" style="font-size:11px;">admin.status.paused</span><br><span class="mono" style="font-size:11px;">admin.status.ended</span></td><td class="dim">草稿／送審中／已核准／運行中／已暫停／已結束</td><td class="dim mono" style="font-size:11.5px;">Draft / In Review / Approved / Running / Paused / Ended</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.campaign.create_btn</span></td><td class="dim">建立新活動</td><td class="dim mono" style="font-size:11.5px;">New Campaign</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.action.view</span><br><span class="mono" style="font-size:11px;">admin.action.edit</span><br><span class="mono" style="font-size:11px;">admin.action.copy</span><br><span class="mono" style="font-size:11px;">admin.action.delete</span></td><td class="dim">查看／編輯／複製／刪除<br><span style="font-size:10px;color:var(--orange-bright);">※ <span class="mono">admin.action.view</span> 自 DEV V1.8 起<strong>不再用於活動列表操作欄</strong>（該欄已移除「查看」），僅保留供<strong>活動審查頁「查看完整設定（唯讀）」</strong>使用</span></td><td class="dim mono" style="font-size:11.5px;">View / Edit / Copy / Delete</td></tr>
-      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.review.submit</span><br><span class="mono" style="font-size:11px;">admin.review.approve</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject_reason</span><span style="color:var(--gold-light);font-size:10px;"> ※</span></td><td class="dim">送審／核准／駁回（原因必填）</td><td class="dim mono" style="font-size:11.5px;">Submit for Review / Approve / Reject (reason required)</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.review.submit</span><br><span class="mono" style="font-size:11px;">admin.review.approve</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.reject_reason</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.feedback</span><span style="color:var(--gold-light);font-size:10px;"> ※</span><br><span class="mono" style="font-size:11px;">admin.review.approved_notice</span><span style="color:var(--gold-light);font-size:10px;"> ※</span></td><td class="dim">送審／核准／駁回（原因必填）<br><strong style="color:var(--gold-light);">審查反饋</strong>（通過／駁回共用輸入框）／<strong style="color:var(--gold-light);">審查已通過</strong>（綠底 banner，見 <a href="#backend" style="color:var(--gold-light);">審查頁 ④</a>）</td><td class="dim mono" style="font-size:11.5px;">Submit for Review / Approve / Reject (reason required)<br>Review Feedback / Review Approved</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.action.save</span><br><span class="mono" style="font-size:11px;">admin.action.cancel</span><br><span class="mono" style="font-size:11px;">admin.action.confirm_delete</span></td><td class="dim">儲存／取消／確認刪除</td><td class="dim mono" style="font-size:11.5px;">Save / Cancel / Confirm Delete</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.thresholds</span></td><td class="dim">9 格累積門檻</td><td class="dim mono" style="font-size:11.5px;">9-Slot Cumulative Thresholds</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.template.prizes</span><br><span class="mono" style="font-size:11px;">admin.template.prize_small</span><br><span class="mono" style="font-size:11px;">admin.template.prize_medium</span><br><span class="mono" style="font-size:11px;">admin.template.prize_large</span><br><span class="mono" style="font-size:11px;">admin.template.prize_final</span></td><td class="dim">四階獎項（小／中／大／最終獎）</td><td class="dim mono" style="font-size:11.5px;">4-Tier Prizes (Small / Medium / Large / Final)</td></tr>
@@ -4564,6 +4688,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="oq-item">
     <div class="oq-owner">📐 標籤資料供給</div>
     <div class="oq-q"><strong>標籤資料到位的時點</strong>，以及首波實際可用的標籤值域是否即為<strong>消費分層 5 項（小客／中客／大客／超大客／巨客）＋ RTP 體驗 2 項（正常／慘輸）</strong>共 7 項（見 <a href="#tag-pool" style="color:var(--gold-light);">DEV §06 標籤池初版</a>、<a href="#tag-rules" style="color:var(--gold-light);">DEV §12</a>），以及「<strong>慘輸</strong>」的判定門檻定義。<br><span style="font-size:11px;">＊供給就緒前的行為<strong>無須等待確認</strong>：一律走預設配置、活動照常可玩，照 DEV §12 實作即可。</span></div>
+  </div>
+
+  <div class="sub-title" id="openq-internal" style="margin-top:32px;">內部待確認（跨端歸屬，未定前請留可切換空間）<span class="tag-upd">2026-08-12</span></div>
+  <div class="oq-item">
+    <div class="oq-owner">🎮 客戶端 ／ 🌐 前端 Web</div>
+    <div class="oq-q"><strong>活動音效的開關歸屬。</strong>寶箱 iFrame 內的 BGM／SFX（見 <a href="#ui-audio" style="color:var(--gold-light);">DEV §05 音樂音效需求表</a>）<strong>是否跟隨主遊戲（slot）的聲音開關設定</strong>？或於<strong>寶箱面板內提供獨立靜音鈕</strong>？<br><span style="font-size:11px;">＊未定前<strong>建議先跟隨主遊戲設定</strong>——此做法需 <strong>iFrame 能取得主遊戲聲音狀態</strong>，屬<strong>前置確認</strong>項。</span></div>
   </div>
 </section>
 
@@ -5158,7 +5288,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.9 · CONFIDENTIAL 2026<br>
+  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.10 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 受眾：後端／前端／美術／QA · 完整版（含 KPI／成本／時程）另見 <a href="treasure_box_crm_spec_v5.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">treasure_box_crm_spec_v5.0.html</a>（內容版號 V5.3）<br>
   <strong>兩份文件如有衝突，以本文件為準。</strong>
 </div>
