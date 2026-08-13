@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.2</title>
+<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -440,7 +440,7 @@ body.layout-side .main-wrap { margin-left: var(--sidebar-w); padding-top: 0; }
 .region-td{font-weight:700;color:var(--gold-light);white-space:nowrap;}
 
 
-/* ─── DEV V1.2 版型升級：寬版／大圖／區域詳說／Lightbox ─── */
+/* ─── DEV V1.3 版型升級：寬版／大圖／區域詳說／Lightbox ─── */
 body.layout-top .page{max-width:1440px;}
 .shot-map{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start;margin-bottom:10px;}
 .shot-map.narrow{grid-template-columns:480px 1fr;}
@@ -550,7 +550,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 <!-- TOP NAV -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">FS-DEV · V1.2</span>
+  <span class="nav-brand">FS-DEV · V1.3</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#flowmap">流程與頁面地圖</a>
   <a class="nav-item" href="#terms">名詞與全域規則</a>
@@ -576,7 +576,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">FREE SPIN 卡<br>規格書 · 開發交付版</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.2</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.4</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-draft">DRAFT</span></div>
@@ -680,7 +680,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="cover-grid"></div>
   <div class="cover-tag">CMB · DEV SPEC · 2026</div>
   <h1>FREE <span>SPIN</span> 卡</h1>
-  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.2（源自完整版 V2.4）</div>
+  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.4（源自完整版 V2.4）</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>類型</strong> CRM 周邊 · 非現金獎勵</div>
     <div class="cover-pill"><strong>來源</strong> 抽寶箱 第二階段</div>
@@ -707,6 +707,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <table>
     <thead><tr><th style="width:110px;">修改日期</th><th style="width:96px;">版號</th><th style="width:160px;">修改章節</th><th>修改摘要</th></tr></thead>
     <tbody>
+      <tr><td>2026-08-13</td><td>DEV V1.4</td><td>§05</td><td><strong>移除所有發卡數顯示，撤銷 V1.2 第④項</strong>：①清單欄位移除「已發張數」②展開引用活動移除「發卡數」欄與「進行中即時撈取／已結束留存固定值」撈取規則，改純設定引用清單③文案表刪「已發 {n} 張」、展開表頭改「期間」④驗收刪「引用活動張數撈取」情境。發卡量與獎勵產出改由數據組 Tableau 觀測，後端<strong>免做張數聚合查詢</strong>。發卡快照與行為規則不變。fs_admin_01 已同步更新為改版後畫面。</td></tr>
+      <tr><td>2026-08-13</td><td>DEV V1.3</td><td>§05／§06</td><td>後台原型改版完成，三張截圖（fs_admin_01～03）更新為<strong>改版後畫面</strong>（幣值下拉、bet 單一欄位、刪除鈕含 disabled、「已啟用」小徽章、即時／已留存標記、無草稿）；移除「截圖為改版前畫面」警示。規格規則無變更。</td></tr>
       <tr><td>2026-08-13</td><td>DEV V1.2</td><td>全文</td><td><strong>版型</strong>：截圖大圖化＋右欄僅功能標題（錨點連結）＋「區域詳細說明」移到截圖下方；點圖以浮動彈窗置中放大（右上 ✕ 關閉，不另開視窗）；流程圖全面改直式；頂部列模式內文加寬；全文字級 +1。<strong>內容</strong>：①幣值改下拉選單（支援 64 幣值清單入規格）②道具基礎值只填 bet 單一欄位（廢除 coin×mult）③新增刪除功能（被進行中活動引用時 disabled）④引用活動張數：進行中即時撈取、已結束顯示留存固定值 ⑤統計列僅留「已啟用卡」⑥玩家卡名固定「{n}★ FREE SPIN」（發放卡名稱僅營運辨識）⑦移除草稿 ⑧新增 FREE SPIN 押注歷程分類（活動 › FREE SPIN 卡）與暫存分數 score 結算規則：結算＝min(score, max_conversion)、結算注單入一般注單與 Balance。<strong>截圖為原型改版前畫面，原型更新後重拍。</strong></td></tr>
       <tr><td>2026-08-11</td><td>DEV V1.1</td><td>全文</td><td>升版為「頁面式三層骨架」（總覽 → 功能頁面 → 全域）：一個功能頁面一章，該頁的截圖／規則／防呆／驗收／錯誤集中同章；三個頁面章改用「原型截圖＋紅框區域標號」圖文對照；補齊 V1.0 缺漏的「開發前置條件、事件紀錄、待確認」三章與文件導覽互動。<strong>規格規則本身無變更。</strong></td></tr>
       <tr><td>2026-08-10</td><td>DEV V1.0</td><td>—</td><td>首次發行（自完整版 V2.4 拆分）</td></tr>
@@ -898,7 +900,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td>活動 ID</td><td class="mono">campaign_id</td><td class="dim">這張卡是「哪一檔抽寶箱活動」發出的，用於對帳與來源追溯</td></tr>
       <tr><td>幣別</td><td class="mono">currency</td><td class="dim">發卡當下鎖定，全程不可變</td></tr>
       <tr><td>押注階段</td><td class="mono">bet_tier (1–5)</td><td class="dim">每個幣值有 5 個押注階段（＝星級），對應不同的每轉押注金額</td></tr>
-      <tr><td>每轉押注</td><td class="mono">bet</td><td class="dim">該星級 × 幣值的每轉押注金額，營運於「道具基礎值」<strong>直接填寫的單一數值</strong>（DEV V1.2 起廢除 coin_size × multiplier 推算）</td></tr>
+      <tr><td>每轉押注</td><td class="mono">bet</td><td class="dim">該星級 × 幣值的每轉押注金額，營運於「道具基礎值」<strong>直接填寫的單一數值</strong>（DEV V1.3 起廢除 coin_size × multiplier 推算）</td></tr>
       <tr><td>暫存分數</td><td class="mono">score</td><td class="dim">卡片進行中的累積贏分暫存值，<strong>不直接進 Balance</strong>；結算時給付 min(score, max_conversion) 一次入帳</td></tr>
       <tr><td>發放卡名稱／玩家卡名</td><td class="mono">card_name（僅後台）</td><td class="dim">發放卡名稱<strong>僅供營運辨識</strong>、玩家不會看到；玩家端一律顯示固定卡名「<strong>{n}★ FREE SPIN</strong>」（n＝星級），全語系統一</td></tr>
       <tr><td>總次數 / 剩餘次數</td><td class="mono">num_of_rounds / rounds_left</td><td class="dim">整張卡的免費旋轉局數；跨列表內的遊戲<strong>共用同一池</strong></td></tr>
@@ -1133,7 +1135,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   </div>
 
   <div class="sub-title">全頁截圖＋區域標號</div>
-<div class="callout warn"><strong>⚠️ 截圖狀態</strong>：後台原型正依 2026-08-13 修改清單改版（幣值下拉選單、bet 單一欄位、刪除鈕、統計簡化、移除草稿）。本頁截圖為<strong>改版前畫面</strong>，原型更新後由 Cowork 重拍、同名覆蓋即自動更新；<strong>規格規則以內文文字為準</strong>。</div>
+
   <div class="shot-map">
 <div class="shot-frame"><img src="design_assets/fs_admin_01_issuance_list.png" alt="後台發放管理列表全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台發放管理列表全頁畫面<br><span style="font-size:10px;">將 fs_admin_01_issuance_list.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型 · 紅框 Ⓐ–Ⓕ 對應右表 · 點圖放大</div></div>
 <div>
@@ -1145,7 +1147,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td class="region-td">Ⓒ</td><td><a href="#pg-list-c" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">道具基礎值（幣值下拉＋bet 單欄）</a></td></tr>
       <tr><td class="region-td">Ⓓ</td><td><a href="#pg-list-d" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">已啟用卡數</a></td></tr>
       <tr><td class="region-td">Ⓔ</td><td><a href="#pg-list-e" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">發放卡清單（修改・刪除）</a></td></tr>
-      <tr><td class="region-td">Ⓕ</td><td><a href="#pg-list-f" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">展開：引用活動（張數撈取規則）</a></td></tr>
+      <tr><td class="region-td">Ⓕ</td><td><a href="#pg-list-f" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">展開：引用活動（純引用清單）</a></td></tr>
     </tbody>
   </table>
   <div class="region-index-note">▸ 點功能標題跳到下方「區域詳細說明」；點左側截圖可浮動放大檢視。</div>
@@ -1173,7 +1175,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="rd-label" style="margin-top:12px;">支援幣值清單（64 項 · 下拉選單資料源）</div>
 <div class="ccy-pills"><span class="ccy-pill">PHP</span><span class="ccy-pill">USD</span><span class="ccy-pill">TWD</span><span class="ccy-pill">TWDp</span><span class="ccy-pill">TWDv</span><span class="ccy-pill">BDT</span><span class="ccy-pill">BND</span><span class="ccy-pill">BRL</span><span class="ccy-pill">CNY</span><span class="ccy-pill">EUR</span><span class="ccy-pill">HKD</span><span class="ccy-pill">INR</span><span class="ccy-pill">JPY</span><span class="ccy-pill">KRW</span><span class="ccy-pill">LKR</span><span class="ccy-pill">MMK</span><span class="ccy-pill">kMMK</span><span class="ccy-pill">MXN</span><span class="ccy-pill">MYR</span><span class="ccy-pill">MYRh</span><span class="ccy-pill">MYRd</span><span class="ccy-pill">PKR</span><span class="ccy-pill">IDR</span><span class="ccy-pill">kIDR</span><span class="ccy-pill">RUB</span><span class="ccy-pill">SGD</span><span class="ccy-pill">THB</span><span class="ccy-pill">VND</span><span class="ccy-pill">kVND</span><span class="ccy-pill">KHR</span><span class="ccy-pill">kKHR</span><span class="ccy-pill">LAK</span><span class="ccy-pill">kLAK</span><span class="ccy-pill">AED</span><span class="ccy-pill">NPR</span><span class="ccy-pill">GBP</span><span class="ccy-pill">GBP (&lt; 25y)</span><span class="ccy-pill">GBP (≧ 25y)</span><span class="ccy-pill">AMD</span><span class="ccy-pill">AUD</span><span class="ccy-pill">ARS</span><span class="ccy-pill">CAD</span><span class="ccy-pill">CHF</span><span class="ccy-pill">CLP</span><span class="ccy-pill">COP</span><span class="ccy-pill">GEL</span><span class="ccy-pill">GHS</span><span class="ccy-pill">KES</span><span class="ccy-pill">KZT</span><span class="ccy-pill">NGN</span><span class="ccy-pill">NOK</span><span class="ccy-pill">NZD</span><span class="ccy-pill">OMR</span><span class="ccy-pill">PGK</span><span class="ccy-pill">PEN</span><span class="ccy-pill">PLN</span><span class="ccy-pill">SAR</span><span class="ccy-pill">SEK</span><span class="ccy-pill">TND</span><span class="ccy-pill">TRY</span><span class="ccy-pill">TZS</span><span class="ccy-pill">VES</span><span class="ccy-pill">ZAR</span><span class="ccy-pill">UGX</span></div>
   <div class="shot-map narrow" style="margin-top:6px;">
-<div class="shot-frame"><img src="design_assets/fs_admin_03_base_values_edit.png" alt="道具基礎值編輯狀態" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：道具基礎值編輯狀態<br><span style="font-size:10px;">將 fs_admin_03_base_values_edit.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">「編輯基礎值」展開示意（截圖為改版前 coin/mult 版，原型更新後重拍為 bet 單欄）· 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_admin_03_base_values_edit.png" alt="道具基礎值編輯狀態" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：道具基礎值編輯狀態<br><span style="font-size:10px;">將 fs_admin_03_base_values_edit.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">「編輯基礎值」展開示意：各星級單一 bet 欄位直接填每轉押注（改版後原型畫面）· 點圖放大</div></div>
   <div class="body-text" style="margin-top:0;">展開後每星級一個 <span class="mono">bet</span> 輸入欄；<span class="mono">face_value</span> 與 <span class="mono">max_conversion</span> 由建卡頁自動推算（見 DEV §06）。</div>
   </div>
   <div class="rd-cols">
@@ -1188,7 +1190,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <div class="region-detail" id="pg-list-d">
   <h4><span class="region-td">Ⓓ</span>已啟用卡數<span class="rd-func">顯示目前「已啟用」的發放卡數量。</span></h4>
   <div class="rd-cols">
-    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>DEV V1.2 起<strong>只留「已啟用卡」一個數字</strong>；發放卡總數／引用中活動／累計發卡三項移除</li>
+    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>DEV V1.3 起<strong>只留「已啟用卡」一個數字</strong>；發放卡總數／引用中活動／累計發卡三項移除</li>
 <li>欄位縮小為小型徽章／單欄，不再佔一整列大區塊</li></ul></div>
     <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>—</li></ul></div>
   </div>
@@ -1196,7 +1198,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <div class="region-detail" id="pg-list-e">
   <h4><span class="region-td">Ⓔ</span>發放卡清單<span class="rd-func">型錄總表，每列一張發放卡。</span></h4>
   <div class="rd-cols">
-    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>欄位：發放卡名稱＋已發張數／reward_id／星級＋每轉押注／遊戲數／有效期／使用活動數／狀態／操作（修改・<strong>刪除</strong>）</li>
+    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>欄位：發放卡名稱／reward_id／星級＋每轉押注／遊戲數／有效期／使用活動數／狀態／操作（修改・<strong>刪除</strong>）</li>
+<li><strong>清單不顯示已發張數</strong>；發卡量與獎勵產出改由<strong>數據組 Tableau 報表</strong>觀測（DEV V1.4 起）</li>
 <li>狀態只有「<strong>已啟用</strong>」一種（草稿已移除，建卡完成即啟用）</li>
 <li><strong>發放卡名稱僅供營運辨識</strong>；玩家端顯示固定卡名「{n}★ FREE SPIN」，兩者無關</li></ul></div>
     <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>被<strong>進行中活動引用</strong>的卡：刪除鈕 <strong>disabled 不可點</strong>（hover 提示原因）</li>
@@ -1206,9 +1209,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <div class="region-detail" id="pg-list-f">
   <h4><span class="region-td">Ⓕ</span>展開：引用活動<span class="rd-func">點列展開，查這張卡被哪些抽寶箱活動引用。</span></h4>
   <div class="rd-cols">
-    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>欄位：campaign_id／活動名稱／發卡數＋期間／狀態（進行中·已結束）</li>
-<li><strong>進行中活動：發卡張數即時撈取</strong>（隨發卡增加）</li>
-<li><strong>已結束活動：不再撈取</strong>，顯示資料庫留存的固定張數（數量不會再變動，省查詢成本）</li>
+    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>欄位：campaign_id／活動名稱／期間／狀態（進行中·已結束）</li>
+<li>本區為<strong>純設定引用清單</strong>（查這張卡被哪些活動引用），<strong>不含任何發卡統計</strong>；發卡數與獎勵產出由<strong>數據組 Tableau 報表</strong>觀測</li>
 <li>一張卡可被多個活動引用＝型錄複用</li></ul></div>
     <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>—</li></ul></div>
   </div>
@@ -1232,7 +1234,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="body-text">本表為<strong>可填模板</strong>，提供「一套規則 + 跨幣別示意值」讓營運直接套用。<em>幣值範圍以上方「支援幣值清單（64 項）」為準</em>；下列各幣別的每轉押注為符合幣值習慣的<strong>示意值</strong>，實際數字由營運於後台填寫。</div>
 
   <div class="callout"><strong>計算規則（讓數值可推導、可對帳）</strong><br>
-    ① <strong>每轉押注（bet）</strong>＝營運於「道具基礎值」各星級<strong>直接填寫的單一數值</strong>（DEV V1.2 起廢除 coin × mult 推算）<br>
+    ① <strong>每轉押注（bet）</strong>＝營運於「道具基礎值」各星級<strong>直接填寫的單一數值</strong>（DEV V1.3 起廢除 coin × mult 推算）<br>
     ② <strong>face_value（票面價值）</strong> = 每轉押注 × 次數 → 代表這張卡「送出去的成本基準」，用於成本估算與對帳<br>
     ③ <strong>max_conversion（結算上限）</strong> = face_value × 封頂倍數（示意用 ×10，營運可逐段調整）<br>
     ④ 次數預設全段 = 10（可逐段調）；所有階段一律入主錢包真金</div>
@@ -1374,12 +1376,6 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
         <td class="dim">① 確認視窗顯示卡名＋reward_id；② 確認後卡片自列表消失；③ 抽寶箱獎項下拉不再出現此卡</td>
       </tr>
       <tr>
-        <td><strong>引用活動張數撈取</strong></td>
-        <td class="dim">某張卡被 2 檔活動引用（1 進行中、1 已結束）</td>
-        <td class="dim">點列展開；隔一段時間（期間持續發卡）再展開一次</td>
-        <td class="dim">① 進行中活動的張數<strong>隨發卡即時增加</strong>；② 已結束活動的張數<strong>兩次相同</strong>（固定值、不再撈取）</td>
-      </tr>
-      <tr>
         <td><strong>基礎值幣值保值</strong></td>
         <td class="dim">「編輯基礎值」已展開，先在 THB 填了 bet</td>
         <td class="dim">下拉切到 PHP 再切回 THB</td>
@@ -1431,7 +1427,6 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td>表頭</td><td>使用活動</td><td>Used in Campaigns</td></tr>
       <tr><td>表頭</td><td>狀態</td><td>Status</td></tr>
       <tr><td>表頭</td><td>操作</td><td>Action</td></tr>
-      <tr><td>列文字</td><td>已發 {n} 張</td><td>{n} issued</td></tr>
       <tr><td>列文字</td><td>發卡 +{n} 天</td><td>+{n} days from issuance</td></tr>
       <tr><td>列文字</td><td>{n} 個活動</td><td>{n} campaign(s)</td></tr>
       <tr><td>狀態</td><td>已啟用</td><td>Active</td></tr>
@@ -1440,7 +1435,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td>確認視窗</td><td>確認刪除這張發放卡？</td><td>Delete this issuance card?</td></tr>
       <tr><td>展開標題</td><td>使用此發放卡的抽寶箱活動</td><td>Treasure-box campaigns using this card</td></tr>
       <tr><td>展開表頭</td><td>活動名稱</td><td>Campaign Name</td></tr>
-      <tr><td>展開表頭</td><td>發卡數 · 期間</td><td>Cards Issued · Period</td></tr>
+      <tr><td>展開表頭</td><td>期間</td><td>Period</td></tr>
       <tr><td>展開狀態</td><td>進行中</td><td>Ongoing</td></tr>
       <tr><td>展開狀態</td><td>已結算</td><td>Settled</td></tr>
       <tr><td>防呆提示</td><td>此欄為必填</td><td>This field is required</td></tr>
@@ -1468,7 +1463,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   </div>
 
   <div class="sub-title">全頁截圖＋區域標號</div>
-<div class="callout warn"><strong>⚠️ 截圖狀態</strong>：後台原型正依 2026-08-13 修改清單改版（幣值下拉選單、bet 單一欄位、刪除鈕、統計簡化、移除草稿）。本頁截圖為<strong>改版前畫面</strong>，原型更新後由 Cowork 重拍、同名覆蓋即自動更新；<strong>規格規則以內文文字為準</strong>。</div>
+
   <div class="shot-map">
 <div class="shot-frame"><img src="design_assets/fs_admin_02_card_form.png" alt="後台新增發放卡表單全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台新增發放卡表單全頁畫面<br><span style="font-size:10px;">將 fs_admin_02_card_form.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型 · 紅框 Ⓐ–Ⓔ 對應右表 · 點圖放大</div></div>
 <div>
@@ -1644,7 +1639,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   </div>
 
   <div class="sub-title">全頁截圖＋區域標號（可使用分頁）</div>
-<div class="callout info"><strong>截圖註記</strong>：截圖卡名為舊文案「免費旋轉 ×10」；DEV V1.2 起玩家卡名固定顯示「<strong>{n}★ FREE SPIN</strong>」。背包原型文案更新後由 Cowork 重拍、同名覆蓋。</div>
+<div class="callout info"><strong>截圖註記</strong>：截圖卡名為舊文案「免費旋轉 ×10」；DEV V1.3 起玩家卡名固定顯示「<strong>{n}★ FREE SPIN</strong>」。背包原型文案更新後由 Cowork 重拍、同名覆蓋。</div>
   <div class="shot-map narrow">
 <div class="shot-frame"><img src="design_assets/fs_bag_01_backpack.png" alt="玩家背包「可使用」分頁全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包「可使用」分頁全頁畫面<br><span style="font-size:10px;">將 fs_bag_01_backpack.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：遊戲背包頁原型.html（手機版）· 紅框 Ⓐ–Ⓗ 對應右表 · 點圖放大</div></div>
 <div>
@@ -2034,7 +2029,9 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 </section>
 
 <div class="doc-footer">
-  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.2 · CONFIDENTIAL 2026<br>
+  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.4 · CONFIDENTIAL 2026<br>
+  DEV V1.4（2026-08-13）：§05 移除所有發卡數顯示（撤銷 V1.2 第④項）；清單去「已發張數」欄、展開引用活動改純設定引用清單（無發卡數欄與撈取規則）；文案表刪「已發 {n} 張」、展開表頭改「期間」；驗收刪「引用活動張數撈取」情境。發卡量與獎勵產出改由數據組 Tableau 觀測。<br>
+  DEV V1.3（2026-08-13）：後台原型改版完成，fs_admin_01～03 截圖更新為改版後畫面；移除截圖狀態警示。<br>
   DEV V1.2（2026-08-13）：版型升級（截圖大圖化＋區域詳說錨點＋點圖浮動放大＋直式流程圖＋頂部列寬版＋字級 +1）；內容升級（幣值下拉 64 項、bet 單欄、刪除功能、引用張數撈取規則、統計僅留已啟用、玩家卡名 {n}★ FREE SPIN、移除草稿、FS 歷程分類與暫存 score 結算 min(score, max_conversion)）。截圖待原型改版後重拍。<br>
   DEV V1.1（2026-08-11）：升版為頁面式三層骨架（總覽→功能頁面→全域）；三個功能頁面章改「原型截圖＋紅框區域標號」圖文對照；驗收與錯誤處理依頁面歸位；補齊 V1.0 缺漏的開發前置條件／事件紀錄／待確認三章與文件導覽互動。規格規則本身無變更。<br>
   DEV V1.0（2026-08-10）：自完整版 V2.4 拆分開發交付版；移除管理內容（目標數字／串接細節／任務分工）；新增錯誤處理、美術主題與風格（燙金票券定案）、後台操作友善度與防呆機制、開發前置條件；驗收測試情境白話表格化。
@@ -2121,7 +2118,7 @@ function switchTab(btn, id) {
 }
 </script>
 <script>
-/* ═══════════ Lightbox：點截圖浮動放大（DEV V1.2） ═══════════ */
+/* ═══════════ Lightbox：點截圖浮動放大（DEV V1.3） ═══════════ */
 (function(){
   var ov = document.createElement('div'); ov.className = 'lb-overlay';
   ov.innerHTML = '<button class="lb-close" aria-label="關閉">✕</button><img class="lb-img" alt=""><div class="lb-hint">點背景或 ✕ 關閉 · ESC 也可關閉</div>';
