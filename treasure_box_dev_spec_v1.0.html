@@ -1335,6 +1335,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <a class="sidebar-sub-link" href="#ui">各主題獎項物品</a>
         <a class="sidebar-sub-link" href="#ui">美術資產清單</a>
         <a class="sidebar-sub-link" href="#ui-audio">音樂音效需求表</a>
+        <a class="sidebar-sub-link" href="#daily-wrapup">P7 每日結算卡</a>
+        <a class="sidebar-sub-link" href="#locked-feedback">鎖定格點擊回饋</a>
         <a class="sidebar-sub-link" href="#ui">玩家端「活動」歷程入口</a>
       </div>
     </div>
@@ -1447,7 +1449,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.11 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.12 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1456,7 +1458,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.11 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.12 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1492,6 +1494,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-08-17</td>
+          <td>DEV V1.12</td>
+          <td><a href="#ui-audio" style="color:var(--gold-light);">§05 音效表</a>／<a href="#daily-wrapup" style="color:var(--gold-light);">§05 P7 結算卡</a>／<a href="#backend" style="color:var(--gold-light);">§06 資產規範</a></td>
+          <td><strong>音效表依原型 v2 實測校正</strong>：①<strong>SFX 由 9 條增為 11 條</strong>——<span class="mono">sfx_prize</span> <strong>拆為三階</strong>（<span class="mono">_s／_m／_l</span>，對應美術既有 <span class="mono">data-prize</span> 四階；<strong>第四階 final 不另生</strong>，由 <span class="mono">sfx_final_reveal</span> 承接）；②<strong>新增「重音落點」規格</strong>（併入需求秒數欄，六欄格式不變）——翻格 <strong>170ms</strong>／獎項 <strong>200ms</strong>／最終開獎 <strong>1050ms</strong>；③修正兩處<strong>與原型不符的音效描述</strong>（洗牌＝<strong>金幣旋渦非撲克牌</strong>、翻格＝<strong>木寶箱蓋非紙牌</strong>）；④<span class="mono">panel_open／close</span> 補註<strong>遊戲中心側欄共用</strong>。⑤§05 新增〈<a href="#daily-wrapup" style="color:var(--gold-light);">P7 每日結算卡</a>〉（i18n 沿用既有 <span class="mono">go_*</span> 四條、<strong>不新增 key</strong>；<strong>當日重入每次皆彈</strong>、不做已讀旗標）；⑥§05 新增〈<a href="#locked-feedback" style="color:var(--gold-light);">鎖定格點擊回饋</a>〉（原型現況點擊無反應致 <span class="mono">sfx_locked</span> 無觸發點；<strong>維持 §11「不使用 <span class="mono">tb_lock_req</span>」決策</strong>，改<strong>抖動＋既有 hint 高亮</strong>、i18n 零新增）；⑦上述兩節<strong style="color:var(--orange-bright);">無原型畫面可參照</strong>（原型 v2 本輪不改），規格以本文為準</td>
+        </tr>
         <tr>
           <td>2026-08-13</td>
           <td>DEV V1.11</td>
@@ -2750,11 +2758,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </table>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ 總資產量＝<strong>共用（×1）</strong>＋<strong>（整張重畫 ＋ 重上色）× 套數</strong>。首發僅 treasure_box 一套；節慶 3 套後續再加、採前端寫死（見 P6 主題風格、DEV §06 主題資產對應規範）。</div>
 
-  <div class="sub-title" id="ui-audio" style="margin-top:40px;">音樂音效需求表（給音效製作）<span class="tag-upd">2026-08-12</span></div>
+  <div class="sub-title" id="ui-audio" style="margin-top:40px;">音樂音效需求表（給音效製作）<span class="tag-upd">2026-08-17</span></div>
   <div class="callout info">
     <strong>本表數量＝首發單一主題（<span class="mono" style="color:var(--gold-light);">treasure_box</span>）的量</strong>；換主題<strong>僅換音色、不換觸發時機與秒數</strong>（命名對齊 DEV §06〈<a href="#backend" style="color:var(--gold-light);">主題資產對應規範</a>〉：<span class="mono">theme_{theme_id}_sfx_{event}</span> ／ <span class="mono">theme_{theme_id}_bgm_{scene}</span>）。<br>
     <strong>觸發方式：</strong>音效由 <strong>🌐 前端 Web</strong> 於<strong>動畫時間軸節點</strong>觸發（秒數欄即對齊原型動畫長度）；<strong>副檔名／壓縮格式由開發決定</strong>，表內檔名<strong>不含副檔名</strong>。<br>
-    <strong>範圍：</strong>本表為 <strong>v1 必備清單</strong>（1 首 BGM ＋ 9 條核心 SFX、<strong>無語音</strong>）；v2 擴充候選見表尾備注。
+    <strong>範圍：</strong>本表為 <strong>v1 必備清單</strong>（1 首 BGM ＋ <strong>11 條核心 SFX</strong>、<strong>無語音</strong>）；v2 擴充候選見表尾備注。<br>
+    <strong>秒數依據（2026-08-17 校正）：</strong>本表秒數與<strong>重音落點</strong>皆<strong>取自原型 v2 實測</strong>（掛動畫事件監聽器錄時間軸＋解 CSS 關鍵幀），非估值。<strong>重音落點＝音效最重的一擊應對齊的毫秒數</strong>（相對於動畫起點）——多數 UI 音為 0ms，但<strong>翻格、獎項揭曉、最終開獎的重音在動畫中段</strong>，對錯位置會明顯聲畫不同步，故一併列入需求秒數欄。
   </div>
   <table class="spec-table">
     <thead><tr><th style="width:62px;">類別</th><th style="width:210px;">檔名</th><th>使用時機</th><th>音效描述</th><th style="width:110px;">需求秒數</th><th style="width:96px;">是否loop</th></tr></thead>
@@ -2778,16 +2787,16 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr>
         <td>音效</td>
         <td class="mono">theme_treasure_box_sfx_panel_open</td>
-        <td class="dim">面板自 icon 原點展開（動畫 0.42s）</td>
-        <td class="dim">上揚 whoosh ＋ 寶箱鉸鏈開啟</td>
+        <td class="dim">面板自 icon 原點展開（動畫 0.42s）；遊戲中心側欄展開亦共用（動畫 0.32s）</td>
+        <td class="dim">上揚 whoosh ＋ 寶箱鉸鏈開啟。⚠ 展開曲線帶 overshoot 回彈，尾端需有「落定」收束感，不可為單純直線上揚</td>
         <td class="dim">約0.5秒</td>
         <td class="dim">否</td>
       </tr>
       <tr>
         <td>音效</td>
         <td class="mono">theme_treasure_box_sfx_panel_close</td>
-        <td class="dim">面板縮回 icon（動畫 0.3s）</td>
-        <td class="dim">下沉 whoosh</td>
+        <td class="dim">面板縮回 icon（動畫 0.3s）；遊戲中心側欄收合亦共用（動畫 0.24s）</td>
+        <td class="dim">下沉 whoosh。與 open 不同，收合<strong>無回彈</strong>，音色更乾更短</td>
         <td class="dim">約0.3秒</td>
         <td class="dim">否</td>
       </tr>
@@ -2795,7 +2804,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <td>音效</td>
         <td class="mono">theme_treasure_box_sfx_shuffle</td>
         <td class="dim">每日開始遊戲後的洗牌漩渦（動畫 1.5s）</td>
-        <td class="dim">牌卡快速刷動 ＋ 魔法星塵上升音</td>
+        <td class="dim"><strong>金幣／錢袋旋渦快速旋轉</strong>＋魔法星塵掃升音；節奏為<strong>先爆衝 → 中段等速 → 尾端減速消失</strong>（動畫 0~270ms 加速到位、1080ms 起減速、1500ms 縮退淡出）。<strong>⚠ 非撲克牌洗牌音</strong>——原型畫面為金幣繞圈旋轉，<span class="mono">card riffle</span> 類音色會對不上畫面</td>
         <td class="dim">1.5秒（對齊動畫）</td>
         <td class="dim">否</td>
       </tr>
@@ -2803,23 +2812,39 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <td>音效</td>
         <td class="mono">theme_treasure_box_sfx_flip</td>
         <td class="dim">點擊可翻格、卡牌 3D 翻轉（動畫 0.34s）</td>
-        <td class="dim">卡牌「唰」翻面</td>
-        <td class="dim">0.3~0.5秒</td>
+        <td class="dim"><strong>木寶箱蓋翻面</strong>：前段轉動 whoosh → <strong>中段清脆木質「喀」為重音</strong> → 後段落定回正。<strong>⚠ 非紙牌翻面音</strong>——原型翻面前為寶箱蓋圖、翻面後為獎項圖，需木頭質感；且<strong>換面瞬間在 170ms</strong>（動畫 0.34s 的 48~52% 處），重音壓在 0ms 會不同步</td>
+        <td class="dim">0.3~0.5秒<br><span class="mono" style="font-size:11px;">重音 170ms</span></td>
         <td class="dim">否</td>
       </tr>
       <tr>
         <td>音效</td>
-        <td class="mono">theme_treasure_box_sfx_prize</td>
-        <td class="dim">小／中／大獎揭曉、金額由格內飛出上浮（動畫 1s）</td>
-        <td class="dim">金幣叮鈴入袋（<strong>獎階通用一條</strong>）</td>
-        <td class="dim">約1秒</td>
+        <td class="mono">theme_treasure_box_sfx_prize_s</td>
+        <td class="dim"><strong>小獎</strong>揭曉（美術 <span class="mono">data-prize="small"</span>）、金額由格內飛出上浮（動畫 1s）</td>
+        <td class="dim">少量金幣輕落＋短促提示。<strong>⚠ 全套最高頻的一條</strong>（9 格多為小獎），必須輕、短、不膩——刻意做得比中／大獎克制</td>
+        <td class="dim">約0.8秒<br><span class="mono" style="font-size:11px;">重音 200ms</span></td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_prize_m</td>
+        <td class="dim"><strong>中獎</strong>揭曉（<span class="mono">data-prize="medium"</span>）、同上</td>
+        <td class="dim">金幣叮鈴入袋＋明亮上揚。<strong>為三階的基準線</strong>，小獎比它輕、大獎比它厚</td>
+        <td class="dim">約1秒<br><span class="mono" style="font-size:11px;">重音 200ms</span></td>
+        <td class="dim">否</td>
+      </tr>
+      <tr>
+        <td>音效</td>
+        <td class="mono">theme_treasure_box_sfx_prize_l</td>
+        <td class="dim"><strong>大獎</strong>揭曉（<span class="mono">data-prize="large"</span>）、同上</td>
+        <td class="dim">大量金幣傾瀉＋上揚和弦。<strong>⚠ 上限須壓住</strong>——定位是「哇」而非全場最高潮，<strong>不可搶過 <span class="mono">sfx_final_reveal</span></strong>，否則最終大獎失去記憶點</td>
+        <td class="dim">約1.3秒<br><span class="mono" style="font-size:11px;">重音 200ms</span></td>
         <td class="dim">否</td>
       </tr>
       <tr>
         <td>音效</td>
         <td class="mono">theme_treasure_box_sfx_locked</td>
-        <td class="dim">點擊鎖定格（可翻次數＝0）</td>
-        <td class="dim">低沉「叩」否定音</td>
+        <td class="dim">點擊鎖定格（可翻次數＝0）<br><strong style="color:var(--orange-bright);">⚠ 前端須先補互動回饋</strong>：原型 v2 現況鎖定格<strong>僅變暗、<span class="mono">cursor: default</span>、點擊無任何反應</strong>，此音效目前無觸發點——見〈<a href="#locked-feedback" style="color:var(--gold-light);">鎖定格點擊回饋</a>〉</td>
+        <td class="dim">低沉「叩」否定音。畫面鎖定態為<strong>金色掛鎖</strong>，音色取<strong>金屬鎖扣</strong>而非木頭</td>
         <td class="dim">約0.3秒</td>
         <td class="dim">否</td>
       </tr>
@@ -2827,27 +2852,125 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <td>音效</td>
         <td class="mono">theme_treasure_box_sfx_final_reveal</td>
         <td class="dim">P4 最終大獎開獎時間軸：容器開啟→光爆→獎品彈出（動畫 1.6s）</td>
-        <td class="dim">蓄力上升音 → 金光爆發（<strong>全套最重的一條</strong>）</td>
-        <td class="dim">1.6~2秒</td>
+        <td class="dim"><strong>三段式</strong>：①<strong>0~220ms</strong> 寶箱「咚」登場 → ②<strong>420~800ms</strong> 寶箱<strong>搖晃四下</strong>（箱內有東西在撞）＋蓄力上升音墊底 → ③<strong>1050ms 金光爆發為全曲最重一擊</strong> → ④餘韻至 1.8s（獎品彈出＋金額浮現）。<strong>⚠ 爆點在 1.05s 不在尾端</strong>；②的搖晃段是規格書原先未描述、但畫面上最有戲的位置</td>
+        <td class="dim">1.6~2秒<br><span class="mono" style="font-size:11px;">重音 1050ms</span></td>
         <td class="dim">否</td>
       </tr>
       <tr>
         <td>音效</td>
         <td class="mono">theme_treasure_box_sfx_daily_done</td>
-        <td class="dim">P7 今日全部抽完、結算卡出現</td>
-        <td class="dim">達成／收尾提示音</td>
+        <td class="dim">P7 今日全部抽完、結算卡出現（見〈<a href="#daily-wrapup" style="color:var(--gold-light);">P7 每日結算卡</a>〉）</td>
+        <td class="dim">達成／收尾提示音。⚠ 秒數暫依規格書，待 P7 結算卡動畫實作後回頭校對</td>
         <td class="dim">1~1.5秒</td>
         <td class="dim">否</td>
       </tr>
     </tbody>
   </table>
+  <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ 獎階第四階（<span class="mono">data-prize="final"</span>）不另生格內揭曉音——該格點擊後直接進 P4 全螢幕開獎演出，由 <span class="mono">theme_treasure_box_sfx_final_reveal</span> 承接。三條 prize 須屬同一組音色家族（同樣的金幣質感），僅在份量上排層次。</div>
   <div class="callout warn">
     <strong>技術備注（開發前置確認）：</strong><br>
     ① <strong>瀏覽器自動播放限制：</strong>玩家首次點擊／觸碰頁面前，網頁<strong>不允許出聲</strong>（browser autoplay policy）——BGM 須設計為「<strong>玩家首次互動後</strong>」才開始播放，<strong>不可假設開面板即有聲</strong>。<br>
     ② <strong>音量層級：</strong>BGM 音量<strong>低於</strong> SFX；整體<strong>不得蓋過主遊戲（slot）自身音效</strong>。建議 BGM／SFX <strong>分兩條音量匯流排（bus）</strong>以便日後調整。<br>
-    ③ <strong>loop 檔須無縫：</strong><span class="mono">bgm_panel</span> 循環點<strong>不可有可察覺的斷點或爆音</strong>。
+    ③ <strong>loop 檔須無縫：</strong><span class="mono">bgm_panel</span> 循環點<strong>不可有可察覺的斷點或爆音</strong>。<br>
+    ④ <strong>重音落點須對齊：</strong>音效由前端於<strong>動畫起點</strong>播放，故重音在中段的三條（<span class="mono">flip</span> 170ms／<span class="mono">prize_*</span> 200ms／<span class="mono">final_reveal</span> 1050ms）<strong>由音效方在檔案內部安排重音位置</strong>，前端不做延遲播放（避免多層 setTimeout 造成累積誤差）。<strong>驗收方式：</strong>音檔波形最大振幅點須落在規格毫秒數 ±50ms 內。
   </div>
-  <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ v2 擴充候選（本次不做）：通用按鈕點擊音 <span class="mono">sfx_btn_tap</span>、彩帶金幣雨 <span class="mono">sfx_confetti</span>、進度條集滿 <span class="mono">sfx_progress_full</span>、獎項三階分層（<span class="mono">sfx_prize_s／_m／_l</span> 取代通用一條）、慶祝演出 BGM（<span class="mono">bgm_celebrate</span>）、英文語音 <span class="mono">vo_congrats</span>／<span class="mono">vo_daily_done</span>（語音牽動 13 語系成本，v1 不做）。</div>
+  <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ v2 擴充候選（本次不做）：通用按鈕點擊音 <span class="mono">sfx_btn_tap</span>、彩帶金幣雨 <span class="mono">sfx_confetti</span>、進度條集滿 <span class="mono">sfx_progress_full</span>、慶祝演出 BGM（<span class="mono">bgm_celebrate</span>）、英文語音 <span class="mono">vo_congrats</span>／<span class="mono">vo_daily_done</span>（語音牽動 13 語系成本，v1 不做）。</div>
+
+  <div class="sub-title" id="daily-wrapup" style="margin-top:40px;">P7 每日結算卡<span class="tag-upd">2026-08-17</span></div>
+  <div class="callout info">
+    <strong>目的：</strong>當日 9 格全部開完後，給玩家一個明確的「今天結束了」收尾，並把「明日可再來」的預期種下去。<a href="#i18n" style="color:var(--gold-light);">§11</a> i18n 已備有四條 <span class="mono">go_*</span> 文案 key，本節為補齊明文規格。
+  </div>
+  <div class="callout warn">
+    <strong style="color:var(--orange-bright);">⚠ 本節無原型畫面可參照：</strong>P7 結算卡在原型 v2 中<strong>未實作</strong>，且<strong>原型本輪不修改</strong>。前端請直接依本節文字與下表實作，<strong>不需等待原型</strong>；版位與動畫<strong>沿用既有元件</strong>（見下表），<strong>不新增美術資產、不新增 i18n key</strong>。實作完成後請回頭校對 <span class="mono">sfx_daily_done</span> 的秒數（見 <a href="#ui-audio" style="color:var(--gold-light);">§05 音效表</a>）。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>規格</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>觸發條件</strong></td>
+        <td class="dim">當日<strong>最後一格開完</strong>（已開箱 9/9）、且格內獎項揭曉動畫（含最終獎全螢幕演出，若有）<strong>完全結束後</strong>，延遲 <strong>0.4s</strong> 顯示</td>
+      </tr>
+      <tr>
+        <td><strong>版位</strong></td>
+        <td class="dim">蓋在 9 格區域上方的<strong>卡片</strong>（非全螢幕），沿用教學卡（<span class="mono">tut-card</span>）的版位與尺寸基準</td>
+      </tr>
+      <tr>
+        <td><strong>內容欄位</strong></td>
+        <td class="dim">四項，全部走 <a href="#i18n" style="color:var(--gold-light);">§11</a> 既有 key：標題 <span class="mono">go_title</span>／副標 <span class="mono">go_sub</span>（今日累積獲得金額，<span class="mono">{amount}</span>）／提示 <span class="mono">go_hint</span>（明日重置時間，<span class="mono">{time}</span>）／按鈕 <span class="mono">go_btn</span></td>
+      </tr>
+      <tr>
+        <td><strong>動畫</strong></td>
+        <td class="dim"><strong>沿用原型既有 <span class="mono">bubbleIn</span> 0.3s</strong>，不新增動畫邏輯（美術／前端零新增成本）</td>
+      </tr>
+      <tr>
+        <td><strong>音效</strong></td>
+        <td class="dim">卡片出現時觸發 <span class="mono">theme_treasure_box_sfx_daily_done</span>（1~1.5s，見 <a href="#ui-audio" style="color:var(--gold-light);">§05 音效表</a>）</td>
+      </tr>
+      <tr>
+        <td><strong>關閉行為</strong></td>
+        <td class="dim">點按鈕或點卡片外區域關閉；關閉後回到「9 格全開、各格顯示已得獎項」的狀態</td>
+      </tr>
+      <tr>
+        <td><strong>當日重入行為</strong></td>
+        <td class="dim"><strong>每次重入都彈</strong>——玩家當日關閉結算卡後，只要再次開啟寶箱面板且當日已全開，<strong>就再彈一次結算卡</strong>。<strong>不做「當日已看過」旗標</strong>，前端與後端<strong>皆不需保存已讀狀態</strong>。<br><strong>設計意圖：</strong>把「明日可再來」的預期反覆強化，且實作零額外狀態。<br><strong style="color:var(--orange-bright);">⚠ 已知代價（刻意接受）：</strong>高頻玩家當日多次開面板會重複看到同一張卡。若上線後客訴或數據顯示困擾，再評估改為「當日只彈一次」（需新增已讀旗標）</td>
+      </tr>
+      <tr>
+        <td><strong>跨日重置</strong></td>
+        <td class="dim">若玩家正開著結算卡時跨過每日重置時點（UTC+8 00:00），關閉卡片後<strong>須重新載入當日配置</strong>，不可停留在前一日的 9 格狀態</td>
+      </tr>
+      <tr>
+        <td><strong>金額口徑</strong></td>
+        <td class="dim"><span class="mono">go_sub</span> 的累積金額＝<strong>當日該活動所有已開格的獎勵面額總和</strong>，與 <a href="#reward-data" style="color:var(--gold-light);">§14</a> 獎勵歷程同源</td>
+      </tr>
+      <tr>
+        <td><strong>空狀態</strong></td>
+        <td class="dim">不適用——本卡僅在 9 格全開時出現</td>
+      </tr>
+      <tr>
+        <td><strong>i18n</strong></td>
+        <td class="dim"><strong>不新增 key</strong>，沿用 <a href="#i18n" style="color:var(--gold-light);">§11</a> 既有 <span class="mono">go_title／go_sub／go_hint／go_btn</span> 四條</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" id="locked-feedback" style="margin-top:40px;">鎖定格點擊回饋<span class="tag-upd">2026-08-17</span></div>
+  <div class="callout warn">
+    <strong>現況問題：</strong>原型 v2 中鎖定格 <span class="mono">.tb-cell.locked</span> <strong>僅套用變暗濾鏡、<span class="mono">cursor</span> 為 <span class="mono">default</span>，點擊完全無反應</strong>。<a href="#ui-audio" style="color:var(--gold-light);">§05 音效表</a>的 <span class="mono">sfx_locked</span> 因此沒有觸發點，且玩家點了沒回饋會誤判為「卡住」。<br>
+    <strong style="color:var(--orange-bright);">⚠ 本節無原型畫面可參照：</strong>原型 v2 本輪不修改，前端請直接依下表實作。所需動畫皆為<strong>原型已存在的 keyframe（<span class="mono">chestShake</span>）</strong>，<strong>不新增美術資產、不新增 i18n key</strong>。
+  </div>
+  <table class="spec-table">
+    <thead><tr><th style="width:150px;">項目</th><th>規格</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>觸發</strong></td>
+        <td class="dim">玩家點擊<strong>鎖定格</strong>（可翻次數＝0 時的任一未開格）</td>
+      </tr>
+      <tr>
+        <td><strong>視覺回饋</strong></td>
+        <td class="dim"><strong>沿用原型既有 <span class="mono">chestShake</span> keyframe（0.6s，左右擺動四下）</strong>套用於被點擊的該格，不新增動畫</td>
+      </tr>
+      <tr>
+        <td><strong>視線導引</strong></td>
+        <td class="dim">同時讓進度條下方<strong>既有的</strong> <span class="mono">tb_next_hint</span>（「再押 ₱X 解鎖下一次機會」）<strong>高亮閃動一次</strong>，把玩家視線導向「怎麼才能再開」</td>
+      </tr>
+      <tr>
+        <td><strong>音效</strong></td>
+        <td class="dim"><span class="mono">theme_treasure_box_sfx_locked</span>（約 0.3 秒，金屬鎖扣悶響）</td>
+      </tr>
+      <tr>
+        <td><strong>不做</strong></td>
+        <td class="dim"><strong>不新增鎖定格內的需求文案</strong>——維持 <a href="#i18n" style="color:var(--gold-light);">§11</a> 既有決策「<strong>不使用 <span class="mono">tb_lock_req</span></strong>（鎖定格僅顯示鎖頭）」。回饋全靠抖動＋既有 hint 高亮，<strong>i18n 零新增</strong></td>
+      </tr>
+      <tr>
+        <td><strong>cursor</strong></td>
+        <td class="dim">鎖定格 <span class="mono">cursor</span> 改為 <span class="mono">pointer</span>（讓玩家知道可點），但<strong>不改變不可開箱的判定</strong></td>
+      </tr>
+      <tr>
+        <td><strong>防連點</strong></td>
+        <td class="dim">抖動動畫播放中重複點擊<strong>不疊加</strong>（0.6s 內只播一次，音效同步不重疊）</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="sub-title" id="player-history" style="margin-top:40px;">玩家端「活動」歷程入口</div>
   <div class="callout info">
@@ -4332,7 +4455,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>9 格格子美術（locked）</td><td class="dim">未翻開（鎖定／牌背）格子美術</td><td class="mono">theme_{theme_id}_cell_locked</td></tr>
       <tr><td>9 格格子美術（unlocked）</td><td class="dim">已翻開（牌面框）格子美術</td><td class="mono">theme_{theme_id}_cell_unlocked</td></tr>
       <tr><td>開獎 sprite 序列</td><td class="dim">套用<strong>無屬性開獎動畫</strong>（容器開啟→光爆→獎品彈出）的分層／序列幀素材</td><td class="mono">theme_{theme_id}_reveal_seq</td></tr>
-      <tr><td>SFX 音效</td><td class="dim">開獎／翻格／最終獎等音效——<strong>觸發時機、秒數與 loop 規則詳見 <a href="#ui-audio" style="color:var(--gold-light);">DEV §05〈音樂音效需求表〉</a></strong></td><td class="mono">theme_{theme_id}_sfx_{event}</td></tr>
+      <tr><td>SFX 音效</td><td class="dim">開獎／翻格／最終獎等音效（v1 共 <strong>11 條</strong>，含獎階三分層）——<strong>觸發時機、秒數與 loop 規則詳見 <a href="#ui-audio" style="color:var(--gold-light);">DEV §05〈音樂音效需求表〉</a></strong></td><td class="mono">theme_{theme_id}_sfx_{event}</td></tr>
       <tr><td>文案 key</td><td class="dim">主題化文案字串（面板標題、按鈕、恭喜語等），對應 DEV §11 i18n key 的主題覆寫</td><td class="mono">theme_{theme_id}_text_{key}</td></tr>
     </tbody>
   </table>
