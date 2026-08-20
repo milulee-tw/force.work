@@ -741,6 +741,9 @@ body.theme-light .on-r{fill:#B03A22;}
 .sg-b7{--bar:var(--green);}
 .sg-opt{--bar:#9A9488;}
 .sg-scale{display:flex;justify-content:space-between;font-size:9px;color:var(--text-dim);font-family:'DM Mono',monospace;margin:6px 0 0 104px;}
+.sg-scale2{position:relative;height:18px;margin:6px 0 0 104px;font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);}
+.sg-tick{position:absolute;transform:translateX(-50%);top:4px;white-space:nowrap;}
+.sg-tick::before{content:'';position:absolute;left:50%;top:-5px;height:4px;width:1px;background:var(--text-dim);}
 .sg-ms{margin:10px 0 0 104px;font-size:10.5px;color:var(--gold-light);font-family:'DM Mono',monospace;}
 
 </style>
@@ -759,7 +762,7 @@ body.theme-light .on-r{fill:#B03A22;}
 
 <!-- ═══════════ TOP NAV ═══════════ -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">CRM-Q3Q4 · V1.3</span>
+  <span class="nav-brand">CRM-Q3Q4 · V1.5</span>
   <a class="nav-item active" href="#overview">策略總覽</a>
   <a class="nav-item" href="#tower">順序立場</a>
   <a class="nav-item" href="#quad">效益象限</a>
@@ -783,7 +786,7 @@ body.theme-light .on-r{fill:#B03A22;}
     <div class="sidebar-brand">CMB · STRATEGY</div>
     <div class="sidebar-title">CRM Q3–Q4<br>開發順序提案</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v1.3</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v1.5</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-draft">DRAFT</span></div>
@@ -869,12 +872,12 @@ body.theme-light .on-r{fill:#B03A22;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CMB · STRATEGY PROPOSAL · 2026</div>
   <h1>CRM <span>Q3–Q4</span></h1>
-  <div class="cover-sub">留存 × 曝光雙引擎 · 開發順序與資源投入提案 · V1.3</div>
+  <div class="cover-sub">留存 × 曝光雙引擎 · 開發順序與資源投入提案 · V1.5</div>
   <div class="cover-pills">
     <span class="cover-pill">北極星 <strong>D1 留存 10% → 15%</strong></span>
     <span class="cover-pill">雙目標 <strong>留存 × 跨遊戲曝光</strong></span>
     <span class="cover-pill">市場 <strong>菲律賓（灰色市場）</strong></span>
-    <span class="cover-pill">起跑線 <strong>抽寶箱 v1（8/26）</strong></span>
+    <span class="cover-pill">起跑線 <strong>抽寶箱 v1（9/9）</strong></span>
   </div>
   <div class="cover-badges">
     <span class="badge badge-v1">7 波次</span>
@@ -952,7 +955,7 @@ body.theme-light .on-r{fill:#B03A22;}
     <text x="430" y="430" text-anchor="middle" class="on-sub-mid">波2 排行榜+回放+跑馬燈 · 波3 即時競賽</text>
     <text x="430" y="545" text-anchor="middle" class="on-tt on-core" font-size="18">地基</text>
     <text x="430" y="566" text-anchor="middle" class="on-core2" font-size="12.5">波1 FS卡+背包+Tag</text>
-    <text x="430" y="655" text-anchor="middle" class="on-base">起跑線：抽寶箱 v1（8/26）— 內圈不存在，外圈就懸空</text>
+    <text x="430" y="655" text-anchor="middle" class="on-base">起跑線：抽寶箱 v1（9/9）— 內圈不存在，外圈就懸空</text>
   </svg>
 </div>
 
@@ -1115,6 +1118,7 @@ body.theme-light .on-r{fill:#B03A22;}
       <li>號碼池大小以「頭獎每週中出 ≥1 次」反推（交機率組，沿用 ±0.1% RTP 驗算慣例）</li>
       <li>加倍券（Tag 分群＋寶箱獎項）＝誠實版精準投放：券多機率高，數學可公開驗算；單一玩家加倍日活動回饋約 1%→2%，在 3pt 總邊際內合法</li>
       <li><strong>加倍券管控三件套</strong>：同時生效覆蓋 ≤10% 活躍玩家（全服影響僅 +0.1pt 級）、單玩家同時生效 1 張、每期全服總券量上限——固定獎級成本隨券量線性成長，<strong>券量封頂＝成本封頂</strong></li>
+      <li><strong>v2 預留：雙彩池</strong>——一般池（低門檻）＋特殊池（彩票門檻更高、獎池更大），用「行為門檻」自然篩選高價值玩家、錢給到對的人，全程不貼 VIP 身分標籤、迴避與站長的玩家經營競合；列樂透後續階段，首發不做</li>
     </ul>
     <div class="num-cards">
       <div class="num-card"><div class="num-val">20:00</div><div class="num-label">每日固定開獎時刻＝全線路共同事件，跑馬燈天天播滾存彩池</div></div>
@@ -1284,7 +1288,8 @@ body.theme-light .on-r{fill:#B03A22;}
     <tr><td>波7 簽到＋補簽卡</td><td class="mono">3 週</td><td class="mono">5 週</td><td class="mono">6 週</td></tr>
   </table>
 
-  <div class="sub-title">人力情境甘特（三張圖同用一把 56 週的尺，可直接比長短）</div>
+  <div class="sub-title">人力情境甘特（三張圖同用一把尺：2026/09 → 2027/10，可直接比長短）</div>
+  <div class="body-text">時間軸換算錨點：<strong>W1＝2026/09/14 當週</strong>（抽寶箱 v1 於 9/9 完成後的下一個週一開工）。若實際開工日不同，整條軸等距平移；月份界線為近似值。</div>
   <div class="sgantt">
     <div class="sg-title">情境 1｜2 條線全投 CRM</div>
     <div class="sg-sub">假設：零維運（不現實，僅作談判上限）</div>
@@ -1292,8 +1297,16 @@ body.theme-light .on-r{fill:#B03A22;}
     <div class="sg-row"><div class="sg-label">後端A</div><div class="sg-track"><div class="sg-bar sg-b2" style="left:14.3%;width:16.1%;">波2 排行榜</div><div class="sg-bar sg-b3" style="left:30.4%;width:14.3%;">波3 競賽</div><div class="sg-bar sg-b5" style="left:44.6%;width:10.7%;">波5 樂透</div><div class="sg-bar sg-b7" style="left:55.4%;width:8.9%;">波7 簽到</div></div></div>
     <div class="sg-row"><div class="sg-label">後端B</div><div class="sg-track"><div class="sg-bar sg-b4" style="left:14.3%;width:19.6%;">波4 風控三層</div><div class="sg-bar sg-b6" style="left:33.9%;width:8.9%;">波6b 任務</div><div class="sg-bar sg-opt dim" style="left:42.9%;width:21.4%;">機動支援</div></div></div>
     <div class="sg-row"><div class="sg-label">前端</div><div class="sg-track"><div class="sg-bar sg-b2" style="left:30.4%;width:5.4%;">波2.5</div><div class="sg-bar sg-b6" style="left:35.7%;width:8.9%;">波6a 攔截頁</div><div class="sg-bar sg-b5 dim" style="left:44.6%;width:10.7%;">開獎演出</div></div></div>
-    <div class="sg-scale"><span>W1</span><span>W8</span><span>W16</span><span>W24</span><span>W32</span><span>W40</span><span>W48</span><span>W56</span></div>
-    <div class="sg-ms">🏁 排行榜 W17 ・ 競賽 W25 ・ 樂透 W31 ・ 全案 W36（約 8.5 個月）</div>
+    <div class="sg-scale2">
+      <span class="sg-tick" style="left:4.3%;">2026/10</span>
+      <span class="sg-tick" style="left:19.9%;">2026/12</span>
+      <span class="sg-tick" style="left:35.7%;">2027/02</span>
+      <span class="sg-tick" style="left:50.8%;">2027/04</span>
+      <span class="sg-tick" style="left:66.3%;">2027/06</span>
+      <span class="sg-tick" style="left:81.9%;">2027/08</span>
+      <span class="sg-tick" style="left:97.4%;">2027/10</span>
+    </div>
+    <div class="sg-ms">🏁 排行榜 2027/01上旬（W17）・ 競賽 2027/03上旬（W25）・ 樂透 2027/04中旬（W31）・ 全案 2027/05下旬（W36，約 8.5 個月）</div>
   </div>
   <div class="sgantt">
     <div class="sg-title">情境 2｜1.5 線 CRM ＋ 0.5 線優化（推薦）</div>
@@ -1303,8 +1316,16 @@ body.theme-light .on-r{fill:#B03A22;}
     <div class="sg-row"><div class="sg-label">後端B·50%</div><div class="sg-track"><div class="sg-bar sg-b4" style="left:14.3%;width:39.3%;">波4 風控三層（半速）</div><div class="sg-bar sg-b6" style="left:53.6%;width:17.9%;">波6b 任務（半速）</div></div></div>
     <div class="sg-row"><div class="sg-label">優化·50%</div><div class="sg-track"><div class="sg-bar sg-opt dim" style="left:14.3%;width:58.9%;">後台優化持續產出（含 RTP 設定工具需求承接）</div></div></div>
     <div class="sg-row"><div class="sg-label">前端</div><div class="sg-track"><div class="sg-bar sg-b2" style="left:30.4%;width:5.4%;">波2.5</div><div class="sg-bar sg-b6" style="left:35.7%;width:8.9%;">波6a 攔截頁</div><div class="sg-bar sg-b5 dim" style="left:53.6%;width:10.7%;">開獎演出</div></div></div>
-    <div class="sg-scale"><span>W1</span><span>W8</span><span>W16</span><span>W24</span><span>W32</span><span>W40</span><span>W48</span><span>W56</span></div>
-    <div class="sg-ms">🏁 排行榜 W17 ・ 競賽 W25 ・ 樂透 W36 ・ 全案 W41（約 9.5 個月）</div>
+    <div class="sg-scale2">
+      <span class="sg-tick" style="left:4.3%;">2026/10</span>
+      <span class="sg-tick" style="left:19.9%;">2026/12</span>
+      <span class="sg-tick" style="left:35.7%;">2027/02</span>
+      <span class="sg-tick" style="left:50.8%;">2027/04</span>
+      <span class="sg-tick" style="left:66.3%;">2027/06</span>
+      <span class="sg-tick" style="left:81.9%;">2027/08</span>
+      <span class="sg-tick" style="left:97.4%;">2027/10</span>
+    </div>
+    <div class="sg-ms">🏁 排行榜 2027/01上旬（W17）・ 競賽 2027/03上旬（W25）・ 樂透 2027/05下旬（W36）・ 全案 2027/06下旬（W41，約 9.5 個月）</div>
   </div>
   <div class="sgantt">
     <div class="sg-title">情境 3｜1 線 CRM ＋ 1 線優化</div>
@@ -1312,16 +1333,24 @@ body.theme-light .on-r{fill:#B03A22;}
     <div class="sg-row"><div class="sg-label">後端A</div><div class="sg-track"><div class="sg-bar sg-b1" style="left:0.0%;width:21.4%;">波1</div><div class="sg-bar sg-b2" style="left:21.4%;width:16.1%;">波2</div><div class="sg-bar sg-b3" style="left:37.5%;width:14.3%;">波3</div><div class="sg-bar sg-b4" style="left:51.8%;width:19.6%;">波4</div><div class="sg-bar sg-b5" style="left:71.4%;width:10.7%;">波5</div><div class="sg-bar sg-b6" style="left:82.1%;width:8.9%;">6b</div><div class="sg-bar sg-b7" style="left:91.1%;width:8.9%;">波7</div></div></div>
     <div class="sg-row"><div class="sg-label">後端B</div><div class="sg-track"><div class="sg-bar sg-opt dim" style="left:0.0%;width:100.0%;">後台優化</div></div></div>
     <div class="sg-row"><div class="sg-label">前端</div><div class="sg-track"><div class="sg-bar sg-b2" style="left:37.5%;width:5.4%;">波2.5</div><div class="sg-bar sg-b6" style="left:71.4%;width:8.9%;">波6a 攔截頁</div></div></div>
-    <div class="sg-scale"><span>W1</span><span>W8</span><span>W16</span><span>W24</span><span>W32</span><span>W40</span><span>W48</span><span>W56</span></div>
-    <div class="sg-ms">🏁 排行榜 W21 ・ 競賽 W29 ・ 樂透 W46 ・ 全案 W56（約 13 個月，跨入 2027 H2）</div>
+    <div class="sg-scale2">
+      <span class="sg-tick" style="left:4.3%;">2026/10</span>
+      <span class="sg-tick" style="left:19.9%;">2026/12</span>
+      <span class="sg-tick" style="left:35.7%;">2027/02</span>
+      <span class="sg-tick" style="left:50.8%;">2027/04</span>
+      <span class="sg-tick" style="left:66.3%;">2027/06</span>
+      <span class="sg-tick" style="left:81.9%;">2027/08</span>
+      <span class="sg-tick" style="left:97.4%;">2027/10</span>
+    </div>
+    <div class="sg-ms">🏁 排行榜 2027/02上旬（W21）・ 競賽 2027/04上旬（W29）・ 樂透 2027/08初（W46）・ 全案 2027/10上旬（W56，約 13 個月）</div>
   </div>
 
   <div class="sub-title">三情境里程碑對照</div>
   <table class="spec-table">
     <tr><th>情境</th><th>排行榜</th><th>即時競賽</th><th>樂透</th><th>全案完成</th><th>判讀</th></tr>
-    <tr><td>1｜2 線全投 CRM</td><td class="mono">W17</td><td class="mono">W25</td><td class="mono">W31</td><td class="mono">W36（≈8.5月）</td><td class="dim">最快；但「零維運」假設與現實不符，僅作談判上限</td></tr>
-    <tr><td><strong>2｜1.5＋0.5（推薦）</strong></td><td class="mono">W17</td><td class="mono">W25</td><td class="mono">W36</td><td class="mono">W41（≈9.5月）</td><td class="dim">前段亮點時程與情境1 完全相同；代價只有樂透晚 5 週；維運有著落</td></tr>
-    <tr><td>3｜1＋1</td><td class="mono">W21</td><td class="mono">W29</td><td class="mono">W46</td><td class="mono">W56（≈13月）</td><td class="dim">全案跨年，Q3–Q4 雙引擎策略實質破產</td></tr>
+    <tr><td>1｜2 線全投 CRM</td><td class="mono">2027/01上旬</td><td class="mono">2027/03上旬</td><td class="mono">2027/04中旬</td><td class="mono">2027/05下旬（W36）</td><td class="dim">最快；但「零維運」假設與現實不符，僅作談判上限</td></tr>
+    <tr><td><strong>2｜1.5＋0.5（推薦）</strong></td><td class="mono">2027/01上旬</td><td class="mono">2027/03上旬</td><td class="mono">2027/05下旬</td><td class="mono">2027/06下旬（W41）</td><td class="dim">前段亮點時程與情境1 完全相同；代價只有樂透晚 5 週；維運有著落</td></tr>
+    <tr><td>3｜1＋1</td><td class="mono">2027/02上旬</td><td class="mono">2027/04上旬</td><td class="mono">2027/08初</td><td class="mono">2027/10上旬（W56）</td><td class="dim">全案跨年，Q3–Q4 雙引擎策略實質破產</td></tr>
   </table>
   <div class="callout success"><strong>立場：推情境 2。</strong>情境 1 的「零維運」假設我們自己已經證偽（RTP 設定工具等後台需求真實存在）；情境 3 等於宣告下半年策略放棄。情境 2 的唯一代價是樂透晚 5 週，而排行榜、競賽等前段亮點與情境 1 完全同速——對長官的講法：「0.5 線優化不是拖慢 CRM，是讓 CRM 上線後有人接得住。」若優化需求持續大於 0.5 線，另開第 3 名後端的人力議題。</div>
 
@@ -1351,7 +1380,7 @@ body.theme-light .on-r{fill:#B03A22;}
       <tr><th>功能</th><th class="v1-col">最小方案（MVP）</th><th class="v2-col">完整方案（本提案）</th></tr>
       <tr><td>排行榜</td><td class="v1-val">日榜＋固定 FS 卡獎</td><td class="v2-val">個人榜＋全線路榜＋回放連動＋Bonus Game 卡頭獎</td></tr>
       <tr><td>即時競賽</td><td class="v1-val">每日定時單場（榜引擎換皮）</td><td class="v2-val">連續滾動場次＋賽程表＋歷史戰績＋即時結算</td></tr>
-      <tr><td>樂透</td><td class="v1-val">固定獎級＋單期彩池（無滾存）</td><td class="v2-val">滾存大獎池＋加倍券＋作廢回注＋跑馬燈播報</td></tr>
+      <tr><td>樂透</td><td class="v1-val">固定獎級＋單期彩池（無滾存）</td><td class="v2-val">滾存大獎池＋加倍券＋作廢回注＋跑馬燈播報；v2 再加特殊彩池（高門檻大獎場）</td></tr>
       <tr><td>攔截頁＋跨遊戲任務</td><td class="v1-val">寫死推薦位＋固定任務清單（指定遊戲×次數型）</td><td class="v2-val">＋樂透券/加倍券獎勵連動＋Tag 個人化推薦（差一點模組列 Backlog）</td></tr>
       <tr><td>跑馬燈</td><td class="v1-val">大獎文字跑馬</td><td class="v2-val">＋樂透滾存彩池即時播報</td></tr>
       <tr><td>Bonus Game 卡</td><td class="v1-val">榜頂限量試點（三名獎級、月成本封頂 ≈₱21,000）</td><td class="v2-val">擴大發放（以波4 風控上線為前置）</td></tr>
@@ -1360,7 +1389,7 @@ body.theme-light .on-r{fill:#B03A22;}
   </div>
 
   <div class="sub-title">Backlog（看數據再啟動）</div>
-  <div class="body-text">大獎集錦自動產出＋站外分享連結（武裝站長的行銷素材包）、攔截頁「差一點」個人化模組（損失規避訊息）、站長自助 FS 卡發放後台、即時競賽分房/分級、通知中心、品牌門面完整版、挑戰/地圖任務、VIP 分層、Jackpot 連線彩金。<strong>幸運幣第二貨幣維持凍結。</strong></div>
+  <div class="body-text">大獎集錦自動產出＋站外分享連結（武裝站長的行銷素材包）、攔截頁「差一點」個人化模組（損失規避訊息）、站長自助 FS 卡發放後台、即時競賽分房/分級、通知中心、品牌門面完整版、挑戰/地圖任務、樂透特殊彩池（高行為門檻大獎場，樂透 v2）、VIP 系統（遠期：需品牌規模支撐，與站長玩家經營存在競合——JILI/FC 前例）、Jackpot 連線彩金。<strong>幸運幣第二貨幣維持凍結。</strong></div>
 
   <div class="sub-title">待確認事項</div>
   <div class="oq-item data"><div class="oq-owner">機率組</div><div class="oq-q">樂透號碼池大小與獎級 RTP 目標值（設計參數：頭獎每週中出 ≥1 次、整體活動 RTP 占比上限內）</div></div>
@@ -1373,7 +1402,9 @@ body.theme-light .on-r{fill:#B03A22;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  CMB · CRM Q3–Q4 PROPOSAL · V1.3<br>
+  CMB · CRM Q3–Q4 PROPOSAL · V1.5<br>
+  2026-08-20 · V1.5 · 甘特時間軸改實際年月（錨點 W1＝2026/09/14 當週，抽寶箱 v1 完成日 9/9）＋里程碑對照表換算日期<br>
+  2026-08-19 · V1.4 · 樂透 v2 預留雙彩池（特殊彩池＝高行為門檻大獎場，取代 VIP 照顧池構想）＋VIP 系統定位遠期（與站長經營競合）<br>
   2026-08-19 · V1.3 · 全項目工期 ×1.5 buffer＋三種人力情境甘特＋象限改人週評分制＋波2 拆包＋BG卡獎級升級（月₱21,000）＋波6 拆 6a/6b＋波4 三層（含 RTP 設定工具）<br>
   2026-08-18 · V1.2 · 時程改雙線並行（2後端+2前端，36→約24週）＋風控補分級剎車表與獎項公告策略＋回放定案站內重播＋加倍券手動使用＋簽到下修3週<br>
   2026-08-18 · V1.1 · 波6 併入跨遊戲任務（方案B）＋§02 依賴塔改五層同心圓＋四象限補點＋時程 33→36 週<br>
