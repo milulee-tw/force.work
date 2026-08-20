@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-27",
-  "count": 75,
+  "updated": "2026-09-09",
+  "count": 83,
   "items": [
     {
       "date": "2026-03-09",
@@ -24,13 +24,13 @@
     },
     {
       "date": "2026-04-01",
-      "category": "遊戲開發",
-      "event": "[S011 火車] BETA 版本完成並結案，完成度 100%"
+      "category": "伺服器更新",
+      "event": "版本更新：GameLog 調整數據組 Log 串接（Odds 計算）；[Bug Fix] Slot015 Log 計算錯誤修正"
     },
     {
       "date": "2026-04-01",
-      "category": "伺服器更新",
-      "event": "版本更新：GameLog 調整數據組 Log 串接（Odds 計算）；[Bug Fix] Slot015 Log 計算錯誤修正"
+      "category": "遊戲開發",
+      "event": "[S011 火車] BETA 版本完成並結案，完成度 100%"
     },
     {
       "date": "2026-04-02",
@@ -49,13 +49,13 @@
     },
     {
       "date": "2026-04-10",
-      "category": "遊戲開發",
-      "event": "[S011 火車] 進行全公司試玩會"
+      "category": "遊戲上線",
+      "event": "[S023 海盜女王][S009 星際動物] 在 MPS 開放遊玩；新遊戲提升 DAU 約 +250 人，第 3 天趨緩（-160 人）"
     },
     {
       "date": "2026-04-10",
-      "category": "遊戲上線",
-      "event": "[S023 海盜女王][S009 星際動物] 在 MPS 開放遊玩；新遊戲提升 DAU 約 +250 人，第 3 天趨緩（-160 人）"
+      "category": "遊戲開發",
+      "event": "[S011 火車] 進行全公司試玩會"
     },
     {
       "date": "2026-04-13",
@@ -69,13 +69,13 @@
     },
     {
       "date": "2026-04-15",
-      "category": "遊戲開發",
-      "event": "進行 CMB 官網第一次進度同步會議，Server 預計 4/23 完成"
+      "category": "伺服器更新",
+      "event": "版本更新：Gateway 水池設定（只需更新 MongoDB）；修復遊戲注單資源未釋放 Bug；Gateway + GameLog toml 轉 mongo（需設定 MongoDB）"
     },
     {
       "date": "2026-04-15",
-      "category": "伺服器更新",
-      "event": "版本更新：Gateway 水池設定（只需更新 MongoDB）；修復遊戲注單資源未釋放 Bug；Gateway + GameLog toml 轉 mongo（需設定 MongoDB）"
+      "category": "遊戲開發",
+      "event": "進行 CMB 官網第一次進度同步會議，Server 預計 4/23 完成"
     },
     {
       "date": "2026-04-16",
@@ -99,13 +99,13 @@
     },
     {
       "date": "2026-04-23",
-      "category": "遊戲開發",
-      "event": "前端版本更新：新增葡萄牙語（pt-BR）、西班牙文、緬甸文、越南文、印尼文支持；client log 修正、Slot Framework 重構、CoreUtilities 重構、Bug Fixes"
+      "category": "遊戲上線",
+      "event": "PMS 上線導致 8 條線路共 8 款遊戲關閉，其他線路營收明顯下滑；預計 4/29 針對 4/24–4/28 下滑狀況進行分析並提出後續方案"
     },
     {
       "date": "2026-04-23",
-      "category": "遊戲上線",
-      "event": "PMS 上線導致 8 條線路共 8 款遊戲關閉，其他線路營收明顯下滑；預計 4/29 針對 4/24–4/28 下滑狀況進行分析並提出後續方案"
+      "category": "遊戲開發",
+      "event": "前端版本更新：新增葡萄牙語（pt-BR）、西班牙文、緬甸文、越南文、印尼文支持；client log 修正、Slot Framework 重構、CoreUtilities 重構、Bug Fixes"
     },
     {
       "date": "2026-04-24",
@@ -113,9 +113,9 @@
       "event": "[S012 釣魚哥] 進行全公司試玩會"
     },
     {
-      "date": "2026-04-29",
-      "category": "遊戲開發",
-      "event": "完成熊貓和釣魚哥結案會議"
+      "date": "2026-04-28",
+      "category": "遊戲上線",
+      "event": "[S021 Caishen Wins 財神][S006 Gummy Bonanza 軟糖熊] 於 UFA SLOT 開放遊玩（第一批獨佔遊戲）"
     },
     {
       "date": "2026-04-29",
@@ -126,6 +126,11 @@
       "date": "2026-04-29",
       "category": "遊戲上線",
       "event": "火車開放正式機並通知 AWS 和 MPS 串接測試"
+    },
+    {
+      "date": "2026-04-29",
+      "category": "遊戲開發",
+      "event": "完成熊貓和釣魚哥結案會議"
     },
     {
       "date": "2026-05-01",
@@ -209,6 +214,11 @@
     },
     {
       "date": "2026-06-10",
+      "category": "伺服器更新",
+      "event": "不停機更新 gateway v1.6.8：[Hotfix] 修正 UFA 免費遊戲帶入異常 game_code"
+    },
+    {
+      "date": "2026-06-10",
       "category": "遊戲開發",
       "event": "[S032 阿拉丁] Beta 版本測試完成"
     },
@@ -218,19 +228,14 @@
       "event": "Combo 遊戲暫時於 Jackpot Combo（JC）平台下架；應菲律賓官方合規需求，MegaXcess 僅接受單一集成商資料，Combo 未來上架 JC 須改由 Sanatech 作為中介進行串接；預期 AWC 使用線路 AWS051 串接至 Sanatech，JC 則另外申請獨立線路進行串接"
     },
     {
-      "date": "2026-06-10",
-      "category": "伺服器更新",
-      "event": "不停機更新 gateway v1.6.8：[Hotfix] 修正 UFA 免費遊戲帶入異常 game_code"
+      "date": "2026-06-12",
+      "category": "遊戲上線",
+      "event": "[S013 金蟾] 於 UFA SLOT 開放遊玩；確認穩定後，將請 AWC 同步關閉支援 THB 幣值線路內的 S013，以符合 UFA SLOT 獨佔需求"
     },
     {
       "date": "2026-06-12",
       "category": "遊戲開發",
       "event": "[S032 阿拉丁] 進行內部試玩會"
-    },
-    {
-      "date": "2026-06-12",
-      "category": "遊戲上線",
-      "event": "[S013 金蟾] 於 UFA SLOT 開放遊玩；確認穩定後，將請 AWC 同步關閉支援 THB 幣值線路內的 S013，以符合 UFA SLOT 獨佔需求"
     },
     {
       "date": "2026-06-15",
@@ -259,23 +264,23 @@
     },
     {
       "date": "2026-06-25",
-      "category": "數據異常",
-      "event": "請遊戲組轉拋遊戲 log 給數據組補上 6/24 遺失資料；同時發現 Promotion Tool 發出的 Free Spin 卡所產生的注單，僅記錄實際扣款 Bet ID，未記錄獲獎使用的 Bet ID；待 Server 實作完成後安排補齊注單資料缺漏"
-    },
-    {
-      "date": "2026-06-25",
       "category": "遊戲上線",
       "event": "[S005 礦工] 原訂於 UFA SLOT 開放遊玩，因文字修正問題延期"
     },
     {
-      "date": "2026-06-26",
-      "category": "合規送審",
-      "event": "bmm 測試帳號環境由 LLG PP 改為 Combo PP 進度同步：後端預計 2026-07-01 上 UAT，測試無誤後上 Combo PP 環境；完成後關閉 LLG PP 環境"
+      "date": "2026-06-25",
+      "category": "數據異常",
+      "event": "請遊戲組轉拋遊戲 log 給數據組補上 6/24 遺失資料；同時發現 Promotion Tool 發出的 Free Spin 卡所產生的注單，僅記錄實際扣款 Bet ID，未記錄獲獎使用的 Bet ID；待 Server 實作完成後安排補齊注單資料缺漏"
     },
     {
       "date": "2026-06-26",
       "category": "遊戲開發",
       "event": "[S033 富豪] 進行全公司試玩會"
+    },
+    {
+      "date": "2026-06-26",
+      "category": "合規送審",
+      "event": "bmm 測試帳號環境由 LLG PP 改為 Combo PP 進度同步：後端預計 2026-07-01 上 UAT，測試無誤後上 Combo PP 環境；完成後關閉 LLG PP 環境"
     },
     {
       "date": "2026-06-29",
@@ -324,13 +329,13 @@
     },
     {
       "date": "2026-07-17",
-      "category": "合規送審",
-      "event": "UK 送審資料（access control / asset register）已提供給 EMB Alv；後續等候 Alv 同步審查並安排視訊時間"
+      "category": "遊戲開發",
+      "event": "[S025 古墓貓] 進行全公司試玩會"
     },
     {
       "date": "2026-07-17",
-      "category": "遊戲開發",
-      "event": "[S025 古墓貓] 進行全公司試玩會"
+      "category": "合規送審",
+      "event": "UK 送審資料（access control / asset register）已提供給 EMB Alv；後續等候 Alv 同步審查並安排視訊時間"
     },
     {
       "date": "2026-07-24",
@@ -345,7 +350,7 @@
     {
       "date": "2026-07-30",
       "category": "遊戲開發",
-      "event": "[S021 Caishen Wins 財神] 機率 AB Testing 開始（2026-07-30 ～ 2026-08-13）"
+      "event": "[S021 Caishen Wins 財神] 機率 AB Testing 開始（2026-07-30 ～ 2026-08-13），於 UFA SLOT 獨佔期間進行"
     },
     {
       "date": "2026-08-03",
@@ -363,19 +368,54 @@
       "event": "[S064 Lady Fortuna 海盜嬌娃] 預計於 UFA SLOT 開放遊玩（獨佔）；其他 AWC 支援泰銖線路須同步關閉 S064"
     },
     {
+      "date": "2026-08-12",
+      "category": "伺服器更新",
+      "event": "預計不停機更新（10:00）：新增 IGC 線路設定；加入 fps 數據資料；啟動遊戲 [S062 Lucky Paws 財神貓]（UFA AB testing）、[S025 Tomb Cat 古墓貓]、[S026 Red Riding Hood 小紅帽]"
+    },
+    {
+      "date": "2026-08-12",
+      "category": "遊戲上線",
+      "event": "預計上線 4 款遊戲：[S062 Lucky Paws 財神貓]（UFA SLOT 獨佔，UFA SLOT 端預計 2026-08-27 才開放）、[S025 Tomb Cat 古墓貓]、[S026 Red Riding Hood 小紅帽]、[A001 Fast Game - Mines]（已於 2026-07-29 版更先行開啟）"
+    },
+    {
+      "date": "2026-08-14",
+      "category": "遊戲上線",
+      "event": "IGC 部分線路開放玩家遊玩（該線路於 2026-07-15 版更新增、2026-08-12 版更補上線路設定）；目前觀察開放幣別為 CNY"
+    },
+    {
+      "date": "2026-08-19",
+      "category": "伺服器更新",
+      "event": "臨時版更（約 18:50）：修正遊戲組拋送數據組的資料格式缺少欄位問題；修復後新線路（IGC）資訊已順利拋送數據組"
+    },
+    {
+      "date": "2026-08-19",
+      "category": "數據異常",
+      "event": "IGC 線路自 2026-08-14 開放玩家遊玩後，因遊戲組拋送數據組的資料格式缺少欄位，2026-08-14 ～ 08-19 期間該線路資料未進入數據組；已於本日約 18:50 臨時版更修復"
+    },
+    {
+      "date": "2026-08-20",
+      "category": "遊戲上線",
+      "event": "[S021 Caishen Wins 財神][S006 Gummy Bonanza 軟糖熊] 預計自 UFA SLOT 下架，回到一般線路恢復上線（獨佔期間 2026-04-28 ～ 2026-08-20，約 3.7 個月）：一般線路 Release（game code `CaishenWins`／`GummyBonanza`），UFA SLOT 同日 Delist（game code `CaishenWinsUfa`／`GummyBonanzaUfa`）"
+    },
+    {
       "date": "2026-08-27",
       "category": "遊戲上線",
-      "event": "[S062 Lucky Paws 財神貓] 預計於 UFA SLOT 開放遊玩（獨佔）；其他 AWC 支援泰銖線路須同步關閉 S062"
+      "event": "[S062 Lucky Paws 財神貓] 預計於 UFA SLOT 開放遊玩（獨佔，該遊戲預計 2026-08-12 先行上線）；其他 AWC 支援泰銖線路須同步關閉 S062"
     },
     {
       "date": "2026-08-27",
       "category": "遊戲開發",
-      "event": "[S062 Lucky Paws 財神貓] 機率 AB Testing 開始（2026-08-27 ～ 2026-09-10）；與上線同日開跑；本次為 S021 財神 AB Testing 數據污染後的重啟，須先經 Server Staging 模擬驗證設定檔再上線"
+      "event": "[S062 Lucky Paws 財神貓] 機率 AB Testing 開始（2026-08-27 ～ 2026-09-10）；與上線同日開跑。[S062 財神貓] 為 [S021 財神] 的換皮遊戲，S021 該期 AB Testing 數據遭污染後改於本款重跑；須先經 Server Staging 模擬驗證設定檔再上線"
     },
     {
       "date": "2026-08-27",
       "category": "商務合作",
       "event": "預計美國直連平台「House of Spins」開放營運"
+    },
+    {
+      "date": "2026-09-09",
+      "category": "遊戲上線",
+      "event": "[S029 Temple Burst 神廟爆金]（內部代號：祖馬）預計於 UFA SLOT Release（game code `TempleBurstUfa`）"
     }
   ]
 }
