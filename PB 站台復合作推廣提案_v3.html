@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PB 站台復合作推廣提案 · 簡報</title>
+<style>
+:root{
+  --bg:#0e0f12; --panel:#191c22; --panel2:#1f232b;
+  --line:#2b303a; --line2:#3a4150;
+  --txt:#e9ebf1; --txt2:#a8aebc; --txt3:#767d8d;
+  --gold:#d4af62; --gold2:#f0d69a; --goldbg:rgba(212,175,98,.10);
+  --green:#4fbf7d; --greenbg:rgba(79,191,125,.10);
+  --red:#e5484d; --redbg:rgba(229,72,77,.10);
+  --blue:#5b9dd9; --bluebg:rgba(91,157,217,.10);
+}
+html[data-theme="light"]{
+  --bg:#faf8f4; --panel:#ffffff; --panel2:#f5f1e9;
+  --line:#e2dcd0; --line2:#cfc6b4;
+  --txt:#221f18; --txt2:#57513f; --txt3:#8a8375;
+  --gold:#a67c22; --gold2:#8a6415; --goldbg:rgba(166,124,34,.09);
+  --green:#2e8b57; --greenbg:rgba(46,139,87,.09);
+  --red:#c0392b; --redbg:rgba(192,57,43,.08);
+  --blue:#2c6fa8; --bluebg:rgba(44,111,168,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--bg); color:var(--txt); overflow:hidden;
+  font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.deck{position:relative; width:100vw; height:100vh}
+.slide{
+  position:absolute; inset:0; display:none; flex-direction:column;
+  padding:min(6vh,58px) min(7vw,86px) min(11vh,96px);
+  animation:fade .28s ease;
+}
+.slide.active{display:flex}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.eyebrow{color:var(--gold); font-size:clamp(10px,1.05vw,13px); letter-spacing:.22em; font-weight:800; margin-bottom:14px}
+h1{font-size:clamp(30px,5.2vw,62px); line-height:1.16; font-weight:800; letter-spacing:-.015em}
+h1 span{color:var(--gold)}
+h2{font-size:clamp(22px,3.1vw,38px); line-height:1.28; font-weight:800; margin-bottom:8px}
+h2 span{color:var(--gold)}
+.sub{color:var(--txt3); font-size:clamp(12px,1.25vw,16px); margin-top:16px; letter-spacing:.05em}
+.rule{height:2px; background:var(--gold); width:64px; margin:18px 0 24px; border-radius:2px}
+.lede{font-size:clamp(15px,1.75vw,23px); color:var(--txt2); line-height:1.7; max-width:1080px}
+.lede strong{color:var(--txt); font-weight:800}
+.lede em{color:var(--gold2); font-style:normal; font-weight:800}
+
+.body{flex:1; min-height:0; overflow:auto; padding-right:6px}
+.body::-webkit-scrollbar{width:6px}
+.body::-webkit-scrollbar-thumb{background:var(--line2); border-radius:3px}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,1.6vw,22px)}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,22px)}
+.card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:clamp(16px,1.9vw,26px)}
+.card.gold{border-color:var(--gold); background:var(--goldbg)}
+.card.ok{border-color:var(--green); background:var(--greenbg)}
+.card.bad{border-color:var(--red); background:var(--redbg)}
+.card-k{font-size:clamp(11px,1.05vw,14px); color:var(--txt3); letter-spacing:.1em; font-weight:700; margin-bottom:10px}
+.card.gold .card-k{color:var(--gold)}
+.card.ok .card-k{color:var(--green)}
+.card.bad .card-k{color:var(--red)}
+.card-big{font-size:clamp(26px,3.6vw,46px); font-weight:800; color:var(--gold2); line-height:1.1; margin-bottom:8px}
+.card.ok .card-big{color:var(--green)}
+.card.bad .card-big{color:var(--red)}
+.card-t{font-size:clamp(14px,1.5vw,20px); font-weight:800; margin-bottom:8px}
+.card-d{font-size:clamp(12px,1.25vw,16px); color:var(--txt2); line-height:1.65}
+.card-d strong{color:var(--txt)}
+
+ul.big{list-style:none; margin-top:6px}
+ul.big li{
+  font-size:clamp(14px,1.55vw,21px); color:var(--txt2); line-height:1.62;
+  padding:11px 0 11px 34px; position:relative; border-bottom:1px solid var(--line);
+}
+ul.big li:last-child{border-bottom:none}
+ul.big li::before{content:"›"; position:absolute; left:8px; top:9px; color:var(--gold); font-size:1.25em; font-weight:800}
+ul.big li strong{color:var(--txt); font-weight:800}
+ul.big li em{color:var(--gold2); font-style:normal; font-weight:800}
+ul.big.num{counter-reset:n}
+ul.big.num li{counter-increment:n; padding-left:46px}
+ul.big.num li::before{
+  content:counter(n); left:0; top:12px; width:26px; height:26px; border-radius:50%;
+  background:var(--goldbg); border:1px solid var(--gold); color:var(--gold);
+  font-size:13px; display:flex; align-items:center; justify-content:center; font-weight:800;
+}
+
+table{width:100%; border-collapse:collapse; font-size:clamp(12px,1.25vw,16px)}
+th{background:var(--panel2); color:var(--gold2); padding:11px 14px; border:1px solid var(--line); text-align:left; font-size:clamp(11px,1.1vw,14px); font-weight:800; letter-spacing:.04em}
+td{padding:11px 14px; border:1px solid var(--line); color:var(--txt2); vertical-align:top}
+td strong{color:var(--txt)}
+tr:nth-child(even) td{background:var(--panel)}
+.c{text-align:center}
+.yes{color:var(--green); font-weight:800}
+.no{color:var(--txt3)}
+.part{color:var(--gold); font-weight:700}
+
+.tl{display:flex; gap:0; margin-top:8px; flex-wrap:wrap}
+.tl-i{flex:1; min-width:150px; border-top:3px solid var(--line2); padding:16px 16px 0 0; position:relative}
+.tl-i.on{border-top-color:var(--gold)}
+.tl-i.bad{border-top-color:var(--red)}
+.tl-i::before{content:""; position:absolute; top:-8px; left:0; width:13px; height:13px; border-radius:50%; background:var(--line2)}
+.tl-i.on::before{background:var(--gold)}
+.tl-i.bad::before{background:var(--red)}
+.tl-d{font-size:clamp(11px,1.1vw,14px); color:var(--gold); font-weight:800; letter-spacing:.05em}
+.tl-i.bad .tl-d{color:var(--red)}
+.tl-t{font-size:clamp(13px,1.35vw,18px); font-weight:800; margin:5px 0 5px}
+.tl-x{font-size:clamp(11px,1.15vw,14px); color:var(--txt3); line-height:1.55}
+
+.note{border-left:3px solid var(--gold); background:var(--goldbg); border-radius:0 12px 12px 0; padding:clamp(14px,1.7vw,22px); margin-top:auto}
+.note.warn{border-color:var(--red); background:var(--redbg)}
+.note.ok{border-color:var(--green); background:var(--greenbg)}
+.note-k{font-size:clamp(10px,1vw,13px); letter-spacing:.14em; font-weight:800; color:var(--gold); margin-bottom:7px}
+.note.warn .note-k{color:var(--red)}
+.note.ok .note-k{color:var(--green)}
+.note-d{font-size:clamp(13px,1.4vw,18px); color:var(--txt2); line-height:1.65}
+.note-d strong{color:var(--txt); font-weight:800}
+
+.pill{display:inline-block; padding:3px 12px; border-radius:20px; font-size:clamp(10px,1.05vw,13px); font-weight:800; margin:2px 4px 2px 0}
+.p-gold{background:var(--goldbg); color:var(--gold); border:1px solid var(--gold)}
+.p-red{background:var(--redbg); color:var(--red); border:1px solid var(--red)}
+.p-green{background:var(--greenbg); color:var(--green); border:1px solid var(--green)}
+.p-blue{background:var(--bluebg); color:var(--blue); border:1px solid var(--blue)}
+
+/* chrome */
+.bar{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; gap:14px; padding:0 min(7vw,86px); z-index:20; background:linear-gradient(transparent,var(--bg) 45%)}
+.dots{display:flex; gap:6px; flex:1; flex-wrap:wrap}
+.dot{width:8px; height:8px; border-radius:50%; background:var(--line2); cursor:pointer; border:none; padding:0; transition:.18s}
+.dot.on{background:var(--gold); transform:scale(1.35)}
+.nav{display:flex; gap:8px; align-items:center}
+.nb{
+  width:34px; height:34px; border-radius:9px; background:var(--panel); border:1px solid var(--line2);
+  color:var(--txt2); cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center;
+}
+.nb:hover{color:var(--gold); border-color:var(--gold)}
+.pg{color:var(--txt3); font-size:12px; letter-spacing:.08em; min-width:56px; text-align:center}
+.brand{position:fixed; top:min(3vh,26px); right:min(7vw,86px); color:var(--txt3); font-size:clamp(9px,.95vw,12px); letter-spacing:.16em; font-weight:700; z-index:20}
+.tools{position:fixed; top:min(3vh,26px); left:min(7vw,86px); display:flex; gap:7px; z-index:20}
+.tb{width:30px;height:30px;border-radius:8px;background:var(--panel);border:1px solid var(--line2);color:var(--txt3);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
+.tb:hover{color:var(--gold);border-color:var(--gold)}
+@media (max-width:820px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .slide{padding:56px 22px 78px}
+  .brand{display:none}
+}
+@media print{body{overflow:visible}.slide{display:flex!important;position:relative;height:100vh;page-break-after:always}.bar,.tools,.brand{display:none}}
+</style>
+</head>
+<body>
+
+<div class="tools">
+  <button class="tb" id="themeBtn" title="亮/暗主題">☾</button>
+  <button class="tb" id="fsBtn" title="全螢幕">⛶</button>
+</div>
+<div class="brand">CMB · PB REPROMO · 內部核可簡報</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 封面 -->
+  <section class="slide">
+    <div class="body" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">COMBO GAMING · 內部核可簡報 · 2026.08</div>
+      <h1>PB 站台<br><span>復合作推廣</span>提案</h1>
+      <div class="rule"></div>
+      <div class="lede" style="max-width:820px">
+        重啟與 PB 站台的推廣合作，為期 2 個月。<br>
+        <strong>請核可讓利條件後，再由我方對外溝通。</strong>
+      </div>
+      <div class="sub">報告：Milu（本案 AM 兼對外窗口）　|　審閱：曉陽、合庭</div>
+    </div>
+  </section>
+
+  <!-- 2 一頁看懂 -->
+  <section class="slide">
+    <div class="eyebrow">01 · 一頁看懂</div>
+    <h2>這件事的<span>全貌</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="grid3">
+        <div class="card bad">
+          <div class="card-k">發生了什麼</div>
+          <div class="card-d">4 月底 UFA 獨佔遊戲上線，<strong>PB 下架我方 8 款</strong>，遊戲數不足以撐版面，推廣停擺至今 <strong>3.5 個月</strong>。</div>
+        </div>
+        <div class="card ok">
+          <div class="card-k">現在改變了什麼</div>
+          <div class="card-d">可上架款數<strong>已回到 20 款</strong>；且獨佔池確定收斂至 <strong>6 款</strong>，其餘會陸續回流 —— <strong>款數只會往上走</strong>。</div>
+        </div>
+        <div class="card gold">
+          <div class="card-k">所以要做什麼</div>
+          <div class="card-d">提出 <strong>2 個月復合作檔期</strong>，首月免交收作為誠意，換回版面曝光，並驗證 CRM 活動的留存效果。</div>
+        </div>
+      </div>
+      <div class="note ok" style="margin-top:clamp(14px,2vw,26px)">
+        <div class="note-k">請主管注意</div>
+        <div class="note-d">
+          本案的<strong>財務讓利成本約 1,000 美金</strong>，且 PB 與 Combo 屬<strong>集團內部關係</strong>，
+          不需要書面 MOU、不需要設金額上限、其他站台日後比照亦可接受。<br>
+          真正要判斷的只有一件事：<strong>值不值得投入對接時間與開發資源</strong>，把 PB 做成可複製到 CPS 其他站台的範例。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 背景 -->
+  <section class="slide">
+    <div class="eyebrow">02 · 背景</div>
+    <h2>合作是<span>怎麼斷的</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="tl">
+        <div class="tl-i on">
+          <div class="tl-d">2026 / 01–04</div>
+          <div class="tl-t">歸廣版面合作期</div>
+          <div class="tl-x">PB 與我方正常合作，月交收約 USD 1,000 以內。</div>
+        </div>
+        <div class="tl-i bad">
+          <div class="tl-d">2026 / 04 月底</div>
+          <div class="tl-t">UFA 獨佔上線<br>PB 下架 8 款</div>
+          <div class="tl-x">我方的獨佔決策，直接削弱了 PB 端的遊戲組合。</div>
+        </div>
+        <div class="tl-i bad">
+          <div class="tl-d">04 月底 – 08 月</div>
+          <div class="tl-t">推廣停擺 3.5 個月</div>
+          <div class="tl-x">款數不足以撐版面，合作中止；關係未破裂，但已停擺。</div>
+        </div>
+        <div class="tl-i on">
+          <div class="tl-d">2026 / 08 現況</div>
+          <div class="tl-t">回補至 20 款</div>
+          <div class="tl-x">具備重啟推廣的條件。</div>
+        </div>
+        <div class="tl-i on">
+          <div class="tl-d">2026 / 08 起</div>
+          <div class="tl-t">獨佔池封頂 6 款<br>其餘陸續回流</div>
+          <div class="tl-x">款數持續增加，不再往下掉。</div>
+        </div>
+      </div>
+      <div class="note warn">
+        <div class="note-k">要正視的一點</div>
+        <div class="note-d">
+          <strong>斷點的原因在我方，不在 PB。</strong>
+          所以重啟溝通時，對方一定會問「下次會不會再來一次」——
+          這題必須<strong>我方主動先講</strong>，不能等他問。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 主張 -->
+  <section class="slide">
+    <div class="eyebrow">03 · 核心主張</div>
+    <h2>真正的籌碼<span>不是讓利</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="grid2">
+        <div class="card bad">
+          <div class="card-k">✘ 錯誤的談法</div>
+          <div class="card-t">「我給你免交收，請你重新上架」</div>
+          <div class="card-d">
+            這是<strong>求人</strong>。而且對 PB 來說，免交收帶來的好處也只有 <strong>1,000 美金</strong>量級 ——
+            不足以驅動他重新排版面。
+          </div>
+        </div>
+        <div class="card ok">
+          <div class="card-k">✔ 正確的談法</div>
+          <div class="card-t">「造成你下架的原因，已經在解除中」</div>
+          <div class="card-d">
+            獨佔池最終只留 <strong>6 款</strong>，其餘陸續回流。你現在能上 20 款，<strong>而且只會越來越多</strong>。<br>
+            這是<strong>給對方好處</strong>，可預期、會持續，而且<em>成本為零</em>。
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-k">結論</div>
+        <div class="note-d">
+          主要說服素材是<strong>「遊戲回流時間表」</strong>（另份文件）。
+          免交收退居為<strong>對先前中斷的誠意表示</strong>，不是本案的主角。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 方案內容 -->
+  <section class="slide">
+    <div class="eyebrow">04 · 提案內容</div>
+    <h2>2 個月檔期<span>怎麼跑</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <table>
+        <thead>
+          <tr><th style="width:15%">期間</th><th style="width:14%">交收</th><th style="width:24%">抽寶箱活動</th><th>這段期間在做什麼</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>M1 第 1–2 週</strong></td>
+            <td><span class="pill p-gold">免交收</span></td>
+            <td><strong>第一期</strong><br><span style="color:var(--txt3)">導流 · 收資料</span></td>
+            <td>20 款上架、版面曝光啟動、活動同步開跑。<strong>門檻訂寬鬆</strong>，目的是把人拉進來，並收集實際的<strong>顧客押注分布</strong>。</td>
+          </tr>
+          <tr>
+            <td><strong>M1 第 3–4 週</strong></td>
+            <td><span class="pill p-gold">免交收</span></td>
+            <td><strong>第二期</strong><br><span style="color:var(--txt3)">依實際分布調校</span></td>
+            <td>依前兩週的押注分布，<strong>重新設定小／中／大客的門檻值</strong>，讓分層貼近真實玩家結構。</td>
+          </tr>
+          <tr>
+            <td><strong>M2 全月</strong></td>
+            <td><span class="pill p-green">恢復交收</span></td>
+            <td><strong>持續舉辦</strong></td>
+            <td><strong>驗收月。</strong>用調校後的數值全月運行，看恢復交收後撐不撐得住，決定要不要續約。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note ok" style="margin-top:clamp(12px,1.6vw,20px)">
+        <div class="note-k">活動不中斷</div>
+        <div class="note-d">
+          抽寶箱活動<strong>整個 M1 持續舉辦、中間不停</strong>。前後兩週的差別不是「開／關」，而是<strong>同一個活動的數值調校</strong>。
+        </div>
+      </div>
+      <div class="note ok">
+        <div class="note-k">合規口徑（對外統一說法）</div>
+        <div class="note-d">
+          CRM 活動獎項<strong>全部出自遊戲內既有獎池</strong>，不新增外部獎金預算；
+          <strong>遊戲整體 RTP 維持 96.7%，不因活動調整</strong>，不涉及重新送測。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 兩階段：導流 → 調校 -->
+  <section class="slide">
+    <div class="eyebrow">05 · 為什麼這樣排</div>
+    <h2>兩階段：<span>導流 → 調校</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="grid2">
+        <div class="card gold">
+          <div class="card-k">第一期 · M1 前兩週</div>
+          <div class="card-t">把人拉進來，同時把資料收齊</div>
+          <div class="card-d">
+            門檻<strong>刻意訂寬鬆</strong> —— 訂太嚴，玩家一開始就放棄，我們反而<strong>收不到有效的押注分布</strong>。<br>
+            寬鬆讓最多人進來，樣本才夠。
+          </div>
+        </div>
+        <div class="card ok">
+          <div class="card-k">第二期 · M1 後兩週</div>
+          <div class="card-t">依真實分布，重設小／中／大客門檻</div>
+          <div class="card-d">
+            用前兩週的實際押注分布，把分層<strong>調到貼合真實玩家結構</strong>，
+            避免「大客門檻訂太高沒人達得到、活動失去分層意義」。
+          </div>
+        </div>
+      </div>
+
+      <div class="note ok" style="margin-top:clamp(14px,2vw,22px)">
+        <div class="note-k">為什麼不需要挖一段「不開活動」來當對照組</div>
+        <div class="note-d">
+          <strong>對照組早就存在了 —— 在歷史資料裡。</strong>
+          1–4 月合作期完全沒有 CRM 機制，那段本身就是「無活動」的留存狀態。
+          既然基準已經有了，就沒有理由在檔期內再停一週、<strong>白白浪費導流時間</strong>。
+        </div>
+      </div>
+
+      <div class="note">
+        <div class="note-k">這樣排，反而拿到兩組比較</div>
+        <div class="note-d">
+          <strong>跨期比較</strong>：歷史（無 CRM） vs M1（有 CRM） → 回答「CRM 活動這件事有沒有用」<br>
+          <strong>期內比較</strong>：第一期 vs 第二期 → 回答「門檻調得對不對」<br>
+          <span style="color:var(--txt3)">期內比較是同一批玩家、同一個活動、只有數值變了，是比較硬的那一組。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.5 門檻設計 -->
+  <section class="slide">
+    <div class="eyebrow">05-2 · 門檻設計</div>
+    <h2>調校時要<span>先想清楚的三件事</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <ul class="big num">
+        <li>
+          <strong>調整方向：保底不動、往上加級距</strong><br>
+          若把原本的門檻<em>往上搬</em>（小客從 100 提到 200），正在追進度的玩家會直接感覺「變難了、被騙了」——
+          玩家不理解營運邏輯，只會感覺東西被拿走。<br>
+          <span style="color:var(--txt3)">改成原門檻維持、上面再疊新的高級距，玩家的感受是「多了東西可以追」。同樣達成分層，觀感差很多。</span>
+        </li>
+        <li>
+          <strong>門檻怎麼切：內部用百分位算，對外公布絕對值</strong><br>
+          純百分位（前 10% 是大客）保證每個級距都有人，但門檻浮動、對外難解釋；
+          純絕對值好懂好講，但訂錯會有級距空掉。<br>
+          <span style="color:var(--txt3)">用百分位決定「絕對值該訂在哪」，公布絕對值 —— 兩邊的好處都拿到。</span>
+        </li>
+        <li>
+          <strong>包裝成「第一期／第二期」</strong><br>
+          第二期換新規則是天經地義的，不需要解釋；進度自然重置，資料也乾淨。
+          比「同一檔活動中途改數值」好講得多。
+        </li>
+      </ul>
+      <div class="note warn">
+        <div class="note-k">⚠️ 會卡住整個設計的相依</div>
+        <div class="note-d">
+          <strong>押注分布的埋點必須第一天就到位。</strong>
+          後兩週的調校完全依賴前兩週的數據 —— 埋點若晚上線或資料撈不出來，第二期就只能憑感覺調，整個設計形同白做。
+          <strong>這件事要在檔期開始前確認，不能邊做邊補。</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 成本 -->
+  <section class="slide">
+    <div class="eyebrow">06 · 成本</div>
+    <h2>要花<span>多少錢</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="grid3">
+        <div class="card gold">
+          <div class="card-k">直接讓利成本</div>
+          <div class="card-big">≈ USD 1,000</div>
+          <div class="card-d">PB 過往月交收金額即在此量級。停擺 3.5 個月後復甦期實績可能<strong>更低</strong>。<strong>不設上限</strong>。</div>
+        </div>
+        <div class="card">
+          <div class="card-k">性質</div>
+          <div class="card-big" style="font-size:clamp(19px,2.4vw,29px)">集團內資源調度</div>
+          <div class="card-d">PB 與 Combo 屬<strong>集團內部關係</strong>，這筆讓利是內部資源配置，不是對外談判的價格讓步。</div>
+        </div>
+        <div class="card">
+          <div class="card-k">系統開發</div>
+          <div class="card-big">0</div>
+          <div class="card-d">原規劃的「分站台交收設定」後台<strong>已砍掉</strong>，改人工結算 —— 避免為省千元美金而動大工程。</div>
+        </div>
+      </div>
+      <div class="note warn">
+        <div class="note-k">真正要留意的成本</div>
+        <div class="note-d">
+          錢不是問題，<strong>人力才是</strong>。唯一可能大幅膨脹的是
+          <strong>CPS 平台端串接</strong>是否需要客製開發 —— 這件事必須<strong>在對外承諾任何條件之前先確認</strong>。
+          若確認需大量客製，應退回「不綁活動」的最小方案。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 KPI -->
+  <section class="slide">
+    <div class="eyebrow">07 · 成功定義</div>
+    <h2>怎樣<span>才算成功</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="note ok" style="margin:0 0 clamp(14px,2vw,24px)">
+        <div class="note-k">一句話</div>
+        <div class="note-d">
+          <strong>不是免交收那個月衝出多高的量，而是「恢復交收之後撐不撐得住」。</strong>
+          M1 是投資，M2 才是驗收。而讓利只有千元美金量級，<strong>「回本」幾乎必然</strong> ——
+          所以本案真正的成功指標是：<strong>能不能把 PB 做成可複製到 CPS 其他站台的範例</strong>。
+        </div>
+      </div>
+      <div class="note info" style="margin:0 0 clamp(12px,1.6vw,20px)">
+        <div class="note-k">報告時要主動說明的但書</div>
+        <div class="note-d">
+          跨期比較的基準（1–4 月）是<strong>8 款下架前的遊戲組合、不同季節、停擺前的玩家</strong>，存在干擾因素。
+          <strong>這點我方要自己先講</strong>，比被主管或 Andy 挑出來好。期內比較（第一期 vs 第二期）沒有這個問題。
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-k">硬指標</div>
+          <ul class="big" style="margin-top:0">
+            <li>上架款數 <em>20 / 20</em>（最低可接受 15 款）</li>
+            <li>M2 流水 ÷ M1 流水 <em>≥ 70%</em></li>
+            <li>活動留存增幅 <em>≥ 10 個百分點</em><br><span style="font-size:.85em;color:var(--txt3)">M1（有 CRM）− 歷史 1–4 月（無 CRM）的留存差</span></li>
+            <li>第二期 vs 第一期 留存 <em>不下降</em><br><span style="font-size:.85em;color:var(--txt3)">驗證門檻調校有沒有調對</span></li>
+            <li>主推位曝光 <em>≥ 45 天</em></li>
+          </ul>
+        </div>
+        <div class="card ok">
+          <div class="card-k">軟指標（本案真正的目標）</div>
+          <ul class="big" style="margin-top:0">
+            <li><strong>可複製到 CPS 其他站台</strong>：2 個月內旗下其他站台（BJ／JB／S6、CTN／E28、MCW）<em>≥ 1 站啟動同樣模式</em>，即視為成功</li>
+            <li>PB 主動提出續約，而非我方追著問</li>
+            <li>Andy 願意主動回饋玩家反應與版面數據</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 風險 -->
+  <section class="slide">
+    <div class="eyebrow">08 · 風險</div>
+    <h2>最需要<span>擋住的事</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <table>
+        <thead><tr><th style="width:26%">風險</th><th style="width:13%">等級</th><th>怎麼擋</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>獨佔事件重演</strong><br><span style="color:var(--txt3)">未來又有遊戲被抽走</span></td>
+            <td><span class="pill p-gold">已降低</span></td>
+            <td>
+              獨佔池已<strong>封頂 6 款且會流動</strong>，不會再持續抽走款數。<br>
+              配套承諾：<strong>新增獨佔上線前 2 週先告知 PB</strong>。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>CPS 串接需大量客製</strong><br><span style="color:var(--txt3)">開發成本遠超過讓利本身</span></td>
+            <td><span class="pill p-blue">待確認</span></td>
+            <td>
+              <strong>對外承諾條件前必須先確認。</strong>若需大量客製，活動降為「純遊戲內呈現、不依賴平台端」，或直接退回不綁活動的最小方案。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>埋點未就位</strong><br><span style="color:var(--txt3)">押注分布撈不出來</span></td>
+            <td><span class="pill p-red">最高</span></td>
+            <td>
+              活動<strong>第一天就要開跑</strong>，沒有緩衝期。埋點若晚上線，第二期的門檻調校就<strong>失去依據</strong>。
+              須在檔期開始前完成驗證，<strong>不能邊做邊補</strong>。
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note ok">
+        <div class="note-k">✔ 已排除的風險：條件外溢</div>
+        <div class="note-d">
+          PB 與 Combo 屬<strong>集團內部關係</strong>，且<strong>其他站台若要比照類似條件亦可接受</strong> ——
+          因此<strong>不需要書面 MOU、不需要「一次性」定位、不需要設金額上限</strong>。這三項先前的顧慮全部解除。
+        </div>
+      </div>
+      <div class="note warn">
+        <div class="note-k">停損條件（觸發即回報）</div>
+        <div class="note-d">
+          M1 結束上架 <strong>&lt; 15 款</strong> ｜ M2 流水較 M1 掉幅 <strong>&gt; 40%</strong> ｜
+          埋點未到位導致第二期無法調校 ｜ 2 個月結束 PB <strong>無續約意願</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 方案選擇 -->
+  <section class="slide">
+    <div class="eyebrow">09 · 方案選擇</div>
+    <h2>兩個<span>可選方案</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42%">項目</th>
+            <th class="c" style="width:29%">A · 最小<br><span style="font-weight:400">不綁活動</span></th>
+            <th class="c" style="width:29%;color:var(--green)">B · 完整<br><span style="font-weight:400">綁活動 · 建議</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>20 款重新上架 ＋ 2 個月檔期</td><td class="c yes">✔</td><td class="c yes">✔</td></tr>
+          <tr><td>首月免交收（≈ USD 1,000，不設上限）</td><td class="c yes">✔</td><td class="c yes">✔</td></tr>
+          <tr><td><strong>遊戲回流時間表為主要說服素材</strong></td><td class="c yes">✔</td><td class="c yes">✔</td></tr>
+          <tr><td><strong>獨佔遊戲前置告知（上線前 2 週）</strong></td><td class="c yes">✔</td><td class="c yes">✔</td></tr>
+          <tr><td>抽寶箱活動納入本次檔期</td><td class="c no">✘ 之後另談</td><td class="c yes">✔ 兩階段</td></tr>
+          <tr><td>可得出留存與門檻調校結論</td><td class="c no">✘ 無活動可測</td><td class="c yes">✔ 跨期＋期內</td></tr>
+          <tr><td>對 PB 的吸引力</td><td class="c part">中</td><td class="c yes">高</td></tr>
+          <tr><td><strong>埋點／開發相依風險</strong></td><td class="c yes">低</td><td class="c no">高（第一天就要到位）</td></tr>
+          <tr><td>可複製到 CPS 其他站台</td><td class="c part">可，但無數據佐證</td><td class="c yes">✔ 帶著成效數字去談</td></tr>
+        </tbody>
+      </table>
+      <div class="note ok">
+        <div class="note-k">建議：方案 B</div>
+        <div class="note-d">
+          兩案的差別只在<strong>要不要把抽寶箱活動綁進這次檔期</strong>。
+          綁進去才拿得到留存與門檻調校的數據，之後推到 CPS 其他站台時才有成效數字可講。<br><br>
+          <strong>唯一的取捨是時程</strong>：活動第一天就要開跑、沒有緩衝期。
+          <strong>若活動或埋點確定來不及，就降為 A</strong> —— 先把版面與 20 款拿回來，活動當第二波加碼，不要冒二次跳票的風險。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 分工與時程 -->
+  <section class="slide">
+    <div class="eyebrow">10 · 執行</div>
+    <h2>誰做、<span>什麼時候做</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="note ok" style="margin:0 0 clamp(14px,2vw,22px)">
+        <div class="note-k">本案窗口</div>
+        <div class="note-d">
+          <strong>PB 站台的 AM 與對外窗口皆為 Milu 本人</strong>，不透過其他 AM 轉手。
+          對 Andy 的所有溝通、條件協商與檔期對接，由 Milu 直接負責。
+        </div>
+      </div>
+      <table>
+        <thead><tr><th style="width:20%">階段</th><th style="width:22%">負責</th><th>要完成的事</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>核可後<br>1 週內</strong></td>
+            <td><span class="pill p-gold">Milu</span></td>
+            <td>整理<strong>遊戲回流時間表</strong>；製作對 Andy 的說明簡報（集團內部關係，不需正式文書）</td>
+          </tr>
+          <tr>
+            <td><strong>下週</strong></td>
+            <td><span class="pill p-gold">Milu</span></td>
+            <td>與 Andy 約時間<strong>說明 CRM 活動機制</strong>（只說明、不談條件）；確認 Andy 能否單方拍板或需 CPS 同步</td>
+          </tr>
+          <tr>
+            <td><strong>核可後<br>2–3 週</strong></td>
+            <td><span class="pill p-blue">技術團隊</span></td>
+            <td>確認<strong>玩家可依站台分流辨識</strong>與<strong>押注分布埋點</strong>（第二期調校的前提）；確認 CPS 串接需求；活動開發與上架準備</td>
+          </tr>
+          <tr>
+            <td><strong>檔期 2 個月</strong></td>
+            <td><span class="pill p-gold">Milu</span> <span class="pill p-blue">數據</span></td>
+            <td>每週 KPI 與成本追蹤；與 Andy 雙週同步；結案報告與續約建議</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 12 請求裁示 -->
+  <section class="slide">
+    <div class="eyebrow">11 · 請求裁示</div>
+    <h2>需要主管<span>拍板的事</span></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <ul class="big num">
+        <li><strong>採用方案 B（含抽寶箱活動）</strong> —— 並保留「活動或埋點來不及就降為方案 A」的彈性。</li>
+        <li><strong>承諾未來獨佔遊戲上線前 2 週告知 PB</strong> —— 這等於對我方未來的獨佔決策加上一道程序義務，需主管認可。</li>
+        <li><strong>確認「UFA SLOT 最終保留 6 款」是定案</strong> —— 這個數字一旦講出去就是承諾，二次跳票的傷害遠大於第一次。</li>
+        <li><strong>抽寶箱活動第二期的門檻採「保底不動、往上加級距」</strong> —— 避免正在追進度的玩家感覺門檻被調高。</li>
+        <li><strong>請技術端確認押注分布埋點可在檔期第一天到位</strong> —— <span style="color:var(--red)">本案唯一的高風險項</span>，沒到位第二期就無法調校。</li>
+      </ul>
+      <div class="note warn">
+        <div class="note-k">核可後的第一件事</div>
+        <div class="note-d">
+          整理<strong>遊戲回流時間表</strong>（款名 × 回流季度 ＋ 永久保留的 6 款名單）——
+          這是本案最重要的對外素材，成本為零但說服力最高。<strong>另份文件呈送。</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="bar">
+  <div class="dots" id="dots"></div>
+  <div class="nav">
+    <button class="nb" id="prev">‹</button>
+    <span class="pg" id="pg">1 / 12</span>
+    <button class="nb" id="next">›</button>
+  </div>
+</div>
+
+<script>
+var slides = document.querySelectorAll('.slide');
+var dots = document.getElementById('dots');
+var pg = document.getElementById('pg');
+var i = 0;
+
+slides.forEach(function(s, n){
+  var b = document.createElement('button');
+  b.className = 'dot'; b.setAttribute('aria-label', 'Slide ' + (n+1));
+  b.addEventListener('click', function(){ go(n); });
+  dots.appendChild(b);
+});
+var dotEls = dots.querySelectorAll('.dot');
+
+function go(n){
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+  dotEls.forEach(function(d, k){ d.classList.toggle('on', k === i); });
+  pg.textContent = (i+1) + ' / ' + slides.length;
+  var b = slides[i].querySelector('.body'); if(b) b.scrollTop = 0;
+}
+document.getElementById('prev').addEventListener('click', function(){ go(i-1); });
+document.getElementById('next').addEventListener('click', function(){ go(i+1); });
+document.addEventListener('keydown', function(e){
+  if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(i+1); }
+  if(e.key === 'ArrowLeft'  || e.key === 'PageUp') { e.preventDefault(); go(i-1); }
+  if(e.key === 'Home') go(0);
+  if(e.key === 'End') go(slides.length-1);
+});
+
+/* 觸控滑動 */
+var x0 = null;
+document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', function(e){
+  if(x0 === null) return;
+  var dx = e.changedTouches[0].clientX - x0;
+  if(Math.abs(dx) > 55){ go(dx < 0 ? i+1 : i-1); }
+  x0 = null;
+}, {passive:true});
+
+/* 全螢幕 */
+document.getElementById('fsBtn').addEventListener('click', function(){
+  if(!document.fullscreenElement){ document.documentElement.requestFullscreen(); }
+  else { document.exitFullscreen(); }
+});
+
+/* 主題 */
+var tb = document.getElementById('themeBtn');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  tb.textContent = (t === 'light') ? '☀' : '☾';
+}
+var saved = localStorage.getItem('deck-theme');
+applyTheme(saved ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+tb.addEventListener('click', function(){
+  var n = (document.documentElement.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+  applyTheme(n); localStorage.setItem('deck-theme', n);
+});
+
+go(0);
+</script>
+</body>
+</html>
