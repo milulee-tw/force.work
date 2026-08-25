@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.10</title>
+<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.11</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -583,7 +583,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">FREE SPIN 卡<br>規格書 · 開發交付版</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.10</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.11</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-draft">DRAFT</span></div>
@@ -706,7 +706,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="cover-grid"></div>
   <div class="cover-tag">CMB · DEV SPEC · 2026</div>
   <h1>FREE <span>SPIN</span> 卡</h1>
-  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.10（源自完整版 V2.4）</div>
+  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.11（源自完整版 V2.4）</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>類型</strong> CRM 周邊 · 非現金獎勵</div>
     <div class="cover-pill"><strong>來源</strong> 抽寶箱 第二階段</div>
@@ -733,6 +733,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <table>
     <thead><tr><th style="width:110px;">修改日期</th><th style="width:96px;">版號</th><th style="width:160px;">修改章節</th><th>修改摘要</th></tr></thead>
     <tbody>
+      <tr><td>2026-08-25</td><td>DEV V1.11</td><td>§04～§08（截圖與說明）</td><td><strong>全數截圖更新為 2026-08-25 原型實拍（背包＝英文版）並同步說明內文</strong>：①fs_admin_01～03 重拍（無狀態欄、未結束口徑展開、6 款上限、bet 單欄、「建立發放卡」動作列）②fs_bag_01～03 重拍（可使用／已過期／<strong>待啟動</strong>三分頁，含封頂卡提前結算鈕與 AWC 鎖定 🔒 實拍）③<strong>新增四張畫面</strong>：fs_bag_04 提前結算二次確認、fs_bag_05 啟用流程（Activating Free Spin Card）、fs_bag_06 AWC 衝突錯誤、fs_game_04 CRM 選單＋fs_game_05 一般模式常駐 icon ④fs_game_01～03 由美術 mockup <strong>改為原型實拍</strong>（畫面二新增 Ⓗ CRM icon／Ⓘ Leave FS 區域；畫面三 Ⓔ 最低提領欄位<strong>已確認移除</strong>）⑤§06 動作列文案同步原型：「啟用」→「<strong>建立發放卡</strong>」（編輯模式＝儲存）。<strong>規格規則零變更</strong>；⚠️ 原型卡名顯示「{n}★」徽章＋「Free Spins ×N」與規格固定卡名「{n}★ FREE SPIN」不一致，列入待修（以規格為準）。</td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.10</td><td>§04</td><td><strong>美術需求全面擴充</strong>（回應美術「看不懂要畫什麼」）：①<strong>背包頁「美術視角圖文對照」</strong>Ⓐ–Ⓗ（圖左可 Lightbox ＋ 右欄標題錨點 ＋ 下方區域細節，每區三欄＝要畫什麼／狀態與變化／文字與位數）②<strong>遊戲內三畫面圖文對照</strong>（進場彈窗／遊戲中／結算彈窗，錨點 <span class="mono">art-game-*</span>）③<strong>美術資產需求總表 28 項</strong>（資產類型限四種用語／狀態數／尺寸建議／命名建議 <span class="mono">fs_{screen}_{element}_{state}.png</span>）④<strong>動態文字與位數限制表</strong>（金額 12 字元、次數 2 位數、倒數 8 字元等，供美術預留版位）。<strong>§07／§08 行為規則零變更</strong>——美術章引用畫面時一律一行指路回原章，不重複規則。</td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.9</td><td>§05／§07／§08</td><td>①<strong>後台「使用活動」改未結束口徑</strong>：N 與展開清單<strong>只含進行中＋尚未開始</strong>、<strong>已結束不列不計</strong>；<strong>刪卡保護同口徑</strong>（被未結束活動引用時 disabled，含尚未開始的活動）；防呆表、錯誤處理、文案表與驗收全文由「進行中」改為「未結束」用語，並與抽寶箱模板「使用中活動展開」（D-005）同口徑。②<strong>CRM 浮動 icon 明確為遊戲畫面常駐</strong>：一般模式與 FS 模式皆顯示、皆可點擊展開 CRM 選單（非 FS 期間限定），玩家未持卡時也能經 icon → 選單 →「背包」開啟背包。③<strong>背包頁單一版面聲明</strong>：所有入口開啟的都是 §07 定義的同一頁，無簡化版或第二種排版。<strong>背包內部規則零變更。</strong></td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.8</td><td>§02／§03／§07／§08</td><td><strong>背包入口定義為「遊戲內吸附浮動 icon → CRM 選單 → 背包」</strong>：CRM 選單為<strong>所有 CRM 活動的共用入口</strong>（抽寶箱等同列其中），背包<strong>不再有獨立的直接入口</strong>；icon 與選單本體規則屬<strong>抽寶箱 CRM 浮動 icon 規格</strong>範疇，本文件只定義「背包」項目的行為。<strong>SPIN 自動關閉範圍精確化</strong>＝關閉<strong>展開選單與背包浮層</strong>、<strong>吸附 icon 保留</strong>在畫面上；<strong>轉動中 icon 亦半透明不可點</strong>（點 icon 不展開選單）。§02 頁面地圖補入口節點、§07 補指路描述、§08 驗收改寫並新增 2 條、13 語系新增「選單項目·背包」。<strong>背包內部規則零變更。</strong></td></tr>
@@ -1184,9 +1185,9 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <!-- ══════ A · 背包頁美術圖文對照 ══════ -->
   <div class="sub-title" id="art-bag">A · 背包頁 · 美術圖文對照<span class="tag-upd">2026-08-25</span></div>
   <div class="callout info"><strong>怎麼看這一段</strong>：左圖標號 Ⓐ–Ⓗ ＝ 美術要產出的區域；右欄點標題可跳到該區細節。每個區塊只回答三件事：<strong>要畫什麼／幾種狀態／哪些字是前端渲染（美術只留版位）</strong>。<strong>顯示條件與觸發規則不在本節</strong>，一律見 <a href="#pg-bag" style="color:var(--gold-light);">§07</a>。</div>
-  <div class="callout warn">⚠️ <strong>截圖為 D-023 改版前畫面</strong>（原型已改為遊戲畫面開場＋浮層背包），<strong>重拍後同名覆蓋</strong>；<strong>產出項目以本表為準</strong>，不以截圖現況為準。</div>
+  <div class="callout info"><strong>截圖＝2026-08-25 原型實拍（英文版）</strong>。圖上紅框字母為 <strong>§07 功能區域標號</strong>（Ⓐ–Ⓗ＋Ⓓ′），<strong>非本表產出項目編號</strong>——本表以產出項目<strong>名稱</strong>對照畫面即可。</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_bag_01_backpack.png" alt="玩家背包全頁畫面 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包全頁畫面<br><span style="font-size:10px;">將 fs_bag_01_backpack.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">美術視角 · 紅框 Ⓐ–Ⓗ 對應右表產出項目 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_bag_01_backpack.png" alt="玩家背包全頁畫面 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包全頁畫面<br><span style="font-size:10px;">將 fs_bag_01_backpack.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">2026-08-25 原型實拍（英文版）· 紅框字母＝§07 功能區域標號 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>產出項目（點標題看細節）</th></tr></thead>
@@ -1323,7 +1324,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   <div class="sub-title" style="margin-top:14px;">畫面一 · 進場彈窗</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_game_01_intro.png" alt="FREE SPINS 進場提示彈窗 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：FREE SPINS 進場提示彈窗<br><span style="font-size:10px;">將 fs_game_01_intro.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">美術視角 · 對應右表產出項目 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_game_01_intro.png" alt="FREE SPINS 進場提示彈窗 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：FREE SPINS 進場提示彈窗<br><span style="font-size:10px;">將 fs_game_01_intro.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">2026-08-25 原型實拍（英文版）· 對應右表產出項目 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>產出項目（點標題看細節）</th></tr></thead>
@@ -1351,7 +1352,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   <div class="sub-title" style="margin-top:14px;">畫面二 · 遊戲中</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_game_02_ingame.png" alt="FREE SPIN 模式進行中的遊戲畫面 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：FS 模式進行中的遊戲畫面<br><span style="font-size:10px;">將 fs_game_02_ingame.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">美術視角 · 對應右表產出項目 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_game_02_ingame.png" alt="FREE SPIN 模式進行中的遊戲畫面 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：FS 模式進行中的遊戲畫面<br><span style="font-size:10px;">將 fs_game_02_ingame.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">2026-08-25 原型實拍（英文版）· 對應右表產出項目 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>產出項目（點標題看細節）</th></tr></thead>
@@ -1380,7 +1381,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   <div class="sub-title" style="margin-top:14px;">畫面三 · 結算彈窗</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_game_03_settle.png" alt="FREE SPIN 卡結算彈窗 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：結算彈窗<br><span style="font-size:10px;">將 fs_game_03_settle.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">美術視角 · 對應右表產出項目 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_game_03_settle.png" alt="FREE SPIN 卡結算彈窗 · 美術需求對照" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：結算彈窗<br><span style="font-size:10px;">將 fs_game_03_settle.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">2026-08-25 原型實拍（英文版）· 對應右表產出項目 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>產出項目（點標題看細節）</th></tr></thead>
@@ -1491,10 +1492,10 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   <div class="sub-title">全頁截圖＋區域標號</div>
 
-  <div class="callout warn"><strong>截圖註記</strong>：截圖為<strong>改版前畫面</strong>（仍含「狀態」欄與「已啟用」統計）；DEV V1.6 起這兩者已整個移除，請以本章文字規格為準。<strong>原型更新後由 Cowork 重拍同名覆蓋</strong>，規格書不需改路徑。</div>
+  <div class="callout info"><strong>截圖註記</strong>：截圖＝<strong>2026-08-25 改版後原型實拍</strong>——已含 <strong>無狀態欄</strong>、<strong>「使用活動」未結束口徑展開</strong>（標準中階卡預設展開：進行中＋尚未開始各一、附 Tableau 註腳）、<strong>可刪／不可刪對比</strong>（0 個活動＝紅色刪除鈕、有未結束引用＝disabled）。</div>
 
   <div class="shot-map">
-<div class="shot-frame"><img src="design_assets/fs_admin_01_issuance_list.png" alt="後台發放管理列表全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台發放管理列表全頁畫面<br><span style="font-size:10px;">將 fs_admin_01_issuance_list.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型 · 紅框 Ⓐ–Ⓔ 對應右表 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_admin_01_issuance_list.png" alt="後台發放管理列表全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台發放管理列表全頁畫面<br><span style="font-size:10px;">將 fs_admin_01_issuance_list.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型 · 紅框 Ⓐ–Ⓔ 對應右表（2026-08-25 實拍）· 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>功能（點標題看詳細說明）</th></tr></thead>
@@ -1814,13 +1815,13 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   <div class="hypo-block">
     <div class="hypo-label">本頁目的</div>
-    <div class="hypo-text">營運在這一頁<strong>建一張發放卡</strong>：選星級道具（押注價值固定、全幣值預設），只需設定<strong>遊戲／次數／封頂／有效期</strong>。<strong>草稿已移除——填完按「啟用」（含二次確認）即生效</strong>；發出去的卡走快照，之後怎麼改都不受影響。</div>
+    <div class="hypo-text">營運在這一頁<strong>建一張發放卡</strong>：選星級道具（押注價值固定、全幣值預設），只需設定<strong>遊戲／次數／封頂／有效期</strong>。<strong>草稿已移除——填完按「建立發放卡」（含二次確認）即生效</strong>；發出去的卡走快照，之後怎麼改都不受影響。</div>
   </div>
 
   <div class="sub-title">全頁截圖＋區域標號</div>
 
   <div class="shot-map">
-<div class="shot-frame"><img src="design_assets/fs_admin_02_card_form.png" alt="後台新增發放卡表單全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台新增發放卡表單全頁畫面<br><span style="font-size:10px;">將 fs_admin_02_card_form.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型 · 紅框 Ⓐ–Ⓔ 對應右表 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_admin_02_card_form.png" alt="後台新增發放卡表單全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：後台新增發放卡表單全頁畫面<br><span style="font-size:10px;">將 fs_admin_02_card_form.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：後台獎勵系統 (standalone).html 原型（2026-08-25 實拍）· 紅框 Ⓐ–Ⓔ 對應右表 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>功能（點標題看詳細說明）</th></tr></thead>
@@ -1829,7 +1830,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td class="region-td">Ⓑ</td><td><a href="#pg-form-b" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">可用遊戲列表</a></td></tr>
       <tr><td class="region-td">Ⓒ</td><td><a href="#pg-form-c" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">發放參數（次數／結算封頂）</a></td></tr>
       <tr><td class="region-td">Ⓓ</td><td><a href="#pg-form-d" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">有效期＋入帳目標</a></td></tr>
-      <tr><td class="region-td">Ⓔ</td><td><a href="#pg-form-e" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">動作列（取消／啟用）</a></td></tr>
+      <tr><td class="region-td">Ⓔ</td><td><a href="#pg-form-e" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">動作列（取消／建立發放卡）</a></td></tr>
     </tbody>
   </table>
   <div class="region-index-note">▸ 點功能標題跳到下方「區域詳細說明」；點左側截圖可浮動放大檢視。</div>
@@ -1879,10 +1880,10 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <div class="region-detail" id="pg-form-e">
   <h4><span class="region-td">Ⓔ</span>動作列<span class="rd-func">完成建卡：取消或啟用。</span></h4>
   <div class="rd-cols">
-    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>只有「<strong>取消</strong>」與「<strong>啟用</strong>」兩鈕——<strong>儲存草稿已移除</strong>，填完即啟用</li>
-<li>啟用後即可被抽寶箱獎池下拉引用</li></ul></div>
-    <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>啟用前<strong>二次確認</strong>（摘要星級／次數／有效期／上限／遊戲數）</li>
-<li>必填缺漏時不可啟用</li></ul></div>
+    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>只有「<strong>取消</strong>」與「<strong>建立發放卡</strong>」兩鈕（編輯模式＝「儲存」）——<strong>儲存草稿已移除</strong>，建卡完成即可被引用</li>
+<li>建卡完成後即可被抽寶箱獎池下拉引用</li></ul></div>
+    <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>送出前<strong>二次確認</strong>（摘要星級／次數／有效期／上限／遊戲數）</li>
+<li>必填缺漏時不可送出</li></ul></div>
   </div>
 </div>
 
@@ -1894,7 +1895,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td>必填未填不可啟用</td><td class="dim">星級、次數、有效期、可玩遊戲、各幣值押注與上限任一未填，<strong>擋下啟用並明確指出哪一欄沒填</strong>。</td><td class="dim">發出一張缺參數的卡，玩家點進去無法開局，或結算時算不出金額</td></tr>
       <tr><td>可用遊戲列表超過上限</td><td class="dim">一張卡<strong>最多指定 6 款遊戲</strong>；已選滿 6 款時，<strong>其餘遊戲選項一律押灰不可再點</strong>，並即時顯示「已選 6 / 6」。<strong>不會出現超選後才擋下的狀況。</strong></td><td class="dim">卡內塞進超出規格的遊戲清單，遊戲牆顯示與發卡資料不一致，玩家背包出現一張進不去的卡</td></tr>
       <tr><td>數值不合理警示</td><td class="dim">例如<strong>結算上限低於票面價值</strong>、次數為 0、押注為 0 或負數，<strong>跳警示要求確認或直接擋下</strong>。</td><td class="dim">卡送出去玩家怎麼玩都拿不到合理獎金，或成本估算完全失真</td></tr>
-      <tr><td>啟用前二次確認</td><td class="dim">按下「啟用」時<strong>跳出確認視窗</strong>，摘要列出星級／次數／有效期／上限／可玩遊戲數，確認後才真正啟用。</td><td class="dim">誤點啟用一張還沒設定完的卡，被活動引用後發出去就收不回來（已發卡不可變更）</td></tr>
+      <tr><td>建立前二次確認</td><td class="dim">按下「建立發放卡」時<strong>跳出確認視窗</strong>，摘要列出星級／次數／有效期／上限／可玩遊戲數，確認後才真正啟用。</td><td class="dim">誤建一張還沒設定完的卡，被活動引用後發出去就收不回來（已發卡不可變更）</td></tr>
     </tbody>
   </table>
 
@@ -1994,9 +1995,9 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   </div>
 
   <div class="sub-title">全頁截圖＋區域標號（可使用分頁）</div>
-<div class="callout info"><strong>截圖註記</strong>：截圖卡名為舊文案「免費旋轉 ×10」；DEV V1.3 起玩家卡名固定顯示「<strong>{n}★ FREE SPIN</strong>」。背包原型文案更新後由 Cowork 重拍、同名覆蓋。</div>
+<div class="callout info"><strong>截圖註記</strong>：截圖＝<strong>2026-08-25 英文版原型實拍</strong>（示範卡＝已封頂 3★ 卡：In Use、5/10、600/600 封頂、提前結算鈕、遊戲牆含 AWC 鎖定 🔒）。⚠️ <strong>原型卡名顯示為「{n}★」徽章＋「Free Spins ×N」，與規格固定卡名「{n}★ FREE SPIN」不一致</strong>——<strong>以規格為準</strong>，原型文案差異列入待修。</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_bag_01_backpack.png" alt="玩家背包「可使用」分頁全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包「可使用」分頁全頁畫面<br><span style="font-size:10px;">將 fs_bag_01_backpack.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：遊戲背包頁原型.html（手機版）· 紅框 Ⓐ–Ⓗ 對應右表 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_bag_01_backpack.png" alt="玩家背包「可使用」分頁全頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包「可使用」分頁全頁畫面<br><span style="font-size:10px;">將 fs_bag_01_backpack.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：遊戲背包頁原型.html（英文版 · 2026-08-25 實拍）· 紅框 Ⓐ–Ⓗ＋Ⓓ′ 對應右表 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>功能（點標題看詳細說明）</th></tr></thead>
@@ -2005,12 +2006,12 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td class="region-td">Ⓑ</td><td><a href="#pg-bag-b" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">狀態篩選</a></td></tr>
       <tr><td class="region-td">Ⓒ</td><td><a href="#pg-bag-c" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">使用中卡片（展開明細）</a></td></tr>
       <tr><td class="region-td">Ⓓ</td><td><a href="#pg-bag-d" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">累積獎金充能進度條（score）</a></td></tr>
-      <tr><td class="region-td">Ⓓ′</td><td><a href="#pg-bag-settle" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">提前結算按鈕（封頂後才出現）</a> <span class="tag-pill tag-v2">V1.6 新增 · 原型待補</span></td></tr>
+      <tr><td class="region-td">Ⓓ′</td><td><a href="#pg-bag-settle" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">提前結算按鈕（封頂後才出現）</a> <span class="tag-pill tag-v2">V1.6 新增</span></td></tr>
       <tr><td class="region-td">Ⓔ</td><td><a href="#pg-bag-e" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">攜帶遊戲牆（必選一款）</a></td></tr>
       <tr><td class="region-td">Ⓕ</td><td><a href="#pg-bag-f" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">進入遊戲 CTA</a></td></tr>
       <tr><td class="region-td">Ⓖ</td><td><a href="#pg-bag-g" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">即將到期卡</a></td></tr>
       <tr><td class="region-td">Ⓗ</td><td><a href="#pg-bag-h" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">全新未使用卡</a></td></tr>
-      <tr><td class="region-td">Ⓑ′</td><td><a href="#pg-bag-pending" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">待啟動卡（整卡唯讀）</a> <span class="tag-pill tag-v2">V1.6 新增 · 原型待補</span></td></tr>
+      <tr><td class="region-td">Ⓑ′</td><td><a href="#pg-bag-pending" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">待啟動卡（整卡唯讀 · 第三張截圖）</a> <span class="tag-pill tag-v2">V1.6 新增</span></td></tr>
       <tr><td class="region-td">Ⓐ′</td><td><a href="#pg-bag-exp" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">已過期卡（第二張截圖）</a></td></tr>
     </tbody>
   </table>
@@ -2068,6 +2069,10 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <li>結算完成前按鈕須進入處理中狀態，避免連點造成重複請求</li>
 <li>剩餘次數已為 0（局數用完）時不顯示本按鈕——那條路徑由自動結算接手</li></ul></div>
   </div>
+  <div class="shot-map narrow" style="margin-top:10px;">
+<div class="shot-frame"><img src="design_assets/fs_bag_04_settle_confirm.png" alt="提前結算二次確認彈窗" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：提前結算二次確認彈窗</div><div class="shot-cap">提前結算二次確認（2026-08-25 原型實拍）· Ⓐ 彈窗（明示放棄局數 {n} 與入帳金額 {amount}）· Ⓑ Cancel／Confirm · 點圖放大</div></div>
+  <div class="body-text" style="margin:0;">實拍文案：「Settle now? — You've reached the max win cap. Settling now forfeits the remaining {n} free spins; {amount} will be credited immediately.」與 13 語系表一致。</div>
+  </div>
 </div>
 <div class="region-detail" id="pg-bag-e">
   <h4><span class="region-td">Ⓔ</span>攜帶遊戲牆（必選一款）<span class="rd-func">選擇這次要帶哪款遊戲進場。</span></h4>
@@ -2106,7 +2111,9 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   <div class="sub-title">待啟動分頁（整卡唯讀 · 顯示開始倒數）<span class="tag-upd">2026-08-24</span></div>
   <div class="body-text">卡片若設定的開始時間（<span class="mono">valid_from</span>）尚未到，<strong>不可與可使用卡混在一起</strong>——否則玩家會點下去卻進不了遊戲。DEV V1.6 起這類卡獨立成「待啟動」分頁。</div>
-<div class="region-detail" id="pg-bag-pending">
+<div class="shot-map narrow">
+<div class="shot-frame"><img src="design_assets/fs_bag_03_pending.png" alt="玩家背包「待啟動」分頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：待啟動分頁</div><div class="shot-cap">待啟動分頁（2026-08-25 英文版實拍）· 紅框 Ⓑ′＝待啟動卡（藍紫徽章 Not Started、「Starts in {t}」倒數、Starts at 時間＋自動轉入註記、Eligible Games 唯讀預覽含 🔒）· 點圖放大</div></div>
+<div class="region-detail" id="pg-bag-pending" style="margin:0;">
   <h4><span class="region-td">Ⓑ′</span>待啟動卡<span class="rd-func">開始時間還沒到的卡，可預覽但不能用。<span class="tag-pill tag-v2">DEV V1.6 新增</span></span></h4>
   <div class="rd-cols">
     <div><div class="rd-label">限制與規則</div><ul class="rd-list">
@@ -2120,10 +2127,11 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <li>待啟動期間<strong>不計入「可用張數徽章」</strong>，避免玩家以為現在就能用</li></ul></div>
   </div>
 </div>
+  </div>
 
   <div class="sub-title">已過期分頁（整卡置灰唯讀）</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_bag_02_expired.png" alt="玩家背包「已過期」分頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包「已過期」分頁畫面<br><span style="font-size:10px;">將 fs_bag_02_expired.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">截圖來源：遊戲背包頁原型.html · 已過期分頁 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_bag_02_expired.png" alt="玩家背包「已過期」分頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：玩家背包「已過期」分頁畫面<br><span style="font-size:10px;">將 fs_bag_02_expired.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">已過期分頁（2026-08-25 英文版實拍）· 紅框 Ⓐ′＝已過期卡（Expired 徽章、Settled Bonus 540 PHP、置灰唯讀）· 點圖放大</div></div>
 <div class="region-detail" id="pg-bag-exp">
   <h4><span class="region-td">Ⓐ′</span>已過期卡<span class="rd-func">過期卡的最終狀態展示。</span></h4>
   <div class="rd-cols">
@@ -2169,6 +2177,11 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <div class="flow-step success" style="min-width:520px;"><div class="flow-step-num">05</div><div class="flow-step-title">進入遊戲，自動啟用該卡</div><div class="flow-step-desc">依第 3 步綁定的那張卡直接啟用，不靠進場後自動猜測</div></div>
     </div>
   </div>
+
+<div class="shot-map narrow" style="margin-bottom:14px;">
+<div class="shot-frame"><img src="design_assets/fs_bag_05_launch.png" alt="啟用流程彈窗 Activating Free Spin Card" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：啟用流程彈窗</div><div class="shot-cap">按下 Start 後的啟用流程彈窗（2026-08-25 原型實拍）· Ⓐ 四步驟＝流程 03–04 的可視化（產生一次性 token → 綁定 reference_id → 取一次性入口 → 開啟遊戲）· Ⓑ 一次性入口連結（含 Single-use 提示）· Ⓒ Enter Game · 點圖放大</div></div>
+<div class="body-text" style="margin:0;">此彈窗把「綁卡 → 取一次性入口」過程可視化給玩家；<strong>連結只能用一次</strong>的警語直接寫在彈窗底部。</div>
+</div>
 
 <div class="callout warn"><strong>多卡歧義 / 續玩同卡</strong>：玩家同一款遊戲可能持有多張有效的卡，<strong>進場前一定要先綁定是哪一張</strong>；未用完的卡（如 5/10）續玩時帶<strong>同一張卡</strong>，續扣同一個池、不開新卡。<br><strong>一次性連結</strong>：連結只能用一次，連點與失效重取的處理見<a href="#pg-bag-err" style="color:var(--gold-light);">本章〈本頁錯誤處理〉</a>。<br><strong>進入遊戲之後</strong>（進場提示、遊戲中畫面、結算彈窗）見 <a href="#pg-game" style="color:var(--gold-light);">DEV §08</a>。</div>
   <div class="sub-title">本頁驗收情境</div>
@@ -2230,6 +2243,10 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   
   <div class="sub-title" id="pg-bag-err">本頁錯誤處理</div>
+  <div class="shot-map narrow" style="margin-bottom:14px;">
+<div class="shot-frame"><img src="design_assets/fs_bag_06_awc_fail.png" alt="FREE SPIN 卡使用失敗錯誤彈窗" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：使用失敗錯誤彈窗</div><div class="shot-cap">第二道防線實拍：「Free Spin Card activation failed」（2026-08-25 原型實拍 · 開發用「Simulate AWC conflict」開關觸發）· Ⓐ 錯誤彈窗（說明先完成該遊戲進行中的免費旋轉、本卡次數與獎金不受影響）· Ⓑ Confirm 後改走 AWC FREE SPIN 流程 · 點圖放大</div></div>
+<div class="body-text" style="margin:0;">對應下表「進場時仍同時存在 AWC FREE SPIN」列；玩家端文案不出現「AWC」字樣（DEV V1.7 定案），實拍內文之「AWC-issued」為原型示意，正式文案以 13 語系表為準。</div>
+</div>
 
 
 <table class="spec-table">
@@ -2348,7 +2365,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <!-- ── 畫面一 ── -->
   <div class="sub-title">畫面一 · 進場提示彈窗</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_game_01_intro.png" alt="進入遊戲後的 FREE SPINS 進場提示彈窗" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：進場提示彈窗<br><span style="font-size:10px;">將 fs_game_01_intro.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">來源：美術提供之遊戲內 mockup（示意用遊戲＝Aztec's Treasure）· 紅框 Ⓐ–Ⓓ 對應右表 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_game_01_intro.png" alt="進入遊戲後的 FREE SPINS 進場提示彈窗" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：進場提示彈窗<br><span style="font-size:10px;">將 fs_game_01_intro.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">2026-08-25 原型實拍（示範遊戲＝Caishen Wins）· 紅框 Ⓐ–Ⓓ 對應右表 · 續玩卡顯示剩餘 5 SPINS 非總數 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>功能（點標題看詳細說明）</th></tr></thead>
@@ -2401,7 +2418,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <!-- ── 畫面二 ── -->
   <div class="sub-title">畫面二 · 遊戲中（FS 模式）</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_game_02_ingame.png" alt="FREE SPIN 模式進行中的遊戲畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：FS 模式進行中的遊戲畫面<br><span style="font-size:10px;">將 fs_game_02_ingame.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">來源：美術提供之遊戲內 mockup · 紅框 Ⓐ–Ⓖ 對應右表 · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_game_02_ingame.png" alt="FREE SPIN 模式進行中的遊戲畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：FS 模式進行中的遊戲畫面<br><span style="font-size:10px;">將 fs_game_02_ingame.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">2026-08-25 原型實拍（FS 模式中 · WIN 顯示本局贏分）· 紅框 Ⓐ–Ⓘ 對應右表 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>功能（點標題看詳細說明）</th></tr></thead>
@@ -2413,6 +2430,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td class="region-td">Ⓔ</td><td><a href="#pg-game-i" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">錢包餘額（FS 期間不變動）</a></td></tr>
       <tr><td class="region-td">Ⓕ</td><td><a href="#pg-game-j" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">AUTO / 快速 / 資訊鈕</a></td></tr>
       <tr><td class="region-td">Ⓖ</td><td><a href="#pg-game-k" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">⏳ 計時（平台既有元件 · 非 FS）</a></td></tr>
+      <tr><td class="region-td">Ⓗ</td><td><a href="#pg-game-icon" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">CRM 吸附浮動 icon（常駐）</a> <span class="tag-pill tag-v2">V1.11 補標</span></td></tr>
+      <tr><td class="region-td">Ⓘ</td><td><a href="#pg-game-leave" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">Leave FS（中途離開）</a> <span class="tag-pill tag-v2">V1.11 補標</span></td></tr>
     </tbody>
   </table>
   <div class="region-index-note">▸ 點功能標題跳到下方「區域詳細說明」；點左側截圖可浮動放大檢視。</div>
@@ -2478,12 +2497,34 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>卡片剩餘有效時間<strong>只在背包</strong>顯示（§07 Ⓒ），遊戲內不另做倒數</li></ul></div>
   </div>
 </div>
+<div class="region-detail" id="pg-game-icon">
+  <h4><span class="region-td">Ⓗ</span>CRM 吸附浮動 icon（常駐）<span class="rd-func">背包與所有 CRM 活動的入口；一般模式與 FS 模式皆在。<span class="tag-pill tag-v2">V1.11 補標</span></span></h4>
+  <div class="rd-cols">
+    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>行為規則見本章<a href="#pg-game" style="color:var(--gold-light);">「CRM 入口與活動頁浮層行為」</a>一節（一行指路，不重複）</li>
+<li>紅點徽章＝可用卡數提示（icon 本體規則屬抽寶箱 CRM 浮動 icon 規格）</li></ul></div>
+    <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>spin 轉動中半透明不可點；按下 SPIN 當下選單與背包浮層自動關閉、icon 保留</li></ul></div>
+  </div>
+</div>
+<div class="region-detail" id="pg-game-leave">
+  <h4><span class="region-td">Ⓘ</span>Leave FS（中途離開）<span class="rd-func">局數未用完時離開 FS 模式的出口。<span class="tag-pill tag-v2">V1.11 補標</span></span></h4>
+  <div class="rd-cols">
+    <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>離開<strong>不觸發結算</strong>：剩餘局數與累積 <span class="mono">score</span> 全部保留（§03 全域規則「局數未用完離開不結算」）</li>
+<li>回背包後可續玩<strong>同一張卡</strong>（同 <span class="mono">reference_id</span>、續扣同池），或換卡內另一款遊戲</li></ul></div>
+    <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>離開後回一般模式，押注恢復玩家自選、FREE SPINS 標記消失</li>
+<li>不得因離開而清空 score 或重置局數</li></ul></div>
+  </div>
+</div>
 
   <!-- ── CRM 活動頁浮層（iframe）行為 ── -->
   <div class="sub-title">CRM 入口與活動頁浮層（iframe）行為<span class="tag-upd">2026-08-25</span></div>
   <div class="callout info"><strong>先講清楚這是什麼</strong>：CRM 活動頁（<strong>含背包</strong>）是在<strong>遊戲內以 iframe 浮層</strong>開啟的——玩家不必離開遊戲就能開背包看卡片。本節定義兩件事：<strong>①玩家怎麼進到背包</strong>（入口路徑）<strong>②浮層與遊戲之間的互動邊界</strong>（什麼時候要讓開、什麼時候必須鎖住不給點）。</div>
 
   <div class="callout"><strong>入口定義（DEV V1.8 · V1.9 補明確）</strong>：CRM 活動頁（iframe 浮層）<strong>由吸附浮動 icon 展開的 CRM 選單進入</strong>。玩家點選單中的「<strong>背包</strong>」項目 → <strong>選單收合</strong> → <strong>開啟背包浮層</strong>。<strong>背包不再有獨立的直接入口。</strong><br>CRM 選單是<strong>所有 CRM 活動的共用入口</strong>（抽寶箱等同列其中）；<strong>icon 與選單本體的規則（拖曳、貼邊、顯示時機、選單項目管理）屬《抽寶箱 CRM 浮動 icon 規格》範疇</strong>，本文件只定義「背包」項目的行為。<br><span class="tag-pill tag-v2">V1.9 補明確</span> <strong>吸附浮動 icon 為遊戲畫面的常駐元件</strong>：<strong>一般模式與 FS 模式皆顯示、皆可點擊展開 CRM 選單</strong>，<strong>並非 FS 期間限定</strong>。<strong>玩家未持任何 FS 卡時同樣能經 icon → 選單 →「背包」開啟背包</strong>（開啟後看到的是空的／其他分頁狀態，版面同 <a href="#pg-bag" style="color:var(--gold-light);">§07</a>）。</div>
+
+  <div class="shot-map">
+<div class="shot-frame"><img src="design_assets/fs_game_05_normal_icon.png" alt="一般模式遊戲畫面與常駐 CRM icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：一般模式＋常駐 icon</div><div class="shot-cap">一般模式（未持卡也相同）· Ⓐ 吸附浮動 icon 常駐於左側、紅點徽章顯示可用卡數（2026-08-25 原型實拍）· 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_game_04_menu.png" alt="CRM 選單展開畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：CRM 選單</div><div class="shot-cap">點 icon 展開 CRM 選單（Game Center）· Ⓐ 選單面板＝所有 CRM 活動共用入口（Lucky Chest live／Mission・Ranking・Recommend・Favorites＝SOON 佔位）· Ⓑ「Backpack」項目（live）→ 點擊開啟背包浮層 · 點圖放大</div></div>
+  </div>
 
   <div class="flow-wrap">
     <div class="flow-v">
@@ -2517,7 +2558,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="sub-title">畫面三 · 結算彈窗</div>
   <div class="callout danger"><strong>本版必改</strong>：mockup 中 Ⓔ 兩行「Minimum Withdrawable Bonus Amount（₱10 / ₱300）」<strong>整段移除</strong>——本卡<strong>沒有最低獲得金額門檻、沒有流水（roll-over）</strong>，結算金額全額直接入主錢包真金。原圖兩行標籤文字重複亦為文案錯誤，一併不採用。</div>
   <div class="shot-map narrow">
-<div class="shot-frame"><img src="design_assets/fs_game_03_settle.png" alt="FREE SPIN 卡結算彈窗" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：結算彈窗<br><span style="font-size:10px;">將 fs_game_03_settle.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">來源：美術提供之遊戲內 mockup · 紅框 Ⓐ–Ⓖ 對應右表 · <strong>Ⓔ 為待移除欄位</strong> · 點圖放大</div></div>
+<div class="shot-frame"><img src="design_assets/fs_game_03_settle.png" alt="FREE SPIN 卡結算彈窗" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：結算彈窗<br><span style="font-size:10px;">將 fs_game_03_settle.png 放入 design_assets 後自動顯示</span></div><div class="shot-cap">2026-08-25 原型實拍 · 紅框 Ⓐ–Ⓓ／Ⓕ／Ⓖ 對應右表 · <strong>Ⓔ（最低提領欄位）已確認移除——實拍畫面中不存在</strong> · Bonus ₱600.00＋Max Cap Reached＝封頂結算範例 · 點圖放大</div></div>
 <div>
   <table class="spec-table" style="margin-bottom:8px;">
     <thead><tr><th style="width:56px;">區域</th><th>功能（點標題看詳細說明）</th></tr></thead>
@@ -2526,7 +2567,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td class="region-td">Ⓑ</td><td><a href="#pg-game-m" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">CampaignID（客訴查詢用）</a></td></tr>
       <tr><td class="region-td">Ⓒ</td><td><a href="#pg-game-n" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">遊戲縮圖</a></td></tr>
       <tr><td class="region-td">Ⓓ</td><td><a href="#pg-game-o" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">Bonus Amount · 本次結算金額</a></td></tr>
-      <tr><td class="region-td">Ⓔ</td><td><a href="#pg-game-p" style="color:var(--red-line-strong);text-decoration:none;border-bottom:1px dashed var(--border-bright);">⛔ 最低可提領金額（本版移除）</a></td></tr>
+      <tr><td class="region-td">Ⓔ</td><td><a href="#pg-game-p" style="color:var(--red-line-strong);text-decoration:none;border-bottom:1px dashed var(--border-bright);">⛔ 最低可提領金額（<strong>已確認移除 · 原型無此欄位</strong>）</a></td></tr>
       <tr><td class="region-td">Ⓕ</td><td><a href="#pg-game-q" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">Return to Normal Mode</a></td></tr>
       <tr><td class="region-td">Ⓖ</td><td><a href="#pg-game-r" style="color:var(--gold-light);text-decoration:none;border-bottom:1px dashed var(--border-bright);">✕ 關閉</a></td></tr>
     </tbody>
@@ -2569,7 +2610,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   </div>
 </div>
 <div class="region-detail" id="pg-game-p">
-  <h4><span class="region-td">Ⓔ</span>⛔ 最低可提領金額（本版移除）<span class="rd-func">mockup 上的兩行門檻文字，實作時不做。</span></h4>
+  <h4><span class="region-td">Ⓔ</span>⛔ 最低可提領金額（已確認移除）<span class="rd-func">早期美術 mockup 曾出現的門檻文字；原型實拍已無此欄位，實作不做。</span></h4>
   <div class="rd-cols">
     <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li><strong>本卡無最低獲得金額門檻、無提領門檻、無流水</strong>——此欄位不存在</li>
 <li>Ⓓ 下方直接接 Ⓕ 按鈕，中間留白即可</li></ul></div>
@@ -2926,7 +2967,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 </section>
 
 <div class="doc-footer">
-  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.10 · CONFIDENTIAL 2026<br>
+  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.11 · CONFIDENTIAL 2026<br>
+  DEV V1.11（2026-08-25）：§04～§08 截圖全面更新為原型實拍（背包英文版）並同步說明——fs_admin_01~03／fs_bag_01~03 重拍、新增 fs_bag_04 提前結算確認／05 啟用流程／06 AWC 錯誤／fs_game_04 CRM 選單／05 常駐 icon、fs_game_01~03 由 mockup 改實拍（畫面二新增 Ⓗ icon／Ⓘ Leave FS；畫面三 Ⓔ 確認移除）；§06「啟用」改「建立發放卡」。規格規則零變更；原型卡名文案差異列入待修。<br>
   DEV V1.10（2026-08-25）：§04 由「美術主題與風格」擴充為「美術主題與美術需求」——新增背包頁 Ⓐ–Ⓗ 美術視角圖文對照、遊戲內三畫面（進場／遊戲中／結算）圖文對照、美術資產需求總表 28 項（資產類型限整張圖／九宮格／icon／動效素材四種，含狀態數、430×932 基準尺寸建議、fs_{screen}_{element}_{state}.png 命名建議）、動態文字與位數限制表（金額 12 字元、次數 2 位數、倒數 8 字元、卡名固定全語系統一）。含文字美術圖統一英文、已過期置灰由前端濾鏡處理。§07／§08 行為規則零變更，美術章一律指路回原章。<br>
   DEV V1.9（2026-08-25）：§05 後台「使用活動」改未結束口徑——N＝進行中＋尚未開始，已結束不列不計、展開狀態僅兩態，刪卡保護同口徑（被未結束活動引用時 disabled，含尚未開始），防呆表／錯誤處理／文案表／驗收全文改「未結束」用語並新增「未結束口徑」驗收；已結束的引用紀錄由 DB 留存供對帳、後台不顯示。§08 CRM 浮動 icon 明確為遊戲畫面常駐（一般模式與 FS 模式皆在、非 FS 期間限定），新增「一般模式開背包」驗收。§07 補背包頁單一版面聲明。背包內部規則零變更。<br>
   DEV V1.8（2026-08-25）：背包入口定義為「遊戲內吸附浮動 icon → CRM 選單 →『背包』」，CRM 選單為所有 CRM 活動共用入口（抽寶箱等同列），背包不再有獨立直接入口；§03 新增 CRM 浮動 icon／CRM 選單名詞（icon 本體規則屬抽寶箱 CRM 浮動 icon 規格）；§08 SPIN 自動關閉範圍精確化（關選單與背包浮層、icon 保留）、轉動中 icon 亦半透明不可點，驗收改寫並新增「轉動中點 icon」「選單進背包」；§02 頁面地圖補入口節點；§07 補指路描述；13 語系新增「選單項目·背包」。背包內部規則零變更。<br>
