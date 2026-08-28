@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 開發交付版規格書 DEV V1.11</title>
+<title>抽寶箱 開發交付版規格書 DEV V1.14</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1242,7 +1242,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
 <!-- ═══════════ TOP NAV ═══════════ -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">CHEST DEV SPEC · V1.11</span>
+  <span class="nav-brand">CHEST DEV SPEC · V1.14</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#mechanic">玩法機制</a>
   <a class="nav-item" href="#prizes">獎勵設計</a>
@@ -1274,7 +1274,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">抽寶箱<br>開發交付版規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.11</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.14</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">SOURCE</span><span class="sidebar-meta-val">完整版 V5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
@@ -1422,7 +1422,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <button class="sidebar-section-btn" onclick="navTo('reward-data')"><span class="sidebar-section-num">14</span>獎勵發放與數據原則<span class="sidebar-chevron">›</span></button>
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#reward-data">Bet=0 發放</a>
-        <a class="sidebar-sub-link" href="#reward-data">RTP −1% 守恆</a>
+        <a class="sidebar-sub-link" href="#reward-data">活動獎勵佔比（分眾）</a>
         <a class="sidebar-sub-link" href="#reward-data">獎勵歷程可查性</a>
         <a class="sidebar-sub-link" href="#reward-data">GGR 歸屬原則</a>
       </div>
@@ -1449,7 +1449,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.12 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.14 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1458,7 +1458,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.12 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.14 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1494,6 +1494,20 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-08-27</td>
+          <td>DEV V1.14</td>
+          <td><a href="#overview" style="color:var(--gold-light);">§01</a>／<a href="#mechanic" style="color:var(--gold-light);">§02</a>／<a href="#prizes" style="color:var(--gold-light);">§03</a>／<a href="#ui" style="color:var(--gold-light);">§05</a>／<a href="#backend" style="color:var(--gold-light);">§06</a>／<a href="#comparison" style="color:var(--gold-light);">§07</a>／<a href="#i18n" style="color:var(--gold-light);">§11</a>／<a href="#admin-version" style="color:var(--gold-light);">§13</a>／<a href="#reward-data" style="color:var(--gold-light);">§14</a></td>
+          <td><strong>全文衝突複查 13 項修訂 ＋ 4 項新拍板</strong>（承 V1.13 後之全章交叉比對）：<br>
+          <strong style="color:var(--gold-light);">【新規則】</strong>①<strong>獎項檔位下限改為「小獎 ≥ 1 且最終獎 ≥ 1」</strong>（原僅最終獎；中／大獎仍可為 0）；②<strong>累積門檻改為「非遞減」即可</strong>——<strong>相鄰門檻允許相等</strong>（例 1／2／3 格同門檻），跨過該門檻時<strong>一次解鎖多次機會</strong>，不再要求嚴格遞增；③<a href="#reward-data" style="color:var(--gold-light);">§14 二</a> <strong style="color:var(--orange-bright);">廢除「RTP −1% 守恆」</strong>——改為「<strong>分眾差異化獎勵佔比</strong>」：各標籤族群的活動獎勵 % 由其命中模板的 RTP 決定、<strong>可各不相同</strong>，−1% 僅為預設示範值；對帳口徑改為<strong>逐模板（族群）驗證</strong>；④i18n <span class="mono">{time}</span> <strong>拆為兩個 placeholder</strong>——<span class="mono">{time}</span>＝倒數 HH:MM:SS／<strong><span class="mono">{reset_time}</span>＝重置時點 HH:MM</strong>（<span class="mono">go_hint</span>／<span class="mono">tut2_body</span> 13 語系同步改用 <span class="mono">{reset_time}</span>）。<br>
+          <strong style="color:var(--gold-light);">【衝突修訂】</strong>⑤<a href="#ui" style="color:var(--gold-light);">§05</a> UI 元件說明「格子·可翻」補齊<strong>派獎等待態</strong>（原仍寫「點擊即翻」，與 P3 四態互斥）；⑥同表「格子·鎖定」由「<strong>點擊無反應</strong>」改為<strong>抖動＋hint 高亮＋<span class="mono">sfx_locked</span></strong>（對齊〈<a href="#locked-feedback" style="color:var(--gold-light);">鎖定格點擊回饋</a>〉）；⑦<strong>P7 兩套互斥規格統一</strong>——版位<strong>卡片（非全螢幕）</strong>、<strong>不含倒數</strong>、關閉後<strong>回到 9 格盤面</strong>（美術節與資產清單 #17、P4/P7 差異段同步）；⑧新增<strong>翻牌中被強制關閉面板</strong>之處理（免費遊戲／大獎演出）；⑨<a href="#admin-version" style="color:var(--gold-light);">§13 三</a> 活動版本生效切點「活動暫停更新」改<strong>次一個每日重置時點</strong>（與模板版本同口徑）；⑩<a href="#camp-pause" style="color:var(--gold-light);">§13</a>「運行」確認彈窗補齊<strong>活動日口徑</strong>（V1.13 漏改）；⑪<a href="#comparison" style="color:var(--gold-light);">§07</a> <strong>刪除「玩家分群 · usertype tag 投放」列</strong>（與「無准入閘門」互斥、術語已廢）；⑫三處交叉引用勘誤（<span class="mono">§09 E9</span>→<span class="mono">§08</span>、<span class="mono">§12 當日鎖定</span>→<span class="mono">§04 二</span>、<span class="mono">§02 線路資格判定</span>→<span class="mono">§04 一</span>）；⑬三處「<strong>格數固定</strong>」殘留改為<strong>模板設定值</strong>（§01／§02／§03）；⑭頂部列版號 <span class="mono">V1.11</span> 勘誤</td>
+        </tr>
+        <tr>
+          <td>2026-08-27</td>
+          <td>DEV V1.13</td>
+          <td><a href="#mechanic" style="color:var(--gold-light);">§02</a>／<a href="#rtp-formula" style="color:var(--gold-light);">§03</a>／<a href="#behavior" style="color:var(--gold-light);">§04</a>／<a href="#ui" style="color:var(--gold-light);">§05</a>／<a href="#backend" style="color:var(--gold-light);">§06</a>／<a href="#i18n" style="color:var(--gold-light);">§11</a>／<a href="#tag-rules" style="color:var(--gold-light);">§12</a>／<a href="#admin-version" style="color:var(--gold-light);">§13</a></td>
+          <td>依 QA 2026-08-27《規格衝突盤點》<strong>16 項修訂</strong>：①<a href="#daily-wrapup" style="color:var(--gold-light);">P7 結算卡</a>文案定案（<span class="mono">go_sub</span>＝<strong>當日累積金額 {amount}</strong>、<span class="mono">go_hint</span>＝<strong>明日 {time} 洗牌</strong>，2 條重譯）；②<strong>重置時間全面參數化</strong>（廢除寫死 00:00，<span class="mono">tut2_body</span> 重譯）；③新增翻牌「<strong style="color:var(--orange-bright);">派獎等待態</strong>」規格（<strong>點擊即扣＋全盤鎖定＋逾時 10s 退回</strong>）；④<a href="#tag-rules" style="color:var(--gold-light);">標籤變動</a>生效切點統一為「<strong>次一每日重置時點</strong>」（§12 改寫）；⑤配置鎖定＝使用<strong>當日登錄標籤快照</strong>；⑥<a href="#camp-pause" style="color:var(--gold-light);">暫停保護</a>改「<strong>至該活動次一 reset 時點</strong>」；⑦氣泡條件 <span class="mono">&gt;1</span> 更正 <span class="mono">≥1</span>；⑧<a href="#rtp-formula" style="color:var(--gold-light);">RTP 分子</a>改<strong>模板設定數量</strong>；⑨i18n 補 <strong>3 條 key（38→41）</strong>；⑩<strong>擇一原則</strong>補判定規則（<strong>開始時間最早者</strong>）；⑪<strong>首次進場演出順序</strong>定案；⑫版號統一；⑬<span class="mono">viewer01</span> 示意修正；⑭<strong>300/550</strong> 勘誤；⑮倒數邊界統一 <span class="mono">≤</span>；⑯§12 失效引用清除；另定案<strong>派獎重試上限 5 次</strong>、<strong>連線重試 N＝10 秒</strong></td>
+        </tr>
         <tr>
           <td>2026-08-17</td>
           <td>DEV V1.12</td>
@@ -1611,7 +1625,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <details class="fold">
-    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.11<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
+    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.14<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
     <div class="fold-body">
       <table class="spec-table compact">
         <thead><tr><th style="width:190px;">完整版章節</th><th style="width:150px;">本文件章節</th><th>處理方式</th></tr></thead>
@@ -1661,7 +1675,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="info-card-desc" style="margin-top:8px;line-height:1.8;">
         ✅ 動態洗牌 9 宮格（非固定位置）<br>
         ✅ 攤開 → 洗牌動態 → 背面蓋牌選格 流程<br>
-        ✅ 獎項組成：小獎×5、中獎×2、大獎×1、最終獎×1（格數固定、金額由模板設定）<br>
+        ✅ 獎項組成：四檔數量由模板設定（<strong>預設 5／2／1／1，加總＝9</strong>；小獎與最終獎各 ≥ 1）、金額由模板設定<br>
         ✅ 累積押注解鎖（9 段累積門檻，數值由模板設定）<br>
         ✅ <strong>僅現金獎</strong>；標籤規則（AND 複合）→ 模板，未命中走預設配置<br>
         ✅ 9 格 3×3 陣列、每日重置（時間點逐活動可設，UTC+8）<br>
@@ -1694,7 +1708,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <span class="section-title-en">GAME MECHANIC</span>
   </div>
 
-  <div class="sub-title">機制核心流程</div>
+  <div class="sub-title">機制核心流程<span class="tag-upd">2026-08-27</span></div>
   <div class="flow-wrap">
     <div class="flow-v">
       <div class="flow-step highlight">
@@ -1724,18 +1738,18 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="flow-step">
         <div class="flow-step-num">STEP 05</div>
         <div class="flow-step-title">🔁 隔日重置</div>
-        <div class="flow-step-desc">00:00 進度清零<br>全新洗牌開始</div>
+        <div class="flow-step-desc">每日重置時點 進度清零<br>全新洗牌開始</div>
       </div>
     </div>
   </div>
 
-  <div class="sub-title" style="margin-top:32px;">每日開始流程</div>
+  <div class="sub-title" style="margin-top:32px;">每日開始流程<span class="tag-upd">2026-08-27</span></div>
   <div class="flow-wrap">
     <div class="flow-v">
       <div class="flow-step" style="min-width:400px;">
         <div class="flow-step-num">STEP 01</div>
         <div class="flow-step-title">🕛 每日 Reset</div>
-        <div class="flow-step-desc">00:00 重置，獎項組合重新產生（小獎×5、中獎×2、大獎×1、最終獎×1）</div>
+        <div class="flow-step-desc">每日重置時點 重置，獎項組合重新產生（小獎×5、中獎×2、大獎×1、最終獎×1）</div>
       </div>
       <div class="flow-arrow-down">↓</div>
       <div class="flow-step" style="min-width:400px;">
@@ -1764,7 +1778,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title">解鎖門檻設計（累積押注金額）</div>
+  <div class="sub-title">解鎖門檻設計（累積押注金額）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout success">
     <strong>翻牌機制：</strong>累積押注每跨過一個門檻，玩家就獲得 <strong>1 次「翻牌機會」</strong>（非解鎖固定位置的格子）。玩家可用累積的翻牌次數，<strong>自由翻開任意一個尚未翻開的格子</strong>——<em>可翻次數 = 已解鎖次數 − 已翻開數</em>。沒有剩餘次數時，所有未開格顯示鎖頭、不可點擊。<br>
     <strong>為何不影響經濟：</strong>集滿當日總門檻後可翻次數累積至 9，玩家最終仍會翻完全部 9 格、拿到全部獎項；翻牌結果依機率表權重於當日解鎖時決定並寫死，玩家翻開順序不影響已定結果，<strong>RTP 與通膨風險不變</strong>。
@@ -1783,6 +1797,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="callout">
     <strong>累積門檻的計算方式（累積制，對齊 DEV §03／DEV §06 模板）：</strong>模板提供一組 <strong>9 個累積押注門檻</strong>（各貨幣各自一套）。內部 <em>today_wager</em> 持續累加，取得第 d 次翻牌機會的條件為 <em>today_wager ≥ 累積門檻[d]</em>；「本階段所需」＝相鄰累積差；<strong>總門檻＝第 9 個累積門檻</strong>。<br>
     下表以 <em>[100, 220, 360, 550, 850, 1250, 1700, 2500, 3650]</em> 為<strong>示範數列</strong>（總門檻 ₱3,650）說明推算方式，<strong>實際值以模板設定為準</strong>。<br><br>
+    <strong style="color:var(--gold-light);">門檻數列僅需「非遞減」，允許相鄰相等（DEV V1.14 放寬）：</strong>後一格門檻<strong>不必大於</strong>前一格，<strong>可以相同</strong>（例 <em>[100, 100, 100, 550, …]</em> 表示第 1／2／3 格同門檻）；<strong>唯不可小於前一格</strong>（門檻[d+1] ≥ 門檻[d]）。<br>
+    · <strong>相等門檻的效果：</strong>跨過該門檻時<strong>同時滿足多格條件 → 一次解鎖多次翻牌機會</strong>（沿用 <a href="#behavior" style="color:var(--gold-light);">DEV §04 一「跨門檻即得次數」</a>的一次補足規則，不可只給 1 次）。<br>
+    · <strong>UI 呈現：</strong>相等門檻導致「本階段所需＝0」時，<strong>不顯示「再押 ₱0」</strong>——直接跳顯下一個<strong>大於 today_wager</strong> 的門檻作為本階段目標；若 9 格已全數解鎖則顯示 <span class="mono">tb_all_unlocked</span>（「今日已全部解鎖」）。<br>
+    · <strong>後台校驗：</strong>出現<strong>遞減</strong>（門檻[d+1] &lt; 門檻[d]）時<strong style="color:var(--red-bright);">警示並擋儲存／擋送審</strong>；相等則<strong style="color:var(--green-bright);">合法、不擋</strong>。<br><br>
     <strong>UI 顯示原則：</strong>玩家畫面<strong>只顯示「再押 ₱X 解鎖下一次機會」</strong>（X = 下一累積門檻 − today_wager），進度條呈現「本階段進度」；<strong>永遠不顯示總門檻</strong>，讓玩家覺得每階段都好達成（詳見 DEV §05 UI）。
   </div>
 
@@ -1801,7 +1819,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div id="threshold-rows"></div>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);margin-top:8px;">※ 上表「格子」欄位代表第 1～9 次<strong>翻牌機會</strong>的<strong>累積門檻</strong>與本階段所需 spins（本階段 = 相鄰累積差）；玩家端不顯示總額。機會可自由用於任一未開格。<br><strong style="color:var(--orange-bright);">※ 表內數字為示範值</strong>——實際門檻由後台模板設定、依標籤規則而異。</div>
 
-  <div class="sub-title" style="margin-top:24px;">重置規則</div>
+  <div class="sub-title" style="margin-top:24px;">重置規則<span class="tag-upd">2026-08-27</span></div>
   <div class="info-grid-3">
     <div class="info-card">
       <div class="info-card-icon">🕛</div>
@@ -1816,7 +1834,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="info-card">
       <div class="info-card-icon">🎲</div>
       <div class="info-card-title">動態洗牌分配</div>
-      <div class="info-card-desc">每日開始時執行洗牌，<strong>小獎×5、中獎×2、大獎×1、最終獎×1</strong> 隨機分配到 9 格（<strong>格數組成固定</strong>，各階金額由模板設定）。玩家看到攤開結果後點「開始遊戲」才執行洗牌，格子翻回背面。</div>
+      <div class="info-card-desc">每日開始時執行洗牌，四檔獎項依<strong>模板設定數量</strong>（預設 <strong>小×5、中×2、大×1、最終×1</strong>，加總恆為 9）隨機分配到 9 格（<strong>總格數固定 9</strong>，各檔數量與金額皆由模板設定）。玩家看到攤開結果後點「開始遊戲」才執行洗牌，格子翻回背面。</div>
     </div>
   </div>
 
@@ -1846,7 +1864,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <span class="section-title-en">PRIZE STRUCTURE & RTP</span>
   </div>
 
-  <div class="sub-title">獎勵結構（9 宮格組成）</div>
+  <div class="sub-title">獎勵結構（9 宮格組成）<span class="tag-upd">2026-08-27</span></div>
   <div class="prize-grid" id="prize-grid-display"></div>
 
   <div class="info-grid-4">
@@ -1867,7 +1885,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="info-card-label">最終獎 ×1格（原 Jackpot）</div>
     </div>
   </div>
-  <div class="body-text" style="font-size:12px;">合計 <strong>9 格</strong>，每日洗牌後隨機分配位置。<strong>「小×5／中×2／大×1／最終×1」的格數組成固定</strong>。</div>
+  <div class="body-text" style="font-size:12px;">合計 <strong>9 格</strong>，每日洗牌後隨機分配位置。四檔數量為<strong>模板設定值（預設 5／2／1／1，加總必須＝9）</strong>，<strong>v1 起可自訂</strong>，見 <a href="#prize-count" style="color:var(--gold-light);">DEV §06 二之二、獎項檔位數量</a>。</div>
   <div class="callout danger">
     <strong>⚠ 上方 ₱1／₱3／₱8／₱18 為示範金額，不是實際上線值：</strong>四階獎項的<strong>金額由營運在後台模板中設定</strong>，並依玩家命中的<strong>標籤規則</strong>套用不同模板——<strong>不同標籤族群會拿到不同的獎項金額與不同的累積門檻</strong>。<br>
     本章與 DEV §02 出現的所有具體數字，<strong>僅為說明機制的範例</strong>；開發請將四階金額與 9 格門檻<strong>一律視為由模板讀入的變數，不得寫死</strong>（模板規格見 <a href="#template-mgmt" style="color:var(--gold-light);">DEV §06 模板管理</a>）。
@@ -1896,19 +1914,19 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title">亂數模型（固定池 ＋ 不放回加權抽）</div>
+  <div class="sub-title">亂數模型（固定池 ＋ 不放回加權抽）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout">
-    <strong>獎池組成固定、金額由模板決定：</strong>每日獎池<strong>固定為 9 格＝小 ×5、中 ×2、大 ×1、最終 ×1</strong>（<strong>格數組成不可變</strong>）；<strong>四階的金額由該玩家命中的模板提供</strong>，因此<strong>不同標籤族群的當日獎池總額不同</strong>。當日獎池一經產生即<strong>不可變動</strong>。<br><br>
+    <strong>獎池為 9 格、組成與金額皆由模板決定：</strong>每日獎池<strong>固定 9 格</strong>，四檔數量為<strong>模板設定值</strong>（預設小 ×5、中 ×2、大 ×1、最終 ×1；<strong>加總恆＝9、總格數不可變</strong>，見 <a href="#prize-count" style="color:var(--gold-light);">DEV §06 二之二</a>）；<strong>四階的金額由該玩家命中的模板提供</strong>，因此<strong>不同標籤族群的當日獎池總額不同</strong>。當日獎池一經產生即<strong>不可變動</strong>。<br><br>
     <strong>產生方式：</strong>玩家<strong>每日首次解鎖</strong>時，依<strong>標籤規則命中的模板</strong>權重以<strong>不放回加權抽</strong>產生 9 格排列並寫死當日 DB，當日不可重抽。翻完 9 格<strong>必得該模板獎池的全額</strong>，完成者 RTP 由該模板的獎池總額與總門檻共同決定、<strong>零變異、絕不超池</strong>。<br><br>
     <strong>終獎位置有機化：</strong>終獎<strong>不固定第 9 格</strong>，由權重分佈於後段（各模板分佈不同，見下方示範表），避免每日回訪玩家看破。
   </div>
 
-  <div class="sub-title" id="rtp-formula">後端 RTP 驗算公式（每貨幣 × 每模板各自驗算）<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="rtp-formula">後端 RTP 驗算公式（每貨幣 × 每模板各自驗算）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <code>模板 RTP = ( 該模板 9 格獎項金額總和 ) ÷ ( 該模板第 9 格累積門檻 )</code><br><br>
-    <strong>分子</strong>＝該模板四階獎項按格數加總（小×5 ＋ 中×2 ＋ 大×1 ＋ 最終×1）；<strong>分母</strong>＝該模板的總（累積）門檻。<strong>兩者皆為模板設定值，隨標籤族群而異，公式中不含任何固定金額。</strong><br>
+    <strong>分子</strong>＝<strong style="color:var(--gold-light);">Σ（各檔獎項金額 × 該檔設定數量）</strong>——四檔數量為<strong>模板設定值</strong>（加總＝9，預設 5／2／1／1，見 <a href="#prize-count" style="color:var(--gold-light);">DEV §06 二之二</a>）；<strong>分母</strong>＝該模板的總（累積）門檻。<strong>兩者皆為模板設定值，隨標籤族群而異，公式中不含任何固定金額。</strong><br>
     <strong>每套貨幣（各貨幣一套）× 每個模板各自代入、各自驗算，不做匯率換算。</strong><strong style="color:var(--gold-light);">驗算範圍＝已啟用幣別</strong>（必填 17 ＋ 已啟用的選填；清單見 <a href="#currency-list" style="color:var(--gold-light);">DEV §06 二之一、貨幣清單</a>）。後台<strong>即時試算並顯示於各幣別 tab 內</strong>（連同該幣別<strong>獎池總額</strong>），<strong style="color:var(--gold-light);">為純資訊顯示</strong>——<strong style="color:var(--orange-bright);">不做目標值校驗、不警示、不擋儲存與送審</strong>。<br>
-    <strong>儲存前的硬性校驗</strong>為：<strong>獎項數量加總＝9</strong>、<strong>最終獎 ≥ 1</strong>、<strong>必填幣別填寫完整</strong>、<strong>第 1~8 抽權重列合計 &gt; 0</strong>（見 <a href="#rtp-info" style="color:var(--gold-light);">DEV §06 二之三、RTP 驗算與獎池總額</a>）。
+    <strong>儲存前的硬性校驗</strong>為：<strong>獎項數量加總＝9</strong>、<strong style="color:var(--gold-light);">小獎 ≥ 1</strong>、<strong>最終獎 ≥ 1</strong>、<strong>必填幣別填寫完整</strong>、<strong>第 1~8 抽權重列合計 &gt; 0</strong>（見 <a href="#rtp-info" style="color:var(--gold-light);">DEV §06 二之三、RTP 驗算與獎池總額</a>）。
   </div>
 
   <div class="sub-title">分眾架構：標籤規則（AND 複合條件）→ 模板（對齊後台原型 v2）</div>
@@ -1999,7 +2017,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout warn" style="font-size:12px;">
-    <strong>表格性質與 QA 驗收：</strong>上列各模板為固定池「不放回加權抽」下各格的<strong>邊際機率</strong>（每個模板各欄總和 = 該獎項在固定池的數量：小 5、中 2、大 1、終 1；各列總和 = 100%）。後端<strong>不以此表逐格 roll</strong>，而是依<strong>標籤規則命中的模板</strong>實作「不放回加權抽」演算法；QA 以蒙地卡羅跑 ≥ 10 萬次排列，驗證實際邊際機率落在對應模板 ±2% 內、且每次總派彩<strong>恆等於該模板獎池總額</strong>（＝小×5＋中×2＋大×1＋終×1 的模板設定金額）即通過。
+    <strong>表格性質與 QA 驗收：</strong>上列各模板為固定池「不放回加權抽」下各格的<strong>邊際機率</strong>（每個模板各欄總和 = <strong>該模板各檔設定數量</strong>；各列總和 = 100%）。後端<strong>不以此表逐格 roll</strong>，而是依<strong>標籤規則命中的模板</strong>實作「不放回加權抽」演算法；QA 以蒙地卡羅跑 ≥ 10 萬次排列，驗證實際邊際機率落在對應模板 ±2% 內、且每次總派彩<strong>恆等於該模板獎池總額</strong>（＝<strong>Σ（各檔設定金額 × 設定數量）</strong>）即通過。
   </div>
 
   <div class="callout warn">
@@ -2020,23 +2038,24 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>本章寫法：</strong>只列「<strong>系統必須達到的結果</strong>」與「<strong>不可違反的約束</strong>」。<strong>資料表結構、介面端點、傳輸欄位、佇列拓撲等實作手段由開發自行決定</strong>，只要行為與驗收標準成立即可。數值規則見 <a href="#mechanic" style="color:var(--gold-light);">DEV §02</a>／<a href="#prizes" style="color:var(--gold-light);">DEV §03</a>，標籤匹配規則見 <a href="#tag-rules" style="color:var(--gold-light);">DEV §12</a>。
   </div>
 
-  <div class="sub-title">一、押注累積行為</div>
+  <div class="sub-title">一、押注累積行為<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:190px;">需求</th><th>要達到的結果</th></tr></thead>
     <tbody>
       <tr><td>近即時累計</td><td class="dim">玩家每次押注後，其當日累積押注金額須<strong>近即時反映</strong>到活動進度上——玩家在遊戲內完成一次押注後回到寶箱面板，看到的進度應已包含該筆押注，<strong>不得等到下次登入或隔日批次才更新</strong>。</td></tr>
       <tr><td>計入範圍</td><td class="dim">只累計<strong>玩家所在線路落在該活動投放線路內</strong>的押注；線路不在清單內的押注<strong>不計入且玩家無感</strong>（不顯示活動、不報錯）。</td></tr>
       <tr><td>擇一原則</td><td class="dim">玩家<strong>同一時間只會進行 1 檔抽寶箱活動</strong>；其餘符合的活動不顯示、押注不計入。</td></tr>
+      <tr><td>多檔判定</td><td class="dim">玩家同時符合 2 檔以上<strong>運行中</strong>活動時，<strong style="color:var(--gold-light);">取活動開始時間最早者</strong>；開始時間相同時取 <strong>Campaign ID 字典序較小者</strong>。<strong>已鎖定當日配置的玩家當日不換檔</strong>，於該玩家所在活動的<strong>次一個每日重置時點</strong>重新判定（活動結束／被暫停後的次日自然切換至次優先活動，<strong>當日進度不轉移、不合併</strong>）。營運自訂優先序欄位列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充。</td></tr>
       <tr><td>跨門檻即得次數</td><td class="dim">累積金額每跨過一個門檻即<strong>取得 1 次翻牌機會</strong>；可翻次數＝已解鎖次數 − 已翻開格數。單筆押注一次跨過多個門檻時，<strong>須一次補足對應的多次機會</strong>，不可只給 1 次。</td></tr>
       <tr><td>次數不逾日</td><td class="dim">當日未使用完的翻牌次數<strong>不累積至隔日</strong>，隨每日重置一併清除。</td></tr>
     </tbody>
   </table>
 
-  <div class="sub-title">二、每日配置解析與鎖定</div>
+  <div class="sub-title">二、每日配置解析與鎖定<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:190px;">需求</th><th>要達到的結果</th></tr></thead>
     <tbody>
-      <tr><td>何時決定配置</td><td class="dim">玩家<strong>當日首次取得翻牌機會</strong>時，系統依其標籤命中的模板決定當日的<strong>門檻表、獎項與權重</strong>，並<strong>連同 9 格排列一次鎖定</strong>。</td></tr>
+      <tr><td>何時決定配置</td><td class="dim">玩家<strong>當日首次取得翻牌機會</strong>時，系統依其標籤命中的模板決定當日的<strong>門檻表、獎項與權重</strong>，並<strong>連同 9 格排列一次鎖定</strong>（所用標籤＝<strong style="color:var(--gold-light);">當日首次登錄時取得的快照</strong>，見 <a href="#tag-rules" style="color:var(--gold-light);">DEV §12 一</a>）。</td></tr>
       <tr><td>當日不變</td><td class="dim">鎖定後，<strong>當日內標籤變動、模板被編輯、活動被編輯，一律不影響已鎖定的玩家</strong>——飛行中的資料不被改寫。變更於<strong>該活動的次一個每日重置時點</strong>才生效。</td></tr>
       <tr><td>未命中兜底</td><td class="dim">未命中任何標籤規則（含新玩家、標籤資料尚未到位）→ <strong>走預設配置</strong>，活動照常可玩。<strong>不得因無標籤而讓玩家看不到或無法參與活動。</strong></td></tr>
       <tr><td>可回溯</td><td class="dim">須能事後查回「某玩家某日跑的是哪一檔活動、哪一版活動快照、哪一個模板的哪一版」，供客訴與對帳追溯。</td></tr>
@@ -2054,13 +2073,16 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title">四、獎勵發放行為</div>
+  <div class="sub-title">四、獎勵發放行為<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:190px;">需求</th><th>要達到的結果</th></tr></thead>
     <tbody>
       <tr><td>入帳形式</td><td class="dim">現金獎一律經集成商以「<strong>Bet=0 / Win=獎項面額</strong>」的注單發放，<strong>直入平台主錢包真金、可立即提領</strong>；不分錢包別、不走促銷工具、不進紅利錢包。</td></tr>
       <tr><td>先入帳後翻開</td><td class="dim">須<strong>確認發放成功後</strong>才將格子標記為已翻開並向玩家顯示獎勵。<strong>不得先給畫面再補發獎</strong>。</td></tr>
-      <tr><td>失敗處理</td><td class="dim">發放失敗時：格子<strong>維持未翻開</strong>、玩家不顯示獎勵、該筆派獎進入<strong>待處理狀態並自動重試至成功</strong>；同時須產生可被監控接住的失敗事件（見 <a href="#optimize" style="color:var(--gold-light);">DEV §15</a> 警報）。</td></tr>
+      <tr><td>等待態定義</td><td class="dim">玩家點擊可翻格當下：<strong style="color:var(--gold-light);">立即扣 1 次可翻次數</strong>、該格進入「<strong>翻牌中</strong>」狀態，並向後端送出開格請求；<strong style="color:var(--orange-bright);">等待期間整個 9 格盤面鎖定不可點</strong>（<strong>單一飛行中請求，不允許並發開格</strong>）。</td></tr>
+      <tr><td>成功路徑</td><td class="dim">收到派獎成功回應 → 該格完成翻開動畫、顯示獎項金額；<strong>盤面解鎖</strong>。</td></tr>
+      <tr><td>逾時／失敗路徑</td><td class="dim"><strong style="color:var(--orange-bright);">逾時 10 秒</strong>未收到成功回應，或收到失敗回應 → 該格<strong>回復背面</strong>、<strong>次數退回</strong>、<strong>盤面解鎖</strong>，並顯示重試提示（沿用 <a href="#ui" style="color:var(--gold-light);">DEV §05 連線失敗跑馬燈</a>樣式）；失敗事件照下方 <strong>A8</strong> 記錄。點擊當下扣次＋失敗退回，與 A8「<strong>失敗不誤扣</strong>」驗收口徑一致。</td></tr>
+      <tr><td>失敗處理</td><td class="dim">發放失敗時：格子<strong>維持未翻開</strong>、玩家不顯示獎勵、該筆派獎進入<strong>待處理狀態並自動重試（<span style="color:var(--gold-light);">上限 5 次</span>，超限轉人工對帳佇列，見 <a href="#awc" style="color:var(--gold-light);">DEV §09 一</a>）</strong>；同時須產生可被監控接住的失敗事件（見 <a href="#optimize" style="color:var(--gold-light);">DEV §15</a> 警報）。</td></tr>
       <tr><td>可對帳</td><td class="dim">每筆派獎須留下足以對帳的收據：<strong>玩家、活動、獎勵類型、面額、發放時間、集成商端交易識別</strong>，並可與活動獎勵注單彼此勾稽。</td></tr>
     </tbody>
   </table>
@@ -2088,7 +2110,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title">七、驗收標準彙整</div>
+  <div class="sub-title">七、驗收標準彙整<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:56px;">#</th><th style="width:180px;">項目</th><th>通過條件</th></tr></thead>
     <tbody>
@@ -2099,7 +2121,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>A5</td><td>重置正確</td><td class="dim">重置後進度歸零、格子回未開狀態；<strong>歷史派獎紀錄完整無缺</strong>。</td></tr>
       <tr><td>A6</td><td>Bet=0 入帳</td><td class="dim">獎勵以 Bet=0/Win 注單入主錢包，玩家可立即提領。</td></tr>
       <tr><td>A7</td><td>冪等</td><td class="dim">同格重複請求只產生一筆派獎（見上方 BDD）。</td></tr>
-      <tr><td>A8</td><td>失敗不誤扣</td><td class="dim">發放失敗 → 格子未開、次數退回、有失敗事件可被警報接住。</td></tr>
+      <tr><td>A8</td><td>失敗不誤扣</td><td class="dim">發放失敗 → 格子未開、次數退回、有失敗事件可被警報接住。<strong>含逾時 10 秒視同失敗、次數退回</strong>（見上方〈四、獎勵發放行為〉逾時／失敗路徑）。</td></tr>
       <tr><td>A9</td><td>斷線一致</td><td class="dim">任何時點斷線重入，狀態與後端一致，無「扣次數沒獎」或「重複領獎」。</td></tr>
       <tr><td>A10</td><td>RTP 驗算可見</td><td class="dim">每組〔<strong>已啟用</strong>貨幣 × 模板〕於<strong>該幣別 tab 內</strong>顯示<strong>獎池總額與 RTP 驗算結果</strong>（<strong style="color:var(--orange-bright);">純資訊顯示、不做目標值校驗</strong>；見 <a href="#rtp-info" style="color:var(--gold-light);">DEV §06 二之三</a>）。</td></tr>
       <tr><td>A11</td><td>可回溯</td><td class="dim">任一筆派獎皆可查回：領獎時間、活動、活動版本、模板與模板版本、獎勵類型與面額。</td></tr>
@@ -2126,17 +2148,18 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </figure>
 
     <div>
-      <div class="sub-title" style="margin-top:0;">UI 元件說明</div>
+      <div class="sub-title" style="margin-top:0;">UI 元件說明<span class="tag-upd">2026-08-27</span></div>
       <table class="spec-table">
         <thead><tr><th>元件</th><th>狀態說明</th><th>互動行為</th></tr></thead>
         <tbody>
-          <tr><td>格子·鎖定（無可翻次數）</td><td class="dim">可翻次數＝0 時，所有未開格顯示鎖頭圖示</td><td class="dim">點擊無反應，引導玩家回去押注賺機會</td></tr>
-          <tr><td>格子·可翻（有可翻次數）</td><td class="dim">有剩餘可翻次數時，<strong>所有未開格</strong>同時發光並顯示「點我翻開」</td><td class="dim">點擊任一未開格即執行翻格、扣 1 次可翻次數，觸發翻轉動畫</td></tr>
+          <tr><td>格子·鎖定（無可翻次數）</td><td class="dim">可翻次數＝0 時，所有未開格顯示鎖頭圖示（<span class="mono">cursor: pointer</span>）</td><td class="dim"><strong>不開箱</strong>，但須給回饋：該格<strong>抖動</strong>（<span class="mono">chestShake</span> 0.6s）＋進度條下方 <span class="mono">tb_next_hint</span> <strong>高亮閃動一次</strong>＋<span class="mono">sfx_locked</span>，把玩家導回押注賺機會。完整規格見〈<a href="#locked-feedback" style="color:var(--gold-light);">鎖定格點擊回饋</a>〉</td></tr>
+          <tr><td>格子·可翻（有可翻次數）</td><td class="dim">有剩餘可翻次數時，<strong>所有未開格</strong>同時發光並顯示「點我翻開」</td><td class="dim">點擊任一未開格 → <strong style="color:var(--gold-light);">即扣 1 次可翻次數並進入「翻牌中」</strong>（全盤鎖定）→ <strong>派獎成功才播翻轉動畫</strong>；逾時 10 秒／失敗則回復背面、次數退回。見 <a href="#behavior" style="color:var(--gold-light);">DEV §04 四</a> 與 P3〈格子四態〉</td></tr>
+          <tr><td>格子·翻牌中</td><td class="dim">牌背保留＋讀取光效（旋轉光圈或既有 shimmer）</td><td class="dim"><strong style="color:var(--orange-bright);">等待期間整個 9 格盤面不可點</strong>（單一飛行中請求）；收到結果後解鎖</td></tr>
           <tr><td>格子·已翻開</td><td class="dim">顯示獲得的獎勵金額，綠色邊框</td><td class="dim">點擊可再次查看獎勵，不重複派獎</td></tr>
           <tr><td>最終獎格</td><td class="dim">翻開後特殊金色光效爆發（位置每日動態洗牌、面朝下，玩家自選翻中才揭曉）</td><td class="dim">全螢幕特效動畫，顯示恭喜彈窗</td></tr>
-          <tr><td>活動期間元件</td><td class="dim">面板頂部；平常態顯示日期區間（例「活動期間 07/01–09/30」），活動結束前 countdown_lead_days（預設 3）天自動切換為動態倒數（例「剩 2 天 11:23:45」），以金色強調製造急迫感</td><td class="dim">倒數每秒更新；以伺服器時間為準、跨日 00:00 翻轉；活動結束瞬間顯示已結束；暫停維護中時隱藏倒數顯示維護中</td></tr>
+          <tr><td>活動期間元件</td><td class="dim">面板頂部；平常態顯示日期區間（例「活動期間 07/01–09/30」），<strong>剩餘 ≤ countdown_lead_days</strong>（預設 3）天自動切換為動態倒數（例「剩 2 天 11:23:45」），以金色強調製造急迫感<strong>（邊界含第 N 天，與後台轉紅同日觸發）</strong></td><td class="dim">倒數每秒更新；以伺服器時間為準、跨日 00:00 翻轉；活動結束瞬間顯示已結束；暫停維護中時隱藏倒數顯示維護中</td></tr>
           <tr><td>進度條</td><td class="dim">以「已累積 / 本階段目標」呈現（如 300/550），永遠不顯示 ₱3,650 總額</td><td class="dim">每次押注後即時更新</td></tr>
-          <tr><td>重置倒計時</td><td class="dim">距當日 00:00 的剩餘時間</td><td class="dim">每秒更新，顯示 HH:MM:SS</td></tr>
+          <tr><td>重置倒計時</td><td class="dim"><strong>距該活動下次每日重置時點的剩餘時間</strong></td><td class="dim">每秒更新，顯示 HH:MM:SS</td></tr>
         </tbody>
       </table>
 
@@ -2162,7 +2185,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title" style="margin-top:32px;">遊戲內 iFrame 入口與展開</div>
+  <div class="sub-title" style="margin-top:32px;">遊戲內 iFrame 入口與展開<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <strong>白話說明：</strong>寶箱活動以 <em>iFrame</em>（內嵌的獨立小網頁）嵌入 Combo 遊戲畫面；好處是活動內容可由後台更新、<strong>不需重出遊戲版本</strong>，活動上下架、文案調整都能熱更新。
   </div>
@@ -2247,10 +2270,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
   <div class="callout info" style="font-size:12px;">
-    <strong>實作備註：</strong>① 兩種情境都是<strong>「先關閉、再演出」</strong>——關閉須早於演出畫面出現，不可與演出同時或延後，以免出現一瞬間的重疊。② 面板被關閉時<strong>不影響任何已發放的獎勵與進度</strong>，也不消耗翻牌次數。③ 恢復顯示時，icon 的紅點／可翻次數<strong>須反映最新狀態</strong>。
+    <strong>實作備註：</strong>① 兩種情境都是<strong>「先關閉、再演出」</strong>——關閉須早於演出畫面出現，不可與演出同時或延後，以免出現一瞬間的重疊。② 面板被關閉時<strong>不影響任何已發放的獎勵與進度</strong>；<strong>未送出開格請求的翻牌次數不消耗</strong>。③ <strong style="color:var(--gold-light);">若關閉當下該玩家有「翻牌中」的飛行請求</strong>（見 <a href="#behavior" style="color:var(--gold-light);">DEV §04 四</a>）：<strong>該請求照常送達後端、不取消</strong>——派獎成功則獎勵正常入帳，玩家<strong>下次開啟面板即看到該格已翻開</strong>（沿用〈六、斷線與重入一致性〉的「翻格中途斷線」規則）；失敗或逾時則<strong>次數退回</strong>。<strong style="color:var(--orange-bright);">關閉面板不得成為規避派獎或重複領獎的路徑。</strong>④ 恢復顯示時，icon 的紅點／可翻次數<strong>須反映最新狀態</strong>。
   </div>
 
-  <div class="sub-title" style="font-size:13px;margin-top:28px;">連線失敗與重試提示（錯誤處理）</div>
+  <div class="sub-title" style="font-size:13px;margin-top:28px;">連線失敗與重試提示（錯誤處理）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout warn">
     <strong>情境：</strong>玩家進入遊戲畫面時，<strong>取不到 CRM 回傳的活動資訊</strong>（無回應／逾時／錯誤）。此時<strong>不可讓畫面空白或無聲失敗</strong>，須依下列狀態機顯示提示並自動重試。
   </div>
@@ -2279,12 +2302,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <thead><tr><th style="width:170px;">項目</th><th>規格</th></tr></thead>
     <tbody>
       <tr><td>呈現形式</td><td class="dim"><strong>跑馬燈訊息</strong>（不阻斷遊戲操作、不使用彈窗）；玩家仍可正常進行主遊戲。</td></tr>
-      <tr><td>STATE 01 文案</td><td class="dim">「<strong>連線失敗，將在 N 秒後重新嘗試</strong>」——<strong>N 每秒倒數</strong>；N 的秒數值由開發決定（建議可設定）。</td></tr>
-      <tr><td>STATE 02 文案</td><td class="dim">「<strong>重新連線中...</strong>」——<strong>「...」須有動態效果</strong>（點點點動畫），持續到取得結果為止。</td></tr>
+      <tr><td>STATE 01 文案</td><td class="dim">「<strong>連線失敗，將在 N 秒後重新嘗試</strong>」（key＝<span class="mono">err_conn_retry</span>）——<strong>N 每秒倒數</strong>；<strong style="color:var(--gold-light);">N＝10 秒（定案）</strong>，<strong>前端常數、不設後台欄位</strong>。</td></tr>
+      <tr><td>STATE 02 文案</td><td class="dim">「<strong>重新連線中...</strong>」（key＝<span class="mono">err_reconnecting</span>）——<strong>「...」須有動態效果</strong>（點點點動畫），持續到取得結果為止。</td></tr>
       <tr><td>循環行為</td><td class="dim">失敗即<strong>無限循環</strong> STATE 01 → 02；<strong>不設「放棄」終止態</strong>，也不需玩家手動點擊重試。</td></tr>
       <tr><td>成功後行為</td><td class="dim"><strong>立即移除跑馬燈訊息</strong>，載入活動資訊、顯示入口 icon 與正確的進度／可翻次數。</td></tr>
       <tr><td>入口 icon 的顯示</td><td class="dim">連線未成功前，<strong>不顯示入口 icon</strong>（避免玩家點開空面板）；連線成功後才出現。</td></tr>
-      <tr><td>文案 key</td><td class="dim">兩條文案<strong>須納入多國語系表</strong>管理（見 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a>）；N 以參數帶入，不可寫死在句子裡。</td></tr>
+      <tr><td>文案 key</td><td class="dim">兩條文案<strong>須納入多國語系表</strong>管理——<span class="mono">err_conn_retry</span>／<span class="mono">err_reconnecting</span>（見 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a>）；<span class="mono">{n}</span> 以參數帶入，不可寫死在句子裡。</td></tr>
     </tbody>
   </table>
   <div class="bdd-card">
@@ -2294,7 +2317,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 出現跑馬燈「連線失敗，將在 N 秒後重新嘗試」且 <strong>N 每秒遞減</strong>；倒數歸零後文案<strong>切換為「重新連線中...」且點點點有動畫</strong>；<strong>若再次失敗則重新倒數</strong>（循環不中斷）；<strong>一旦連線成功，跑馬燈訊息立即消失</strong>並正確顯示活動進度與入口 icon。
   </div>
 
-  <div class="sub-title" style="margin-top:32px;">進場與提示觸發邏輯</div>
+  <div class="sub-title" style="margin-top:32px;">進場與提示觸發邏輯<span class="tag-upd">2026-08-27</span></div>
   <div class="callout danger">
     <strong>⚠ P2（遊戲中心展開面板）啟用條件：</strong>目前 CRM 只有抽寶箱一個功能，<strong>點擊浮動入口 icon 會直接進入抽寶箱面板（P3），不會出現 P2 遊戲中心展開面板</strong>。待第二個 CRM 玩法上線後，才加上此彈出選單作為多功能入口。<br>
     因此下表「點開入口 icon」的行為，<strong>v1 一律直接開啟 P3 寶箱主彈窗</strong>（P1 → P3），不經 P2。
@@ -2302,14 +2325,21 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <table class="spec-table">
     <thead><tr><th>觸發情境</th><th>條件</th><th>行為</th></tr></thead>
     <tbody>
-      <tr><td>每日首次進場</td><td class="dim">符合活動的玩家當日第一次進入 Combo 遊戲</td><td class="dim">主動全屏跳出活動頁</td></tr>
-      <tr><td>可抽提示</td><td class="dim">累積押注解鎖之「可抽次數 &gt; 1」</td><td class="dim">① 入口 icon 亮起 + 小紅點　② 主動跳出氣泡框「快來抽獎囉！」，3 秒後自動消失，引導點開</td></tr>
+      <tr><td>每日首次進場</td><td class="dim">符合活動的玩家當日第一次進入 Combo 遊戲</td><td class="dim"><strong>主動開啟活動彈窗（P3，中央淡入＋scale-in）</strong></td></tr>
+      <tr><td>可抽提示</td><td class="dim">累積押注解鎖之「可抽次數 <strong style="color:var(--gold-light);">≥ 1</strong>」</td><td class="dim">① 入口 icon 亮起 + 小紅點　② 主動跳出氣泡框「快來抽獎囉！」，3 秒後自動消失，引導點開</td></tr>
       <tr><td>觸發頻率</td><td class="dim">每多解鎖一格可抽</td><td class="dim">每次達標都提示（每解鎖一格觸發一次氣泡）</td></tr>
       <tr><td><strong>點擊入口 icon 後的落點</strong></td><td class="dim">v1（CRM 僅抽寶箱一個玩法）</td><td class="dim"><strong>直接展開 P3 寶箱主彈窗，不出現 P2 遊戲中心面板</strong>；待第二個 CRM 玩法上線後才改為先開 P2 多功能入口</td></tr>
     </tbody>
   </table>
   <div class="callout warn">
     <strong>實作備註（防抖）：</strong>同一秒內多格同時解鎖時做防抖（debounce），只跳一次氣泡，避免連續彈出干擾體驗。
+  </div>
+
+  <div class="sub-title" id="first-entry-seq" style="font-size:13px;margin-top:24px;">首次進場演出順序<span class="tag-upd">2026-08-27</span></div>
+  <div class="callout info">
+    <strong>① 自動開啟 P3：</strong>當日首次進入 Combo 遊戲 → 系統<strong>自動開啟 P3 活動彈窗</strong>；<strong style="color:var(--gold-light);">自動開啟採中央淡入＋scale-in</strong>（icon 原點縮放動畫<strong>僅適用玩家手動點擊 icon</strong> 的路徑，見上方〈iFrame 入口與展開〉節）。<br>
+    <strong>② 全新玩家（首次進入）：</strong>P3 開啟後<strong>隨即蓋上 P5 新手教學（2 步驟）</strong>；教學關閉後即見當日 9 格盤面。<br>
+    <strong>③ 非首次玩家：</strong>直接顯示 9 格盤面。<strong>P3 彈窗即為活動頁本體</strong>（蓋在遊戲畫面上，<strong style="color:var(--orange-bright);">非另一全螢幕頁</strong>）。
   </div>
 
   <!-- ═══ 活動期間元件 UI 功能說明 ═══ -->
@@ -2496,7 +2526,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title" style="font-size:13px;">P3 · 寶箱主彈窗（攤牌 → 洗牌 → 遊玩 三階段）</div>
+  <div class="sub-title" style="font-size:13px;">P3 · 寶箱主彈窗（攤牌 → 洗牌 → 遊玩 三階段）<span class="tag-upd">2026-08-27</span></div>
   <div class="artspec-row">
     <div class="artspec-shot">
       <div class="phone-frame dual">
@@ -2509,10 +2539,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <table class="spec-table">
     <thead><tr><th style="width:140px;">階段/元件</th><th>視覺規格</th><th>動態需求</th></tr></thead>
     <tbody>
-      <tr><td>共用框架</td><td class="dim">標題「每日抽寶箱」＋英文副標、關閉鈕 ✕、重置倒數列「⏱ 今日重置倒數 HH:MM:SS」、進度區（「本階段進度」標籤＋ <strong>300/500</strong> 數值＋進度條＋「再押 ₱X 解鎖下一次機會」提示）、背景裝飾層</td><td class="dim">彈窗自 icon 原點 scale 展開、關閉縮回原 icon（連續感，見上方展開流程圖）</td></tr>
+      <tr><td>共用框架</td><td class="dim">標題「每日抽寶箱」＋英文副標、關閉鈕 ✕、重置倒數列「⏱ 今日重置倒數 HH:MM:SS」、進度區（「本階段進度」標籤＋ <strong>300/550</strong> 數值＋進度條＋「再押 ₱X 解鎖下一次機會」提示）、背景裝飾層</td><td class="dim">彈窗自 icon 原點 scale 展開、關閉縮回原 icon（連續感，見上方展開流程圖）</td></tr>
       <tr><td>① 攤牌階段</td><td class="dim">9 宮格全部正面朝上攤開（每格＝獎項 icon＋金額），底部說明「今日獎項已攤開 — 看清楚有哪些獎，準備開始！」＋主按鈕「開始遊戲」</td><td class="dim">進場攤牌動畫（依序翻正）</td></tr>
       <tr><td>② 洗牌階段</td><td class="dim">獎項牌集中至中央 → 漩渦洗牌（swirl）→ 分散回 9 格背面蓋牌；按鈕變為「洗牌中…」（disabled 態）</td><td class="dim">全程約 1.5 秒；<strong>流暢度為關鍵體驗</strong>（對應 Task 4.13）</td></tr>
-      <tr><td>③ 遊玩階段·格子三態</td><td class="dim">a. <strong>已翻開</strong>：正面框＋獎項 icon＋金額；b. <strong>可翻</strong>（有可翻次數時所有未開格皆是）：牌背發光＋「點我翻開」標籤；c. <strong>鎖定</strong>（可翻次數＝0）：降彩度＋鎖頭 🔒（不顯示金額）。每格左上有 1–9 序號</td><td class="dim">點任一可翻格 → 3D 翻轉（flip）、扣 1 次可翻次數 → 小獎金額由格內飛出上浮 1 秒；最終獎觸發 P4</td></tr>
+      <tr><td>③ 遊玩階段·格子<strong>四態</strong></td><td class="dim">a. <strong>已翻開</strong>：正面框＋獎項 icon＋金額；b. <strong>可翻</strong>（有可翻次數時所有未開格皆是）：牌背發光＋「點我翻開」標籤；c. <strong>鎖定</strong>（可翻次數＝0）：降彩度＋鎖頭 🔒（不顯示金額）；d. <strong style="color:var(--gold-light);">翻牌中</strong>：<strong>牌背保留＋讀取光效</strong>（旋轉光圈或既有 shimmer），<strong style="color:var(--orange-bright);">期間全盤不可點</strong>。每格左上有 1–9 序號</td><td class="dim"><strong>點擊 → 即扣次數並進入翻牌中 → 派獎成功才播 3D 翻轉</strong>（flip）→ 小獎金額由格內飛出上浮 1 秒；最終獎觸發 P4。逾時／失敗則回復背面、次數退回（見 <a href="#behavior" style="color:var(--gold-light);">DEV §04 四</a>）<br><strong style="color:var(--orange-bright);">⚠ 原型 v2 未實作翻牌中狀態，本輪原型不改，前端依本節文字實作</strong></td></tr>
       <tr><td>③ 遊玩階段·footer</td><td class="dim">「已翻開 X / 9 · 可再翻 N 格」；進度提示「可翻任意 N 格！」（有次數）或「把所有格子翻開吧！」（暫無次數）；含「⏩ 示範：快速集滿」demo 連結（原型 demo 用，正式上線移除）</td><td class="dim">即時更新</td></tr>
     </tbody>
   </table>
@@ -2537,7 +2567,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title" style="font-size:13px;">P5 · 新手教學（2 步驟，首次進入觸發）</div>
+  <div class="sub-title" style="font-size:13px;">P5 · 新手教學（2 步驟，首次進入觸發）<span class="tag-upd">2026-08-27</span></div>
+  <div class="body-text" style="font-size:12px;margin-bottom:8px;">觸發順序見〈<a href="#first-entry-seq" style="color:var(--gold-light);">進場與提示觸發邏輯 · 首次進場演出順序</a>〉。</div>
   <div class="artspec-row">
     <div class="artspec-shot">
       <div class="phone-frame"><img src="axure_assets/P5_tutorial.png" alt="P5 新手教學 原型截圖" loading="lazy"></div>
@@ -2562,7 +2593,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <!-- ═══ P6-A 各主題結算畫面美術描述 ═══ -->
-  <div class="sub-title" id="theme-settle" style="font-size:13px;margin-top:24px;">P6-A · 4 套主題 · 結算畫面美術描述</div>
+  <div class="sub-title" id="theme-settle" style="font-size:13px;margin-top:24px;">P6-A · 4 套主題 · 結算畫面美術描述<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <strong>「結算畫面」含兩個全螢幕慶祝時刻：</strong>① <strong>P4 最終大獎爆發</strong>（翻中最終獎那一格，可能在中途觸發）；② <strong>P7 今日全部抽完結算</strong>（9 格翻完的收尾）。兩者<strong>共用同一套無屬性演出時間軸</strong>（遮罩→彩帶→主視覺進場→獎勵/結算卡），僅替換主題美術。下表逐主題定義<strong>背景／主視覺容器／慶祝特效／卡片樣式／主色票</strong>，皆繼承〈整體美術風格基準〉。
   </div>
@@ -2619,7 +2650,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
   <div class="callout warn">
-    <strong>P4 與 P7 的差異（美術需各出一版）：</strong>P4 是「翻中最終獎那一格」的<strong>單格爆發</strong>、主角是 👑 最終獎；P7 是「9 格全翻完」的<strong>當日收尾結算</strong>、主角是 🎊＋倒數計時卡。兩者共用慶祝特效素材，但<strong>主視覺與文案不同</strong>（見 P4／P7 規格與第 14 章 i18n）。
+    <strong>P4 與 P7 的差異（美術需各出一版）：</strong>P4 是「翻中最終獎那一格」的<strong>單格爆發</strong>、主角是 👑 最終獎；P7 是「9 格全翻完」的<strong>當日收尾結算</strong>、主角是 🎊＋<strong>今日累積金額卡</strong>（<strong style="color:var(--orange-bright);">無倒數計時</strong>，且為<strong>卡片版位、非全螢幕</strong>）。兩者共用慶祝特效素材，但<strong>版位、主視覺與文案不同</strong>（見 P4／P7 規格與 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a> i18n）。
 
   </div>
 
@@ -2673,7 +2704,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ 物品造型隨主題全變（屬「整張重畫 ×4」類，見〈多主題資產增量換算表〉）；金額數字與底框樣式則跨主題共用版位。各物品同時用於 P3 攤牌/翻開時的格內 icon 與 P4 最終獎卡。</div>
 
-  <div class="sub-title" style="font-size:13px;">P7 · 今日全部抽完結算畫面（9 格全開觸發）</div>
+  <div class="sub-title" style="font-size:13px;">P7 · 今日全部抽完結算畫面（9 格全開觸發）<span class="tag-upd">2026-08-27</span></div>
   <div class="artspec-row">
     <div class="artspec-shot">
       <div class="phone-frame"><img src="axure_assets/P7_settle.png" alt="P7 今日全部抽完結算畫面 原型截圖" loading="lazy"></div>
@@ -2681,25 +2712,26 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
     <div class="artspec-detail">
       <div class="callout info" style="margin-top:0;">
-        <strong>觸發時機：</strong>當玩家把今日 9 格<strong>全部翻開</strong>後，自動跳出全螢幕結算畫面（取代原本 footer 一行的「明日重置」提示）。
+        <strong>觸發時機：</strong>當玩家把今日 9 格<strong>全部翻開</strong>後，自動跳出結算卡（取代原本 footer 一行的「明日重置」提示）。<br>
+        <strong style="color:var(--gold-light);">⚠ 版位以〈<a href="#daily-wrapup" style="color:var(--gold-light);">P7 每日結算卡</a>〉為準：</strong>本卡為<strong>蓋在 9 格區域上方的卡片（非全螢幕頁）</strong>、<strong style="color:var(--orange-bright);">不含大字倒數</strong>、關閉後<strong>回到「9 格全開、各格顯示已得獎項」的狀態</strong>（不關閉整個寶箱彈窗）。下表美術規格依此口徑。
       </div>
       <table class="spec-table">
         <thead><tr><th style="width:140px;">元件</th><th>視覺規格</th><th>動態需求</th></tr></thead>
         <tbody>
-          <tr><td>全螢幕遮罩</td><td class="dim">罩住整個彈窗的深色遮罩（覆蓋 9 宮格）</td><td class="dim">9 格全開後自動出現</td></tr>
+          <tr><td>襯底遮罩</td><td class="dim">罩住 9 宮格區域的深色遮罩（<strong style="color:var(--orange-bright);">卡片層，非全螢幕</strong>）</td><td class="dim">9 格全開、獎項揭曉動畫結束後延遲 0.4s 出現</td></tr>
           <tr><td>彩帶 Confetti</td><td class="dim">與 P4 同款彩帶，慶祝今日全數完成</td><td class="dim">灑落 loop</td></tr>
-          <tr><td>結算卡</td><td class="dim">🎊 大圖＋標題「今日寶箱全部抽完啦！」＋副標「下一輪遊戲將於」＋<strong>大字倒數計時 HH:MM:SS</strong>＋說明「後重新開始，明日 00:00 全新洗牌 🎲」＋主按鈕「好的，期待下一輪！」</td><td class="dim">卡片進場（scale/bounce）；倒數每秒更新</td></tr>
-          <tr><td>關閉行為</td><td class="dim">點主按鈕關閉整個寶箱彈窗、縮回浮動 icon</td><td class="dim">—</td></tr>
+          <tr><td>結算卡</td><td class="dim">🎊 大圖＋標題 <span class="mono">go_title</span>（「今日寶箱全部抽完啦！」）＋副標 <span class="mono">go_sub</span>（<strong style="color:var(--gold-light);">今日累積獲得 {amount}</strong>）＋提示 <span class="mono">go_hint</span>（<strong style="color:var(--gold-light);">明日 {reset_time} 全新洗牌 🎲</strong>）＋主按鈕 <span class="mono">go_btn</span>（「好的，期待下一輪！」）。<strong style="color:var(--orange-bright);">本卡不再有大字倒數</strong>，與〈<a href="#daily-wrapup" style="color:var(--gold-light);">P7 每日結算卡</a>〉一致</td><td class="dim">卡片進場（scale/bounce）</td></tr>
+          <tr><td>關閉行為</td><td class="dim">點主按鈕<strong>或點卡片外區域</strong>關閉；關閉後<strong style="color:var(--gold-light);">回到「9 格全開、各格顯示已得獎項」的狀態</strong>——<strong style="color:var(--orange-bright);">不關閉整個寶箱彈窗、不縮回浮動 icon</strong></td><td class="dim">當日重入且已全開者<strong>每次皆再彈</strong>（見〈<a href="#daily-wrapup" style="color:var(--gold-light);">P7 每日結算卡</a>〉）</td></tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="callout warn">
-    <strong>區分 P4 與 P7：</strong>P4 是「翻中<strong>最終大獎那一格</strong>」時的單格爆發（可能發生在中途）；P7 是「<strong>9 格全部翻完</strong>」的當日收尾結算。兩者皆為全螢幕慶祝畫面但觸發條件與文案不同，美術需分別產出。
+    <strong>區分 P4 與 P7：</strong>P4 是「翻中<strong>最終大獎那一格</strong>」時的單格爆發（可能發生在中途）；P7 是「<strong>9 格全部翻完</strong>」的當日收尾結算。<strong style="color:var(--gold-light);">兩者版位不同</strong>——<strong>P4 為全螢幕慶祝畫面</strong>、<strong>P7 為蓋在 9 格上方的卡片（非全螢幕）</strong>；觸發條件與文案亦不同，美術需分別產出。
 
   </div>
 
-  <div class="sub-title" id="ui-assets" style="margin-top:32px;">美術資產清單（Asset List）</div>
+  <div class="sub-title" id="ui-assets" style="margin-top:32px;">美術資產清單（Asset List）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <strong>本清單數量＝首發單一主題（<span class="mono" style="color:var(--gold-light);">treasure_box</span>）的量（×1）。</strong>節慶主題（gold_egg／red_envelope／xmas_gift）後續再加時的資產增量，見下方〈多主題資產增量換算表〉。
   </div>
@@ -2722,7 +2754,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>14</td><td>Confetti 彩帶粒子</td><td class="dim">6 色基礎片</td><td class="dim">P4，程式生成、美術定色票</td></tr>
       <tr><td>15</td><td>教學卡插圖 ×2＋spotlight 遮罩樣式</td><td class="dim">×1 組</td><td class="dim">P5</td></tr>
       <tr><td>16</td><td>多語系字體確認（CJK/泰文/緬甸文/孟加拉文/拉丁）</td><td class="dim">建議 Noto Sans 系列</td><td class="dim">⚠️ 基礎建設，見第 14 章多國語系</td></tr>
-      <tr><td>17</td><td>今日全部抽完結算卡（🎊＋倒數＋按鈕）</td><td class="dim">×1 組</td><td class="dim">P7，彩帶沿用 #14</td></tr>
+      <tr><td>17</td><td>今日全部抽完結算卡（🎊＋金額＋按鈕，<strong>無倒數</strong>）</td><td class="dim">×1 組</td><td class="dim">P7，彩帶沿用 #14；<strong>卡片版位（非全螢幕）</strong>，沿用教學卡尺寸基準</td></tr>
     </tbody>
   </table>
   <div class="callout">
@@ -2876,7 +2908,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ v2 擴充候選（本次不做）：通用按鈕點擊音 <span class="mono">sfx_btn_tap</span>、彩帶金幣雨 <span class="mono">sfx_confetti</span>、進度條集滿 <span class="mono">sfx_progress_full</span>、慶祝演出 BGM（<span class="mono">bgm_celebrate</span>）、英文語音 <span class="mono">vo_congrats</span>／<span class="mono">vo_daily_done</span>（語音牽動 13 語系成本，v1 不做）。</div>
 
-  <div class="sub-title" id="daily-wrapup" style="margin-top:40px;">P7 每日結算卡<span class="tag-upd">2026-08-17</span></div>
+  <div class="sub-title" id="daily-wrapup" style="margin-top:40px;">P7 每日結算卡<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <strong>目的：</strong>當日 9 格全部開完後，給玩家一個明確的「今天結束了」收尾，並把「明日可再來」的預期種下去。<a href="#i18n" style="color:var(--gold-light);">§11</a> i18n 已備有四條 <span class="mono">go_*</span> 文案 key，本節為補齊明文規格。
   </div>
@@ -2896,7 +2928,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </tr>
       <tr>
         <td><strong>內容欄位</strong></td>
-        <td class="dim">四項，全部走 <a href="#i18n" style="color:var(--gold-light);">§11</a> 既有 key：標題 <span class="mono">go_title</span>／副標 <span class="mono">go_sub</span>（今日累積獲得金額，<span class="mono">{amount}</span>）／提示 <span class="mono">go_hint</span>（明日重置時間，<span class="mono">{time}</span>）／按鈕 <span class="mono">go_btn</span></td>
+        <td class="dim">四項，全部走 <a href="#i18n" style="color:var(--gold-light);">§11</a> 既有 key：標題 <span class="mono">go_title</span>／副標 <span class="mono">go_sub</span>（今日累積獲得金額，<span class="mono">{amount}</span>）／提示 <span class="mono">go_hint</span>（明日重置時間，<span class="mono">{reset_time}</span>＝<strong>HH:MM</strong>，非倒數）／按鈕 <span class="mono">go_btn</span></td>
       </tr>
       <tr>
         <td><strong>動畫</strong></td>
@@ -2916,7 +2948,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </tr>
       <tr>
         <td><strong>跨日重置</strong></td>
-        <td class="dim">若玩家正開著結算卡時跨過每日重置時點（UTC+8 00:00），關閉卡片後<strong>須重新載入當日配置</strong>，不可停留在前一日的 9 格狀態</td>
+        <td class="dim">若玩家正開著結算卡時跨過每日重置時點（<strong>該活動的每日重置時點</strong>），關閉卡片後<strong>須重新載入當日配置</strong>，不可停留在前一日的 9 格狀態</td>
       </tr>
       <tr>
         <td><strong>金額口徑</strong></td>
@@ -2928,7 +2960,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </tr>
       <tr>
         <td><strong>i18n</strong></td>
-        <td class="dim"><strong>不新增 key</strong>，沿用 <a href="#i18n" style="color:var(--gold-light);">§11</a> 既有 <span class="mono">go_title／go_sub／go_hint／go_btn</span> 四條</td>
+        <td class="dim"><strong>不新增 key</strong>，沿用 <a href="#i18n" style="color:var(--gold-light);">§11</a> 既有 <span class="mono">go_title／go_sub／go_hint／go_btn</span> 四條（<strong><span class="mono">go_sub</span>／<span class="mono">go_hint</span> 於 V1.13 改版重譯，見 <a href="#i18n" style="color:var(--gold-light);">§11</a></strong>）</td>
       </tr>
     </tbody>
   </table>
@@ -2972,7 +3004,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title" id="player-history" style="margin-top:40px;">玩家端「活動」歷程入口</div>
+  <div class="sub-title" id="player-history" style="margin-top:40px;">玩家端「活動」歷程入口<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <strong>目的：</strong>讓玩家能在<strong>遊戲內既有的「遊戲歷程」</strong>裡，查到自己在 CRM 活動中拿過哪些獎勵。做法是在遊戲歷程的頂部分類（Slot／Arcade…）旁<strong>新增一個「活動」分類</strong>，作為所有 CRM 活動玩法歷程的統一入口。
   </div>
@@ -3002,7 +3034,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="callout info" style="font-size:12px;">
     <strong>互動原型：</strong><a href="遊戲歷程活動頁原型.html" target="_blank" rel="noopener" style="color:var(--gold-light);">《遊戲歷程活動頁原型.html》 ↗</a>（同資料夾，可點開）——L1 分類列 → L2 玩法卡 → L3 獎勵歷程的實際操作流程請搭配原型確認。<br>
     <strong>原型截圖後補：</strong>下方 3 格為玩家端原型截圖佔位。截圖完成後<strong>依標示檔名放入 <span class="mono" style="color:var(--gold-light);">design_assets/</span></strong>，重新整理即自動顯示，<strong>不需再改本文件</strong>。<br>
-    <strong style="color:var(--orange-bright);">⚠ L3 空狀態無原型畫面：</strong>「尚無活動獎勵紀錄」的空狀態<strong>原型未產出，無截圖可參考</strong>，請依下表「空狀態」列的規格實作（文案 key 併入 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a> 多國語系表）。
+    <strong style="color:var(--orange-bright);">⚠ L3 空狀態無原型畫面：</strong>「尚無活動獎勵紀錄」的空狀態<strong>原型未產出，無截圖可參考</strong>，請依下表「空狀態」列的規格實作（文案 key＝<span class="mono">hist_empty</span>，見 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a>）。
   </div>
   <div class="shot-gallery-phone">
     <figure class="ui-shot-fig">
@@ -3031,7 +3063,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>歷程欄位</td><td class="dim"><strong>僅四欄：時間 / CAMPAIGN ID / 獎勵類型 / 面額</strong>。不加其他欄位。</td></tr>
       <tr><td>排序</td><td class="dim"><strong>時間倒序</strong>（最新在上）。</td></tr>
       <tr><td>互動限制</td><td class="dim"><strong>列表項目不可點擊、不可展開細節</strong>；此頁為純查詢呈現，無次層頁面。</td></tr>
-      <tr><td>空狀態</td><td class="dim">玩家尚無任何活動獎勵時，顯示空狀態文案（文案 key 併入 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a> 多國語系表管理）。</td></tr>
+      <tr><td>空狀態</td><td class="dim">玩家尚無任何活動獎勵時，顯示空狀態文案「<strong>尚無活動獎勵紀錄</strong>」（文案 key＝<span class="mono">hist_empty</span>，見 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a>）。</td></tr>
       <tr><td>資料一致性</td><td class="dim">此頁資料須與後台側的活動獎勵紀錄<strong>同源</strong>（見 <a href="#reward-data" style="color:var(--gold-light);">DEV §14</a>），玩家看到的與營運查到的必須一致。</td></tr>
     </tbody>
   </table>
@@ -3497,13 +3529,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 活動 B <strong>正常上線</strong>；設定者開啟該活動編輯頁時<strong style="color:var(--orange-bright);">不顯示任何審查 banner</strong>（整塊隱藏）。
   </div>
 
-  <div class="sub-title">後台 UI 設計說明 · 適用路線 + 版型主題（對齊原型 v2）<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title">後台 UI 設計說明 · 適用路線 + 版型主題（對齊原型 v2）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <strong>給美術與 Client Web 同仁：</strong>左欄為畫面示意（依 design 原型 <span class="mono" style="color:var(--gold-light);">抽寶箱後台管理介面 v2.html</span> 還原；<strong>實際採淺色主題</strong>），右欄為對應的<strong>操作流程與 UI 元件規格</strong>（元件類型／命名／狀態／規則／文案 key）。線路投放位於活動表單 <strong>Tab 1 基本設定</strong>，<strong>標題用金色 accent bar ＋右上「必填」badge 強調</strong>（其他區塊為靛色 accent bar）。元件命名請沿用右欄 <span class="mono" style="color:var(--gold-light);">UI_Name</span>。
   </div>
 
   <div class="callout">
-    <strong>整體版面對照（原型 v2）：</strong>① <strong>活動列表頁</strong>欄位＝<strong>活動名稱／CAMPAIGN ID／版型／適用線路（chips）／起訖時間／重置／活動倒數（即時倒數計時，剩餘天數 &lt; 倒數啟動天數時轉紅）／狀態／版本／操作（編輯·複製<strong style="color:var(--gold-light);">·⏸／▶ 暫停／運行</strong>）</strong>；<strong>移除受眾 TAG 與 RTP 欄</strong>。<strong style="color:var(--gold-light);">「暫停／運行」為 DEV V1.7 新增</strong>（<strong>Operator 以上、皆彈窗二次確認</strong>，非一鍵啟停），<strong style="color:var(--gold-light);">DEV V1.8 起改為圖示按鈕（▶／⏸＋tooltip）並移除「查看」</strong>（詳情查閱走「編輯」；見 <a href="#camp-ops" style="color:var(--gold-light);">DEV §13 一之零</a>、<a href="#camp-pause" style="color:var(--gold-light);">一之一</a>）。篩選：<strong>狀態 chips（含各狀態數量）＋線路下拉＋日期區間＋清除篩選</strong>。右上有「＋建立新活動」與<strong>檢視角色三段切換（最高權限／一般操作者／僅查看）</strong>。<strong>活動複製</strong>：複本帶入全部設定、狀態重置為草稿、版本 V1、ID 加 <span class="mono">_COPY</span>。② <strong>建立／編輯表單為四分頁</strong>（取代舊兩欄式＋右欄 sticky）：<strong>Tab 1 基本設定 → Tab 2 標籤與配置 → Tab 3 獎項與門檻（唯讀摘要）→ Tab 4 版本</strong>；門檻／權重／RTP／多貨幣皆移至模板編輯器。
+    <strong>整體版面對照（原型 v2）：</strong>① <strong>活動列表頁</strong>欄位＝<strong>活動名稱／CAMPAIGN ID／版型／適用線路（chips）／起訖時間／重置／活動倒數（即時倒數計時，剩餘天數 <strong>≤</strong> 倒數啟動天數時轉紅）／狀態／版本／操作（編輯·複製<strong style="color:var(--gold-light);">·⏸／▶ 暫停／運行</strong>）</strong>；<strong>移除受眾 TAG 與 RTP 欄</strong>。<strong style="color:var(--gold-light);">「暫停／運行」為 DEV V1.7 新增</strong>（<strong>Operator 以上、皆彈窗二次確認</strong>，非一鍵啟停），<strong style="color:var(--gold-light);">DEV V1.8 起改為圖示按鈕（▶／⏸＋tooltip）並移除「查看」</strong>（詳情查閱走「編輯」；見 <a href="#camp-ops" style="color:var(--gold-light);">DEV §13 一之零</a>、<a href="#camp-pause" style="color:var(--gold-light);">一之一</a>）。篩選：<strong>狀態 chips（含各狀態數量）＋線路下拉＋日期區間＋清除篩選</strong>。右上有「＋建立新活動」與<strong>檢視角色三段切換（最高權限／一般操作者／僅查看）</strong>。<strong>活動複製</strong>：複本帶入全部設定、狀態重置為草稿、版本 V1、ID 加 <span class="mono">_COPY</span>。② <strong>建立／編輯表單為四分頁</strong>（取代舊兩欄式＋右欄 sticky）：<strong>Tab 1 基本設定 → Tab 2 標籤與配置 → Tab 3 獎項與門檻（唯讀摘要）→ Tab 4 版本</strong>；門檻／權重／RTP／多貨幣皆移至模板編輯器。
   </div>
 
   <!-- Row 0z：模板 × 多貨幣（多貨幣於模板編輯器設定） -->
@@ -3546,7 +3578,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout">
-    <strong>模板 × 多貨幣：</strong>模板編輯器以 <strong>currency tabs</strong> 切換（<strong>v1 寫死 64 種清單、必填 17 種</strong>，PHP 為預設 tab；見 <a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>）。每個貨幣各自設定：<strong>目標 RTP、終獎最早格、9 格累積門檻、9 格 × 4 類別權重表</strong>；四階獎項（<strong>數量可自訂、加總＝9</strong>，預設小×5／中×2／大×1／最終×1）於模板層設定。系統對每個〔模板 × 貨幣〕<strong>於該幣別 tab 內即時顯示獎池總額與 RTP 驗算結果</strong>（<strong style="color:var(--orange-bright);">純資訊顯示、不做目標值校驗</strong>）；<strong style="color:var(--red-bright);">擋送審的硬性條件</strong>為<strong>獎項數量加總 ≠ 9</strong>、<strong>最終獎 &lt; 1</strong>、<strong>必填幣別未填完整</strong>或<strong>第 1~8 抽權重列合計為 0</strong>。<strong>玩家跑哪個模板由「標籤規則（AND）→ 模板」決定，未命中走預設配置</strong>（無中介映射層、無准入閘門）。
+    <strong>模板 × 多貨幣：</strong>模板編輯器以 <strong>currency tabs</strong> 切換（<strong>v1 寫死 64 種清單、必填 17 種</strong>，PHP 為預設 tab；見 <a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>）。每個貨幣各自設定：<strong>目標 RTP、終獎最早格、9 格累積門檻、9 格 × 4 類別權重表</strong>；四階獎項（<strong>數量可自訂、加總＝9</strong>，預設小×5／中×2／大×1／最終×1）於模板層設定。系統對每個〔模板 × 貨幣〕<strong>於該幣別 tab 內即時顯示獎池總額與 RTP 驗算結果</strong>（<strong style="color:var(--orange-bright);">純資訊顯示、不做目標值校驗</strong>）；<strong style="color:var(--red-bright);">擋送審的硬性條件</strong>為<strong>獎項數量加總 ≠ 9</strong>、<strong style="color:var(--gold-light);">小獎 &lt; 1</strong>、<strong>最終獎 &lt; 1</strong>、<strong>必填幣別未填完整</strong>或<strong>第 1~8 抽權重列合計為 0</strong>。<strong>玩家跑哪個模板由「標籤規則（AND）→ 模板」決定，未命中走預設配置</strong>（無中介映射層、無准入閘門）。
   </div>
 
   <!-- Row 0a：版型主題下拉 -->
@@ -3656,7 +3688,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         <dt>操作</dt><dd>① <strong>預設為空清單</strong> → ② 點「<strong>＋新增路線</strong>」彈出下拉（<strong>內建搜尋過濾</strong>，<strong style="color:var(--gold-light);">只列尚未加入的線路</strong>）→ ③ <strong>點選即加入</strong>，以 <strong>chip（可移除 ×）</strong>顯示；移除後該線路<strong>回到下拉可選</strong>。另提供「<strong>全部加入</strong>」一次加入全部線路</dd>
         <dt>選項來源</dt><dd><strong>平台線路設定（後端 API）</strong>，<strong style="color:var(--orange-bright);">非前端寫死</strong>；<strong>不可自由輸入</strong>（見下方基建 callout）</dd>
         <dt>狀態</dt><dd><span style="color:var(--gold-light);">已加入</span>＝黃底（#FBF3D6）金描邊（#E6C55A）chip ＋ 尾綴「<strong>×</strong>」移除鈕 ／ <span style="color:var(--text-dim);">空清單</span>＝顯示「<strong>尚未選擇適用路線</strong>」 ／ 下拉內<strong>已加入者不再出現</strong></dd>
-        <dt>校驗</dt><dd><strong style="color:var(--green-bright);">儲存草稿允許 0 條</strong>；<strong style="color:var(--red-bright);">送審前至少 1 條</strong>，否則<strong>阻擋並提示「請至少選擇 1 條適用路線」</strong>。玩家所在線路須 ∈ 已選清單才看得到活動（見 DEV §02 線路資格判定）</dd>
+        <dt>校驗</dt><dd><strong style="color:var(--green-bright);">儲存草稿允許 0 條</strong>；<strong style="color:var(--red-bright);">送審前至少 1 條</strong>，否則<strong>阻擋並提示「請至少選擇 1 條適用路線」</strong>。玩家所在線路須 ∈ 已選清單才看得到活動（見 <a href="#behavior" style="color:var(--gold-light);">DEV §04 一、押注累積行為「計入範圍」</a>）</dd>
         <dt>文案 key</dt><dd><span class="mono">admin.camp.lines.add</span> / <span class="mono">admin.camp.lines.add_all</span> / <span class="mono">admin.camp.lines.search</span> / <span class="mono">admin.camp.lines.empty</span> / <span class="mono">admin.camp.lines.required</span></dd>
         <dt>美術資產</dt><dd>金色 accent bar、必填 badge、＋新增鈕、下拉搜尋框、chip（含 × 移除鈕）、空狀態文字、dropdown 箭頭 ▾</dd>
       </dl>
@@ -3809,7 +3841,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
           <tbody style="color:#1A1D26;">
             <tr style="border-top:1px solid #EEF0F3;"><td style="padding:7px 4px;">admin01</td><td style="padding:7px 4px;">最高權限</td><td style="padding:7px 4px;color:#5A5F6B;">全部頁面＋帳號權限</td></tr>
             <tr style="border-top:1px solid #EEF0F3;"><td style="padding:7px 4px;">op01</td><td style="padding:7px 4px;">一般操作者</td><td style="padding:7px 4px;color:#5A5F6B;">活動管理·抽寶箱模板管理</td></tr>
-            <tr style="border-top:1px solid #EEF0F3;"><td style="padding:7px 4px;">viewer01</td><td style="padding:7px 4px;">僅查看</td><td style="padding:7px 4px;color:#5A5F6B;">活動管理（部分）</td></tr>
+            <tr style="border-top:1px solid #EEF0F3;"><td style="padding:7px 4px;">viewer01</td><td style="padding:7px 4px;">僅查看</td><td style="padding:7px 4px;color:#5A5F6B;">—（CRM 頁面全不可見）</td></tr>
           </tbody>
         </table>
       </div>
@@ -3817,7 +3849,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       </div>
     </div>
     <div class="ui-doc-spec">
-      <div class="ui-doc-spec-h">後台帳號管理<span class="tag-upd">2026-08-04</span></div>
+      <div class="ui-doc-spec-h">後台帳號管理<span class="tag-upd">2026-08-27</span></div>
       <dl>
         <dt>帳號搜尋列</dt><dd><strong style="color:var(--gold-light);">輸入即時過濾</strong>；比對範圍＝<strong>僅帳號名稱</strong>（<strong style="color:var(--orange-bright);">不含 Email</strong>；<strong>不分大小寫、部分符合</strong>）。<strong>清空即還原全列表</strong>。placeholder＝「<strong>搜尋帳號名稱</strong>」（<span class="mono">admin.account.search.placeholder</span>）</dd>
         <dt>角色篩選 chips</dt><dd><strong>全部｜最高權限(Admin)｜操作(Operator)｜查看(Platform)</strong>；<strong>單選、預設「全部」</strong>。角色稱謂<strong>中英成對</strong>（沿用 DEV V1.3 用語慣例）</dd>
@@ -4058,7 +4090,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 仍可依<strong>模板 ID ＋ <span class="mono">template_version</span></strong> 查回<strong>當時的模板內容（門檻／獎項）</strong>。
   </div>
 
-  <div class="sub-title" id="template-editor" style="font-size:14px;">二、模板編輯器欄位<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" id="template-editor" style="font-size:14px;">二、模板編輯器欄位<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
@@ -4069,8 +4101,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       · <strong>終獎最早格</strong>：v1 <strong>僅屬性顯示參考</strong>，<strong>不做與權重表的連動驗證</strong>（驗證列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span>）。<br>
       · <strong>屬性編輯功能列 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span></strong>。</td></tr>
       <tr><td>貨幣 tabs</td><td class="dim"><strong>v1 貨幣清單寫死 64 種</strong>（硬編碼於前端與後端設定、<strong>非後台可維護</strong>），其中 <strong style="color:var(--gold-light);">必填 17 種</strong>（tab 恆顯示、不可移除、標必填記號）、<strong>選填 47 種</strong>（預設不顯示 tab，經「<strong>＋新增貨幣</strong>」啟用後才出現、可移除）。<strong>預設進入 PHP tab</strong>；tab 上顯示<strong>填寫狀態（已完成／未完成）</strong>。<strong>完整 64 種清單、必填 17 種與 UI 規則見下方〈<a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>〉</strong>。</td></tr>
-      <tr><td>9 格累積門檻</td><td class="dim">累積制 ［100, 220, 360, 550, 850, 1250, 1700, 2500, <strong>3650</strong>］（PHP，各貨幣各自一套）</td></tr>
-      <tr><td><strong>四階獎項 · 數量可自訂</strong><br><span class="dim" style="font-size:10px;">加總必須＝9</span></td><td class="dim"><strong>小獎／中獎／大獎／最終獎四檔各提供「數量」輸入欄</strong>（整數 <span class="mono">0–9</span>），<strong>預設值維持 5／2／1／1</strong>；金額仍各檔一組。<strong>加總必須等於 9</strong>（寶箱總格數固定 9、不可增減），規則見下方〈<a href="#prize-count" style="color:var(--gold-light);">二之二、獎項檔位數量</a>〉。<strong>現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充（原型先行示意）</strong>，v1 僅現金</td></tr>
+      <tr><td>9 格累積門檻</td><td class="dim">累積制 ［100, 220, 360, 550, 850, 1250, 1700, 2500, <strong>3650</strong>］（PHP，各貨幣各自一套）。<br><strong style="color:var(--gold-light);">數列僅需非遞減——相鄰門檻可相等</strong>（例 1／2／3 格同門檻，跨過時一次解鎖 3 次機會）；<strong style="color:var(--red-bright);">遞減則擋儲存／擋送審</strong>。規則與 UI 呈現見 <a href="#mechanic" style="color:var(--gold-light);">DEV §02 累積門檻的計算方式</a></td></tr>
+      <tr><td><strong>四階獎項 · 數量可自訂</strong><br><span class="dim" style="font-size:10px;">加總必須＝9</span></td><td class="dim"><strong>小獎／中獎／大獎／最終獎四檔各提供「數量」輸入欄</strong>（整數 <span class="mono">0–9</span>；<strong style="color:var(--gold-light);">小獎與最終獎各須 ≥ 1</strong>），<strong>預設值維持 5／2／1／1</strong>；金額仍各檔一組。<strong>加總必須等於 9</strong>（寶箱總格數固定 9、不可增減），規則見下方〈<a href="#prize-count" style="color:var(--gold-light);">二之二、獎項檔位數量</a>〉。<strong>現金↔FREE SPIN 切換標 <span class="tag-new txt"><span style="font-size:9px;">v2</span></span> 擴充（原型先行示意）</strong>，v1 僅現金</td></tr>
       <tr><td>抽獎權重表</td><td class="dim"><strong>第 1~8 抽</strong>可輸入相對權重（每列合計 &gt;0 即可、非強制 100）；<strong>第 9 抽為唯讀說明列</strong>「依前 8 抽剩餘獎項自動決定（必中最後 1 個獎項）」，不提供輸入、不參與合計驗證。</td></tr>
       <tr><td>幣別完整性驗證<br><span class="dim" style="font-size:10px;">必填 vs 選填分層</span></td><td class="dim">· <strong style="color:var(--gold-light);">必填 17 種</strong>：任一幣別<strong>未完整填寫</strong>，或<strong>第 1~8 抽任一權重列合計為 0</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>，<strong>錯誤訊息需列出未通過的幣別</strong>。<strong style="color:var(--orange-bright);">RTP 不再參與校驗</strong>（見〈<a href="#rtp-info" style="color:var(--gold-light);">二之三、RTP 驗算與獎池總額</a>〉）。<br>· <strong>選填幣別</strong>：<strong>全空＝未啟用</strong>，不參與驗證、不擋儲存；<strong>一旦有任何欄位填寫即視為啟用</strong>，須填寫完整並通過與必填相同的驗證，否則<strong style="color:var(--red-bright);">擋儲存</strong>（避免半套資料上線）。<br>· <strong>版本快照僅保存已啟用幣別</strong>（必填 17 ＋ 已啟用的選填），未啟用幣別不入快照。<br>· 詳見〈<a href="#currency-list" style="color:var(--gold-light);">二之一、貨幣清單</a>〉。</td></tr>
     </tbody>
@@ -4188,7 +4220,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr>
         <td><strong style="color:var(--gold-light);">必填 17 種</strong></td>
         <td class="dim">已完整填寫</td>
-        <td class="dim">逐一檢查：<strong>第 1~8 抽任一權重列合計為 0</strong>、或<strong>獎項數量加總 ≠ 9</strong>、或<strong>最終獎數量 &lt; 1</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>（訊息列出未通過幣別）。<br><strong style="color:var(--orange-bright);">RTP 不參與校驗</strong>：各幣別 tab 內的 RTP 驗算與獎池總額為<strong>純資訊顯示</strong>，<strong>不做目標值校驗、不阻擋儲存與送審</strong>（見〈<a href="#rtp-info" style="color:var(--gold-light);">二之三、RTP 驗算與獎池總額</a>〉）。</td>
+        <td class="dim">逐一檢查：<strong>第 1~8 抽任一權重列合計為 0</strong>、或<strong>獎項數量加總 ≠ 9</strong>、或<strong style="color:var(--gold-light);">小獎數量 &lt; 1</strong>、或<strong>最終獎數量 &lt; 1</strong> → <strong style="color:var(--red-bright);">全域警示＋擋儲存＋擋送審</strong>（訊息列出未通過幣別）。<br><strong style="color:var(--orange-bright);">RTP 不參與校驗</strong>：各幣別 tab 內的 RTP 驗算與獎池總額為<strong>純資訊顯示</strong>，<strong>不做目標值校驗、不阻擋儲存與送審</strong>（見〈<a href="#rtp-info" style="color:var(--gold-light);">二之三、RTP 驗算與獎池總額</a>〉）。</td>
       </tr>
       <tr>
         <td><strong>選填 47 種</strong></td>
@@ -4233,27 +4265,27 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> <strong style="color:var(--red-bright);">儲存被擋下</strong>，錯誤訊息列出「<strong>SGD 未完成設定</strong>」；<strong>若營運改為移除 SGD tab（清空該幣別）則可正常儲存</strong>。
   </div>
 
-  <div class="sub-title" id="prize-count" style="font-size:14px;">二之二、獎項檔位數量（可自訂 · 加總必須＝9）<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" id="prize-count" style="font-size:14px;">二之二、獎項檔位數量（可自訂 · 加總必須＝9）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info" style="font-size:12px;">
     <strong>由固定配置改為可自訂：</strong>原「小獎 ×5＋中獎 ×2＋大獎 ×1＋最終獎 ×1（合計 9 格）」為<strong>固定配置</strong>；<strong style="color:var(--gold-light);">v1 起四檔數量改為營運可填</strong>，但<strong>寶箱總格數固定 9、不可增減</strong>。
   </div>
   <table class="spec-table">
     <thead><tr><th style="width:170px;">規則</th><th>說明</th></tr></thead>
     <tbody>
-      <tr><td><strong>各檔數量可填</strong></td><td class="dim"><strong>小獎／中獎／大獎／最終獎</strong>四檔各提供<strong>數量輸入欄</strong>（<strong>整數 <span class="mono">0–9</span></strong>）；<strong>預設值維持 5／2／1／1</strong>。</td></tr>
+      <tr><td><strong>各檔數量可填</strong></td><td class="dim"><strong>小獎／中獎／大獎／最終獎</strong>四檔各提供<strong>數量輸入欄</strong>（<strong>整數 <span class="mono">0–9</span></strong>）；<strong>預設值維持 5／2／1／1</strong>。下限見下方〈小獎與最終獎各至少 1〉。</td></tr>
       <tr><td><strong>加總校驗（硬性）</strong></td><td class="dim">四檔數量<strong style="color:var(--gold-light);">加總必須等於 9</strong>。編輯器<strong>即時顯示「獎項數量加總 <span class="mono">N</span>／9」</strong>：<br>· <span class="mono">N＝9</span> → 顯示<strong style="color:var(--green-bright);">通過（✓）</strong>；<br>· <span class="mono">N≠9</span> → 顯示錯誤「<strong style="color:var(--red-bright);">獎項數量加總需等於 9（目前 N）</strong>」，且「<strong>儲存</strong>」與「<strong>送審</strong>」<strong style="color:var(--red-bright);">disabled</strong>。</td></tr>
-      <tr><td><strong>最終獎至少 1</strong></td><td class="dim"><strong>最終獎數量 <span class="mono">≥ 1</span></strong>（翻完 9 格必得最終獎的玩法前提）；<strong>填 0 時顯示錯誤「最終獎數量至少 1」並禁止儲存</strong>。<strong>其餘三檔允許 0</strong>。</td></tr>
+      <tr><td><strong>小獎與最終獎各至少 1</strong></td><td class="dim"><strong style="color:var(--gold-light);">最終獎數量 <span class="mono">≥ 1</span></strong>（翻完 9 格必得最終獎的玩法前提）；填 0 時顯示錯誤「<strong>最終獎數量至少 1</strong>」並禁止儲存。<br><strong style="color:var(--gold-light);">小獎數量 <span class="mono">≥ 1</span></strong>（避免整盤無低價值墊底、獎池結構失衡）；填 0 時顯示錯誤「<strong>小獎數量至少 1</strong>」並禁止儲存。<br><strong>中獎與大獎允許 0</strong>。</td></tr>
       <tr><td><strong>連動重算</strong></td><td class="dim">數量變更時，「<strong>獎池總額</strong>」與「<strong>RTP 驗算</strong>」<strong style="color:var(--green-bright);">即時重算</strong>（顯示位置見〈<a href="#rtp-info" style="color:var(--gold-light);">二之三</a>〉）；「<strong>第幾抽權重</strong>」表<strong>本體不動</strong>，但其驗算需以<strong>當前數量配置</strong>計算。</td></tr>
     </tbody>
   </table>
 
-  <div class="sub-title" id="rtp-info" style="font-size:14px;">二之三、RTP 驗算與獎池總額（內移多貨幣區塊 · 純資訊顯示）<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" id="rtp-info" style="font-size:14px;">二之三、RTP 驗算與獎池總額（內移多貨幣區塊 · 純資訊顯示）<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:170px;">項目</th><th>規則</th></tr></thead>
     <tbody>
       <tr><td><strong>顯示位置內移</strong></td><td class="dim">「<strong>RTP 驗算</strong>」與「<strong>獎池總額</strong>」改為顯示在「<strong style="color:var(--gold-light);">多貨幣獎項與門檻</strong>」區塊內——<strong>每個幣別 tab 內即時顯示「該幣別」的獎池總額與 RTP 驗算結果</strong>。<br><strong style="color:var(--orange-bright);">原右側欄位（獨立驗算面板）中的這兩項移除</strong>；<strong>若右側欄位因此清空則整個移除</strong>。</td></tr>
       <tr><td><strong>移除目標值限制</strong></td><td class="dim">獎項換算結果<strong style="color:var(--red-bright);">移除「目標 1.00% ±0.1」限制</strong>；<strong style="color:var(--red-bright);">移除警示文案「偏離目標 1%，請調整門檻或獎項金額」</strong>。<br>RTP 驗算改為<strong style="color:var(--green-bright);">純資訊顯示</strong>——<strong>只算、只顯示</strong>，<strong>不做目標值校驗、不阻擋儲存與送審</strong>。</td></tr>
-      <tr><td><strong>硬性校驗不受影響</strong></td><td class="dim">〈<a href="#prize-count" style="color:var(--gold-light);">二之二</a>〉的「<strong>加總＝9</strong>」與「<strong>最終獎 ≥ 1</strong>」<strong>仍為硬性校驗</strong>；<strong>幣別完整性</strong>與<strong>第 1~8 抽權重列合計 &gt; 0</strong> 亦維持擋儲存／擋送審。</td></tr>
+      <tr><td><strong>硬性校驗不受影響</strong></td><td class="dim">〈<a href="#prize-count" style="color:var(--gold-light);">二之二</a>〉的「<strong>加總＝9</strong>」、「<strong>小獎 ≥ 1</strong>」與「<strong>最終獎 ≥ 1</strong>」<strong>仍為硬性校驗</strong>；<strong>幣別完整性</strong>與<strong>第 1~8 抽權重列合計 &gt; 0</strong> 亦維持擋儲存／擋送審。</td></tr>
     </tbody>
   </table>
   <div class="callout warn" style="font-size:12px;">
@@ -4270,7 +4302,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> <strong style="color:var(--green-bright);">錯誤消失</strong>，<strong>該幣別 tab 內的獎池總額與 RTP 驗算即時更新</strong>，<strong style="color:var(--orange-bright);">且不出現任何目標偏離警示</strong>。
   </div>
 
-  <div class="sub-title" id="template-new" style="font-size:14px;">三、新增模板初始狀態<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="template-new" style="font-size:14px;">三、新增模板初始狀態<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info" style="font-size:12px;">
     <strong>原則：新增模板＝全空白，不預帶任何既有模板的數值。</strong>模板編輯器<strong>不得以任何既有模板作為預設值來源</strong>，避免營運誤沿用他組族群的門檻／獎項／權重而不自知。
   </div>
@@ -4292,7 +4324,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="callout warn" style="font-size:12px;">
     <strong>儲存前驗證（沿用既有規則，於此明確列出適用於新模板）：</strong><br>
     ① <strong>第 1~8 抽每列權重合計 &gt; 0</strong>（任一列為 0 即不可儲存）；<br>
-    ② <strong>獎項數量加總＝9 且最終獎 ≥ 1</strong>（見 <a href="#prize-count" style="color:var(--gold-light);">二之二、獎項檔位數量</a>）；<strong style="color:var(--orange-bright);">RTP 僅顯示、不校驗</strong>（見 <a href="#rtp-info" style="color:var(--gold-light);">二之三</a>）；<br>
+    ② <strong>獎項數量加總＝9，且小獎 ≥ 1、最終獎 ≥ 1</strong>（見 <a href="#prize-count" style="color:var(--gold-light);">二之二、獎項檔位數量</a>）；<strong style="color:var(--orange-bright);">RTP 僅顯示、不校驗</strong>（見 <a href="#rtp-info" style="color:var(--gold-light);">二之三</a>）；<br>
     ③ <strong>未通過不可儲存</strong>（同時擋送審）。
   </div>
 
@@ -4343,7 +4375,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </table>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ <strong>權重輸入範圍＝第 1~8 抽</strong>（四類相對權重，每列合計 &gt;0 即可驗證）；<strong>第 9 抽不提供輸入框、不參與合計驗證</strong>。</div>
 
-  <div class="sub-title" id="template-version" style="font-size:14px;">六、模板版本控制<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title" id="template-version" style="font-size:14px;">六、模板版本控制<span class="tag-upd">2026-08-27</span></div>
   <div class="callout success">
     <strong>2026-07-16 與後端 Eric 確認：</strong>模板既為<strong>可被多檔活動／多條規則共用的獨立實體</strong>，其編輯必須有版本控制，才不會在營運改一個模板時，連帶改掉正在運行的活動與玩家當日已鎖定的配置。
   </div>
@@ -4352,7 +4384,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <tbody>
       <tr><td>模板編輯<strong>不換 ID</strong></td><td class="dim">同一<strong>模板 ID</strong> 下，<strong>每次儲存產生新版本序號</strong>（V1、V2…）。<strong>DB 已有序號</strong>，後台顯示時<strong>轉為版號格式</strong>（V1／V2）。活動引用的是<strong>模板 ID</strong>，不因編輯而斷開引用。</td></tr>
       <tr><td>版本歷程</td><td class="dim"><strong>每版保留完整快照</strong>（門檻／獎項／權重／各貨幣設定；<strong>快照僅含已啟用幣別</strong>）。<strong>模板編輯器內重用活動 Tab 4 的模式呈現</strong>——<strong>版本下拉</strong>（格式「<span class="mono">V1（更新 2026-06-28 10:12）</span>」）＋<strong>該版快照明細</strong>。</td></tr>
-      <tr><td><strong>生效時機</strong></td><td class="dim">· 模板被<strong>「運行中活動」引用</strong>時：新版本於<strong>各活動的「次一個每日重置時點」生效</strong>；<strong>玩家當日已鎖定的配置沿用舊版快照</strong>。<br>· <strong>未被任何運行中活動引用</strong>的模板：<strong>儲存即生效</strong>。<br>· 此設計與 <a href="#tag-rules" style="color:var(--gold-light);">DEV §12 當日鎖定</a>、<a href="#admin-version" style="color:var(--gold-light);">DEV §13「飛行中資料不被改寫」</a><strong>同一設計哲學</strong>。</td></tr>
+      <tr><td><strong>生效時機</strong></td><td class="dim">· 模板被<strong>「運行中活動」引用</strong>時：新版本於<strong>各活動的「次一個每日重置時點」生效</strong>；<strong>玩家當日已鎖定的配置沿用舊版快照</strong>。<br>· <strong>未被任何運行中活動引用</strong>的模板：<strong>儲存即生效</strong>。<br>· 此設計與 <a href="#behavior" style="color:var(--gold-light);">DEV §04 二、每日配置解析與鎖定</a>、<a href="#admin-version" style="color:var(--gold-light);">DEV §13「飛行中資料不被改寫」</a><strong>同一設計哲學</strong>。</td></tr>
       <tr><td>後台備注<br><span class="dim" style="font-size:10px;">Eric 要求</span></td><td class="dim"><strong>模板編輯器頂部</strong>與<strong>模板列表</strong>需顯示<strong style="color:var(--orange-bright);">黃色提示</strong>：「<strong>此模板被 N 檔運行中活動使用，儲存後將於次一個每日重置時點生效</strong>」，避免營運誤以為改完立刻生效。</td></tr>
     </tbody>
   </table>
@@ -4417,7 +4449,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <b class="t">Then</b> 列表列出該筆獎勵，並<strong>額外顯示 CAMPAIGN ID 與獎勵類型</strong>；同一筆紀錄與玩家端活動歷程所見一致；該筆金額<strong>不出現在任何單一遊戲的 GGR 統計中</strong>。
   </div>
 
-  <div class="sub-title">後台功能規格補充<span class="tag-upd">2026-08-03</span></div>
+  <div class="sub-title">後台功能規格補充<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th>功能</th><th>描述</th><th>v1</th><th>v2預留</th></tr></thead>
     <tbody>
@@ -4426,7 +4458,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>標籤規則 → 模板（分眾配置）</td><td class="dim">每列＝多標籤 chip（<strong>AND 需同時符合</strong>）→ 指定模板；固定置底<strong>預設配置（不可刪除）</strong>；未命中走預設配置、<strong>無准入閘門</strong>；<strong> 即時衝突檢查三層</strong>：空規則／組合完全重複 → 紅底擋送審；<strong>部分重疊合法不擋</strong>，命中取「標籤數最多且全部符合」者優先，同標籤數又同時命中多條 → 警示擋送審。<strong><a href="#tag-pool" style="color:var(--gold-light);">標籤池</a>（7 個 · 兩維度）</strong>：消費分層 小客/中客/大客/超大客/巨客 ＋ RTP 體驗 正常/慘輸</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：分群模型輸出核心標籤</td></tr>
       <tr><td>適用路線設定（platform_lines）</td><td class="dim"><strong>新增式選擇</strong>：預設空清單 →「<strong>＋新增路線</strong>」下拉（<strong>內建搜尋、只列未加入者</strong>）→ chip（可移除 ×）；另有「<strong>全部加入</strong>」。<strong>清單走後端 API</strong>（非前端寫死）。<strong>儲存草稿允許 0 條、送審前 ≥1 條否則擋送審</strong>；每日重置時間一律以 UTC+8 計算</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：依線路差異化獎池</td></tr>
       <tr><td>版型主題設定（theme_id）</td><td class="dim">從<strong>預定義主題清單單選</strong>（treasure_box / gold_egg / red_envelope / xmas_gift），選中顯示縮圖預覽，控制前台換皮；<strong>不可自由輸入、不影響玩法數值</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：營運可自上傳素材</td></tr>
-      <tr><td>活動期間倒數設定（countdown_lead_days）</td><td class="dim">設定前台由日期區間轉倒數的提前天數（預設 3）；活動列表倒數欄剩餘天數 &lt; 此值時轉紅</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
+      <tr><td>活動期間倒數設定（countdown_lead_days）</td><td class="dim">設定前台由日期區間轉倒數的提前天數（預設 3）；活動列表倒數欄剩餘天數 <strong>≤</strong> 此值時轉紅（<strong>邊界含第 N 天</strong>）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>抽獎權重表（第 1~8 抽）</td><td class="dim">模板編輯器內<strong>第 1~8 抽可輸入相對權重</strong>（每列合計 &gt;0 即可、<strong>非強制 100</strong>）；<strong>第 9 抽由系統自動決定</strong>（不放回抽、必中剩餘的最後 1 個獎項）為唯讀說明列、不參與合計驗證</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>注單類型篩選（遊戲後台）</td><td class="dim">遊戲後台既有「投注資料查詢」新增<strong>注單類型：一般注單／活動獎勵</strong>；篩活動獎勵時額外呈現 <strong>CAMPAIGN ID ＋ 獎勵類型</strong>欄。</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：FREE SPIN 卡併入獎勵類型值域</td></tr>
       <tr><td>RTP 自動試算（純資訊顯示）</td><td class="dim">於<strong>各幣別 tab 內</strong>即時顯示該幣別<strong>獎池總額與 RTP%</strong>；<strong style="color:var(--orange-bright);">不做目標值校驗、不擋儲存與送審</strong>。擋送審條件為<strong>獎項數量加總 ≠ 9／最終獎 &lt; 1／必填幣別未填完整／第 1~8 抽權重列合計 0</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
@@ -4461,7 +4493,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </table>
   <div class="body-text" style="font-size:11px;color:var(--text-dim);">※ 上表為「單一主題」需提供的一組資產；4 套主題依此 ×4。版位、尺寸切版規格沿用 DEV §05 美術資產清單（同版位只換皮）。v2 開放營運自上傳素材組主題時，沿用同一命名規範與資產清單。</div>
 
-  <div class="sub-title" id="admin-i18n">後台多國語系（i18n &middot; zh-TW／en）<span class="tag-upd">2026-08-06</span></div>
+  <div class="sub-title" id="admin-i18n">後台多國語系（i18n &middot; zh-TW／en）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout info">
     <strong>v1 僅支援兩種語系：繁體中文（<span class="mono">zh-TW</span>，<strong style="color:var(--gold-light);">預設</strong>）／英文（<span class="mono">en</span>）。</strong>兩種語系<strong>寫死於前端</strong>，<strong style="color:var(--orange-bright);">不提供語系管理後台、不做其他語言</strong>。<br>
     <strong style="color:var(--orange-bright);">⚠ 與 DEV &sect;11 區分：</strong>DEV &sect;11「多國語系文案表」為<strong>玩家端 Client 文案（13 語系）</strong>；<strong>本節為後台管理介面文案（僅 zh-TW／en）</strong>，兩者<strong>字典檔與範圍各自獨立</strong>，不互相沿用。
@@ -4547,6 +4579,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.prize_count.sum</span></td><td class="dim">獎項數量加總 {n}／9</td><td class="dim mono" style="font-size:11.5px;">Prize count total {n}/9</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.prize_count.error_sum</span></td><td class="dim">獎項數量加總需等於 9（目前 {n}）</td><td class="dim mono" style="font-size:11.5px;">Prize counts must total 9 (now {n})</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.prize_count.error_final</span></td><td class="dim">最終獎數量至少 1</td><td class="dim mono" style="font-size:11.5px;">Final prize count must be &ge; 1</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.prize_count.error_small</span></td><td class="dim">小獎數量至少 1</td><td class="dim mono" style="font-size:11.5px;">Small prize count must be &ge; 1</td></tr>
+      <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.tpl.threshold.error_desc</span></td><td class="dim">門檻不可小於前一格（可相等）</td><td class="dim mono" style="font-size:11.5px;">Threshold cannot be lower than the previous slot (equal is allowed)</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.add</span></td><td class="dim">＋新增路線</td><td class="dim mono" style="font-size:11.5px;">Add line</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.add_all</span></td><td class="dim">全部加入</td><td class="dim mono" style="font-size:11.5px;">Add all</td></tr>
       <tr><td style="vertical-align:top;"><span class="mono" style="font-size:11px;">admin.camp.lines.search</span></td><td class="dim">搜尋路線</td><td class="dim mono" style="font-size:11.5px;">Search lines</td></tr>
@@ -4599,7 +4633,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>v2 ＝「後續加入 FREE SPIN 卡為獎勵」的版本。</strong>本文件所稱 <strong>v2</strong>，主要指<strong>把非現金獎（FREE SPIN 卡）實際做成可發放、可使用的獎勵</strong>之後續版本；<strong>v1（本次）只發現金獎</strong>。<br>
     下表 v2 欄位標示的項目<strong>本次一律不實作</strong>，僅需在資料層與集成商介面<strong>預留擴充空間</strong>（見 <a href="#prizes" style="color:var(--gold-light);">DEV §03 FREE SPIN 卡</a>）。
   </div>
-  <div class="sub-title">功能差異對比</div>
+  <div class="sub-title">功能差異對比<span class="tag-upd">2026-08-27</span></div>
   <div class="compare-wrap">
     <table class="compare-table">
       <thead>
@@ -4658,12 +4692,6 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
           <td class="cross">✗（資料表預留）</td>
           <td class="v2-val">✅ 顯示 + 使用</td>
           <td class="dim">inventory 水管 v1 建好，v2 啟用體驗</td>
-        </tr>
-        <tr>
-          <td>玩家分群</td>
-          <td class="v1-val">✅ 保留 usertype tag 投放能力</td>
-          <td class="v2-val">✓ 沿用擴充</td>
-          <td class="dim">v1 即可指定玩家 tag 投放；分群 tag 由數據組提供（接收+套用，非自動打標），實際供給隨 Roadmap W1「Tag 接收·同步」上線</td>
         </tr>
         <tr>
           <td>對帳口徑</td>
@@ -4763,7 +4791,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>本章只列「需要集成商提供什麼能力」。</strong>對外的需求清單、參數與回傳格式由對接窗口另行維護，<strong>本文件不重複列出，也不指定介面形式</strong>。
   </div>
 
-  <div class="sub-title">一、現金獎發放（v1 啟用）</div>
+  <div class="sub-title">一、現金獎發放（v1 啟用）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout warn">
     獎勵須經集成商以「<strong>Bet=0 / Win=獎項面額</strong>」之注單發放至<strong>平台主錢包</strong>，且<strong>可立即提領</strong>——不進紅利錢包、不走促銷工具、不附加流水條件。
   </div>
@@ -4772,7 +4800,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <tbody>
       <tr><td>注單可帶活動識別</td><td class="dim">發放的注單須能<strong>帶上活動識別與獎勵類型</strong>，使活動獎勵可與一般遊戲注單分離辨識。</td></tr>
       <tr><td>對帳可分離統計</td><td class="dim">每日對帳報表中，<strong>活動獎勵須能與一般 GGR 獨立統計</strong>。</td></tr>
-      <tr><td>失敗可重試至成功</td><td class="dim">派獎失敗須可<strong>持續重試至成功</strong>（比照既有免費遊戲的重試行為）；需確認是否有重試次數上限。</td></tr>
+      <tr><td>失敗可重試（上限 5 次）</td><td class="dim">派獎失敗須可<strong>自動重試</strong>（比照既有免費遊戲的重試行為），<strong style="color:var(--gold-light);">自動重試上限 5 次（定案 2026-08-27）</strong>——間隔由開發決定、<strong>建議指數退避</strong>；<strong>超限後停止自動重試</strong>，記失敗事件<strong style="color:var(--orange-bright);">入人工對帳佇列</strong>並觸發警報（走既有 <strong>Grafana ＋ Telegram</strong> 管道，見 <a href="#optimize" style="color:var(--gold-light);">DEV §15 警報通知規則</a>）；<strong>人工補發後歸檔</strong>。</td></tr>
       <tr><td>逐平台開通</td><td class="dim">Bet=0 發放屬<strong>逐平台商務開通</strong>事項；<strong>未開通的線路不得被投放</strong>——後台可選線路清單只列已開通者（見 <a href="#backend" style="color:var(--gold-light);">DEV §06</a>）。</td></tr>
     </tbody>
   </table>
@@ -4808,14 +4836,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
 
-  <div class="sub-title">需外部確認（會影響實作，未定前請留可切換空間）</div>
+  <div class="sub-title">需外部確認（會影響實作，未定前請留可切換空間）<span class="tag-upd">2026-08-27</span></div>
   <div class="oq-item awc">
     <div class="oq-owner">集成商 / 平台</div>
     <div class="oq-q"><strong>各平台是否接受 Bet=0 的零押注派發並正確入帳？</strong>屬逐平台商務開通事項。未開通的線路<strong>不得出現在後台可選線路清單中</strong>——此防呆須先做好，不等確認結果。</div>
   </div>
-  <div class="oq-item awc">
-    <div class="oq-owner">集成商</div>
-    <div class="oq-q"><strong>派獎失敗重試是否有最大次數上限？</strong>若有上限，超限後的處理方式（轉人工補發 / 保留待處理狀態）須明確，以免玩家獎勵懸空。</div>
+  <div class="oq-item awc" style="opacity:.9;">
+    <div class="oq-owner">集成商 · <strong style="color:var(--green-bright);">✓ 已定案 2026-08-27</strong></div>
+    <div class="oq-q"><strong>派獎失敗重試上限＝5 次（定案）。</strong>自動重試<strong>上限 5 次</strong>（間隔由開發決定，<strong>建議指數退避</strong>）；超限後<strong>停止自動重試</strong>、記失敗事件<strong style="color:var(--gold-light);">入人工對帳佇列</strong>並觸發警報（走既有 <strong>Grafana ＋ Telegram</strong> 管道）；人工補發後歸檔。詳見 <a href="#awc" style="color:var(--gold-light);">DEV §09 一、現金獎發放</a>。</div>
   </div>
   <div class="oq-item awc">
     <div class="oq-owner">集成商</div>
@@ -4851,18 +4879,21 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>翻譯狀態：</strong>以下 13 語系翻譯為<strong>初稿（AI 產生）</strong>，上線前必須經在地化團隊審校，<strong>泰文（th）、緬甸文（my-MM）、孟加拉文（bn）為高優先審校項</strong>。zh-Hant 為文案原文基準。
   </div>
   <div class="callout success">
-    <strong>文案重點：</strong>① <em>tb_next_hint</em>＝「再押 ₱X 解鎖下一次機會」；② <em>tb_cells_available</em>＝「可再翻 N 格」；③ <em>tb_flip_any</em>＝「可翻任意 N 格！」；④ P7 結算畫面 4 條（<em>go_title／go_sub／go_hint／go_btn</em>）；⑤ <em>tut1_body</em>＝「解鎖一次翻牌機會、自選任一格」；⑥ <strong>不使用</strong> <em>tb_lock_req</em>、<em>tb_reset_tomorrow</em>（鎖定格僅顯示鎖頭、明日重置文案併入 P7）。共 38 條。
+    <strong>文案重點：</strong>① <em>tb_next_hint</em>＝「再押 ₱X 解鎖下一次機會」；② <em>tb_cells_available</em>＝「可再翻 N 格」；③ <em>tb_flip_any</em>＝「可翻任意 N 格！」；④ P7 結算畫面 4 條（<em>go_title／go_sub／go_hint／go_btn</em>）；⑤ <em>tut1_body</em>＝「解鎖一次翻牌機會、自選任一格」；⑥ <strong>不使用</strong> <em>tb_lock_req</em>、<em>tb_reset_tomorrow</em>（鎖定格僅顯示鎖頭、明日重置文案併入 P7）；⑦ <strong>DEV V1.13 新增 3 條</strong>：<em>err_conn_retry／err_reconnecting／hist_empty</em>。<strong>共 41 條。</strong>
   </div>
 
-  <div class="sub-title">i18n 規則與注意事項</div>
+  <div class="sub-title">i18n 規則與注意事項<span class="tag-upd">2026-08-27</span></div>
   <div class="info-grid-3">
     <div class="info-card">
       <div class="info-card-title">🔑 Key 命名規則</div>
-      <div class="info-card-desc">依畫面前綴：<em>fab_</em>（浮動icon）／<em>crm_</em>（遊戲中心）／<em>tb_</em>（寶箱彈窗）／<em>go_</em>（結算畫面）／<em>tut_</em>（教學）。共 38 條。</div>
+      <div class="info-card-desc">依畫面前綴：<em>fab_</em>（浮動icon）／<em>crm_</em>（遊戲中心）／<em>tb_</em>（寶箱彈窗）／<em>go_</em>（結算畫面）／<em>tut_</em>（教學）／<em>err_</em>（錯誤提示）／<em>hist_</em>（歷程頁）。共 41 條。</div>
     </div>
     <div class="info-card">
       <div class="info-card-title">🧩 Placeholder 規則</div>
-      <div class="info-card-desc"><em>{amount}</em>＝含幣別金額（如 ₱100）、<em>{n}</em>＝數量／可翻次數、<em>{time}</em>＝HH:MM:SS。翻譯時<strong>不可改動或翻譯</strong> placeholder 本身，但可依語序移動位置。</div>
+      <div class="info-card-desc"><em>{amount}</em>＝含幣別金額（如 ₱100）、<em>{n}</em>＝數量／可翻次數／重試秒數。翻譯時<strong>不可改動或翻譯</strong> placeholder 本身，但可依語序移動位置。<br>
+      <strong style="color:var(--gold-light);">⚠ 時間類為兩個獨立 placeholder，格式不同、不可互換：</strong><br>
+      · <em>{time}</em>＝<strong>倒數剩餘時間</strong>，格式 <span class="mono">HH:MM:SS</span>，每秒遞減（僅用於 <span class="mono">tb_reset_countdown</span>）。<br>
+      · <em>{reset_time}</em>＝<strong>該活動的每日重置時點</strong>（時鐘時間），格式 <span class="mono">HH:MM</span>、UTC+8 設定值，<strong style="color:var(--orange-bright);">不可寫死 00:00</strong>（用於 <span class="mono">go_hint</span>／<span class="mono">tut2_body</span>）。</div>
     </div>
     <div class="info-card">
       <div class="info-card-title">📏 字長膨脹</div>
@@ -4878,7 +4909,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
     <div class="info-card">
       <div class="info-card-title">🔢 數字與時間格式</div>
-      <div class="info-card-desc">金額千分位、00:00 等格式由前端依 locale 處理；孟加拉文有本地數字（০-৯），需與在地化確認採用西方或本地數字。</div>
+      <div class="info-card-desc">金額千分位、時間 HH:MM 等格式由前端依 locale 處理；孟加拉文有本地數字（০-৯），需與在地化確認採用西方或本地數字。</div>
     </div>
   </div>
 
@@ -4922,22 +4953,28 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 <tr><td class="mono">tb_final_congrats</td><td class="dim" style="font-size:11px;">最終獎·恭喜標題</td><td class="dim" style="min-width:130px;">恭喜獲得最終大獎！</td><td class="dim" style="min-width:130px;">Congratulations! You won the grand prize!</td><td class="dim" style="min-width:130px;">恭喜获得最终大奖！</td><td class="dim" style="min-width:130px;">おめでとう！最終大賞を獲得！</td><td class="dim" style="min-width:130px;">축하합니다! 최종 대상을 획득했습니다!</td><td class="dim" style="min-width:130px;">ยินดีด้วย! คุณได้รับรางวัลใหญ่สุดท้าย!</td><td class="dim" style="min-width:130px;">Chúc mừng! Bạn đã trúng giải thưởng lớn cuối cùng!</td><td class="dim" style="min-width:130px;">Selamat! Anda memenangkan hadiah utama!</td><td class="dim" style="min-width:130px;">ဂုဏ်ယူပါသည်! နောက်ဆုံးဆုကြီး ရရှိပါပြီ!</td><td class="dim" style="min-width:130px;">অভিনন্দন! আপনি চূড়ান্ত বড় পুরস্কার জিতেছেন!</td><td class="dim" style="min-width:130px;">Parabéns! Você ganhou o grande prêmio!</td><td class="dim" style="min-width:130px;">¡Felicidades! ¡Ganaste el gran premio!</td><td class="dim" style="min-width:130px;">Tebrikler! Büyük ödülü kazandın!</td></tr>
 <tr><td class="mono">tb_final_claim</td><td class="dim" style="font-size:11px;">最終獎·收下按鈕</td><td class="dim" style="min-width:130px;">太棒了！收下</td><td class="dim" style="min-width:130px;">Awesome! Claim it</td><td class="dim" style="min-width:130px;">太棒了！收下</td><td class="dim" style="min-width:130px;">やったね！受け取る</td><td class="dim" style="min-width:130px;">좋아요! 받기</td><td class="dim" style="min-width:130px;">เยี่ยมเลย! รับรางวัล</td><td class="dim" style="min-width:130px;">Tuyệt vời! Nhận ngay</td><td class="dim" style="min-width:130px;">Keren! Ambil</td><td class="dim" style="min-width:130px;">အရမ်းကောင်းပါတယ်! လက်ခံမည်</td><td class="dim" style="min-width:130px;">দারুণ! গ্রহণ করুন</td><td class="dim" style="min-width:130px;">Incrível! Resgatar</td><td class="dim" style="min-width:130px;">¡Genial! Reclamar</td><td class="dim" style="min-width:130px;">Harika! Al</td></tr>
 </tbody></table></div>
-  <div class="sub-title">文案翻譯總表 · 今日全部抽完結算（P7）｜4 條</div>
+  <div class="sub-title">文案翻譯總表 · 今日全部抽完結算（P7）｜4 條<span class="tag-upd">2026-08-27</span></div>
 <div class="compare-wrap"><table class="spec-table" style="min-width:1900px;"><thead><tr><th style="min-width:150px;">KEY</th><th style="min-width:110px;">使用位置</th><th>zh-Hant</th><th>en</th><th>zh-Hans</th><th>ja-JP</th><th>ko-KR</th><th>th</th><th>vi</th><th>id</th><th>my-MM</th><th>bn</th><th>pt</th><th>es-ES</th><th>tr-TR</th></tr></thead><tbody>
 <tr><td class="mono">go_title</td><td class="dim" style="font-size:11px;">結算·標題（新增）</td><td class="dim" style="min-width:130px;">今日寶箱全部抽完啦！</td><td class="dim" style="min-width:130px;">You've opened every chest today!</td><td class="dim" style="min-width:130px;">今日宝箱全部抽完啦！</td><td class="dim" style="min-width:130px;">本日の宝箱を全部開けました！</td><td class="dim" style="min-width:130px;">오늘 보물상자를 모두 열었어요!</td><td class="dim" style="min-width:130px;">เปิดกล่องสมบัติครบทุกใบแล้ววันนี้!</td><td class="dim" style="min-width:130px;">Bạn đã mở hết rương hôm nay!</td><td class="dim" style="min-width:130px;">Semua peti hari ini sudah dibuka!</td><td class="dim" style="min-width:130px;">ယနေ့ ရတနာသေတ္တာအားလုံး ဖွင့်ပြီးပါပြီ!</td><td class="dim" style="min-width:130px;">আজকের সব চেস্ট খুলে ফেলেছেন!</td><td class="dim" style="min-width:130px;">Você abriu todos os baús de hoje!</td><td class="dim" style="min-width:130px;">¡Abriste todos los cofres de hoy!</td><td class="dim" style="min-width:130px;">Bugünkü tüm sandıkları açtın!</td></tr>
-<tr><td class="mono">go_sub</td><td class="dim" style="font-size:11px;">結算·副標（新增）</td><td class="dim" style="min-width:130px;">下一輪遊戲將於</td><td class="dim" style="min-width:130px;">Next round starts in</td><td class="dim" style="min-width:130px;">下一轮游戏将于</td><td class="dim" style="min-width:130px;">次のラウンドは</td><td class="dim" style="min-width:130px;">다음 라운드는</td><td class="dim" style="min-width:130px;">รอบถัดไปจะเริ่มใน</td><td class="dim" style="min-width:130px;">Vòng tiếp theo bắt đầu sau</td><td class="dim" style="min-width:130px;">Ronde berikutnya dimulai dalam</td><td class="dim" style="min-width:130px;">နောက်တစ်ကြိမ်ကစားပွဲ စတင်မည့်အချိန်</td><td class="dim" style="min-width:130px;">পরের রাউন্ড শুরু হবে</td><td class="dim" style="min-width:130px;">A próxima rodada começa em</td><td class="dim" style="min-width:130px;">La próxima ronda comienza en</td><td class="dim" style="min-width:130px;">Sonraki tur şu süre sonra başlar</td></tr>
-<tr><td class="mono">go_hint</td><td class="dim" style="font-size:11px;">結算·說明（新增）</td><td class="dim" style="min-width:130px;">後重新開始，明日 00:00 全新洗牌 🎲</td><td class="dim" style="min-width:130px;">then begins anew — fresh shuffle at 00:00 tomorrow 🎲</td><td class="dim" style="min-width:130px;">后重新开始，明日 00:00 全新洗牌 🎲</td><td class="dim" style="min-width:130px;">後にスタート、明日 00:00 に新しくシャッフル 🎲</td><td class="dim" style="min-width:130px;">후 다시 시작, 내일 00:00 새로 셔플 🎲</td><td class="dim" style="min-width:130px;">แล้วเริ่มใหม่ พรุ่งนี้ 00:00 สับใหม่ทั้งหมด 🎲</td><td class="dim" style="min-width:130px;">rồi bắt đầu lại — xáo trộn mới lúc 00:00 ngày mai 🎲</td><td class="dim" style="min-width:130px;">lalu mulai lagi — kocok ulang pukul 00:00 besok 🎲</td><td class="dim" style="min-width:130px;">ပြီးနောက် ပြန်စမည်၊ မနက်ဖြန် 00:00 အသစ်ရောမွှေမည် 🎲</td><td class="dim" style="min-width:130px;">তারপর নতুন করে শুরু, আগামীকাল ০০:০০ নতুন শাফল 🎲</td><td class="dim" style="min-width:130px;">e recomeça — novo embaralhamento amanhã às 00:00 🎲</td><td class="dim" style="min-width:130px;">y vuelve a empezar — nueva mezcla mañana a las 00:00 🎲</td><td class="dim" style="min-width:130px;">ardından yeniden başlar — yarın 00:00'da yeni karıştırma 🎲</td></tr>
+<tr><td class="mono">go_sub</td><td class="dim" style="font-size:11px;">結算·今日累積金額</td><td class="dim" style="min-width:130px;">今日累積獲得 {amount}</td><td class="dim" style="min-width:130px;">You won {amount} today</td><td class="dim" style="min-width:130px;">今日累计获得 {amount}</td><td class="dim" style="min-width:130px;">本日の獲得合計 {amount}</td><td class="dim" style="min-width:130px;">오늘 총 획득 {amount}</td><td class="dim" style="min-width:130px;">วันนี้ได้รับรวม {amount}</td><td class="dim" style="min-width:130px;">Hôm nay bạn nhận được {amount}</td><td class="dim" style="min-width:130px;">Hari ini kamu dapat {amount}</td><td class="dim" style="min-width:130px;">ယနေ့ စုစုပေါင်း {amount} ရရှိခဲ့သည်</td><td class="dim" style="min-width:130px;">আজ মোট পেয়েছেন {amount}</td><td class="dim" style="min-width:130px;">Você ganhou {amount} hoje</td><td class="dim" style="min-width:130px;">Ganaste {amount} hoy</td><td class="dim" style="min-width:130px;">Bugün {amount} kazandın</td></tr>
+<tr><td class="mono">go_hint</td><td class="dim" style="font-size:11px;">結算·重置提示</td><td class="dim" style="min-width:130px;">明日 {reset_time} 全新洗牌 🎲</td><td class="dim" style="min-width:130px;">Fresh shuffle tomorrow at {reset_time} 🎲</td><td class="dim" style="min-width:130px;">明日 {reset_time} 全新洗牌 🎲</td><td class="dim" style="min-width:130px;">明日 {reset_time} に新しくシャッフル 🎲</td><td class="dim" style="min-width:130px;">내일 {reset_time} 새로 셔플 🎲</td><td class="dim" style="min-width:130px;">พรุ่งนี้ {reset_time} สับใหม่ทั้งหมด 🎲</td><td class="dim" style="min-width:130px;">Xáo trộn mới lúc {reset_time} ngày mai 🎲</td><td class="dim" style="min-width:130px;">Kocok ulang besok pukul {reset_time} 🎲</td><td class="dim" style="min-width:130px;">မနက်ဖြန် {reset_time} တွင် အသစ်ရောမွှေမည် 🎲</td><td class="dim" style="min-width:130px;">আগামীকাল {reset_time}-এ নতুন শাফল 🎲</td><td class="dim" style="min-width:130px;">Novo embaralhamento amanhã às {reset_time} 🎲</td><td class="dim" style="min-width:130px;">Nueva mezcla mañana a las {reset_time} 🎲</td><td class="dim" style="min-width:130px;">Yarın {reset_time}'da yeni karıştırma 🎲</td></tr>
 <tr><td class="mono">go_btn</td><td class="dim" style="font-size:11px;">結算·按鈕（新增）</td><td class="dim" style="min-width:130px;">好的，期待下一輪！</td><td class="dim" style="min-width:130px;">Got it — see you next round!</td><td class="dim" style="min-width:130px;">好的，期待下一轮！</td><td class="dim" style="min-width:130px;">了解！次のラウンドで！</td><td class="dim" style="min-width:130px;">좋아요, 다음 라운드에서 봐요!</td><td class="dim" style="min-width:130px;">รับทราบ เจอกันรอบหน้า!</td><td class="dim" style="min-width:130px;">Đã hiểu — hẹn vòng sau!</td><td class="dim" style="min-width:130px;">Oke — sampai ronde berikutnya!</td><td class="dim" style="min-width:130px;">ရပါပြီ၊ နောက်တစ်ကြိမ်မှာ တွေ့မယ်!</td><td class="dim" style="min-width:130px;">ঠিক আছে, পরের রাউন্ডে দেখা হবে!</td><td class="dim" style="min-width:130px;">Entendi — até a próxima rodada!</td><td class="dim" style="min-width:130px;">¡Entendido, nos vemos en la próxima ronda!</td><td class="dim" style="min-width:130px;">Tamam — sonraki turda görüşürüz!</td></tr>
 </tbody></table></div>
-  <div class="sub-title">文案翻譯總表 · 新手教學（P5）｜7 條</div>
+  <div class="sub-title">文案翻譯總表 · 新手教學（P5）｜7 條<span class="tag-upd">2026-08-27</span></div>
 <div class="compare-wrap"><table class="spec-table" style="min-width:1900px;"><thead><tr><th style="min-width:150px;">KEY</th><th style="min-width:110px;">使用位置</th><th>zh-Hant</th><th>en</th><th>zh-Hans</th><th>ja-JP</th><th>ko-KR</th><th>th</th><th>vi</th><th>id</th><th>my-MM</th><th>bn</th><th>pt</th><th>es-ES</th><th>tr-TR</th></tr></thead><tbody>
 <tr><td class="mono">tut1_title</td><td class="dim" style="font-size:11px;">教學1·標題</td><td class="dim" style="min-width:130px;">押注就能集滿累積條</td><td class="dim" style="min-width:130px;">Betting fills up the progress bar</td><td class="dim" style="min-width:130px;">押注就能集满累积条</td><td class="dim" style="min-width:130px;">ベットでゲージが貯まる</td><td class="dim" style="min-width:130px;">베팅하면 게이지가 채워져요</td><td class="dim" style="min-width:130px;">เดิมพันเพื่อสะสมแถบความคืบหน้า</td><td class="dim" style="min-width:130px;">Đặt cược để tích đầy thanh tiến độ</td><td class="dim" style="min-width:130px;">Bertaruh untuk mengisi bilah progres</td><td class="dim" style="min-width:130px;">လောင်းကစားခြင်းဖြင့် တိုးတက်မှုဘားကို ဖြည့်ပါ</td><td class="dim" style="min-width:130px;">বাজি ধরলেই প্রগ্রেস বার পূর্ণ হবে</td><td class="dim" style="min-width:130px;">Apostar enche a barra de progresso</td><td class="dim" style="min-width:130px;">Apostar llena la barra de progreso</td><td class="dim" style="min-width:130px;">Bahis yaptıkça ilerleme çubuğu dolar</td></tr>
 <tr><td class="mono">tut1_body</td><td class="dim" style="font-size:11px;">教學1·內文（改字）</td><td class="dim" style="min-width:130px;">在遊戲裡每次押注都會累積到這條進度條，集滿一段就能解鎖一次翻牌機會，自選任一格翻開領獎！</td><td class="dim" style="min-width:130px;">Every bet you place adds to this progress bar. Fill a stage to earn a flip, then pick any cell to open and claim your prize!</td><td class="dim" style="min-width:130px;">在游戏里每次押注都会累积到这条进度条，集满一段就能解锁一次翻牌机会，自选任一格翻开领奖！</td><td class="dim" style="min-width:130px;">ゲーム内のベットはすべてこのゲージに加算。1段階貯まるとめくる権利を1回獲得、好きなマスを選んでめくり賞品をゲット！</td><td class="dim" style="min-width:130px;">게임에서 베팅할 때마다 이 게이지에 누적됩니다. 한 단계를 채우면 뒤집기 기회를 1번 얻고, 원하는 칸을 골라 열어 보상을 받으세요!</td><td class="dim" style="min-width:130px;">ทุกการเดิมพันจะสะสมเข้าแถบนี้ สะสมครบหนึ่งช่วงจะได้สิทธิ์เปิด 1 ครั้ง เลือกเปิดช่องไหนก็ได้เพื่อรับรางวัล!</td><td class="dim" style="min-width:130px;">Mỗi lần cược đều tích vào thanh này. Đầy một giai đoạn sẽ nhận 1 lượt lật, chọn ô bất kỳ để mở và nhận thưởng!</td><td class="dim" style="min-width:130px;">Setiap taruhan terakumulasi ke bilah ini. Penuhi satu tahap untuk dapat 1 kesempatan buka, pilih kotak mana saja untuk membukanya dan ambil hadiah!</td><td class="dim" style="min-width:130px;">လောင်းတိုင်း ဤဘားထဲ စုဆောင်းမည်။ တစ်ဆင့်ပြည့်လျှင် ဖွင့်ခွင့် ၁ ကြိမ်ရပြီး ကြိုက်ရာကွက်ကို ရွေးဖွင့်၍ ဆုယူပါ!</td><td class="dim" style="min-width:130px;">প্রতিটি বাজি এই বারে জমা হয়। একটি ধাপ পূর্ণ হলে ১টি খোলার সুযোগ পাবেন, যেকোনো ঘর বেছে খুলে পুরস্কার নিন!</td><td class="dim" style="min-width:130px;">Cada aposta acumula nesta barra. Complete uma etapa para ganhar uma virada e escolha qualquer casa para abrir e resgatar o prêmio!</td><td class="dim" style="min-width:130px;">Cada apuesta se acumula en esta barra. Completa una etapa para ganar un volteo y elige cualquier casilla para abrirla y reclamar tu premio.</td><td class="dim" style="min-width:130px;">Her bahis bu çubukta birikir. Bir aşamayı doldur, bir açma hakkı kazan; istediğin kareyi seçip aç ve ödülünü al!</td></tr>
 <tr><td class="mono">tut2_title</td><td class="dim" style="font-size:11px;">教學2·標題</td><td class="dim" style="min-width:130px;">每天都有機會抽中最大獎！</td><td class="dim" style="min-width:130px;">A chance at the grand prize every day!</td><td class="dim" style="min-width:130px;">每天都有机会抽中最大奖！</td><td class="dim" style="min-width:130px;">毎日、最大賞のチャンス！</td><td class="dim" style="min-width:130px;">매일 최대 상금의 기회!</td><td class="dim" style="min-width:130px;">มีโอกาสได้รางวัลใหญ่ทุกวัน!</td><td class="dim" style="min-width:130px;">Mỗi ngày đều có cơ hội trúng giải lớn nhất!</td><td class="dim" style="min-width:130px;">Setiap hari ada peluang hadiah terbesar!</td><td class="dim" style="min-width:130px;">နေ့တိုင်း ဆုကြီးဆွတ်ခူးရန် အခွင့်အရေးရှိသည်!</td><td class="dim" style="min-width:130px;">প্রতিদিনই সবচেয়ে বড় পুরস্কার জেতার সুযোগ!</td><td class="dim" style="min-width:130px;">Chance de ganhar o grande prêmio todos os dias!</td><td class="dim" style="min-width:130px;">¡Cada día puedes ganar el gran premio!</td><td class="dim" style="min-width:130px;">Her gün büyük ödül şansı!</td></tr>
-<tr><td class="mono">tut2_body</td><td class="dim" style="font-size:11px;">教學2·內文</td><td class="dim" style="min-width:130px;">寶箱每天 00:00 重置重新洗牌，最大獎位置每天都不一樣——翻到就是你的！</td><td class="dim" style="min-width:130px;">The chest resets and reshuffles at 00:00 every day — the grand prize moves daily. Flip it and it's yours!</td><td class="dim" style="min-width:130px;">宝箱每天 00:00 重置重新洗牌，最大奖位置每天都不一样——翻到就是你的！</td><td class="dim" style="min-width:130px;">宝箱は毎日 00:00 にリセット＆シャッフル。最大賞の位置は毎日変わる——めくれたら君のもの！</td><td class="dim" style="min-width:130px;">보물상자는 매일 00:00에 리셋·셔플됩니다. 최대 상금 위치는 매일 달라져요 — 뒤집으면 당신의 것!</td><td class="dim" style="min-width:130px;">กล่องสมบัติรีเซ็ตและสับใหม่ทุกวัน 00:00 ตำแหน่งรางวัลใหญ่เปลี่ยนทุกวัน — เปิดเจอก็เป็นของคุณ!</td><td class="dim" style="min-width:130px;">Rương đặt lại và xáo trộn lúc 00:00 mỗi ngày, vị trí giải lớn luôn thay đổi — lật trúng là của bạn!</td><td class="dim" style="min-width:130px;">Peti direset dan dikocok ulang pukul 00:00 setiap hari, posisi hadiah terbesar selalu berbeda — buka dan jadi milikmu!</td><td class="dim" style="min-width:130px;">သေတ္တာကို နေ့စဉ် 00:00 တွင် ပြန်စပြီး ရောမွှေသည်။ ဆုကြီးနေရာ နေ့တိုင်းပြောင်းသည် — လှန်မိလျှင် သင့်ဟာဖြစ်သည်!</td><td class="dim" style="min-width:130px;">চেস্ট প্রতিদিন ০০:০০ টায় রিসেট ও নতুন করে শাফল হয়, বড় পুরস্কারের জায়গা প্রতিদিন বদলায় — উল্টালেই আপনার!</td><td class="dim" style="min-width:130px;">O baú reinicia e embaralha às 00:00 todos os dias; o grande prêmio muda de lugar diariamente — vire e ele é seu!</td><td class="dim" style="min-width:130px;">El cofre se reinicia y baraja a las 00:00 cada día; el gran premio cambia de lugar a diario — ¡voltéalo y es tuyo!</td><td class="dim" style="min-width:130px;">Sandık her gün 00:00'da sıfırlanır ve karıştırılır; büyük ödülün yeri her gün değişir — çevirirsen senindir!</td></tr>
+<tr><td class="mono">tut2_body</td><td class="dim" style="font-size:11px;">教學2·內文</td><td class="dim" style="min-width:130px;">寶箱每天 {reset_time} 重置重新洗牌，最大獎位置每天都不一樣——翻到就是你的！</td><td class="dim" style="min-width:130px;">The chest resets and reshuffles at {reset_time} every day — the grand prize moves daily. Flip it and it's yours!</td><td class="dim" style="min-width:130px;">宝箱每天 {reset_time} 重置重新洗牌，最大奖位置每天都不一样——翻到就是你的！</td><td class="dim" style="min-width:130px;">宝箱は毎日 {reset_time} にリセット＆シャッフル。最大賞の位置は毎日変わる——めくれたら君のもの！</td><td class="dim" style="min-width:130px;">보물상자는 매일 {reset_time}에 리셋·셔플됩니다. 최대 상금 위치는 매일 달라져요 — 뒤집으면 당신의 것!</td><td class="dim" style="min-width:130px;">กล่องสมบัติรีเซ็ตและสับใหม่ทุกวันเวลา {reset_time} ตำแหน่งรางวัลใหญ่เปลี่ยนทุกวัน — เปิดเจอก็เป็นของคุณ!</td><td class="dim" style="min-width:130px;">Rương đặt lại và xáo trộn lúc {reset_time} mỗi ngày, vị trí giải lớn luôn thay đổi — lật trúng là của bạn!</td><td class="dim" style="min-width:130px;">Peti direset dan dikocok ulang pukul {reset_time} setiap hari, posisi hadiah terbesar selalu berbeda — buka dan jadi milikmu!</td><td class="dim" style="min-width:130px;">သေတ္တာကို နေ့စဉ် {reset_time} တွင် ပြန်စပြီး ရောမွှေသည်။ ဆုကြီးနေရာ နေ့တိုင်းပြောင်းသည် — လှန်မိလျှင် သင့်ဟာဖြစ်သည်!</td><td class="dim" style="min-width:130px;">চেস্ট প্রতিদিন {reset_time}-এ রিসেট ও নতুন করে শাফল হয়, বড় পুরস্কারের জায়গা প্রতিদিন বদলায় — উল্টালেই আপনার!</td><td class="dim" style="min-width:130px;">O baú reinicia e embaralha às {reset_time} todos os dias; o grande prêmio muda de lugar diariamente — vire e ele é seu!</td><td class="dim" style="min-width:130px;">El cofre se reinicia y baraja a las {reset_time} cada día; el gran premio cambia de lugar a diario — ¡voltéalo y es tuyo!</td><td class="dim" style="min-width:130px;">Sandık her gün {reset_time}'da sıfırlanır ve karıştırılır; büyük ödülün yeri her gün değişir — çevirirsen senindir!</td></tr>
 <tr><td class="mono">tut_skip</td><td class="dim" style="font-size:11px;">教學·跳過鈕</td><td class="dim" style="min-width:130px;">跳過</td><td class="dim" style="min-width:130px;">Skip</td><td class="dim" style="min-width:130px;">跳过</td><td class="dim" style="min-width:130px;">スキップ</td><td class="dim" style="min-width:130px;">건너뛰기</td><td class="dim" style="min-width:130px;">ข้าม</td><td class="dim" style="min-width:130px;">Bỏ qua</td><td class="dim" style="min-width:130px;">Lewati</td><td class="dim" style="min-width:130px;">ကျော်မည်</td><td class="dim" style="min-width:130px;">এড়িয়ে যান</td><td class="dim" style="min-width:130px;">Pular</td><td class="dim" style="min-width:130px;">Omitir</td><td class="dim" style="min-width:130px;">Atla</td></tr>
 <tr><td class="mono">tut_next</td><td class="dim" style="font-size:11px;">教學·下一步鈕</td><td class="dim" style="min-width:130px;">下一步</td><td class="dim" style="min-width:130px;">Next</td><td class="dim" style="min-width:130px;">下一步</td><td class="dim" style="min-width:130px;">次へ</td><td class="dim" style="min-width:130px;">다음</td><td class="dim" style="min-width:130px;">ถัดไป</td><td class="dim" style="min-width:130px;">Tiếp theo</td><td class="dim" style="min-width:130px;">Berikutnya</td><td class="dim" style="min-width:130px;">ရှေ့သို့</td><td class="dim" style="min-width:130px;">পরবর্তী</td><td class="dim" style="min-width:130px;">Avançar</td><td class="dim" style="min-width:130px;">Siguiente</td><td class="dim" style="min-width:130px;">İleri</td></tr>
 <tr><td class="mono">tut_start_btn</td><td class="dim" style="font-size:11px;">教學·開始鈕</td><td class="dim" style="min-width:130px;">開始抽寶箱</td><td class="dim" style="min-width:130px;">Start opening chests!</td><td class="dim" style="min-width:130px;">开始抽宝箱</td><td class="dim" style="min-width:130px;">宝箱を開け始める</td><td class="dim" style="min-width:130px;">보물상자 열기 시작</td><td class="dim" style="min-width:130px;">เริ่มเปิดกล่องสมบัติ</td><td class="dim" style="min-width:130px;">Bắt đầu mở rương</td><td class="dim" style="min-width:130px;">Mulai buka peti</td><td class="dim" style="min-width:130px;">ရတနာသေတ္တာ စဖွင့်မည်</td><td class="dim" style="min-width:130px;">চেস্ট খোলা শুরু করুন</td><td class="dim" style="min-width:130px;">Começar a abrir baús</td><td class="dim" style="min-width:130px;">Empezar a abrir cofres</td><td class="dim" style="min-width:130px;">Sandık açmaya başla</td></tr>
+</tbody></table></div>
+  <div class="sub-title">文案翻譯總表 · 錯誤與空狀態｜3 條<span class="tag-upd">2026-08-27</span></div>
+<div class="compare-wrap"><table class="spec-table" style="min-width:1900px;"><thead><tr><th style="min-width:150px;">KEY</th><th style="min-width:110px;">使用位置</th><th>zh-Hant</th><th>en</th><th>zh-Hans</th><th>ja-JP</th><th>ko-KR</th><th>th</th><th>vi</th><th>id</th><th>my-MM</th><th>bn</th><th>pt</th><th>es-ES</th><th>tr-TR</th></tr></thead><tbody>
+<tr><td class="mono">err_conn_retry</td><td class="dim" style="font-size:11px;">連線失敗跑馬燈</td><td class="dim" style="min-width:130px;">連線失敗，將在 {n} 秒後重新嘗試</td><td class="dim" style="min-width:130px;">Connection failed. Retrying in {n}s</td><td class="dim" style="min-width:130px;">连线失败，将在 {n} 秒后重新尝试</td><td class="dim" style="min-width:130px;">接続に失敗しました。{n} 秒後に再試行します</td><td class="dim" style="min-width:130px;">연결 실패. {n}초 후 다시 시도합니다</td><td class="dim" style="min-width:130px;">เชื่อมต่อไม่สำเร็จ จะลองใหม่ในอีก {n} วินาที</td><td class="dim" style="min-width:130px;">Kết nối thất bại. Thử lại sau {n} giây</td><td class="dim" style="min-width:130px;">Koneksi gagal. Mencoba lagi dalam {n} detik</td><td class="dim" style="min-width:130px;">ချိတ်ဆက်မှု မအောင်မြင်ပါ။ {n} စက္ကန့်အကြာတွင် ပြန်ကြိုးစားပါမည်</td><td class="dim" style="min-width:130px;">সংযোগ ব্যর্থ। {n} সেকেন্ড পরে আবার চেষ্টা করা হবে</td><td class="dim" style="min-width:130px;">Falha na conexão. Tentando novamente em {n}s</td><td class="dim" style="min-width:130px;">Error de conexión. Reintentando en {n} s</td><td class="dim" style="min-width:130px;">Bağlantı başarısız. {n} saniye sonra yeniden denenecek</td></tr>
+<tr><td class="mono">err_reconnecting</td><td class="dim" style="font-size:11px;">重連中跑馬燈</td><td class="dim" style="min-width:130px;">重新連線中...</td><td class="dim" style="min-width:130px;">Reconnecting...</td><td class="dim" style="min-width:130px;">重新连线中...</td><td class="dim" style="min-width:130px;">再接続中...</td><td class="dim" style="min-width:130px;">다시 연결 중...</td><td class="dim" style="min-width:130px;">กำลังเชื่อมต่อใหม่...</td><td class="dim" style="min-width:130px;">Đang kết nối lại...</td><td class="dim" style="min-width:130px;">Menghubungkan ulang...</td><td class="dim" style="min-width:130px;">ပြန်လည်ချိတ်ဆက်နေသည်...</td><td class="dim" style="min-width:130px;">পুনরায় সংযোগ করা হচ্ছে...</td><td class="dim" style="min-width:130px;">Reconectando...</td><td class="dim" style="min-width:130px;">Reconectando...</td><td class="dim" style="min-width:130px;">Yeniden bağlanıyor...</td></tr>
+<tr><td class="mono">hist_empty</td><td class="dim" style="font-size:11px;">活動歷程空狀態</td><td class="dim" style="min-width:130px;">尚無活動獎勵紀錄</td><td class="dim" style="min-width:130px;">No event rewards yet</td><td class="dim" style="min-width:130px;">尚无活动奖励记录</td><td class="dim" style="min-width:130px;">イベント報酬の記録はまだありません</td><td class="dim" style="min-width:130px;">아직 이벤트 보상 기록이 없습니다</td><td class="dim" style="min-width:130px;">ยังไม่มีประวัติรางวัลจากกิจกรรม</td><td class="dim" style="min-width:130px;">Chưa có lịch sử thưởng sự kiện</td><td class="dim" style="min-width:130px;">Belum ada riwayat hadiah event</td><td class="dim" style="min-width:130px;">အခမ်းအနား ဆုလက်ဆောင် မှတ်တမ်း မရှိသေးပါ</td><td class="dim" style="min-width:130px;">এখনও কোনো ইভেন্ট পুরস্কারের রেকর্ড নেই</td><td class="dim" style="min-width:130px;">Ainda não há registros de prêmios de eventos</td><td class="dim" style="min-width:130px;">Aún no hay registros de premios de eventos</td><td class="dim" style="min-width:130px;">Henüz etkinlik ödülü kaydı yok</td></tr>
 </tbody></table></div>
 </section>
 
@@ -4950,31 +4987,31 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <div class="callout success">
-    <strong>本章依 2026/07 CRM 開案會議結論撰寫：</strong>定義「玩家標籤如何取得、如何比對到抽取門檻與獎項配置、標籤變動如何處理」。本章的 <strong>AND 複合標籤 → 單一配置</strong> 相對於 DEV §04「多 tag 依 DA Priority 取最高單一 tag」<strong>為準據，兩者並存時以本章為準</strong>；DEV §04 保留為技術背景與資料介面說明。<br>
+    <strong>本章依 2026/07 CRM 開案會議結論撰寫：</strong>定義「玩家標籤如何取得、如何比對到抽取門檻與獎項配置、標籤變動如何處理」。<strong style="color:var(--gold-light);">本章為標籤匹配邏輯的唯一準據</strong>。<br>
     <strong>術語對齊：</strong>本章的「抽取門檻與獎項配置／設定檔」即 DEV §03／DEV §06 的<strong>「模板」</strong>（獨立實體、可被多檔活動與多條標籤規則共用）；「<strong>預設配置</strong>」＝後台固定置底、不可刪除、未命中任何規則時套用的模板（示範＝標準模板 A）。標籤僅用於選模板，<strong>無准入閘門</strong>。
   </div>
 
-  <div class="sub-title">一、標籤取得時機與匹配邏輯</div>
+  <div class="sub-title">一、標籤取得時機與匹配邏輯<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th>項目</th><th>設計</th></tr></thead>
     <tbody>
-      <tr><td>標籤取得時機</td><td class="dim">玩家<strong>每日「登錄時」</strong>，由系統向<strong>數據組（DA）</strong>取得該玩家的<strong>多組 Tag</strong>（<strong>消費分層</strong>：小/中/大/超大/巨客；<strong>RTP 體驗</strong>：正常/慘輸）。非玩家每次動作即查，登錄時取一次當日快照。</td></tr>
+      <tr><td>標籤取得時機</td><td class="dim">玩家<strong>每日「登錄時」</strong>，由系統向<strong>數據組（DA）</strong>取得該玩家的<strong>多組 Tag</strong>（<strong>消費分層</strong>：小/中/大/超大/巨客；<strong>RTP 體驗</strong>：正常/慘輸）。非玩家每次動作即查，登錄時取一次當日快照。<br><strong style="color:var(--gold-light);">此快照即 <a href="#behavior" style="color:var(--gold-light);">DEV §04</a> 配置鎖定所用的標籤</strong>——<strong>當日首次解鎖翻牌機會時，以當日登錄快照的標籤匹配模板</strong>；登錄後當日內 DA 再更新標籤，<strong>不影響當日</strong>。</td></tr>
       <tr><td>匹配邏輯（核心變更）</td><td class="dim">需<strong>同時符合多個標籤條件（AND 複合條件）</strong>，才對應到<strong>該組抽取門檻與獎項配置</strong>。例：<em>（大客 AND 正常）</em> → 配置 A；<em>（大客 AND 慘輸）</em> → 配置 B。單一標籤不足以命中，必須整組條件同時成立。</td></tr>
       <tr><td>命中結果</td><td class="dim">命中 → 套用該組「抽取門檻 + 獎項配置（9 格獎池／權重／目標 RTP）」；<strong>未命中任何一組 → 走預設配置（tag_default）</strong>，活動仍可正常參與，不因未命中而消失。<br><strong> 重疊命中：</strong>玩家同時符合多條規則時採「<strong>符合度高者優先</strong>」——取<strong>標籤數最多</strong>且玩家全部符合的規則（見下方「五、防呆 · 衝突檢查」）。</td></tr>
-      <tr><td>資料來源一致性</td><td class="dim">標籤值與分群定義<strong>由數據組提供</strong>，平台只接收 + 比對套用（非自動打標），沿用 DEV §04 B2 原則。</td></tr>
+      <tr><td>資料來源一致性</td><td class="dim">標籤值與分群定義<strong>由數據組提供</strong>，平台只接收 + 比對套用（非自動打標）——<strong>標籤值與分群定義由數據組提供，平台只接收＋比對套用，不自動打標</strong>。</td></tr>
     </tbody>
   </table>
 
-  <div class="sub-title">二、標籤變動處理（活動進行中不即時更換）</div>
+  <div class="sub-title">二、標籤變動處理（活動進行中不即時更換）<span class="tag-upd">2026-08-27</span></div>
   <div class="callout warn">
-    <strong>規則：</strong>活動<strong>進行中</strong>玩家標籤變動時，<strong>「不即時更換配置」</strong>；須待<strong>活動暫停更新</strong>後，玩家<strong>「下次登錄」</strong>才套用新標籤與新配置。
+    <strong>規則：</strong>活動<strong>進行中</strong>玩家標籤變動時，<strong>「不即時更換配置」</strong>；已鎖定的當日配置<strong>維持至該活動日結束</strong>，<strong style="color:var(--gold-light);">於該活動的次一個每日重置時點</strong>依最新標籤重新匹配模板生效。
   </div>
   <div class="callout info">
     <strong>為何這樣設計（設計動機）：</strong>
     <ol style="margin:6px 0 0;padding-left:18px;line-height:1.9;">
       <li><strong>避免影響進行中的活動：</strong>抽取門檻與獎項是「一整檔活動」的經濟模型參數，中途換配置會讓同一位玩家在同一檔活動裡出現「規則不一致」，破壞公平性與可預期性，也讓客訴與對帳難以歸因。</li>
       <li><strong>保護已累積進度：</strong>玩家當日／當檔已累積的押注進度與已解鎖翻牌次數，是依「命中當下的門檻」計算；即時換配置會使既有進度對不上新門檻，造成進度倒退或暴增的體感落差。</li>
-      <li><strong>可控的切換點：</strong>把「換標籤」收斂到「活動暫停更新 → 下次登錄」這個明確切點，讓營運能預期何時生效、便於公告與風控，避免運行中資料在飛行中被改寫。</li>
+      <li><strong>可控的切換點：</strong>把「換標籤」收斂到<strong>每日重置時點</strong>這個明確切點，與 <a href="#behavior" style="color:var(--gold-light);">DEV §04</a> 當日鎖定、<a href="#template-version" style="color:var(--gold-light);">DEV §13</a> 模板版本生效<strong>同一設計哲學</strong>；讓營運能預期何時生效、便於公告與風控，避免運行中資料在飛行中被改寫。</li>
     </ol>
   </div>
 
@@ -4996,7 +5033,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </div>
   </div>
 
-  <div class="sub-title" id="tag-flow">四、命中流程圖（玩家登錄 → 取 Tag → 複合規則比對 → 命中/預設）</div>
+  <div class="sub-title" id="tag-flow">四、命中流程圖（玩家登錄 → 取 Tag → 複合規則比對 → 命中/預設）<span class="tag-upd">2026-08-27</span></div>
   <div class="mermaid-box">
     <div class="mermaid" id="mmd-tag">flowchart TD
   A["玩家每日登錄"] --> B["系統向數據組(DA)<br/>取得多組 Tag"]
@@ -5006,7 +5043,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   D --> F["套用當日門檻與獎項<br/>(當日鎖定)"]
   E --> F
   F --> G["活動進行中標籤變動<br/>→ 不即時換配置"]
-  G -.->|"待活動暫停更新<br/>+ 下次登錄"| B</div>
+  G -.->|"次一每日重置時點"| B</div>
     <div class="mermaid-cap">FIG.15 · 玩家標籤命中流程（AND 複合規則 → 命中設定檔／未命中走預設）</div>
   </div>
 
@@ -5038,14 +5075,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="bdd-title">BDD 驗收情境 · 進行中標籤變動</div>
     <b class="g">Given</b> 玩家於活動進行中由「中客」升為「大客」<br>
     <b class="w">When</b> 標籤在活動運行期間變動<br>
-    <b class="t">Then</b> 當檔<strong>不即時換配置</strong>；須待活動暫停更新後，玩家下次登錄才套用新標籤對應的配置。
+    <b class="t">Then</b> 當檔<strong>不即時換配置</strong>；<strong style="color:var(--gold-light);">次一個每日重置時點起</strong>套用新標籤對應的配置。
   </div>
 
-  <div class="sub-title">五、後台標籤設定（複選 ＋ 防呆友善介面）</div>
+  <div class="sub-title">五、後台標籤設定（複選 ＋ 防呆友善介面）<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th>UI 元件</th><th>類型</th><th>規則說明</th></tr></thead>
     <tbody>
-      <tr><td>標籤複選器</td><td class="dim">Multi-select（Chips/Checkbox）</td><td class="dim">後台設定標籤條件時須支援<strong>「複選」</strong>；標籤清單由數據組提供、後端直抓，不可自由輸入（沿用 DEV §04 B2）。已選標籤以 chip 呈現、可單獨移除。</td></tr>
+      <tr><td>標籤複選器</td><td class="dim">Multi-select（Chips/Checkbox）</td><td class="dim">後台設定標籤條件時須支援<strong>「複選」</strong>；標籤清單由數據組提供、後端直抓，不可自由輸入。已選標籤以 chip 呈現、可單獨移除。</td></tr>
       <tr><td>複合條件群組</td><td class="dim">AND 條件群組</td><td class="dim">同一組配置的多個標籤以 <strong>AND</strong> 串接，介面明確標示「需<em>同時</em>符合」，避免誤解為 OR。初期<strong>僅一層</strong>（不做巢狀規則樹）。</td></tr>
       <tr><td>防呆 · 衝突檢查</td><td class="dim">即時驗證</td><td class="dim"><strong>三層規則</strong>：<br>
       <strong>①「空規則」（未選任何標籤）</strong> → <strong style="color:var(--red-bright);">紅底警示、擋送審</strong>（同原型 v2）。<br>
@@ -5072,7 +5109,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>本章依 2026/07 CRM 開案會議結論撰寫：</strong>定義活動列表、時區規範（UTC+8）、活動版本快照與流水號、活動複製、審核狀態機與角色權限矩陣。與 <a href="#backend" style="color:var(--gold-light);">DEV §06 後台管理規劃</a>互補（DEV §06 偏活動設定內容，本章偏<strong>版本控制與治理流程</strong>）。<strong>各種活動類型共用本章的審核流程與版本控制</strong>。
   </div>
 
-  <div class="sub-title">一、活動列表（可建立新活動）<span class="tag-upd">2026-08-06</span></div>
+  <div class="sub-title">一、活動列表（可建立新活動）<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th>欄位</th><th>說明</th></tr></thead>
     <tbody>
@@ -5083,8 +5120,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>起訖時間</td><td class="dim">活動開始 / 結束時間，<strong>一律以 UTC+8 設定與計算</strong>（見下）。</td></tr>
       <tr><td>重置時間</td><td class="dim">每日 reset 時間點（HH:MM），<strong>一律以 UTC+8</strong>（見下）。</td></tr>
       <tr><td>適用線路</td><td class="dim">投放的平台線路（chips 多選，取自預定義「已開通 Bet=0」清單）。</td></tr>
-      <tr><td>活動倒數</td><td class="dim"><strong>即時倒數計時</strong>；<strong>剩餘天數 &lt; 倒數啟動天數時轉紅</strong>。</td></tr>
-      <tr><td>狀態</td><td class="dim">六態：草稿／送審中／已核准／運行中／已暫停／已結束（見審核狀態機）。<strong style="color:var(--gold-light);">「已暫停」當日另加一行小字備注「當日參與玩家運作至今日結束」（僅當日顯示）</strong>，見〈<a href="#camp-pause" style="color:var(--gold-light);">一之一、活動暫停／運行</a>〉。</td></tr>
+      <tr><td>活動倒數</td><td class="dim"><strong>即時倒數計時</strong>；<strong>剩餘 ≤ 倒數啟動天數時轉紅</strong>（<strong>邊界含正好 N 天當天</strong>，與玩家端切換倒數同日觸發）。</td></tr>
+      <tr><td>狀態</td><td class="dim">六態：草稿／送審中／已核准／運行中／已暫停／已結束（見審核狀態機）。<strong style="color:var(--gold-light);">「已暫停」於該<strong>活動日內</strong>另加一行小字備注「當日參與玩家運作至今日結束」（<strong>該活動次一 reset 時點起消失</strong>）</strong>，見〈<a href="#camp-pause" style="color:var(--gold-light);">一之一、活動暫停／運行</a>〉。</td></tr>
       <tr><td>版本</td><td class="dim">當前版本流水號（V1、V2…）。</td></tr>
       <tr><td>操作</td><td class="dim"><strong>編輯 · 複製 ＋ <span style="color:var(--gold-light);">⏸ 暫停／▶ 運行（圖示按鈕）</span></strong>（移除 RTP／受眾 TAG 欄）。<br>
       <strong style="color:var(--red-bright);">DEV V1.8 起移除「查看」操作</strong>——<strong>活動完整設定的查閱入口改為點「編輯」進入編輯頁瀏覽</strong>（<strong style="color:var(--green-bright);">不儲存即不會變更任何內容</strong>），<strong style="color:var(--orange-bright);">不另設唯讀詳情頁</strong>。<br>
@@ -5109,10 +5146,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     </tbody>
   </table>
 
-  <div class="sub-title" id="camp-pause">一之一、活動暫停／運行（列表直接操作 · 二次確認）<span class="tag-upd">2026-08-06</span></div>
+  <div class="sub-title" id="camp-pause">一之一、活動暫停／運行（列表直接操作 · 二次確認）<span class="tag-upd">2026-08-27</span></div>
+  <div class="callout warn" style="font-size:12px;">
+    <strong style="color:var(--gold-light);">口徑定義（DEV V1.13 統一）：</strong><strong>活動日＝該活動兩次每日重置時點之間</strong>。本節所有「當日結束／隔日起」一律指<strong>該活動的次一個每日重置時點</strong>，<strong>非自然日 23:59／00:00</strong>。<strong>reset＝00:00 的活動，行為與舊條文完全相同。</strong>
+  </div>
   <div class="callout info" style="font-size:12px;">
     <strong>背景（D-007 · 2026-08-06 拍板）：</strong>原規格中「<strong>已暫停</strong>」狀態<strong style="color:var(--orange-bright);">沒有任何操作入口</strong>。v1 起於<strong>活動管理列表操作欄</strong>直接提供「<strong>暫停／運行</strong>」，<strong>兩者皆需彈窗二次確認</strong>。<br>
-    <strong>生效原則：</strong><strong>暫停</strong>對「<strong>未觸發玩家</strong>」<strong style="color:var(--red-bright);">立即生效</strong>、對「<strong>已觸發玩家</strong>」<strong style="color:var(--green-bright);">保護至當日結束（UTC+8）</strong>、<strong>隔日起活動完全關閉</strong>；<strong>恢復立即生效</strong>。<strong>納入 v1 開發範圍。</strong>
+    <strong>生效原則：</strong><strong>暫停</strong>對「<strong>未觸發玩家</strong>」<strong style="color:var(--red-bright);">立即生效</strong>、對「<strong>已觸發玩家</strong>」<strong style="color:var(--green-bright);">保護至該活動的次一個每日重置時點</strong>、<strong>自該時點起活動完全關閉</strong>；<strong>恢復立即生效</strong>。<strong>納入 v1 開發範圍。</strong>
   </div>
 
   <div class="sub-title" style="font-size:13px;margin-top:16px;">① 按鈕顯示規則（操作欄 · <span style="color:var(--gold-light);">圖示按鈕</span>）</div>
@@ -5148,8 +5188,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>內文</td><td class="dim">帶入 <strong>Campaign ID</strong> 與<strong>活動名稱</strong>。</td></tr>
       <tr><td><strong>後果說明</strong><br><span class="dim" style="font-size:10px;">逐條列出</span></td><td class="dim">
         · <strong>尚未觸發此活動的玩家</strong>：<strong style="color:var(--red-bright);">立即</strong>看不到／無法進入活動。<br>
-        · <strong>今日已參與（已觸發）的玩家</strong>：活動<strong style="color:var(--green-bright);">運作至今日 23:59（UTC+8）</strong>，<strong>不會被中斷</strong>。<br>
-        · <strong>明日 00:00 起</strong>活動<strong style="color:var(--orange-bright);">完全關閉</strong>，直到再次按「運行」。</td></tr>
+        · <strong>今日已參與（已觸發）的玩家</strong>：活動<strong style="color:var(--green-bright);">運作至該活動的次一個每日重置時點</strong>，<strong>不會被中斷</strong>。<br>
+        · <strong>自該活動次一個每日重置時點起</strong>活動<strong style="color:var(--orange-bright);">完全關閉</strong>，直到再次按「運行」。</td></tr>
       <tr><td>按鈕</td><td class="dim">「<strong style="color:var(--orange-bright);">確認暫停</strong>」（<strong>警示色</strong>）／「<strong>取消</strong>」。</td></tr>
       <tr><td>確認後</td><td class="dim">活動狀態轉「<strong>已暫停</strong>」，並顯示<strong>成功 toast</strong>「<strong>活動已暫停</strong>」（<span class="mono">admin.camp.pause.success</span>）。</td></tr>
     </tbody>
@@ -5163,7 +5203,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>內文</td><td class="dim">帶入 <strong>Campaign ID</strong> 與<strong>活動名稱</strong>。</td></tr>
       <tr><td><strong>後果說明</strong></td><td class="dim">
         · <strong>尚未觸發的玩家</strong>：<strong style="color:var(--green-bright);">立即</strong>恢復可見，並依<strong>目前的活動設定</strong>觸發。<br>
-        · 若活動仍在<strong>當日收尾期間</strong>（今日稍早才按暫停）：等同<strong style="color:var(--gold-light);">取消暫停</strong>，活動<strong>視同未暫停過</strong>、<strong>隔日照常運行</strong>。</td></tr>
+        · 若活動仍在<strong>同一活動日的收尾期間</strong>（該活動次一 reset 時點之前才按暫停）：等同<strong style="color:var(--gold-light);">取消暫停</strong>，活動<strong>視同未暫停過</strong>、<strong>次一活動日照常運行</strong>。</td></tr>
       <tr><td>按鈕</td><td class="dim">「<strong style="color:var(--green-bright);">確認運行</strong>」（<strong>主色</strong>）／「<strong>取消</strong>」。</td></tr>
       <tr><td>確認後</td><td class="dim">活動狀態轉「<strong>運行中</strong>」，並顯示<strong>成功 toast</strong>「<strong>活動已恢復運行</strong>」（<span class="mono">admin.camp.resume.success</span>）。</td></tr>
     </tbody>
@@ -5171,8 +5211,8 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
   <div class="callout warn" style="font-size:12px;">
     <strong>🏗 操作紀錄與生效機制（基礎建設）：</strong><br>
-    ① 暫停／運行操作需寫入<strong style="color:var(--gold-light);">操作紀錄</strong>（<strong>操作人、時間、動作、Campaign ID</strong>），供<strong>審計追溯</strong>（對應 <a href="#logs" style="color:var(--gold-light);">DEV §09 E9 後台異動</a>）。<br>
-    ②「<strong>已觸發玩家保護至當日結束</strong>」需後端以<strong style="color:var(--orange-bright);">玩家觸發狀態</strong>判定——<strong>活動關閉檢查對「已觸發且當日」的玩家放行至 23:59</strong>，<strong>非單純活動開關</strong>。<br>
+    ① 暫停／運行操作需寫入<strong style="color:var(--gold-light);">操作紀錄</strong>（<strong>操作人、時間、動作、Campaign ID</strong>），供<strong>審計追溯</strong>（對應 <a href="#logs" style="color:var(--gold-light);">DEV §08 E9 後台異動</a>）。<br>
+    ②「<strong>已觸發玩家保護至該活動日結束</strong>」需後端以<strong style="color:var(--orange-bright);">玩家觸發狀態</strong>判定——<strong>活動關閉檢查對「已觸發且在同一活動日」的玩家放行至該活動次一 reset 時點</strong>，<strong>非單純活動開關</strong>。<br>
     ③「<strong>已暫停且迄時已過 → 自動轉已結束</strong>」由<strong>排程</strong>或<strong>查詢時判定</strong>。
   </div>
 
@@ -5180,14 +5220,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="bdd-title">BDD 驗收情境 · 暫停的玩家層級生效</div>
     <b class="g">Given</b> 活動運行中、<strong>玩家甲今日已觸發</strong>、<strong>玩家乙未觸發</strong><br>
     <b class="w">When</b> 營運按「<strong>暫停</strong>」並於彈窗<strong>確認</strong><br>
-    <b class="t">Then</b> <strong>乙</strong>進遊戲<strong style="color:var(--red-bright);">看不到</strong>活動；<strong>甲</strong>的活動<strong style="color:var(--green-bright);">運作至當日 23:59（UTC+8）</strong>正常派獎；<strong>隔日起甲乙皆不可見</strong>；列表狀態＝「<strong>已暫停</strong>」＋當日備注「<strong>當日參與玩家運作至今日結束</strong>」。
+    <b class="t">Then</b> <strong>乙</strong>進遊戲<strong style="color:var(--red-bright);">看不到</strong>活動；<strong>甲</strong>的活動<strong style="color:var(--green-bright);">運作至該活動的次一個每日重置時點</strong>正常派獎；<strong>自該時點起甲乙皆不可見</strong>；列表狀態＝「<strong>已暫停</strong>」＋該活動日備注「<strong>當日參與玩家運作至今日結束</strong>」。
   </div>
 
   <div class="bdd-card">
     <div class="bdd-title">BDD 驗收情境 · 收尾期間反悔</div>
     <b class="g">Given</b> 今日 <strong>15:00</strong> 已按暫停（狀態＝<strong>已暫停</strong>）<br>
-    <b class="w">When</b> <strong>同日 18:00</strong> 按「<strong>運行</strong>」並確認<br>
-    <b class="t">Then</b> 狀態回「<strong>運行中</strong>」、<strong>未觸發玩家立即恢復可見</strong>、<strong>隔日照常觸發</strong>，<strong style="color:var(--green-bright);">視同未暫停過</strong>。
+    <b class="w">When</b> <strong>同一活動日內 18:00</strong>（即該活動次一 reset 時點之前）按「<strong>運行</strong>」並確認<br>
+    <b class="t">Then</b> 狀態回「<strong>運行中</strong>」、<strong>未觸發玩家立即恢復可見</strong>、<strong>次一活動日照常觸發</strong>，<strong style="color:var(--green-bright);">視同未暫停過</strong>。
   </div>
 
   <div class="bdd-card">
@@ -5206,17 +5246,17 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <span style="color:var(--text-dim);font-size:11px;">＊設計理由：不做線路時區動態計算——單一時區可消除跨線路「當日」定義的工程複雜度與排程邊界案例，換算成本移轉給營運端，屬可接受的人工成本。</span>
   </div>
 
-  <div class="sub-title">三、版本編輯與存檔（快照 ＋ 流水號）</div>
+  <div class="sub-title">三、版本編輯與存檔（快照 ＋ 流水號）<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th>機制</th><th>設計</th></tr></thead>
     <tbody>
       <tr><td>運行期間可編輯</td><td class="dim">活動<strong>運行期間可編輯</strong>；系統以<strong>「快照（snapshot）」</strong>保留<strong>正在運行的規則</strong>，<strong>不影響已參與玩家</strong>（進行中玩家沿用命中當下的快照）。</td></tr>
       <tr><td>版本流水號</td><td class="dim">每次編輯<strong>自動產生版本流水號（V1、V2…）</strong>。</td></tr>
-      <tr><td>運行中 vs 待生效<br><span class="dim" style="font-size:10px;">UI 呈現</span></td><td class="dim">資料層保留<strong>「運行中版本（current）」</strong>與<strong>「待生效版本（pending）」</strong>；編輯產生的是待生效版本，於下一個生效切點（活動暫停更新 / 排程）才切換為運行中。<strong style="color:var(--gold-light);">UI 不顯示「運行中/待生效」badge，改以活動表單 Tab 4「版本下拉＋快照明細」呈現</strong>（下拉選項格式「V1（更新 2026-06-28 10:12）」）。</td></tr>
+      <tr><td>運行中 vs 待生效<br><span class="dim" style="font-size:10px;">UI 呈現</span></td><td class="dim">資料層保留<strong>「運行中版本（current）」</strong>與<strong>「待生效版本（pending）」</strong>；編輯產生的是待生效版本，於<strong style="color:var(--gold-light);">該活動的次一個每日重置時點</strong>切換為運行中（與 <a href="#template-version" style="color:var(--gold-light);">DEV §06 六、模板版本控制</a>同一生效切點）；<strong>玩家當日已鎖定的配置沿用舊版快照</strong>。<strong style="color:var(--gold-light);">UI 不顯示「運行中/待生效」badge，改以活動表單 Tab 4「版本下拉＋快照明細」呈現</strong>（下拉選項格式「V1（更新 2026-06-28 10:12）」）。</td></tr>
       <tr><td>多版本並存</td><td class="dim">同一活動<strong>不同版本可並存</strong>，支援<strong>比對與追溯</strong>（誰在何時改了什麼、玩家當時跑哪一版）。</td></tr>
       <tr><td>快照計數規則</td><td class="dim"><strong>快照明細的「標籤規則數量」＝規則 N 組，<span style="color:var(--gold-light);">預設配置另列、不計入 N</span></strong>；<strong>顯示格式「N 組規則 ＋ 預設」</strong>。<strong style="color:var(--orange-bright);">⚠ N 不含預設配置，文案須寫「N 組規則 ＋ 預設」。</strong></td></tr>
       <tr><td>引用模板版本</td><td class="dim"><strong>活動版本快照引用「模板 ID ＋ 模板版本序號」</strong>（非僅模板 ID），確保回溯時取得的是當時實際生效的那一版模板數值；<strong>活動 Tab 4 快照明細中的模板名稱須帶版號</strong>（例：<strong>忠誠加碼 V2</strong>）。模板版本控制機制見 <a href="#template-version" style="color:var(--gold-light);">DEV §06 六、模板版本控制</a>。</td></tr>
-      <tr><td>與標籤變動一致</td><td class="dim">此「快照 + 下次切點生效」機制與 DEV §12「標籤變動不即時、待暫停更新後下次登錄套用」<strong>同一設計哲學</strong>：飛行中資料不被改寫。</td></tr>
+      <tr><td>與標籤變動一致</td><td class="dim">此「快照 + 下次切點生效」機制與 <a href="#tag-rules" style="color:var(--gold-light);">DEV §12</a>「<strong>標籤變動不即時、於次一個每日重置時點套用</strong>」<strong>同一設計哲學</strong>：飛行中資料不被改寫。</td></tr>
     </tbody>
   </table>
 
@@ -5234,17 +5274,17 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <span style="font-size:11px;color:var(--text-dim);">＊<strong>取代 DEV V1.6 以前的敘述</strong>（原為「入口在活動表單頂部狀態列、僅最高權限可操作、列表不提供啟停」）。</span>
   </div>
 
-  <div class="sub-title" style="font-size:13px;margin-top:16px;">暫停與恢復生效規則<span class="tag-upd">2026-08-06</span></div>
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">暫停與恢復生效規則<span class="tag-upd">2026-08-27</span></div>
   <table class="spec-table">
     <thead><tr><th style="width:190px;">規則</th><th>說明</th></tr></thead>
     <tbody>
-      <tr><td><strong>① 狀態立即切換</strong></td><td class="dim">按下暫停（<strong>經確認</strong>）→ 狀態<strong style="color:var(--red-bright);">立即</strong>轉「<strong>已暫停</strong>」；列表該檔活動加一行小字備注「<strong>當日參與玩家運作至今日結束</strong>」，<strong style="color:var(--gold-light);">僅當日顯示</strong>（<strong>隔日 00:00 起備注消失</strong>）。<strong style="color:var(--orange-bright);">不另設過渡狀態</strong>。</td></tr>
+      <tr><td><strong>① 狀態立即切換</strong></td><td class="dim">按下暫停（<strong>經確認</strong>）→ 狀態<strong style="color:var(--red-bright);">立即</strong>轉「<strong>已暫停</strong>」；列表該檔活動加一行小字備注「<strong>當日參與玩家運作至今日結束</strong>」，<strong style="color:var(--gold-light);">僅該活動日內顯示</strong>（<strong>該活動次一 reset 時點起備注消失</strong>）。<strong style="color:var(--orange-bright);">不另設過渡狀態</strong>。</td></tr>
       <tr><td><strong>② 玩家層級生效<br>（暫停）</strong></td><td class="dim">
         · <strong>未觸發玩家</strong>：<strong style="color:var(--red-bright);">立即</strong>隱藏活動入口、<strong>不可被觸發</strong>。<br>
-        · <strong>已觸發玩家</strong>：<strong style="color:var(--green-bright);">保護至當日 23:59（UTC+8）</strong>，期間<strong>正常遊玩、正常派獎</strong>。<br>
-        · <strong>隔日 00:00 起</strong>：活動<strong style="color:var(--orange-bright);">對所有玩家完全關閉</strong>、<strong>每日觸發批次跳過此活動</strong>。</td></tr>
+        · <strong>已觸發玩家</strong>：<strong style="color:var(--green-bright);">保護至該活動的次一個每日重置時點</strong>，期間<strong>正常遊玩、正常派獎</strong>。<br>
+        · <strong>自該活動次一個每日重置時點起</strong>：活動<strong style="color:var(--orange-bright);">對所有玩家完全關閉</strong>、<strong>每日觸發批次跳過此活動</strong>。</td></tr>
       <tr><td><strong>③ 玩家層級生效<br>（恢復）</strong></td><td class="dim">按運行後<strong style="color:var(--green-bright);">立即生效</strong>——未觸發玩家<strong>再進遊戲即可看到活動</strong>並<strong>依當下設定被觸發</strong>；<strong style="color:var(--orange-bright);">不需等隔日批次</strong>。</td></tr>
-      <tr><td><strong>④ 收尾期間反悔</strong></td><td class="dim"><strong>暫停當日再按「運行」＝取消暫停</strong>，活動<strong>連續運行</strong>、<strong style="color:var(--green-bright);">視同未暫停過</strong>。</td></tr>
+      <tr><td><strong>④ 收尾期間反悔</strong></td><td class="dim"><strong>同一活動日內</strong>（至該活動次一 reset 時點前）<strong>再按「運行」＝取消暫停</strong>，活動<strong>連續運行</strong>、<strong style="color:var(--green-bright);">視同未暫停過</strong>。</td></tr>
       <tr><td><strong>⑤ 過期自動結束</strong></td><td class="dim">「已暫停」期間若<strong>活動迄時到達</strong>，系統<strong>自動轉「已結束」</strong>；<strong style="color:var(--red-bright);">已結束不可再運行</strong>。</td></tr>
       <tr><td><strong>⑥ 與模板 N 的關係</strong></td><td class="dim">「<strong>已暫停</strong>」活動<strong>仍計入模板「使用中活動 N」</strong>（<strong>未結束口徑</strong>，與 DEV V1.6 一致；見 <a href="#template-mgmt" style="color:var(--gold-light);">DEV §06 一、模板列表欄位</a>）。<strong style="color:var(--orange-bright);">此處不改變 N 的規則</strong>。</td></tr>
     </tbody>
@@ -5343,9 +5383,17 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>約束：</strong>Bet=0 屬逐平台開通事項，<strong>未開通的線路不得被投放</strong>（後台可選線路清單只列已開通者）。
   </div>
 
-  <div class="sub-title">二、RTP −1% 守恆原則</div>
+  <div class="sub-title">二、活動獎勵佔比（分眾差異化 · RTP 挪移）<span class="tag-upd">2026-08-27</span></div>
+  <div class="callout warn">
+    <strong style="color:var(--orange-bright);">⚠ DEV V1.14 規則變更：廢除「全站 RTP −1% 守恆」。</strong>原條文為「一律調降 1%、遊戲內（X−1）% ＋ 活動獎勵 1% ＝ 原 X%」，<strong>與 <a href="#prizes" style="color:var(--gold-light);">DEV §03</a> 分眾模板（示範 RTP 0.98%～2.00%）互斥</strong>，且 <a href="#rtp-info" style="color:var(--gold-light);">DEV §06 二之三</a> 已移除「目標 1.00%±0.1」校驗。本節改以下列原則為準。
+  </div>
   <div class="callout info">
-    活動預算來自<strong>將相關線路或標籤玩家的 RTP 調降 1%</strong>——這是<strong>「挪移」而非「加碼」</strong>：「遊戲內 RTP（X−1）% ＋ 活動獎勵 1%」＝原 X%，<strong>整體 RTP 佔比不提升</strong>，對帳須可驗證兩者相加守恆。
+    <strong>① 性質仍是「挪移」而非「加碼」：</strong>活動獎勵預算來自<strong>將相關線路或標籤玩家的遊戲內 RTP 調降</strong>，再以活動獎勵形式發還玩家；<strong>不是在原 RTP 之上額外加碼</strong>。<br>
+    <strong>② 挪移幅度<span style="color:var(--gold-light);">可依標籤族群各不相同</span>：</strong>每個標籤族群的活動獎勵佔比＝<strong>該族群命中模板的 RTP</strong>（見 <a href="#rtp-formula" style="color:var(--gold-light);">DEV §03 後端 RTP 驗算公式</a>）。例：命中「救援高倍」的族群為 2.00%、命中「保守低倍」的族群為 0.98%——<strong style="color:var(--orange-bright);">1% 僅為預設示範值，非硬性上限、亦非全站統一值</strong>。<br>
+    <strong>③ 逐族群守恆（取代全站守恆）：</strong>對某一族群而言，「<strong>該族群遊戲內 RTP（X − r）% ＋ 該族群活動獎勵 r%</strong>」＝原 <em>X</em>%，其中 <strong><em>r</em> ＝ 該族群命中模板的 RTP</strong>。<strong>守恆在「族群 × 模板」這一層成立，不在全站層以固定 1% 成立。</strong><br>
+    <strong>④ 對帳口徑：</strong>對帳須<strong style="color:var(--gold-light);">逐模板（＝逐族群）驗證</strong>——每個模板的「實際發放總額 ÷ 該族群活動期間總押注」應收斂於該模板的目標 RTP。<strong>不得以全站單一 1% 作為驗收基準。</strong><br>
+    <strong>⑤ 護欄不在後台校驗、在監控：</strong><a href="#rtp-info" style="color:var(--gold-light);">DEV §06 二之三</a> 已明定 RTP 驗算為<strong>純資訊顯示、不擋儲存與送審</strong>；實際偏離由 <a href="#optimize" style="color:var(--gold-light);">DEV §15 O4</a>「<strong>實際 RTP 明顯偏離模板目標值</strong>」與 <a href="#backend" style="color:var(--gold-light);">DEV §06 監控與警報</a>「<strong>玩家 RTP 上限</strong>」「<strong>單日發放總額超出預期區間</strong>」三條警報接住。<br>
+    <strong>⑥ 挪移幅度的設定歸屬：</strong>各族群調降多少 RTP 屬<strong>營運／數據組的商務決策</strong>，於模板的目標 RTP 欄位表達；本文件不規定其數值上下限。
   </div>
 
   <div class="sub-title">三、獎勵歷程可查性</div>
@@ -5377,10 +5425,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </table>
 
   <div class="bdd-card">
-    <div class="bdd-title">BDD 驗收情境 · RTP 守恆</div>
-    <b class="g">Given</b> 某線路基準 RTP 為 X%<br>
-    <b class="w">When</b> 該線路／標籤玩家納入抽寶箱活動、RTP 調降 1% 為（X−1）%，活動獎勵預算＝該 1%<br>
-    <b class="t">Then</b> 「遊戲內 RTP（X−1）% ＋ 活動獎勵 1%」＝原 X%，<strong>整體 RTP 佔比不變</strong>；對帳可驗證兩者相加守恆。
+    <div class="bdd-title">BDD 驗收情境 · 逐族群 RTP 挪移守恆</div>
+    <b class="g">Given</b> 某線路基準 RTP 為 <em>X</em>%；族群 A 命中「保守低倍」（模板 RTP <strong>0.98%</strong>）、族群 B 命中「救援高倍」（模板 RTP <strong>2.00%</strong>）<br>
+    <b class="w">When</b> 兩族群同時納入同一檔抽寶箱活動，各自的遊戲內 RTP 依其模板 RTP 調降（A 降 0.98%、B 降 2.00%）<br>
+    <b class="t">Then</b> <strong>逐族群</strong>驗證：A 為「(X−0.98)% ＋ 0.98%」＝ <em>X</em>%、B 為「(X−2.00)% ＋ 2.00%」＝ <em>X</em>%；<strong style="color:var(--gold-light);">對帳以「該模板實際發放總額 ÷ 該族群總押注」收斂於各自目標 RTP 為準</strong>；<strong style="color:var(--orange-bright);">不得以全站單一 1% 作為驗收基準</strong>。
   </div>
 </section>
 
@@ -5428,7 +5476,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.11 · CONFIDENTIAL 2026<br>
+  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.14 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 受眾：後端／前端／美術／QA · 完整版（含 KPI／成本／時程）另見 <a href="treasure_box_crm_spec_v5.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">treasure_box_crm_spec_v5.0.html</a>（內容版號 V5.3）<br>
   <strong>兩份文件如有衝突，以本文件為準。</strong>
 </div>
