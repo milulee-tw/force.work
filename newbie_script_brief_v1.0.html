@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新手機率體驗腳本 · 決策簡報 · CMB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#E92B0D; --accent-text:#C42109; --accent-soft:#F0876F;
+  --bg:#FFFFFF; --bg-2:#FAFAFA; --bg-3:#FAFAFA; --bg-4:#F0F0F0; --bg-5:#E4E4E4;
+  --border:#D6D6D6; --border-bright:#ADADAD;
+  --text-primary:#1A1A1A; --text-secondary:#434343; --text-dim:#8F8F8F;
+  --red:#B42318; --teal:#0F766E; --blue:#2563EB; --green:#1F8A4C; --purple:#7C3AED; --orange:#D97706;
+  --accent-fill:rgba(233,43,13,0.1); --accent-fill-faint:rgba(233,43,13,0.06);
+  --green-bright:#17693C; --blue-bright:#1D4ED8; --red-bright:#9A1C10; --purple-bright:#6D28D9;
+  --green-fill:rgba(31,138,76,0.1); --blue-fill:rgba(37,99,235,0.09);
+  --red-fill:rgba(180,35,24,0.09); --red-fill-faint:rgba(180,35,24,0.06);
+  --purple-fill:rgba(124,58,237,0.09); --orange-fill:rgba(217,119,6,0.08);
+  --overlay-faint:rgba(0,0,0,0.02); --overlay-row:rgba(0,0,0,0.07);
+  --shadow:rgba(0,0,0,0.08);
+  --grid-line:#EAEAEA;
+}
+html[data-theme="dark"]{
+  --accent:#F04E30; --accent-text:#FF7A5C; --accent-soft:#A63A24;
+  --bg:#111112; --bg-2:#151517; --bg-3:#1A1A1C; --bg-4:#202023; --bg-5:#2A2A2E;
+  --border:#2A2A2E; --border-bright:#3D3D42;
+  --text-primary:#F2F2F0; --text-secondary:#B4B4B2; --text-dim:#707070;
+  --red:#D9483B; --teal:#34B3A6; --blue:#5B8DEF; --green:#3FBF6F; --purple:#A78BFA; --orange:#E8A33D;
+  --accent-fill:rgba(240,78,48,0.14); --accent-fill-faint:rgba(240,78,48,0.07);
+  --green-bright:#7ADFA0; --blue-bright:#93B8F5; --red-bright:#F0907A; --purple-bright:#C4B5FD;
+  --green-fill:rgba(63,191,111,0.12); --blue-fill:rgba(91,141,239,0.12);
+  --red-fill:rgba(217,72,59,0.12); --red-fill-faint:rgba(217,72,59,0.07);
+  --purple-fill:rgba(167,139,250,0.12); --orange-fill:rgba(232,163,61,0.1);
+  --overlay-faint:rgba(255,255,255,0.02); --overlay-row:rgba(255,255,255,0.06);
+  --shadow:rgba(0,0,0,0.5);
+  --grid-line:#232326;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans','Noto Sans TC',sans-serif;
+  line-height:1.7;font-size:15px;transition:background .3s,color .3s;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:var(--bg-5);border-radius:2px;}
+
+.theme-toggle{position:fixed;bottom:24px;right:24px;z-index:210;width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--bg);
+  border:1px solid var(--border);color:var(--text-primary);box-shadow:0 4px 24px var(--shadow);
+  transition:all .25s;-webkit-appearance:none;appearance:none;}
+.theme-toggle:hover{border-color:var(--text-primary);transform:translateY(-2px) rotate(-12deg);}
+.theme-toggle svg{width:20px;height:20px;display:block;}
+.theme-toggle .icon-sun{display:none;} .theme-toggle .icon-moon{display:block;}
+html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
+html[data-theme="dark"] .theme-toggle .icon-moon{display:none;}
+
+.wrap{max-width:920px;margin:0 auto;padding:0 32px 120px;}
+
+/* ── HERO ── */
+.hero{min-height:82vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--accent-text);
+  text-transform:uppercase;background:var(--accent-fill-faint);padding:7px 18px;border-radius:50px;
+  align-self:flex-start;margin-bottom:34px;}
+.hero h1{font-size:clamp(40px,6.4vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:20px;}
+.hero h1 span{color:var(--accent);}
+.hero-lead{font-size:19px;color:var(--text-secondary);line-height:1.75;max-width:660px;margin-bottom:40px;}
+.hero-lead strong{color:var(--text-primary);}
+.pills{display:flex;gap:10px;flex-wrap:wrap;}
+.pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--text-secondary);
+  padding:7px 16px;border:1px solid var(--border);border-radius:50px;}
+.pill strong{color:var(--text-primary);}
+.pill.hot{border-color:var(--accent);color:var(--accent-text);}
+
+/* ── SECTION ── */
+.blk{margin-bottom:100px;}
+.blk-num{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--accent-text);margin-bottom:10px;}
+.blk h2{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.3;margin-bottom:14px;}
+.blk h2 span{color:var(--accent);}
+.blk-lead{font-size:16px;color:var(--text-secondary);line-height:1.85;max-width:720px;margin-bottom:34px;}
+.blk-lead strong{color:var(--text-primary);}
+.blk-lead em{color:var(--accent-text);font-style:normal;font-weight:600;}
+
+/* ── FIGURE ── */
+.fig{background:var(--bg-3);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:24px;}
+.fig svg{display:block;width:100%;height:auto;}
+.fig-cap{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--text-dim);
+  text-transform:uppercase;margin-bottom:20px;}
+.fig-note{font-size:13px;color:var(--text-secondary);margin-top:18px;line-height:1.7;}
+.fig-note strong{color:var(--text-primary);}
+
+/* ── CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+.cards.c3{grid-template-columns:repeat(3,1fr);}
+.cards.c2{grid-template-columns:repeat(2,1fr);}
+.card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.card-ico{font-size:20px;margin-bottom:10px;}
+.card-k{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--text-dim);
+  text-transform:uppercase;margin-bottom:8px;}
+.card-v{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:var(--accent-text);
+  line-height:1.15;margin-bottom:8px;}
+.card-t{font-size:14px;font-weight:700;margin-bottom:6px;}
+.card-d{font-size:13px;color:var(--text-secondary);line-height:1.6;}
+.card.hi{border-color:var(--accent);background:var(--accent-fill-faint);}
+.card.warn{border-color:var(--red);background:var(--red-fill-faint);}
+.card.warn .card-v{color:var(--red-bright);}
+.card.ok{border-color:var(--green);background:var(--green-fill);}
+.card.ok .card-v{color:var(--green-bright);}
+
+/* ── CALLOUT ── */
+.note{background:var(--bg-3);border:1px solid var(--border);border-left:3px solid var(--teal);
+  padding:18px 22px;border-radius:0 14px 14px 0;margin-bottom:20px;font-size:14.5px;color:var(--text-secondary);line-height:1.75;}
+.note strong{color:var(--text-primary);}
+.note.warn{border-left-color:var(--red);}
+.note.warn strong{color:var(--red-bright);}
+.note.ok{border-left-color:var(--green);}
+.note.info{border-left-color:var(--blue);}
+
+/* ── DECISION ── */
+.dec{background:var(--bg);border:1px solid var(--accent);border-radius:16px;padding:24px 26px;margin-bottom:14px;
+  display:flex;gap:20px;align-items:flex-start;}
+.dec-n{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--accent-text);
+  flex-shrink:0;padding-top:3px;}
+.dec-t{font-size:16px;font-weight:700;margin-bottom:6px;}
+.dec-d{font-size:14px;color:var(--text-secondary);line-height:1.7;}
+.dec.done{border-color:var(--green);background:var(--green-fill);}
+.dec.done .dec-n{color:var(--green-bright);}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:20px;}
+.tbl th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--text-secondary);
+  text-transform:uppercase;padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg-3);}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--overlay-row);}
+.tbl td.mono{font-family:'DM Mono',monospace;font-size:13px;}
+.tbl td.dim{color:var(--text-secondary);}
+.tbl tr:hover td{background:var(--overlay-faint);}
+.tag{font-family:'DM Mono',monospace;font-size:9px;padding:3px 10px;border-radius:50px;letter-spacing:.08em;display:inline-block;}
+.tag.g{background:var(--green-fill);color:var(--green-bright);}
+.tag.r{background:var(--red-fill);color:var(--red-bright);}
+.tag.b{background:var(--blue-fill);color:var(--blue-bright);}
+.tag.p{background:var(--purple-fill);color:var(--purple-bright);}
+
+.foot{text-align:center;padding:60px 32px;border-top:1px solid var(--border);
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.15em;line-height:2;}
+
+@media(max-width:820px){
+  .cards,.cards.c3,.cards.c2{grid-template-columns:1fr 1fr;}
+  .wrap{padding:0 20px 80px;}
+  .dec{flex-direction:column;gap:8px;}
+}
+@media print{.theme-toggle{display:none!important;}}
+</style>
+<script>
+(function(){try{var s=localStorage.getItem('brief-theme');
+document.documentElement.setAttribute('data-theme', s||((window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'));}
+catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
+</head>
+<body>
+
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="切換亮/暗主題">
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+
+<div class="wrap">
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="eyebrow">CMB · 決策簡報 · 2026</div>
+  <h1>把新手的<br>前 600 局<span>從運氣變成設計</span></h1>
+  <div class="hero-lead">
+    我們無法控制一位新玩家的運氣，但可以控制<strong>他拿到哪一份結果</strong>。<br>
+    本案為每款遊戲預先備妥 <strong>兩個腳本池、共 200 套經過品質檢驗的 300 局序列</strong>，
+    依玩家<strong>當下的下注額</strong>決定用哪一池，合計跑滿 600 局後切回正常隨機。玩家全程無感。
+  </div>
+  <div class="pills">
+    <div class="pill"><strong>範圍</strong> 伺服器端機制</div>
+    <div class="pill"><strong>玩家介面</strong> 無</div>
+    <div class="pill"><strong>美術需求</strong> 無</div>
+    <div class="pill hot"><strong>市場</strong> 非認證市場限定</div>
+    <div class="pill hot"><strong>首波</strong> Lucky Paws 財神貓</div>
+    <div class="pill hot"><strong>套利風險</strong> 結構性消除</div>
+  </div>
+</div>
+
+<!-- ══ 01 問題 ══ -->
+<div class="blk">
+  <div class="blk-num">01 · 問題</div>
+  <h2>96.7% 是<span>長期平均</span>，不是任何一個新手的體驗</h2>
+  <div class="blk-lead">
+    同一款遊戲、同樣的數學設定，兩位新手的前 300 局可能天差地遠：
+    一位早早吃到 Free Game、手感順暢；另一位連續乾局、<em>第一天就走了</em>。
+    後者不是我們設計失誤，而是機率的必然——<strong>而我們現在對這件事完全沒有干預手段</strong>。
+  </div>
+
+  <div class="fig">
+    <div class="fig-cap">Figure 1 · 兩位新手在同一款遊戲的前幾百局餘額走勢（示意）</div>
+    <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="兩位新手的餘額走勢對比">
+      <!-- grid -->
+      <g stroke="var(--grid-line)" stroke-width="1">
+        <line x1="60" y1="40" x2="820" y2="40"/><line x1="60" y1="100" x2="820" y2="100"/>
+        <line x1="60" y1="160" x2="820" y2="160"/><line x1="60" y1="220" x2="820" y2="220"/>
+        <line x1="60" y1="280" x2="820" y2="280"/>
+      </g>
+      <!-- baseline -->
+      <line x1="60" y1="160" x2="820" y2="160" stroke="var(--border-bright)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="60" y="152" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)" letter-spacing="1">初始餘額</text>
+      <!-- 玩家 A：幸運 -->
+      <polyline fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round"
+        points="60,160 120,172 180,150 240,164 300,120 360,132 420,96 480,110 540,84 600,98 660,70 720,86 780,62 820,74"/>
+      <circle cx="420" cy="96" r="5" fill="var(--green)"/>
+      <text x="430" y="88" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--green)">Free Game</text>
+      <text x="828" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--green)">A</text>
+      <!-- 玩家 B：不幸 -->
+      <polyline fill="none" stroke="var(--red)" stroke-width="2.5" stroke-linejoin="round"
+        points="60,160 120,178 180,196 240,188 300,214 360,228 420,220 480,246 540,258 600,252 660,272 700,284"/>
+      <circle cx="700" cy="284" r="5" fill="var(--red)"/>
+      <text x="596" y="304" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--red)">餘額歸零 · 離開</text>
+      <text x="712" y="288" font-family="DM Mono, monospace" font-size="10" fill="var(--red)">B</text>
+      <!-- axis -->
+      <text x="60" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 1 局</text>
+      <text x="770" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 600 局</text>
+    </svg>
+    <div class="fig-note">
+      兩條線的<strong>數學期望值完全相同</strong>，差別只有結果出現的順序。
+      B 玩家從未體驗到這款遊戲的核心賣點（Free Game），也不會有第二天。
+    </div>
+  </div>
+</div>
+
+<!-- ══ 02 解法 ══ -->
+<div class="blk">
+  <div class="blk-num">02 · 解法</div>
+  <h2>兩個腳本池，<span>依下注額分流</span></h2>
+  <div class="blk-lead">
+    由機率組從遊戲快測結果中，切出一段一段<strong>連續的 300 局</strong>，
+    每一段都必須通過<strong>五項體感檢驗</strong>，合格的才收進腳本池。腳本池分兩種——
+    <em>低額池</em>（bet &lt; THB 50）與<em>高額池</em>（bet ≥ THB 50），各 100 套。
+    玩家每一局依當下下注額取對應池的結果，<strong>兩池合計跑滿 600 局</strong>後結束。
+  </div>
+
+  <div class="fig">
+    <div class="fig-cap">Figure 2 · 兩個腳本池與 600 局的實際跑法</div>
+    <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="低額池與高額池各100套，玩家依當下下注額逐局選池，合計600局">
+      <!-- 低額池 -->
+      <text x="0" y="16" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--accent)">低額池 · bet &lt; THB 50</text>
+      <text x="0" y="32" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">100 套 × 300 局 · RTP 100~105%</text>
+      <rect x="0.0" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="44.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="54.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="65.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="74.8" width="16" height="9" rx="2" fill="var(--accent)"/><rect x="127.4" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="75.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="86.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="97.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="107.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="118.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="128.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="139.4" width="16" height="7" rx="2" fill="var(--bg-5)"/>
+      <!-- 高額池 -->
+      <text x="0" y="180" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--blue)">高額池 · bet ≥ THB 50</text>
+      <text x="0" y="196" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">100 套 × 300 局 · RTP 98~100%</text>
+      <rect x="0.0" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="208.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="218.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="229.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="239.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="249.4" width="16" height="9" rx="2" fill="var(--blue)"/><rect x="36.4" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="250.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="261.0" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="271.6" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="282.2" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="292.8" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="0.0" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="18.2" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="36.4" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="54.6" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="72.8" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="91.0" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="109.2" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="127.4" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="145.6" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/><rect x="163.8" y="303.4" width="16" height="7" rx="2" fill="var(--bg-5)"/>
+      <!-- 分流箭頭 -->
+      <path d="M200 90 L285 140" stroke="var(--accent)" stroke-width="2" marker-end="url(#a2)"/>
+      <path d="M200 250 L285 175" stroke="var(--blue)" stroke-width="2" marker-end="url(#a3)"/>
+      <defs>
+        <marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="var(--accent)"/></marker>
+        <marker id="a3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="var(--blue)"/></marker>
+      </defs>
+      <text x="206" y="168" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--text-primary)">每一局</text>
+      <text x="206" y="184" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--text-primary)">依 bet 選池</text>
+      <!-- 600 局條 -->
+      <text x="305" y="128" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)">玩家實際跑的 600 局</text>
+      <text x="305" y="144" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">各池自己累積滿 300 局 · 兩池合計 600 局結束</text>
+      <rect x="305.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="311.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="318.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="324.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="331.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="338.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="344.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="351.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="357.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="364.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="371.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="377.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="384.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="390.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="397.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="404.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="410.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="417.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="423.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="430.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="437.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="443.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="450.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="456.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="463.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="470.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="476.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="483.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="489.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="496.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="503.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="509.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="516.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="522.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="529.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="536.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="542.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="549.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="555.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="562.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="569.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="575.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="582.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="588.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="595.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="602.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="608.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="615.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="621.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="628.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="635.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="641.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="648.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="654.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="661.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="668.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="674.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="681.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="687.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="694.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="701.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="707.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="714.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="720.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="727.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="734.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="740.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="747.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="753.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="760.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="767.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="773.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="780.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="786.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="793.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="800.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="806.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="813.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="819.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="826.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/>
+      <text x="305" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 1 局</text>
+      <text x="775" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 600 局</text>
+      <!-- 圖例 -->
+      <g font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">
+        <rect x="305" y="228" width="9" height="12" rx="2" fill="var(--accent-soft)"/><text x="320" y="238">這局壓小注 → 取低額池</text>
+        <rect x="500" y="228" width="9" height="12" rx="2" fill="var(--blue)"/><text x="515" y="238">這局壓大注 → 取高額池</text>
+      </g>
+      <text x="305" y="266" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">全程小額的玩家：同一套低額腳本跑兩遍＝600 局</text>
+      <text x="305" y="288" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">跑完 600 局後，自動切回遊戲原本的隨機結果</text>
+    </svg>
+  </div>
+
+  <div class="note info">
+    <strong>「輪流發」而不是隨機抽</strong>：第 1 位新手拿第 1 套、第 2 位拿第 2 套……第 101 位回到第 1 套。
+    這樣每套的使用人數幾乎一樣多，三個月後才有辦法公平比較「哪一套留得住人」。
+  </div>
+
+  <div class="note ok">
+    <strong>為什麼是「各池各自跑滿 300 局」而不是混著跑</strong><br>
+    五項條件是針對「<em>一整套連續 300 局</em>」驗證的。如果讓兩池共用同一個進度、逐局換池，
+    會出現這種狀況：玩家在低額池的 Free Game 出現前就改壓大注，而高額池那套的 Free Game 早就跑過了——
+    <strong>最後 600 局一次 Free Game 都沒吃到</strong>，體感設計完全失效。<br>
+    改成各池獨立累積後，<strong>每一套腳本都會被完整跑完</strong>。全程小額的玩家，就把同一套跑兩遍。
+  </div>
+
+  <div class="note warn">
+    <strong>買 Free Game（buy bonus）不算在內</strong>：玩家付費購買 Free Game 的那一局<strong>直接走原生隨機</strong>，
+    而且<strong>不消耗腳本進度</strong>——腳本序列保持完整，不會被挖掉幾局而破壞體感設計。
+  </div>
+</div>
+
+<!-- ══ 03 四道關卡 ══ -->
+<div class="blk">
+  <div class="blk-num">03 · 品質標準</div>
+  <h2>每一套腳本都要過<span>五道關卡</span></h2>
+  <div class="blk-lead">
+    五項條件缺一不可。只要有一項不過，這一段 300 局就淘汰、重新取下一段。
+    兩池只有 <strong>RTP 區間不同</strong>，其餘四項完全一樣。
+  </div>
+
+  <div class="cards c2" style="margin-bottom:12px">
+    <div class="card hi">
+      <div class="card-k">條件 1 · 整套 RTP · 低額池</div>
+      <div class="card-v">100~105%</div>
+      <div class="card-d">bet &lt; THB 50。讓新手小賺，體感上「這款對我不錯」。</div>
+    </div>
+    <div class="card" style="border-color:var(--blue);background:var(--blue-fill)">
+      <div class="card-k">條件 1 · 整套 RTP · 高額池</div>
+      <div class="card-v" style="color:var(--blue-bright)">98~100%</div>
+      <div class="card-d">bet ≥ THB 50。<strong>期望值對玩家為負</strong>——壓大注刷腳本無利可圖。</div>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card hi">
+      <div class="card-k">條件 2 · 中獎頻率</div>
+      <div class="card-v">&gt; 40%</div>
+      <div class="card-d">決定手感。避免獎全集中在少數幾局、中間全是乾局。</div>
+    </div>
+    <div class="card hi">
+      <div class="card-k">條件 3 · Free Game</div>
+      <div class="card-v">≥ 1 次</div>
+      <div class="card-d">新手一定要看過一次核心玩法，否則等於沒體驗過這款遊戲。</div>
+    </div>
+    <div class="card hi">
+      <div class="card-k">條件 4 · Big Win</div>
+      <div class="card-v">≥ 3 次</div>
+      <div class="card-d">單局贏 <strong>10 倍以上</strong>算一次。光是「一直中但都很小」，玩家一樣沒感覺。</div>
+    </div>
+    <div class="card hi">
+      <div class="card-k">條件 5 · 最大獎</div>
+      <div class="card-v">&lt; 500x</div>
+      <div class="card-d">不讓新手期就吃到超大獎——成本不可控，之後落差也傷留存。</div>
+    </div>
+  </div>
+
+  <div class="note warn">
+    <strong>條件變嚴，篩選難度顯著提高</strong>：一段 300 局要同時滿足「RTP 落在窄區間、中獎率超過四成、
+    至少一次 Free Game、至少三次 Big Win、且沒有任何一筆到 500 倍」——合格的段落會少很多。
+    機率組需確認現有快測資料量是否足以篩出 <strong>200 套</strong>（兩池各 100 套）。
+  </div>
+</div>
+
+<!-- ══ 04 安全順位 ══ -->
+<div class="blk">
+  <div class="blk-num">04 · 安全邊界</div>
+  <h2>大獎限制<span>永遠優先</span>，腳本讓位</h2>
+  <div class="blk-lead">
+    這套機制<strong>不凌駕於任何既有的風控之上</strong>。大獎限制分兩層：
+    <em>源頭層</em>是腳本篩選時就排除 500 倍以上的獎、腳本裡根本沒有超大獎；
+    <em>系統層</em>是線路總水池的大獎限制，順位永遠在腳本之前。
+  </div>
+
+  <div class="fig">
+    <div class="fig-cap">Figure 3 · 每一局的判斷順位</div>
+    <svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="每局判斷順位：大獎限制優先於腳本，腳本優先於原生RNG">
+      <!-- L1 -->
+      <rect x="1" y="10" width="858" height="66" rx="14" fill="var(--red-fill)" stroke="var(--red)" stroke-width="1.5"/>
+      <text x="24" y="40" font-family="DM Mono, monospace" font-size="10" fill="var(--red-bright)" letter-spacing="2">順位 1 · 最高</text>
+      <text x="24" y="62" font-family="DM Sans, sans-serif" font-size="17" font-weight="700" fill="var(--text-primary)">大獎限制</text>
+      <text x="200" y="62" font-family="DM Sans, sans-serif" font-size="14" fill="var(--text-secondary)">淨贏超過線路水池餘額 → 該局砍為 low win ≈ 0（進度照樣算走一局）</text>
+      <path d="M430 80 L430 96" stroke="var(--text-dim)" stroke-width="1.5" marker-end="url(#ah2)"/>
+      <defs><marker id="ah2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M0 0 L8 4 L0 8 z" fill="var(--text-dim)"/></marker></defs>
+      <!-- L2 -->
+      <rect x="1" y="100" width="858" height="66" rx="14" fill="var(--accent-fill-faint)" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="24" y="130" font-family="DM Mono, monospace" font-size="10" fill="var(--accent-text)" letter-spacing="2">順位 2 · 本案</text>
+      <text x="24" y="152" font-family="DM Sans, sans-serif" font-size="17" font-weight="700" fill="var(--text-primary)">新手腳本</text>
+      <text x="200" y="152" font-family="DM Sans, sans-serif" font-size="14" fill="var(--text-secondary)">未超過水池餘額時，照腳本第 N 局的倍數派彩</text>
+      <path d="M430 170 L430 186" stroke="var(--text-dim)" stroke-width="1.5" marker-end="url(#ah2)"/>
+      <!-- L3 -->
+      <rect x="1" y="190" width="858" height="60" rx="14" fill="var(--bg-4)" stroke="var(--border)" stroke-width="1.5"/>
+      <text x="24" y="216" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)" letter-spacing="2">順位 3 · 既有</text>
+      <text x="24" y="238" font-family="DM Sans, sans-serif" font-size="17" font-weight="700" fill="var(--text-primary)">原生隨機</text>
+      <text x="200" y="238" font-family="DM Sans, sans-serif" font-size="14" fill="var(--text-secondary)">非新手、腳本已跑完、或任何異常 → 一律回到現行邏輯</text>
+    </svg>
+  </div>
+
+  <div class="note info">
+    <strong>總水池怎麼運作</strong>：每條線路各有一個水池，開通時設初始值。
+    玩家<strong>輸</strong>的錢（bet − win）灌進水池、玩家<strong>贏</strong>的錢從水池支出；
+    當某一局的淨贏超過水池餘額時，該局的獎<strong>直接砍為 low win</strong>——
+    這個值幾乎為 0、可直接視為 0，也就是<strong>玩家看到的就是「這局沒中」</strong>。
+    同時該局的下注會全額灌回水池，所以大獎限制<strong>一觸發就自我修復</strong>，不會連續發生。
+  </div>
+
+  <div class="note ok">
+    <strong>那新手腳本會不會把水池抽乾？算過了，不會</strong><br>
+    新手在腳本期間 RTP 100~105%，對水池是淨支出（每下注 100 支出 2.5）；
+    舊玩家 RTP 96.7%，每下注 100 灌入 3.3。要讓水池打平，
+    <strong>新手的下注量得佔到全線路的 57%</strong>——依現行營運結構，新手下注量佔比遠低於這條線。
+    單筆大獎方面，腳本上限 &lt; 500x 換算後也遠低於水池餘額，<strong>實務上不會被砍成 low win</strong>。
+    結論：<strong>v1 不需要為此加設任何保護機制</strong>。
+  </div>
+
+  <div class="note warn">
+    <strong>市場限制</strong>：預先決定結果不符合 GLI／BMM 的 RNG 認證要求。
+    本機制與動態 RTP 屬同一條界線——<strong>只能上灰色市場線路（菲／越／泰），送測市場永久關閉</strong>，
+    以線路為單位設開關、預設為關。
+  </div>
+</div>
+
+<!-- ══ 05 風險 ══ -->
+<div class="blk">
+  <div class="blk-num">05 · 套利風險</div>
+  <h2>高額池讓刷腳本<span>變成虧損行為</span></h2>
+  <div class="blk-lead">
+    初版規劃只有一個池、不分下注額，壓越大注賺越多，對工作室構成穩定收益模型。
+    改為雙池後，<strong>任何想靠大注刷腳本的行為都會落進 RTP 98~100% 的高額池</strong>——
+    <em>期望值為負，壓越大注輸越多</em>。這不是「降低套利收益」，而是讓套利本身變成虧錢的事。
+  </div>
+
+  <div class="fig">
+    <div class="fig-cap">Figure 4 · 單一新手帳號最多能從系統拿走多少（THB · 期望值）</div>
+    <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="初版單池與本版雙池的套利收益對比，高額池為負值">
+      <!-- 零軸 -->
+      <line x1="40" y1="160" x2="820" y2="160" stroke="var(--border-bright)" stroke-width="1.5"/>
+      <text x="0" y="164" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">0</text>
+      <!-- 柱1：初版 -->
+      <rect x="90" y="60" width="140" height="100" rx="4" fill="var(--red)"/>
+      <text x="160" y="50" font-family="DM Mono, monospace" font-size="15" fill="var(--red-bright)" text-anchor="middle">+1,500</text>
+      <text x="160" y="184" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)" text-anchor="middle">初版 · 單池</text>
+      <text x="160" y="202" font-family="DM Sans, sans-serif" font-size="12" fill="var(--text-secondary)" text-anchor="middle">每局 THB 200 × 300 局</text>
+      <text x="160" y="220" font-family="DM Sans, sans-serif" font-size="12" fill="var(--red-bright)" text-anchor="middle">穩定獲利 → 值得養號</text>
+      <!-- 柱2：本版低額池 -->
+      <rect x="330" y="111" width="140" height="49" rx="4" fill="var(--orange)"/>
+      <text x="400" y="101" font-family="DM Mono, monospace" font-size="15" fill="var(--orange)" text-anchor="middle">+735</text>
+      <text x="400" y="184" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)" text-anchor="middle">本版 · 低額池</text>
+      <text x="400" y="202" font-family="DM Sans, sans-serif" font-size="12" fill="var(--text-secondary)" text-anchor="middle">全程壓滿 THB 49 × 600 局</text>
+      <text x="400" y="220" font-family="DM Sans, sans-serif" font-size="12" fill="var(--orange)" text-anchor="middle">低於養號成本</text>
+      <!-- 柱3：本版高額池（負） -->
+      <rect x="570" y="160" width="140" height="80" rx="4" fill="var(--green)"/>
+      <text x="640" y="258" font-family="DM Mono, monospace" font-size="15" fill="var(--green-bright)" text-anchor="middle">−1,200</text>
+      <text x="640" y="184" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--bg)" text-anchor="middle">本版 · 高額池</text>
+      <text x="640" y="202" font-family="DM Sans, sans-serif" font-size="12" fill="var(--bg)" text-anchor="middle">每局 THB 200 × 600 局</text>
+      <text x="640" y="220" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--bg)" text-anchor="middle">壓越大注輸越多</text>
+    </svg>
+    <div class="fig-note">
+      低額池：600 局 × THB 49 × 2.5% ≈ <strong>735</strong>（理論最大值，需全程壓在門檻邊緣）。<br>
+      高額池：600 局 × THB 200 × <strong>−1%</strong> ≈ <strong>−1,200</strong>——RTP 99% 代表玩家期望是淨輸。
+    </div>
+  </div>
+
+  <div class="cards c3">
+    <div class="card ok">
+      <div class="card-k">防線 1 · 結構層</div>
+      <div class="card-t">高額池負期望</div>
+      <div class="card-d">想刷腳本就得壓大注，一壓大注就落進 98~100% 的池——誘因從根源消失。</div>
+    </div>
+    <div class="card ok">
+      <div class="card-k">防線 2 · 結構層</div>
+      <div class="card-t">低額池 bet 上限</div>
+      <div class="card-d">低額池雖是正期望，但單局壓不到 THB 50，600 局理論上限僅約 735。</div>
+    </div>
+    <div class="card ok">
+      <div class="card-k">防線 3 · 源頭層</div>
+      <div class="card-t">最大獎 &lt; 500x</div>
+      <div class="card-d">腳本裡根本沒有超大獎，不會出現爆量單筆。</div>
+    </div>
+  </div>
+  <div class="cards c2">
+    <div class="card ok">
+      <div class="card-k">防線 4 · 系統層</div>
+      <div class="card-t">總水池大獎限制</div>
+      <div class="card-d">既有機制，順位永遠在腳本之前。</div>
+    </div>
+    <div class="card warn">
+      <div class="card-k">防線 5 · 事後</div>
+      <div class="card-t">數據監控</div>
+      <div class="card-d">主要盯一件事：<strong>是否有大量帳號刻意把下注壓在 THB 45~49</strong>——想吃低額池又想壓到最大。</div>
+    </div>
+  </div>
+
+  <div class="note warn">
+    <strong>唯一保留的已知風險</strong>：某一池跑滿 300 局後<strong>重跑同一套</strong>，
+    所以第 301~600 局與第 1~300 局完全相同。一般玩家隔了 300 局不可能記得，
+    但有心人錄影比對就能發現、進而預測後半段每一局的結果。<br>
+    <strong>可獲利程度極低</strong>——預測到了也只能在該池的框架內下注，低額池有 THB 50 上限、高額池期望為負，
+    <em>知道結果不等於能賺錢</em>。若日後監控發現異常，改成「第二輪換下一套」的成本很低（後端把編號 +1 即可）。
+  </div>
+</div>
+
+<!-- ══ 06 兩階段 ══ -->
+<div class="blk">
+  <div class="blk-num">06 · 本次範圍</div>
+  <h2>原本要分兩階段，<span>現在一次上完</span></h2>
+  <div class="blk-lead">
+    高額池原本列為第二階段。開發評估「<strong>100 套腳本半天就能完成</strong>」後改為一次上線——
+    <em>以極低的額外成本，直接消除了初版最大的風險敞口</em>。
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr><th>項目</th><th>本次範圍（一次上線）</th><th>後續版本（尚未排程）</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="dim">適用遊戲</td><td><strong>Lucky Paws 財神貓</strong>單款驗證</td><td>推廣至各遊戲；新遊戲一律標配</td></tr>
+      <tr><td class="dim">腳本池</td><td><strong>雙池 200 套</strong>（低額 100＋高額 100）</td><td>依分析結果汰換表現差的腳本</td></tr>
+      <tr><td class="dim">下注額判定</td><td><span class="tag g">逐局判定 · THB 50 為界</span></td><td>門檻依實際數據調整，可能細分三段</td></tr>
+      <tr><td class="dim">體驗長度</td><td><strong>兩池合計 600 局</strong></td><td>依留存數據調整；第二輪改發下一套</td></tr>
+      <tr><td class="dim">套利空間</td><td><span class="tag g">結構性消除</span></td><td>依監控結果微調門檻</td></tr>
+      <tr><td class="dim">buy bonus</td><td><span class="tag b">走原生隨機 · 不消耗進度</span></td><td>同左，不變</td></tr>
+      <tr><td class="dim">效果驗證</td><td>上線前 30 天 baseline 前後對比</td><td>可設對照組做同期比較</td></tr>
+      <tr><td class="dim">玩家介面</td><td><span class="tag b">無</span></td><td><span class="tag b">無</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 07 產出 ══ -->
+<div class="blk">
+  <div class="blk-num">07 · 我們會拿到什麼</div>
+  <h2>比機制本身更有價值的是<span>那份資料</span></h2>
+  <div class="blk-lead">
+    每位玩家用了哪一套腳本、跑到第幾局、有沒有留下來——全部記錄。
+    三個月後我們能回答三個問題，而這三個答案適用於<strong>之後所有的遊戲</strong>。
+  </div>
+
+  <div class="cards c3">
+    <div class="card">
+      <div class="card-ico">①</div>
+      <div class="card-t">整體有沒有用</div>
+      <div class="card-d">新手 D1／D3 留存 vs 上線前 30 天 baseline。</div>
+    </div>
+    <div class="card">
+      <div class="card-ico">②</div>
+      <div class="card-t">哪一套最好</div>
+      <div class="card-d">各池 100 套 × 留存交叉比較；因輪流發、樣本數相近可直接橫向比（兩池分開統計）。</div>
+    </div>
+    <div class="card">
+      <div class="card-ico">③</div>
+      <div class="card-t">好在哪個特徵</div>
+      <div class="card-d">Free Game 出現在第幾局？Big Win 分佈在哪裡？中獎頻率多少？找出真正驅動留存的變數。</div>
+    </div>
+  </div>
+
+  <div class="note ok">
+    <strong>第 ③ 題才是長期資產</strong>：一旦知道「Free Game 應該在第幾局出現最留得住人」，
+    這個結論可以直接寫進<strong>未來每一款新遊戲的數學設計準則</strong>，效益遠超過本次的留存提升。
+  </div>
+</div>
+
+<!-- ══ 08 決策 ══ -->
+<div class="blk">
+  <div class="blk-num">08 · 決策狀態</div>
+  <h2>四項<span>全數定案</span></h2>
+  <div class="blk-lead">原本的四個決策點已全部確認。以下為結論，另附<strong>上線前仍須補齊的三項作業</strong>。</div>
+
+  <div class="dec done">
+    <div class="dec-n">D1 ✓</div>
+    <div>
+      <div class="dec-t">高額池的排程 · 已定案</div>
+      <div class="dec-d">原列為第二階段，經開發評估「100 套腳本半天即可完成」後改為<strong>與低額池同時上線</strong>。
+      初版的套利風險敞口因此<strong>從未發生</strong>，「臨時淨贏上限」也不需要了。</div>
+    </div>
+  </div>
+  <div class="dec done">
+    <div class="dec-n">D2 ✓</div>
+    <div>
+      <div class="dec-t">首波上線範圍 · 已定案</div>
+      <div class="dec-d">以 <strong>Lucky Paws 財神貓</strong>單款先行驗證；後續<strong>所有新遊戲一律規劃新手腳本</strong>。<br>
+      連帶影響：本機制自此成為<strong>新遊戲開發 SOP 的固定環節</strong>——機率組的快測與 100 套腳本產出升格為標準交付項，須排進新遊戲開發時程，不得上線後才補。</div>
+    </div>
+  </div>
+  <div class="dec done">
+    <div class="dec-n">D3 ✓</div>
+    <div>
+      <div class="dec-t">效果驗證方式 · 已定案</div>
+      <div class="dec-d">確認<strong>可接受</strong>：v1 全量發放、不留對照組，以上線前 30 天 baseline 做前後對比。<br>
+      因首波僅財神貓單款啟用，其他未啟用的遊戲可作為同期旁證參考（非嚴謹對照）。</div>
+    </div>
+  </div>
+  <div class="dec done">
+    <div class="dec-n">D4 ✓</div>
+    <div>
+      <div class="dec-t">線路開關的控管權 · 已定案</div>
+      <div class="dec-d">開關<strong>綁定線路、預設關閉</strong>，<strong>僅接受開單提需求才啟動</strong>，不提供後台自助開啟。認證市場線路永久保持關閉，杜絕誤操作造成合規事故。</div>
+    </div>
+  </div>
+
+</div>
+
+  <div class="blk" style="margin-top:-60px">
+    <div class="blk-num">09 · 上線前必須補齊</div>
+    <h2>三項<span>作業</span></h2>
+    <div class="cards c3">
+      <div class="card warn">
+        <div class="card-k">營運</div>
+        <div class="card-t">各幣別門檻對照表</div>
+        <div class="card-d">THB 50 為基準，PHP／VND 等值門檻須核定。<strong>沒有對照表，非泰銖線路無法判定用哪個池。</strong></div>
+      </div>
+      <div class="card warn">
+        <div class="card-k">機率組</div>
+        <div class="card-t">確認能篩出 200 套</div>
+        <div class="card-d">條件增為五項且分兩個 RTP 區間，合格段落大幅減少。資料量不足需加大快測重跑。</div>
+      </div>
+      <div class="card warn">
+        <div class="card-k">數據組</div>
+        <div class="card-t">推算驗證期長度</div>
+        <div class="card-d">財神貓是既有遊戲、日均新手數有限。<strong>若累積太慢，需評估加開第二款。</strong></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<div class="foot">
+  新手機率體驗腳本 · 決策簡報 V2.0 · CONFIDENTIAL 2026<br>
+  Force / Combo Gaming<br>
+  <span style="letter-spacing:.1em">完整規格請見《新手機率體驗腳本規格書 NES-SPEC V2.0》</span>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme-toggle');
+  function apply(t){root.setAttribute('data-theme',t);
+    if(btn)btn.setAttribute('aria-label',t==='light'?'切換為暗色主題':'切換為亮色主題');}
+  apply(root.getAttribute('data-theme')||'light');
+  if(btn)btn.addEventListener('click',function(){
+    var n=root.getAttribute('data-theme')==='light'?'dark':'light';apply(n);
+    try{localStorage.setItem('brief-theme',n);}catch(e){}});
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    var oc=function(e){var h;try{h=localStorage.getItem('brief-theme');}catch(err){h=null;}
+      if(h)return;apply(e.matches?'dark':'light');};
+    if(mq.addEventListener)mq.addEventListener('change',oc);else if(mq.addListener)mq.addListener(oc);}
+})();
+</script>
+</body>
+</html>
