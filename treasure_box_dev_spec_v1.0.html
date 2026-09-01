@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 開發交付版規格書 DEV V1.18</title>
+<title>抽寶箱 開發交付版規格書 DEV V1.19</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1242,7 +1242,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
 <!-- ═══════════ TOP NAV ═══════════ -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">CHEST DEV SPEC · V1.18</span>
+  <span class="nav-brand">CHEST DEV SPEC · V1.19</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#mechanic">玩法機制</a>
   <a class="nav-item" href="#prizes">獎勵設計</a>
@@ -1275,7 +1275,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">抽寶箱<br>開發交付版規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.18</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.19</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">SOURCE</span><span class="sidebar-meta-val">完整版 V5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
@@ -1458,7 +1458,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.18 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.19 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1467,7 +1467,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.18 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.19 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1503,6 +1503,12 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-09-01</td>
+          <td>DEV V1.19</td>
+          <td><a href="#ui" style="color:var(--gold-light);">§05</a>／<a href="#i18n" style="color:var(--gold-light);">§11</a>／<a href="#reward-data" style="color:var(--gold-light);">§14</a></td>
+          <td><strong>功能新增：寶箱彈窗內的獎勵歷程捷徑入口（Milu 拍板）</strong>。<br>①<strong style="color:var(--gold-light);">P3 寶箱彈窗右下角新增常駐圓形 history icon</strong>（44×44pt，四階段皆顯示、洗牌期間 disabled），點擊開啟獎勵歷程；②落點<strong>為 L2「活動」分類頁</strong>（與既有遊戲歷程入口同頁同層級，<strong>不做 deep link 直跳 L3</strong>，遊戲端不需另開帶參數進入點）；③<strong>以浮層疊在寶箱彈窗之上、不關閉寶箱</strong>——✕／← 關閉後回寶箱原狀（已翻格數與倒數保留、不重播攤牌洗牌），L3 ← 回 L2，疊層高於寶箱、低於 P4 大獎演出，浮層開啟期間 9 宮格互動全鎖；④<strong>遊戲中心面板（P2）併列一格「歷程」入口</strong>，惟 P2 於多 CRM 功能後才啟用，<strong>v1 不實作</strong>；⑤i18n 新增 2 key（<span class="mono">tb_history_btn</span>／<span class="mono">crm_item_history</span>，各 13 語系）；⑥美術資產新增 #18 歷程 icon（不隨主題換皮、4 套共用）；⑦前端事件新增 <strong>F5</strong>（記錄從寶箱 icon 開啟歷程時的已翻格數，判斷是否干擾主流程）。</td>
+        </tr>
         <tr>
           <td>2026-08-31</td>
           <td>DEV V1.18</td>
@@ -1663,7 +1669,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <details class="fold">
-    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.18<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
+    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.19<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
     <div class="fold-body">
       <table class="spec-table compact">
         <thead><tr><th style="width:190px;">完整版章節</th><th style="width:150px;">本文件章節</th><th>處理方式</th></tr></thead>
@@ -2563,6 +2569,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>② 洗牌階段</td><td class="dim">獎項牌集中至中央 → 漩渦洗牌（swirl）→ 分散回 9 格背面蓋牌；按鈕變為「洗牌中…」（disabled 態）</td><td class="dim">全程約 1.5 秒；<strong>流暢度為關鍵體驗</strong>（對應 Task 4.13）</td></tr>
       <tr><td>③ 遊玩階段·格子<strong>四態</strong></td><td class="dim">a. <strong>已翻開</strong>：正面框＋獎項 icon＋金額；b. <strong>可翻</strong>（有可翻次數時所有未開格皆是）：牌背發光＋「點我翻開」標籤；c. <strong>鎖定</strong>（可翻次數＝0）：降彩度＋鎖頭 🔒（不顯示金額）；d. <strong style="color:var(--gold-light);">翻牌中</strong>：<strong>牌背保留＋讀取光效</strong>（旋轉光圈或既有 shimmer），<strong style="color:var(--orange-bright);">期間全盤不可點</strong>。每格左上有 1–9 序號</td><td class="dim"><strong>點擊 → 即扣次數並進入翻牌中 → 派獎成功才播 3D 翻轉</strong>（flip）→ 小獎金額由格內飛出上浮 1 秒；最終獎觸發 P4。明確失敗則回復背面、次數退回；逾時則該格轉「派獎確認中」、盤面解鎖、次數不退（見 <a href="#behavior" style="color:var(--gold-light);">DEV §04 四</a>）<br><strong style="color:var(--orange-bright);">⚠ 原型 v2 未實作翻牌中狀態，本輪原型不改，前端依本節文字實作</strong></td></tr>
       <tr><td>③ 遊玩階段·footer</td><td class="dim">「已翻開 X / 9 · 可再翻 N 格」；進度提示「可翻任意 N 格！」（有次數）或「把所有格子翻開吧！」（暫無次數）；含「⏩ 示範：快速集滿」demo 連結（原型 demo 用，正式上線移除）</td><td class="dim">即時更新</td></tr>
+      <tr><td><strong>④ 歷程入口 icon</strong><span class="tag-upd">2026-09-01</span></td><td class="dim"><strong style="color:var(--gold-light);">彈窗右下角常駐的圓形 icon</strong>（深灰半透明圓底＋白色「時鐘倒轉」符號 ⟲），約 <strong>44×44pt</strong>，與 footer 文字同一列的右側、距彈窗右下內緣約 12pt。<strong>攤牌／洗牌／遊玩／9 格全開四個階段皆顯示</strong>（洗牌 1.5 秒期間一併 disabled 灰化）。點擊＝開啟<a href="#player-history" style="color:var(--gold-light);">獎勵歷程浮層</a>（L2 活動分類頁）</td><td class="dim">常駐、無動畫；點擊時 0.1s 縮放回饋。<strong>開啟歷程浮層期間 9 宮格互動全鎖</strong>（防誤點翻牌）</td></tr>
     </tbody>
   </table>
     </div>
@@ -2774,6 +2781,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>15</td><td>教學卡插圖 ×2＋spotlight 遮罩樣式</td><td class="dim">×1 組</td><td class="dim">P5</td></tr>
       <tr><td>16</td><td>多語系字體確認（CJK/泰文/緬甸文/孟加拉文/拉丁）</td><td class="dim">建議 Noto Sans 系列</td><td class="dim">⚠️ 基礎建設，見 DEV §11 多國語系</td></tr>
       <tr><td>17</td><td>今日全部抽完結算卡（🎊＋金額＋按鈕，<strong>無倒數</strong>）</td><td class="dim">×1 組</td><td class="dim">P7，彩帶沿用 #14；<strong>卡片版位（非全螢幕）</strong>，沿用教學卡尺寸基準</td></tr>
+      <tr><td>18</td><td><strong>歷程入口 icon</strong>（圓底＋⟲ 時鐘倒轉符號）</td><td class="dim">×1，含一般態＋disabled 灰化態</td><td class="dim">P3 右下角。<strong>不隨主題換皮</strong>（功能性 icon，4 套主題共用一顆，見下方增量表「共用」類）</td></tr>
     </tbody>
   </table>
   <div class="callout">
@@ -3075,7 +3083,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <table class="spec-table">
     <thead><tr><th style="width:170px;">項目</th><th>規格</th></tr></thead>
     <tbody>
-      <tr><td>入口位置</td><td class="dim">遊戲內「遊戲歷程」頁的<strong>頂部分類列</strong>，於既有 Slot／Arcade 等分類後新增「<strong>活動</strong>」分類卡。</td></tr>
+      <tr><td>入口位置<br><span class="dim" style="font-size:10px;">三處</span><span class="tag-upd">2026-09-01</span></td><td class="dim"><strong>①（既有）遊戲歷程頁頂部分類列</strong>：於既有 Slot／Arcade 等分類後新增「<strong>活動</strong>」分類卡。<br><strong style="color:var(--gold-light);">②（V1.19 新增）寶箱彈窗右下角 icon</strong>：玩家在寶箱裡就能直接查自己的獎勵，不必先關寶箱再翻遊戲歷程（元件規格見上方〈<a href="#ui" style="color:var(--gold-light);">P3 元件表 ④</a>〉）。<br><strong>③ 遊戲中心面板（P2）入口</strong>：面板內與抽寶箱並列一格「歷程」入口（文案 key＝<span class="mono">crm_item_history</span>）。<strong style="color:var(--orange-bright);">⚠ P2 於多 CRM 功能後才啟用，v1 不實作、不需美術產出</strong>——v1 實際只做 ①②。</td></tr>
+      <tr><td><strong>捷徑落點</strong><span class="tag-upd">2026-09-01</span></td><td class="dim">由入口 ② 進入時，<strong style="color:var(--gold-light);">落在 L2「活動」分類頁</strong>（頂部分類已選中「活動」、下方顯示抽寶箱方形卡），玩家<strong>再點抽寶箱卡片才進 L3 獎勵歷程</strong>。<strong>不做 deep link 直接跳 L3</strong>——與入口 ① 走完全相同的頁面與層級，遊戲端不需為 CRM 另開帶參數的進入點。</td></tr>
+      <tr><td><strong>疊層與返回</strong><span class="tag-upd">2026-09-01</span></td><td class="dim"><strong>歷程頁以浮層疊在寶箱彈窗之上</strong>，<strong style="color:var(--red-bright);">不關閉寶箱彈窗</strong>。<br>· 浮層 <strong>✕</strong> 或 L2 的返回鍵 <strong>←</strong> → 關閉浮層，<strong>回到寶箱彈窗原狀</strong>：已翻格數、獎項顯示、重置倒數、進度條全部保留，<strong>不重播攤牌／洗牌動畫</strong>。<br>· L3 的返回鍵 <strong>←</strong> → 回 L2（不直接關閉浮層）。<br>· 疊層順序：<strong>歷程浮層高於寶箱彈窗、低於 P4 最終大獎演出</strong>；大獎演出或免費遊戲宣告期間，歷程 icon 與浮層一併隱藏（對齊〈入口 icon 的關閉規則〉）。</td></tr>
+      <tr><td><strong>資料範圍</strong><span class="tag-upd">2026-09-01</span></td><td class="dim">由入口 ② 進入時<strong>顯示內容與入口 ① 完全一致</strong>——玩家在<strong>所有 CRM 活動</strong>的獎勵歷程（不因為從寶箱進來就只篩該檔活動）。欄位、排序、互動限制、空狀態皆同下列各條。</td></tr>
       <tr><td>分類卡呈現</td><td class="dim"><strong>純入口</strong>——<strong>不顯示 TOTAL BETS、不顯示 Net Win/Lose</strong>，也不顯示任何金額彙總。版位與其他分類卡一致，僅內容留白。</td></tr>
       <tr><td>第二層（玩法層）</td><td class="dim">點入「活動」後，下方以<strong>方形卡</strong>顯示可查的玩法，v1 僅「<strong>抽寶箱</strong>」一張。<strong>卡片亦為純入口、無統計數字</strong>。未來新增其他 CRM 玩法時，<strong>以同規格卡片並列</strong>，版面不需改版。</td></tr>
       <tr><td>第三層（歷程層）</td><td class="dim">點「抽寶箱」→ 列出<strong>該玩家在抽寶箱的全部獎勵歷程</strong>。</td></tr>
@@ -4677,6 +4688,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>F2</td><td>玩家<strong>點擊尚不可翻的格子</strong></td><td class="dim">玩家有沒有想翻但翻不了？此時離下一個門檻還差多少——判斷提示文案是否足夠清楚。</td></tr>
       <tr><td>F3</td><td>玩家<strong>關閉面板</strong>（並記錄關閉時已解鎖但未翻開的次數）</td><td class="dim">有沒有「機會擺著不翻就離開」的行為？若有，代表引導或誘因不足。</td></tr>
       <tr><td>F4</td><td>玩家於<strong>遊戲歷程「活動」入口</strong>查看抽寶箱獎勵歷程</td><td class="dim">新增的歷程入口有沒有被用到、被用多少？（對應 <a href="#player-history" style="color:var(--gold-light);">DEV §05</a>）</td></tr>
+      <tr><td>F5</td><td>玩家<strong>從寶箱彈窗右下 icon 開啟獎勵歷程</strong>（記錄開啟時已翻格數）</td><td class="dim">寶箱內的歷程捷徑有沒有被用？玩家是在<strong>翻完前</strong>還是<strong>翻完後</strong>去查歷程——判斷這顆 icon 是否干擾主流程（若大量在未翻完時點開，代表獎勵資訊在寶箱內揭露不足）。</td></tr>
     </tbody>
   </table>
 
@@ -4855,7 +4867,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 <tr><td class="mono">fab_bubble_cta</td><td class="dim" style="font-size:11px;">浮動icon·氣泡</td><td class="dim" style="min-width:130px;">快來抽獎囉！</td><td class="dim" style="min-width:130px;">Come open your chest!</td><td class="dim" style="min-width:130px;">快来抽奖啦！</td><td class="dim" style="min-width:130px;">宝箱を開けよう！</td><td class="dim" style="min-width:130px;">보물상자를 열어보세요!</td><td class="dim" style="min-width:130px;">มาเปิดกล่องสมบัติกันเถอะ!</td><td class="dim" style="min-width:130px;">Mở rương ngay nào!</td><td class="dim" style="min-width:130px;">Ayo buka peti hadiah!</td><td class="dim" style="min-width:130px;">ရတနာသေတ္တာကို ဖွင့်လိုက်ပါ!</td><td class="dim" style="min-width:130px;">এসো পুরস্কার খুলে নাও!</td><td class="dim" style="min-width:130px;">Venha abrir seu baú!</td><td class="dim" style="min-width:130px;">¡Ven a abrir tu cofre!</td><td class="dim" style="min-width:130px;">Hadi sandığını aç!</td></tr>
 <tr><td class="mono">fab_drag_hint</td><td class="dim" style="font-size:11px;">浮動icon·拖曳提示</td><td class="dim" style="min-width:130px;">拖曳到任意位置</td><td class="dim" style="min-width:130px;">Drag anywhere</td><td class="dim" style="min-width:130px;">拖拽到任意位置</td><td class="dim" style="min-width:130px;">好きな位置にドラッグ</td><td class="dim" style="min-width:130px;">원하는 위치로 드래그</td><td class="dim" style="min-width:130px;">ลากไปวางได้ทุกตำแหน่ง</td><td class="dim" style="min-width:130px;">Kéo đến vị trí bất kỳ</td><td class="dim" style="min-width:130px;">Seret ke posisi mana saja</td><td class="dim" style="min-width:130px;">နှစ်သက်ရာနေရာသို့ ဆွဲယူပါ</td><td class="dim" style="min-width:130px;">যেকোনো জায়গায় টেনে আনুন</td><td class="dim" style="min-width:130px;">Arraste para qualquer lugar</td><td class="dim" style="min-width:130px;">Arrastra a cualquier lugar</td><td class="dim" style="min-width:130px;">İstediğin yere sürükle</td></tr>
 </tbody></table></div>
-  <div class="sub-title">文案翻譯總表 · 遊戲中心面板（P2）｜9 條</div>
+  <div class="sub-title">文案翻譯總表 · 遊戲中心面板（P2）｜10 條<span class="tag-upd">2026-09-01</span></div>
 <div class="compare-wrap"><table class="spec-table" style="min-width:1900px;"><thead><tr><th style="min-width:150px;">KEY</th><th style="min-width:110px;">使用位置</th><th>zh-Hant</th><th>en</th><th>zh-Hans</th><th>ja-JP</th><th>ko-KR</th><th>th</th><th>vi</th><th>id</th><th>my-MM</th><th>bn</th><th>pt</th><th>es-ES</th><th>tr-TR</th></tr></thead><tbody>
 <tr><td class="mono">crm_panel_title</td><td class="dim" style="font-size:11px;">遊戲中心·標題</td><td class="dim" style="min-width:130px;">遊戲中心</td><td class="dim" style="min-width:130px;">Game Center</td><td class="dim" style="min-width:130px;">游戏中心</td><td class="dim" style="min-width:130px;">ゲームセンター</td><td class="dim" style="min-width:130px;">게임 센터</td><td class="dim" style="min-width:130px;">ศูนย์เกม</td><td class="dim" style="min-width:130px;">Trung tâm trò chơi</td><td class="dim" style="min-width:130px;">Pusat Game</td><td class="dim" style="min-width:130px;">ဂိမ်းစင်တာ</td><td class="dim" style="min-width:130px;">গেম সেন্টার</td><td class="dim" style="min-width:130px;">Central de Jogos</td><td class="dim" style="min-width:130px;">Centro de juegos</td><td class="dim" style="min-width:130px;">Oyun Merkezi</td></tr>
 <tr><td class="mono">crm_item_chest</td><td class="dim" style="font-size:11px;">遊戲中心·入口名稱</td><td class="dim" style="min-width:130px;">抽寶箱</td><td class="dim" style="min-width:130px;">Lucky Chest</td><td class="dim" style="min-width:130px;">抽宝箱</td><td class="dim" style="min-width:130px;">ラッキーチェスト</td><td class="dim" style="min-width:130px;">보물상자 뽑기</td><td class="dim" style="min-width:130px;">เปิดกล่องสมบัติ</td><td class="dim" style="min-width:130px;">Rương may mắn</td><td class="dim" style="min-width:130px;">Peti Keberuntungan</td><td class="dim" style="min-width:130px;">ကံစမ်းရတနာသေတ္တာ</td><td class="dim" style="min-width:130px;">লাকি চেস্ট</td><td class="dim" style="min-width:130px;">Baú da Sorte</td><td class="dim" style="min-width:130px;">Cofre de la suerte</td><td class="dim" style="min-width:130px;">Şans Sandığı</td></tr>
@@ -4865,9 +4877,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 <tr><td class="mono">crm_item_ranking</td><td class="dim" style="font-size:11px;">遊戲中心·入口名稱</td><td class="dim" style="min-width:130px;">排行</td><td class="dim" style="min-width:130px;">Rankings</td><td class="dim" style="min-width:130px;">排行</td><td class="dim" style="min-width:130px;">ランキング</td><td class="dim" style="min-width:130px;">랭킹</td><td class="dim" style="min-width:130px;">อันดับ</td><td class="dim" style="min-width:130px;">Bảng xếp hạng</td><td class="dim" style="min-width:130px;">Peringkat</td><td class="dim" style="min-width:130px;">အဆင့်သတ်မှတ်ချက်</td><td class="dim" style="min-width:130px;">র্যাঙ্কিং</td><td class="dim" style="min-width:130px;">Classificação</td><td class="dim" style="min-width:130px;">Clasificación</td><td class="dim" style="min-width:130px;">Sıralama</td></tr>
 <tr><td class="mono">crm_item_recommend</td><td class="dim" style="font-size:11px;">遊戲中心·入口名稱</td><td class="dim" style="min-width:130px;">推薦</td><td class="dim" style="min-width:130px;">Recommended</td><td class="dim" style="min-width:130px;">推荐</td><td class="dim" style="min-width:130px;">おすすめ</td><td class="dim" style="min-width:130px;">추천</td><td class="dim" style="min-width:130px;">แนะนำ</td><td class="dim" style="min-width:130px;">Đề xuất</td><td class="dim" style="min-width:130px;">Rekomendasi</td><td class="dim" style="min-width:130px;">အကြံပြုထားသည်</td><td class="dim" style="min-width:130px;">প্রস্তাবিত</td><td class="dim" style="min-width:130px;">Recomendados</td><td class="dim" style="min-width:130px;">Recomendados</td><td class="dim" style="min-width:130px;">Önerilenler</td></tr>
 <tr><td class="mono">crm_item_favorite</td><td class="dim" style="font-size:11px;">遊戲中心·入口名稱</td><td class="dim" style="min-width:130px;">收藏</td><td class="dim" style="min-width:130px;">Favorites</td><td class="dim" style="min-width:130px;">收藏</td><td class="dim" style="min-width:130px;">お気に入り</td><td class="dim" style="min-width:130px;">즐겨찾기</td><td class="dim" style="min-width:130px;">รายการโปรด</td><td class="dim" style="min-width:130px;">Yêu thích</td><td class="dim" style="min-width:130px;">Favorit</td><td class="dim" style="min-width:130px;">အကြိုက်ဆုံးများ</td><td class="dim" style="min-width:130px;">পছন্দসমূহ</td><td class="dim" style="min-width:130px;">Favoritos</td><td class="dim" style="min-width:130px;">Favoritos</td><td class="dim" style="min-width:130px;">Favoriler</td></tr>
+<tr><td class="mono">crm_item_history</td><td class="dim" style="font-size:11px;">遊戲中心·入口名稱（新增）</td><td class="dim" style="min-width:130px;">歷程</td><td class="dim" style="min-width:130px;">History</td><td class="dim" style="min-width:130px;">历程</td><td class="dim" style="min-width:130px;">履歴</td><td class="dim" style="min-width:130px;">내역</td><td class="dim" style="min-width:130px;">ประวัติ</td><td class="dim" style="min-width:130px;">Lịch sử</td><td class="dim" style="min-width:130px;">Riwayat</td><td class="dim" style="min-width:130px;">မှတ်တမ်း</td><td class="dim" style="min-width:130px;">ইতিহাস</td><td class="dim" style="min-width:130px;">Histórico</td><td class="dim" style="min-width:130px;">Historial</td><td class="dim" style="min-width:130px;">Geçmiş</td></tr>
 <tr><td class="mono">crm_coming_soon</td><td class="dim" style="font-size:11px;">遊戲中心·未開放標記</td><td class="dim" style="min-width:130px;">敬請期待</td><td class="dim" style="min-width:130px;">COMING SOON</td><td class="dim" style="min-width:130px;">敬请期待</td><td class="dim" style="min-width:130px;">近日公開</td><td class="dim" style="min-width:130px;">곧 공개</td><td class="dim" style="min-width:130px;">เร็วๆ นี้</td><td class="dim" style="min-width:130px;">Sắp ra mắt</td><td class="dim" style="min-width:130px;">Segera Hadir</td><td class="dim" style="min-width:130px;">မကြာမီလာမည်</td><td class="dim" style="min-width:130px;">শীঘ্রই আসছে</td><td class="dim" style="min-width:130px;">Em breve</td><td class="dim" style="min-width:130px;">Próximamente</td><td class="dim" style="min-width:130px;">Çok yakında</td></tr>
 </tbody></table></div>
-  <div class="sub-title">文案翻譯總表 · 寶箱主彈窗與最終獎（P3／P4）｜16 條</div>
+  <div class="sub-title">文案翻譯總表 · 寶箱主彈窗與最終獎（P3／P4）｜17 條<span class="tag-upd">2026-09-01</span></div>
 <div class="compare-wrap"><table class="spec-table" style="min-width:1900px;"><thead><tr><th style="min-width:150px;">KEY</th><th style="min-width:110px;">使用位置</th><th>zh-Hant</th><th>en</th><th>zh-Hans</th><th>ja-JP</th><th>ko-KR</th><th>th</th><th>vi</th><th>id</th><th>my-MM</th><th>bn</th><th>pt</th><th>es-ES</th><th>tr-TR</th></tr></thead><tbody>
 <tr><td class="mono">tb_title</td><td class="dim" style="font-size:11px;">彈窗·主標題</td><td class="dim" style="min-width:130px;">每日抽寶箱</td><td class="dim" style="min-width:130px;">Daily Lucky Chest</td><td class="dim" style="min-width:130px;">每日抽宝箱</td><td class="dim" style="min-width:130px;">デイリー宝箱</td><td class="dim" style="min-width:130px;">매일 보물상자</td><td class="dim" style="min-width:130px;">เปิดกล่องสมบัติรายวัน</td><td class="dim" style="min-width:130px;">Rương may mắn mỗi ngày</td><td class="dim" style="min-width:130px;">Peti Keberuntungan Harian</td><td class="dim" style="min-width:130px;">နေ့စဉ်ကံစမ်းရတနာသေတ္တာ</td><td class="dim" style="min-width:130px;">দৈনিক লাকি চেস্ট</td><td class="dim" style="min-width:130px;">Baú da Sorte Diário</td><td class="dim" style="min-width:130px;">Cofre diario de la suerte</td><td class="dim" style="min-width:130px;">Günlük Şans Sandığı</td></tr>
 <tr><td class="mono">tb_title_sub</td><td class="dim" style="font-size:11px;">彈窗·英文副標 ※</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">每日幸运宝箱</td><td class="dim" style="min-width:130px;">デイリーラッキーチェスト</td><td class="dim" style="min-width:130px;">데일리 럭키 체스트</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">দৈনিক লাকি চেস্ট</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td><td class="dim" style="min-width:130px;">DAILY LUCKY CHEST</td></tr>
@@ -4883,6 +4896,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 <tr><td class="mono">tb_tap_open</td><td class="dim" style="font-size:11px;">格子·可翻標籤</td><td class="dim" style="min-width:130px;">點我翻開</td><td class="dim" style="min-width:130px;">Tap to flip</td><td class="dim" style="min-width:130px;">点我翻开</td><td class="dim" style="min-width:130px;">タップしてめくる</td><td class="dim" style="min-width:130px;">눌러서 뒤집기</td><td class="dim" style="min-width:130px;">แตะเพื่อเปิด</td><td class="dim" style="min-width:130px;">Chạm để lật</td><td class="dim" style="min-width:130px;">Ketuk untuk membuka</td><td class="dim" style="min-width:130px;">လှန်ရန် နှိပ်ပါ</td><td class="dim" style="min-width:130px;">উল্টাতে ট্যাপ করুন</td><td class="dim" style="min-width:130px;">Toque para virar</td><td class="dim" style="min-width:130px;">Toca para voltear</td><td class="dim" style="min-width:130px;">Çevirmek için dokun</td></tr>
 <tr><td class="mono">tb_opened_count</td><td class="dim" style="font-size:11px;">footer·已翻計數</td><td class="dim" style="min-width:130px;">已翻開 {n} / 9</td><td class="dim" style="min-width:130px;">Opened {n} / 9</td><td class="dim" style="min-width:130px;">已翻开 {n} / 9</td><td class="dim" style="min-width:130px;">{n} / 9 開封済み</td><td class="dim" style="min-width:130px;">{n} / 9 열림</td><td class="dim" style="min-width:130px;">เปิดแล้ว {n} / 9</td><td class="dim" style="min-width:130px;">Đã mở {n} / 9</td><td class="dim" style="min-width:130px;">Terbuka {n} / 9</td><td class="dim" style="min-width:130px;">ဖွင့်ပြီး {n} / 9</td><td class="dim" style="min-width:130px;">খোলা হয়েছে {n} / 9</td><td class="dim" style="min-width:130px;">Abertas {n} / 9</td><td class="dim" style="min-width:130px;">Abiertas {n} / 9</td><td class="dim" style="min-width:130px;">Açılan {n} / 9</td></tr>
 <tr><td class="mono">tb_cells_available</td><td class="dim" style="font-size:11px;">footer·可翻計數（改字）</td><td class="dim" style="min-width:130px;">可再翻 {n} 格</td><td class="dim" style="min-width:130px;">{n} flips left</td><td class="dim" style="min-width:130px;">可再翻 {n} 格</td><td class="dim" style="min-width:130px;">あと {n} 回めくれる</td><td class="dim" style="min-width:130px;">{n}번 더 뒤집기 가능</td><td class="dim" style="min-width:130px;">เปิดได้อีก {n} ช่อง</td><td class="dim" style="min-width:130px;">Còn {n} lượt lật</td><td class="dim" style="min-width:130px;">Sisa {n} buka</td><td class="dim" style="min-width:130px;">နောက်ထပ် {n} ကွက် ဖွင့်နိုင်</td><td class="dim" style="min-width:130px;">আরও {n} বার খোলা যাবে</td><td class="dim" style="min-width:130px;">Restam {n} viradas</td><td class="dim" style="min-width:130px;">Quedan {n} volteos</td><td class="dim" style="min-width:130px;">Kalan {n} açma hakkı</td></tr>
+<tr><td class="mono">tb_history_btn</td><td class="dim" style="font-size:11px;">彈窗·歷程入口（新增）</td><td class="dim" style="min-width:130px;">獎勵歷程</td><td class="dim" style="min-width:130px;">Reward history</td><td class="dim" style="min-width:130px;">奖励历程</td><td class="dim" style="min-width:130px;">獲得履歴</td><td class="dim" style="min-width:130px;">보상 내역</td><td class="dim" style="min-width:130px;">ประวัติรางวัล</td><td class="dim" style="min-width:130px;">Lịch sử thưởng</td><td class="dim" style="min-width:130px;">Riwayat hadiah</td><td class="dim" style="min-width:130px;">ဆုရရှိမှတ်တမ်း</td><td class="dim" style="min-width:130px;">পুরস্কারের ইতিহাস</td><td class="dim" style="min-width:130px;">Histórico de prêmios</td><td class="dim" style="min-width:130px;">Historial de premios</td><td class="dim" style="min-width:130px;">Ödül geçmişi</td></tr>
 <tr><td class="mono">tb_final_congrats</td><td class="dim" style="font-size:11px;">最終獎·恭喜標題</td><td class="dim" style="min-width:130px;">恭喜獲得最終大獎！</td><td class="dim" style="min-width:130px;">Congratulations! You won the grand prize!</td><td class="dim" style="min-width:130px;">恭喜获得最终大奖！</td><td class="dim" style="min-width:130px;">おめでとう！最終大賞を獲得！</td><td class="dim" style="min-width:130px;">축하합니다! 최종 대상을 획득했습니다!</td><td class="dim" style="min-width:130px;">ยินดีด้วย! คุณได้รับรางวัลใหญ่สุดท้าย!</td><td class="dim" style="min-width:130px;">Chúc mừng! Bạn đã trúng giải thưởng lớn cuối cùng!</td><td class="dim" style="min-width:130px;">Selamat! Anda memenangkan hadiah utama!</td><td class="dim" style="min-width:130px;">ဂုဏ်ယူပါသည်! နောက်ဆုံးဆုကြီး ရရှိပါပြီ!</td><td class="dim" style="min-width:130px;">অভিনন্দন! আপনি চূড়ান্ত বড় পুরস্কার জিতেছেন!</td><td class="dim" style="min-width:130px;">Parabéns! Você ganhou o grande prêmio!</td><td class="dim" style="min-width:130px;">¡Felicidades! ¡Ganaste el gran premio!</td><td class="dim" style="min-width:130px;">Tebrikler! Büyük ödülü kazandın!</td></tr>
 <tr><td class="mono">tb_final_claim</td><td class="dim" style="font-size:11px;">最終獎·收下按鈕</td><td class="dim" style="min-width:130px;">太棒了！收下</td><td class="dim" style="min-width:130px;">Awesome! Claim it</td><td class="dim" style="min-width:130px;">太棒了！收下</td><td class="dim" style="min-width:130px;">やったね！受け取る</td><td class="dim" style="min-width:130px;">좋아요! 받기</td><td class="dim" style="min-width:130px;">เยี่ยมเลย! รับรางวัล</td><td class="dim" style="min-width:130px;">Tuyệt vời! Nhận ngay</td><td class="dim" style="min-width:130px;">Keren! Ambil</td><td class="dim" style="min-width:130px;">အရမ်းကောင်းပါတယ်! လက်ခံမည်</td><td class="dim" style="min-width:130px;">দারুণ! গ্রহণ করুন</td><td class="dim" style="min-width:130px;">Incrível! Resgatar</td><td class="dim" style="min-width:130px;">¡Genial! Reclamar</td><td class="dim" style="min-width:130px;">Harika! Al</td></tr>
 </tbody></table></div>
@@ -5619,7 +5633,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.18 · CONFIDENTIAL 2026<br>
+  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.19 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 受眾：後端／前端／美術／QA · 完整版（含 KPI／成本／時程）另見 <a href="treasure_box_crm_spec_v5.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">treasure_box_crm_spec_v5.0.html</a>（內容版號 V5.3）<br>
   <strong>兩份文件如有衝突，以本文件為準。</strong>
 </div>
