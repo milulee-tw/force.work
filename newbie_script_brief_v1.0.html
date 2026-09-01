@@ -233,7 +233,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   <div class="blk-num">02 · 解法</div>
   <h2>兩個腳本池，<span>依下注額分流</span></h2>
   <div class="blk-lead">
-    由機率組從遊戲快測結果中，切出一段一段<strong>連續的 300 局</strong>，
+    從 <strong>server 跑出的遊戲快測結果</strong>中，切出一段一段<strong>連續的 300 局</strong>，
     每一段都必須通過<strong>五項體感檢驗</strong>，合格的才收進腳本池。腳本池分兩種——
     <em>低額池</em>（bet &lt; THB 50）與<em>高額池</em>（bet ≥ THB 50），各 100 套。
     玩家每一局依當下下注額取對應池的結果，<strong>兩池合計跑滿 600 局</strong>後結束。
@@ -284,7 +284,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <strong>為什麼是「各池各自跑滿 300 局」而不是混著跑</strong><br>
     五項條件是針對「<em>一整套連續 300 局</em>」驗證的。如果讓兩池共用同一個進度、逐局換池，
     會出現這種狀況：玩家在低額池的 Free Game 出現前就改壓大注，而高額池那套的 Free Game 早就跑過了——
-    <strong>最後 600 局一次 Free Game 都沒吃到</strong>，體感設計完全失效。<br>
+    <strong>整整 600 局可能一次 Free Game 都沒吃到</strong>，體感設計完全失效。<br>
     改成各池獨立累積後，<strong>每一套腳本都會被完整跑完</strong>。全程小額的玩家，就把同一套跑兩遍。
   </div>
 
@@ -324,7 +324,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card hi">
       <div class="card-k">條件 3 · Free Game</div>
       <div class="card-v">≥ 1 次</div>
-      <div class="card-d">新手一定要看過一次核心玩法，否則等於沒體驗過這款遊戲。</div>
+      <div class="card-d">每 300 局至少一次，<strong>600 局的新手體驗因此保證至少兩次</strong>。沒看過核心玩法等於沒體驗過這款遊戲。</div>
     </div>
     <div class="card hi">
       <div class="card-k">條件 4 · Big Win</div>
@@ -334,14 +334,14 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card hi">
       <div class="card-k">條件 5 · 最大獎</div>
       <div class="card-v">&lt; 500x</div>
-      <div class="card-d">不讓新手期就吃到超大獎——成本不可控，之後落差也傷留存。</div>
+      <div class="card-d">不讓新手期就吃到超大獎——成本不可控，吃完之後落差過大反而讓人不想再玩。</div>
     </div>
   </div>
 
   <div class="note warn">
     <strong>條件變嚴，篩選難度顯著提高</strong>：一段 300 局要同時滿足「RTP 落在窄區間、中獎率超過四成、
     至少一次 Free Game、至少三次 Big Win、且沒有任何一筆到 500 倍」——合格的段落會少很多。
-    機率組需確認現有快測資料量是否足以篩出 <strong>200 套</strong>（兩池各 100 套）。
+    需確認 <strong>server 快測</strong>的資料量是否足以篩出 <strong>200 套</strong>（兩池各 100 套）。
   </div>
 </div>
 
@@ -501,7 +501,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <tr><td class="dim">適用遊戲</td><td><strong>Lucky Paws 財神貓</strong>單款驗證</td><td>推廣至各遊戲；新遊戲一律標配</td></tr>
       <tr><td class="dim">腳本池</td><td><strong>雙池 200 套</strong>（低額 100＋高額 100）</td><td>依分析結果汰換表現差的腳本</td></tr>
       <tr><td class="dim">下注額判定</td><td><span class="tag g">逐局判定 · THB 50 為界</span></td><td>門檻依實際數據調整，可能細分三段</td></tr>
-      <tr><td class="dim">體驗長度</td><td><strong>兩池合計 600 局</strong></td><td>依留存數據調整；第二輪改發下一套</td></tr>
+      <tr><td class="dim">體驗長度</td><td><strong>兩池合計 600 局</strong></td><td>依手數數據調整；第二輪改發下一套</td></tr>
       <tr><td class="dim">套利空間</td><td><span class="tag g">結構性消除</span></td><td>依監控結果微調門檻</td></tr>
       <tr><td class="dim">buy bonus</td><td><span class="tag b">走原生隨機 · 不消耗進度</span></td><td>同左，不變</td></tr>
       <tr><td class="dim">效果驗證</td><td>上線前 30 天 baseline 前後對比</td><td>可設對照組做同期比較</td></tr>
@@ -512,34 +512,126 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 
 <!-- ══ 07 產出 ══ -->
 <div class="blk">
-  <div class="blk-num">07 · 我們會拿到什麼</div>
-  <h2>比機制本身更有價值的是<span>那份資料</span></h2>
+  <div class="blk-num">07 · 這次要看的數字</div>
+  <h2>成效看<span>手數</span>，不看留存</h2>
   <div class="blk-lead">
-    每位玩家用了哪一套腳本、跑到第幾局、有沒有留下來——全部記錄。
-    三個月後我們能回答三個問題，而這三個答案適用於<strong>之後所有的遊戲</strong>。
+    這次的成效目標是<strong>提升新手的人均累計手數</strong>——讓玩家在這款遊戲多轉幾局。
+    <em>不是</em>提升留存。
+  </div>
+
+  <div class="note warn">
+    <strong>為什麼不拿留存來判定</strong><br>
+    ①「遊玩手數」與「留存」之間的關聯性<strong>目前尚未被驗證</strong>；<br>
+    ② 留存是整個新手漏斗（拉新來源、儲值流程、活動、市場波動、其他遊戲競爭）共同作用的<strong>結果</strong>，
+    不是這套腳本單獨能決定的。<br>
+    用留存判定本案成效，等於<strong>拿一個我們控制不了的指標來打分數</strong>。
+    D1／D3 留存仍然記錄、仍然凍 baseline（成本為零），但降為觀察項。
+  </div>
+
+  <div class="cards">
+    <div class="card hi">
+      <div class="card-k">主指標</div>
+      <div class="card-t">人均累計手數</div>
+      <div class="card-d">新手在該遊戲的總手數 ÷ 新手人數。<strong>平均值與中位數並列</strong>。</div>
+    </div>
+    <div class="card">
+      <div class="card-k">次指標</div>
+      <div class="card-t">600 局完成率</div>
+      <div class="card-d">有多少 % 的新手把腳本跑完。分母分子都在我們自己的資料裡，抗干擾最強。</div>
+    </div>
+    <div class="card">
+      <div class="card-k">次指標</div>
+      <div class="card-t">首日手數</div>
+      <div class="card-d">反映即時體驗，但受玩家當天有多少時間影響，波動較大。</div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div class="card-k">觀察項</div>
+      <div class="card-t">D1／D3 留存</div>
+      <div class="card-d">只記錄、<strong>不作為成效判定依據</strong>。留待日後驗證「手數 → 留存」的關聯性。</div>
+    </div>
+  </div>
+
+  <div class="note info">
+    <strong>務必同時看中位數</strong>：平均值容易被少數重度玩家拉高。
+    如果平均數字漂亮但中位數沒動，代表這套機制<strong>只對本來就會玩很多的人有效</strong>——
+    而那群人本來就不是我們要救的對象。
+  </div>
+
+  <div class="blk-num" style="margin-top:60px">07-B · 本案獨有的分析價值</div>
+  <h2>留存給你一個總分，<span>流失曲線告訴你哪裡要改</span></h2>
+  <div class="blk-lead">
+    因為腳本長度固定 600 局、而且每一局都有紀錄，我們可以畫出
+    <strong>新手在 600 局中的流失分佈</strong>——這是留存指標做不到的事。
+  </div>
+
+  <div class="fig">
+    <div class="fig-cap">Figure 5 · 流失點位分析（示意）</div>
+    <svg viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="新手在600局中的存活曲線，兩次Free Game分別在第180與第480局，流失高峰出現在第一次Free Game之前">
+      <g stroke="var(--grid-line)" stroke-width="1">
+        <line x1="60" y1="40" x2="820" y2="40"/><line x1="60" y1="90" x2="820" y2="90"/>
+        <line x1="60" y1="140" x2="820" y2="140"/><line x1="60" y1="190" x2="820" y2="190"/>
+        <line x1="60" y1="240" x2="820" y2="240"/>
+      </g>
+      <text x="0" y="44" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">100%</text>
+      <text x="14" y="244" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">0%</text>
+      <text x="0" y="24" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">還在玩的人</text>
+      <!-- 流失高峰（第一次 FG 之前） -->
+      <rect x="130" y="34" width="90" height="210" fill="var(--red-fill)"/>
+      <!-- 輪次分界 -->
+      <line x1="440" y1="34" x2="440" y2="252" stroke="var(--border-bright)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="446" y="248" font-family="DM Mono, monospace" font-size="9" fill="var(--text-dim)">第 300 局 · 第二輪開始（同一套重播）</text>
+      <!-- 存活曲線 -->
+      <polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"
+        points="60,40 100,50 130,58 165,96 200,128 220,140 260,150 320,160 380,166 440,170 500,176 560,180 620,184 690,188 760,191 820,194"/>
+      <!-- 第一次 FG -->
+      <line x1="288" y1="34" x2="288" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="288" cy="155" r="5" fill="var(--green)"/>
+      <text x="296" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)">第 1 次 Free Game</text>
+      <text x="296" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">腳本第 180 局</text>
+      <!-- 第二次 FG -->
+      <line x1="668" y1="34" x2="668" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4" opacity=".55"/>
+      <circle cx="668" cy="187" r="5" fill="var(--green)" opacity=".55"/>
+      <text x="676" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)" opacity=".8">第 2 次</text>
+      <text x="676" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 480 局</text>
+      <!-- 標籤 -->
+      <text x="175" y="272" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--red-bright)" text-anchor="middle">流失高峰</text>
+      <text x="175" y="290" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)" text-anchor="middle">約第 60~130 局</text>
+      <text x="60" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 1 局</text>
+      <text x="770" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 600 局</text>
+    </svg>
+    <div class="fig-note">
+      <strong>腳本每 300 局保證至少一次 Free Game，所以 600 局內必定出現至少兩次</strong>——
+      第二次是同一套腳本重播時再出現一次（跨區間的玩家則是另一套腳本的那一次）。<br>
+      這張圖如果長成這樣，結論非常明確：<strong>流失高峰落在第一次 Free Game 之前</strong>，
+      代表這套腳本的 FG 放太後面，大部分人還沒看到就走了。<strong>把 FG 往前挪到第 100 局之前</strong>，
+      就是下一版腳本的具體修改方向。<br>
+      <strong>注意分析尺度</strong>：定位「FG 該放第幾局」時，要把兩輪的資料
+      <em>摺疊回「腳本內第 1~300 局」的尺度</em>來看，而不是攤平在 600 局上——因為腳本的設計單位是 300 局。
+    </div>
   </div>
 
   <div class="cards c3">
     <div class="card">
       <div class="card-ico">①</div>
       <div class="card-t">整體有沒有用</div>
-      <div class="card-d">新手 D1／D3 留存 vs 上線前 30 天 baseline。</div>
+      <div class="card-d">新手人均手數（平均＋中位數）vs 上線前 30 天 baseline。</div>
     </div>
     <div class="card">
       <div class="card-ico">②</div>
       <div class="card-t">哪一套最好</div>
-      <div class="card-d">各池 100 套 × 留存交叉比較；因輪流發、樣本數相近可直接橫向比（兩池分開統計）。</div>
+      <div class="card-d">各池 100 套 × 人均手數與完成率交叉比較；輪流發讓樣本數相近，可直接橫向比。</div>
     </div>
     <div class="card">
       <div class="card-ico">③</div>
       <div class="card-t">好在哪個特徵</div>
-      <div class="card-d">Free Game 出現在第幾局？Big Win 分佈在哪裡？中獎頻率多少？找出真正驅動留存的變數。</div>
+      <div class="card-d">Free Game 落在第幾局？Big Win 分佈在哪裡？中獎頻率多少？找出真正驅動手數的變數。</div>
     </div>
   </div>
 
   <div class="note ok">
-    <strong>第 ③ 題才是長期資產</strong>：一旦知道「Free Game 應該在第幾局出現最留得住人」，
-    這個結論可以直接寫進<strong>未來每一款新遊戲的數學設計準則</strong>，效益遠超過本次的留存提升。
+    <strong>第 ③ 題才是長期資產</strong>：一旦知道「Free Game 應該落在第幾局才留得住人」，
+    這個結論可以直接寫進<strong>未來每一款新遊戲的數學設計準則</strong>，
+    效益遠超過本次單一遊戲的手數提升。
   </div>
 </div>
 
@@ -562,7 +654,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div>
       <div class="dec-t">首波上線範圍 · 已定案</div>
       <div class="dec-d">以 <strong>Lucky Paws 財神貓</strong>單款先行驗證；後續<strong>所有新遊戲一律規劃新手腳本</strong>。<br>
-      連帶影響：本機制自此成為<strong>新遊戲開發 SOP 的固定環節</strong>——機率組的快測與 100 套腳本產出升格為標準交付項，須排進新遊戲開發時程，不得上線後才補。</div>
+      連帶影響：本機制自此成為<strong>新遊戲開發 SOP 的固定環節</strong>——<strong>server 快測與 200 套腳本產出</strong>升格為標準交付項，須排進新遊戲開發時程，不得上線後才補。</div>
     </div>
   </div>
   <div class="dec done">
@@ -593,9 +685,9 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
         <div class="card-d">THB 50 為基準，PHP／VND 等值門檻須核定。<strong>沒有對照表，非泰銖線路無法判定用哪個池。</strong></div>
       </div>
       <div class="card warn">
-        <div class="card-k">機率組</div>
+        <div class="card-k">Server</div>
         <div class="card-t">確認能篩出 200 套</div>
-        <div class="card-d">條件增為五項且分兩個 RTP 區間，合格段落大幅減少。資料量不足需加大快測重跑。</div>
+        <div class="card-d">條件增為五項且分兩個 RTP 區間，合格段落大幅減少。<strong>server 快測</strong>的資料量不足時需加大重跑。</div>
       </div>
       <div class="card warn">
         <div class="card-k">數據組</div>
@@ -608,9 +700,9 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 </div><!-- /wrap -->
 
 <div class="foot">
-  新手機率體驗腳本 · 決策簡報 V2.0 · CONFIDENTIAL 2026<br>
+  新手機率體驗腳本 · 決策簡報 V2.3 · CONFIDENTIAL 2026<br>
   Force / Combo Gaming<br>
-  <span style="letter-spacing:.1em">完整規格請見《新手機率體驗腳本規格書 NES-SPEC V2.0》</span>
+  <span style="letter-spacing:.1em">完整規格請見《新手機率體驗腳本規格書 NES-SPEC V2.3》</span>
 </div>
 
 <script>

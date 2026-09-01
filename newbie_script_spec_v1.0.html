@@ -832,7 +832,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 <!-- ═══════════ TOP NAV ═══════════ -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">NES-SPEC · V2.0</span>
+  <span class="nav-brand">NES-SPEC · V2.3</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#mechanic">新手判定</a>
   <a class="nav-item" href="#script">腳本產製</a>
@@ -857,7 +857,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     <div class="sidebar-brand">CMB · SPEC DOC</div>
     <div class="sidebar-title">新手機率體驗腳本<br>規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v2.0</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">v2.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-draft">DRAFT</span></div>
@@ -922,7 +922,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#tasks">基礎建設</a>
         <a class="sidebar-sub-link" href="#tasks">後端</a>
-        <a class="sidebar-sub-link" href="#tasks">機率／數據／企劃</a>
+        <a class="sidebar-sub-link" href="#tasks">Server／數據／企劃</a>
       </div>
     </div>
 
@@ -933,7 +933,9 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#logs">綁定紀錄</a>
         <a class="sidebar-sub-link" href="#logs">逐局紀錄</a>
+        <a class="sidebar-sub-link" href="#logs">成效指標定義</a>
         <a class="sidebar-sub-link" href="#logs">分析假設</a>
+        <a class="sidebar-sub-link" href="#logs">流失點位分析</a>
       </div>
     </div>
 
@@ -980,10 +982,10 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
   <div class="cover-grid"></div>
   <div class="cover-tag">CMB · FEATURE SPEC · 2026</div>
   <h1>新手<span>機率體驗</span>腳本</h1>
-  <div class="cover-sub">Newbie Scripted Experience System · V2.0</div>
+  <div class="cover-sub">Newbie Scripted Experience System · V2.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>類型</strong> 機率 / 伺服器機制</div>
-    <div class="cover-pill"><strong>版本</strong> v2.0</div>
+    <div class="cover-pill"><strong>版本</strong> v2.3</div>
     <div class="cover-pill"><strong>平台</strong> Force / Combo Gaming</div>
     <div class="cover-pill"><strong>市場</strong> 非認證市場限定</div>
   </div>
@@ -1017,18 +1019,28 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     <div class="info-card">
       <div class="info-card-icon">🎯</div>
       <div class="info-card-title">主要目標</div>
-      <div class="info-card-desc">消除新手期「連續乾局」導致的早期流失，拉高首次體驗的下限。</div>
+      <div class="info-card-desc"><strong>提升新手的人均累計手數</strong>——讓玩家在這款遊戲多轉幾局。</div>
     </div>
     <div class="info-card">
       <div class="info-card-icon">🧪</div>
       <div class="info-card-title">次要目標</div>
-      <div class="info-card-desc">建立 100 套可比較的體驗樣本，回答「什麼樣的節奏最留得住人」。</div>
+      <div class="info-card-desc">建立 200 套可比較的體驗樣本，回答「<strong>什麼樣的節奏能讓人多玩</strong>」。</div>
     </div>
     <div class="info-card">
       <div class="info-card-icon">📐</div>
       <div class="info-card-title">驗證方式</div>
-      <div class="info-card-desc">上線前 30 天凍結 baseline，上線後做前後對比（v1 不設對照組）。</div>
+      <div class="info-card-desc">上線前 30 天凍結 baseline，上線後做前後對比（不設對照組）。</div>
     </div>
+  </div>
+
+  <div class="callout success">
+    <strong>成效目標定義：以「手數」判定，不以「留存」判定</strong><br>
+    本案的成效目標是 <strong>提升新手的人均累計手數</strong>，<em>不是</em>提升留存。<br>
+    理由：<strong>「遊玩手數」與「留存」之間的關聯性目前尚未被驗證</strong>；
+    留存是整個新手漏斗（拉新來源、儲值流程、活動、市場波動、其他遊戲競爭）共同作用的結果，
+    <strong>不是本機制單獨能決定的</strong>。用留存判定本案成效，等於拿一個我們控制不了的指標來打分數。<br>
+    D1／D3 留存<strong>仍會記錄、仍會凍 baseline</strong>（成本為零），但<strong>降為次要觀察指標</strong>——
+    日後若要驗證「手數 → 留存」的關聯性，資料已經在那裡。
   </div>
 
   <div class="sub-title">背景問題點</div>
@@ -1082,7 +1094,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     <div class="info-card">
       <div class="info-card-icon">🐾</div>
       <div class="info-card-title">首波驗證</div>
-      <div class="info-card-desc"><strong>Lucky Paws 財神貓</strong>單款先行，驗證機制可行性與留存效果。</div>
+      <div class="info-card-desc"><strong>Lucky Paws 財神貓</strong>單款先行，驗證機制可行性與手數提升幅度。</div>
     </div>
     <div class="info-card">
       <div class="info-card-icon">📦</div>
@@ -1100,7 +1112,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     <strong>新遊戲開發 SOP 異動（本案最大的長期影響）</strong><br>
     「後續所有新遊戲都要有新手腳本」代表本機制<em>不是一次性專案</em>，而是<strong>新遊戲開發流程的固定環節</strong>。
     連帶要求：<br>
-    ① 機率組的<strong>快測與 100 套腳本產出，升格為新遊戲的標準交付項</strong>（與賠率表、數學驗證同級）；<br>
+    ① <strong>server 快測與 200 套腳本產出，升格為新遊戲的標準交付項</strong>（與賠率表、數學驗證同級）；<br>
     ② 腳本產製須<strong>排進新遊戲開發時程</strong>，不得等遊戲上線後才補做；<br>
     ③ 遊戲賠率表或數學版本一有異動，腳本須<strong>連動重產</strong>（見 §03 交付規範）。
   </div>
@@ -1108,7 +1120,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
   <div class="callout info">
     <strong>首波以財神貓單款驗證的附帶好處</strong>：v1 雖不設對照組（見 §06），
     但在單款驗證期間，<em>其他未啟用腳本的遊戲可作為同期參考基準</em>——
-    雖非嚴謹對照（各遊戲留存基準本就不同），仍能提供一層旁證。
+    雖非嚴謹對照（各遊戲的手數基準本就不同），仍能提供一層旁證。
   </div>
 
   <div class="sub-title">適用邊界（不可跨越）</div>
@@ -1225,7 +1237,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
   <div class="body-text">
     配發方式採<strong>輪流發（round-robin）</strong>而非隨機抽：<strong>每款遊戲的每個池各維護一個計數器</strong>，
     第 1 位新手拿第 1 套、第 2 位拿第 2 套……第 101 位回到第 1 套。
-    <em>目的是讓 100 套腳本的樣本數幾乎一致</em>——否則三個月後分析「哪一套留存最好」時，
+    <em>目的是讓 100 套腳本的樣本數幾乎一致</em>——否則三個月後分析「哪一套讓人玩最久」時，
     會出現「某套只有 12 個人用過、數字完全不可信」的問題。<br><br>
     <strong>採「用到才發」（懶配發）</strong>：玩家第一次用該區間的 bet 下注時，才從該池配發。
     若玩家全程小額、從未壓到 THB 50 以上，就<em>不會佔用高額池的配發名額</em>——
@@ -1332,8 +1344,15 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     <strong>為什麼採「各池自己跑滿 300 局」而不是「兩池共用一個進度」</strong><br>
     五項體感條件是針對「<em>一整套連續 300 局</em>」驗證的。若讓兩池共用同一進度、逐局換池，
     會出現這種情況：玩家在低額池的 FG 出現前就切去大注，而高額池那一套的 FG 早就跑過了——
-    <strong>最後 600 局一次 FG 都沒吃到</strong>，五項條件的保證完全失效。<br>
+    <strong>整整 600 局可能一次 FG 都沒吃到</strong>，五項條件的保證完全失效。<br>
     改為各池獨立累積後，<strong>每一套腳本都會被完整跑完</strong>，條件對每一個 300 局區段都成立。
+  </div>
+
+  <div class="callout success">
+    <strong>600 局＝至少兩次 Free Game</strong><br>
+    每一套腳本的 300 局都保證 <code>FG ≥ 1</code>（見 §03 C3），因此<strong>不論玩家怎麼下注，
+    600 局的新手體驗都保證至少出現兩次 Free Game</strong>——全程同一池者來自同一套腳本的兩輪重播，
+    跨區間者則來自兩套不同腳本各一次。
   </div>
 
   <div class="callout">
@@ -1398,14 +1417,14 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
         <td>Free Game 觸發次數</td>
         <td class="mono">≥ 1 次</td>
         <td class="mono">≥ 1 次</td>
-        <td class="dim">FG 是 slot 的核心賣點。新手若 300 局沒看過一次，等於沒體驗過這款遊戲。</td>
+        <td class="dim">FG 是 slot 的核心賣點。新手若 300 局沒看過一次，等於沒體驗過這款遊戲。<br><strong>每套 300 局保證 ≥1 次 → 600 局的新手體驗保證 ≥2 次</strong>。</td>
       </tr>
       <tr>
         <td>C4</td>
         <td>最大單筆獎</td>
         <td class="mono">&lt; 500x</td>
         <td class="mono">&lt; 500x</td>
-        <td class="dim">避免新手期就吃到超大獎——一來成本不可控，二來之後落差過大反而傷留存。</td>
+        <td class="dim">避免新手期就吃到超大獎——一來成本不可控，二來吃完大獎後續落差過大，反而讓人不想再玩。</td>
       </tr>
       <tr>
         <td>C5</td>
@@ -1422,11 +1441,17 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     此處刻意與專案其他文件慣用的 <code>≤</code> 不同，QA 撰寫邊界值案例時請特別注意。
   </div>
 
+  <div class="callout info">
+    <strong>職能分工</strong>：<strong>五項條件的數值定義</strong>（RTP 區間、hit rate、FG／Big Win 次數、大獎上限）由<strong>機率組</strong>訂定；
+    <strong>快測、套用條件篩選、定案 200 套與產出指標附表</strong>皆在 <strong>server 端</strong>完成（見 §05 C1~C3）。
+    企劃負責抽驗交付結果是否符合條件（C7）。
+  </div>
+
   <div class="callout warn">
     <strong>條件從 4 項增為 5 項，篩選難度顯著提高</strong>：新增 C5 之後，
     一段 300 局要同時滿足「RTP 落在 2~5 個百分點的窄區間、hit rate &gt; 40%、至少 1 次 FG、至少 3 次 Big Win、
     且沒有任何一筆 ≥ 500x」——<em>合格窗口會大幅減少</em>。
-    機率組須評估現行快測母體是否足以篩出 200 套，不足時加大母體重跑（見 §09 Q5）。
+    須評估現行 <strong>server 快測</strong>母體是否足以篩出 200 套，不足時加大母體重跑（見 §09 Q5）。
   </div>
 
   <div class="callout warn">
@@ -1438,12 +1463,12 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     Free Game 期間的每一局<em>各自認定</em>；FG 總和不另計為一次 Big Win（避免與 C4 的口徑混淆）。
   </div>
 
-  <div class="sub-title">流程四：腳本產製（機率組 → 後端）</div>
+  <div class="sub-title">流程四：腳本產製（server 快測 → 篩選定案 → 載入）</div>
   <div class="fdiag">
     <div class="fdiag-cap">FLOW 04 · SCRIPT PRODUCTION</div>
     <div class="fnode start">
       <div class="fnode-num">STEP 01</div>
-      <div class="fnode-title">機率組跑該遊戲的快測</div>
+      <div class="fnode-title">server 跑該遊戲的快測</div>
       <div class="fnode-desc">產出一份「照順序排好」的大量局數結果，作為取樣母體</div>
     </div>
     <div class="farrow">↓</div>
@@ -1882,21 +1907,21 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     </tbody>
   </table>
 
-  <div class="sub-title">C · 機率 / 數據 / 企劃 / QA</div>
+  <div class="sub-title">C · Server / 數據 / 企劃 / QA</div>
   <table class="spec-table">
     <thead>
       <tr><th>#</th><th>Task 項目</th><th>職能</th><th>說明</th><th>備註</th></tr>
     </thead>
     <tbody>
-      <tr><td>C1</td><td>快測母體產出</td><td><span class="tag-pill tag-eng">🎲 機率組</span></td><td class="dim">依遊戲數學版本跑出足量連續局數結果；<strong>兩池 RTP 區間不同，需分別篩選</strong></td><td class="dim">量不足需可加大重跑</td></tr>
-      <tr><td>C2</td><td>五條件篩選與 <strong>200 套</strong>定案</td><td><span class="tag-pill tag-eng">🎲 機率組</span></td><td class="dim">C1~C5 全過＋重複局數 ≤ 200；低額池 100 套（RTP 100~105%）＋高額池 100 套（RTP 98~100%）</td><td class="dim">附每套指標表</td></tr>
-      <tr><td>C3</td><td>腳本指標附表</td><td><span class="tag-pill tag-eng">🎲 機率組</span></td><td class="dim">RTP／hit rate／FG 次數與首次位置／<strong>Big Win 次數與位置</strong>／最大獎</td><td class="dim">§06 分析依據</td></tr>
-      <tr><td>C4</td><td>上線前 30 天 baseline 凍結</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td class="dim">D1／D3 留存、首日局數、首日流水，依遊戲別分開</td><td><span class="tag-pill tag-req">⚠️ 上線前必完成</span></td></tr>
-      <tr><td>C5</td><td>分析報表建置</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td class="dim">腳本 × 留存交叉表（分池）、override 佔比監控、buy bonus 局排除邏輯</td><td class="dim">上線後兩週內</td></tr>
+      <tr><td>C1</td><td>快測母體產出</td><td><span class="tag-pill tag-eng">🛠 Server</span></td><td class="dim">依遊戲數學版本跑出足量連續局數結果；<strong>兩池 RTP 區間不同，需分別篩選</strong></td><td class="dim">量不足需可加大重跑</td></tr>
+      <tr><td>C2</td><td>五條件篩選與 <strong>200 套</strong>定案</td><td><span class="tag-pill tag-eng">🛠 Server</span></td><td class="dim">C1~C5 全過＋重複局數 ≤ 200；低額池 100 套（RTP 100~105%）＋高額池 100 套（RTP 98~100%）</td><td class="dim">附每套指標表</td></tr>
+      <tr><td>C3</td><td>腳本指標附表</td><td><span class="tag-pill tag-eng">🛠 Server</span></td><td class="dim">RTP／hit rate／FG 次數與首次位置／<strong>Big Win 次數與位置</strong>／最大獎</td><td class="dim">§06 分析依據</td></tr>
+      <tr><td>C4</td><td>上線前 30 天 baseline 凍結</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td class="dim"><strong>人均累計手數（平均＋中位數）</strong>、首日手數、600 局完成率為主；D1／D3 留存、首日流水為次要觀察項。依遊戲別分開</td><td><span class="tag-pill tag-req">⚠️ 上線前必完成</span></td></tr>
+      <tr><td>C5</td><td>分析報表建置</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td class="dim">腳本 × 手數交叉表（分池）、<strong>流失點位分佈曲線</strong>、override 佔比監控、buy bonus 局排除邏輯</td><td class="dim">上線後兩週內</td></tr>
       <tr><td>C6</td><td>風險監控與告警</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td class="dim">見 §07 監控門檻</td><td><span class="tag-pill tag-req">⚠️ 與上線同步</span></td></tr>
-      <tr><td>C7</td><td>篩選條件驗收</td><td><span class="tag-pill tag-pm">📋 企劃</span></td><td class="dim">抽驗機率組交付的 200 套是否確實符合 C1~C5（含 &lt;500x 嚴格小於的邊界）</td><td class="dim">每池抽樣 ≥ 20 套</td></tr>
+      <tr><td>C7</td><td>篩選條件驗收</td><td><span class="tag-pill tag-pm">📋 企劃</span></td><td class="dim">抽驗 server 交付的 200 套是否確實符合 C1~C5（含 &lt;500x 嚴格小於的邊界）</td><td class="dim">每池抽樣 ≥ 20 套</td></tr>
             <tr><td>C8</td><td>驗收案例撰寫</td><td><span class="tag-pill tag-pm">📋 QA</span></td><td class="dim">涵蓋 E1~E8 八種異常＋跨遊戲判定五種情境＋四種下注行為的 600 局跑法</td><td class="dim">需可在測試環境模擬水池餘額不足</td></tr>
-      <tr><td>C9</td><td>驗證樣本量估算</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td class="dim">以財神貓現行日均新手數，推算累積到足以判斷 D1 留存差異所需的天數</td><td><span class="tag-pill tag-req">⚠️ 上線前必做</span></td></tr>
+      <tr><td>C9</td><td>驗證樣本量估算</td><td><span class="tag-pill tag-data">📊 數據組</span></td><td class="dim">以財神貓現行日均新手數，推算累積到足以判斷<strong>人均手數差異</strong>所需的天數</td><td><span class="tag-pill tag-req">⚠️ 上線前必做</span></td></tr>
     </tbody>
   </table>
 </section>
@@ -1913,7 +1938,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     <div class="hypo-label">本章重點 · KEY</div>
     <div class="hypo-text">
       這一章是本專案的<strong>真正產出</strong>。腳本本身只是手段，
-      <em>「哪一種節奏最留得住新手」這個答案</em>才是資產——而答案完全取決於埋點有沒有埋對。
+      <em>「什麼樣的節奏能讓新手多玩幾局」這個答案</em>才是資產——而答案完全取決於埋點有沒有埋對。
     </div>
   </div>
 
@@ -1947,23 +1972,71 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
   <div class="log-item"><span class="log-event">buy_bonus</span><span class="log-owner"><span class="tag-pill tag-req">BOOL</span></span><span class="log-desc"><strong>關鍵欄位</strong>：該局是否為購買 Free Game；為 true 時走原生 RNG 且不消耗進度，分析時必須排除</span></div>
   <div class="log-item"><span class="log-event">fallback_reason</span><span class="log-owner"><span class="tag-pill tag-data">STR</span></span><span class="log-desc">降級原因；正常為 null</span></div>
 
+  <div class="sub-title">成效指標定義</div>
+  <table class="spec-table">
+    <thead><tr><th>層級</th><th>指標</th><th>定義</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tag-pill tag-req">主指標</span></td>
+        <td><strong>人均累計手數</strong></td>
+        <td class="mono">該遊戲新手的總手數 ÷ 新手人數<br>（平均值 <strong>與中位數並列</strong>）</td>
+        <td class="dim">本案唯一的成效判定依據。<strong>務必同時看中位數</strong>——平均值容易被少數重度玩家拉高，只看平均可能誤判成功。</td>
+      </tr>
+      <tr>
+        <td><span class="tag-pill tag-opt">次指標</span></td>
+        <td>600 局完成率</td>
+        <td class="mono">total_seq 達 600 的人數 ÷ 拿到腳本的人數</td>
+        <td class="dim">腳本長度固定，分母分子都在我方資料內、不受外部變因影響，是抗干擾最強的輔助指標。</td>
+      </tr>
+      <tr>
+        <td><span class="tag-pill tag-opt">次指標</span></td>
+        <td>首日手數</td>
+        <td class="mono">新手首次進入當日的手數</td>
+        <td class="dim">反映即時體驗；受玩家當天可用時間影響，波動較大。</td>
+      </tr>
+      <tr>
+        <td><span class="tag-pill tag-data">觀察項</span></td>
+        <td>D1／D3 留存</td>
+        <td class="mono">次日／三日回訪率</td>
+        <td class="dim"><strong>僅記錄、不作為成效判定依據</strong>（見 §01）。留存受整個新手漏斗影響，非本機制單獨可控；保留資料供日後驗證「手數 → 留存」的關聯性。</td>
+      </tr>
+    </tbody>
+  </table>
+
   <div class="sub-title">分析假設（要回答的三個問題）</div>
   <div class="info-grid-3">
     <div class="info-card">
       <div class="info-card-icon">①</div>
       <div class="info-card-title">整體有沒有用</div>
-      <div class="info-card-desc">上線後新手 D1／D3 留存，對比上線前 30 天 baseline。v1 無對照組（已確認可接受），同期其他未啟用的遊戲可作旁證參考。</div>
+      <div class="info-card-desc">上線後新手<strong>人均手數</strong>（平均＋中位數），對比上線前 30 天 baseline。同期其他未啟用的遊戲可作旁證參考。</div>
     </div>
     <div class="info-card">
       <div class="info-card-icon">②</div>
       <div class="info-card-title">哪一套最好</div>
-      <div class="info-card-desc">各池 100 套 × 留存交叉表。因採輪流發、樣本數相近可直接橫向比較；<strong>兩池須分開統計</strong>。</div>
+      <div class="info-card-desc">各池 100 套 × 人均手數與完成率交叉表。因採輪流發、樣本數相近可直接橫向比較；<strong>兩池須分開統計</strong>。</div>
     </div>
     <div class="info-card">
       <div class="info-card-icon">③</div>
       <div class="info-card-title">好在哪個特徵</div>
-      <div class="info-card-desc">把腳本指標（FG 首次觸發位置、<strong>Big Win 次數與分佈</strong>、hit rate、RTP）當自變數，找出真正驅動留存的那一項。</div>
+      <div class="info-card-desc">把腳本指標（FG 首次觸發位置、<strong>Big Win 次數與分佈</strong>、hit rate、RTP）當自變數，找出真正驅動手數的那一項。</div>
     </div>
+  </div>
+
+  <div class="sub-title">流失點位分析（本案獨有的分析價值）</div>
+  <div class="body-text">
+    因為腳本長度固定為 600 局、且每一局都有逐局紀錄，可以畫出
+    <strong>新手在 600 局中的流失分佈曲線</strong>——這是留存指標做不到的事。
+  </div>
+  <div class="callout success">
+    <strong>要回答的問題</strong>：玩家最常在第幾局離開？那個位置的前後有沒有 Free Game／Big Win？
+    把 FG 挪到流失高峰之前，能不能把人留住？<br><br>
+    留存只給一個總分，不告訴你哪裡出問題；<strong>流失點位曲線直接告訴你腳本要怎麼改</strong>，
+    而且結論可寫進未來每一款新遊戲的數學設計準則（見 §01 新遊戲開發 SOP）。<br>
+    <strong>統計時須排除</strong>：<code>override_flag = true</code> 與 <code>buy_bonus = true</code> 的局。<br><br>
+    <strong>分析尺度</strong>：定位「FG 該放第幾局」時，須把兩輪資料<em>摺疊回「腳本內第 1~300 局」的尺度</em>
+    （以 <code>low_seq</code>／<code>high_seq</code> 為橫軸，而非 <code>total_seq</code>）——
+    因為腳本的設計單位是 300 局，攤平在 600 局上會把同一個位置的兩次觀測拆成兩點。
+    另需以 <code>round</code> 欄位分開檢視，確認第二輪的手數衰減幅度。
   </div>
 
   <div class="callout info">
@@ -2109,13 +2182,13 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
       <tr><td>一般玩家</td><td class="dim">相隔 300 局，人不可能記住盤面順序——<strong>實務上察覺不到</strong>。</td></tr>
       <tr><td>工作室 / 有心人</td><td class="dim">錄影比對即可發現第二輪是複製的，進而<strong>預測後 300 局每一局的結果</strong>（哪局有 FG、哪局是 Big Win）。</td></tr>
       <tr><td>可獲利程度</td><td class="dim"><strong>極低</strong>：預測到了也只能在該池的 RTP 框架內下注——低額池受 THB 50 箝制、高額池期望為負。<em>知道結果不等於能賺錢</em>。</td></tr>
-      <tr><td>對分析的影響</td><td class="dim">第二輪的留存貢獻會與第一輪混在一起；分析時應以 <code>round</code> 欄位分開統計，避免把「重複體驗」誤判為「腳本效果」。</td></tr>
+      <tr><td>對分析的影響</td><td class="dim">第二輪的手數貢獻會與第一輪混在一起；分析時應以 <code>round</code> 欄位分開統計，避免把「重複體驗」誤判為「腳本效果」。</td></tr>
     </tbody>
   </table>
   <div class="callout warn">
     <strong>接受此風險的理由</strong>：可預測性帶來的實際獲利空間已被 LAYER 1／2 封死，
-    而重跑同一套在實作上最單純（進度歸零即可），且能觀察「同一套腳本跑第二次時的留存差異」。<br>
-    <strong>若日後監控發現異常</strong>，改為「第二輪換下一套」的成本很低——機率組不需多產腳本，
+    而重跑同一套在實作上最單純（進度歸零即可），且能觀察「同一套腳本跑第二次時的手數衰減幅度」。<br>
+    <strong>若日後監控發現異常</strong>，改為「第二輪換下一套」的成本很低——不需多產任何腳本，
     後端只需在歸零時將 <code>script_id</code> 改為 <code>(script_id mod 100) + 1</code>。列為後續版本的備案。
   </div>
 
@@ -2175,7 +2248,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
         <tr>
           <td>新手體驗長度</td>
           <td class="v1-val"><strong>兩池合計 600 局</strong>（各池滿 300 局歸零重跑同一套）</td>
-          <td class="v2-val">依留存數據調整長度；第二輪改發下一套（風險三備案）</td>
+          <td class="v2-val">依手數數據調整長度；第二輪改發下一套（風險三備案）</td>
         </tr>
         <tr>
           <td>幣別</td>
@@ -2256,8 +2329,8 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
   <div class="sub-title" style="margin-top:24px;">需跨組確認</div>
   <div class="oq-item">
-    <div class="oq-owner">機率組 · Q5</div>
-    <div class="oq-q">快測母體規模與交付時程：條件已增為<strong>五項</strong>（新增 Big Win ≥ 3），且需<strong>兩個 RTP 區間各 100 套、合計 200 套</strong>。目前資料量是否足夠？高額池（98~100%）與低額池（100~105%）哪一邊比較難湊？不足時加大重跑的成本為何？</div>
+    <div class="oq-owner">Server / 後端 · Q5</div>
+    <div class="oq-q"><strong>server 快測</strong>的母體規模與交付時程：條件已增為<strong>五項</strong>（新增 Big Win ≥ 3），且需<strong>兩個 RTP 區間各 100 套、合計 200 套</strong>。目前資料量是否足夠？高額池（98~100%）與低額池（100~105%）哪一邊比較難湊？不足時加大重跑的成本為何？</div>
   </div>
   <div class="oq-item awc">
     <div class="oq-owner">後端 · Q6</div>
@@ -2285,7 +2358,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
   </div>
   <div class="oq-item">
     <div class="oq-owner">數據組 · Q12</div>
-    <div class="oq-q"><strong>驗證所需樣本量與時程</strong>：財神貓為既有遊戲，多數活躍玩家已非新手，日均新增新手數可能有限。請以現行數據推算「累積到足以判斷 D1 留存差異所需的天數」——<em>這個數字決定驗證期要拉多長，也決定後續新遊戲導入的節奏</em>。若樣本累積過慢，需評估是否加開第二款遊戲。</div>
+    <div class="oq-q"><strong>驗證所需樣本量與時程</strong>：財神貓為既有遊戲，多數活躍玩家已非新手，日均新增新手數可能有限。請以現行數據推算「累積到足以判斷<strong>人均手數差異</strong>所需的天數」——<em>這個數字決定驗證期要拉多長，也決定後續新遊戲導入的節奏</em>。若樣本累積過慢，需評估是否加開第二款遊戲。</div>
   </div>
   <div class="oq-item awc">
     <div class="oq-owner">機率組 · Q13</div>
@@ -2301,9 +2374,12 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 </div><!-- /page -->
 
 <div class="doc-footer">
-  新手機率體驗腳本規格書 · V2.0 · CONFIDENTIAL 2026<br>
+  新手機率體驗腳本規格書 · V2.3 · CONFIDENTIAL 2026<br>
   Force / Combo Gaming<br>
   <span style="color:var(--text-dim);font-size:9px;">
+    V2.3 · <strong>Free Game 次數的尺度釐清</strong>：①明確寫出「腳本單位＝300 局、每套保證 FG ≥1 次」，因此<strong>600 局的新手體驗保證至少兩次 Free Game</strong>（§02 新增保證段、§03 C3 補註）——全程同一池者來自同一套的兩輪重播、跨區間者來自兩套腳本各一次；②<strong>Figure 5 流失曲線修正</strong>：原圖在 600 局尺度上僅標一次 FG（錯誤），改為標示兩次 FG 與第 300 局的輪次分界；③§06 補〈分析尺度〉：定位「FG 該放第幾局」須以 <code>low_seq</code>／<code>high_seq</code> 為橫軸<strong>摺疊回 300 局尺度</strong>，不可攤平在 <code>total_seq</code> 的 600 局上；④共用進度反例語氣改為「可能一次都沒吃到」<br>
+    V2.2 · <strong>成效目標由「留存」改為「手數」</strong>：①主指標＝<strong>人均累計手數（平均值與中位數並列）</strong>，次指標＝600 局完成率、首日手數；<strong>D1／D3 留存降為觀察項、不作為成效判定依據</strong>（理由：手數與留存的關聯性尚未驗證，且留存是整個新手漏斗的結果、非本機制單獨可控）；②§01 新增〈成效目標定義〉、三張目標卡改寫；③§06 新增〈成效指標定義〉表與〈<strong>流失點位分析</strong>〉——利用固定 600 局＋逐局紀錄畫出流失分佈曲線，回答「玩家在第幾局離開／FG 該放哪」，此為留存指標做不到的分析；④§05 C4 baseline 主指標改手數、C5 新增流失曲線報表、C9 與 Q12 改推算手數差異所需天數<br>
+    V2.1 · <strong>來源與職能勘誤</strong>：①腳本取樣的母體正名為「<strong>server 的快測結果</strong>」（原誤寫為機率組的快測），§03 流程四／STEP 01／母體評估與 §01 SOP 段同步更正；②§05 Task <strong>C1~C3 職能由 🎲 機率組改為 🛠 Server</strong>（快測、五條件篩選、200 套定案與指標附表皆在 server 端完成），C7 企劃改為抽驗 server 交付物，§09 Q5 改由 Server／後端回覆；③§03 新增〈職能分工〉說明：<strong>條件的數值定義由機率組訂定、執行在 server 端、企劃負責抽驗</strong>；④修正 §01 漏改的「100 套」→「200 套」<br>
     V2.0 · <strong>核心機制改版（雙池一次上線）</strong>：①腳本池由單池改為<strong>雙池</strong>——低額池 bet &lt; THB 50／RTP 100~105%，高額池 bet ≥ THB 50／RTP 98~100%，每池 100 套、每款遊戲共 200 套；②篩選條件增為五項，新增 <strong>C5 Big Win ≥ 3 次</strong>（Big Win ＝ win ≥ 10x bet），C4 改為<strong>嚴格小於 500x</strong>；③新手體驗長度由 300 局改為 <strong>600 局</strong>——逐局依 bet 選池、各池進度獨立累積、滿 300 局歸零重跑同一套、兩池合計 600 局結束；④<strong>buy bonus 走原生 RNG 且不消耗進度</strong>；⑤配發改為兩池各自輪流發＋<strong>用到才發</strong>；⑥§07 風險一重寫（高額池負期望使套利誘因消失）、防線擴為五層、新增〈風險三 第二輪重跑同一套可被預測〉；⑦§08 改為〈本次範圍與後續版本〉；⑧新增 Q13 Big Win 定義確認、Q14 buy bonus 識別方式，Q2 標記已定案<br>
     V1.4 · 三項決策定案並寫入 §01〈上線範圍與適用政策〉：首波 Lucky Paws 財神貓單款驗證、後續新遊戲一律標配（連帶異動新遊戲開發 SOP：腳本產製升格為標準交付項）、開關綁線路預設關閉且僅接受開單啟動；驗證方式無對照組確認可接受；§09 Q4/Q8 標記已定案，新增 Q12 驗證樣本量估算、§05 新增 C9<br>
     V1.3 · low win 定案＝幾乎為 0、可視為 0（玩家端等同未中獎），定義寫入 §04 並補上兩項推論（QA 預期結果可寫死；該局 bet 全額回補水池，大獎限制具自我修復性、不會雪崩）；§09 Q9 換題為「FG 進行中某局被擋下，剩餘免費局是否照跑」<br>

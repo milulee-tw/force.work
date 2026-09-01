@@ -207,8 +207,8 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   <div class="blk-num">02 · The solution</div>
   <h2>Two script pools, <span>split by bet size</span></h2>
   <div class="blk-lead">
-    Our maths team runs a large simulation for each game and cuts it into
-    <strong>continuous 300-spin segments</strong>. Every segment must pass
+    A large simulation is run <strong>on our game server</strong> for each game, and the output is
+    cut into <strong>continuous 300-spin segments</strong>. Every segment must pass
     <strong>five quality gates</strong> before it enters a pool. There are two pools —
     a <em>low-stake pool</em> and a <em>high-stake pool</em> — with 100 scripts each.
     Each spin draws from whichever pool matches the player's bet at that moment.
@@ -249,7 +249,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   <div class="note info">
     <strong>Scripts are assigned round-robin, not at random.</strong> The first new player receives
     script 1, the second receives script 2, and so on. This keeps sample sizes even across all
-    100 scripts, which is what makes the retention comparison meaningful later on.
+    100 scripts, which is what makes the later comparison between scripts meaningful.
   </div>
 
   <div class="note ok">
@@ -257,7 +257,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     The five quality gates are verified against <em>one continuous 300-spin sequence</em>.
     If both pools shared a single counter and swapped spin by spin, a player could switch to
     higher bets just before the low-stake script's Free Game — while the high-stake script had
-    already passed its own — and end up with <strong>no Free Game across all 600 spins</strong>.
+    already passed its own — and could end up with <strong>no Free Game at all across the full 600 spins</strong>.
     With independent counters, <strong>every script is played through in full</strong> and the
     guarantees hold.
   </div>
@@ -301,7 +301,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card hi">
       <div class="card-k">Gate 3 · Free Game</div>
       <div class="card-v">≥ 1</div>
-      <div class="card-d">A new player must see the game's core feature at least once, or they have not experienced the game.</div>
+      <div class="card-d">At least once per 300-spin script — so a full 600-spin window <strong>guarantees at least two</strong>. Without it, the player has not experienced the game.</div>
     </div>
     <div class="card hi">
       <div class="card-k">Gate 4 · Big Win</div>
@@ -449,7 +449,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <tr><td class="dim">Games covered</td><td><strong>Lucky Paws</strong> first</td><td>Rolled out across the catalogue; standard on all new titles</td></tr>
       <tr><td class="dim">Script pools</td><td><strong>200 scripts</strong> per game (100 low-stake + 100 high-stake)</td><td>Weaker-performing scripts retired based on results</td></tr>
       <tr><td class="dim">Pool selection</td><td><span class="tag g">Per spin · THB 50 threshold</span></td><td>Threshold tuned to live data; possible third band</td></tr>
-      <tr><td class="dim">Window length</td><td><strong>600 spins across both pools</strong></td><td>Length tuned to retention results</td></tr>
+      <tr><td class="dim">Window length</td><td><strong>600 spins across both pools</strong></td><td>Length tuned to observed spin volume</td></tr>
       <tr><td class="dim">Bought Free Games</td><td><span class="tag b">Standard RNG · no progress consumed</span></td><td>Unchanged</td></tr>
       <tr><td class="dim">Player interface</td><td><span class="tag b">None</span></td><td>Unchanged</td></tr>
       <tr><td class="dim">Integration work on your side</td><td><span class="tag b">None</span></td><td>Unchanged</td></tr>
@@ -466,43 +466,134 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 
 <!-- ══ 07 INSIGHTS ══ -->
 <div class="blk">
-  <div class="blk-num">07 · What you get back</div>
-  <h2>The mechanism is useful. The <span>data behind it</span> is more so.</h2>
+  <div class="blk-num">07 · What we measure, and what you get back</div>
+  <h2>Success is measured in <span>spins</span>, not retention</h2>
   <div class="blk-lead">
-    Because scripts are distributed round-robin, each of the 100 scripts in a pool ends up with a
-    comparable sample of players. That turns the new-player window into a structured experiment
-    rather than a one-off tweak.
+    The target for this feature is <strong>a higher average number of spins per new player</strong> —
+    getting people to play more rounds of the game. It is deliberately <em>not</em> retention.
+  </div>
+
+  <div class="note info">
+    <strong>Why not retention</strong><br>
+    Retention is the output of the <em>entire</em> new-player funnel — acquisition source, deposit
+    flow, promotions, market conditions, competition from other titles. A single in-game mechanism
+    does not control most of those inputs, and the link between spin volume and retention has not
+    yet been established with data.<br>
+    Measuring this feature on retention would mean grading it on something neither of us controls.
+    Spin volume attributes cleanly to the mechanism, so that is what we hold ourselves to.
+    <strong>Day-1 and day-3 retention are still recorded</strong> and still baselined — as observed
+    metrics, and so the spin-volume-to-retention link can be tested later.
+  </div>
+
+  <div class="cards">
+    <div class="card hi">
+      <div class="card-k">Primary</div>
+      <div class="card-t">Avg. spins per new player</div>
+      <div class="card-d">Total spins ÷ new players in that game. Reported as <strong>mean and median together</strong>.</div>
+    </div>
+    <div class="card">
+      <div class="card-k">Secondary</div>
+      <div class="card-t">600-spin completion rate</div>
+      <div class="card-d">Share of new players who complete the full window. Most robust measure — both numerator and denominator sit in our own data.</div>
+    </div>
+    <div class="card">
+      <div class="card-k">Secondary</div>
+      <div class="card-t">First-day spins</div>
+      <div class="card-d">Reflects the immediate session, though it varies with how much time a player happens to have.</div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div class="card-k">Observed</div>
+      <div class="card-t">D1 / D3 retention</div>
+      <div class="card-d">Recorded and baselined, but <strong>not used to judge the feature</strong>.</div>
+    </div>
+  </div>
+
+  <div class="note warn">
+    <strong>Why the median matters as much as the mean.</strong> Averages are easily inflated by a
+    small number of heavy players. If the mean improves but the median does not, the mechanism is
+    only working on players who were already going to play a lot — not the ones it was built for.
+    We report both.
+  </div>
+
+  <div class="blk-num" style="margin-top:60px">07-B · The analysis you get</div>
+  <h2>Retention gives you a score. <span>A drop-off curve tells you what to change.</span></h2>
+  <div class="blk-lead">
+    Because the window is a fixed 600 spins and every spin is logged, we can plot exactly
+    <strong>where in those 600 spins players stop</strong> — something a retention figure cannot show.
+  </div>
+
+  <div class="fig">
+    <div class="fig-cap">Figure 5 · Drop-off analysis (illustrative)</div>
+    <svg viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Survival curve across 600 spins with two Free Games at spins 180 and 480, drop-off peak occurring before the first one">
+      <g stroke="var(--grid-line)" stroke-width="1">
+        <line x1="70" y1="40" x2="820" y2="40"/><line x1="70" y1="90" x2="820" y2="90"/>
+        <line x1="70" y1="140" x2="820" y2="140"/><line x1="70" y1="190" x2="820" y2="190"/>
+        <line x1="70" y1="240" x2="820" y2="240"/>
+      </g>
+      <text x="26" y="44" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">100%</text>
+      <text x="40" y="244" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">0%</text>
+      <text x="0" y="24" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Players still playing</text>
+      <rect x="140" y="34" width="90" height="210" fill="var(--red-fill)"/>
+      <line x1="445" y1="34" x2="445" y2="252" stroke="var(--border-bright)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="451" y="248" font-family="DM Mono, monospace" font-size="9" fill="var(--text-dim)">Spin 300 · second pass begins (same script replayed)</text>
+      <polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"
+        points="70,40 110,50 140,58 175,96 210,128 230,140 270,150 330,160 390,166 445,170 505,176 565,180 625,184 695,188 760,191 820,194"/>
+      <line x1="295" y1="34" x2="295" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="295" cy="155" r="5" fill="var(--green)"/>
+      <text x="303" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)">1st Free Game</text>
+      <text x="303" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">spin 180 of the script</text>
+      <line x1="672" y1="34" x2="672" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4" opacity=".55"/>
+      <circle cx="672" cy="187" r="5" fill="var(--green)" opacity=".55"/>
+      <text x="680" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)" opacity=".8">2nd</text>
+      <text x="680" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">spin 480</text>
+      <text x="185" y="272" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--red-bright)" text-anchor="middle">Drop-off peak</text>
+      <text x="185" y="290" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)" text-anchor="middle">around spins 60–130</text>
+      <text x="70" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 1</text>
+      <text x="768" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 600</text>
+    </svg>
+    <div class="fig-note">
+      <strong>Each 300-spin script guarantees at least one Free Game, so a full 600-spin window
+      always contains at least two</strong> — the second comes from the script being replayed
+      (or, for players who cross the bet threshold, from the other pool's script).<br>
+      If the curve looks like this, the conclusion is unambiguous: <strong>the drop-off peak lands
+      before the first Free Game</strong> — it arrives too late and most players leave before they
+      ever see it. <strong>Moving the Free Game earlier</strong> becomes the concrete change for the
+      next generation of scripts.<br>
+      <strong>Note on scale</strong>: to pin down where the Free Game should sit, both passes are
+      folded back onto the <em>1–300 scale of a single script</em> rather than read across all 600 —
+      300 spins is the unit the scripts are designed in.
+    </div>
   </div>
 
   <div class="cards c3">
     <div class="card">
       <div class="card-ico">01</div>
-      <div class="card-t">Does it move retention?</div>
-      <div class="card-d">Day-1 and day-3 retention of new players, measured against a 30-day baseline frozen before launch.</div>
+      <div class="card-t">Does it work at all?</div>
+      <div class="card-d">Average spins per new player (mean and median) against a 30-day baseline frozen before launch.</div>
     </div>
     <div class="card">
       <div class="card-ico">02</div>
       <div class="card-t">Which sequences work best?</div>
-      <div class="card-d">Retention compared across all 100 scripts in each pool, with even sample sizes making the comparison valid.</div>
+      <div class="card-d">Spins and completion rate compared across all 100 scripts in each pool, with even sample sizes making the comparison valid.</div>
     </div>
     <div class="card">
       <div class="card-ico">03</div>
       <div class="card-t">Which characteristics drive it?</div>
-      <div class="card-d">How early the first Free Game lands, how Big Wins are spaced, what hit rate actually matters — the underlying drivers.</div>
+      <div class="card-d">Where the first Free Game lands, how Big Wins are spaced, what hit rate actually matters.</div>
     </div>
   </div>
 
   <div class="note ok">
-    <strong>Point 3 is the part that keeps paying.</strong> Once we know where a Free Game should
-    land to hold a new player, that finding feeds into the maths design of every future title —
-    and we will share those findings with you.
+    <strong>Point 3 is the part that keeps paying.</strong> Once we know where a Free Game needs to
+    land to keep a new player going, that finding feeds into the maths design of every future title —
+    and we share those findings with you.
   </div>
 </div>
 
 </div><!-- /wrap -->
 
 <div class="foot">
-  New Player Experience Scripts · Feature Brief V2.0 · Confidential 2026<br>
+  New Player Experience Scripts · Feature Brief V2.3 · Confidential 2026<br>
   Force / Combo Gaming
 </div>
 
