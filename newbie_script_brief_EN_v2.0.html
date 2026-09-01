@@ -144,19 +144,20 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 <!-- ══ HERO ══ -->
 <div class="hero">
   <div class="eyebrow">Combo Gaming · Feature Brief · 2026</div>
-  <h1>Turning a new player's<br>first 600 spins<span> from luck into design</span></h1>
+  <h1>Turning a new player's<br>first 300 spins<span> from luck into design</span></h1>
   <div class="hero-lead">
     We cannot control whether a new player gets lucky — but we can control
     <strong>which set of outcomes they receive</strong>.<br>
     For each game we pre-build <strong>two pools of quality-verified 300-spin sequences</strong>
-    and serve them according to the player's current bet size. After 600 spins the game returns
-    to standard RNG. The player sees nothing different at any point.
+    and serve them according to the player's current bet size. After <strong>300 recorded bets</strong>
+    the game returns to standard RNG. The player sees nothing different at any point.
   </div>
   <div class="pills">
     <div class="pill"><strong>Scope</strong> Server-side only</div>
     <div class="pill"><strong>Player UI</strong> None</div>
     <div class="pill"><strong>Art assets</strong> None</div>
     <div class="pill"><strong>Integration change</strong> None</div>
+    <div class="pill hot"><strong>Currency</strong> THB only at launch</div>
     <div class="pill hot"><strong>Markets</strong> Non-certified only</div>
   </div>
 </div>
@@ -193,7 +194,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <text x="576" y="304" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--red)">Balance gone · player leaves</text>
       <text x="712" y="288" font-family="DM Mono, monospace" font-size="10" fill="var(--red)">B</text>
       <text x="60" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 1</text>
-      <text x="770" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 600</text>
+      <text x="770" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 300</text>
     </svg>
     <div class="fig-note">
       Both curves have <strong>exactly the same expected value</strong>. The only difference is the
@@ -212,11 +213,11 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <strong>five quality gates</strong> before it enters a pool. There are two pools —
     a <em>low-stake pool</em> and a <em>high-stake pool</em> — with 100 scripts each.
     Each spin draws from whichever pool matches the player's bet at that moment.
-    Once the two pools together reach <strong>600 spins</strong>, the player exits the mechanism.
+    Once the player reaches <strong>300 recorded bets</strong>, the mechanism ends.
   </div>
 
   <div class="fig">
-    <div class="fig-cap">Figure 2 · Two pools and how 600 spins are consumed</div>
+    <div class="fig-cap">Figure 2 · Two pools and how the 300-spin window is consumed</div>
     <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Low-stake and high-stake pools, 100 scripts each, consumed per spin by bet size">
       <text x="0" y="16" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--accent)">Low-stake pool · bet &lt; THB 50</text>
       <text x="0" y="32" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">100 scripts × 300 spins · RTP 100–105%</text>
@@ -232,17 +233,17 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       </defs>
       <text x="206" y="168" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--text-primary)">Every spin,</text>
       <text x="206" y="184" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--text-primary)">pool by bet size</text>
-      <text x="305" y="128" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)">The 600 spins the player actually plays</text>
-      <text x="305" y="144" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Each pool tracks its own progress · 600 combined = exit</text>
+      <text x="305" y="128" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)">The 300 spins the player actually plays</text>
+      <text x="305" y="144" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Hard cap of 300 recorded bets · no replay, no extension</text>
             <rect x="305.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="311.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="318.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="324.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="331.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="338.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="344.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="351.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="357.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="364.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="371.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="377.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="384.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="390.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="397.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="404.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="410.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="417.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="423.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="430.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="437.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="443.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="450.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="456.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="463.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="470.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="476.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="483.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="489.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="496.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="503.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="509.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="516.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="522.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="529.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="536.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="542.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="549.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="555.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="562.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="569.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="575.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="582.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="588.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="595.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="602.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="608.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="615.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="621.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="628.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="635.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="641.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="648.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="654.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="661.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="668.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="674.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="681.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="687.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="694.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="701.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="707.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="714.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="720.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="727.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="734.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="740.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="747.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="753.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="760.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="767.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="773.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="780.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="786.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="793.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="800.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="806.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="813.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="819.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="826.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/>
       <text x="305" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 1</text>
-      <text x="778" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 600</text>
+      <text x="778" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 300</text>
       <g font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">
         <rect x="305" y="228" width="9" height="12" rx="2" fill="var(--accent-soft)"/><text x="320" y="238">Low bet → low-stake pool</text>
         <rect x="530" y="228" width="9" height="12" rx="2" fill="var(--blue)"/><text x="545" y="238">High bet → high-stake pool</text>
       </g>
-      <text x="305" y="266" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">A player who always bets low runs the same script twice = 600 spins</text>
-      <text x="305" y="288" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">After 600 spins the game reverts to standard RNG</text>
+      <text x="305" y="266" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">A player who stays in one band plays one complete script = 300 spins</text>
+      <text x="305" y="288" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">After 300 recorded bets the game reverts to standard RNG</text>
     </svg>
   </div>
 
@@ -253,13 +254,32 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   </div>
 
   <div class="note ok">
-    <strong>Why each pool completes its own 300 spins</strong><br>
-    The five quality gates are verified against <em>one continuous 300-spin sequence</em>.
-    If both pools shared a single counter and swapped spin by spin, a player could switch to
-    higher bets just before the low-stake script's Free Game — while the high-stake script had
-    already passed its own — and could end up with <strong>no Free Game at all across the full 600 spins</strong>.
-    With independent counters, <strong>every script is played through in full</strong> and the
-    guarantees hold.
+    <strong>Why 300 and not longer</strong><br>
+    Current data shows <strong>most players' session volume sits around 300 spins</strong> — the same
+    length as one script. Extending the window does not hold people longer; it only makes the cost
+    of the favourable period harder to control.<br>
+    The <strong>300-bet cap is hard</strong>: not per pool, no replay, no extension. However a player
+    moves between bet bands, the window does not get longer.
+  </div>
+
+  <div class="note info">
+    <strong>Players who cross the bet threshold mid-window</strong> receive two partial sequences
+    rather than one complete script, so the five gates are not guaranteed for them. This is an
+    accepted trade-off: what is lost is the <em>guarantee</em>, not the experience — the scripts are
+    ordinary sequences drawn from simulation, so a partial run behaves much like standard RNG rather
+    than worse. We monitor how often this happens and will revisit the rule if it turns out to be
+    common.
+  </div>
+
+  <div class="note warn">
+    <strong>Two scope limits at launch.</strong> The mechanism only engages when
+    <strong>both</strong> conditions hold: the game is <strong>Lucky Paws</strong>, and the player's
+    wallet currency is <strong>THB</strong>. Players on any other currency are passed straight to
+    standard RNG — no script is assigned.<br>
+    Thresholds for <strong>62 currencies are already defined</strong> (benchmarked to THB 50, held as
+    fixed values rather than live FX so a player cannot drift between pools as rates move).
+    Extending to further currencies is a configuration change — <strong>no change to the mechanism
+    or the scripts themselves</strong>.
   </div>
 
   <div class="note warn">
@@ -301,7 +321,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card hi">
       <div class="card-k">Gate 3 · Free Game</div>
       <div class="card-v">≥ 1</div>
-      <div class="card-d">At least once per 300-spin script — so a full 600-spin window <strong>guarantees at least two</strong>. Without it, the player has not experienced the game.</div>
+      <div class="card-d">At least once per 300-spin script — and the window is <strong>the same 300 spins</strong>, so a player who stays in one band always sees one. Without it, they have not experienced the game.</div>
     </div>
     <div class="card hi">
       <div class="card-k">Gate 4 · Big Win</div>
@@ -378,25 +398,25 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   </div>
 
   <div class="fig">
-    <div class="fig-cap">Figure 4 · Maximum a single new account can extract (THB · expected value)</div>
+    <div class="fig-cap">Figure 4 · Maximum a single new account can extract (THB · expected value · 300 spins)</div>
     <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Low-stake pool caps at around 735 THB, high-stake pool is negative at minus 1200 THB">
       <line x1="40" y1="150" x2="820" y2="150" stroke="var(--border-bright)" stroke-width="1.5"/>
       <text x="0" y="154" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">0</text>
-      <rect x="150" y="101" width="180" height="49" rx="4" fill="var(--orange)"/>
-      <text x="240" y="91" font-family="DM Mono, monospace" font-size="17" fill="var(--orange)" text-anchor="middle">+735</text>
+      <rect x="150" y="125" width="180" height="25" rx="4" fill="var(--orange)"/>
+      <text x="240" y="115" font-family="DM Mono, monospace" font-size="17" fill="var(--orange)" text-anchor="middle">+368</text>
       <text x="240" y="176" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="var(--text-primary)" text-anchor="middle">Low-stake pool</text>
-      <text x="240" y="196" font-family="DM Sans, sans-serif" font-size="12.5" fill="var(--text-secondary)" text-anchor="middle">Betting THB 49 every spin, all 600 spins</text>
+      <text x="240" y="196" font-family="DM Sans, sans-serif" font-size="12.5" fill="var(--text-secondary)" text-anchor="middle">Betting THB 49 every spin, all 300 spins</text>
       <text x="240" y="216" font-family="DM Sans, sans-serif" font-size="12.5" fill="var(--orange)" text-anchor="middle">Below the cost of running the accounts</text>
-      <rect x="530" y="150" width="180" height="80" rx="4" fill="var(--green)"/>
-      <text x="620" y="252" font-family="DM Mono, monospace" font-size="17" fill="var(--green-bright)" text-anchor="middle">−1,200</text>
-      <text x="620" y="178" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="var(--bg)" text-anchor="middle">High-stake pool</text>
-      <text x="620" y="198" font-family="DM Sans, sans-serif" font-size="12.5" fill="var(--bg)" text-anchor="middle">Betting THB 200 every spin, all 600 spins</text>
-      <text x="620" y="218" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--bg)" text-anchor="middle">The bigger the bet, the more they lose</text>
+      <rect x="530" y="150" width="180" height="40" rx="4" fill="var(--green)"/>
+      <text x="620" y="175" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="var(--bg)" text-anchor="middle">High-stake pool</text>
+      <text x="620" y="212" font-family="DM Mono, monospace" font-size="17" fill="var(--green-bright)" text-anchor="middle">−600</text>
+      <text x="620" y="232" font-family="DM Sans, sans-serif" font-size="12.5" fill="var(--text-secondary)" text-anchor="middle">Betting THB 200 every spin, all 300 spins</text>
+      <text x="620" y="252" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green-bright)" text-anchor="middle">The bigger the bet, the more they lose</text>
     </svg>
     <div class="fig-note">
-      Low-stake pool: 600 × THB 49 × 2.5% ≈ <strong>735</strong>, and only if every single spin sits
+      Low-stake pool: 300 × THB 49 × 2.5% ≈ <strong>368</strong>, and only if every single spin sits
       right at the threshold.<br>
-      High-stake pool: 600 × THB 200 × <strong>−1%</strong> ≈ <strong>−1,200</strong> — an RTP of 99%
+      High-stake pool: 300 × THB 200 × <strong>−1%</strong> ≈ <strong>−600</strong> — an RTP of 99%
       means the player's expected result is a net loss.
     </div>
   </div>
@@ -410,7 +430,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card ok">
       <div class="card-k">Layer 2 · Structural</div>
       <div class="card-t">Low-stake pool is bet-capped</div>
-      <div class="card-d">The favourable pool is only reachable below THB 50 per spin, capping the theoretical take at roughly THB 735 across 600 spins.</div>
+      <div class="card-d">The favourable pool is only reachable below THB 50 per spin, capping the theoretical take at roughly THB 368 across the 300-spin window.</div>
     </div>
     <div class="card ok">
       <div class="card-k">Layer 3 · At source</div>
@@ -437,7 +457,8 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   <div class="blk-num">06 · Scope</div>
   <h2>What ships now, and <span>what comes later</span></h2>
   <div class="blk-lead">
-    The first game to carry the mechanism is <strong>Lucky Paws</strong>. From there,
+    At launch the mechanism runs on <strong>Lucky Paws</strong> only, and only for players on
+    <strong>THB</strong>. From there it extends to further currencies and titles, and
     <strong>every new game will ship with its own script pools</strong> as a standard deliverable.
   </div>
 
@@ -446,10 +467,11 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <tr><th>Item</th><th>This release</th><th>Future (not yet scheduled)</th></tr>
     </thead>
     <tbody>
-      <tr><td class="dim">Games covered</td><td><strong>Lucky Paws</strong> first</td><td>Rolled out across the catalogue; standard on all new titles</td></tr>
+            <tr><td class="dim">Games covered</td><td><strong>Lucky Paws</strong> only</td><td>Rolled out across the catalogue; standard on all new titles</td></tr>
+      <tr><td class="dim">Currencies</td><td><strong>THB only</strong> (threshold 50) · all others pass through to standard RNG</td><td>Extended to <strong>all currencies</strong>; 62 thresholds already defined</td></tr>
       <tr><td class="dim">Script pools</td><td><strong>200 scripts</strong> per game (100 low-stake + 100 high-stake)</td><td>Weaker-performing scripts retired based on results</td></tr>
       <tr><td class="dim">Pool selection</td><td><span class="tag g">Per spin · THB 50 threshold</span></td><td>Threshold tuned to live data; possible third band</td></tr>
-      <tr><td class="dim">Window length</td><td><strong>600 spins across both pools</strong></td><td>Length tuned to observed spin volume</td></tr>
+      <tr><td class="dim">Window length</td><td><strong>300 recorded bets</strong> (no replay, no extension)</td><td>Length tuned to observed spin volume</td></tr>
       <tr><td class="dim">Bought Free Games</td><td><span class="tag b">Standard RNG · no progress consumed</span></td><td>Unchanged</td></tr>
       <tr><td class="dim">Player interface</td><td><span class="tag b">None</span></td><td>Unchanged</td></tr>
       <tr><td class="dim">Integration work on your side</td><td><span class="tag b">None</span></td><td>Unchanged</td></tr>
@@ -493,7 +515,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     </div>
     <div class="card">
       <div class="card-k">Secondary</div>
-      <div class="card-t">600-spin completion rate</div>
+      <div class="card-t">300-spin completion rate</div>
       <div class="card-d">Share of new players who complete the full window. Most robust measure — both numerator and denominator sit in our own data.</div>
     </div>
     <div class="card">
@@ -515,16 +537,18 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     We report both.
   </div>
 
-  <div class="blk-num" style="margin-top:60px">07-B · The analysis you get</div>
-  <h2>Retention gives you a score. <span>A drop-off curve tells you what to change.</span></h2>
+  <div class="blk-num" style="margin-top:60px">07-B · Continuous optimisation</div>
+  <h2>100 scripts per pool means we can <span>tell the good ones from the bad</span></h2>
   <div class="blk-lead">
-    Because the window is a fixed 600 spins and every spin is logged, we can plot exactly
-    <strong>where in those 600 spins players stop</strong> — something a retention figure cannot show.
+    Because the window is a fixed 300-spin script and every spin is logged, we can see exactly
+    <strong>how each script performs</strong> — and, more usefully, <em>which of its characteristics
+    made it perform that way</em>. Pattern testing across all 100 scripts in a pool tells us where a
+    Free Game should land, how Big Wins should be spaced, and which scripts to retire.
   </div>
 
   <div class="fig">
-    <div class="fig-cap">Figure 5 · Drop-off analysis (illustrative)</div>
-    <svg viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Survival curve across 600 spins with two Free Games at spins 180 and 480, drop-off peak occurring before the first one">
+    <div class="fig-cap">Figure 5 · Pattern testing across scripts (illustrative)</div>
+    <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two scripts compared: a strong performer with an early Free Game and a weak performer with a late Free Game, which is retired">
       <g stroke="var(--grid-line)" stroke-width="1">
         <line x1="70" y1="40" x2="820" y2="40"/><line x1="70" y1="90" x2="820" y2="90"/>
         <line x1="70" y1="140" x2="820" y2="140"/><line x1="70" y1="190" x2="820" y2="190"/>
@@ -533,35 +557,34 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <text x="26" y="44" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">100%</text>
       <text x="40" y="244" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">0%</text>
       <text x="0" y="24" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Players still playing</text>
-      <rect x="140" y="34" width="90" height="210" fill="var(--red-fill)"/>
-      <line x1="445" y1="34" x2="445" y2="252" stroke="var(--border-bright)" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="451" y="248" font-family="DM Mono, monospace" font-size="9" fill="var(--text-dim)">Spin 300 · second pass begins (same script replayed)</text>
-      <polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"
-        points="70,40 110,50 140,58 175,96 210,128 230,140 270,150 330,160 390,166 445,170 505,176 565,180 625,184 695,188 760,191 820,194"/>
-      <line x1="295" y1="34" x2="295" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4"/>
-      <circle cx="295" cy="155" r="5" fill="var(--green)"/>
-      <text x="303" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)">1st Free Game</text>
-      <text x="303" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">spin 180 of the script</text>
-      <line x1="672" y1="34" x2="672" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4" opacity=".55"/>
-      <circle cx="672" cy="187" r="5" fill="var(--green)" opacity=".55"/>
-      <text x="680" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)" opacity=".8">2nd</text>
-      <text x="680" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">spin 480</text>
-      <text x="185" y="272" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--red-bright)" text-anchor="middle">Drop-off peak</text>
-      <text x="185" y="290" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)" text-anchor="middle">around spins 60–130</text>
+
+      <!-- Script A: strong performer -->
+      <polyline fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round"
+        points="70,40 130,48 190,58 250,66 310,74 380,82 450,90 520,97 590,103 660,109 730,114 820,120"/>
+      <line x1="190" y1="34" x2="190" y2="248" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="190" cy="58" r="5" fill="var(--green)"/>
+      <text x="198" y="62" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--green)">Free Game lands early</text>
+      <text x="640" y="112" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--green)">Script A · kept</text>
+
+      <!-- Script B: weak performer -->
+      <polyline fill="none" stroke="var(--text-dim)" stroke-width="3" stroke-linejoin="round" stroke-dasharray="7 5"
+        points="70,40 130,58 190,96 250,132 310,158 380,172 450,182 520,190 590,196 660,201 730,205 820,210"/>
+      <line x1="450" y1="34" x2="450" y2="248" stroke="var(--text-dim)" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="450" cy="182" r="5" fill="var(--text-dim)"/>
+      <text x="458" y="168" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--text-dim)">Free Game lands late</text>
+      <text x="640" y="228" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-dim)">Script B · retired</text>
+
       <text x="70" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 1</text>
-      <text x="768" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 600</text>
+      <text x="760" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">Spin 300</text>
+      <text x="70" y="300" font-family="DM Sans, sans-serif" font-size="12.5" fill="var(--text-secondary)">Same five quality gates, same RTP band — the difference is where the Free Game sits.</text>
     </svg>
     <div class="fig-note">
-      <strong>Each 300-spin script guarantees at least one Free Game, so a full 600-spin window
-      always contains at least two</strong> — the second comes from the script being replayed
-      (or, for players who cross the bet threshold, from the other pool's script).<br>
-      If the curve looks like this, the conclusion is unambiguous: <strong>the drop-off peak lands
-      before the first Free Game</strong> — it arrives too late and most players leave before they
-      ever see it. <strong>Moving the Free Game earlier</strong> becomes the concrete change for the
-      next generation of scripts.<br>
-      <strong>Note on scale</strong>: to pin down where the Free Game should sit, both passes are
-      folded back onto the <em>1–300 scale of a single script</em> rather than read across all 600 —
-      300 spins is the unit the scripts are designed in.
+      Both scripts pass all five gates and sit in the same RTP band, so on paper they are equivalent.
+      In play they are not — and the logs show precisely why. <strong>Scripts that underperform are
+      retired and replaced</strong>; the characteristics that made the strong ones work are carried
+      into the next generation.<br>
+      This is only possible because scripts are handed out round-robin: with comparable sample sizes
+      across all 100, the comparison is valid rather than anecdotal.
     </div>
   </div>
 
@@ -579,21 +602,22 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card">
       <div class="card-ico">03</div>
       <div class="card-t">Which characteristics drive it?</div>
-      <div class="card-d">Where the first Free Game lands, how Big Wins are spaced, what hit rate actually matters.</div>
+      <div class="card-d">Where the first Free Game lands, how Big Wins are spaced, what hit rate actually matters — the inputs to the next generation of scripts.</div>
     </div>
   </div>
 
   <div class="note ok">
-    <strong>Point 3 is the part that keeps paying.</strong> Once we know where a Free Game needs to
-    land to keep a new player going, that finding feeds into the maths design of every future title —
-    and we share those findings with you.
+    <strong>This does not stop at launch.</strong> Pattern testing runs continuously: weak scripts are
+    retired, stronger ones replace them, and what we learn about Free Game placement feeds into the
+    maths design of every future title. <strong>The findings are shared with you</strong> — the same
+    insight applies to any title in your lobby, not only ours.
   </div>
 </div>
 
 </div><!-- /wrap -->
 
 <div class="foot">
-  New Player Experience Scripts · Feature Brief V2.3 · Confidential 2026<br>
+  New Player Experience Scripts · Feature Brief V3.0 · Confidential 2026<br>
   Force / Combo Gaming
 </div>
 

@@ -167,11 +167,11 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 <!-- ══ HERO ══ -->
 <div class="hero">
   <div class="eyebrow">CMB · 決策簡報 · 2026</div>
-  <h1>把新手的<br>前 600 局<span>從運氣變成設計</span></h1>
+  <h1>把新手的<br>前 300 局<span>從運氣變成設計</span></h1>
   <div class="hero-lead">
     我們無法控制一位新玩家的運氣，但可以控制<strong>他拿到哪一份結果</strong>。<br>
     本案為每款遊戲預先備妥 <strong>兩個腳本池、共 200 套經過品質檢驗的 300 局序列</strong>，
-    依玩家<strong>當下的下注額</strong>決定用哪一池，合計跑滿 600 局後切回正常隨機。玩家全程無感。
+    依玩家<strong>當下的下注額</strong>決定用哪一池，<strong>累積押注 300 局</strong>後切回正常隨機。玩家全程無感。
   </div>
   <div class="pills">
     <div class="pill"><strong>範圍</strong> 伺服器端機制</div>
@@ -179,6 +179,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="pill"><strong>美術需求</strong> 無</div>
     <div class="pill hot"><strong>市場</strong> 非認證市場限定</div>
     <div class="pill hot"><strong>首波</strong> Lucky Paws 財神貓</div>
+    <div class="pill hot"><strong>幣別</strong> v1 僅 THB</div>
     <div class="pill hot"><strong>套利風險</strong> 結構性消除</div>
   </div>
 </div>
@@ -219,7 +220,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <text x="712" y="288" font-family="DM Mono, monospace" font-size="10" fill="var(--red)">B</text>
       <!-- axis -->
       <text x="60" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 1 局</text>
-      <text x="770" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 600 局</text>
+      <text x="770" y="308" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 300 局</text>
     </svg>
     <div class="fig-note">
       兩條線的<strong>數學期望值完全相同</strong>，差別只有結果出現的順序。
@@ -236,11 +237,11 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     從 <strong>server 跑出的遊戲快測結果</strong>中，切出一段一段<strong>連續的 300 局</strong>，
     每一段都必須通過<strong>五項體感檢驗</strong>，合格的才收進腳本池。腳本池分兩種——
     <em>低額池</em>（bet &lt; THB 50）與<em>高額池</em>（bet ≥ THB 50），各 100 套。
-    玩家每一局依當下下注額取對應池的結果，<strong>兩池合計跑滿 600 局</strong>後結束。
+    玩家每一局依當下下注額取對應池的結果，<strong>累積押注滿 300 局</strong>後結束。
   </div>
 
   <div class="fig">
-    <div class="fig-cap">Figure 2 · 兩個腳本池與 600 局的實際跑法</div>
+    <div class="fig-cap">Figure 2 · 兩個腳本池與 300 局的實際跑法</div>
     <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="低額池與高額池各100套，玩家依當下下注額逐局選池，合計600局">
       <!-- 低額池 -->
       <text x="0" y="16" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--accent)">低額池 · bet &lt; THB 50</text>
@@ -260,18 +261,18 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <text x="206" y="168" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--text-primary)">每一局</text>
       <text x="206" y="184" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--text-primary)">依 bet 選池</text>
       <!-- 600 局條 -->
-      <text x="305" y="128" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)">玩家實際跑的 600 局</text>
-      <text x="305" y="144" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">各池自己累積滿 300 局 · 兩池合計 600 局結束</text>
+      <text x="305" y="128" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)">玩家實際跑的 300 局</text>
+      <text x="305" y="144" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">累積押注 300 局為硬上限 · 不重跑、不延長</text>
       <rect x="305.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="311.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="318.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="324.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="331.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="338.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="344.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="351.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="357.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="364.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="371.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="377.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="384.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="390.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="397.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="404.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="410.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="417.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="423.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="430.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="437.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="443.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="450.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="456.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="463.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="470.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="476.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="483.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="489.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="496.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="503.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="509.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="516.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="522.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="529.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="536.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="542.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="549.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="555.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="562.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="569.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="575.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="582.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="588.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="595.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="602.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="608.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="615.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="621.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="628.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="635.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="641.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="648.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="654.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="661.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="668.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="674.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="681.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="687.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="694.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="701.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="707.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="714.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="720.8" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="727.4" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="734.0" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="740.6" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="747.2" y="150" width="5.2" height="40" rx="2" fill="var(--accent-soft)"/><rect x="753.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="760.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="767.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="773.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="780.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="786.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="793.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="800.0" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="806.6" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="813.2" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="819.8" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/><rect x="826.4" y="150" width="5.2" height="40" rx="2" fill="var(--blue)"/>
       <text x="305" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 1 局</text>
-      <text x="775" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 600 局</text>
+      <text x="775" y="206" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 300 局</text>
       <!-- 圖例 -->
       <g font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">
         <rect x="305" y="228" width="9" height="12" rx="2" fill="var(--accent-soft)"/><text x="320" y="238">這局壓小注 → 取低額池</text>
         <rect x="500" y="228" width="9" height="12" rx="2" fill="var(--blue)"/><text x="515" y="238">這局壓大注 → 取高額池</text>
       </g>
-      <text x="305" y="266" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">全程小額的玩家：同一套低額腳本跑兩遍＝600 局</text>
-      <text x="305" y="288" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">跑完 600 局後，自動切回遊戲原本的隨機結果</text>
+      <text x="305" y="266" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">全程小額的玩家：完整跑完一套低額腳本＝300 局</text>
+      <text x="305" y="288" font-family="DM Sans, sans-serif" font-size="13" fill="var(--text-secondary)">累積 300 局後，自動切回遊戲原本的隨機結果</text>
     </svg>
   </div>
 
@@ -281,11 +282,20 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   </div>
 
   <div class="note ok">
-    <strong>為什麼是「各池各自跑滿 300 局」而不是混著跑</strong><br>
-    五項條件是針對「<em>一整套連續 300 局</em>」驗證的。如果讓兩池共用同一個進度、逐局換池，
-    會出現這種狀況：玩家在低額池的 Free Game 出現前就改壓大注，而高額池那套的 Free Game 早就跑過了——
-    <strong>整整 600 局可能一次 Free Game 都沒吃到</strong>，體感設計完全失效。<br>
-    改成各池獨立累積後，<strong>每一套腳本都會被完整跑完</strong>。全程小額的玩家，就把同一套跑兩遍。
+    <strong>為什麼是 300 局，而不是更長</strong><br>
+    依現行數據，<strong>多數玩家的遊玩手數區間就落在 300 局</strong>——與腳本長度一致。
+    再拉長並不會多留住人，反而讓優待期的成本失控。<br>
+    <strong>累積押注 300 局是硬上限</strong>：不分池、不重跑、不延長。玩家怎麼切換 bet 都不會延長這個期間。
+  </div>
+
+  <div class="note warn">
+    <strong>中途切換 bet 區間的玩家，體感保證會失效——這是評估後接受的取捨</strong><br>
+    五項條件是針對「一整套完整的 300 局」驗證的。中途切換的人會拿到兩段不完整的片段
+    （例如低額前 120 局 ＋ 高額前 180 局），兩套都沒跑完。<br>
+    仍然接受的理由：① <strong>失去的是「保證」不是「體驗」</strong>——腳本本身是正常序列，
+    切換者的最壞情況約等於原生隨機，不會更差；② <strong>會中途加碼的人，本來就是玩得順、沒有流失風險的那群</strong>，
+    而我們要救的是連續乾局想離開的人，那群人不會加碼。<br>
+    已加上<strong>「跨區間切換率」監控</strong>，若實際比例高於預期再回頭調整。
   </div>
 
   <div class="note warn">
@@ -324,7 +334,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card hi">
       <div class="card-k">條件 3 · Free Game</div>
       <div class="card-v">≥ 1 次</div>
-      <div class="card-d">每 300 局至少一次，<strong>600 局的新手體驗因此保證至少兩次</strong>。沒看過核心玩法等於沒體驗過這款遊戲。</div>
+      <div class="card-d">每套 300 局至少一次。<strong>新手體驗長度與腳本長度一致</strong>，全程同一區間的玩家必定至少看到一次。</div>
     </div>
     <div class="card hi">
       <div class="card-k">條件 4 · Big Win</div>
@@ -388,6 +398,15 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     同時該局的下注會全額灌回水池，所以大獎限制<strong>一觸發就自我修復</strong>，不會連續發生。
   </div>
 
+  <div class="note warn">
+    <strong>v1 有兩道範圍限制</strong>：① 遊戲僅 <strong>Lucky Paws 財神貓</strong>；
+    ② 幣別<strong>僅 THB</strong>——其他幣別的玩家一律阻擋、直接走原生隨機，不發腳本。
+    後續擴充為全幣值時，62 種幣別的門檻已經定好（THB 50 為基準、固定值不隨匯率浮動），
+    <strong>只要開啟對應幣別即可，機制和腳本內容都不用改</strong>。<br>
+    <span style="color:var(--red-bright)"><strong>但要注意</strong>：範圍同時限縮「單一遊戲 × 單一幣別」，
+    可取得的新手樣本會比原先估計少很多，<strong>驗證期可能因此拉長</strong>——需要數據組重新推算。</span>
+  </div>
+
   <div class="note ok">
     <strong>那新手腳本會不會把水池抽乾？算過了，不會</strong><br>
     新手在腳本期間 RTP 100~105%，對水池是淨支出（每下注 100 支出 2.5）；
@@ -415,7 +434,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   </div>
 
   <div class="fig">
-    <div class="fig-cap">Figure 4 · 單一新手帳號最多能從系統拿走多少（THB · 期望值）</div>
+    <div class="fig-cap">Figure 4 · 單一新手帳號最多能從系統拿走多少（THB · 期望值 · 300 局）</div>
     <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="初版單池與本版雙池的套利收益對比，高額池為負值">
       <!-- 零軸 -->
       <line x1="40" y1="160" x2="820" y2="160" stroke="var(--border-bright)" stroke-width="1.5"/>
@@ -427,21 +446,21 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <text x="160" y="202" font-family="DM Sans, sans-serif" font-size="12" fill="var(--text-secondary)" text-anchor="middle">每局 THB 200 × 300 局</text>
       <text x="160" y="220" font-family="DM Sans, sans-serif" font-size="12" fill="var(--red-bright)" text-anchor="middle">穩定獲利 → 值得養號</text>
       <!-- 柱2：本版低額池 -->
-      <rect x="330" y="111" width="140" height="49" rx="4" fill="var(--orange)"/>
-      <text x="400" y="101" font-family="DM Mono, monospace" font-size="15" fill="var(--orange)" text-anchor="middle">+735</text>
+      <rect x="330" y="135" width="140" height="25" rx="4" fill="var(--orange)"/>
+      <text x="400" y="125" font-family="DM Mono, monospace" font-size="15" fill="var(--orange)" text-anchor="middle">+368</text>
       <text x="400" y="184" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--text-primary)" text-anchor="middle">本版 · 低額池</text>
-      <text x="400" y="202" font-family="DM Sans, sans-serif" font-size="12" fill="var(--text-secondary)" text-anchor="middle">全程壓滿 THB 49 × 600 局</text>
+      <text x="400" y="202" font-family="DM Sans, sans-serif" font-size="12" fill="var(--text-secondary)" text-anchor="middle">全程壓滿 THB 49 × 300 局</text>
       <text x="400" y="220" font-family="DM Sans, sans-serif" font-size="12" fill="var(--orange)" text-anchor="middle">低於養號成本</text>
       <!-- 柱3：本版高額池（負） -->
-      <rect x="570" y="160" width="140" height="80" rx="4" fill="var(--green)"/>
-      <text x="640" y="258" font-family="DM Mono, monospace" font-size="15" fill="var(--green-bright)" text-anchor="middle">−1,200</text>
-      <text x="640" y="184" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--bg)" text-anchor="middle">本版 · 高額池</text>
-      <text x="640" y="202" font-family="DM Sans, sans-serif" font-size="12" fill="var(--bg)" text-anchor="middle">每局 THB 200 × 600 局</text>
-      <text x="640" y="220" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--bg)" text-anchor="middle">壓越大注輸越多</text>
+      <rect x="570" y="160" width="140" height="40" rx="4" fill="var(--green)"/>
+      <text x="640" y="185" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="var(--bg)" text-anchor="middle">本版 · 高額池</text>
+      <text x="640" y="220" font-family="DM Mono, monospace" font-size="15" fill="var(--green-bright)" text-anchor="middle">−600</text>
+      <text x="640" y="240" font-family="DM Sans, sans-serif" font-size="12" fill="var(--text-secondary)" text-anchor="middle">每局 THB 200 × 300 局</text>
+      <text x="640" y="258" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="var(--green-bright)" text-anchor="middle">壓越大注輸越多</text>
     </svg>
     <div class="fig-note">
-      低額池：600 局 × THB 49 × 2.5% ≈ <strong>735</strong>（理論最大值，需全程壓在門檻邊緣）。<br>
-      高額池：600 局 × THB 200 × <strong>−1%</strong> ≈ <strong>−1,200</strong>——RTP 99% 代表玩家期望是淨輸。
+      低額池：300 局 × THB 49 × 2.5% ≈ <strong>368</strong>（理論最大值，需全程壓在門檻邊緣）。<br>
+      高額池：300 局 × THB 200 × <strong>−1%</strong> ≈ <strong>−600</strong>——RTP 99% 代表玩家期望是淨輸。
     </div>
   </div>
 
@@ -454,7 +473,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     <div class="card ok">
       <div class="card-k">防線 2 · 結構層</div>
       <div class="card-t">低額池 bet 上限</div>
-      <div class="card-d">低額池雖是正期望，但單局壓不到 THB 50，600 局理論上限僅約 735。</div>
+      <div class="card-d">低額池雖是正期望，但單局壓不到 THB 50，300 局理論上限僅約 368。</div>
     </div>
     <div class="card ok">
       <div class="card-k">防線 3 · 源頭層</div>
@@ -475,12 +494,11 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     </div>
   </div>
 
-  <div class="note warn">
-    <strong>唯一保留的已知風險</strong>：某一池跑滿 300 局後<strong>重跑同一套</strong>，
-    所以第 301~600 局與第 1~300 局完全相同。一般玩家隔了 300 局不可能記得，
-    但有心人錄影比對就能發現、進而預測後半段每一局的結果。<br>
-    <strong>可獲利程度極低</strong>——預測到了也只能在該池的框架內下注，低額池有 THB 50 上限、高額池期望為負，
-    <em>知道結果不等於能賺錢</em>。若日後監控發現異常，改成「第二輪換下一套」的成本很低（後端把編號 +1 即可）。
+  <div class="note ok">
+    <strong>原本「第二輪重跑同一套可能被預測」的風險，已隨改版消失</strong><br>
+    先前版本是 600 局（同一套腳本跑兩遍），第 301~600 局與前 300 局完全相同，
+    有心人錄影比對就能預測後半段。改成<strong>累積 300 局、不重跑</strong>之後，
+    <strong>同一套腳本在同一位玩家身上只會出現一次</strong>——這個風險是被機制消除，不是被緩解。
   </div>
 </div>
 
@@ -498,10 +516,11 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <tr><th>項目</th><th>本次範圍（一次上線）</th><th>後續版本（尚未排程）</th></tr>
     </thead>
     <tbody>
-      <tr><td class="dim">適用遊戲</td><td><strong>Lucky Paws 財神貓</strong>單款驗證</td><td>推廣至各遊戲；新遊戲一律標配</td></tr>
+            <tr><td class="dim">適用遊戲</td><td><strong>Lucky Paws 財神貓</strong>單款驗證</td><td>推廣至各遊戲；新遊戲一律標配</td></tr>
+      <tr><td class="dim">適用幣別</td><td><strong>僅 THB</strong>（門檻 50）· 其他幣別玩家一律阻擋</td><td>擴充至<strong>全幣值</strong>；62 種幣別門檻已備妥</td></tr>
       <tr><td class="dim">腳本池</td><td><strong>雙池 200 套</strong>（低額 100＋高額 100）</td><td>依分析結果汰換表現差的腳本</td></tr>
       <tr><td class="dim">下注額判定</td><td><span class="tag g">逐局判定 · THB 50 為界</span></td><td>門檻依實際數據調整，可能細分三段</td></tr>
-      <tr><td class="dim">體驗長度</td><td><strong>兩池合計 600 局</strong></td><td>依手數數據調整；第二輪改發下一套</td></tr>
+      <tr><td class="dim">體驗長度</td><td><strong>累積押注 300 局</strong>（不重跑、不延長）</td><td>依手數數據調整長度；視切換率決定是否調整跨區間規則</td></tr>
       <tr><td class="dim">套利空間</td><td><span class="tag g">結構性消除</span></td><td>依監控結果微調門檻</td></tr>
       <tr><td class="dim">buy bonus</td><td><span class="tag b">走原生隨機 · 不消耗進度</span></td><td>同左，不變</td></tr>
       <tr><td class="dim">效果驗證</td><td>上線前 30 天 baseline 前後對比</td><td>可設對照組做同期比較</td></tr>
@@ -536,8 +555,8 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     </div>
     <div class="card">
       <div class="card-k">次指標</div>
-      <div class="card-t">600 局完成率</div>
-      <div class="card-d">有多少 % 的新手把腳本跑完。分母分子都在我們自己的資料裡，抗干擾最強。</div>
+      <div class="card-t">300 局完成率</div>
+      <div class="card-d">有多少 % 的新手把 300 局跑完。分母分子都在我們自己的資料裡，抗干擾最強。</div>
     </div>
     <div class="card">
       <div class="card-k">次指標</div>
@@ -560,13 +579,13 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   <div class="blk-num" style="margin-top:60px">07-B · 本案獨有的分析價值</div>
   <h2>留存給你一個總分，<span>流失曲線告訴你哪裡要改</span></h2>
   <div class="blk-lead">
-    因為腳本長度固定 600 局、而且每一局都有紀錄，我們可以畫出
-    <strong>新手在 600 局中的流失分佈</strong>——這是留存指標做不到的事。
+    因為新手體驗長度固定 300 局、而且每一局都有紀錄，我們可以畫出
+    <strong>新手在 300 局中的流失分佈</strong>——這是留存指標做不到的事。
   </div>
 
   <div class="fig">
     <div class="fig-cap">Figure 5 · 流失點位分析（示意）</div>
-    <svg viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="新手在600局中的存活曲線，兩次Free Game分別在第180與第480局，流失高峰出現在第一次Free Game之前">
+    <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="新手在300局中的存活曲線，流失高峰出現在第一次Free Game之前">
       <g stroke="var(--grid-line)" stroke-width="1">
         <line x1="60" y1="40" x2="820" y2="40"/><line x1="60" y1="90" x2="820" y2="90"/>
         <line x1="60" y1="140" x2="820" y2="140"/><line x1="60" y1="190" x2="820" y2="190"/>
@@ -575,38 +594,24 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <text x="0" y="44" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">100%</text>
       <text x="14" y="244" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">0%</text>
       <text x="0" y="24" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">還在玩的人</text>
-      <!-- 流失高峰（第一次 FG 之前） -->
-      <rect x="130" y="34" width="90" height="210" fill="var(--red-fill)"/>
-      <!-- 輪次分界 -->
-      <line x1="440" y1="34" x2="440" y2="252" stroke="var(--border-bright)" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="446" y="248" font-family="DM Mono, monospace" font-size="9" fill="var(--text-dim)">第 300 局 · 第二輪開始（同一套重播）</text>
-      <!-- 存活曲線 -->
+      <rect x="200" y="34" width="110" height="210" fill="var(--red-fill)"/>
       <polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"
-        points="60,40 100,50 130,58 165,96 200,128 220,140 260,150 320,160 380,166 440,170 500,176 560,180 620,184 690,188 760,191 820,194"/>
-      <!-- 第一次 FG -->
-      <line x1="288" y1="34" x2="288" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4"/>
-      <circle cx="288" cy="155" r="5" fill="var(--green)"/>
-      <text x="296" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)">第 1 次 Free Game</text>
-      <text x="296" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">腳本第 180 局</text>
-      <!-- 第二次 FG -->
-      <line x1="668" y1="34" x2="668" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4" opacity=".55"/>
-      <circle cx="668" cy="187" r="5" fill="var(--green)" opacity=".55"/>
-      <text x="676" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)" opacity=".8">第 2 次</text>
-      <text x="676" y="78" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 480 局</text>
-      <!-- 標籤 -->
-      <text x="175" y="272" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--red-bright)" text-anchor="middle">流失高峰</text>
-      <text x="175" y="290" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)" text-anchor="middle">約第 60~130 局</text>
+        points="60,40 130,52 200,66 240,104 280,140 310,158 380,170 450,178 520,184 590,190 660,195 730,199 820,204"/>
+      <line x1="520" y1="34" x2="520" y2="244" stroke="var(--green)" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="520" cy="184" r="5" fill="var(--green)"/>
+      <text x="530" y="62" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--green)">這套腳本的 Free Game</text>
+      <text x="530" y="80" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 180 局</text>
+      <text x="255" y="272" font-family="DM Sans, sans-serif" font-size="12.5" font-weight="700" fill="var(--red-bright)" text-anchor="middle">流失高峰</text>
+      <text x="255" y="290" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)" text-anchor="middle">約第 60~110 局</text>
       <text x="60" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 1 局</text>
-      <text x="770" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 600 局</text>
+      <text x="770" y="272" font-family="DM Mono, monospace" font-size="10" fill="var(--text-dim)">第 300 局</text>
     </svg>
     <div class="fig-note">
-      <strong>腳本每 300 局保證至少一次 Free Game，所以 600 局內必定出現至少兩次</strong>——
-      第二次是同一套腳本重播時再出現一次（跨區間的玩家則是另一套腳本的那一次）。<br>
-      這張圖如果長成這樣，結論非常明確：<strong>流失高峰落在第一次 Free Game 之前</strong>，
-      代表這套腳本的 FG 放太後面，大部分人還沒看到就走了。<strong>把 FG 往前挪到第 100 局之前</strong>，
+      這張圖如果長成這樣，結論非常明確：<strong>流失高峰落在 Free Game 之前</strong>，
+      代表這套腳本的 FG 放太後面，大部分人還沒看到就走了。<strong>把 FG 往前挪到第 60 局之前</strong>，
       就是下一版腳本的具體修改方向。<br>
-      <strong>注意分析尺度</strong>：定位「FG 該放第幾局」時，要把兩輪的資料
-      <em>摺疊回「腳本內第 1~300 局」的尺度</em>來看，而不是攤平在 600 局上——因為腳本的設計單位是 300 局。
+      <strong>分析時的注意事項</strong>：橫軸用<em>腳本內位置</em>，且<strong>主分析只取全程未跨區間的玩家</strong>——
+      中途切換 bet 的人拿到的是兩段不完整的片段，混進來會讓 FG 落點的結論失真。
     </div>
   </div>
 
@@ -692,7 +697,7 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
       <div class="card warn">
         <div class="card-k">數據組</div>
         <div class="card-t">推算驗證期長度</div>
-        <div class="card-d">財神貓是既有遊戲、日均新手數有限。<strong>若累積太慢，需評估加開第二款。</strong></div>
+        <div class="card-d">財神貓是既有遊戲、且<strong>只算 THB 玩家</strong>，日均新手數有限。<strong>若累積太慢，需評估提前開放第二個幣別或加開遊戲。</strong></div>
       </div>
     </div>
   </div>
@@ -700,9 +705,9 @@ catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 </div><!-- /wrap -->
 
 <div class="foot">
-  新手機率體驗腳本 · 決策簡報 V2.3 · CONFIDENTIAL 2026<br>
+  新手機率體驗腳本 · 決策簡報 V3.0 · CONFIDENTIAL 2026<br>
   Force / Combo Gaming<br>
-  <span style="letter-spacing:.1em">完整規格請見《新手機率體驗腳本規格書 NES-SPEC V2.3》</span>
+  <span style="letter-spacing:.1em">完整規格請見《新手機率體驗腳本規格書 NES-SPEC V3.0》</span>
 </div>
 
 <script>
