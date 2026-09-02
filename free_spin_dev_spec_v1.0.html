@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.11</title>
+<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.12</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -556,7 +556,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 <!-- TOP NAV -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">FS-DEV · V1.10</span>
+  <span class="nav-brand">FS-DEV · V1.12</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#flowmap">流程與頁面地圖</a>
   <a class="nav-item" href="#terms">名詞與全域規則</a>
@@ -565,6 +565,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <a class="nav-item" href="#pg-form">後台 · 建卡</a>
   <a class="nav-item" href="#pg-bag">玩家背包</a>
   <a class="nav-item" href="#pg-game">遊戲內與結算</a>
+  <a class="nav-item" href="#pg-history">玩家歷程</a>
   <a class="nav-item" href="#test">跨頁驗收</a>
   <a class="nav-item" href="#logs">事件紀錄</a>
   <a class="nav-item" href="#prereq">前置與待確認</a>
@@ -583,7 +584,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">FREE SPIN 卡<br>規格書 · 開發交付版</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.11</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.12</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-draft">DRAFT</span></div>
@@ -674,9 +675,23 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
         <a class="sidebar-sub-link" href="#pg-game">遊戲內文案</a>
       </div>
     </div>
+    <div class="sidebar-section" data-section="pg-history">
+      <button class="sidebar-section-btn" onclick="navTo('pg-history')"><span class="sidebar-section-num">09</span>玩家端 · 遊戲歷程呈現<span class="sidebar-chevron">›</span></button>
+      <div class="sidebar-subsections">
+        <a class="sidebar-sub-link" href="#pg-history">職責切分（開單依據）</a>
+        <a class="sidebar-sub-link" href="#pg-history">動線總覽（五層）</a>
+        <a class="sidebar-sub-link" href="#pg-hist-l2">L2 · 活動分類頁</a>
+        <a class="sidebar-sub-link" href="#pg-hist-l3">L3 · 卡片清單</a>
+        <a class="sidebar-sub-link" href="#pg-hist-filter">L3 · 日期篩選器</a>
+        <a class="sidebar-sub-link" href="#pg-hist-l4">L4 · 局歷程</a>
+        <a class="sidebar-sub-link" href="#pg-hist-settle">結算收尾列</a>
+        <a class="sidebar-sub-link" href="#pg-hist-l5">L5 · 單局盤面</a>
+        <a class="sidebar-sub-link" href="#pg-history">本頁驗收 / 13 語系文案</a>
+      </div>
+    </div>
     <div class="nav-group">全域</div>
     <div class="sidebar-section" data-section="test">
-      <button class="sidebar-section-btn" onclick="navTo('test')"><span class="sidebar-section-num">09</span>跨頁驗收與檢查清單<span class="sidebar-chevron">›</span></button>
+      <button class="sidebar-section-btn" onclick="navTo('test')"><span class="sidebar-section-num">10</span>跨頁驗收與檢查清單<span class="sidebar-chevron">›</span></button>
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#test">跨頁驗收情境</a>
         <a class="sidebar-sub-link" href="#test">上線前必過檢查清單</a>
@@ -684,11 +699,11 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       </div>
     </div>
     <div class="sidebar-section" data-section="logs">
-      <button class="sidebar-section-btn" onclick="navTo('logs')"><span class="sidebar-section-num">10</span>需留存的事件紀錄<span class="sidebar-chevron">›</span></button>
+      <button class="sidebar-section-btn" onclick="navTo('logs')"><span class="sidebar-section-num">11</span>需留存的事件紀錄<span class="sidebar-chevron">›</span></button>
       <div class="sidebar-subsections"><a class="sidebar-sub-link" href="#logs">8 類事件</a></div>
     </div>
     <div class="sidebar-section" data-section="prereq">
-      <button class="sidebar-section-btn" onclick="navTo('prereq')"><span class="sidebar-section-num">11</span>開發前置條件與待確認<span class="sidebar-chevron">›</span></button>
+      <button class="sidebar-section-btn" onclick="navTo('prereq')"><span class="sidebar-section-num">12</span>開發前置條件與待確認<span class="sidebar-chevron">›</span></button>
       <div class="sidebar-subsections">
         <a class="sidebar-sub-link" href="#prereq">四項基礎建設</a>
         <a class="sidebar-sub-link" href="#prereq">待確認事項</a>
@@ -706,7 +721,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="cover-grid"></div>
   <div class="cover-tag">CMB · DEV SPEC · 2026</div>
   <h1>FREE <span>SPIN</span> 卡</h1>
-  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.11（源自完整版 V2.4）</div>
+  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.12（源自完整版 V2.4）</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>類型</strong> CRM 周邊 · 非現金獎勵</div>
     <div class="cover-pill"><strong>來源</strong> 抽寶箱 第二階段</div>
@@ -733,6 +748,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <table>
     <thead><tr><th style="width:110px;">修改日期</th><th style="width:96px;">版號</th><th style="width:160px;">修改章節</th><th>修改摘要</th></tr></thead>
     <tbody>
+      <tr><td>2026-09-01</td><td>DEV V1.12</td><td>§09（新增）· §02 · §03 · §08 · §11 · §12</td><td><strong>新增 §09「玩家端遊戲歷程呈現」功能頁面章</strong>（原 §09–§11 順延為 §10–§12）：①<strong>CRM 選單（Game Center）最下方新增「History」項目</strong>（§08）——主標 History／副標 RECORDS，<strong>與 FS 卡同批上線、之前掛 SOON 佔位</strong>，點擊收合選單並開啟遊戲端歷程頁、<strong>落在「活動」分類</strong>、<strong>不 deep link 直跳卡片清單</strong>（與抽寶箱 DEV V1.19 同一慣例）；上線後未持卡仍顯示可點。<strong>歷程掛在選單而非背包</strong>的理由：歷程涵蓋抽寶箱與 FS 卡兩個活動，與背包同屬「玩家自己的東西」，掛共用選單才對得上涵蓋範圍；<strong>背包浮層內不另設入口</strong>，維持單一入口。選單項目的排版與 SOON 徽章樣式仍屬《抽寶箱 CRM 浮動 icon 規格》，本文件只定義點擊行為（比照「背包」項目的處理）。②<strong>§09 定義四層動線</strong>：L2 活動分類頁新增「FREE SPIN 卡」入口卡（與抽寶箱並列、<strong>無任何投注統計數字</strong>）→ L3 <strong>以 <span class="mono">reference_id</span> 為分組主鍵的卡片清單</strong>（含日期篩選器、手風琴展開）→ L4 該卡全部局歷程（<strong>跨遊戲混排、維持既有四欄</strong>、Time 欄改雙行標遊戲名、<strong>移除單日統計列</strong>、Profit 為純數字不帶幣值）＋<strong>結算收尾列</strong>（帶幣值、可跳一般注單）→ L5 單局盤面（<strong>Balance 前後值整組換成 <span class="mono">reference_id</span></strong>、Bet 帶幣值＋「卡片面額 · 未實際扣款」、Win 不帶幣值）。③<strong>取消「遊戲」分層</strong>——卡才是 FS 的結算單位，先分遊戲會把同一張卡的歷程切成兩截、導致 score 與封頂算不出來。④<strong>職責切分表 H1–H7</strong>：CRM 端僅 H1，H2–H5 屬遊戲端，H6 為後端基建、H7 為數據口徑。⑤§12 新增第 ⑤ 項基建「<strong>FS 歷程獨立 DB ＋ 歷程 API 統一輸出</strong>」與待確認⑧–⑪；§11 新增 <span class="mono">fs_history_open</span> 事件；§09 含 15 條驗收與 13 條 ×13 語系文案。⑥內部 wiki「不重現遊戲盤面」原則因<strong>現況已上線盤面回放、本章為重用而非新做</strong>，經拍板標記 OUTDATED。<strong>⑦順帶勘誤既有問題</strong>：待確認 ⑤⑥⑦ 實際位於 §03 章末卻被三處內文誤標為前置條件章，已於 §03 補「待確認事項 ⑤–⑦」小標＋編號說明、§12 補指路 callout，三處引用改為「見 §03 待確認⑤/⑥/⑦」；頂部導覽列版號字樣自 V1.10 起漏改，本次補正為 V1.12。</td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.11</td><td>§04～§08（截圖與說明）</td><td><strong>全數截圖更新為 2026-08-25 原型實拍（背包＝英文版）並同步說明內文</strong>：①fs_admin_01～03 重拍（無狀態欄、未結束口徑展開、6 款上限、bet 單欄、「建立發放卡」動作列）②fs_bag_01～03 重拍（可使用／已過期／<strong>待啟動</strong>三分頁，含封頂卡提前結算鈕與 AWC 鎖定 🔒 實拍）③<strong>新增四張畫面</strong>：fs_bag_04 提前結算二次確認、fs_bag_05 啟用流程（Activating Free Spin Card）、fs_bag_06 AWC 衝突錯誤、fs_game_04 CRM 選單＋fs_game_05 一般模式常駐 icon ④fs_game_01～03 由美術 mockup <strong>改為原型實拍</strong>（畫面二新增 Ⓗ CRM icon／Ⓘ Leave FS 區域；畫面三 Ⓔ 最低提領欄位<strong>已確認移除</strong>）⑤§06 動作列文案同步原型：「啟用」→「<strong>建立發放卡</strong>」（編輯模式＝儲存）。<strong>規格規則零變更</strong>；⚠️ 原型卡名顯示「{n}★」徽章＋「Free Spins ×N」與規格固定卡名「{n}★ FREE SPIN」不一致，列入待修（以規格為準）。</td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.10</td><td>§04</td><td><strong>美術需求全面擴充</strong>（回應美術「看不懂要畫什麼」）：①<strong>背包頁「美術視角圖文對照」</strong>Ⓐ–Ⓗ（圖左可 Lightbox ＋ 右欄標題錨點 ＋ 下方區域細節，每區三欄＝要畫什麼／狀態與變化／文字與位數）②<strong>遊戲內三畫面圖文對照</strong>（進場彈窗／遊戲中／結算彈窗，錨點 <span class="mono">art-game-*</span>）③<strong>美術資產需求總表 28 項</strong>（資產類型限四種用語／狀態數／尺寸建議／命名建議 <span class="mono">fs_{screen}_{element}_{state}.png</span>）④<strong>動態文字與位數限制表</strong>（金額 12 字元、次數 2 位數、倒數 8 字元等，供美術預留版位）。<strong>§07／§08 行為規則零變更</strong>——美術章引用畫面時一律一行指路回原章，不重複規則。</td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.9</td><td>§05／§07／§08</td><td>①<strong>後台「使用活動」改未結束口徑</strong>：N 與展開清單<strong>只含進行中＋尚未開始</strong>、<strong>已結束不列不計</strong>；<strong>刪卡保護同口徑</strong>（被未結束活動引用時 disabled，含尚未開始的活動）；防呆表、錯誤處理、文案表與驗收全文由「進行中」改為「未結束」用語，並與抽寶箱模板「使用中活動展開」（D-005）同口徑。②<strong>CRM 浮動 icon 明確為遊戲畫面常駐</strong>：一般模式與 FS 模式皆顯示、皆可點擊展開 CRM 選單（非 FS 期間限定），玩家未持卡時也能經 icon → 選單 →「背包」開啟背包。③<strong>背包頁單一版面聲明</strong>：所有入口開啟的都是 §07 定義的同一頁，無簡化版或第二種排版。<strong>背包內部規則零變更。</strong></td></tr>
@@ -748,6 +764,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     </tbody>
   </table>
   <div class="revlog-note">
+    <strong>⚠️ V1.11 以前的條目使用當時的章號</strong>（DEV V1.12 新增 §09 後，原 §09–§11 已順延為 §10–§12）；<strong>V1.12 起的條目一律使用現行章號</strong>。<br>
     本文件內容有任何調整時，會在此表新增一筆，並於被修改的章節標題旁標示「<span class="tag-upd">YYYY-MM-DD</span>」，請開發人員留意標記處的規格變動。
   </div>
 </div>
@@ -859,7 +876,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <section class="section" id="flowmap">
   <div class="section-header">
     <span class="section-num">02</span>
-    <span class="section-title">整體流程與頁面地圖<span class="tag-upd">2026-08-25</span></span>
+    <span class="section-title">整體流程與頁面地圖<span class="tag-upd">2026-09-01</span></span>
     <span class="section-title-en">FLOW &amp; PAGE MAP</span>
   </div>
 
@@ -896,7 +913,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <div class="flow-step success" style="min-width:520px;"><div class="flow-step-num">SETTLE 3 · 入主錢包真金</div><div class="flow-step-title">以「下注 0 / 派彩 final」注單發放</div><div class="flow-step-desc">產生一筆零下注中獎注單（帶 campaign_id 與卡序號）——<strong>這筆注單放「一般注單」</strong>，Balance 於此刻增加，並以 bet=0 發放方式與平台／集成商同步資產增加。無流水、無 roll-over。</div></div>
     </div>
   </div>
-  <div class="callout info"><strong>FREE SPIN 押注歷程單獨分類</strong>：卡片內每一局 FREE SPIN 的押注／贏分歷程<strong>不放一般注單</strong>，歸在「<strong>活動 › FREE SPIN 卡</strong>」分類留存（對帳與客訴查詢用）；<strong>只有最後那筆結算注單進一般注單</strong>。</div>
+  <div class="callout info"><strong>FREE SPIN 押注歷程單獨分類</strong>：卡片內每一局 FREE SPIN 的押注／贏分歷程<strong>不放一般注單</strong>，歸在「<strong>活動 › FREE SPIN 卡</strong>」分類留存（對帳與客訴查詢用）；<strong>只有最後那筆結算注單進一般注單</strong>。<br><span class="tag-pill tag-v2">V1.12 補</span> <strong>玩家怎麼查得到這些局</strong>：入口與四層畫面規則見 <a href="#pg-history" style="color:var(--gold-light);">DEV §09</a>。</div>
 
   <div class="callout success"><strong>為什麼是注單而不是另開一條金流</strong>：獎勵即真金，搭遊戲本來就在跑的注單流送出，<em>不需要第二條金流管線</em>，也不需要紅利錢包、流水倍數或 roll-over。封頂由我方結算層自己算好再送出。</div>
 
@@ -912,15 +929,16 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   </div>
 
   <div class="sub-title">頁面地圖（本文件的功能頁面章）</div>
-  <div class="body-text">整條鏈路落在 <strong>4 個功能頁面</strong>上（另加一個<strong>入口</strong>：遊戲內 CRM 選單）；每個頁面一章，該頁的畫面、規則、防呆、驗收與錯誤處理<strong>全部集中在該章</strong>，查一個功能不必跨章拼湊。</div>
+  <div class="body-text">整條鏈路落在 <strong>5 個功能頁面</strong>上（另加一個<strong>入口</strong>：遊戲內 CRM 選單）；每個頁面一章，該頁的畫面、規則、防呆、驗收與錯誤處理<strong>全部集中在該章</strong>，查一個功能不必跨章拼湊。</div>
   <table class="spec-table">
     <thead><tr><th style="width:210px;">頁面</th><th style="width:90px;">誰在用</th><th>這一頁做什麼</th><th style="width:100px;">對應章節</th></tr></thead>
     <tbody>
       <tr><td>後台 · 發放管理列表</td><td class="dim">營運</td><td class="dim">發放卡型錄總覽、道具基礎值維護、引用活動追蹤、停用把關</td><td class="mono">DEV §05</td></tr>
       <tr><td>後台 · 新增／編輯發放卡</td><td class="dim">營運</td><td class="dim">建卡：選星級、勾遊戲、填次數與封頂、設有效期，按「啟用」（含二次確認）即生效</td><td class="mono">DEV §06</td></tr>
-      <tr><td>玩家端 · <strong>遊戲內 CRM 選單</strong><br><span class="tag-pill tag-v2">V1.8 新增</span></td><td class="dim">玩家</td><td class="dim"><strong>背包的唯一入口</strong>：遊戲畫面上的吸附浮動 icon → 點擊展開 CRM 選單 → 點「背包」。選單為所有 CRM 活動共用（抽寶箱等同列）；<strong>icon 與選單本體規則見抽寶箱 CRM 浮動 icon 規格</strong></td><td class="mono">DEV §08</td></tr>
+      <tr><td>玩家端 · <strong>遊戲內 CRM 選單</strong><br><span class="tag-pill tag-v2">V1.8 新增</span></td><td class="dim">玩家</td><td class="dim"><strong>背包與歷程的唯一入口</strong>：遊戲畫面上的吸附浮動 icon → 點擊展開 CRM 選單 → 點「背包」或<strong>最下方的「History」</strong><span class="tag-pill tag-v2">V1.12 新增</span>。選單為所有 CRM 活動共用（抽寶箱等同列）；<strong>icon 與選單本體規則見抽寶箱 CRM 浮動 icon 規格</strong></td><td class="mono">DEV §08</td></tr>
       <tr><td>玩家端 · 背包</td><td class="dim">玩家</td><td class="dim">查看持卡明細與累積獎金、選攜帶遊戲、進入遊戲</td><td class="mono">DEV §07</td></tr>
       <tr><td>玩家端 · 遊戲內與結算</td><td class="dim">玩家</td><td class="dim">進場提示、FS 模式進行中的畫面規則（押注鎖定／餘額不動）、結算彈窗</td><td class="mono">DEV §08</td></tr>
+      <tr><td>玩家端 · <strong>遊戲歷程呈現</strong><br><span class="tag-pill tag-v2">V1.12 新增</span></td><td class="dim">玩家<br>客服</td><td class="dim">查「這張卡玩了哪些局、贏多少分、最後實拿多少」：<strong>CRM 選單 › History</strong>（CRM 端）→ 活動分類 → <strong>以 <span class="mono">reference_id</span> 分組的卡片清單</strong> → 該卡全部局 → 單局盤面。<strong>四層畫面屬遊戲端</strong></td><td class="mono">DEV §09</td></tr>
       <tr><td>（外部）抽寶箱活動獎項設定</td><td class="dim">營運</td><td class="dim">從獎池下拉引用發放卡（reward_id）</td><td class="dim">見抽寶箱開發版規格</td></tr>
     </tbody>
   </table>
@@ -931,7 +949,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <section class="section" id="terms">
   <div class="section-header">
     <span class="section-num">03</span>
-    <span class="section-title">名詞與全域規則<span class="tag-upd">2026-08-25</span></span>
+    <span class="section-title">名詞與全域規則<span class="tag-upd">2026-09-01</span></span>
     <span class="section-title-en">TERMS &amp; GLOBAL RULES</span>
   </div>
 
@@ -1072,6 +1090,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     </tbody>
   </table>
 
+  <div class="sub-title">待確認事項 ⑤–⑦（承接 <a href="#prereq" style="color:var(--gold-light);">§12</a> 的編號）<span class="tag-upd">2026-09-01</span></div>
+  <div class="callout info"><strong>編號為什麼從 ⑤ 開始</strong>：本文件的待確認事項<strong>共用一套流水號</strong>。①–④ 與 ⑧–⑪ 屬「與集成商／後端／前端確認」放在 <a href="#prereq" style="color:var(--gold-light);">§12</a>；<strong>⑤–⑦ 屬「與遊戲端確認」且緊扣本章的全域規則，故留在此處</strong>。引用時請連章號一起寫（如「§03 待確認⑤」），避免查錯地方。</div>
   <div class="oq-item awc">
     <div class="oq-owner">與遊戲端確認</div>
     <div class="oq-q">⑤ FS 模式下 <strong>AUTO 自動旋轉是否開放</strong>？若開放，自動局數須以剩餘局數為上限、用完即停。</div>
@@ -1579,7 +1599,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td>5</td><td class="mono">R_FS_5STAR</td><td>50</td><td>10</td><td>500 THB</td><td>5,000 THB</td></tr>
     </tbody>
   </table>
-  <div class="callout info"><strong>「每轉押注」由我方帶入</strong>：幣值與每轉押注於發卡時由我方帶入，不是由外部預設。實際可帶入的欄位格式以集成商回覆為準（見 DEV §10 待確認第 ① 項）。</div>
+  <div class="callout info"><strong>「每轉押注」由我方帶入</strong>：幣值與每轉押注於發卡時由我方帶入，不是由外部預設。實際可帶入的欄位格式以集成商回覆為準（見 DEV §12 待確認第 ① 項）。</div>
 
 <div class="sub-title">公版押注段 × 幣別 · face_value 對照表</div>
   <div class="body-text">本表為<strong>可填模板</strong>，提供「一套規則 + 跨幣別示意值」讓營運直接套用。<em>幣值範圍以上方「支援幣值清單（64 項）」為準</em>；下列各幣別的每轉押注為符合幣值習慣的<strong>示意值</strong>，實際數字由營運於後台填寫。</div>
@@ -2084,7 +2104,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <li><strong>玩家端文案一律不出現「AWC」字樣</strong>（DEV V1.7 定案）——<span class="mono">AWC</span> 僅作<strong>內部／後台用語</strong>，用於規則敘述、log 與客服查單；玩家只看得到「免費旋轉」的泛稱</li></ul></div>
     <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>未選時進入遊戲鈕維持灰色不可按</li>
 <li>AWC 衝突查詢時機：<strong>展開卡片載入遊戲牆時</strong>查一次；<strong>進場啟用前再驗一次</strong>（第二道防線見本章錯誤處理）</li>
-<li>查詢介面尚未就位時，該檢查<strong>不得默默略過</strong>——需依 <a href="#prereq" style="color:var(--gold-light);">DEV §11</a> 基建項目先行完成</li></ul></div>
+<li>查詢介面尚未就位時，該檢查<strong>不得默默略過</strong>——需依 <a href="#prereq" style="color:var(--gold-light);">DEV §12</a> 基建項目先行完成</li></ul></div>
   </div>
 </div>
 <div class="region-detail" id="pg-bag-f">
@@ -2108,8 +2128,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>—</li></ul></div>
   </div>
 </div>
-
-  <div class="sub-title">待啟動分頁（整卡唯讀 · 顯示開始倒數）<span class="tag-upd">2026-08-24</span></div>
+<div class="sub-title">待啟動分頁（整卡唯讀 · 顯示開始倒數）<span class="tag-upd">2026-08-24</span></div>
   <div class="body-text">卡片若設定的開始時間（<span class="mono">valid_from</span>）尚未到，<strong>不可與可使用卡混在一起</strong>——否則玩家會點下去卻進不了遊戲。DEV V1.6 起這類卡獨立成「待啟動」分頁。</div>
 <div class="shot-map narrow">
 <div class="shot-frame"><img src="design_assets/fs_bag_03_pending.png" alt="玩家背包「待啟動」分頁畫面" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：待啟動分頁</div><div class="shot-cap">待啟動分頁（2026-08-25 英文版實拍）· 紅框 Ⓑ′＝待啟動卡（藍紫徽章 Not Started、「Starts in {t}」倒數、Starts at 時間＋自動轉入註記、Eligible Games 唯讀預覽含 🔒）· 點圖放大</div></div>
@@ -2336,7 +2355,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <section class="section" id="pg-game">
   <div class="section-header">
     <span class="section-num">08</span>
-    <span class="section-title">頁面 · 遊戲內 FREE SPIN 呈現與結算<span class="tag-upd">2026-08-25</span></span>
+    <span class="section-title">頁面 · 遊戲內 FREE SPIN 呈現與結算<span class="tag-upd">2026-09-01</span></span>
     <span class="section-title-en">PAGE · IN-GAME &amp; SETTLEMENT</span>
   </div>
 
@@ -2486,7 +2505,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="rd-cols">
     <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>沿用各遊戲既有行為；FS 不改按鈕本身的功能</li>
 <li>AUTO 若可用，自動局數<strong>不得超過剩餘局數</strong>，用完即停</li></ul></div>
-    <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li><strong>【待確認】</strong>FS 模式下 AUTO 是否開放，需與遊戲端確認（見 §11 待確認⑤）</li></ul></div>
+    <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li><strong>【待確認】</strong>FS 模式下 AUTO 是否開放，需與遊戲端確認（見 <a href="#terms" style="color:var(--gold-light);">§03</a> 待確認⑤）</li></ul></div>
   </div>
 </div>
 <div class="region-detail" id="pg-game-k">
@@ -2516,10 +2535,20 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 </div>
 
   <!-- ── CRM 活動頁浮層（iframe）行為 ── -->
-  <div class="sub-title">CRM 入口與活動頁浮層（iframe）行為<span class="tag-upd">2026-08-25</span></div>
+  <div class="sub-title">CRM 入口與活動頁浮層（iframe）行為<span class="tag-upd">2026-09-01</span></div>
   <div class="callout info"><strong>先講清楚這是什麼</strong>：CRM 活動頁（<strong>含背包</strong>）是在<strong>遊戲內以 iframe 浮層</strong>開啟的——玩家不必離開遊戲就能開背包看卡片。本節定義兩件事：<strong>①玩家怎麼進到背包</strong>（入口路徑）<strong>②浮層與遊戲之間的互動邊界</strong>（什麼時候要讓開、什麼時候必須鎖住不給點）。</div>
 
-  <div class="callout"><strong>入口定義（DEV V1.8 · V1.9 補明確）</strong>：CRM 活動頁（iframe 浮層）<strong>由吸附浮動 icon 展開的 CRM 選單進入</strong>。玩家點選單中的「<strong>背包</strong>」項目 → <strong>選單收合</strong> → <strong>開啟背包浮層</strong>。<strong>背包不再有獨立的直接入口。</strong><br>CRM 選單是<strong>所有 CRM 活動的共用入口</strong>（抽寶箱等同列其中）；<strong>icon 與選單本體的規則（拖曳、貼邊、顯示時機、選單項目管理）屬《抽寶箱 CRM 浮動 icon 規格》範疇</strong>，本文件只定義「背包」項目的行為。<br><span class="tag-pill tag-v2">V1.9 補明確</span> <strong>吸附浮動 icon 為遊戲畫面的常駐元件</strong>：<strong>一般模式與 FS 模式皆顯示、皆可點擊展開 CRM 選單</strong>，<strong>並非 FS 期間限定</strong>。<strong>玩家未持任何 FS 卡時同樣能經 icon → 選單 →「背包」開啟背包</strong>（開啟後看到的是空的／其他分頁狀態，版面同 <a href="#pg-bag" style="color:var(--gold-light);">§07</a>）。</div>
+  <div class="callout"><strong>入口定義（DEV V1.8 · V1.9 補明確）</strong>：CRM 活動頁（iframe 浮層）<strong>由吸附浮動 icon 展開的 CRM 選單進入</strong>。玩家點選單中的「<strong>背包</strong>」項目 → <strong>選單收合</strong> → <strong>開啟背包浮層</strong>。<strong>背包不再有獨立的直接入口。</strong><br>CRM 選單是<strong>所有 CRM 活動的共用入口</strong>（抽寶箱等同列其中）；<strong>icon 與選單本體的規則（拖曳、貼邊、顯示時機、選單項目管理）屬《抽寶箱 CRM 浮動 icon 規格》範疇</strong>，本文件只定義「<strong>背包</strong>」與「<strong>History</strong>」兩個項目的行為。<br><span class="tag-pill tag-v2">V1.9 補明確</span> <strong>吸附浮動 icon 為遊戲畫面的常駐元件</strong>：<strong>一般模式與 FS 模式皆顯示、皆可點擊展開 CRM 選單</strong>，<strong>並非 FS 期間限定</strong>。<strong>玩家未持任何 FS 卡時同樣能經 icon → 選單 →「背包」開啟背包</strong>（開啟後看到的是空的／其他分頁狀態，版面同 <a href="#pg-bag" style="color:var(--gold-light);">§07</a>）。</div>
+
+  <div class="callout success"><strong>「History」選單項目 <span class="tag-pill tag-v2">V1.12 新增</span></strong><br>
+  CRM 選單（Game Center）<strong>新增一個「History」項目</strong>，玩家由此進入遊戲歷程查詢。<br>
+  <strong>① 位置</strong>：<strong>選單最下方</strong>（現行順序之後 ⇒ Lucky Chest／Mission／Backpack／Ranking／Recommend／Favorites／<strong>History</strong>）。<br>
+  <strong>② 主標／副標</strong>：主標「<strong>History</strong>」（key <span class="mono">fs_hist_entry</span>）、副標「<strong>RECORDS</strong>」（key <span class="mono">fs_hist_menu_sub</span>），格式同其他項目（Backpack／ITEMS）。<br>
+  <strong>③ 上線時機</strong>：<strong>與 FREE SPIN 卡同批上線</strong>；在那之前<strong>掛 SOON 佔位</strong>（樣式同 Mission／Ranking 等未上線項目，不可點）。<br>
+  <strong>④ 點擊行為</strong>：<strong>選單收合 → 開啟遊戲歷程頁並落在「活動」分類</strong>（不 deep link 直跳卡片清單）。完整動線與畫面規則見 <a href="#pg-history" style="color:var(--gold-light);">DEV §09</a>。<br>
+  <strong>⑤ 顯示條件</strong>：上線後<strong>不因玩家未持任何 FS 卡而隱藏或置灰</strong>——歷史查詢需求不隨持卡數消失（同 Backpack 的處理）。<br>
+  <strong>⑥ 邊界</strong>：<strong>項目在選單中的排版、SOON 徽章樣式、選單本體的展開／收合與半透明規則，一律屬《抽寶箱 CRM 浮動 icon 規格》</strong>；本文件只定義「點下去要做什麼」。<br>
+  <strong>⑦ 背包浮層內不另設歷程入口</strong>——History 是<strong>單一入口</strong>，避免玩家困惑「這兩個 History 是不是不一樣」，也避免兩處各自維護。</div>
 
   <div class="shot-map">
 <div class="shot-frame"><img src="design_assets/fs_game_05_normal_icon.png" alt="一般模式遊戲畫面與常駐 CRM icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="shot-ph">📷 截圖待補：一般模式＋常駐 icon</div><div class="shot-cap">一般模式（未持卡也相同）· Ⓐ 吸附浮動 icon 常駐於左側、紅點徽章顯示可用卡數（2026-08-25 原型實拍）· 點圖放大</div></div>
@@ -2589,7 +2618,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <h4><span class="region-td">Ⓑ</span>CampaignID（客訴查詢用）<span class="rd-func">這張卡是哪一檔活動發的。</span></h4>
   <div class="rd-cols">
     <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>顯示 <span class="mono">campaign_id</span>，可長按複製（若遊戲端支援）</li>
-<li><strong>【待確認】</strong>建議同時顯示卡序號 <span class="mono">reference_id</span>——客服查單以卡序號最快（見 §11 待確認⑦）</li></ul></div>
+<li><strong>【待確認】</strong>建議同時顯示卡序號 <span class="mono">reference_id</span>——客服查單以卡序號最快（見 <a href="#terms" style="color:var(--gold-light);">§03</a> 待確認⑦）</li></ul></div>
     <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>ID 為專名<strong>不翻譯</strong>、不換行截斷</li></ul></div>
   </div>
 </div>
@@ -2642,7 +2671,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <tr><td><strong>免費遊戲結束回到 FS 卡</strong></td><td class="dim">回到正常扣次</td><td class="dim">Ⓑ 計數器恢復顯示剩餘局數並繼續遞減</td></tr>
     </tbody>
   </table>
-  <div class="callout warn"><strong>【待確認】兩層免費局的畫面表現</strong>：卡片局數與遊戲自身免費局數<strong>同時存在</strong>時要怎麼並存顯示（兩個計數器？暫時隱藏其一？），需與遊戲端確認（見 §11 待確認⑥）。規則面已定：<strong>遊戲自身免費局不扣卡片局數、贏分照樣累加</strong>。</div>
+  <div class="callout warn"><strong>【待確認】兩層免費局的畫面表現</strong>：卡片局數與遊戲自身免費局數<strong>同時存在</strong>時要怎麼並存顯示（兩個計數器？暫時隱藏其一？），需與遊戲端確認（見 <a href="#terms" style="color:var(--gold-light);">§03</a> 待確認⑥）。規則面已定：<strong>遊戲自身免費局不扣卡片局數、贏分照樣累加</strong>。</div>
 
   <div class="sub-title">本頁驗收情境</div>
   <table class="spec-table">
@@ -2801,10 +2830,208 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 </section>
 
-<!-- ═══════════ DEV 09 CROSS-PAGE ACCEPTANCE ═══════════ -->
-<section class="section" id="test">
+<!-- ═══════════ DEV 09 PLAYER HISTORY ═══════════ -->
+<section class="section" id="pg-history">
   <div class="section-header">
     <span class="section-num">09</span>
+    <span class="section-title">頁面 · 玩家端遊戲歷程呈現<span class="tag-upd">2026-09-01</span></span>
+    <span class="section-title-en">PAGE · PLAYER HISTORY</span>
+  </div>
+
+  <div class="hypo-block">
+    <div class="hypo-label">本頁目的</div>
+    <div class="hypo-text">讓玩家自己查得到「<strong>我這張 FREE SPIN 卡玩了哪些局、贏了多少分、最後實際拿到多少錢</strong>」。<br>FS 卡的每一局<strong>不進一般注單</strong>（規則見 <a href="#flowmap" style="color:var(--gold-light);">DEV §02</a>），若沒有專屬查詢入口，玩家與客服都查無此局——這是本章存在的唯一理由。<br><strong>結算的那一筆</strong>（下注 0／派彩 final）仍在一般注單，本章負責<strong>把兩邊接起來</strong>，讓玩家看得到「分數 → 實付金額」的因果。</div>
+  </div>
+
+  <div class="callout danger"><strong>先讀這段 · 本章橫跨兩個系統，開單前務必分清楚</strong><br>
+  本章描述的動線裡，<strong>CRM 端只做一件事</strong>：在背包浮層加一個「History」入口，把玩家送進遊戲端既有的「遊戲歷程」頁。<br>
+  <strong>其餘四項都是遊戲端要改的</strong>：活動分類頁新增 FREE SPIN 卡入口、卡片清單層、局歷程列表、盤面頁欄位置換。<br>
+  兩邊的工作項與職能已在下方〈職責切分〉表中拆開，<strong>不要開成同一張單</strong>。</div>
+
+  <div class="sub-title">職責切分（開單依據）</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:64px;">項次</th><th style="width:120px;">歸屬</th><th>工作內容</th><th style="width:150px;">職能單位</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">H1</td><td><strong>CRM 端</strong></td><td>CRM 選單（Game Center）<strong>最下方</strong>新增「History」項目（主標 History／副標 RECORDS；FS 卡上線前掛 SOON 佔位），點擊後收合選單並呼叫遊戲端遊戲歷程頁、直接落在「活動」分類（<strong>不 deep link 直跳卡片清單</strong>）。<strong>背包浮層內不另設入口</strong>。項目排版與 SOON 徽章樣式屬《抽寶箱 CRM 浮動 icon 規格》</td><td class="dim">CRM 前端</td></tr>
+      <tr><td class="mono">H2</td><td>遊戲端</td><td>活動分類頁（L2）新增「FREE SPIN 卡」入口卡，與既有「抽寶箱」並列</td><td class="dim">遊戲前端</td></tr>
+      <tr><td class="mono">H3</td><td>遊戲端</td><td>新增卡片清單層（L3）：以 <span class="mono">reference_id</span> 為分組主鍵，可展開；含日期篩選器</td><td class="dim">遊戲前端</td></tr>
+      <tr><td class="mono">H4</td><td>遊戲端</td><td>局歷程列表（L4）沿用既有注單列表元件，欄位口徑依本章調整</td><td class="dim">遊戲前端</td></tr>
+      <tr><td class="mono">H5</td><td>遊戲端</td><td>盤面頁（L5）沿用既有元件，僅置換頂部 Balance 區塊為 <span class="mono">reference_id</span>、調整 Bet／Win 顯示口徑</td><td class="dim">遊戲前端</td></tr>
+      <tr><td class="mono">H6</td><td><strong>基礎建設</strong></td><td>FS 卡歷程獨立 DB 架構 ＋ 歷程 API 統一輸出（同一份資料同時餵一般注單與 FS 歷程，避免兩處各自維護）</td><td class="dim">後端<span class="tag-pill tag-inf">基建</span></td></tr>
+      <tr><td class="mono">H7</td><td>數據</td><td>確認 FS 局的 bet／win <strong>不計入單一遊戲收入</strong>的統計口徑（避免遊戲營收被卡片面額灌水）</td><td class="dim">數據組</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">動線總覽（五層 · 直式）</div>
+  <div class="flow-wrap">
+    <div class="flow-v">
+      <div class="flow-step" style="min-width:520px;"><div class="flow-step-num">L1</div><div class="flow-step-title">遊戲歷程總覽</div><div class="flow-step-desc">遊戲端既有頁面。頂部橫向分類列：Slot／Arcade／Fish／…／<strong>活動（CRM CAMPAIGN）</strong></div></div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-step highlight" style="min-width:520px;"><div class="flow-step-num">L2</div><div class="flow-step-title">活動分類頁</div><div class="flow-step-desc">兩張入口卡並列：<strong>抽寶箱</strong>（既有）＋<strong>FREE SPIN 卡</strong>（本次新增）。<strong>背包的 History 入口就開在這一層</strong></div></div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-step highlight" style="min-width:520px;"><div class="flow-step-num">L3</div><div class="flow-step-title">FREE SPIN 卡片清單</div><div class="flow-step-desc"><strong>一張卡一列</strong>，以 <span class="mono">reference_id</span> 為主鍵，時間倒序；上方有日期篩選器。點列展開 → L4</div></div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-step" style="min-width:520px;"><div class="flow-step-num">L4</div><div class="flow-step-title">該卡的全部局歷程</div><div class="flow-step-desc">展開在該卡列下方：<strong>這張卡的每一局</strong>（跨遊戲一起列、時間倒序），最下方是<strong>結算收尾列</strong></div></div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-step success" style="min-width:520px;"><div class="flow-step-num">L5</div><div class="flow-step-title">單局獲獎盤面</div><div class="flow-step-desc">沿用既有盤面元件；<strong>頂部 Balance 前後值換成 <span class="mono">reference_id</span></strong>，Bet／Win 依本章口徑顯示</div></div>
+    </div>
+  </div>
+
+  <div class="callout warn"><strong>為什麼取消「遊戲」這一層</strong>（設計取捨，開發請勿自行加回）<br>
+  一張 FS 卡最多可指定 <strong>6 款遊戲</strong>，玩家可能同一張卡在 A、B 兩款都玩過。若先分遊戲再分卡，<strong>同一張卡的歷程會被切成兩截</strong>，而「累積分數 <span class="mono">score</span>」與「封頂 <span class="mono">max_conversion</span>」都是<strong>整張卡</strong>計算的——切開後任何一邊都算不出正確數字，只會製造客訴。<br>
+  <strong>卡才是 FS 的結算單位，遊戲不是。</strong>玩家的問題永遠是「我這張卡拿了多少」，不是「我在這款遊戲用卡拿了多少」。遊戲維度改以 L4 列上的遊戲名標示保留。</div>
+
+  <div class="sub-title">入口規則</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:180px;">入口</th><th>行為</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CRM 選單 › History</strong><br><span class="tag-pill tag-v2">V1.12 新增</span></td><td><strong>唯一入口</strong>。遊戲畫面吸附浮動 icon → 展開 CRM 選單（Game Center）→ 點<strong>最下方的「History」項目</strong> → 選單收合 → <strong>開啟遊戲歷程頁並落在 L2 活動分類</strong>，<strong>不直跳 L3</strong>。<br><strong>為什麼掛在選單而不是背包</strong>：歷程是<strong>跨活動</strong>的（抽寶箱獎勵與 FS 卡都查得到），與背包同屬「玩家自己的東西」，掛在共用選單才對得上它的涵蓋範圍；<strong>背包浮層內不另設入口</strong>，維持單一入口。<br><strong>不 deep link 的理由</strong>：與抽寶箱 <span class="mono">DEV V1.19</span> 的歷程入口<strong>採同一慣例</strong>（開到活動分類、由玩家自己選要看哪個活動），兩個 CRM 玩法的入口行為一致，遊戲端也不必為 CRM 開帶參數的專用入口。<br><strong>玩家未持任何 FS 卡時 History 仍顯示可點</strong>（不隱藏、不置灰），點進去看到的是空狀態。<br><strong>選單項目本身的規格</strong>（位置、主副標、SOON 佔位、樣式邊界）見 <a href="#pg-game" style="color:var(--gold-light);">DEV §08</a>。</td></tr>
+      <tr><td><strong>遊戲歷程 › 活動</strong></td><td>遊戲端既有動線。玩家自 L1 選「活動」分類 → L2，行為與上者一致。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">L2 · 活動分類頁</div>
+  <div class="region-detail" id="pg-hist-l2">
+    <h4><span class="region-td">Ⓐ</span>FREE SPIN 卡入口卡<span class="rd-func">與抽寶箱並列的第二張入口卡。</span></h4>
+    <div class="rd-cols">
+      <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>卡片＝<strong>icon ＋名稱「FREE SPIN 卡」</strong>，尺寸同抽寶箱卡</li>
+<li><strong>卡片下方不顯示任何統計數字</strong>（無 TOTAL BETS／Net Win/Lose）——它是純入口，不是投注統計分類</li>
+<li>兩張入口卡點進去的<strong>結構不同</strong>：抽寶箱＝單層獎勵列表且列不可點；FREE SPIN 卡＝三層可鑽（L3→L4→L5）。<strong>前端不要當成同一個元件共用</strong></li>
+<li>未來其他 CRM 玩法（簽到、任務…）以同樣卡片並列，版面預留</li></ul></div>
+      <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>玩家從未取得過 FS 卡：<strong>入口卡照常顯示</strong>，點進 L3 顯示空狀態文案</li>
+<li>入口卡不因卡片全數過期而隱藏（歷史查詢需求不隨卡片消失）</li></ul></div>
+    </div>
+  </div>
+
+  <div class="sub-title">L3 · FREE SPIN 卡片清單</div>
+  <div class="region-detail" id="pg-hist-l3">
+    <h4><span class="region-td">Ⓑ</span>卡片列（分組標頭）<span class="rd-func">一張卡一列，reference_id 為主鍵；點列展開該卡全部局。</span></h4>
+    <div class="rd-cols">
+      <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>排序＝<strong>發卡時間倒序</strong>（最新的卡在最上面）</li>
+<li>每列欄位（自左至右）：<br>① <strong>卡名</strong>「{n}★ FREE SPIN」（同背包固定卡名）<br>② <span class="mono">reference_id</span> <strong>短碼＋複製 icon</strong>（樣式仿既有 ID 欄；點複製取<strong>完整值</strong>）<br>③ <strong>有效期間</strong> <span class="mono">valid_from ~ valid_to</span><br>④ <strong>已用／總次數</strong>（如 <span class="mono">8/10</span>）<br>⑤ <strong>累積分數</strong> <span class="mono">score</span>——<strong>純數字、不帶幣值符號</strong><br>⑥ <strong>結算金額</strong>——<strong>帶幣值符號、橘黃色</strong>；未結算顯示「進行中」灰字<br>⑦ <strong>狀態徽章</strong>（使用中／已結算／已過期未使用）<br>⑧ 展開 chevron</li>
+<li><strong>⑤與⑥的視覺必須有差別</strong>：⑤是分數（無幣值）、⑥是真金（有幣值）。這是本頁最容易被玩家誤解的一組數字</li>
+<li>score 已達封頂：⑤ 仍顯示<strong>實際 score</strong>，其後加小字「已封頂，結算以上限為準」</li>
+<li>展開為<strong>手風琴</strong>：一次只展開一張卡（避免長列表迷路）</li></ul></div>
+      <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>卡片已發但玩家從未開打：可展開，L4 顯示「此卡未使用過」，結算欄顯示「未使用」</li>
+<li>卡片仍在使用中：結算欄一律「進行中」，<strong>不得顯示預估金額</strong>（避免玩家把預估當承諾）</li>
+<li>已過期未使用的卡仍列出並置灰，供客訴查詢</li>
+<li>清單為空（玩家從未取得 FS 卡）：置中顯示空狀態文案，不顯示表頭</li></ul></div>
+    </div>
+  </div>
+  <div class="region-detail" id="pg-hist-filter">
+    <h4><span class="region-td">Ⓒ</span>日期篩選器<span class="rd-func">篩出「該日期有使用紀錄」的卡片。</span></h4>
+    <div class="rd-cols">
+      <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>作用對象＝<strong>卡片清單</strong>：選定日期後，只列出<strong>該日期當天有至少一局使用紀錄</strong>的卡</li>
+<li><strong>不是</strong>用來篩「該日期發的卡」，也<strong>不裁切</strong>展開後的局數——展開仍顯示<strong>該卡全部局</strong>（否則 score 與列出的局對不起來）</li>
+<li>預設值＝<strong>不篩選（全部）</strong>；玩家主動選日期才生效，並顯示「清除篩選」</li>
+<li>樣式沿用既有遊戲明細頁的日期選擇器元件</li></ul></div>
+      <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>選到沒有任何使用紀錄的日期：顯示「該日期無使用紀錄」＋「清除篩選」按鈕，<strong>不要顯示空白畫面</strong></li>
+<li>日期以 <strong>UTC+8</strong> 判定（同全站時區慣例，見 §03）</li></ul></div>
+    </div>
+  </div>
+
+  <div class="sub-title">L4 · 該卡的局歷程（展開區）</div>
+  <div class="region-detail" id="pg-hist-l4">
+    <h4><span class="region-td">Ⓓ</span>局歷程列表<span class="rd-func">沿用既有注單列表元件，維持四欄。</span></h4>
+    <div class="rd-cols">
+      <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li><strong>不顯示單日統計列</strong>（無 Single Day Bet Amount／Single Day Net Win Loss）——FS 局不扣真金、贏分不入 Balance，顯示這兩個數字會讓玩家<strong>誤以為自己輸了錢</strong></li>
+<li>欄位<strong>維持既有四欄</strong>（<span class="mono">reference_id</span> 已上移至分組標頭，不必再佔一欄）：<br><strong>Time</strong>｜<strong>ID</strong>｜<strong>Profit</strong>｜<strong>Special</strong></li>
+<li><strong>Time 欄改雙行</strong>：上行＝時間 <span class="mono">MM/DD HH:MM:SS</span>；下行＝<strong>遊戲名</strong>（小一號灰字）。<strong>若該卡只用過一款遊戲，下行不顯示</strong></li>
+<li><strong>Profit 欄＝該局贏分，純數字不帶幣值符號</strong>；中獎為橘黃、未中獎顯示 <span class="mono">0</span> 灰字。<strong>不顯示負數、不顯示 bet</strong>（FS 局沒有扣款這件事）</li>
+<li>Special 欄沿用既有（Free Game 觸發等標記）</li>
+<li>列右側保留 chevron，點擊 → L5 盤面</li>
+<li>排序＝<strong>時間倒序</strong>，跨遊戲混排</li>
+<li><strong>頁首固定說明列</strong>（不可關閉）：「此頁數字為卡片面額與累積分數，非帳戶餘額；實際入帳金額請見結算列。」</li></ul></div>
+      <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>遊戲已下架：遊戲名照常顯示（取快照留存值），點進 L5 若盤面資產已移除則顯示降級提示，<strong>數字部分仍須正確</strong></li>
+<li>單張卡局數上限有限（依卡片次數），<strong>不需分頁</strong>；若日後開放大次數卡再議</li>
+<li>卡片未使用過：顯示「此卡未使用過」，仍顯示結算列（結算金額 0 或未結算）</li></ul></div>
+    </div>
+  </div>
+  <div class="region-detail" id="pg-hist-settle">
+    <h4><span class="region-td">Ⓔ</span>結算收尾列<span class="rd-func">把「分數」接回「真金」的那一列。</span></h4>
+    <div class="rd-cols">
+      <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li><strong>固定置於該卡展開區的最下方</strong>（時間倒序之外的獨立列，樣式與局列有明顯區隔：底色略亮＋上緣分隔線）</li>
+<li>內容：<strong>時間</strong>＝結算時間｜<strong>標籤</strong>「結算 · 已入主錢包」｜<strong>金額</strong>＝<span class="mono">min(score, max_conversion)</span>，<strong>帶幣值符號、橘黃色</strong></li>
+<li><strong>可點</strong> → 跳至一般注單中對應的那一筆「下注 0／派彩 final」注單（跨分類跳轉，見 <a href="#prereq" style="color:var(--gold-light);">§12</a> 待確認⑩）</li>
+<li>卡片尚未結算：<strong>不顯示本列</strong>（不要顯示 0 或預估值）</li>
+<li>提前結算（<a href="#pg-bag-settle" style="color:var(--gold-light);">§07 Ⓓ′</a>）與到期／局數用完結算<strong>走同一列</strong>，不另做樣式</li></ul></div>
+      <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>score 超過封頂：本列金額顯示<strong>實付的上限值</strong>，並在其下以小字註明「累積 {score}，上限 {max_conversion}，超出不計」——這是「少給錢」客訴的第一現場</li>
+<li>跨分類跳轉若遊戲端不支援：<strong>降級為不可點</strong>，並在列上顯示注單 ID 短碼＋複製 icon，讓客服可自行查</li></ul></div>
+    </div>
+  </div>
+
+  <div class="sub-title">L5 · 單局獲獎盤面</div>
+  <div class="region-detail" id="pg-hist-l5">
+    <h4><span class="region-td">Ⓕ</span>盤面頁欄位置換<span class="rd-func">沿用既有元件，只動頂部三個數字。</span></h4>
+    <div class="rd-cols">
+      <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li><strong>盤面本體（轉軸、符號、倍率、Free Game 標記）完全沿用既有遊戲歷程元件，不做任何客製</strong></li>
+<li><strong>Balance 區塊整組置換</strong>：既有的「前值 ／ ▼ ／ 後值」三行 → 改為<strong>單行 <span class="mono">reference_id</span></strong>（標籤「卡序號 / Reference ID」，完整值＋複製 icon）。<strong>不顯示任何 Balance 前後差異</strong>——FS 局本來就不動 Balance，顯示了必然對不上</li>
+<li><strong>Bet</strong>＝該卡的每轉押注面額（來自發卡快照 <span class="mono">bet</span>），<strong>帶幣值符號</strong>，其下加小字「卡片面額 · 未實際扣款」</li>
+<li><strong>Win</strong>＝該局贏分，<strong>純數字不帶幣值符號</strong>（與 L4 Profit 欄同口徑）</li>
+<li>頂部日期時間列（<span class="mono">YYYY/MM/DD HH:MM (GMT +08:00)</span>）沿用既有</li>
+<li>「Normal Spin／Free Spin」等既有標記沿用</li></ul></div>
+      <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>Bet 帶幣值、Win 不帶幣值是<strong>刻意的不對稱</strong>：面額是卡片定義的固定值（可對照背包），贏分在結算前不是錢。<strong>開發請勿「順手統一」</strong></li>
+<li>盤面資料已逾保存期限：顯示「此局盤面已逾保存期限」，但<strong>時間／Bet／Win／reference_id 四項仍須顯示</strong>（保存期限見 <a href="#prereq" style="color:var(--gold-light);">§12</a> 待確認⑧）</li>
+<li>← 返回回到<strong>展開狀態的 L4</strong>，不得回到收合的 L3（避免玩家每看一局就要重新展開）</li></ul></div>
+    </div>
+  </div>
+
+  <div class="sub-title">本頁驗收</div>
+  <table class="spec-table">
+    <thead><tr><th style="width:56px;">#</th><th style="width:200px;">情境</th><th>預期結果</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">H-01</td><td>CRM 選單點 History</td><td>選單<strong>收合</strong>；開啟遊戲歷程頁並<strong>落在「活動」分類（L2）</strong>，看得到抽寶箱與 FREE SPIN 卡兩張入口卡；<strong>不直跳卡片清單</strong></td></tr>
+      <tr><td class="mono">H-01b</td><td>檢查選單與背包</td><td>History 位於<strong>選單最下方</strong>、主標 History／副標 RECORDS；<strong>背包浮層內找不到任何歷程入口</strong>（單一入口）</td></tr>
+      <tr><td class="mono">H-01c</td><td>FS 卡尚未上線時</td><td>History 項目<strong>掛 SOON 佔位、不可點</strong>，樣式同 Mission／Ranking</td></tr>
+      <tr><td class="mono">H-02</td><td>未持任何 FS 卡的玩家點 History（上線後）</td><td>History 項目<strong>仍顯示且可點</strong>（不隱藏、不置灰）；L2 的 FREE SPIN 卡入口卡<strong>仍顯示</strong>；點進 L3 顯示空狀態文案而非空白畫面</td></tr>
+      <tr><td class="mono">H-03</td><td>L2 兩張入口卡</td><td>兩張卡<strong>皆無</strong> TOTAL BETS／Net Win/Lose 統計列</td></tr>
+      <tr><td class="mono">H-04</td><td>同一張卡跨兩款遊戲各玩數局</td><td>L3 只出現<strong>一列</strong>（一張卡）；展開後兩款遊戲的局<strong>時間倒序混排</strong>，Time 欄第二行分別標出遊戲名</td></tr>
+      <tr><td class="mono">H-05</td><td>檢查 L4 是否有單日統計</td><td><strong>不存在</strong> Single Day Bet Amount／Single Day Net Win Loss 兩個數字</td></tr>
+      <tr><td class="mono">H-06</td><td>已結算的卡</td><td>L3 該列結算欄顯示<strong>帶幣值</strong>的實付金額；展開後最下方有結算收尾列，金額一致</td></tr>
+      <tr><td class="mono">H-07</td><td>使用中（未結算）的卡</td><td>L3 結算欄顯示「進行中」；展開後<strong>沒有</strong>結算收尾列；<strong>畫面上不出現任何預估金額</strong></td></tr>
+      <tr><td class="mono">H-08</td><td>score 超過 max_conversion 的卡</td><td>L3 累積分數顯示<strong>實際 score</strong>＋「已封頂」提示；結算列金額＝<span class="mono">max_conversion</span>，並註明「累積 {score}，上限 {max_conversion}，超出不計」</td></tr>
+      <tr><td class="mono">H-09</td><td>點結算收尾列</td><td>跳至一般注單該筆「下注 0／派彩 final」；若遊戲端不支援跨分類跳轉，則<strong>降級為不可點但顯示注單 ID＋複製 icon</strong></td></tr>
+      <tr><td class="mono">H-10</td><td>點單局進 L5</td><td>頂部<strong>只有</strong> <span class="mono">reference_id</span> 單行，<strong>沒有 Balance 前後值</strong>；Bet 帶幣值＋「卡片面額 · 未實際扣款」小字；Win <strong>不帶幣值</strong></td></tr>
+      <tr><td class="mono">H-11</td><td>L5 按 ←</td><td>回到<strong>該卡仍為展開狀態</strong>的 L4</td></tr>
+      <tr><td class="mono">H-12</td><td>日期篩選器選一個有使用紀錄的日期</td><td>L3 只列出該日有使用紀錄的卡；<strong>展開後仍顯示該卡全部局</strong>（不被日期裁切）</td></tr>
+      <tr><td class="mono">H-13</td><td>日期篩選器選一個沒有紀錄的日期</td><td>顯示「該日期無使用紀錄」＋「清除篩選」，非空白畫面</td></tr>
+      <tr><td class="mono">H-14</td><td>複製 <span class="mono">reference_id</span></td><td>取得的是<strong>完整值</strong>（非畫面上的短碼），與背包卡片明細的卡號一致</td></tr>
+      <tr><td class="mono">H-15</td><td>與一般注單交叉比對</td><td>FS 的每一局<strong>不出現在一般注單</strong>；一般注單只有結算那一筆，金額與結算收尾列一致</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">本頁文案（13 語系）</div>
+  <div style="overflow-x:auto;margin-bottom:24px;">
+  <table class="spec-table" style="min-width:1780px;font-size:11px;">
+    <thead><tr>
+      <th>用途 (key)</th><th>en</th><th>zh-Hant</th><th>zh-Hans</th><th>th</th><th>ko-KR</th><th>pt</th><th>vi</th><th>id</th><th>my-MM</th><th>es-ES</th><th>tr-TR</th><th>ja-JP</th><th>bn</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="mono">fs_hist_entry</td><td>History</td><td>歷程</td><td>历程</td><td>ประวัติ</td><td>기록</td><td>Histórico</td><td>Lịch sử</td><td>Riwayat</td><td>မှတ်တမ်း</td><td>Historial</td><td>Geçmiş</td><td>履歴</td><td>ইতিহাস</td></tr>
+      <tr><td class="mono">fs_hist_menu_sub</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td><td>RECORDS</td></tr>
+      <tr><td class="mono">fs_hist_cat</td><td>Free Spin Card</td><td>FREE SPIN 卡</td><td>FREE SPIN 卡</td><td>บัตรฟรีสปิน</td><td>프리스핀 카드</td><td>Cartão de Giros Grátis</td><td>Thẻ quay miễn phí</td><td>Kartu Putaran Gratis</td><td>အခမဲ့လည်ပတ်ကတ်</td><td>Tarjeta de Giros Gratis</td><td>Bedava Dönüş Kartı</td><td>フリースピンカード</td><td>ফ্রি স্পিন কার্ড</td></tr>
+      <tr><td class="mono">fs_hist_ref</td><td>Reference ID</td><td>卡序號</td><td>卡序号</td><td>รหัสอ้างอิง</td><td>참조 번호</td><td>ID de Referência</td><td>Mã tham chiếu</td><td>ID Referensi</td><td>ကိုးကားနံပါတ်</td><td>ID de Referencia</td><td>Referans Kimliği</td><td>参照ID</td><td>রেফারেন্স আইডি</td></tr>
+      <tr><td class="mono">fs_hist_score</td><td>Accumulated Score</td><td>累積分數</td><td>累积分数</td><td>คะแนนสะสม</td><td>누적 점수</td><td>Pontuação Acumulada</td><td>Điểm tích lũy</td><td>Skor Terkumpul</td><td>စုဆောင်းရမှတ်</td><td>Puntuación Acumulada</td><td>Biriken Puan</td><td>累計スコア</td><td>সঞ্চিত স্কোর</td></tr>
+      <tr><td class="mono">fs_hist_settled</td><td>Settled Amount</td><td>結算金額</td><td>结算金额</td><td>ยอดที่ชำระแล้ว</td><td>정산 금액</td><td>Valor Liquidado</td><td>Số tiền đã thanh toán</td><td>Jumlah Diselesaikan</td><td>ရှင်းလင်းပြီးပမာဏ</td><td>Importe Liquidado</td><td>Ödenen Tutar</td><td>精算金額</td><td>নিষ্পত্তিকৃত পরিমাণ</td></tr>
+      <tr><td class="mono">fs_hist_in_progress</td><td>In Progress</td><td>進行中</td><td>进行中</td><td>กำลังดำเนินการ</td><td>진행 중</td><td>Em Andamento</td><td>Đang diễn ra</td><td>Sedang Berlangsung</td><td>ဆောင်ရွက်ဆဲ</td><td>En Curso</td><td>Devam Ediyor</td><td>進行中</td><td>চলমান</td></tr>
+      <tr><td class="mono">fs_hist_settle_row</td><td>Settlement · Credited to Main Wallet</td><td>結算 · 已入主錢包</td><td>结算 · 已入主钱包</td><td>ชำระเงิน · เข้ากระเป๋าหลักแล้ว</td><td>정산 · 메인 지갑 입금 완료</td><td>Liquidação · Creditado na Carteira Principal</td><td>Thanh toán · Đã vào ví chính</td><td>Penyelesaian · Masuk ke Dompet Utama</td><td>ရှင်းလင်းမှု · ပင်မပိုက်ဆံအိတ်သို့ ထည့်ပြီး</td><td>Liquidación · Acreditado en la Cartera Principal</td><td>Ödeme · Ana Cüzdana Aktarıldı</td><td>精算 · メインウォレットへ入金済み</td><td>নিষ্পত্তি · প্রধান ওয়ালেটে জমা</td></tr>
+      <tr><td class="mono">fs_hist_bet_label</td><td>Card face value · not deducted</td><td>卡片面額 · 未實際扣款</td><td>卡片面额 · 未实际扣款</td><td>มูลค่าบัตร · ไม่ได้หักเงินจริง</td><td>카드 액면가 · 실제 차감 없음</td><td>Valor nominal do cartão · sem débito</td><td>Mệnh giá thẻ · không bị trừ tiền</td><td>Nilai nominal kartu · tidak dipotong</td><td>ကတ်တန်ဖိုး · အမှန်တကယ်မနုတ်ပါ</td><td>Valor nominal de la tarjeta · sin cargo</td><td>Kart nominal değeri · tahsil edilmez</td><td>カード額面 · 実際の引き落としなし</td><td>কার্ডের অভিহিত মূল্য · কাটা হয়নি</td></tr>
+      <tr><td class="mono">fs_hist_note</td><td>Figures here are card face values and accumulated score, not your account balance. See the settlement row for the amount actually credited.</td><td>此頁數字為卡片面額與累積分數，非帳戶餘額；實際入帳金額請見結算列。</td><td>此页数字为卡片面额与累积分数，非账户余额；实际入账金额请见结算列。</td><td>ตัวเลขในหน้านี้คือมูลค่าบัตรและคะแนนสะสม ไม่ใช่ยอดเงินในบัญชี ดูยอดที่เข้าบัญชีจริงได้ที่แถวชำระเงิน</td><td>이 페이지의 숫자는 카드 액면가와 누적 점수이며 계정 잔액이 아닙니다. 실제 입금액은 정산 행을 확인하세요.</td><td>Os valores nesta página são o valor nominal do cartão e a pontuação acumulada, não o saldo da conta. Veja a linha de liquidação para o valor efetivamente creditado.</td><td>Các con số trên trang này là mệnh giá thẻ và điểm tích lũy, không phải số dư tài khoản. Xem dòng thanh toán để biết số tiền thực nhận.</td><td>Angka di halaman ini adalah nilai nominal kartu dan skor terkumpul, bukan saldo akun. Lihat baris penyelesaian untuk jumlah yang benar-benar masuk.</td><td>ဤစာမျက်နှာရှိ ဂဏန်းများသည် ကတ်တန်ဖိုးနှင့် စုဆောင်းရမှတ်ဖြစ်ပြီး အကောင့်လက်ကျန်မဟုတ်ပါ။ အမှန်တကယ်ရရှိသည့်ပမာဏကို ရှင်းလင်းမှုအတန်းတွင် ကြည့်ပါ။</td><td>Las cifras de esta página son el valor nominal de la tarjeta y la puntuación acumulada, no el saldo de la cuenta. Consulte la fila de liquidación para el importe realmente abonado.</td><td>Bu sayfadaki rakamlar kart nominal değeri ve biriken puandır, hesap bakiyeniz değildir. Gerçekte yatan tutar için ödeme satırına bakın.</td><td>このページの数値はカード額面と累計スコアであり、口座残高ではありません。実際の入金額は精算行をご確認ください。</td><td>এই পৃষ্ঠার সংখ্যাগুলি কার্ডের অভিহিত মূল্য ও সঞ্চিত স্কোর, আপনার অ্যাকাউন্ট ব্যালেন্স নয়। প্রকৃত জমার পরিমাণ নিষ্পত্তি সারিতে দেখুন।</td></tr>
+      <tr><td class="mono">fs_hist_empty</td><td>No Free Spin card records yet</td><td>尚無 FREE SPIN 卡使用紀錄</td><td>尚无 FREE SPIN 卡使用记录</td><td>ยังไม่มีประวัติการใช้บัตรฟรีสปิน</td><td>프리스핀 카드 사용 기록이 없습니다</td><td>Ainda sem registos de Cartão de Giros Grátis</td><td>Chưa có lịch sử dùng thẻ quay miễn phí</td><td>Belum ada riwayat Kartu Putaran Gratis</td><td>အခမဲ့လည်ပတ်ကတ် အသုံးပြုမှုမှတ်တမ်း မရှိသေးပါ</td><td>Aún no hay registros de Tarjeta de Giros Gratis</td><td>Henüz Bedava Dönüş Kartı kaydı yok</td><td>フリースピンカードの利用履歴はまだありません</td><td>এখনও কোনো ফ্রি স্পিন কার্ডের রেকর্ড নেই</td></tr>
+      <tr><td class="mono">fs_hist_no_date</td><td>No records on this date</td><td>該日期無使用紀錄</td><td>该日期无使用记录</td><td>ไม่มีประวัติในวันที่นี้</td><td>해당 날짜에 기록이 없습니다</td><td>Sem registos nesta data</td><td>Không có lịch sử vào ngày này</td><td>Tidak ada riwayat pada tanggal ini</td><td>ဤရက်စွဲတွင် မှတ်တမ်းမရှိပါ</td><td>Sin registros en esta fecha</td><td>Bu tarihte kayıt yok</td><td>この日付の履歴はありません</td><td>এই তারিখে কোনো রেকর্ড নেই</td></tr>
+      <tr><td class="mono">fs_hist_unused</td><td>This card was never used</td><td>此卡未使用過</td><td>此卡未使用过</td><td>บัตรใบนี้ยังไม่เคยถูกใช้</td><td>이 카드는 사용된 적이 없습니다</td><td>Este cartão nunca foi utilizado</td><td>Thẻ này chưa từng được dùng</td><td>Kartu ini belum pernah digunakan</td><td>ဤကတ်ကို အသုံးမပြုရသေးပါ</td><td>Esta tarjeta nunca se ha utilizado</td><td>Bu kart hiç kullanılmadı</td><td>このカードは未使用です</td><td>এই কার্ডটি কখনও ব্যবহৃত হয়নি</td></tr>
+      <tr><td class="mono">fs_hist_expired_board</td><td>Round detail is past its retention period</td><td>此局盤面已逾保存期限</td><td>此局盘面已逾保存期限</td><td>รายละเอียดรอบนี้เกินระยะเวลาจัดเก็บแล้ว</td><td>이 회차의 상세 정보는 보관 기간이 지났습니다</td><td>O detalhe desta rodada excedeu o período de retenção</td><td>Chi tiết vòng này đã quá thời hạn lưu trữ</td><td>Detail putaran ini melewati masa penyimpanan</td><td>ဤအကြိမ်၏ အသေးစိတ်သည် သိမ်းဆည်းကာလ ကျော်လွန်သွားပါပြီ</td><td>El detalle de esta ronda superó el período de retención</td><td>Bu turun ayrıntısı saklama süresini aştı</td><td>このラウンドの詳細は保存期限を過ぎています</td><td>এই রাউন্ডের বিবরণ সংরক্ষণকাল অতিক্রম করেছে</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout info"><strong>i18n 備註</strong>：① 金額、分數、次數、日期為動態值，不進文案表。② <span class="mono">fs_hist_entry</span> 與 <span class="mono">fs_hist_menu_sub</span> 為 <strong>CRM 端</strong>使用（CRM 選單項目的主標與副標），其餘 12 條為<strong>遊戲端</strong>使用——交付時請分兩包給對應團隊。③ 翻譯為初稿，上線前送各語系母語者校稿；繁中為文案基準。④ 語系欄位與 §07／§08 文案表一致。⑤ <span class="mono">fs_hist_menu_sub</span>（副標 RECORDS）<strong>全語系不翻譯</strong>——比照選單既有副標（CHEST／DAILY／ITEMS／LEADERBOARD／FOR YOU／SAVED）一律英文的做法，維持選單視覺一致。</div>
+
+</section>
+
+<!-- ═══════════ DEV 10 CROSS-PAGE ACCEPTANCE ═══════════ -->
+<section class="section" id="test">
+  <div class="section-header">
+    <span class="section-num">10</span>
     <span class="section-title">跨頁驗收與上線前檢查清單<span class="tag-upd">2026-08-24</span></span>
     <span class="section-title-en">CROSS-PAGE ACCEPTANCE</span>
   </div>
@@ -2891,8 +3118,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 <!-- ═══════════ DEV 10 EVENT LOGS ═══════════ -->
 <section class="section" id="logs">
   <div class="section-header">
-    <span class="section-num">10</span>
-    <span class="section-title">需留存的事件紀錄<span class="tag-upd">2026-08-24</span></span>
+    <span class="section-num">11</span>
+    <span class="section-title">需留存的事件紀錄<span class="tag-upd">2026-09-01</span></span>
     <span class="section-title-en">EVENT RECORDS</span>
   </div>
 
@@ -2909,19 +3136,20 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div class="log-item"><span class="log-event">fs_settle_shown</span><span class="log-desc">結算彈窗曝光與關閉：何時顯示給玩家、由哪個出口關閉（Return／✕）、是否為斷線後補顯示——客訴「<strong>沒看到結算畫面／不知道結束了</strong>」查這裡。</span></div>
     <div class="log-item"><span class="log-event">fs_early_settle</span><span class="log-desc"><strong>玩家主動提前結算</strong>：哪張卡（reference_id）、<strong>放棄的局數</strong>、<strong>入帳金額</strong>（＝max_conversion）、確認時間——客訴「<strong>我的次數怎麼不見了</strong>」查這裡（DEV V1.6 新增）。</span></div>
     <div class="log-item"><span class="log-event">fs_settled</span><span class="log-desc">整卡結算：score、實付金額 min(score, max_conversion)、campaign_id 與卡序號、對應的一般注單——客訴「<strong>少給錢</strong>」查這裡。</span></div>
+    <div class="log-item"><span class="log-event">fs_history_open</span><span class="log-desc"><strong>玩家開啟 FS 歷程</strong>：來源（CRM 選單 History／遊戲歷程分類）、開啟當下的持卡數與已結算卡數、展開了哪張卡（reference_id）——用來回答「<strong>玩家到底查不查得到、查不查得懂</strong>」，以及客訴前是否曾自助查詢過（DEV V1.12 新增）。</span></div>
     <div class="log-item"><span class="log-event">fs_expired</span><span class="log-desc">逾期紀錄：剩餘未轉局數、是否已觸發結算——「<strong>卡怎麼不見了</strong>」爭議查這裡。</span></div>
   </div>
 </section>
 
-<!-- ═══════════ DEV 11 PREREQUISITES & OPEN ITEMS ═══════════ -->
+<!-- ═══════════ DEV 12 PREREQUISITES & OPEN ITEMS ═══════════ -->
 <section class="section" id="prereq">
   <div class="section-header">
-    <span class="section-num">11</span>
-    <span class="section-title">開發前置條件與待確認<span class="tag-upd">2026-08-24</span></span>
+    <span class="section-num">12</span>
+    <span class="section-title">開發前置條件與待確認<span class="tag-upd">2026-09-01</span></span>
     <span class="section-title-en">PREREQUISITES &amp; OPEN ITEMS</span>
   </div>
 
-  <div class="callout danger"><strong>基礎建設 · 先做，否則全卡關</strong>：以下四項是地基，任何一項沒先就位，發卡與結算整條鏈路都動不了。</div>
+  <div class="callout danger"><strong>基礎建設 · 先做，否則全卡關</strong>：以下五項是地基，任何一項沒先就位，發卡、結算或查詢的鏈路就動不了。</div>
 
   <div class="info-grid-2">
     <div class="info-card" style="border-color:var(--red-line-strong);">
@@ -2944,6 +3172,11 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
       <div class="info-card-title">④ AWC FREE SPIN 狀態查詢 <span class="tag-pill tag-inf">基建</span> <span class="tag-pill tag-v2">V1.6 新增</span></div>
       <div class="info-card-desc">需<strong>集成商提供「玩家 × 遊戲」維度的 AWC FS 進行中狀態查詢介面</strong>。<strong>查詢時機＝背包展開卡片載入遊戲牆時 ＋ 進場啟用前再驗一次</strong>（兩道防線）。<br><strong>沒先做會卡什麼：</strong>同一款遊戲同時存在 AWC FS 與 COMBO FS 卡時兩者互相干擾，玩家會遇到「卡使用失敗」卻查不出原因，次數與 score 也可能對不起來。</div>
     </div>
+    <div class="info-card" style="border-color:var(--red-line-strong);">
+      <div class="info-card-icon">🗂️</div>
+      <div class="info-card-title">⑤ FS 歷程獨立 DB ＋ 歷程 API 統一輸出 <span class="tag-pill tag-inf">基建</span> <span class="tag-pill tag-v2">V1.12 新增</span></div>
+      <div class="info-card-desc">FS 卡的每一局<strong>不進一般注單</strong>，需<strong>獨立設計 DB 架構與邏輯</strong>；同時<strong>遊戲歷程 API 須調整為「同一份資料輸出」</strong>——一般注單與 FS 歷程<strong>吃同一份來源</strong>，不得兩處各自維護。<br><strong>沒先做會卡什麼：</strong><a href="#pg-history" style="color:var(--gold-light);">DEV §09</a> 的四層畫面<strong>全部沒有資料可撈</strong>，玩家與客服都查不到 FS 的任何一局；兩處各自維護則必然出現「背包顯示的 score 與歷程列出的局加總對不起來」的對帳爭議。<br><strong>連動範圍：</strong>此項同時連動 RTP 判斷、對帳與活動數據統計，<strong>不宜與 CRM 功能開發搶同一批後端人力</strong>。</div>
+    </div>
   </div>
 
   <div class="sub-title">待確認事項（未決 · 影響實作行為）</div>
@@ -2963,11 +3196,29 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div class="oq-owner">與集成商確認</div>
     <div class="oq-q">④ 結算資料回灌的方式與時間差（約 5–10 分鐘）對「整卡結束才給獎」時序的影響。</div>
   </div>
+  <div class="callout warn"><strong>⑤–⑦ 不在本章</strong>：待確認事項共用一套流水號，<strong>⑤⑥⑦ 屬「與遊戲端確認」且緊扣全域規則，放在 <a href="#terms" style="color:var(--gold-light);">§03</a> 章末</strong>（⑤ AUTO 是否開放／⑥ 卡片局數與遊戲自身免費局並存的畫面表現／⑦ 結算彈窗是否顯示卡序號）。本章為 ①–④ 與 ⑧–⑪。</div>
+  <div class="oq-item">
+    <div class="oq-owner">與遊戲端確認</div>
+    <div class="oq-q">⑧ <strong>盤面資料的保存期限</strong>：一般注單的盤面回放保存多久？FS 局歷程是否採<strong>同一保存政策</strong>？逾期後仍須保留「時間／Bet／Win／<span class="mono">reference_id</span>」四項數字（<a href="#pg-hist-l5" style="color:var(--gold-light);">§09 Ⓕ</a>），此點需寫入 DB 設計。</div>
+  </div>
+  <div class="oq-item">
+    <div class="oq-owner">與遊戲端確認</div>
+    <div class="oq-q">⑨ <strong>局歷程列能否回傳遊戲名</strong>：<a href="#pg-hist-l4" style="color:var(--gold-light);">§09 Ⓓ</a> 的 Time 欄第二行需顯示該局所屬遊戲；若歷程 API 不含 <span class="mono">game_id / game_name</span>，需確認補欄位的成本，或退回備援方案（該卡若跨多款遊戲則在展開區頂端列出遊戲清單、不逐列標示）。</div>
+  </div>
+  <div class="oq-item">
+    <div class="oq-owner">與遊戲端確認</div>
+    <div class="oq-q">⑩ <strong>結算收尾列能否跨分類跳轉</strong>：<a href="#pg-hist-settle" style="color:var(--gold-light);">§09 Ⓔ</a> 希望點結算列可跳到一般注單的那一筆。若歷程頁不支援跨分類跳轉，<strong>降級為不可點但顯示注單 ID＋複製 icon</strong>（規格已寫入降級行為，此題只影響體驗不影響上線）。</div>
+  </div>
+  <div class="oq-item">
+    <div class="oq-owner">與前端確認</div>
+    <div class="oq-q">⑪ <strong>盤面元件重用成本</strong>：內部 wiki《玩家遊戲歷程與獎勵記錄架構》原記載「歷程以數字呈現、<strong>不重現遊戲盤面</strong>」，該原則的成本理由建立在「盤面要另外做」之上。現況一般注單的盤面回放<strong>已上線</strong>，本章採<strong>重用既有元件、只置換頂部三個數字</strong>的做法，故 wiki 該段已標記 <span class="mono">OUTDATED</span>。需前端確認重用成本確實如評估般低；若不然，退回備援方案（L4 列不可點、不做 L5）。</div>
+  </div>
   <div class="callout info"><strong>串接細節唯一來源</strong>：以上與集成商往來的實際串法，一律以《integration_consolidated_checklist_v2.html》為唯一來源；本文件只定行為結果，不重複維護串接細節。</div>
 </section>
 
 <div class="doc-footer">
-  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.11 · CONFIDENTIAL 2026<br>
+  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.12 · CONFIDENTIAL 2026<br>
+  DEV V1.12（2026-09-01）：新增 §09「玩家端遊戲歷程呈現」（原 §09–§11 順延為 §10–§12）——CRM 選單（Game Center）最下方新增 History 項目（主標 History／副標 RECORDS、與 FS 卡同批上線前掛 SOON、開到活動分類不 deep link、背包內不另設入口）；四層動線 L2 活動分類卡／L3 以 reference_id 分組的卡片清單（含日期篩選器）／L4 該卡全部局（跨遊戲混排、移除單日統計、Profit 純數字）＋結算收尾列／L5 盤面（Balance 換 reference_id、Bet 帶幣值 Win 不帶）；取消遊戲分層；職責切分 H1–H7；§12 新增基建⑤（FS 歷程獨立 DB＋歷程 API 統一輸出）與待確認⑧–⑪；§11 新增 fs_history_open；wiki「不重現盤面」原則標記 OUTDATED。<br>
   DEV V1.11（2026-08-25）：§04～§08 截圖全面更新為原型實拍（背包英文版）並同步說明——fs_admin_01~03／fs_bag_01~03 重拍、新增 fs_bag_04 提前結算確認／05 啟用流程／06 AWC 錯誤／fs_game_04 CRM 選單／05 常駐 icon、fs_game_01~03 由 mockup 改實拍（畫面二新增 Ⓗ icon／Ⓘ Leave FS；畫面三 Ⓔ 確認移除）；§06「啟用」改「建立發放卡」。規格規則零變更；原型卡名文案差異列入待修。<br>
   DEV V1.10（2026-08-25）：§04 由「美術主題與風格」擴充為「美術主題與美術需求」——新增背包頁 Ⓐ–Ⓗ 美術視角圖文對照、遊戲內三畫面（進場／遊戲中／結算）圖文對照、美術資產需求總表 28 項（資產類型限整張圖／九宮格／icon／動效素材四種，含狀態數、430×932 基準尺寸建議、fs_{screen}_{element}_{state}.png 命名建議）、動態文字與位數限制表（金額 12 字元、次數 2 位數、倒數 8 字元、卡名固定全語系統一）。含文字美術圖統一英文、已過期置灰由前端濾鏡處理。§07／§08 行為規則零變更，美術章一律指路回原章。<br>
   DEV V1.9（2026-08-25）：§05 後台「使用活動」改未結束口徑——N＝進行中＋尚未開始，已結束不列不計、展開狀態僅兩態，刪卡保護同口徑（被未結束活動引用時 disabled，含尚未開始），防呆表／錯誤處理／文案表／驗收全文改「未結束」用語並新增「未結束口徑」驗收；已結束的引用紀錄由 DB 留存供對帳、後台不顯示。§08 CRM 浮動 icon 明確為遊戲畫面常駐（一般模式與 FS 模式皆在、非 FS 期間限定），新增「一般模式開背包」驗收。§07 補背包頁單一版面聲明。背包內部規則零變更。<br>
