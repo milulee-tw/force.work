@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抽寶箱 開發交付版規格書 DEV V1.20</title>
+<title>抽寶箱 開發交付版規格書 DEV V1.22</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -1242,7 +1242,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
 <!-- ═══════════ TOP NAV ═══════════ -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">CHEST DEV SPEC · V1.20</span>
+  <span class="nav-brand">CHEST DEV SPEC · V1.22</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#mechanic">玩法機制</a>
   <a class="nav-item" href="#prizes">獎勵設計</a>
@@ -1275,7 +1275,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">抽寶箱<br>開發交付版規格書</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.20</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.22</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">SOURCE</span><span class="sidebar-meta-val">完整版 V5.3</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
@@ -1458,7 +1458,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <div class="cover-grid"></div>
   <div class="cover-tag">CHEST · DEV DELIVERY SPEC · 2026</div>
   <h1>抽<span>寶箱</span><br>開發交付版規格書</h1>
-  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.20 · 源自完整版 V5.3</div>
+  <div class="cover-sub">LUCKY CHEST · DEVELOPMENT SPEC · DEV V1.22 · 源自完整版 V5.3</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>文件定位</strong> 開發交付版（後端／前端／美術／QA）</div>
     <div class="cover-pill"><strong>內容範圍</strong> 需求目的・系統行為・驗收標準</div>
@@ -1467,7 +1467,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <div class="cover-pill"><strong>市場</strong> 菲律賓（披索）</div>
   </div>
   <div class="cover-badges">
-    <span class="badge badge-v1">DEV V1.20 · 開發交付版</span>
+    <span class="badge badge-v1">DEV V1.22 · 開發交付版</span>
     <span class="badge badge-scope">源自完整版 V5.3</span>
     <span class="badge badge-conf">CONFIDENTIAL · 2026</span>
   </div>
@@ -1503,6 +1503,18 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2026-09-02</td>
+          <td>DEV V1.22</td>
+          <td><a href="#player-history" style="color:var(--gold-light);">§05</a>／<a href="#comparison" style="color:var(--gold-light);">§07</a>／<a href="#i18n" style="color:var(--gold-light);">§11</a></td>
+          <td><strong>玩家端獎勵歷程 L3 改版三項（Milu 拍板）</strong>。<br>①<strong style="color:var(--red-bright);">L3 由「單層混排列表」改為「依 CAMPAIGN ID 分組的區塊列表」</strong>——一檔活動一個區塊，<strong>CAMPAIGN ID 上移為區塊標頭</strong>（截斷顯示＋點擊複製）並附該區塊獎勵筆數；區塊間依各活動最新一筆獎勵時間倒序、<strong>預設全部展開</strong>（v1 不做收合）。理由：玩家獎勵常橫跨多檔活動，ID 塞在每列既重複又佔寬，上移後階層才成立，並與 FS 卡歷程「以 <span class="mono">reference_id</span> 分組」同構。<br>②<strong style="color:var(--gold-light);">列上的第二欄由「CAMPAIGN ID」改為「注單 ID」</strong>——欄位仍為四欄（時間／<strong>注單 ID</strong>／獎勵類型／面額）；<strong>注單 ID ＝ 該筆獎勵的 Bet=0 注單單號，與遊戲後台「投注資料查詢」為同一個值</strong>（玩家／客服／營運三方對得起來）；<strong>截斷顯示＋點擊複製完整值</strong>；<strong style="color:var(--orange-bright);">不可點擊進入次層</strong>——抽寶箱獎勵沒有可回放的盤面，不得比照 FS 卡 L4→L5。<br>③<strong style="color:var(--gold-light);">L3 上方新增日期選擇器</strong>（沿用既有遊戲明細頁元件、與 FS 卡 L3 同一元件）：<strong>作用對象＝獎勵列</strong>，選定日期後只列該日發生的獎勵、只顯示仍有列的活動區塊；<strong>此處與 FS 卡口徑刻意不同</strong>——FS 卡篩卡片但不裁切局數（score 需對得起來），抽寶箱每列即一筆獨立獎勵、無加總關係故直接篩列。預設不篩選、生效時顯示「清除篩選」、<strong>UTC+8 判定</strong>；選到無資料日期顯示「該日期無獲獎紀錄」＋清除鈕，<strong>兩種空狀態不可混用</strong>（無任何獎勵＝不顯示表頭與日期選擇器；篩選無結果＝日期選擇器仍顯示）。<br>i18n 新增 4 key（<span class="mono">hist_date_empty</span>／<span class="mono">hist_clear_filter</span>／<span class="mono">hist_bet_id</span>／<span class="mono">hist_copied</span>，各 13 語系，總數 41→45）；§07 對照表玩家端歷程列同步改寫。<strong>FS 卡規格書 DEV §09「抽寶箱＝單層獎勵列表」敘述同步修訂（FS 卡升 DEV V1.13）</strong>；<strong>歷程原型需改版</strong>，<span class="mono">player_hist_03</span> 截圖俟原型更新後重拍，本節已加改版前警示。</td>
+        </tr>
+        <tr>
+          <td>2026-09-02</td>
+          <td>DEV V1.21</td>
+          <td><a href="#tag-pool" style="color:var(--gold-light);">§03</a>／<a href="#backend" style="color:var(--gold-light);">§06</a></td>
+          <td><strong>標籤顯示規則與百分位勘誤（Milu 拍板）</strong>。<br>①<strong style="color:var(--red-bright);">後台 UI 一律只顯示標籤名稱、不顯示百分位區間</strong>——「小客／中客／大客／超大客／巨客」五項純名稱呈現，<strong>不得再附加「81p–90p」之類的區間文字</strong>（原後台原型將區間寫死在標籤 label 中）；百分位區間<strong>僅為 CDP 端判定依據</strong>，規格書<strong>保留定義表</strong>供開發與數據組對規則使用。適用標籤池勾選項、標籤規則設定列、活動列表／表單、審查頁、模板管理與所有提示文案。<br>②<strong>排列順序統一為「依百分位由小到大」</strong>＝小客 → 中客 → 大客 → 超大客 → 巨客（不依使用頻率排序，避免營運誤讀分層高低）。<br>③<strong style="color:var(--orange-bright);">五個標籤皆可選用、不做停用或灰階</strong>——雖首波實際主要使用者為小客／中客／大客三項，值域仍完整開放。<br>④<strong>勘誤：後台原型「超大客 <span class="mono">91p–99p</span>」與巨客 <span class="mono">99p–100p</span> 重疊</strong>，一律以規格 <span class="mono">91p–98p</span> 為準（DEV V1.16 已於規格勘誤，本版同步要求原型修正資料層區間值）。<br>本版<strong>無新增 i18n key</strong>（標籤名稱沿用既有）；<strong>後台原型 v2 需同步改版</strong>，與 V1.20 併為同一份 prompt 執行。</td>
+        </tr>
         <tr>
           <td>2026-09-02</td>
           <td>DEV V1.20</td>
@@ -1675,7 +1687,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   </div>
 
   <details class="fold">
-    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.20<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
+    <summary>章節對照表 · 完整版 V5.3 → 開發版 DEV V1.22<span class="fold-hint">（與完整版對照時才需展開）</span></summary>
     <div class="fold-body">
       <table class="spec-table compact">
         <thead><tr><th style="width:190px;">完整版章節</th><th style="width:150px;">本文件章節</th><th>處理方式</th></tr></thead>
@@ -3058,7 +3070,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <div class="flow-step success" style="min-width:0;width:100%;max-width:520px;">
         <div class="flow-step-num">L3 · 獎勵歷程</div>
         <div class="flow-step-title">該玩家在抽寶箱的全部獎勵歷程</div>
-        <div class="flow-step-desc">欄位僅 <strong>時間／CAMPAIGN ID／獎勵類型／面額</strong>，<strong>時間倒序</strong>；<strong>列表項目不可點擊展開細節</strong></div>
+        <div class="flow-step-desc"><strong style="color:var(--gold-light);">依 CAMPAIGN ID 分組</strong>（標頭放 CAMPAIGN ID）＋上方<strong>日期選擇器</strong>；區塊內欄位為 <strong>時間／注單 ID／獎勵類型／面額</strong>，<strong>時間倒序</strong>；<strong>列表項目不可點擊展開細節</strong>（DEV V1.22）</div>
       </div>
     </div>
   </div>
@@ -3068,6 +3080,9 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>互動原型：</strong><a href="遊戲歷程活動頁原型.html" target="_blank" rel="noopener" style="color:var(--gold-light);">《遊戲歷程活動頁原型.html》 ↗</a>（同資料夾，可點開）——L1 分類列 → L2 玩法卡 → L3 獎勵歷程的實際操作流程請搭配原型確認。<br>
     <strong>原型截圖後補：</strong>下方 3 格為玩家端原型截圖佔位。截圖完成後<strong>依標示檔名放入 <span class="mono" style="color:var(--gold-light);">design_assets/</span></strong>，重新整理即自動顯示，<strong>不需再改本文件</strong>。<br>
     <strong style="color:var(--orange-bright);">⚠ L3 空狀態無原型畫面：</strong>「尚無活動獎勵紀錄」的空狀態<strong>原型未產出，無截圖可參考</strong>，請依下表「空狀態」列的規格實作（文案 key＝<span class="mono">hist_empty</span>，見 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a>）。
+  </div>
+  <div class="callout warn">
+    <strong style="color:var(--orange-bright);">⚠️ 本節截圖為改版前畫面</strong>——DEV V1.22 的<strong>CAMPAIGN ID 分組</strong>、<strong>注單 ID 欄</strong>與<strong>日期選擇器</strong>尚未反映於 <span class="mono">player_hist_03</span>；<strong>歷程原型更新後將重拍同名覆蓋</strong>。<strong style="color:var(--red-bright);">規則以下方表格為準</strong>。
   </div>
   <div class="shot-gallery-phone">
     <figure class="ui-shot-fig">
@@ -3083,7 +3098,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <figure class="ui-shot-fig">
       <img src="design_assets/player_hist_03_box_rewards.png" alt="L3 抽寶箱獎勵歷程列表" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div class="ui-shot-missing" style="display:none;">原型截圖後補<br>放入 <span class="mono">design_assets/player_hist_03_box_rewards.png</span></div>
-      <figcaption>L3 · 獎勵歷程列表<br><span style="color:var(--text-dim);font-size:10px;">時間／CAMPAIGN ID／獎勵類型／面額</span></figcaption>
+      <figcaption>L3 · 獎勵歷程列表<br><span style="color:var(--text-dim);font-size:10px;">CAMPAIGN ID 分組 ＋ 時間／注單 ID／獎勵類型／面額</span></figcaption>
     </figure>
   </div>
   <table class="spec-table">
@@ -3095,11 +3110,13 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td><strong>資料範圍</strong><span class="tag-upd">2026-09-01</span></td><td class="dim">由入口 ② 進入時<strong>顯示內容與入口 ① 完全一致</strong>——玩家在<strong>所有 CRM 活動</strong>的獎勵歷程（不因為從寶箱進來就只篩該檔活動）。欄位、排序、互動限制、空狀態皆同下列各條。</td></tr>
       <tr><td>分類卡呈現</td><td class="dim"><strong>純入口</strong>——<strong>不顯示 TOTAL BETS、不顯示 Net Win/Lose</strong>，也不顯示任何金額彙總。版位與其他分類卡一致，僅內容留白。</td></tr>
       <tr><td>第二層（玩法層）</td><td class="dim">點入「活動」後，下方以<strong>方形卡</strong>顯示可查的玩法，v1 僅「<strong>抽寶箱</strong>」一張。<strong>卡片亦為純入口、無統計數字</strong>。未來新增其他 CRM 玩法時，<strong>以同規格卡片並列</strong>，版面不需改版。</td></tr>
-      <tr><td>第三層（歷程層）</td><td class="dim">點「抽寶箱」→ 列出<strong>該玩家在抽寶箱的全部獎勵歷程</strong>。</td></tr>
-      <tr><td>歷程欄位</td><td class="dim"><strong>僅四欄：時間 / CAMPAIGN ID / 獎勵類型 / 面額</strong>。不加其他欄位。</td></tr>
-      <tr><td>排序</td><td class="dim"><strong>時間倒序</strong>（最新在上）。</td></tr>
-      <tr><td>互動限制</td><td class="dim"><strong>列表項目不可點擊、不可展開細節</strong>；此頁為純查詢呈現，無次層頁面。</td></tr>
-      <tr><td>空狀態</td><td class="dim">玩家尚無任何活動獎勵時，顯示空狀態文案「<strong>尚無活動獎勵紀錄</strong>」（文案 key＝<span class="mono">hist_empty</span>，見 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a>）。</td></tr>
+      <tr><td>第三層（歷程層）</td><td class="dim">點「抽寶箱」→ 列出<strong>該玩家在抽寶箱的全部獎勵歷程</strong>，<strong style="color:var(--gold-light);">以 CAMPAIGN ID 分組呈現（DEV V1.22）</strong>，見下三列。</td></tr>
+      <tr><td><strong style="color:var(--gold-light);">分組結構</strong><br><span class="dim" style="font-size:10px;">DEV V1.22 修訂</span></td><td class="dim"><strong style="color:var(--red-bright);">L3 由「單層混排列表」改為「依 CAMPAIGN ID 分組的區塊列表」</strong>——<strong>一檔活動一個區塊</strong>。<br><strong>區塊標頭（活動層）</strong>顯示：<strong><span class="mono">CAMPAIGN ID</span></strong>（<strong>截斷顯示</strong>，如 <span class="mono">28c…</span>；點擊複製完整值）＋該區塊的<strong>獎勵筆數</strong>。<br><strong>區塊內（獎勵層）</strong>為該活動的獎勵列。<br><strong>分組排序</strong>：依該活動<strong>最新一筆獎勵時間</strong>倒序（最近有獲獎的活動在最上）。<br><strong style="color:var(--orange-bright);">改動理由：</strong>玩家的獎勵常橫跨多檔活動，原本把 CAMPAIGN ID 塞在每一列會重複且佔寬；上移為分組標頭後，「上面是哪一檔活動、下面是這檔活動的每一筆獎勵」的階層才成立，也與 FS 卡歷程「以 <span class="mono">reference_id</span> 分組」同構（見 FS 卡 DEV §09）。<br><strong>區塊預設全部展開</strong>（v1 不做收合；筆數多時整頁捲動即可）。</td></tr>
+      <tr><td>歷程欄位<span class="tag-upd">2026-09-02</span></td><td class="dim"><strong style="color:var(--red-bright);">仍為四欄，但第二欄由「CAMPAIGN ID」改為「注單 ID」（DEV V1.22）：</strong><br><strong>時間 / <span style="color:var(--gold-light);">注單 ID</span> / 獎勵類型 / 面額</strong>。不加其他欄位。<br>· <strong style="color:var(--gold-light);">注單 ID ＝ 該筆獎勵的 Bet=0 注單單號</strong>，與<strong>遊戲後台「投注資料查詢」看到的注單 ID 為同一個值</strong>（見 <a href="#reward-data" style="color:var(--gold-light);">DEV §14 一、Bet=0 發放</a>），確保玩家、客服、營運三方查同一筆對得起來。<br>· <strong>截斷顯示</strong>（樣式同原 CAMPAIGN ID，如 <span class="mono">9f3…</span>），<strong>點擊複製完整值</strong>。<br>· <strong style="color:var(--orange-bright);">不可點擊進入次層</strong>——抽寶箱獎勵<strong>沒有可回放的盤面</strong>，與 FS 卡 L4→L5 不同，不得比照實作。<br>· <strong>CAMPAIGN ID 不再出現在列上</strong>，改由分組標頭承載。</td></tr>
+      <tr><td><strong style="color:var(--gold-light);">日期選擇</strong><br><span class="dim" style="font-size:10px;">DEV V1.22 新增</span></td><td class="dim">L3 上方新增<strong>日期選擇器</strong>，<strong>樣式沿用既有遊戲明細頁的日期選擇器元件</strong>（與 FS 卡歷程 L3 同一元件，見 FS 卡 DEV §09 Ⓒ）。<br><strong style="color:var(--gold-light);">作用對象＝獎勵列（非分組）：</strong>選定日期後<strong>只列出該日期當天發生的獎勵列</strong>；篩選後<strong>只顯示仍有列的活動區塊</strong>，該日期沒有獎勵的活動區塊整塊不顯示。<br><span class="dim">※ 此處<strong>與 FS 卡口徑刻意不同</strong>：FS 卡篩「有使用紀錄的卡片」但<strong>不裁切展開後的局數</strong>（因 score 需與列出的局對得起來）；抽寶箱每一列就是一筆獨立獎勵、沒有加總關係，故直接篩列即可。</span><br><strong>預設值＝不篩選（全部）</strong>；玩家主動選日期才生效，生效時顯示「<strong>清除篩選</strong>」。<br><strong>日期以 UTC+8 判定</strong>（同全站時區慣例）。<br><strong>防呆：</strong>選到沒有任何獎勵的日期 → 顯示「<strong>該日期無獲獎紀錄</strong>」＋「清除篩選」按鈕，<strong>不得顯示空白畫面</strong>（文案 key＝<span class="mono">hist_date_empty</span>）。</td></tr>
+      <tr><td>排序</td><td class="dim"><strong>區塊內</strong>獎勵列<strong>時間倒序</strong>（最新在上）；<strong>區塊之間</strong>依各活動最新一筆獎勵時間倒序。</td></tr>
+      <tr><td>互動限制</td><td class="dim"><strong>獎勵列不可點擊、不可展開細節</strong>；此頁為純查詢呈現，<strong>無次層頁面</strong>。<span class="dim">（唯一的點擊行為＝注單 ID 與 CAMPAIGN ID 的「點擊複製」，不算進入次層。）</span></td></tr>
+      <tr><td>空狀態</td><td class="dim"><strong>玩家尚無任何活動獎勵</strong>：顯示空狀態文案「<strong>尚無活動獎勵紀錄</strong>」（<span class="mono">hist_empty</span>），<strong>不顯示表頭與日期選擇器</strong>。<br><strong>有資料但篩選後無結果</strong>：走上列〈日期選擇〉的防呆＝「該日期無獲獎紀錄」＋清除篩選，<strong>日期選擇器仍顯示</strong>（兩種空狀態不可混用，見 <a href="#i18n" style="color:var(--gold-light);">DEV §11</a>）。</td></tr>
       <tr><td>資料一致性</td><td class="dim">此頁資料須與後台側的活動獎勵紀錄<strong>同源</strong>（見 <a href="#reward-data" style="color:var(--gold-light);">DEV §14</a>），玩家看到的與營運查到的必須一致。</td></tr>
     </tbody>
   </table>
@@ -3389,23 +3406,29 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong style="color:var(--orange-bright);">⚠ 顯示格式須為</strong>「<strong>N 組規則 ＋ 預設</strong>」（<strong>N 不含預設配置</strong>）。同步適用 <a href="#admin-version" style="color:var(--gold-light);">DEV §13 版本快照</a>。
   </div>
 
-  <div class="sub-title" id="tag-pool">標籤池初版（消費分層 × RTP 體驗）<span class="tag-upd">2026-08-04</span></div>
+  <div class="sub-title" id="tag-pool">標籤池初版（消費分層 × RTP 體驗）<span class="tag-upd">2026-09-02</span></div>
   <div class="callout info" style="font-size:12px;">
     <strong>兩個獨立維度、共 <span style="color:var(--gold-light);">7 個標籤</span>：</strong>活動標籤規則可<strong>組合引用</strong>（AND 複合條件），例如「<strong>大客 ＋ 慘輸 → 指派救援高倍模板</strong>」。<br>
     <strong style="color:var(--red-bright);">v1 起移除「低風險」「高風險」標籤</strong>——全文任何引用低／高風險標籤之處（含活動示例、標籤規則示例、BDD）一併以新標籤替換。
   </div>
 
-  <div class="sub-title" style="font-size:13px;margin-top:16px;">維度一：消費分層（依玩家消費／押注金額之百分位 p）</div>
+  <div class="sub-title" style="font-size:13px;margin-top:16px;">維度一：消費分層（依玩家消費／押注金額之百分位 p）<span class="tag-upd">2026-09-02</span></div>
   <table class="spec-table">
-    <thead><tr><th style="width:170px;">標籤</th><th>百分位區間</th></tr></thead>
+    <thead><tr><th style="width:170px;">標籤（後台顯示名）</th><th style="width:180px;">百分位區間<br><span class="dim" style="font-size:10px;">判定依據 · 後台不顯示</span></th><th>備注</th></tr></thead>
     <tbody>
-      <tr><td><strong>小客</strong></td><td class="dim"><span class="mono">0p–50p</span></td></tr>
-      <tr><td><strong>中客</strong></td><td class="dim"><span class="mono">51p–80p</span></td></tr>
-      <tr><td><strong>大客</strong></td><td class="dim"><span class="mono">81p–90p</span></td></tr>
-      <tr><td><strong>超大客</strong></td><td class="dim"><span class="mono">91p–98p</span></td></tr>
-      <tr><td><strong>巨客</strong></td><td class="dim"><span class="mono">99p–100p</span></td></tr>
+      <tr><td><strong>小客</strong></td><td class="dim"><span class="mono">0p–50p</span></td><td class="dim">—</td></tr>
+      <tr><td><strong>中客</strong></td><td class="dim"><span class="mono">51p–80p</span></td><td class="dim">—</td></tr>
+      <tr><td><strong>大客</strong></td><td class="dim"><span class="mono">81p–90p</span></td><td class="dim">—</td></tr>
+      <tr><td><strong>超大客</strong></td><td class="dim"><span class="mono">91p–98p</span></td><td class="dim"><strong style="color:var(--orange-bright);">DEV V1.21 勘誤：</strong>後台原型舊值 <span class="mono">91p–99p</span> 與巨客的 <span class="mono">99p</span> <strong>重疊</strong>，一律以 <span class="mono">91p–98p</span> 為準</td></tr>
+      <tr><td><strong>巨客</strong></td><td class="dim"><span class="mono">99p–100p</span></td><td class="dim">—</td></tr>
     </tbody>
   </table>
+  <div class="callout warn">
+    <strong style="color:var(--red-bright);">後台 UI 只顯示標籤名稱、不顯示百分位（DEV V1.21）：</strong>百分位區間<strong>只是 CDP 端的判定依據</strong>，供開發與數據組對規則使用；<strong>後台任何畫面一律只呈現「小客／中客／大客／超大客／巨客」五個純名稱</strong>，<strong style="color:var(--orange-bright);">不得再附加「81p–90p」之類的區間文字</strong>（原後台原型將區間寫死在標籤 label 中，本版起移除）。<br>
+    <strong>適用範圍：</strong>標籤池勾選項、標籤規則設定列、活動列表／表單、審查頁、模板管理、任何提示與說明文案。<br>
+    <strong>排列順序：</strong>凡列出五個標籤處，一律<strong style="color:var(--gold-light);">依百分位由小到大排列＝小客 → 中客 → 大客 → 超大客 → 巨客</strong>（不依使用頻率排序，避免營運誤讀分層高低）。<br>
+    <strong>五個標籤皆可選用：</strong><strong style="color:var(--orange-bright);">不對「超大客／巨客」做停用或灰階處理</strong>——雖然首波實際主要使用者為<strong>小客／中客／大客</strong>三項，但值域完整開放，營運可自行選用（標籤資料供給時點見 <a href="#openq" style="color:var(--gold-light);">DEV §16 待確認</a>）。
+  </div>
 
   <div class="sub-title" style="font-size:13px;margin-top:16px;">維度二：RTP 體驗（依玩家實際遊戲 RTP 體驗）</div>
   <table class="spec-table">
@@ -4326,7 +4349,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
       <tr><td>注單類型篩選（遊戲後台）</td><td class="dim">遊戲後台既有「投注資料查詢」新增<strong>注單類型：一般注單／活動獎勵</strong>；篩活動獎勵時額外呈現 <strong>CAMPAIGN ID ＋ 獎勵類型</strong>欄。</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：FREE SPIN 卡併入獎勵類型值域</td></tr>
       <tr><td>RTP 自動試算（純資訊顯示）</td><td class="dim">於<strong>各幣別 tab 內</strong>即時顯示該幣別<strong>獎池總額與 RTP%</strong>；<strong style="color:var(--orange-bright);">不做目標值校驗、不擋儲存與送審</strong>。擋送審條件為<strong>獎項數量加總 ≠ 9／四檔任一數量 &lt; 1／必填幣別未填完整／第 1~8 抽權重列合計 0</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>CRM 獨立獎勵歷程頁</td><td class="dim"><strong style="color:var(--orange-bright);">不設此頁</strong>——改於遊戲後台「投注資料查詢」（見上一列與本章「獎勵歷程查詢」）</td><td class="dim">✘ 不做</td><td class="dim">—</td></tr>
-      <tr><td>玩家端「活動」歷程入口</td><td class="dim">遊戲歷程頂部分類新增「活動」（純入口、無 TOTAL BETS／Net Win/Lose）→ 抽寶箱方形卡 → 獎勵歷程列表（時間／CAMPAIGN ID／獎勵類型／面額，時間倒序、不可展開）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：其他玩法卡片並列</td></tr>
+      <tr><td>玩家端「活動」歷程入口</td><td class="dim">遊戲歷程頂部分類新增「活動」（純入口、無 TOTAL BETS／Net Win/Lose）→ 抽寶箱方形卡 → 獎勵歷程列表（<strong style="color:var(--gold-light);">依 CAMPAIGN ID 分組</strong>＋<strong>日期選擇器</strong>；區塊內欄位＝時間／<strong>注單 ID</strong>／獎勵類型／面額，時間倒序、不可展開，DEV V1.22）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：其他玩法卡片並列</td></tr>
       <tr><td>活動類型（列表欄＋篩選＋建立流程）</td><td class="dim">列表於「版型」欄左側新增<strong>活動類型</strong>欄、篩選列新增活動類型下拉；建立新活動<strong>先選活動類型</strong>（目前僅抽寶箱），表單內<strong>唯讀</strong>；架構預留其他玩法，審核與版本控制共用</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">v2：新增其他玩法類型</td></tr>
       <tr><td>監控與警報（Grafana + Telegram）</td><td class="dim"><strong>不做後台頁面</strong>；門檻於 Grafana 側維護、警報經 Telegram 通知、處理狀態由值班流程管理。<strong>取代原「Pending 異常列表／手動重試／AWC Log 頁」與「一鍵啟停」</strong></td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
       <tr><td>版本快照（下拉＋明細）</td><td class="dim">Tab 4 版本下拉切換（「V1（更新 2026-06-28 10:12）」）＋快照明細（目標 RTP／標籤規則數量含預設逐行／起訖／使用模板數量）；<strong>UI 不顯示運行中/待生效 badge</strong>（current/pending 保留於資料層）</td><td><span class="tag-pill tag-v1">✓ 納入</span></td><td class="dim">—</td></tr>
@@ -4837,14 +4860,14 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     <strong>翻譯狀態：</strong>以下 13 語系翻譯為<strong>初稿（AI 產生）</strong>，上線前必須經在地化團隊審校，<strong>泰文（th）、緬甸文（my-MM）、孟加拉文（bn）為高優先審校項</strong>。zh-Hant 為文案原文基準。
   </div>
   <div class="callout success">
-    <strong>文案重點：</strong>① <em>tb_next_hint</em>＝「再押 ₱X 解鎖下一次機會」；② <em>tb_cells_available</em>＝「可再翻 N 格」；③ <em>tb_flip_any</em>＝「可翻任意 N 格！」；④ P7 結算畫面 4 條（<em>go_title／go_sub／go_hint／go_btn</em>）；⑤ <em>tut1_body</em>＝「解鎖一次翻牌機會、自選任一格」；⑥ <strong>不使用</strong> <em>tb_lock_req</em>、<em>tb_reset_tomorrow</em>（鎖定格僅顯示鎖頭、明日重置文案併入 P7）；⑦ <strong>DEV V1.13 新增 3 條</strong>：<em>err_conn_retry／err_reconnecting／hist_empty</em>。<strong>共 41 條。</strong>
+    <strong>文案重點：</strong>① <em>tb_next_hint</em>＝「再押 ₱X 解鎖下一次機會」；② <em>tb_cells_available</em>＝「可再翻 N 格」；③ <em>tb_flip_any</em>＝「可翻任意 N 格！」；④ P7 結算畫面 4 條（<em>go_title／go_sub／go_hint／go_btn</em>）；⑤ <em>tut1_body</em>＝「解鎖一次翻牌機會、自選任一格」；⑥ <strong>不使用</strong> <em>tb_lock_req</em>、<em>tb_reset_tomorrow</em>（鎖定格僅顯示鎖頭、明日重置文案併入 P7）；⑦ <strong>DEV V1.13 新增 3 條</strong>：<em>err_conn_retry／err_reconnecting／hist_empty</em>。<strong>共 45 條（DEV V1.22 新增 4 條：hist_date_empty／hist_clear_filter／hist_bet_id／hist_copied）。</strong>
   </div>
 
   <div class="sub-title">i18n 規則與注意事項<span class="tag-upd">2026-08-28</span></div>
   <div class="info-grid-3">
     <div class="info-card">
       <div class="info-card-title">🔑 Key 命名規則</div>
-      <div class="info-card-desc">依畫面前綴：<em>fab_</em>（浮動icon）／<em>crm_</em>（遊戲中心）／<em>tb_</em>（寶箱彈窗）／<em>go_</em>（結算畫面）／<em>tut_</em>（教學）／<em>err_</em>（錯誤提示）／<em>hist_</em>（歷程頁）。共 41 條。</div>
+      <div class="info-card-desc">依畫面前綴：<em>fab_</em>（浮動icon）／<em>crm_</em>（遊戲中心）／<em>tb_</em>（寶箱彈窗）／<em>go_</em>（結算畫面）／<em>tut_</em>（教學）／<em>err_</em>（錯誤提示）／<em>hist_</em>（歷程頁）。共 45 條（DEV V1.22 新增 4 條：hist_date_empty／hist_clear_filter／hist_bet_id／hist_copied）。</div>
     </div>
     <div class="info-card">
       <div class="info-card-title">🧩 Placeholder 規則</div>
@@ -4950,6 +4973,10 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 <tr><td class="mono">err_conn_retry</td><td class="dim" style="font-size:11px;">連線失敗跑馬燈</td><td class="dim" style="min-width:130px;">連線失敗，將在 {n} 秒後重新嘗試</td><td class="dim" style="min-width:130px;">Connection failed. Retrying in {n}s</td><td class="dim" style="min-width:130px;">连线失败，将在 {n} 秒后重新尝试</td><td class="dim" style="min-width:130px;">接続に失敗しました。{n} 秒後に再試行します</td><td class="dim" style="min-width:130px;">연결 실패. {n}초 후 다시 시도합니다</td><td class="dim" style="min-width:130px;">เชื่อมต่อไม่สำเร็จ จะลองใหม่ในอีก {n} วินาที</td><td class="dim" style="min-width:130px;">Kết nối thất bại. Thử lại sau {n} giây</td><td class="dim" style="min-width:130px;">Koneksi gagal. Mencoba lagi dalam {n} detik</td><td class="dim" style="min-width:130px;">ချိတ်ဆက်မှု မအောင်မြင်ပါ။ {n} စက္ကန့်အကြာတွင် ပြန်ကြိုးစားပါမည်</td><td class="dim" style="min-width:130px;">সংযোগ ব্যর্থ। {n} সেকেন্ড পরে আবার চেষ্টা করা হবে</td><td class="dim" style="min-width:130px;">Falha na conexão. Tentando novamente em {n}s</td><td class="dim" style="min-width:130px;">Error de conexión. Reintentando en {n} s</td><td class="dim" style="min-width:130px;">Bağlantı başarısız. {n} saniye sonra yeniden denenecek</td></tr>
 <tr><td class="mono">err_reconnecting</td><td class="dim" style="font-size:11px;">重連中跑馬燈</td><td class="dim" style="min-width:130px;">重新連線中...</td><td class="dim" style="min-width:130px;">Reconnecting...</td><td class="dim" style="min-width:130px;">重新连线中...</td><td class="dim" style="min-width:130px;">再接続中...</td><td class="dim" style="min-width:130px;">다시 연결 중...</td><td class="dim" style="min-width:130px;">กำลังเชื่อมต่อใหม่...</td><td class="dim" style="min-width:130px;">Đang kết nối lại...</td><td class="dim" style="min-width:130px;">Menghubungkan ulang...</td><td class="dim" style="min-width:130px;">ပြန်လည်ချိတ်ဆက်နေသည်...</td><td class="dim" style="min-width:130px;">পুনরায় সংযোগ করা হচ্ছে...</td><td class="dim" style="min-width:130px;">Reconectando...</td><td class="dim" style="min-width:130px;">Reconectando...</td><td class="dim" style="min-width:130px;">Yeniden bağlanıyor...</td></tr>
 <tr><td class="mono">hist_empty</td><td class="dim" style="font-size:11px;">活動歷程空狀態</td><td class="dim" style="min-width:130px;">尚無活動獎勵紀錄</td><td class="dim" style="min-width:130px;">No event rewards yet</td><td class="dim" style="min-width:130px;">尚无活动奖励记录</td><td class="dim" style="min-width:130px;">イベント報酬の記録はまだありません</td><td class="dim" style="min-width:130px;">아직 이벤트 보상 기록이 없습니다</td><td class="dim" style="min-width:130px;">ยังไม่มีประวัติรางวัลจากกิจกรรม</td><td class="dim" style="min-width:130px;">Chưa có lịch sử thưởng sự kiện</td><td class="dim" style="min-width:130px;">Belum ada riwayat hadiah event</td><td class="dim" style="min-width:130px;">အခမ်းအနား ဆုလက်ဆောင် မှတ်တမ်း မရှိသေးပါ</td><td class="dim" style="min-width:130px;">এখনও কোনো ইভেন্ট পুরস্কারের রেকর্ড নেই</td><td class="dim" style="min-width:130px;">Ainda não há registros de prêmios de eventos</td><td class="dim" style="min-width:130px;">Aún no hay registros de premios de eventos</td><td class="dim" style="min-width:130px;">Henüz etkinlik ödülü kaydı yok</td></tr>
+<tr><td class="mono">hist_date_empty</td><td class="dim" style="font-size:11px;">日期篩選無結果（V1.22）</td><td class="dim" style="min-width:130px;">該日期無獲獎紀錄</td><td class="dim" style="min-width:130px;">No rewards on this date</td><td class="dim" style="min-width:130px;">该日期无获奖记录</td><td class="dim" style="min-width:130px;">この日付の獲得記録はありません</td><td class="dim" style="min-width:130px;">해당 날짜에 획득 기록이 없습니다</td><td class="dim" style="min-width:130px;">ไม่มีประวัติรางวัลในวันที่เลือก</td><td class="dim" style="min-width:130px;">Không có phần thưởng vào ngày này</td><td class="dim" style="min-width:130px;">Tidak ada hadiah pada tanggal ini</td><td class="dim" style="min-width:130px;">ဤရက်စွဲတွင် ဆုရရှိမှု မှတ်တမ်း မရှိပါ</td><td class="dim" style="min-width:130px;">এই তারিখে কোনো পুরস্কারের রেকর্ড নেই</td><td class="dim" style="min-width:130px;">Nenhum prêmio nesta data</td><td class="dim" style="min-width:130px;">No hay premios en esta fecha</td><td class="dim" style="min-width:130px;">Bu tarihte ödül kaydı yok</td></tr>
+<tr><td class="mono">hist_clear_filter</td><td class="dim" style="font-size:11px;">清除日期篩選（V1.22）</td><td class="dim" style="min-width:130px;">清除篩選</td><td class="dim" style="min-width:130px;">Clear filter</td><td class="dim" style="min-width:130px;">清除筛选</td><td class="dim" style="min-width:130px;">フィルターを解除</td><td class="dim" style="min-width:130px;">필터 해제</td><td class="dim" style="min-width:130px;">ล้างตัวกรอง</td><td class="dim" style="min-width:130px;">Xóa bộ lọc</td><td class="dim" style="min-width:130px;">Hapus filter</td><td class="dim" style="min-width:130px;">စစ်ထုတ်မှု ဖယ်ရှားရန်</td><td class="dim" style="min-width:130px;">ফিল্টার সরান</td><td class="dim" style="min-width:130px;">Limpar filtro</td><td class="dim" style="min-width:130px;">Borrar filtro</td><td class="dim" style="min-width:130px;">Filtreyi temizle</td></tr>
+<tr><td class="mono">hist_bet_id</td><td class="dim" style="font-size:11px;">注單 ID 欄名（V1.22）</td><td class="dim" style="min-width:130px;">注單 ID</td><td class="dim" style="min-width:130px;">Bet ID</td><td class="dim" style="min-width:130px;">注单 ID</td><td class="dim" style="min-width:130px;">ベットID</td><td class="dim" style="min-width:130px;">베팅 ID</td><td class="dim" style="min-width:130px;">รหัสเดิมพัน</td><td class="dim" style="min-width:130px;">Mã cược</td><td class="dim" style="min-width:130px;">ID Taruhan</td><td class="dim" style="min-width:130px;">လောင်းကြေး ID</td><td class="dim" style="min-width:130px;">বেট আইডি</td><td class="dim" style="min-width:130px;">ID da aposta</td><td class="dim" style="min-width:130px;">ID de apuesta</td><td class="dim" style="min-width:130px;">Bahis kimliği</td></tr>
+<tr><td class="mono">hist_copied</td><td class="dim" style="font-size:11px;">ID 已複製 toast（V1.22）</td><td class="dim" style="min-width:130px;">已複製</td><td class="dim" style="min-width:130px;">Copied</td><td class="dim" style="min-width:130px;">已复制</td><td class="dim" style="min-width:130px;">コピーしました</td><td class="dim" style="min-width:130px;">복사되었습니다</td><td class="dim" style="min-width:130px;">คัดลอกแล้ว</td><td class="dim" style="min-width:130px;">Đã sao chép</td><td class="dim" style="min-width:130px;">Disalin</td><td class="dim" style="min-width:130px;">ကူးယူပြီးပါပြီ</td><td class="dim" style="min-width:130px;">কপি করা হয়েছে</td><td class="dim" style="min-width:130px;">Copiado</td><td class="dim" style="min-width:130px;">Copiado</td><td class="dim" style="min-width:130px;">Kopyalandı</td></tr>
 </tbody></table></div>
 </section>
 
@@ -5057,7 +5084,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
   <table class="spec-table">
     <thead><tr><th>UI 元件</th><th>類型</th><th>規則說明</th></tr></thead>
     <tbody>
-      <tr><td>標籤複選器</td><td class="dim">Multi-select（Chips/Checkbox）</td><td class="dim">後台設定標籤條件時須支援<strong>「複選」</strong>；標籤清單由數據組提供、後端直抓，不可自由輸入。已選標籤以 chip 呈現、可單獨移除。</td></tr>
+      <tr><td>標籤複選器</td><td class="dim">Multi-select（Chips/Checkbox）</td><td class="dim">後台設定標籤條件時須支援<strong>「複選」</strong>；標籤清單由數據組提供、後端直抓，不可自由輸入。已選標籤以 chip 呈現、可單獨移除。<br><strong style="color:var(--gold-light);">DEV V1.21：</strong>chip 與清單一律<strong>只顯示標籤名稱、不附百分位區間</strong>；消費分層五項<strong>依百分位由小到大排列</strong>（小客 → 中客 → 大客 → 超大客 → 巨客），規則見 <a href="#tag-pool" style="color:var(--gold-light);">DEV §03 標籤池初版</a>。</td></tr>
       <tr><td>複合條件群組</td><td class="dim">AND 條件群組</td><td class="dim">同一組配置的多個標籤以 <strong>AND</strong> 串接，介面明確標示「需<em>同時</em>符合」，避免誤解為 OR。初期<strong>僅一層</strong>（不做巢狀規則樹）。</td></tr>
       <tr><td>防呆 · 衝突檢查</td><td class="dim">即時驗證</td><td class="dim"><strong>三層規則</strong>：<br>
       <strong>①「空規則」（未選任何標籤）</strong> → <strong style="color:var(--red-bright);">紅底警示、擋送審</strong>（同原型 v2）。<br>
@@ -5683,7 +5710,7 @@ html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 </div><!-- /page -->
 
 <div class="doc-footer">
-  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.20 · CONFIDENTIAL 2026<br>
+  抽寶箱 開發交付版規格書 · LUCKY CHEST DEV V1.22 · CONFIDENTIAL 2026<br>
   FORCE / COMBO GAMING · 菲律賓市場 · 受眾：後端／前端／美術／QA · 完整版（含 KPI／成本／時程）另見 <a href="treasure_box_crm_spec_v5.0.html" target="_blank" rel="noopener" style="color:var(--gold-light);">treasure_box_crm_spec_v5.0.html</a>（內容版號 V5.3）<br>
   <strong>兩份文件如有衝突，以本文件為準。</strong>
 </div>

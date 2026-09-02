@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.12</title>
+<title>FREE SPIN 卡規格書 · 開發交付版 · CMB · DEV V1.13</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -556,7 +556,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 <!-- TOP NAV -->
 <nav class="topnav" id="topnav">
-  <span class="nav-brand">FS-DEV · V1.12</span>
+  <span class="nav-brand">FS-DEV · V1.13</span>
   <a class="nav-item active" href="#overview">概要</a>
   <a class="nav-item" href="#flowmap">流程與頁面地圖</a>
   <a class="nav-item" href="#terms">名詞與全域規則</a>
@@ -584,7 +584,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div class="sidebar-brand">CMB · DEV SPEC</div>
     <div class="sidebar-title">FREE SPIN 卡<br>規格書 · 開發交付版</div>
     <div class="sidebar-meta">
-      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.12</span></div>
+      <div class="sidebar-meta-row"><span class="sidebar-meta-label">VERSION</span><span class="sidebar-meta-val">DEV V1.13</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">DATE</span><span class="sidebar-meta-val" id="sidebar-date"></span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">AUTHOR</span><span class="sidebar-meta-val">Milu</span></div>
       <div class="sidebar-meta-row"><span class="sidebar-meta-label">STATUS</span><span class="sidebar-meta-val status-draft">DRAFT</span></div>
@@ -721,7 +721,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <div class="cover-grid"></div>
   <div class="cover-tag">CMB · DEV SPEC · 2026</div>
   <h1>FREE <span>SPIN</span> 卡</h1>
-  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.12（源自完整版 V2.4）</div>
+  <div class="cover-sub">FREE SPIN CARD · 開發交付版 · DEV V1.13（源自完整版 V2.4）</div>
   <div class="cover-pills">
     <div class="cover-pill"><strong>類型</strong> CRM 周邊 · 非現金獎勵</div>
     <div class="cover-pill"><strong>來源</strong> 抽寶箱 第二階段</div>
@@ -748,6 +748,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   <table>
     <thead><tr><th style="width:110px;">修改日期</th><th style="width:96px;">版號</th><th style="width:160px;">修改章節</th><th>修改摘要</th></tr></thead>
     <tbody>
+      <tr><td>2026-09-02</td><td>DEV V1.13</td><td>§09（Ⓐ 入口卡）</td><td><strong>同步抽寶箱 DEV V1.22 的歷程改版（僅敘述修訂，FS 卡本身規則零變更）</strong>。§09 L2 Ⓐ「兩張入口卡結構不同」條目原寫<strong>「抽寶箱＝單層獎勵列表且列不可點」</strong>，抽寶箱自 DEV V1.22 起已改為<strong>「依 CAMPAIGN ID 分組的兩層結構（分組標頭 → 獎勵列）」</strong>（CAMPAIGN ID 上移為分組標頭、列上第二欄改為<strong>注單 ID</strong>、上方新增日期選擇器），故本條同步改寫，避免兩份文件對同一畫面的敘述打架。<br>並補上<strong>兩者的相同處與差異</strong>：<strong>都有日期選擇器（同一元件）</strong>，但<strong>作用對象不同</strong>——抽寶箱篩「獎勵列」（每列即一筆獨立獎勵、無加總關係）；<strong>FS 卡篩「有使用紀錄的卡片」且刻意不裁切展開後的局數</strong>（score 需與列出的局對得起來），<strong>此差異為刻意設計、不得統一</strong>。<br>抽寶箱＝<strong>列不可點、無次層頁面</strong>（無盤面可回放）；FS 卡＝<strong>三層可鑽 L3→L4→L5</strong>。前端不得共用元件之原則不變。</td></tr>
       <tr><td>2026-09-01</td><td>DEV V1.12</td><td>§09（新增）· §02 · §03 · §08 · §11 · §12</td><td><strong>新增 §09「玩家端遊戲歷程呈現」功能頁面章</strong>（原 §09–§11 順延為 §10–§12）：①<strong>CRM 選單（Game Center）最下方新增「History」項目</strong>（§08）——主標 History／副標 RECORDS，<strong>與 FS 卡同批上線、之前掛 SOON 佔位</strong>，點擊收合選單並開啟遊戲端歷程頁、<strong>落在「活動」分類</strong>、<strong>不 deep link 直跳卡片清單</strong>（與抽寶箱 DEV V1.19 同一慣例）；上線後未持卡仍顯示可點。<strong>歷程掛在選單而非背包</strong>的理由：歷程涵蓋抽寶箱與 FS 卡兩個活動，與背包同屬「玩家自己的東西」，掛共用選單才對得上涵蓋範圍；<strong>背包浮層內不另設入口</strong>，維持單一入口。選單項目的排版與 SOON 徽章樣式仍屬《抽寶箱 CRM 浮動 icon 規格》，本文件只定義點擊行為（比照「背包」項目的處理）。②<strong>§09 定義四層動線</strong>：L2 活動分類頁新增「FREE SPIN 卡」入口卡（與抽寶箱並列、<strong>無任何投注統計數字</strong>）→ L3 <strong>以 <span class="mono">reference_id</span> 為分組主鍵的卡片清單</strong>（含日期篩選器、手風琴展開）→ L4 該卡全部局歷程（<strong>跨遊戲混排、維持既有四欄</strong>、Time 欄改雙行標遊戲名、<strong>移除單日統計列</strong>、Profit 為純數字不帶幣值）＋<strong>結算收尾列</strong>（帶幣值、可跳一般注單）→ L5 單局盤面（<strong>Balance 前後值整組換成 <span class="mono">reference_id</span></strong>、Bet 帶幣值＋「卡片面額 · 未實際扣款」、Win 不帶幣值）。③<strong>取消「遊戲」分層</strong>——卡才是 FS 的結算單位，先分遊戲會把同一張卡的歷程切成兩截、導致 score 與封頂算不出來。④<strong>職責切分表 H1–H7</strong>：CRM 端僅 H1，H2–H5 屬遊戲端，H6 為後端基建、H7 為數據口徑。⑤§12 新增第 ⑤ 項基建「<strong>FS 歷程獨立 DB ＋ 歷程 API 統一輸出</strong>」與待確認⑧–⑪；§11 新增 <span class="mono">fs_history_open</span> 事件；§09 含 15 條驗收與 13 條 ×13 語系文案。⑥內部 wiki「不重現遊戲盤面」原則因<strong>現況已上線盤面回放、本章為重用而非新做</strong>，經拍板標記 OUTDATED。<strong>⑦順帶勘誤既有問題</strong>：待確認 ⑤⑥⑦ 實際位於 §03 章末卻被三處內文誤標為前置條件章，已於 §03 補「待確認事項 ⑤–⑦」小標＋編號說明、§12 補指路 callout，三處引用改為「見 §03 待確認⑤/⑥/⑦」；頂部導覽列版號字樣自 V1.10 起漏改，本次補正為 V1.12。</td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.11</td><td>§04～§08（截圖與說明）</td><td><strong>全數截圖更新為 2026-08-25 原型實拍（背包＝英文版）並同步說明內文</strong>：①fs_admin_01～03 重拍（無狀態欄、未結束口徑展開、6 款上限、bet 單欄、「建立發放卡」動作列）②fs_bag_01～03 重拍（可使用／已過期／<strong>待啟動</strong>三分頁，含封頂卡提前結算鈕與 AWC 鎖定 🔒 實拍）③<strong>新增四張畫面</strong>：fs_bag_04 提前結算二次確認、fs_bag_05 啟用流程（Activating Free Spin Card）、fs_bag_06 AWC 衝突錯誤、fs_game_04 CRM 選單＋fs_game_05 一般模式常駐 icon ④fs_game_01～03 由美術 mockup <strong>改為原型實拍</strong>（畫面二新增 Ⓗ CRM icon／Ⓘ Leave FS 區域；畫面三 Ⓔ 最低提領欄位<strong>已確認移除</strong>）⑤§06 動作列文案同步原型：「啟用」→「<strong>建立發放卡</strong>」（編輯模式＝儲存）。<strong>規格規則零變更</strong>；⚠️ 原型卡名顯示「{n}★」徽章＋「Free Spins ×N」與規格固定卡名「{n}★ FREE SPIN」不一致，列入待修（以規格為準）。</td></tr>
       <tr><td>2026-08-25</td><td>DEV V1.10</td><td>§04</td><td><strong>美術需求全面擴充</strong>（回應美術「看不懂要畫什麼」）：①<strong>背包頁「美術視角圖文對照」</strong>Ⓐ–Ⓗ（圖左可 Lightbox ＋ 右欄標題錨點 ＋ 下方區域細節，每區三欄＝要畫什麼／狀態與變化／文字與位數）②<strong>遊戲內三畫面圖文對照</strong>（進場彈窗／遊戲中／結算彈窗，錨點 <span class="mono">art-game-*</span>）③<strong>美術資產需求總表 28 項</strong>（資產類型限四種用語／狀態數／尺寸建議／命名建議 <span class="mono">fs_{screen}_{element}_{state}.png</span>）④<strong>動態文字與位數限制表</strong>（金額 12 字元、次數 2 位數、倒數 8 字元等，供美術預留版位）。<strong>§07／§08 行為規則零變更</strong>——美術章引用畫面時一律一行指路回原章，不重複規則。</td></tr>
@@ -2896,7 +2897,7 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     <div class="rd-cols">
       <div><div class="rd-label">限制與規則</div><ul class="rd-list"><li>卡片＝<strong>icon ＋名稱「FREE SPIN 卡」</strong>，尺寸同抽寶箱卡</li>
 <li><strong>卡片下方不顯示任何統計數字</strong>（無 TOTAL BETS／Net Win/Lose）——它是純入口，不是投注統計分類</li>
-<li>兩張入口卡點進去的<strong>結構不同</strong>：抽寶箱＝單層獎勵列表且列不可點；FREE SPIN 卡＝三層可鑽（L3→L4→L5）。<strong>前端不要當成同一個元件共用</strong></li>
+<li>兩張入口卡點進去的<strong>結構不同</strong>（<strong style="color:var(--gold-light);">DEV V1.13 修訂</strong>）：<strong>抽寶箱＝依 CAMPAIGN ID 分組的兩層結構（分組標頭 → 獎勵列），列不可點、無次層頁面</strong>（抽寶箱 DEV V1.22 起；原「單層獎勵列表」敘述已過時）；<strong>FREE SPIN 卡＝三層可鑽（L3→L4→L5）</strong>，卡片列可展開、局列可進盤面。<strong>前端不要當成同一個元件共用</strong><br><span class="dim">相同處：兩者<strong>上方都有日期選擇器</strong>（同一元件），但<strong>作用對象不同</strong>——抽寶箱篩「獎勵列」，FS 卡篩「有使用紀錄的卡片」且不裁切展開後的局數（見下方 <a href="#pg-hist-l3" style="color:var(--gold-light);">L3 Ⓒ 日期篩選器</a>）。</span></li>
 <li>未來其他 CRM 玩法（簽到、任務…）以同樣卡片並列，版面預留</li></ul></div>
       <div><div class="rd-label">防呆與錯誤</div><ul class="rd-list"><li>玩家從未取得過 FS 卡：<strong>入口卡照常顯示</strong>，點進 L3 顯示空狀態文案</li>
 <li>入口卡不因卡片全數過期而隱藏（歷史查詢需求不隨卡片消失）</li></ul></div>
@@ -3217,7 +3218,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 </section>
 
 <div class="doc-footer">
-  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.12 · CONFIDENTIAL 2026<br>
+  FREE SPIN 卡 · 規格書 開發交付版 · DEV V1.13 · CONFIDENTIAL 2026<br>
+  DEV V1.13（2026-09-02）：§09 Ⓐ 入口卡條目同步抽寶箱 DEV V1.22——抽寶箱歷程改為「依 CAMPAIGN ID 分組的兩層結構」（ID 上移分組標頭、列上第二欄改注單 ID、新增日期選擇器），原「單層獎勵列表」敘述改寫；並補記兩者日期選擇器作用對象不同（抽寶箱篩獎勵列／FS 卡篩卡片且不裁切局數）為刻意設計。FS 卡本身規則零變更。<br>
   DEV V1.12（2026-09-01）：新增 §09「玩家端遊戲歷程呈現」（原 §09–§11 順延為 §10–§12）——CRM 選單（Game Center）最下方新增 History 項目（主標 History／副標 RECORDS、與 FS 卡同批上線前掛 SOON、開到活動分類不 deep link、背包內不另設入口）；四層動線 L2 活動分類卡／L3 以 reference_id 分組的卡片清單（含日期篩選器）／L4 該卡全部局（跨遊戲混排、移除單日統計、Profit 純數字）＋結算收尾列／L5 盤面（Balance 換 reference_id、Bet 帶幣值 Win 不帶）；取消遊戲分層；職責切分 H1–H7；§12 新增基建⑤（FS 歷程獨立 DB＋歷程 API 統一輸出）與待確認⑧–⑪；§11 新增 fs_history_open；wiki「不重現盤面」原則標記 OUTDATED。<br>
   DEV V1.11（2026-08-25）：§04～§08 截圖全面更新為原型實拍（背包英文版）並同步說明——fs_admin_01~03／fs_bag_01~03 重拍、新增 fs_bag_04 提前結算確認／05 啟用流程／06 AWC 錯誤／fs_game_04 CRM 選單／05 常駐 icon、fs_game_01~03 由 mockup 改實拍（畫面二新增 Ⓗ icon／Ⓘ Leave FS；畫面三 Ⓔ 確認移除）；§06「啟用」改「建立發放卡」。規格規則零變更；原型卡名文案差異列入待修。<br>
   DEV V1.10（2026-08-25）：§04 由「美術主題與風格」擴充為「美術主題與美術需求」——新增背包頁 Ⓐ–Ⓗ 美術視角圖文對照、遊戲內三畫面（進場／遊戲中／結算）圖文對照、美術資產需求總表 28 項（資產類型限整張圖／九宮格／icon／動效素材四種，含狀態數、430×932 基準尺寸建議、fs_{screen}_{element}_{state}.png 命名建議）、動態文字與位數限制表（金額 12 字元、次數 2 位數、倒數 8 字元、卡名固定全語系統一）。含文字美術圖統一英文、已過期置灰由前端濾鏡處理。§07／§08 行為規則零變更，美術章一律指路回原章。<br>
